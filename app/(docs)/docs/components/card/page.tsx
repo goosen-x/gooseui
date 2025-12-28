@@ -55,7 +55,7 @@ export default function CardPage() {
           Установка
         </h2>
         <pre className="rounded-lg border bg-muted px-4 py-3 font-mono text-sm overflow-x-auto">
-          npx shadcn@latest add @gooselabs/card
+          npx shadcn@latest add @gooseui/card
         </pre>
       </div>
 

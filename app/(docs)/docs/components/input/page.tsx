@@ -32,7 +32,7 @@ export default function InputPage() {
           Установка
         </h2>
         <pre className="rounded-lg border bg-muted px-4 py-3 font-mono text-sm overflow-x-auto">
-          npx shadcn@latest add @gooselabs/input
+          npx shadcn@latest add @gooseui/input
         </pre>
       </div>
 

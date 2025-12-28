@@ -2,7 +2,7 @@ import Link from "next/link"
 
 export const metadata = {
   title: "Документация",
-  description: "Руководство по использованию GooseLabs UI",
+  description: "Руководство по использованию GooseUI",
 }
 
 export default function DocsPage() {
@@ -13,14 +13,14 @@ export default function DocsPage() {
           Введение
         </h1>
         <p className="text-lg text-muted-foreground mt-2">
-          GooseLabs UI — это коллекция переиспользуемых компонентов для React,
+          GooseUI — это коллекция переиспользуемых компонентов для React,
           построенных на базе Radix UI и Tailwind CSS.
         </p>
       </div>
 
       <div className="space-y-4">
         <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight">
-          Что такое GooseLabs UI?
+          Что такое GooseUI?
         </h2>
         <p className="leading-7">
           Это не npm-библиотека, а коллекция компонентов, которые вы копируете в
@@ -50,13 +50,13 @@ export default function DocsPage() {
           Добавьте компонент в свой проект с помощью shadcn CLI:
         </p>
         <pre className="rounded-lg border bg-muted px-4 py-3 font-mono text-sm overflow-x-auto">
-          npx shadcn@latest add https://ui.gooselabs.ru/r/button.json
+          npx shadcn@latest add https://gooseui.pro/r/button.json
         </pre>
         <p className="leading-7">
           Или используя namespace (после настройки):
         </p>
         <pre className="rounded-lg border bg-muted px-4 py-3 font-mono text-sm overflow-x-auto">
-          npx shadcn@latest add @gooselabs/button
+          npx shadcn@latest add @gooseui/button
         </pre>
       </div>
 

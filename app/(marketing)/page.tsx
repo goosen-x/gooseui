@@ -122,7 +122,7 @@ export default function HomePage() {
             Используй shadcn CLI для добавления компонентов в свой проект
           </p>
           <div className="mt-4 rounded-lg border bg-muted px-4 py-3 font-mono text-sm">
-            npx shadcn@latest add @gooselabs/button
+            npx shadcn@latest add @gooseui/button
           </div>
         </div>
       </section>

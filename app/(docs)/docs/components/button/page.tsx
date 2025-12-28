@@ -36,13 +36,13 @@ export default function ButtonPage() {
           Установка
         </h2>
         <pre className="rounded-lg border bg-muted px-4 py-3 font-mono text-sm overflow-x-auto">
-          npx shadcn@latest add @gooselabs/button
+          npx shadcn@latest add @gooseui/button
         </pre>
         <p className="text-sm text-muted-foreground">
           Или напрямую:
         </p>
         <pre className="rounded-lg border bg-muted px-4 py-3 font-mono text-sm overflow-x-auto">
-          npx shadcn@latest add https://ui.gooselabs.ru/r/button.json
+          npx shadcn@latest add https://gooseui.pro/r/button.json
         </pre>
       </div>
 

@@ -1,6 +1,6 @@
 export const metadata = {
   title: "Установка",
-  description: "Как установить и настроить GooseLabs UI в вашем проекте",
+  description: "Как установить и настроить GooseUI в вашем проекте",
 }
 
 export default function InstallationPage() {
@@ -11,7 +11,7 @@ export default function InstallationPage() {
           Установка
         </h1>
         <p className="text-lg text-muted-foreground mt-2">
-          Как добавить компоненты GooseLabs UI в ваш проект
+          Как добавить компоненты GooseUI в ваш проект
         </p>
       </div>
 
@@ -34,7 +34,7 @@ export default function InstallationPage() {
           Добавьте компонент напрямую по URL:
         </p>
         <pre className="rounded-lg border bg-muted px-4 py-3 font-mono text-sm overflow-x-auto">
-          npx shadcn@latest add https://ui.gooselabs.ru/r/button.json
+          npx shadcn@latest add https://gooseui.pro/r/button.json
         </pre>
       </div>
 
@@ -48,7 +48,7 @@ export default function InstallationPage() {
         <pre className="rounded-lg border bg-muted px-4 py-3 font-mono text-sm overflow-x-auto">
 {`{
   "registries": {
-    "@gooselabs": "https://ui.gooselabs.ru/r"
+    "@gooseui": "https://gooseui.pro/r/{name}.json"
   }
 }`}
         </pre>
@@ -56,7 +56,7 @@ export default function InstallationPage() {
           Затем используйте namespace для установки:
         </p>
         <pre className="rounded-lg border bg-muted px-4 py-3 font-mono text-sm overflow-x-auto">
-          npx shadcn@latest add @gooselabs/button
+          npx shadcn@latest add @gooseui/button
         </pre>
       </div>
 
