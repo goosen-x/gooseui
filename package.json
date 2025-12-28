@@ -12,7 +12,6 @@
   "dependencies": {
     "@radix-ui/react-label": "^2.1.7",
     "@radix-ui/react-slot": "^1.2.3",
-    "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^0.487.0",
     "motion": "^12.23.26",
@@ -37,6 +36,7 @@
     "@types/node": "^20.19.9",
     "@types/react": "19.1.2",
     "@types/react-dom": "19.1.2",
+    "class-variance-authority": "^0.7.1",
     "eslint": "^9.32.0",
     "eslint-config-next": "15.3.1",
     "glob": "^13.0.0",

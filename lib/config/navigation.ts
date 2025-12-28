@@ -64,6 +64,7 @@ export const docsNav = [
       {
         title: "Border Beam",
         href: "/docs/effects/border-beam",
+        isNew: true,
       },
     ],
   },

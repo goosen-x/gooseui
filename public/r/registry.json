@@ -1,8 +1,20 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry.json",
-  "name": "gooselabs",
-  "homepage": "https://ui.gooselabs.ru",
+  "name": "gooseui",
+  "homepage": "https://gooseui.pro",
   "items": [
+    {
+      "name": "border-beam",
+      "type": "registry:ui",
+      "title": "Border Beam",
+      "description": "Animated beam of light traveling along the border of a container.",
+      "files": [
+        {
+          "path": "registry/new-york/effects/border-beam.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
     {
       "name": "button",
       "type": "registry:ui",
