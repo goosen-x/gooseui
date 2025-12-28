@@ -1,0 +1,357 @@
+# Animate UI
+
+## Сводная информация
+
+| Параметр | Значение |
+|----------|----------|
+| **Сайт** | [animate-ui.com](https://animate-ui.com/) |
+| **GitHub** | [github.com/imskyleen/animate-ui](https://github.com/imskyleen/animate-ui) |
+| **Звёзды** | 3,100+ |
+| **Стек** | React, TypeScript, Tailwind CSS, Motion (Framer Motion) |
+| **Лицензия** | MIT |
+| **Автор** | imskyleen |
+
+---
+
+## Описание
+
+Animate UI — полностью анимированная библиотека компонентов с открытым исходным кодом. Построена на React, TypeScript, Tailwind CSS и Motion (Framer Motion). Использует подход "copy-first" через Shadcn CLI — компоненты копируются в кодовую базу проекта для полной кастомизации.
+
+**Ключевые особенности:**
+- 70+ готовых компонентов с анимациями
+- Примитивы без стилей для максимальной гибкости
+- Анимированные Lucide Icons
+- Интеграция с Radix UI, Base UI, Headless UI
+- Монорепо-структура проекта
+
+---
+
+## Установка
+
+Animate UI использует процесс установки идентичный shadcn/ui:
+
+```bash
+# 1. Инициализация shadcn/ui в проекте
+npx shadcn@latest init
+
+# 2. Добавление компонентов
+npx shadcn@latest add "https://animate-ui.com/r/[component-name]"
+```
+
+**Пример использования:**
+
+```tsx
+import { SlidingNumber } from '@/components/animate-ui/primitives/texts/sliding-number';
+
+export default function Home() {
+  return (
+    <div>
+      <SlidingNumber />
+    </div>
+  );
+}
+```
+
+---
+
+## Структура библиотеки
+
+### 1. Components (Стилизованные компоненты)
+
+#### Animate UI (Оригинальные)
+| Компонент | Описание |
+|-----------|----------|
+| Avatar Group | Анимированная группа аватаров с эффектом при наведении |
+| Code | Анимация написания кода |
+| Code Tabs | Табы с кодом для разных языков |
+| Cursor | Кастомизируемый курсор с плавными анимациями |
+| GitHub Stars Wheel | Прокручивающееся колесо со звёздами GitHub |
+| Tabs | Анимированные табы |
+| Tooltip | Анимированные тултипы |
+
+#### Radix UI (Адаптированные)
+| Компонент | Описание |
+|-----------|----------|
+| Accordion | Вертикальные раскрывающиеся панели |
+| Alert Dialog | Модальное окно с требованием ответа |
+| Checkbox | Анимированный чекбокс |
+| Dialog | Модальное окно |
+| Dropdown Menu | Выпадающее меню |
+| Files | Список файлов и папок |
+| Hover Card | Карточка предпросмотра при наведении |
+| Popover | Всплывающее содержимое |
+| Preview Link Card | Превью ссылки с изображением |
+| Progress | Индикатор прогресса |
+| Radio Group | Группа радио-кнопок |
+| Sheet | Выдвижная панель |
+| Sidebar | Боковая панель |
+| Switch | Переключатель |
+| Toggle | Двухпозиционная кнопка |
+| Toggle Group | Группа переключателей |
+
+#### Base UI и Headless UI
+Аналогичные компоненты с анимациями для Base UI и Headless UI.
+
+#### Buttons (Кнопки)
+| Компонент | Описание |
+|-----------|----------|
+| Button | Базовая анимированная кнопка |
+| Copy Button | Кнопка копирования с анимацией |
+| Flip Button | Кнопка с эффектом переворота |
+| GitHub Stars Button | Кнопка со звёздами репозитория |
+| Icon Button | Кнопка с частицами при клике |
+| Liquid Button | Кнопка с эффектом заливки |
+| Ripple Button | Кнопка с эффектом волны |
+| Theme Toggler Button | Переключатель темы с анимацией |
+
+#### Backgrounds (Фоны)
+| Компонент | Описание |
+|-----------|----------|
+| Bubble Background | Анимированные градиентные пузыри |
+| Fireworks Background | Фейерверки |
+| Gradient Background | Анимированный градиент |
+| Gravity Stars Background | Интерактивные звёзды с гравитацией |
+| Hexagon Background | Интерактивная гексагональная сетка |
+| Hole Background | Анимированная сетка с отверстиями |
+| Stars Background | Анимированное звёздное небо |
+
+#### Community (Сообщество)
+| Компонент | Описание |
+|-----------|----------|
+| Flip Card | 3D-карточка с переворотом |
+| Management Bar | Панель управления с пагинацией |
+| Motion Carousel | Карусель с Motion-анимациями |
+| Notification List | Анимированный список уведомлений |
+| Pin List | Список с закреплением элементов |
+| Playful Todolist | Игровой список задач |
+| Radial Intro | Круговая интро-анимация |
+| Radial Menu | Круговое контекстное меню |
+| Radial Nav | Круговая навигация |
+| Share Button | Кнопка шаринга с анимацией |
+| User Presence Avatar | Аватары с индикатором присутствия |
+
+---
+
+### 2. Primitives (Примитивы без стилей)
+
+#### Effects (Эффекты)
+| Примитив | Описание | Основные пропсы |
+|----------|----------|-----------------|
+| Auto Height | Автоматическая высота элемента | — |
+| Blur | Размытие при появлении | `inView`, `delay` |
+| Click | Эффекты при клике | — |
+| Effect | Базовый эффект появления | `inView`, `inViewOnce` |
+| Fade | Плавное появление | `opacity`, `initialOpacity`, `delay` |
+| Highlight | Подсветка при взаимодействии | — |
+| Image Zoom | Зум изображения при наведении | — |
+| Magnetic | Магнитное притяжение к курсору | — |
+| Particles | Система частиц | — |
+| Shine | Эффект блеска | — |
+| Slide | Скольжение при появлении | — |
+| Theme Toggler | Переключение темы | — |
+| Tilt | Наклон при наведении | — |
+| Zoom | Зум при появлении | — |
+
+#### Texts (Текстовые эффекты)
+| Примитив | Описание |
+|----------|----------|
+| Counting Number | Анимация подсчёта числа |
+| Gradient Text | Градиентный текст |
+| Highlight Text | Подсветка текста |
+| Morphing Text | Плавное превращение между строками |
+| Rolling Text | Прокручивающийся текст |
+| Rotating Text | Вращающийся текст |
+| Scrolling Number | Прокрутка числа |
+| Shimmering Text | Мерцающий текст |
+| Sliding Number | Скользящее число |
+| Splitting Text | Разбиение текста на части |
+| Typing Text | Эффект печати |
+
+#### Buttons (Кнопки-примитивы)
+| Примитив | Описание | Основные пропсы |
+|----------|----------|-----------------|
+| Button | Базовая анимация | `hoverScale`, `tapScale` |
+| Flip | Переворот между состояниями | — |
+| Liquid | Заливка при наведении | — |
+| Ripple | Волновой эффект | — |
+
+#### Animate UI (Другие примитивы)
+| Примитив | Описание |
+|----------|----------|
+| Avatar Group | Группа аватаров |
+| Code Block | Блок кода с анимацией |
+| Cursor | Кастомный курсор |
+| GitHub Stars | Анимированный счётчик звёзд |
+| Motion Grid | Сетка с анимациями |
+| Pinned List | Список с закреплением |
+| Scroll Progress | Прогресс прокрутки |
+| Slot | Motion-компоненты для любого элемента |
+| Spring | Элемент на пружине |
+| Tabs | Табы |
+| Tooltip | Тултип |
+
+---
+
+### 3. Icons (Анимированные иконки)
+
+Animate UI предоставляет анимированные версии Lucide Icons с использованием Motion.
+
+**Использование:**
+
+```tsx
+// Прямое использование
+<ArrowRight animateOnHover />
+
+// С оберткой
+<AnimateIcon animateOnHover>
+  <ArrowRight />
+</AnimateIcon>
+```
+
+**Триггеры анимации:**
+- `animateOnHover` — при наведении
+- `animateOnTap` — при клике
+- `animateOnView` — при появлении в viewport
+- `animate` — программное управление
+
+**Параметры:**
+- `size` — размер (по умолчанию 28)
+- `delay` — задержка
+- `loop` — зацикливание
+- `animation` — тип анимации
+
+---
+
+## Примеры использования
+
+### Button с анимацией
+
+```tsx
+import { Button } from '@/components/animate-ui/components/buttons/button';
+
+<Button
+  variant="default"
+  hoverScale={1.05}
+  tapScale={0.95}
+>
+  Click me
+</Button>
+```
+
+**Доступные варианты:** `default`, `accent`, `destructive`, `outline`, `secondary`, `ghost`, `link`
+**Размеры:** `default`, `sm`, `lg`, `icon`
+
+### Fade эффект
+
+```tsx
+import { Fade, Fades } from '@/components/animate-ui/primitives/effects/fade';
+
+// Один элемент
+<Fade inView delay={0.2}>
+  Появляющийся контент
+</Fade>
+
+// Несколько элементов с каскадом
+<Fades holdDelay={0.1}>
+  <div>Элемент 1</div>
+  <div>Элемент 2</div>
+  <div>Элемент 3</div>
+</Fades>
+```
+
+**Пропсы Fade:**
+- `asChild` (boolean) — использовать дочерний элемент
+- `inView` (boolean) — анимировать при появлении
+- `inViewOnce` (boolean) — однократная анимация
+- `inViewMargin` (string) — отступ viewport
+- `delay` (number) — задержка
+- `opacity` (number) — целевая прозрачность
+- `initialOpacity` (number) — начальная прозрачность
+
+---
+
+## Типы анимаций
+
+### По триггеру
+1. **Hover** — при наведении курсора
+2. **Tap/Click** — при клике
+3. **InView** — при появлении в viewport
+4. **Load** — при загрузке
+5. **Controlled** — программное управление
+
+### По типу эффекта
+1. **Transform** — масштаб, поворот, перемещение
+2. **Opacity** — прозрачность, fade
+3. **Color** — изменение цвета, градиенты
+4. **Path** — SVG морфинг
+5. **Physics** — пружины, гравитация
+6. **Particles** — системы частиц
+
+### По области применения
+1. **Buttons** — кнопки с hover/tap эффектами
+2. **Backgrounds** — анимированные фоны
+3. **Text** — текстовые анимации
+4. **Icons** — анимированные иконки
+5. **Navigation** — меню, сайдбары
+6. **Feedback** — уведомления, прогресс
+
+---
+
+## MCP-сервер
+
+Animate UI работает через официальный shadcn MCP. Компоненты доступны через registry.
+
+**Добавление в components.json:**
+
+```json
+{
+  "registries": {
+    "@animate": {
+      "url": "https://animate-ui.com/r"
+    }
+  }
+}
+```
+
+---
+
+## Сравнение с аналогами
+
+| Характеристика | Animate UI | Magic UI | Aceternity UI |
+|----------------|------------|----------|---------------|
+| Звёзды GitHub | 3,100+ | 19,000+ | 3,300+ |
+| Фокус | Универсальные анимации | Лендинги | Премиум эффекты |
+| Компоненты | 70+ | 150+ | 53+ |
+| Примитивы | Да | Нет | Нет |
+| Иконки | Анимированные Lucide | Нет | Нет |
+| UI-библиотеки | Radix, Base UI, Headless | Radix | Нет |
+| Лицензия | MIT | MIT | MIT |
+
+---
+
+## Преимущества
+
+1. **Широкий охват** — компоненты, примитивы, иконки
+2. **Мультиплатформенность** — поддержка Radix UI, Base UI, Headless UI
+3. **Примитивы без стилей** — максимальная гибкость кастомизации
+4. **Анимированные иконки** — уникальная фича на базе Lucide
+5. **Активное сообщество** — Community-компоненты
+6. **Shadcn CLI** — стандартный процесс установки
+
+---
+
+## Ограничения
+
+1. Относительно молодой проект (март 2025)
+2. Иконки в бета-статусе
+3. Меньше звёзд чем у Magic UI
+4. Документация частично недоступна (404 на некоторых страницах)
+
+---
+
+## Источники
+
+- [Официальный сайт](https://animate-ui.com/)
+- [GitHub репозиторий](https://github.com/imskyleen/animate-ui)
+- [Документация](https://animate-ui.com/docs)
+- [Twitter/X](https://twitter.com/animate_ui)
