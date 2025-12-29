@@ -1,5 +1,6 @@
 import { DocsHeader } from "@/components/docs-header"
 import { DocsSidebar } from "@/components/docs-sidebar"
+import { FloatingNav } from "@/components/docs/floating-nav"
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar"
 
 export default function DocsLayout({
@@ -16,6 +17,7 @@ export default function DocsLayout({
           <div className="mx-auto max-w-3xl">{children}</div>
         </main>
       </SidebarInset>
+      <FloatingNav />
     </SidebarProvider>
   )
 }
