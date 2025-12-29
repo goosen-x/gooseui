@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react"
 import { toast } from "sonner"
 import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
 import {
   CircleCheckIcon,
   OctagonXIcon,
@@ -96,12 +97,14 @@ export function CustomToast({
         )}
       </div>
 
-      <button
+      <Button
+        variant="ghost"
+        size="icon"
         onClick={() => toast.dismiss(id)}
-        className="shrink-0 rounded-md p-1 opacity-70 cursor-pointer hover:opacity-100 transition-opacity"
+        className="size-6 shrink-0 opacity-70 hover:opacity-100"
       >
         <XIcon className="size-4" />
-      </button>
+      </Button>
 
       {/* Progress bar */}
       <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-muted/50">
