@@ -4,12 +4,26 @@ import { Link } from "@/i18n/routing"
 import { useTranslations } from "next-intl"
 import { Button } from "@/registry/new-york/ui/button"
 import { BorderBeam } from "@/registry/new-york/effects/border-beam"
+import { cn } from "@/lib/utils"
 
 export function Hero() {
   const t = useTranslations("hero")
 
   return (
-    <div className="min-h-[calc(100svh-5rem)] py-20 max-w-6xl mx-auto px-6 flex items-center">
+    <div className="relative min-h-[calc(100svh-5rem)] flex items-center">
+      {/* Dot background */}
+      <div
+        className={cn(
+          "absolute inset-0",
+          "[background-size:20px_20px]",
+          "[background-image:radial-gradient(#d4d4d4_1px,transparent_1px)]",
+          "dark:[background-image:radial-gradient(#404040_1px,transparent_1px)]"
+        )}
+      />
+      {/* Radial gradient fade */}
+      <div className="pointer-events-none absolute inset-0 bg-background [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]" />
+
+      <div className="relative z-10 py-20 max-w-6xl mx-auto px-6 w-full">
       <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-start w-full">
         {/* Left side - Text content */}
         <div className="flex-1">
@@ -111,6 +125,7 @@ export function Hero() {
             <BorderBeam duration={8} />
           </div>
         </div>
+      </div>
       </div>
     </div>
   )
