@@ -1,9 +1,8 @@
 "use client"
 
 import * as React from "react"
-import Link from "next/link"
-import { usePathname } from "next/navigation"
-import { Sparkles } from "lucide-react"
+import { Link, usePathname } from "@/i18n/routing"
+import { useTranslations } from "next-intl"
 
 import {
   Sidebar,
@@ -19,43 +18,53 @@ import {
 } from "@/components/ui/sidebar"
 
 type NavItem = {
-  title: string
+  titleKey: string
   href: string
   isNew?: boolean
 }
 
 type NavSection = {
-  title: string
+  titleKey: string
   items: NavItem[]
 }
 
-const docsNav: NavSection[] = [
+const docsNavConfig: NavSection[] = [
   {
-    title: "Начало работы",
+    titleKey: "gettingStarted",
     items: [
-      { title: "Введение", href: "/docs" },
-      { title: "Установка", href: "/docs/installation" },
-      { title: "CLI", href: "/docs/cli" },
+      { titleKey: "introduction", href: "/docs" },
+      { titleKey: "installation", href: "/docs/installation" },
+      { titleKey: "cli", href: "/docs/cli" },
     ],
   },
   {
-    title: "Компоненты",
+    titleKey: "components",
     items: [
-      { title: "Button", href: "/docs/components/button" },
-      { title: "Card", href: "/docs/components/card" },
-      { title: "Input", href: "/docs/components/input" },
+      { titleKey: "animatedTimer", href: "/docs/components/animated-timer", isNew: true },
+      { titleKey: "button", href: "/docs/components/button" },
+      { titleKey: "card", href: "/docs/components/card" },
+      { titleKey: "input", href: "/docs/components/input" },
     ],
   },
   {
-    title: "Эффекты",
+    titleKey: "effects",
     items: [
-      { title: "Border Beam", href: "/docs/effects/border-beam", isNew: true },
+      { titleKey: "borderBeam", href: "/docs/effects/border-beam", isNew: true },
     ],
   },
 ]
 
+const itemTitles: Record<string, string> = {
+  animatedTimer: "Animated Timer",
+  button: "Button",
+  card: "Card",
+  input: "Input",
+  borderBeam: "Border Beam",
+}
+
 export function DocsSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const pathname = usePathname()
+  const t = useTranslations("navigation")
 
   return (
     <Sidebar variant="floating" {...props}>
@@ -64,9 +73,11 @@ export function DocsSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) 
           <SidebarMenuItem>
             <SidebarMenuButton size="lg" asChild>
               <Link href="/">
-                <div className="bg-primary text-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg">
-                  <Sparkles className="size-4" />
-                </div>
+                <img
+                  src="/favicon/favicon.svg"
+                  alt="GooseUI"
+                  className="size-8 dark:invert"
+                />
                 <div className="flex flex-col gap-0.5 leading-none">
                   <span className="font-semibold">GooseUI</span>
                   <span className="text-xs text-muted-foreground">v1.0.0</span>
@@ -79,10 +90,10 @@ export function DocsSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) 
       <SidebarContent>
         <SidebarGroup>
           <SidebarMenu className="gap-2">
-            {docsNav.map((section) => (
-              <SidebarMenuItem key={section.title}>
+            {docsNavConfig.map((section) => (
+              <SidebarMenuItem key={section.titleKey}>
                 <SidebarMenuButton className="font-medium">
-                  {section.title}
+                  {t(section.titleKey)}
                 </SidebarMenuButton>
                 {section.items?.length ? (
                   <SidebarMenuSub className="ml-0 border-l-0 px-1.5">
@@ -93,7 +104,7 @@ export function DocsSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) 
                           isActive={pathname === item.href}
                         >
                           <Link href={item.href}>
-                            {item.title}
+                            {itemTitles[item.titleKey] || t(item.titleKey)}
                             {item.isNew && (
                               <span className="ml-auto text-[10px] bg-primary text-primary-foreground px-1.5 py-0.5 rounded-full">
                                 NEW

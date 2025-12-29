@@ -1,19 +1,25 @@
-import Link from "next/link"
+"use client"
+
+import { Link } from "@/i18n/routing"
+import { useTranslations } from "next-intl"
 import { Button } from "@/registry/new-york/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/registry/new-york/ui/card"
 import { Input } from "@/registry/new-york/ui/input"
 import { BorderBeam } from "@/registry/new-york/effects/border-beam"
 
 export function ComponentPreview() {
+  const t = useTranslations("componentPreview")
+  const tCommon = useTranslations("common")
+
   return (
     <section className="py-20 px-6 bg-muted/30">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
-            Библиотека компонентов
+            {t("title")}
           </h2>
           <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-            UI компоненты и эффекты, готовые к использованию
+            {t("subtitle")}
           </p>
         </div>
 
@@ -41,12 +47,12 @@ export function ComponentPreview() {
             <h3 className="font-semibold mb-4">Cards</h3>
             <Card>
               <CardHeader className="pb-3">
-                <CardTitle className="text-base">Уведомления</CardTitle>
-                <CardDescription>Настройте способ получения уведомлений</CardDescription>
+                <CardTitle className="text-base">{t("notifications")}</CardTitle>
+                <CardDescription>{t("notificationsDesc")}</CardDescription>
               </CardHeader>
               <CardContent className="flex gap-2">
-                <Button size="sm" variant="outline">Отмена</Button>
-                <Button size="sm">Сохранить</Button>
+                <Button size="sm" variant="outline">{tCommon("cancel")}</Button>
+                <Button size="sm">{tCommon("save")}</Button>
               </CardContent>
             </Card>
           </div>
@@ -56,8 +62,8 @@ export function ComponentPreview() {
             <h3 className="font-semibold mb-4">Inputs</h3>
             <div className="space-y-3 max-w-sm">
               <Input placeholder="Email" type="email" />
-              <Input placeholder="Пароль" type="password" />
-              <Input placeholder="Отключено" disabled />
+              <Input placeholder={t("password")} type="password" />
+              <Input placeholder={t("disabled")} disabled />
             </div>
           </div>
 
@@ -71,7 +77,7 @@ export function ComponentPreview() {
             </div>
             <div className="relative overflow-hidden rounded-lg border p-8 flex items-center justify-center">
               <p className="text-muted-foreground text-center">
-                Анимированный луч света
+                {t("animatedBeam")}
               </p>
               <BorderBeam duration={6} />
             </div>
@@ -81,7 +87,7 @@ export function ComponentPreview() {
         <div className="mt-12 text-center">
           <Button size="lg" variant="outline" asChild>
             <Link href="/docs/components/button">
-              Смотреть все компоненты
+              {t("viewAll")}
             </Link>
           </Button>
         </div>

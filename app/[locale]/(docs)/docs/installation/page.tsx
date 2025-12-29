@@ -1,37 +1,45 @@
-export const metadata = {
-  title: "Установка",
-  description: "Как установить и настроить GooseUI в вашем проекте",
+import { getTranslations } from "next-intl/server"
+
+export async function generateMetadata() {
+  const t = await getTranslations("docs.installation")
+  return {
+    title: t("title"),
+    description: t("description"),
+  }
 }
 
-export default function InstallationPage() {
+export default async function InstallationPage() {
+  const t = await getTranslations("docs.installation")
+
   return (
     <div className="space-y-6">
       <div>
         <h1 className="scroll-m-20 text-4xl font-bold tracking-tight">
-          Установка
+          {t("title")}
         </h1>
         <p className="text-lg text-muted-foreground mt-2">
-          Как добавить компоненты GooseUI в ваш проект
+          {t("description")}
         </p>
       </div>
 
       <div className="space-y-4">
         <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight">
-          Требования
+          {t("requirements")}
         </h2>
         <ul className="my-6 ml-6 list-disc [&>li]:mt-2">
-          <li>React 18+</li>
-          <li>Tailwind CSS 3.4+ или 4.0+</li>
-          <li>TypeScript (рекомендуется)</li>
+          <li>{t("requirement1")}</li>
+          <li>{t("requirement2")}</li>
+          <li>{t("requirement3")}</li>
+          <li>{t("requirement4")}</li>
         </ul>
       </div>
 
       <div className="space-y-4">
         <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight">
-          Способ 1: Прямой URL
+          {t("method1")}
         </h2>
         <p className="leading-7">
-          Добавьте компонент напрямую по URL:
+          {t("method1Text")}
         </p>
         <pre className="rounded-lg border bg-muted px-4 py-3 font-mono text-sm overflow-x-auto">
           npx shadcn@latest add https://gooseui.pro/r/button.json
@@ -40,10 +48,10 @@ export default function InstallationPage() {
 
       <div className="space-y-4">
         <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight">
-          Способ 2: Через namespace
+          {t("method2")}
         </h2>
         <p className="leading-7">
-          Добавьте registry в ваш <code className="relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm">components.json</code>:
+          {t("method2Text")}
         </p>
         <pre className="rounded-lg border bg-muted px-4 py-3 font-mono text-sm overflow-x-auto">
 {`{
@@ -53,7 +61,7 @@ export default function InstallationPage() {
 }`}
         </pre>
         <p className="leading-7">
-          Затем используйте namespace для установки:
+          {t("method2Text2")}
         </p>
         <pre className="rounded-lg border bg-muted px-4 py-3 font-mono text-sm overflow-x-auto">
           npx shadcn@latest add @gooseui/button
@@ -62,10 +70,10 @@ export default function InstallationPage() {
 
       <div className="space-y-4">
         <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight">
-          Структура проекта
+          {t("structure")}
         </h2>
         <p className="leading-7">
-          После установки компоненты будут добавлены в директорию <code className="relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm">components/ui</code>:
+          {t("structureText")}
         </p>
         <pre className="rounded-lg border bg-muted px-4 py-3 font-mono text-sm overflow-x-auto">
 {`your-project/

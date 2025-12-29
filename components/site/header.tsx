@@ -1,21 +1,28 @@
 "use client"
 
-import Link from "next/link"
-import { siteConfig, mainNav } from "@/lib/config/navigation"
+import { Link, usePathname } from "@/i18n/routing"
+import { useTranslations } from "next-intl"
+import { siteConfig } from "@/lib/config/navigation"
 import { cn } from "@/lib/utils"
 import { Button } from "@/registry/new-york/ui/button"
-import { usePathname } from "next/navigation"
+import { LanguageSwitcher } from "@/components/language-switcher"
 
 export function SiteHeader() {
   const pathname = usePathname()
+  const t = useTranslations("navigation")
+
+  const mainNav = [
+    { href: "/docs", title: t("docs") },
+    { href: "/docs/components/button", title: t("components") },
+    { href: "/docs/effects/border-beam", title: t("effects") },
+  ]
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-14 items-center">
-        <Link href="/" className="flex items-center space-x-2">
-          <span className="font-bold">
-            {siteConfig.name}
-          </span>
+      <div className="mx-auto flex h-14 max-w-screen-2xl items-center px-4 md:px-8">
+        <Link href="/" className="flex items-center gap-2">
+          <img src="/favicon/favicon.svg" alt="" className="h-5 w-auto dark:invert" />
+          <span className="font-bold">{siteConfig.name}</span>
         </Link>
         <div className="flex flex-1 items-center justify-end space-x-6">
           <nav className="hidden md:flex items-center space-x-6 text-sm font-medium">
@@ -34,9 +41,10 @@ export function SiteHeader() {
               </Link>
             ))}
           </nav>
+          <LanguageSwitcher />
           <nav className="flex items-center">
             <Button variant="ghost" size="sm" asChild>
-              <Link
+              <a
                 href={siteConfig.links.github}
                 target="_blank"
                 rel="noreferrer"
@@ -56,7 +64,7 @@ export function SiteHeader() {
                   <path d="M9 18c-4.51 2-5-2-7-2" />
                 </svg>
                 <span className="sr-only">GitHub</span>
-              </Link>
+              </a>
             </Button>
           </nav>
         </div>

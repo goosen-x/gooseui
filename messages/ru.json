@@ -1,0 +1,244 @@
+{
+  "common": {
+    "getStarted": "Начать работу",
+    "documentation": "Документация",
+    "components": "Компоненты",
+    "effects": "Эффекты",
+    "installation": "Установка",
+    "usage": "Использование",
+    "examples": "Примеры",
+    "props": "Props",
+    "preview": "Превью",
+    "cancel": "Отмена",
+    "save": "Сохранить",
+    "create": "Создать",
+    "viewAll": "Смотреть все",
+    "orDirectly": "Или напрямую:",
+    "openSource": "Открытый исходный код"
+  },
+  "navigation": {
+    "docs": "Документация",
+    "components": "Компоненты",
+    "gettingStarted": "Начало работы",
+    "introduction": "Введение",
+    "installation": "Установка",
+    "cli": "CLI",
+    "effects": "Эффекты"
+  },
+  "siteConfig": {
+    "name": "GooseUI",
+    "description": "Коллекция компонентов для создания современных веб-приложений"
+  },
+  "hero": {
+    "badge": "Открытая библиотека компонентов",
+    "title": "Создавайте современные интерфейсы быстрее",
+    "description": "Коллекция красивых компонентов и эффектов для React. Копируй код, настраивай под себя, запускай в продакшен.",
+    "getStarted": "Начать работу",
+    "components": "Компоненты",
+    "openSource": "Открытый код",
+    "typescript": "TypeScript",
+    "tailwind": "Tailwind CSS"
+  },
+  "features": {
+    "title": "Всё для современной разработки",
+    "subtitle": "Компоненты, которые экономят время и помогают создавать качественные продукты",
+    "animations": {
+      "title": "Анимации и эффекты",
+      "description": "Border Beam, текстовые эффекты и другие анимации для привлекательных интерфейсов"
+    },
+    "installation": {
+      "title": "Мгновенная установка",
+      "description": "Одна команда CLI — и компонент в вашем проекте. Никаких зависимостей от пакетов"
+    },
+    "control": {
+      "title": "Полный контроль",
+      "description": "Код копируется в ваш проект. Изменяйте что угодно без ограничений"
+    },
+    "styling": {
+      "title": "Гибкая стилизация",
+      "description": "Tailwind CSS и CSS переменные для простой кастомизации под ваш бренд"
+    },
+    "blocks": {
+      "title": "Готовые блоки",
+      "description": "Секции для лендингов, формы, карточки — собирайте страницы как конструктор"
+    },
+    "cli": {
+      "title": "shadcn CLI",
+      "description": "Полная совместимость с shadcn CLI. Используйте привычные команды"
+    }
+  },
+  "faq": {
+    "title": "Частые вопросы",
+    "subtitle": "Ответы на популярные вопросы о GooseUI",
+    "q1": {
+      "question": "Что такое GooseUI?",
+      "answer": "GooseUI — это открытая библиотека React компонентов, построенная на основе shadcn/ui. Компоненты копируются в ваш проект, давая полный контроль над кодом."
+    },
+    "q2": {
+      "question": "Как установить компоненты?",
+      "answer": "Используйте shadcn CLI: npx shadcn@latest add https://gooseui.pro/r/button.json. Компонент будет добавлен в папку components/ui вашего проекта."
+    },
+    "q3": {
+      "question": "Можно ли кастомизировать стили?",
+      "answer": "Да, полностью. Компоненты используют Tailwind CSS и CSS переменные. Вы можете изменить любые стили, так как код находится в вашем проекте."
+    },
+    "q4": {
+      "question": "Какие технологии используются?",
+      "answer": "React, TypeScript, Tailwind CSS, Radix UI для доступности, и CSS переменные для темизации. Всё современное и хорошо поддерживаемое."
+    },
+    "q5": {
+      "question": "Это бесплатно?",
+      "answer": "Да, GooseUI полностью бесплатен и с открытым исходным кодом. Используйте в личных и коммерческих проектах без ограничений."
+    },
+    "q6": {
+      "question": "Совместимо с shadcn/ui?",
+      "answer": "Да, GooseUI построен на той же архитектуре что и shadcn/ui. Вы можете использовать компоненты из обеих библиотек в одном проекте."
+    }
+  },
+  "cta": {
+    "title": "Готовы начать?",
+    "description": "Добавьте первый компонент в свой проект прямо сейчас",
+    "documentation": "Документация",
+    "github": "GitHub"
+  },
+  "componentPreview": {
+    "title": "Библиотека компонентов",
+    "subtitle": "UI компоненты и эффекты, готовые к использованию",
+    "viewAll": "Смотреть все компоненты",
+    "notifications": "Уведомления",
+    "notificationsDesc": "Настройте способ получения уведомлений",
+    "password": "Пароль",
+    "disabled": "Отключено",
+    "animatedBeam": "Анимированный луч света"
+  },
+  "footer": {
+    "description": "Открытая библиотека компонентов для создания современных веб-приложений на React.",
+    "product": "Продукт",
+    "resources": "Ресурсы",
+    "community": "Сообщество",
+    "components": "Компоненты",
+    "effects": "Эффекты",
+    "blocks": "Блоки",
+    "documentation": "Документация",
+    "installation": "Установка",
+    "cli": "CLI",
+    "github": "GitHub",
+    "copyright": "Открытый исходный код."
+  },
+  "breadcrumbs": {
+    "docs": "Документация",
+    "components": "Компоненты",
+    "effects": "Эффекты",
+    "installation": "Установка",
+    "cli": "CLI"
+  },
+  "docs": {
+    "introduction": {
+      "title": "Документация",
+      "description": "Руководство по использованию GooseUI",
+      "heading": "Введение",
+      "whatIs": "Что такое GooseUI?",
+      "whatIsText": "GooseUI — это коллекция готовых компонентов для React, которые вы можете копировать и вставлять в свои проекты. Это не npm пакет — вы получаете полный контроль над кодом.",
+      "features": "Особенности",
+      "feature1": "Доступные компоненты на базе Radix UI",
+      "feature2": "Стилизация через Tailwind CSS",
+      "feature3": "Тёмная тема из коробки",
+      "feature4": "Полная типизация TypeScript",
+      "feature5": "Copy-paste установка через CLI",
+      "quickStart": "Быстрый старт",
+      "quickStartText": "Начните с установки компонентов через shadcn CLI:",
+      "installation": "Установка",
+      "components": "Компоненты"
+    },
+    "installation": {
+      "title": "Установка",
+      "description": "Как установить и настроить GooseUI в вашем проекте",
+      "requirements": "Требования",
+      "requirement1": "React 18+",
+      "requirement2": "Next.js 13+ (App Router)",
+      "requirement3": "Tailwind CSS",
+      "requirement4": "TypeScript (рекомендуется)",
+      "method1": "Способ 1: Прямой URL",
+      "method1Text": "Установите компонент напрямую по URL:",
+      "method2": "Способ 2: Через namespace",
+      "method2Text": "Добавьте namespace GooseUI в ваш components.json:",
+      "method2Text2": "Теперь можно устанавливать компоненты:",
+      "structure": "Структура проекта",
+      "structureText": "После установки компоненты появятся в:"
+    },
+    "cli": {
+      "title": "CLI",
+      "description": "Использование shadcn CLI для установки компонентов",
+      "addComponent": "Добавление компонента",
+      "addComponentText": "Используйте команду add для установки компонента:",
+      "addMultiple": "Добавление нескольких компонентов",
+      "addMultipleText": "Можно установить несколько компонентов за раз:",
+      "available": "Доступные компоненты",
+      "availableText": "Список всех доступных компонентов:"
+    }
+  },
+  "components": {
+    "button": {
+      "title": "Button",
+      "description": "Кнопка с различными вариантами и размерами",
+      "variants": "Варианты",
+      "sizes": "Размеры",
+      "propName": "Название",
+      "propType": "Тип",
+      "propDefault": "По умолчанию",
+      "propDescription": "Описание"
+    },
+    "card": {
+      "title": "Card",
+      "description": "Отображает карточку с заголовком, контентом и подвалом",
+      "components": "Компоненты",
+      "createProject": "Создать проект",
+      "createProjectDesc": "Разверните новый проект за один клик",
+      "createProjectText": "Ваш новый проект будет создан с настроенным окружением",
+      "cardContainer": "Контейнер карточки",
+      "cardHeader": "Заголовок карточки",
+      "cardTitle": "Название карточки",
+      "cardDescription": "Описание карточки",
+      "cardContent": "Основной контент",
+      "cardFooter": "Подвал карточки"
+    },
+    "input": {
+      "title": "Input",
+      "description": "Отображает поле ввода текста",
+      "default": "Default",
+      "disabled": "Disabled",
+      "withLabel": "С Label",
+      "fileInput": "File Input",
+      "enterText": "Введите текст...",
+      "password": "Пароль",
+      "blocked": "Заблокировано",
+      "propsNote": "Input принимает все стандартные HTML атрибуты для <input>"
+    },
+    "animatedTimer": {
+      "title": "Animated Timer",
+      "description": "Красивые анимированные часы с плавно скользящими цифрами и градиентной рамкой",
+      "demo": "Демо",
+      "noSeconds": "Без секунд",
+      "format24": "24-часовой формат",
+      "showSeconds": "Показывать секунды",
+      "use24Hour": "24-часовой формат",
+      "additionalClasses": "Дополнительные классы"
+    },
+    "borderBeam": {
+      "title": "Border Beam",
+      "description": "Анимированный луч света, путешествующий вдоль границы контейнера",
+      "effect": "Эффект анимированной границы",
+      "effectText": "Луч света плавно движется по периметру карточки, создавая эффектную анимацию",
+      "important": "Контейнер должен иметь классы relative и overflow-hidden",
+      "differentColors": "Разные цвета",
+      "differentSpeeds": "Разная скорость",
+      "fast": "Быстро (6s)",
+      "normal": "Нормально (12s)",
+      "slow": "Медленно (20s)"
+    }
+  },
+  "languageSwitcher": {
+    "ru": "Русский",
+    "en": "English"
+  }
+}

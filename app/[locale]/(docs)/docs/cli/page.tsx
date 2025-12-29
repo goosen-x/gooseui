@@ -1,36 +1,46 @@
-export const metadata = {
-  title: "CLI",
-  description: "Использование shadcn CLI для установки компонентов",
+import { getTranslations } from "next-intl/server"
+
+export async function generateMetadata() {
+  const t = await getTranslations("docs.cli")
+  return {
+    title: t("title"),
+    description: t("description"),
+  }
 }
 
-export default function CLIPage() {
+export default async function CLIPage() {
+  const t = await getTranslations("docs.cli")
+
   return (
     <div className="space-y-6">
       <div>
         <h1 className="scroll-m-20 text-4xl font-bold tracking-tight">
-          CLI
+          {t("title")}
         </h1>
         <p className="text-lg text-muted-foreground mt-2">
-          Используйте shadcn CLI для управления компонентами
+          {t("description")}
         </p>
       </div>
 
       <div className="space-y-4">
         <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight">
-          Добавление компонента
+          {t("addComponent")}
         </h2>
+        <p className="leading-7">
+          {t("addComponentText")}
+        </p>
         <pre className="rounded-lg border bg-muted px-4 py-3 font-mono text-sm overflow-x-auto">
           npx shadcn@latest add @gooseui/button
         </pre>
-        <p className="leading-7">
-          Эта команда скачает компонент и все его зависимости в ваш проект.
-        </p>
       </div>
 
       <div className="space-y-4">
         <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight">
-          Добавление нескольких компонентов
+          {t("addMultiple")}
         </h2>
+        <p className="leading-7">
+          {t("addMultipleText")}
+        </p>
         <pre className="rounded-lg border bg-muted px-4 py-3 font-mono text-sm overflow-x-auto">
           npx shadcn@latest add @gooseui/button @gooseui/card @gooseui/input
         </pre>
@@ -38,8 +48,11 @@ export default function CLIPage() {
 
       <div className="space-y-4">
         <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight">
-          Доступные компоненты
+          {t("available")}
         </h2>
+        <p className="leading-7">
+          {t("availableText")}
+        </p>
         <div className="grid gap-2">
           <div className="flex items-center justify-between rounded-lg border p-3">
             <span className="font-mono text-sm">border-beam</span>

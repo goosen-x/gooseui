@@ -1,25 +1,32 @@
+import { getTranslations } from "next-intl/server"
 import { Button } from "@/registry/new-york/ui/button"
 
-export const metadata = {
-  title: "Button",
-  description: "Кнопка с различными вариантами и размерами",
+export async function generateMetadata() {
+  const t = await getTranslations("components.button")
+  return {
+    title: t("title"),
+    description: t("description"),
+  }
 }
 
-export default function ButtonPage() {
+export default async function ButtonPage() {
+  const t = await getTranslations("components.button")
+  const tCommon = await getTranslations("common")
+
   return (
     <div className="space-y-6">
       <div>
         <h1 className="scroll-m-20 text-4xl font-bold tracking-tight">
-          Button
+          {t("title")}
         </h1>
         <p className="text-lg text-muted-foreground mt-2">
-          Отображает кнопку или компонент, похожий на кнопку
+          {t("description")}
         </p>
       </div>
 
       <div className="space-y-4">
         <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight">
-          Превью
+          {tCommon("preview")}
         </h2>
         <div className="flex flex-wrap items-center gap-4 rounded-lg border p-6">
           <Button>Primary</Button>
@@ -33,13 +40,13 @@ export default function ButtonPage() {
 
       <div className="space-y-4">
         <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight">
-          Установка
+          {tCommon("installation")}
         </h2>
         <pre className="rounded-lg border bg-muted px-4 py-3 font-mono text-sm overflow-x-auto">
           npx shadcn@latest add @gooseui/button
         </pre>
         <p className="text-sm text-muted-foreground">
-          Или напрямую:
+          {tCommon("orDirectly")}
         </p>
         <pre className="rounded-lg border bg-muted px-4 py-3 font-mono text-sm overflow-x-auto">
           npx shadcn@latest add https://gooseui.pro/r/button.json
@@ -48,7 +55,7 @@ export default function ButtonPage() {
 
       <div className="space-y-4">
         <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight">
-          Использование
+          {tCommon("usage")}
         </h2>
         <pre className="rounded-lg border bg-muted px-4 py-3 font-mono text-sm overflow-x-auto">
 {`import { Button } from "@/components/ui/button"
@@ -61,7 +68,7 @@ export function MyComponent() {
 
       <div className="space-y-4">
         <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight">
-          Варианты
+          {t("variants")}
         </h2>
 
         <h3 className="scroll-m-20 text-xl font-semibold tracking-tight mt-6">
@@ -127,7 +134,7 @@ export function MyComponent() {
 
       <div className="space-y-4">
         <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight">
-          Размеры
+          {t("sizes")}
         </h2>
         <div className="flex flex-wrap items-center gap-4 rounded-lg border p-6">
           <Button size="sm">Small</Button>
@@ -160,15 +167,15 @@ export function MyComponent() {
 
       <div className="space-y-4">
         <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight">
-          Props
+          {tCommon("props")}
         </h2>
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b">
-                <th className="text-left py-3 px-4 font-semibold">Prop</th>
-                <th className="text-left py-3 px-4 font-semibold">Type</th>
-                <th className="text-left py-3 px-4 font-semibold">Default</th>
+                <th className="text-left py-3 px-4 font-semibold">{t("propName")}</th>
+                <th className="text-left py-3 px-4 font-semibold">{t("propType")}</th>
+                <th className="text-left py-3 px-4 font-semibold">{t("propDefault")}</th>
               </tr>
             </thead>
             <tbody>

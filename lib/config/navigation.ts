@@ -3,8 +3,7 @@ export const siteConfig = {
   description: "Коллекция компонентов для создания современных веб-приложений",
   url: "https://gooseui.pro",
   links: {
-    github: "https://github.com/goose-labs/gooseui",
-    twitter: "https://twitter.com/gooseui",
+    github: "https://github.com/goosen-x/gooseui",
   },
 }
 
@@ -16,10 +15,6 @@ export const mainNav = [
   {
     title: "Компоненты",
     href: "/docs/components/button",
-  },
-  {
-    title: "Блоки",
-    href: "/docs/blocks",
   },
 ]
 
@@ -44,6 +39,11 @@ export const docsNav = [
   {
     title: "Компоненты",
     items: [
+      {
+        title: "Animated Timer",
+        href: "/docs/components/animated-timer",
+        isNew: true,
+      },
       {
         title: "Button",
         href: "/docs/components/button",

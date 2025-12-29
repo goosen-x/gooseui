@@ -1,38 +1,45 @@
+import { getTranslations } from "next-intl/server"
 import { BorderBeam } from "@/registry/new-york/effects/border-beam"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/registry/new-york/ui/card"
 
-export const metadata = {
-  title: "Border Beam",
-  description: "Анимированный луч света, путешествующий вдоль границы контейнера",
+export async function generateMetadata() {
+  const t = await getTranslations("components.borderBeam")
+  return {
+    title: t("title"),
+    description: t("description"),
+  }
 }
 
-export default function BorderBeamPage() {
+export default async function BorderBeamPage() {
+  const t = await getTranslations("components.borderBeam")
+  const tCommon = await getTranslations("common")
+
   return (
     <div className="space-y-6">
       <div>
         <h1 className="scroll-m-20 text-4xl font-bold tracking-tight">
-          Border Beam
+          {t("title")}
         </h1>
         <p className="text-lg text-muted-foreground mt-2">
-          Анимированный луч света, путешествующий вдоль границы контейнера
+          {t("description")}
         </p>
       </div>
 
       <div className="space-y-4">
         <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight">
-          Превью
+          {tCommon("preview")}
         </h2>
         <div className="flex items-center justify-center rounded-lg border p-10 bg-background">
           <Card className="relative w-[350px] overflow-hidden">
             <CardHeader>
-              <CardTitle>Border Beam</CardTitle>
+              <CardTitle>{t("title")}</CardTitle>
               <CardDescription>
-                Эффект анимированной границы
+                {t("effect")}
               </CardDescription>
             </CardHeader>
             <CardContent>
               <p className="text-sm text-muted-foreground">
-                Луч света плавно движется по периметру карточки, создавая эффектную анимацию.
+                {t("effectText")}
               </p>
             </CardContent>
             <BorderBeam />
@@ -42,7 +49,7 @@ export default function BorderBeamPage() {
 
       <div className="space-y-4">
         <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight">
-          Установка
+          {tCommon("installation")}
         </h2>
         <pre className="rounded-lg border bg-muted px-4 py-3 font-mono text-sm overflow-x-auto">
           npx shadcn@latest add https://gooseui.pro/r/border-beam.json
@@ -51,7 +58,7 @@ export default function BorderBeamPage() {
 
       <div className="space-y-4">
         <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight">
-          Использование
+          {tCommon("usage")}
         </h2>
         <pre className="rounded-lg border bg-muted px-4 py-3 font-mono text-sm overflow-x-auto">
 {`import { BorderBeam } from "@/components/ui/border-beam"
@@ -59,26 +66,24 @@ export default function BorderBeamPage() {
 export function MyCard() {
   return (
     <div className="relative overflow-hidden rounded-lg border p-4">
-      <p>Контент карточки</p>
+      <p>Card content</p>
       <BorderBeam />
     </div>
   )
 }`}
         </pre>
         <p className="text-sm text-muted-foreground">
-          <strong>Важно:</strong> Контейнер должен иметь классы{" "}
-          <code className="rounded bg-muted px-1">relative</code> и{" "}
-          <code className="rounded bg-muted px-1">overflow-hidden</code>
+          <strong>Important:</strong> {t("important")}
         </p>
       </div>
 
       <div className="space-y-4">
         <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight">
-          Примеры
+          {tCommon("examples")}
         </h2>
 
         <h3 className="scroll-m-20 text-xl font-semibold tracking-tight mt-6">
-          Разные цвета
+          {t("differentColors")}
         </h3>
         <div className="grid gap-4 md:grid-cols-2">
           <div className="relative overflow-hidden rounded-lg border p-6 text-center">
@@ -103,31 +108,31 @@ export function MyCard() {
         </pre>
 
         <h3 className="scroll-m-20 text-xl font-semibold tracking-tight mt-6">
-          Разная скорость
+          {t("differentSpeeds")}
         </h3>
         <div className="grid gap-4 md:grid-cols-3">
           <div className="relative overflow-hidden rounded-lg border p-6 text-center">
-            <p className="text-sm font-medium">Быстро (6s)</p>
+            <p className="text-sm font-medium">{t("fast")}</p>
             <BorderBeam duration={6} />
           </div>
           <div className="relative overflow-hidden rounded-lg border p-6 text-center">
-            <p className="text-sm font-medium">Нормально (12s)</p>
+            <p className="text-sm font-medium">{t("normal")}</p>
             <BorderBeam duration={12} />
           </div>
           <div className="relative overflow-hidden rounded-lg border p-6 text-center">
-            <p className="text-sm font-medium">Медленно (20s)</p>
+            <p className="text-sm font-medium">{t("slow")}</p>
             <BorderBeam duration={20} />
           </div>
         </div>
         <pre className="rounded-lg border bg-muted px-4 py-3 font-mono text-sm overflow-x-auto">
-{`<BorderBeam duration={6} />  {/* быстро */}
-<BorderBeam duration={20} /> {/* медленно */}`}
+{`<BorderBeam duration={6} />  /* fast */
+<BorderBeam duration={20} /> /* slow */`}
         </pre>
       </div>
 
       <div className="space-y-4">
         <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight">
-          Props
+          {tCommon("props")}
         </h2>
         <div className="overflow-x-auto">
           <table className="w-full text-sm">

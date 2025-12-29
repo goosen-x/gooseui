@@ -4,6 +4,18 @@
   "homepage": "https://gooseui.pro",
   "items": [
     {
+      "name": "animated-timer",
+      "type": "registry:ui",
+      "title": "Animated Timer",
+      "description": "A beautiful animated clock with sliding digits and gradient border.",
+      "files": [
+        {
+          "path": "registry/new-york/ui/animated-timer.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "border-beam",
       "type": "registry:ui",
       "title": "Border Beam",

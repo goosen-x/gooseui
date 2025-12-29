@@ -1,3 +1,4 @@
+import { getTranslations } from "next-intl/server"
 import {
   Card,
   CardContent,
@@ -8,43 +9,49 @@ import {
 } from "@/registry/new-york/ui/card"
 import { Button } from "@/registry/new-york/ui/button"
 
-export const metadata = {
-  title: "Card",
-  description: "Отображает карточку с заголовком, контентом и подвалом",
+export async function generateMetadata() {
+  const t = await getTranslations("components.card")
+  return {
+    title: t("title"),
+    description: t("description"),
+  }
 }
 
-export default function CardPage() {
+export default async function CardPage() {
+  const t = await getTranslations("components.card")
+  const tCommon = await getTranslations("common")
+
   return (
     <div className="space-y-6">
       <div>
         <h1 className="scroll-m-20 text-4xl font-bold tracking-tight">
-          Card
+          {t("title")}
         </h1>
         <p className="text-lg text-muted-foreground mt-2">
-          Отображает карточку с заголовком, контентом и подвалом
+          {t("description")}
         </p>
       </div>
 
       <div className="space-y-4">
         <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight">
-          Превью
+          {tCommon("preview")}
         </h2>
         <div className="flex items-center justify-center rounded-lg border p-6">
           <Card className="w-[350px]">
             <CardHeader>
-              <CardTitle>Создать проект</CardTitle>
+              <CardTitle>{t("createProject")}</CardTitle>
               <CardDescription>
-                Разверните новый проект за один клик
+                {t("createProjectDesc")}
               </CardDescription>
             </CardHeader>
             <CardContent>
               <p className="text-sm text-muted-foreground">
-                Ваш новый проект будет создан с настроенным окружением
+                {t("createProjectText")}
               </p>
             </CardContent>
             <CardFooter className="flex justify-between">
-              <Button variant="outline">Отмена</Button>
-              <Button>Создать</Button>
+              <Button variant="outline">{tCommon("cancel")}</Button>
+              <Button>{tCommon("create")}</Button>
             </CardFooter>
           </Card>
         </div>
@@ -52,7 +59,7 @@ export default function CardPage() {
 
       <div className="space-y-4">
         <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight">
-          Установка
+          {tCommon("installation")}
         </h2>
         <pre className="rounded-lg border bg-muted px-4 py-3 font-mono text-sm overflow-x-auto">
           npx shadcn@latest add @gooseui/card
@@ -61,7 +68,7 @@ export default function CardPage() {
 
       <div className="space-y-4">
         <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight">
-          Использование
+          {tCommon("usage")}
         </h2>
         <pre className="rounded-lg border bg-muted px-4 py-3 font-mono text-sm overflow-x-auto">
 {`import {
@@ -77,14 +84,14 @@ export function MyCard() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Заголовок</CardTitle>
-        <CardDescription>Описание</CardDescription>
+        <CardTitle>Title</CardTitle>
+        <CardDescription>Description</CardDescription>
       </CardHeader>
       <CardContent>
-        <p>Контент карточки</p>
+        <p>Card content</p>
       </CardContent>
       <CardFooter>
-        <p>Подвал</p>
+        <p>Footer</p>
       </CardFooter>
     </Card>
   )
@@ -94,51 +101,51 @@ export function MyCard() {
 
       <div className="space-y-4">
         <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight">
-          Компоненты
+          {t("components")}
         </h2>
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b">
-                <th className="text-left py-3 px-4 font-semibold">Компонент</th>
-                <th className="text-left py-3 px-4 font-semibold">Описание</th>
+                <th className="text-left py-3 px-4 font-semibold">Component</th>
+                <th className="text-left py-3 px-4 font-semibold">Description</th>
               </tr>
             </thead>
             <tbody>
               <tr className="border-b">
                 <td className="py-3 px-4 font-mono">Card</td>
                 <td className="py-3 px-4 text-muted-foreground">
-                  Контейнер карточки
+                  {t("cardContainer")}
                 </td>
               </tr>
               <tr className="border-b">
                 <td className="py-3 px-4 font-mono">CardHeader</td>
                 <td className="py-3 px-4 text-muted-foreground">
-                  Заголовок карточки
+                  {t("cardHeader")}
                 </td>
               </tr>
               <tr className="border-b">
                 <td className="py-3 px-4 font-mono">CardTitle</td>
                 <td className="py-3 px-4 text-muted-foreground">
-                  Название карточки
+                  {t("cardTitle")}
                 </td>
               </tr>
               <tr className="border-b">
                 <td className="py-3 px-4 font-mono">CardDescription</td>
                 <td className="py-3 px-4 text-muted-foreground">
-                  Описание карточки
+                  {t("cardDescription")}
                 </td>
               </tr>
               <tr className="border-b">
                 <td className="py-3 px-4 font-mono">CardContent</td>
                 <td className="py-3 px-4 text-muted-foreground">
-                  Основной контент
+                  {t("cardContent")}
                 </td>
               </tr>
               <tr className="border-b">
                 <td className="py-3 px-4 font-mono">CardFooter</td>
                 <td className="py-3 px-4 text-muted-foreground">
-                  Подвал карточки
+                  {t("cardFooter")}
                 </td>
               </tr>
             </tbody>
