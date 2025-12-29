@@ -92,6 +92,47 @@
       ]
     },
     {
+      "name": "sonner",
+      "type": "registry:ui",
+      "title": "Sonner",
+      "description": "Toast notification component with theming support.",
+      "dependencies": ["sonner", "next-themes", "lucide-react"],
+      "files": [
+        {
+          "path": "registry/new-york/ui/sonner.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "custom-toast",
+      "type": "registry:ui",
+      "title": "Custom Toast",
+      "description": "Beautiful toast with progress bar and colored variants.",
+      "dependencies": ["sonner", "lucide-react"],
+      "registryDependencies": ["button"],
+      "files": [
+        {
+          "path": "registry/new-york/ui/custom-toast.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "toast",
+      "type": "registry:lib",
+      "title": "Toast Utility",
+      "description": "Helper functions to show custom toast notifications.",
+      "dependencies": ["sonner"],
+      "registryDependencies": ["custom-toast"],
+      "files": [
+        {
+          "path": "registry/new-york/lib/toast.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
       "name": "hello-world",
       "type": "registry:component",
       "title": "Hello World",

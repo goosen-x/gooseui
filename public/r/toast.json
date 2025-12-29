@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "toast",
+  "type": "registry:lib",
+  "title": "Toast Utility",
+  "description": "Helper functions to show custom toast notifications.",
+  "dependencies": [
+    "sonner"
+  ],
+  "registryDependencies": [
+    "custom-toast"
+  ],
+  "files": [
+    {
+      "path": "registry/new-york/lib/toast.ts",
+      "content": "import { toast } from \"sonner\"\nimport { CustomToast } from \"@/components/ui/custom-toast\"\nimport { createElement } from \"react\"\n\ninterface ToastOptions {\n  description?: string\n  duration?: number\n}\n\nexport const customToast = {\n  success: (message: string, options?: ToastOptions) => {\n    toast.custom(\n      (id) =>\n        createElement(CustomToast, {\n          id,\n          type: \"success\",\n          message,\n          description: options?.description,\n          duration: options?.duration,\n        }),\n      { duration: Infinity }\n    )\n  },\n\n  error: (message: string, options?: ToastOptions) => {\n    toast.custom(\n      (id) =>\n        createElement(CustomToast, {\n          id,\n          type: \"error\",\n          message,\n          description: options?.description,\n          duration: options?.duration,\n        }),\n      { duration: Infinity }\n    )\n  },\n\n  warning: (message: string, options?: ToastOptions) => {\n    toast.custom(\n      (id) =>\n        createElement(CustomToast, {\n          id,\n          type: \"warning\",\n          message,\n          description: options?.description,\n          duration: options?.duration,\n        }),\n      { duration: Infinity }\n    )\n  },\n\n  info: (message: string, options?: ToastOptions) => {\n    toast.custom(\n      (id) =>\n        createElement(CustomToast, {\n          id,\n          type: \"info\",\n          message,\n          description: options?.description,\n          duration: options?.duration,\n        }),\n      { duration: Infinity }\n    )\n  },\n}\n",
+      "type": "registry:lib"
+    }
+  ]
+}

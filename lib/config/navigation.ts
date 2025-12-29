@@ -56,6 +56,11 @@ export const docsNav = [
         title: "Input",
         href: "/docs/components/input",
       },
+      {
+        title: "Toast",
+        href: "/docs/components/toast",
+        isNew: true,
+      },
     ],
   },
   {
