@@ -7,7 +7,11 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "registry:build": "shadcn build"
+    "lint:fix": "eslint --fix \"**/*.{ts,tsx,js,jsx}\"",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,css,md}\"",
+    "typecheck": "tsc --noEmit",
+    "registry:build": "shadcn build",
+    "prepare": "husky"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.15",
@@ -49,6 +53,8 @@
     "eslint": "^9.32.0",
     "eslint-config-next": "15.3.1",
     "glob": "^13.0.0",
+    "husky": "^9.1.7",
+    "prettier": "^3.7.4",
     "tailwindcss": "^4.1.11",
     "tsx": "^4.21.0",
     "typescript": "^5.9.2"

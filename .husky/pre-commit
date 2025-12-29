@@ -1,0 +1,37 @@
+#!/usr/bin/env sh
+
+echo "🚀 Pre-Commit Checks Starting..."
+
+# Auto-fix ESLint issues before checking
+echo "🔧 Auto-fixing ESLint issues..."
+npx eslint --fix "**/*.{ts,tsx,js,jsx}" --quiet || echo "⚠️  Some ESLint issues couldn't be auto-fixed"
+
+# Auto-format code with Prettier
+echo "💅 Auto-formatting code with Prettier..."
+npx prettier --write "**/*.{ts,tsx,js,jsx,json,css,md}" --log-level=error
+
+# TypeScript type checking (blocks commit on type errors)
+echo "🔧 Running TypeScript type check..."
+npx tsc --noEmit
+
+if [ $? -ne 0 ]; then
+  echo "❌ TypeScript type check failed. Please fix type errors before committing."
+  exit 1
+fi
+
+echo "✅ TypeScript type check passed!"
+
+# Run linting
+echo "🔍 Final ESLint check..."
+pnpm run lint
+
+if [ $? -ne 0 ]; then
+  echo "❌ ESLint check failed. Please fix linting errors before committing."
+  exit 1
+fi
+
+echo "✅ ESLint check passed!"
+
+echo ""
+echo "🎉 All pre-commit checks passed!"
+echo "🚀 Ready to commit!"
