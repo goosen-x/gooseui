@@ -1,6 +1,8 @@
 import { getTranslations } from "next-intl/server"
 import { Input } from "@/registry/new-york/ui/input"
 import { Label } from "@/registry/new-york/ui/label"
+import { DocsPageNav } from "@/components/docs/docs-page-nav"
+import { InstallCommand } from "@/components/docs/install-command"
 
 export async function generateMetadata() {
   const t = await getTranslations("components.input")
@@ -16,14 +18,14 @@ export default async function InputPage() {
 
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="scroll-m-20 text-4xl font-bold tracking-tight">
-          {t("title")}
-        </h1>
-        <p className="text-lg text-muted-foreground mt-2">
-          {t("description")}
-        </p>
-      </div>
+      <DocsPageNav
+        title={t("title")}
+        prevHref="/docs/components/card"
+        nextHref="/docs/components/animated-timer"
+      />
+      <p className="text-lg text-muted-foreground">
+        {t("description")}
+      </p>
 
       <div className="space-y-4">
         <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight">
@@ -38,9 +40,7 @@ export default async function InputPage() {
         <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight">
           {tCommon("installation")}
         </h2>
-        <pre className="rounded-lg border bg-muted px-4 py-3 font-mono text-sm overflow-x-auto">
-          npx shadcn@latest add @gooseui/input
-        </pre>
+        <InstallCommand packageName="https://gooseui.pro/r/input.json" />
       </div>
 
       <div className="space-y-4">

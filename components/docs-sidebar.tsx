@@ -25,6 +25,7 @@ type NavItem = {
 
 type NavSection = {
   titleKey: string
+  href?: string // Link for section header
   items: NavItem[]
 }
 
@@ -39,6 +40,7 @@ const docsNavConfig: NavSection[] = [
   },
   {
     titleKey: "components",
+    href: "/docs/components",
     items: [
       { titleKey: "animatedTimer", href: "/docs/components/animated-timer", isNew: true },
       { titleKey: "button", href: "/docs/components/button" },
@@ -92,9 +94,15 @@ export function DocsSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) 
           <SidebarMenu className="gap-2">
             {docsNavConfig.map((section) => (
               <SidebarMenuItem key={section.titleKey}>
-                <SidebarMenuButton className="font-medium">
-                  {t(section.titleKey)}
-                </SidebarMenuButton>
+                {section.href ? (
+                  <SidebarMenuButton className="font-medium" asChild>
+                    <Link href={section.href}>{t(section.titleKey)}</Link>
+                  </SidebarMenuButton>
+                ) : (
+                  <SidebarMenuButton className="font-medium">
+                    {t(section.titleKey)}
+                  </SidebarMenuButton>
+                )}
                 {section.items?.length ? (
                   <SidebarMenuSub className="ml-0 border-l-0 px-1.5">
                     {section.items.map((item) => (

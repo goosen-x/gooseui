@@ -1,4 +1,5 @@
 import { getTranslations } from "next-intl/server"
+import { InstallCommand } from "@/components/docs/install-command"
 
 export async function generateMetadata() {
   const t = await getTranslations("docs.cli")
@@ -29,9 +30,7 @@ export default async function CLIPage() {
         <p className="leading-7">
           {t("addComponentText")}
         </p>
-        <pre className="rounded-lg border bg-muted px-4 py-3 font-mono text-sm overflow-x-auto">
-          npx shadcn@latest add @gooseui/button
-        </pre>
+        <InstallCommand packageName="@gooseui/button" />
       </div>
 
       <div className="space-y-4">
@@ -41,9 +40,15 @@ export default async function CLIPage() {
         <p className="leading-7">
           {t("addMultipleText")}
         </p>
-        <pre className="rounded-lg border bg-muted px-4 py-3 font-mono text-sm overflow-x-auto">
-          npx shadcn@latest add @gooseui/button @gooseui/card @gooseui/input
-        </pre>
+        <InstallCommand
+          packageName=""
+          commands={{
+            npm: "npx shadcn@latest add @gooseui/button @gooseui/card @gooseui/input",
+            pnpm: "pnpm dlx shadcn@latest add @gooseui/button @gooseui/card @gooseui/input",
+            yarn: "npx shadcn@latest add @gooseui/button @gooseui/card @gooseui/input",
+            bun: "bunx --bun shadcn@latest add @gooseui/button @gooseui/card @gooseui/input",
+          }}
+        />
       </div>
 
       <div className="space-y-4">

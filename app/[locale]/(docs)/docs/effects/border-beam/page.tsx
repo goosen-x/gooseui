@@ -1,6 +1,7 @@
 import { getTranslations } from "next-intl/server"
 import { BorderBeam } from "@/registry/new-york/effects/border-beam"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/registry/new-york/ui/card"
+import { InstallCommand } from "@/components/docs/install-command"
 
 export async function generateMetadata() {
   const t = await getTranslations("components.borderBeam")
@@ -51,9 +52,7 @@ export default async function BorderBeamPage() {
         <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight">
           {tCommon("installation")}
         </h2>
-        <pre className="rounded-lg border bg-muted px-4 py-3 font-mono text-sm overflow-x-auto">
-          npx shadcn@latest add https://gooseui.pro/r/border-beam.json
-        </pre>
+        <InstallCommand packageName="https://gooseui.pro/r/border-beam.json" />
       </div>
 
       <div className="space-y-4">

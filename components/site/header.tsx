@@ -6,6 +6,7 @@ import { siteConfig } from "@/lib/config/navigation"
 import { cn } from "@/lib/utils"
 import { Button } from "@/registry/new-york/ui/button"
 import { LanguageSwitcher } from "@/components/language-switcher"
+import { ThemeToggle } from "@/components/theme-toggle"
 
 export function SiteHeader() {
   const pathname = usePathname()
@@ -42,6 +43,7 @@ export function SiteHeader() {
             ))}
           </nav>
           <LanguageSwitcher />
+          <ThemeToggle />
           <nav className="flex items-center">
             <Button variant="ghost" size="sm" asChild>
               <a

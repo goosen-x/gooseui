@@ -240,5 +240,11 @@
   "languageSwitcher": {
     "ru": "Русский",
     "en": "English"
+  },
+  "pages": {
+    "components": {
+      "title": "Компоненты",
+      "description": "Красиво оформленные компоненты на Radix UI и Tailwind CSS. Копируйте и вставляйте в свои приложения. Open source."
+    }
   }
 }

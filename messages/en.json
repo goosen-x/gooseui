@@ -240,5 +240,11 @@
   "languageSwitcher": {
     "ru": "Russian",
     "en": "English"
+  },
+  "pages": {
+    "components": {
+      "title": "Components",
+      "description": "Beautifully designed components built with Radix UI and Tailwind CSS. Copy and paste into your apps. Open source."
+    }
   }
 }

@@ -15,6 +15,7 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
 import { LanguageSwitcher } from "@/components/language-switcher"
+import { ThemeToggle } from "@/components/theme-toggle"
 
 export function DocsHeader() {
   const pathname = usePathname()
@@ -89,6 +90,7 @@ export function DocsHeader() {
             ))}
           </nav>
           <LanguageSwitcher />
+          <ThemeToggle />
           <Button variant="ghost" size="sm" asChild>
             <a
               href={siteConfig.links.github}

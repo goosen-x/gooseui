@@ -1,5 +1,6 @@
 import { Link } from "@/i18n/routing"
 import { getTranslations } from "next-intl/server"
+import { InstallCommand } from "@/components/docs/install-command"
 
 export async function generateMetadata() {
   const t = await getTranslations("docs.introduction")
@@ -11,7 +12,6 @@ export async function generateMetadata() {
 
 export default async function DocsPage() {
   const t = await getTranslations("docs.introduction")
-  const tCommon = await getTranslations("common")
 
   return (
     <div className="space-y-6">
@@ -53,15 +53,7 @@ export default async function DocsPage() {
         <p className="leading-7">
           {t("quickStartText")}
         </p>
-        <pre className="rounded-lg border bg-muted px-4 py-3 font-mono text-sm overflow-x-auto">
-          npx shadcn@latest add https://gooseui.pro/r/button.json
-        </pre>
-        <p className="leading-7">
-          {tCommon("orDirectly")}
-        </p>
-        <pre className="rounded-lg border bg-muted px-4 py-3 font-mono text-sm overflow-x-auto">
-          npx shadcn@latest add @gooseui/button
-        </pre>
+        <InstallCommand packageName="https://gooseui.pro/r/button.json" />
       </div>
 
       <div className="flex gap-4 pt-4">

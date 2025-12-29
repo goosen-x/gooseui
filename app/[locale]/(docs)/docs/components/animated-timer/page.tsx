@@ -1,5 +1,7 @@
 import { getTranslations } from "next-intl/server"
 import { AnimatedTimer } from "@/registry/new-york/ui/animated-timer"
+import { DocsPageNav } from "@/components/docs/docs-page-nav"
+import { InstallCommand } from "@/components/docs/install-command"
 
 export async function generateMetadata() {
   const t = await getTranslations("components.animatedTimer")
@@ -15,12 +17,13 @@ export default async function AnimatedTimerPage() {
 
   return (
     <div className="space-y-8">
-      <div>
-        <h1 className="text-3xl font-bold mb-2">{t("title")}</h1>
-        <p className="text-muted-foreground">
-          {t("description")}
-        </p>
-      </div>
+      <DocsPageNav
+        title={t("title")}
+        prevHref="/docs/components/input"
+      />
+      <p className="text-muted-foreground">
+        {t("description")}
+      </p>
 
       <div className="space-y-4">
         <h2 className="text-xl font-semibold">{t("demo")}</h2>
@@ -31,9 +34,7 @@ export default async function AnimatedTimerPage() {
 
       <div className="space-y-4">
         <h2 className="text-xl font-semibold">{tCommon("installation")}</h2>
-        <pre className="bg-muted p-4 rounded-lg overflow-x-auto">
-          <code>npx shadcn@latest add https://gooseui.pro/r/animated-timer.json</code>
-        </pre>
+        <InstallCommand packageName="https://gooseui.pro/r/animated-timer.json" />
       </div>
 
       <div className="space-y-4">

@@ -1,4 +1,5 @@
 import { getTranslations } from "next-intl/server"
+import { InstallCommand } from "@/components/docs/install-command"
 
 export async function generateMetadata() {
   const t = await getTranslations("docs.installation")
@@ -41,9 +42,7 @@ export default async function InstallationPage() {
         <p className="leading-7">
           {t("method1Text")}
         </p>
-        <pre className="rounded-lg border bg-muted px-4 py-3 font-mono text-sm overflow-x-auto">
-          npx shadcn@latest add https://gooseui.pro/r/button.json
-        </pre>
+        <InstallCommand packageName="https://gooseui.pro/r/button.json" />
       </div>
 
       <div className="space-y-4">
@@ -63,9 +62,7 @@ export default async function InstallationPage() {
         <p className="leading-7">
           {t("method2Text2")}
         </p>
-        <pre className="rounded-lg border bg-muted px-4 py-3 font-mono text-sm overflow-x-auto">
-          npx shadcn@latest add @gooseui/button
-        </pre>
+        <InstallCommand packageName="@gooseui/button" />
       </div>
 
       <div className="space-y-4">
