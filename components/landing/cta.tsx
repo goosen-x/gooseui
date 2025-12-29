@@ -27,7 +27,11 @@ export function CTA() {
                 <Link href="/docs">{t("documentation")}</Link>
               </Button>
               <Button size="lg" variant="outline" asChild>
-                <a href="https://github.com/goosen-x/gooseui" target="_blank" rel="noreferrer">
+                <a
+                  href="https://github.com/goosen-x/gooseui"
+                  target="_blank"
+                  rel="noreferrer"
+                >
                   {t("github")}
                 </a>
               </Button>

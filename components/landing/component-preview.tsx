@@ -3,7 +3,13 @@
 import { Link } from "@/i18n/routing"
 import { useTranslations } from "next-intl"
 import { Button } from "@/registry/new-york/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/registry/new-york/ui/card"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/registry/new-york/ui/card"
 import { Input } from "@/registry/new-york/ui/input"
 import { BorderBeam } from "@/registry/new-york/effects/border-beam"
 
@@ -47,11 +53,15 @@ export function ComponentPreview() {
             <h3 className="font-semibold mb-4">Cards</h3>
             <Card>
               <CardHeader className="pb-3">
-                <CardTitle className="text-base">{t("notifications")}</CardTitle>
+                <CardTitle className="text-base">
+                  {t("notifications")}
+                </CardTitle>
                 <CardDescription>{t("notificationsDesc")}</CardDescription>
               </CardHeader>
               <CardContent className="flex gap-2">
-                <Button size="sm" variant="outline">{tCommon("cancel")}</Button>
+                <Button size="sm" variant="outline">
+                  {tCommon("cancel")}
+                </Button>
                 <Button size="sm">{tCommon("save")}</Button>
               </CardContent>
             </Card>
@@ -86,9 +96,7 @@ export function ComponentPreview() {
 
         <div className="mt-12 text-center">
           <Button size="lg" variant="outline" asChild>
-            <Link href="/docs/components/button">
-              {t("viewAll")}
-            </Link>
+            <Link href="/docs/components/button">{t("viewAll")}</Link>
           </Button>
         </div>
       </div>

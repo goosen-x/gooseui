@@ -29,6 +29,7 @@
 ## Каталог компонентов
 
 ### Mockups (Устройства)
+
 - Browser
 - iPad
 - iPhone 17 Pro
@@ -36,6 +37,7 @@
 - Safari Browser
 
 ### Buttons (Кнопки)
+
 - Animated Shiny Button
 - Live Button
 - Shimmer Button
@@ -43,6 +45,7 @@
 - Animated Border Button
 
 ### Text Animations (Текстовые анимации)
+
 - Blur In Text
 - Dock Text
 - Fade Text
@@ -56,6 +59,7 @@
 - Word Pull Up Text
 
 ### Core Components (Основные компоненты)
+
 - Animated Badge
 - Animated List
 - Bento Grid
@@ -85,10 +89,12 @@
 - Wrap Container
 
 ### Special Animations (Специальные анимации)
+
 - Animated Frameworks
 - SVG Ripple Effect
 
 ### Backgrounds (Фоны)
+
 - Hacker Background
 - Novatrix Background
 
@@ -112,17 +118,19 @@ npx shadcn@latest add 'https://eldoraui.site/r/terminal'
 ### Метод 2: Ручная установка
 
 1. Установите зависимости:
+
 ```bash
 npm i clsx tailwind-merge tailwind-variants framer-motion
 ```
 
 2. Создайте утилиту для классов в `utils/classes.ts`:
+
 ```typescript
-import { type ClassValue, clsx } from "clsx";
-import { twMerge } from "tailwind-merge";
+import { type ClassValue, clsx } from "clsx"
+import { twMerge } from "tailwind-merge"
 
 export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs));
+  return twMerge(clsx(inputs))
 }
 ```
 
@@ -133,6 +141,7 @@ export function cn(...inputs: ClassValue[]) {
 Eldora UI предоставляет официальный MCP сервер для интеграции с AI-ассистентами:
 
 ### Автоматическая установка
+
 ```bash
 npx @eldoraui/cli@latest install <client>
 ```
@@ -140,7 +149,9 @@ npx @eldoraui/cli@latest install <client>
 Поддерживаемые клиенты: `cursor`, `windsurf`, `claude`, `cline`, `roo-cline`
 
 ### Ручная установка
+
 Добавьте в конфигурацию MCP вашей IDE:
+
 ```json
 {
   "mcpServers": {
@@ -153,6 +164,7 @@ npx @eldoraui/cli@latest install <client>
 ```
 
 ### Доступные инструменты MCP
+
 - **getUIComponents** — полный каталог компонентов
 - **getLayout** — компоненты сеток и разметки
 - **getMedia** — терминалы, маркизы, комментарии
@@ -190,23 +202,25 @@ eldoraui/
 ## Вдохновение
 
 Библиотека создана под влиянием:
+
 - shadcn/ui
 - Aceternity UI
 - Magic UI
 
 ## Сравнение с аналогами
 
-| Особенность | Eldora UI | shadcn/ui | Magic UI |
-|-------------|-----------|-----------|----------|
-| Анимации | +++       | +         | +++      |
-| Компоненты | 150+      | 50+       | 50+      |
-| CLI | shadcn    | shadcn    | shadcn   |
-| MCP Server | Да        | Да        | Нет      |
-| Mockups устройств | Да | Нет       | Нет      |
+| Особенность       | Eldora UI | shadcn/ui | Magic UI |
+| ----------------- | --------- | --------- | -------- |
+| Анимации          | +++       | +         | +++      |
+| Компоненты        | 150+      | 50+       | 50+      |
+| CLI               | shadcn    | shadcn    | shadcn   |
+| MCP Server        | Да        | Да        | Нет      |
+| Mockups устройств | Да        | Нет       | Нет      |
 
 ## Применение
 
 Eldora UI идеально подходит для:
+
 - **Landing pages** — блоки, герои, features
 - **Marketing сайты** — testimonials, pricing, logo clouds
 - **Portfolio** — готовые шаблоны
@@ -231,4 +245,4 @@ Eldora UI идеально подходит для:
 
 ---
 
-*Исследование проведено: 2025-12-28*
+_Исследование проведено: 2025-12-28_

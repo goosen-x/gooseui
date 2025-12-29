@@ -14,20 +14,25 @@ https://github.com/theorcdev/8bitcn-ui
 ## Что понравилось
 
 ### 1. Страница /components — грид всех компонентов
+
 - Все компоненты на одной странице
 - Удобно для обзора
 
 ### 2. Страница спонсоров
+
 - Уровни: Mythic, Legendary и др.
 - Кнопка "Become a Sponsor"
 - Благодарности партнёрам
 
 ### 3. Search в header (⌘K)
+
 - Быстрый поиск по документации
 - Горячая клавиша Cmd+K
 
 ### 4. Package Manager Tabs
+
 Виджет для копирования команд с переключателем:
+
 - npm
 - pnpm
 - yarn
@@ -35,15 +40,13 @@ https://github.com/theorcdev/8bitcn-ui
 
 ```tsx
 // Примерная структура
-<PackageManagerTabs
-  command="shadcn@latest add"
-  package="button"
-/>
+<PackageManagerTabs command="shadcn@latest add" package="button" />
 ```
 
 С кнопкой Copy для копирования команды.
 
 ### 5. Переключение темы
+
 - Light/Dark
 - Автоопределение системной темы
 

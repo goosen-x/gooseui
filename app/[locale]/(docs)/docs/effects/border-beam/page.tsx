@@ -1,6 +1,12 @@
 import { getTranslations } from "next-intl/server"
 import { BorderBeam } from "@/registry/new-york/effects/border-beam"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/registry/new-york/ui/card"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/registry/new-york/ui/card"
 import { InstallCommand } from "@/components/docs/install-command"
 
 export async function generateMetadata() {
@@ -21,9 +27,7 @@ export default async function BorderBeamPage() {
         <h1 className="scroll-m-20 text-4xl font-bold tracking-tight">
           {t("title")}
         </h1>
-        <p className="text-lg text-muted-foreground mt-2">
-          {t("description")}
-        </p>
+        <p className="text-lg text-muted-foreground mt-2">{t("description")}</p>
       </div>
 
       <div className="space-y-4">
@@ -34,14 +38,10 @@ export default async function BorderBeamPage() {
           <Card className="relative w-[350px] overflow-hidden">
             <CardHeader>
               <CardTitle>{t("title")}</CardTitle>
-              <CardDescription>
-                {t("effect")}
-              </CardDescription>
+              <CardDescription>{t("effect")}</CardDescription>
             </CardHeader>
             <CardContent>
-              <p className="text-sm text-muted-foreground">
-                {t("effectText")}
-              </p>
+              <p className="text-sm text-muted-foreground">{t("effectText")}</p>
             </CardContent>
             <BorderBeam />
           </Card>
@@ -60,7 +60,7 @@ export default async function BorderBeamPage() {
           {tCommon("usage")}
         </h2>
         <pre className="rounded-lg border bg-muted px-4 py-3 font-mono text-sm overflow-x-auto">
-{`import { BorderBeam } from "@/components/ui/border-beam"
+          {`import { BorderBeam } from "@/components/ui/border-beam"
 
 export function MyCard() {
   return (
@@ -103,7 +103,7 @@ export function MyCard() {
           </div>
         </div>
         <pre className="rounded-lg border bg-muted px-4 py-3 font-mono text-sm overflow-x-auto">
-{`<BorderBeam colorFrom="#00ffff" colorTo="#0066ff" />`}
+          {`<BorderBeam colorFrom="#00ffff" colorTo="#0066ff" />`}
         </pre>
 
         <h3 className="scroll-m-20 text-xl font-semibold tracking-tight mt-6">
@@ -124,7 +124,7 @@ export function MyCard() {
           </div>
         </div>
         <pre className="rounded-lg border bg-muted px-4 py-3 font-mono text-sm overflow-x-auto">
-{`<BorderBeam duration={6} />  /* fast */
+          {`<BorderBeam duration={6} />  /* fast */
 <BorderBeam duration={20} /> /* slow */`}
         </pre>
       </div>
@@ -145,32 +145,44 @@ export function MyCard() {
             <tbody>
               <tr className="border-b">
                 <td className="py-3 px-4 font-mono">size</td>
-                <td className="py-3 px-4 font-mono text-muted-foreground">number</td>
+                <td className="py-3 px-4 font-mono text-muted-foreground">
+                  number
+                </td>
                 <td className="py-3 px-4 font-mono">200</td>
               </tr>
               <tr className="border-b">
                 <td className="py-3 px-4 font-mono">duration</td>
-                <td className="py-3 px-4 font-mono text-muted-foreground">number</td>
+                <td className="py-3 px-4 font-mono text-muted-foreground">
+                  number
+                </td>
                 <td className="py-3 px-4 font-mono">12</td>
               </tr>
               <tr className="border-b">
                 <td className="py-3 px-4 font-mono">delay</td>
-                <td className="py-3 px-4 font-mono text-muted-foreground">number</td>
+                <td className="py-3 px-4 font-mono text-muted-foreground">
+                  number
+                </td>
                 <td className="py-3 px-4 font-mono">0</td>
               </tr>
               <tr className="border-b">
                 <td className="py-3 px-4 font-mono">colorFrom</td>
-                <td className="py-3 px-4 font-mono text-muted-foreground">string</td>
+                <td className="py-3 px-4 font-mono text-muted-foreground">
+                  string
+                </td>
                 <td className="py-3 px-4 font-mono">#ffaa40</td>
               </tr>
               <tr className="border-b">
                 <td className="py-3 px-4 font-mono">colorTo</td>
-                <td className="py-3 px-4 font-mono text-muted-foreground">string</td>
+                <td className="py-3 px-4 font-mono text-muted-foreground">
+                  string
+                </td>
                 <td className="py-3 px-4 font-mono">#9c40ff</td>
               </tr>
               <tr className="border-b">
                 <td className="py-3 px-4 font-mono">borderWidth</td>
-                <td className="py-3 px-4 font-mono text-muted-foreground">number</td>
+                <td className="py-3 px-4 font-mono text-muted-foreground">
+                  number
+                </td>
                 <td className="py-3 px-4 font-mono">1.5</td>
               </tr>
             </tbody>

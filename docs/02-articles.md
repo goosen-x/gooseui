@@ -2,18 +2,18 @@
 
 ## Сводная таблица
 
-| # | Тема | Источник | Год |
-|---|------|----------|-----|
-| 1 | shadcn Registry (основы) | ui.shadcn.com | 2024 |
-| 2 | shadcn Registry (начало работы) | ui.shadcn.com | 2024 |
-| 3 | Публикация кастомных компонентов | niels.foo | 2024 |
-| 4 | React + TypeScript библиотека | LogRocket | 2024 |
-| 5 | Библиотека с Storybook | Dev.to | 2024 |
-| 6 | Vite для библиотек | victorlillo.dev | 2024 |
-| 7 | Экосистема shadcn | Dev.to | 2024 |
-| 8 | Turborepo монорепо | mavro.dev | 2024 |
-| 9 | Design tokens | Penpot | 2024 |
-| 10 | Управление UI-компонентами | ouassim.tech | 2024 |
+| #   | Тема                             | Источник        | Год  |
+| --- | -------------------------------- | --------------- | ---- |
+| 1   | shadcn Registry (основы)         | ui.shadcn.com   | 2024 |
+| 2   | shadcn Registry (начало работы)  | ui.shadcn.com   | 2024 |
+| 3   | Публикация кастомных компонентов | niels.foo       | 2024 |
+| 4   | React + TypeScript библиотека    | LogRocket       | 2024 |
+| 5   | Библиотека с Storybook           | Dev.to          | 2024 |
+| 6   | Vite для библиотек               | victorlillo.dev | 2024 |
+| 7   | Экосистема shadcn                | Dev.to          | 2024 |
+| 8   | Turborepo монорепо               | mavro.dev       | 2024 |
+| 9   | Design tokens                    | Penpot          | 2024 |
+| 10  | Управление UI-компонентами       | ouassim.tech    | 2024 |
 
 ---
 
@@ -22,6 +22,7 @@
 **URL:** https://ui.shadcn.com/docs/registry
 
 **Краткое содержание:**
+
 - Полное руководство по созданию собственного registry
 - Структура `registry.json` с полями: name, homepage, items
 - Поддержка любых фреймворков (Next.js, Vite, Vue, Svelte)
@@ -29,6 +30,7 @@
 - Автоматическая генерация через `shadcn build`
 
 **Ключевые выводы:**
+
 - Registry — система дистрибуции кода, не привязанная к npm
 - Компоненты устанавливаются в исходный код проекта
 - С августа 2024 CLI поддерживает пользовательские registry
@@ -40,6 +42,7 @@
 **URL:** https://ui.shadcn.com/docs/registry/getting-started
 
 **Краткое содержание:**
+
 - Пошаговая инструкция создания registry с нуля
 - Структура: `registry/[STYLE]/[NAME]/component.tsx`
 - Конфигурация через `package.json` скрипт `registry:build`
@@ -47,6 +50,7 @@
 - Публикация через Vercel или другой хостинг
 
 **Ключевые выводы:**
+
 - Используйте [registry-template](https://github.com/shadcn-ui/registry-template)
 - Указывайте `registryDependencies` и `dependencies`
 - Путь импорта `@/registry` обязателен
@@ -58,6 +62,7 @@
 **URL:** https://www.niels.foo/post/publishing-custom-shadcn-ui-components
 
 **Краткое содержание:**
+
 - Практическое руководство по публикации кастомных компонентов
 - Build-скрипт на TypeScript для генерации JSON-схем
 - Метаданные: `cssVars`, `tailwind config`, зависимости
@@ -65,6 +70,7 @@
 - Полный контроль над обновлениями
 
 **Ключевые выводы:**
+
 - Registry упрощает переиспользование между проектами
 - Компоненты в исходном коде, а не в node_modules
 - Гибкость выше, чем у npm-пакетов
@@ -76,6 +82,7 @@
 **URL:** https://blog.logrocket.com/how-to-build-component-library-react-typescript/
 
 **Краткое содержание:**
+
 - Принцип единственной ответственности (SRP)
 - Структура: компонент/стили/типы/тесты в одной директории
 - Сборка через Rollup (CommonJS и ESM)
@@ -83,6 +90,7 @@
 - React в `peerDependencies`
 
 **Ключевые выводы:**
+
 - Разделяйте логику, стили и представление
 - PascalCase для имён компонентов
 - Storybook для документирования
@@ -94,6 +102,7 @@
 **URL:** https://dev.to/abhijitdotsharma/build-and-publish-a-component-library-react-typescript-storybook-34ba
 
 **Краткое содержание:**
+
 - Инициализация с TypeScript и React как devDependencies
 - `tsconfig.json` для ESNext модулей и declaration файлов
 - Rollup с плагинами: node-resolve, typescript, commonjs, dts
@@ -101,6 +110,7 @@
 - Тестирование через npm install
 
 **Ключевые выводы:**
+
 - index.ts на каждом уровне для удобного импорта
 - `npm link` для локального тестирования
 - CSS файлы импортируются в компоненты
@@ -112,6 +122,7 @@
 **URL:** https://victorlillo.dev/blog/react-typescript-vite-component-library
 
 **Краткое содержание:**
+
 - Vite Library Mode для сборки
 - `vite-plugin-dts` для генерации типов
 - `vite-plugin-lib-inject-css` для стилей
@@ -119,6 +130,7 @@
 - Vitest + React Testing Library
 
 **Ключевые выводы:**
+
 - Vite быстрее Rollup для современных проектов
 - `prepublishOnly` гарантирует прохождение тестов
 - `type: "module"` и правильные exports
@@ -130,6 +142,7 @@
 **URL:** https://dev.to/bytefer/10-component-libraries-you-must-know-to-use-shadcn-ui-3ma1
 
 **Краткое содержание:**
+
 - **Plate** (11K+ stars) — rich-text редактор
 - **Vaul** (6.3K+ stars) — drawer для мобильных
 - **Autoform** (2.9K+ stars) — автогенерация форм
@@ -137,6 +150,7 @@
 - **emblor** — tag input, **sortable** — drag-and-drop
 
 **Ключевые выводы:**
+
 - shadcn расширяется через экосистему
 - MIT-лицензия и совместимость
 - Выбирайте компоненты под конкретные use cases
@@ -148,6 +162,7 @@
 **URL:** https://mavro.dev/blog/building-production-monorepo-turborepo
 
 **Краткое содержание:**
+
 - Трёхуровневая архитектура: Apps, Packages, Config packages
 - Оркестрация через `^build` в turbo.json
 - Syncpack для единых версий зависимостей
@@ -155,6 +170,7 @@
 - CI/CD pipeline с удалённым кешированием
 
 **Ключевые выводы:**
+
 - Холодная сборка: 2м 34с, с кешем: 0,8с
 - "Если две части нуждаются в коде, он становится пакетом"
 - Turborepo идеален для design system
@@ -166,6 +182,7 @@
 **URL:** https://penpot.app/blog/the-developers-guide-to-design-tokens-and-css-variables/
 
 **Краткое содержание:**
+
 - Трёхуровневая структура: primitives → semantic → component
 - Naming: `category/type/property/variant/state`
 - CSS переменные в `:root`
@@ -173,6 +190,7 @@
 - Accessibility: high-contrast, color blindness
 
 **Ключевые выводы:**
+
 - Токены — единый источник правды
 - Переменные для повторяющихся значений
 - Lint для проверки целостности токенов
@@ -184,6 +202,7 @@
 **URL:** https://ouassim.tech/notes/shadcn-registry-a-better-way-to-manage-your-ui-components/
 
 **Краткое содержание:**
+
 - Полный контроль над настройкой и обновлениями
 - Согласованность с гибкостью для кастомизации
 - `registry-item.json` для элементов реестра
@@ -191,6 +210,7 @@
 - Переадресация Next.js для URL-схемы
 
 **Ключевые выводы:**
+
 - Registry лучше npm для внутренних библиотек
 - `--output` флаг для изменения директории
 - Деплой на публичный URL для команды
@@ -200,10 +220,12 @@
 ## Дополнительные ресурсы
 
 ### GitHub репозитории
+
 - [shadcn-ui/registry-template](https://github.com/shadcn-ui/registry-template)
 - [vantezzen/shadcn-registry-template](https://github.com/vantezzen/shadcn-registry-template)
 
 ### Vercel Templates
+
 - [Design System with Turborepo](https://vercel.com/templates/react/turborepo-design-system)
 - [Monorepo with Turborepo](https://vercel.com/templates/next.js/monorepo-turborepo)
 

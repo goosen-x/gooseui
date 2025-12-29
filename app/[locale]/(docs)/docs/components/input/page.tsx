@@ -23,9 +23,7 @@ export default async function InputPage() {
         prevHref="/docs/components/card"
         nextHref="/docs/components/animated-timer"
       />
-      <p className="text-lg text-muted-foreground">
-        {t("description")}
-      </p>
+      <p className="text-lg text-muted-foreground">{t("description")}</p>
 
       <div className="space-y-4">
         <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight">
@@ -48,7 +46,7 @@ export default async function InputPage() {
           {tCommon("usage")}
         </h2>
         <pre className="rounded-lg border bg-muted px-4 py-3 font-mono text-sm overflow-x-auto">
-{`import { Input } from "@/components/ui/input"
+          {`import { Input } from "@/components/ui/input"
 
 export function MyInput() {
   return <Input type="email" placeholder="Email" />
@@ -83,7 +81,7 @@ export function MyInput() {
           <Input id="email" type="email" placeholder="email@example.com" />
         </div>
         <pre className="rounded-lg border bg-muted px-4 py-3 font-mono text-sm overflow-x-auto">
-{`<div className="grid gap-2">
+          {`<div className="grid gap-2">
   <Label htmlFor="email">Email</Label>
   <Input id="email" type="email" placeholder="email@example.com" />
 </div>`}
@@ -101,9 +99,7 @@ export function MyInput() {
         <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight">
           {tCommon("props")}
         </h2>
-        <p className="text-muted-foreground">
-          {t("propsNote")}
-        </p>
+        <p className="text-muted-foreground">{t("propsNote")}</p>
       </div>
     </div>
   )

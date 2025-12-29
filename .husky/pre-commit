@@ -2,13 +2,13 @@
 
 echo "🚀 Pre-Commit Checks Starting..."
 
-# Auto-fix ESLint issues before checking
+# Auto-fix ESLint issues before checking (respects eslint.config.mjs ignores)
 echo "🔧 Auto-fixing ESLint issues..."
-npx eslint --fix "**/*.{ts,tsx,js,jsx}" --quiet || echo "⚠️  Some ESLint issues couldn't be auto-fixed"
+npx eslint --fix "app/**/*.{ts,tsx}" "components/**/*.{ts,tsx}" "lib/**/*.{ts,tsx}" --quiet || echo "⚠️  Some ESLint issues couldn't be auto-fixed"
 
-# Auto-format code with Prettier
+# Auto-format code with Prettier (respects .prettierignore)
 echo "💅 Auto-formatting code with Prettier..."
-npx prettier --write "**/*.{ts,tsx,js,jsx,json,css,md}" --log-level=error
+npx prettier --write "app/**/*.{ts,tsx,json}" "components/**/*.{ts,tsx}" "lib/**/*.{ts,tsx}" --log-level=error
 
 # TypeScript type checking (blocks commit on type errors)
 echo "🔧 Running TypeScript type check..."

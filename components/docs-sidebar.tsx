@@ -42,7 +42,11 @@ const docsNavConfig: NavSection[] = [
     titleKey: "components",
     href: "/docs/components",
     items: [
-      { titleKey: "animatedTimer", href: "/docs/components/animated-timer", isNew: true },
+      {
+        titleKey: "animatedTimer",
+        href: "/docs/components/animated-timer",
+        isNew: true,
+      },
       { titleKey: "button", href: "/docs/components/button" },
       { titleKey: "card", href: "/docs/components/card" },
       { titleKey: "input", href: "/docs/components/input" },
@@ -51,7 +55,11 @@ const docsNavConfig: NavSection[] = [
   {
     titleKey: "effects",
     items: [
-      { titleKey: "borderBeam", href: "/docs/effects/border-beam", isNew: true },
+      {
+        titleKey: "borderBeam",
+        href: "/docs/effects/border-beam",
+        isNew: true,
+      },
     ],
   },
 ]
@@ -64,7 +72,9 @@ const itemTitles: Record<string, string> = {
   borderBeam: "Border Beam",
 }
 
-export function DocsSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+export function DocsSidebar({
+  ...props
+}: React.ComponentProps<typeof Sidebar>) {
   const pathname = usePathname()
   const t = useTranslations("navigation")
 

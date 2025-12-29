@@ -18,7 +18,9 @@ const components = [
     preview: (
       <div className="flex items-center gap-2">
         <Button size="sm">Button</Button>
-        <Button size="sm" variant="outline">Outline</Button>
+        <Button size="sm" variant="outline">
+          Outline
+        </Button>
       </div>
     ),
   },
@@ -37,11 +39,10 @@ const components = [
   {
     name: "Input",
     slug: "input",
-    description: "Displays a form input field or a component that looks like an input.",
+    description:
+      "Displays a form input field or a component that looks like an input.",
     category: "Inputs",
-    preview: (
-      <Input placeholder="Enter text..." className="max-w-[200px]" />
-    ),
+    preview: <Input placeholder="Enter text..." className="max-w-[200px]" />,
   },
   {
     name: "Animated Timer",
@@ -57,13 +58,16 @@ const components = [
 ]
 
 // Group components by category
-const groupedComponents = components.reduce((acc, component) => {
-  if (!acc[component.category]) {
-    acc[component.category] = []
-  }
-  acc[component.category].push(component)
-  return acc
-}, {} as Record<string, typeof components>)
+const groupedComponents = components.reduce(
+  (acc, component) => {
+    if (!acc[component.category]) {
+      acc[component.category] = []
+    }
+    acc[component.category].push(component)
+    return acc
+  },
+  {} as Record<string, typeof components>
+)
 
 export async function generateMetadata() {
   const t = await getTranslations("pages.components")
@@ -89,46 +93,48 @@ export default async function ComponentsPage() {
       </div>
 
       {/* Components Grid by Category */}
-      {Object.entries(groupedComponents).map(([category, categoryComponents]) => (
-        <div key={category} className="space-y-6">
-          <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight">
-            {category}
-          </h2>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {categoryComponents.map((component) => (
-              <Link
-                key={component.slug}
-                href={`/docs/components/${component.slug}`}
-                className="group"
-              >
-                <div
-                  className={cn(
-                    "relative flex flex-col overflow-hidden rounded-xl border bg-background",
-                    "transition-all duration-200",
-                    "hover:border-foreground/20 hover:shadow-md"
-                  )}
+      {Object.entries(groupedComponents).map(
+        ([category, categoryComponents]) => (
+          <div key={category} className="space-y-6">
+            <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight">
+              {category}
+            </h2>
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {categoryComponents.map((component) => (
+                <Link
+                  key={component.slug}
+                  href={`/docs/components/${component.slug}`}
+                  className="group"
                 >
-                  {/* Preview Area */}
-                  <div className="flex h-[140px] items-center justify-center border-b bg-muted/30 p-4">
-                    {component.preview}
-                  </div>
-
-                  {/* Info Area */}
-                  <div className="flex flex-col gap-1 p-4">
-                    <div className="flex items-center justify-between">
-                      <h3 className="font-semibold">{component.name}</h3>
-                      <ArrowRightIcon className="size-4 text-muted-foreground transition-transform group-hover:translate-x-1" />
+                  <div
+                    className={cn(
+                      "relative flex flex-col overflow-hidden rounded-xl border bg-background",
+                      "transition-all duration-200",
+                      "hover:border-foreground/20 hover:shadow-md"
+                    )}
+                  >
+                    {/* Preview Area */}
+                    <div className="flex h-[140px] items-center justify-center border-b bg-muted/30 p-4">
+                      {component.preview}
                     </div>
-                    <p className="text-sm text-muted-foreground line-clamp-2">
-                      {component.description}
-                    </p>
+
+                    {/* Info Area */}
+                    <div className="flex flex-col gap-1 p-4">
+                      <div className="flex items-center justify-between">
+                        <h3 className="font-semibold">{component.name}</h3>
+                        <ArrowRightIcon className="size-4 text-muted-foreground transition-transform group-hover:translate-x-1" />
+                      </div>
+                      <p className="text-sm text-muted-foreground line-clamp-2">
+                        {component.description}
+                      </p>
+                    </div>
                   </div>
-                </div>
-              </Link>
-            ))}
+                </Link>
+              ))}
+            </div>
           </div>
-        </div>
-      ))}
+        )
+      )}
 
       {/* Coming Soon Section */}
       <div className="space-y-6">
@@ -136,24 +142,28 @@ export default async function ComponentsPage() {
           Coming Soon
         </h2>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {["Select", "Checkbox", "Radio", "Switch", "Slider", "Tabs"].map((name) => (
-            <div
-              key={name}
-              className={cn(
-                "relative flex flex-col overflow-hidden rounded-xl border bg-background opacity-60"
-              )}
-            >
-              <div className="flex h-[140px] items-center justify-center border-b bg-muted/30 p-4">
-                <span className="text-sm text-muted-foreground">Preview coming soon</span>
+          {["Select", "Checkbox", "Radio", "Switch", "Slider", "Tabs"].map(
+            (name) => (
+              <div
+                key={name}
+                className={cn(
+                  "relative flex flex-col overflow-hidden rounded-xl border bg-background opacity-60"
+                )}
+              >
+                <div className="flex h-[140px] items-center justify-center border-b bg-muted/30 p-4">
+                  <span className="text-sm text-muted-foreground">
+                    Preview coming soon
+                  </span>
+                </div>
+                <div className="flex flex-col gap-1 p-4">
+                  <h3 className="font-semibold">{name}</h3>
+                  <p className="text-sm text-muted-foreground">
+                    Component in development
+                  </p>
+                </div>
               </div>
-              <div className="flex flex-col gap-1 p-4">
-                <h3 className="font-semibold">{name}</h3>
-                <p className="text-sm text-muted-foreground">
-                  Component in development
-                </p>
-              </div>
-            </div>
-          ))}
+            )
+          )}
         </div>
       </div>
     </div>

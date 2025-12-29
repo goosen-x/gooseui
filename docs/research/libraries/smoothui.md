@@ -25,15 +25,15 @@ SmoothUI — это коллекция бесплатных React UI компо�
 
 ## Технологический стек
 
-| Технология | Описание |
-|------------|----------|
-| React | Современные паттерны, Server Components, hooks |
-| TypeScript | Полная типизация |
-| TailwindCSS v4 | Utility-first CSS фреймворк |
-| Framer Motion | Библиотека анимаций |
-| Next.js | Фреймворк для документации |
-| Turbo | Сборка монорепозитория |
-| Lucide React | Иконки |
+| Технология     | Описание                                       |
+| -------------- | ---------------------------------------------- |
+| React          | Современные паттерны, Server Components, hooks |
+| TypeScript     | Полная типизация                               |
+| TailwindCSS v4 | Utility-first CSS фреймворк                    |
+| Framer Motion  | Библиотека анимаций                            |
+| Next.js        | Фреймворк для документации                     |
+| Turbo          | Сборка монорепозитория                         |
+| Lucide React   | Иконки                                         |
 
 ---
 
@@ -85,70 +85,70 @@ export default function App() {
 
 ### Basic UI
 
-| Компонент | Описание |
-|-----------|----------|
-| `accordion` | Интерактивные сворачиваемые секции |
-| `animated-input` | Инпут с плавными анимациями и визуальным фидбеком |
-| `animated-progress-bar` | Прогресс-бар с кастомизируемым стилем |
-| `basic-dropdown` | Простое выпадающее меню |
-| `basic-modal` | Минималистичный диалог |
-| `basic-toast` | Легковесные уведомления с auto-dismiss |
+| Компонент               | Описание                                          |
+| ----------------------- | ------------------------------------------------- |
+| `accordion`             | Интерактивные сворачиваемые секции                |
+| `animated-input`        | Инпут с плавными анимациями и визуальным фидбеком |
+| `animated-progress-bar` | Прогресс-бар с кастомизируемым стилем             |
+| `basic-dropdown`        | Простое выпадающее меню                           |
+| `basic-modal`           | Минималистичный диалог                            |
+| `basic-toast`           | Легковесные уведомления с auto-dismiss            |
 
 ### Button Components
 
-| Компонент | Описание |
-|-----------|----------|
-| `button-copy` | Кнопка копирования с фидбеком успеха |
-| `clip-corners-button` | Геометрический дизайн со скошенными углами |
-| `dot-morph-button` | Кнопка с морфирующими точками для прогресса |
+| Компонент             | Описание                                    |
+| --------------------- | ------------------------------------------- |
+| `button-copy`         | Кнопка копирования с фидбеком успеха        |
+| `clip-corners-button` | Геометрический дизайн со скошенными углами  |
+| `dot-morph-button`    | Кнопка с морфирующими точками для прогресса |
 
 ### Text Effects
 
-| Компонент | Описание |
-|-----------|----------|
-| `wave-text` | Анимированный волновой эффект по символам |
-| `reveal-text` | Поэтапная анимация появления символов |
-| `typewriter-text` | Эффект печатной машинки с опциональным зацикливанием |
-| `scramble-hover` | Скремблирование символов при наведении |
-| `scroll-reveal-paragraph` | Анимация текста при скролле |
+| Компонент                 | Описание                                             |
+| ------------------------- | ---------------------------------------------------- |
+| `wave-text`               | Анимированный волновой эффект по символам            |
+| `reveal-text`             | Поэтапная анимация появления символов                |
+| `typewriter-text`         | Эффект печатной машинки с опциональным зацикливанием |
+| `scramble-hover`          | Скремблирование символов при наведении               |
+| `scroll-reveal-paragraph` | Анимация текста при скролле                          |
 
 ### AI Components
 
-| Компонент | Описание |
-|-----------|----------|
-| `ai-branch` | Анимированная древовидная структура |
-| `ai-input` | Командный парсер с AI-friendly интерфейсом |
+| Компонент   | Описание                                   |
+| ----------- | ------------------------------------------ |
+| `ai-branch` | Анимированная древовидная структура        |
+| `ai-input`  | Командный парсер с AI-friendly интерфейсом |
 
 ### Interactive Components
 
-| Компонент | Описание |
-|-----------|----------|
-| `animated-otp` | Анимированный ввод OTP кода |
-| `animated-tags` | Анимированный селектор тегов |
-| `app-download-stack` | Стек кнопок загрузки приложения |
-| `apple-invites` | Стиль Apple приглашений |
-| `contribution-graph` | График контрибуций (GitHub style) |
-| `cursor-follow` | Эффект следования за курсором |
-| `dynamic-island` | Компактные уведомления с expand/collapse |
-| `expandable-cards` | Раскрывающиеся карточки |
-| `figma-comments` | Комментарии в стиле Figma |
-| `glow-hover-cards` | Карточки со свечением при наведении |
-| `github-stars` | Анимация GitHub звезд |
-| `image-metadata-preview` | Превью метаданных изображения |
-| `infinite-slider` | Бесконечный слайдер |
-| `interactive-image-selector` | Интерактивный выбор изображений |
-| `job-listings` | Список вакансий |
-| `matrix-cards` | Карточки в стиле матрицы |
-| `number-flow` | Анимированные числовые переходы для счетчиков и KPI |
-| `photo-tabs` | Табы с фото галереей |
-| `power-off-slider` | Слайдер выключения |
-| `price-flow` | Анимация цен |
-| `rich-popover` | Богатые поповеры |
-| `reviews-carousel` | Карусель отзывов |
-| `siri-orb` | Siri-подобный орб с реактивными волнами |
-| `social-selector` | Селектор социальных сетей |
-| `scrollable-card-stack` | Прокручиваемый стек карточек |
-| `user-avatars` | Аватары пользователей |
+| Компонент                    | Описание                                            |
+| ---------------------------- | --------------------------------------------------- |
+| `animated-otp`               | Анимированный ввод OTP кода                         |
+| `animated-tags`              | Анимированный селектор тегов                        |
+| `app-download-stack`         | Стек кнопок загрузки приложения                     |
+| `apple-invites`              | Стиль Apple приглашений                             |
+| `contribution-graph`         | График контрибуций (GitHub style)                   |
+| `cursor-follow`              | Эффект следования за курсором                       |
+| `dynamic-island`             | Компактные уведомления с expand/collapse            |
+| `expandable-cards`           | Раскрывающиеся карточки                             |
+| `figma-comments`             | Комментарии в стиле Figma                           |
+| `glow-hover-cards`           | Карточки со свечением при наведении                 |
+| `github-stars`               | Анимация GitHub звезд                               |
+| `image-metadata-preview`     | Превью метаданных изображения                       |
+| `infinite-slider`            | Бесконечный слайдер                                 |
+| `interactive-image-selector` | Интерактивный выбор изображений                     |
+| `job-listings`               | Список вакансий                                     |
+| `matrix-cards`               | Карточки в стиле матрицы                            |
+| `number-flow`                | Анимированные числовые переходы для счетчиков и KPI |
+| `photo-tabs`                 | Табы с фото галереей                                |
+| `power-off-slider`           | Слайдер выключения                                  |
+| `price-flow`                 | Анимация цен                                        |
+| `rich-popover`               | Богатые поповеры                                    |
+| `reviews-carousel`           | Карусель отзывов                                    |
+| `siri-orb`                   | Siri-подобный орб с реактивными волнами             |
+| `social-selector`            | Селектор социальных сетей                           |
+| `scrollable-card-stack`      | Прокручиваемый стек карточек                        |
+| `user-avatars`               | Аватары пользователей                               |
 
 ---
 
@@ -162,12 +162,12 @@ pnpm dlx shadcn add @smoothui/siri-orb
 
 **Props:**
 
-| Prop | Type | Description |
-|------|------|-------------|
-| `size?` | `string` | Размеры орба |
-| `className?` | `string` | Дополнительные CSS классы |
-| `colors?` | `object` | Кастомная конфигурация цветов |
-| `animationDuration?` | `number` | Скорость вращения в мс |
+| Prop                 | Type     | Description                   |
+| -------------------- | -------- | ----------------------------- |
+| `size?`              | `string` | Размеры орба                  |
+| `className?`         | `string` | Дополнительные CSS классы     |
+| `colors?`            | `object` | Кастомная конфигурация цветов |
+| `animationDuration?` | `number` | Скорость вращения в мс        |
 
 ### Animated Input
 
@@ -177,18 +177,18 @@ pnpm dlx shadcn add @smoothui/animated-input
 
 **Props:**
 
-| Prop | Type | Description |
-|------|------|-------------|
-| `value?` | `string` | Контролируемое значение |
-| `defaultValue?` | `string` | Начальное значение |
-| `onChange?` | `function` | Обработчик изменений |
-| `label` | `string` | Текст лейбла |
-| `placeholder?` | `string` | Placeholder текст |
-| `disabled?` | `boolean` | Состояние disabled |
-| `className?` | `string` | Классы контейнера |
-| `inputClassName?` | `string` | Классы инпута |
-| `labelClassName?` | `string` | Классы лейбла |
-| `icon?` | `ReactNode` | Опциональная иконка |
+| Prop              | Type        | Description             |
+| ----------------- | ----------- | ----------------------- |
+| `value?`          | `string`    | Контролируемое значение |
+| `defaultValue?`   | `string`    | Начальное значение      |
+| `onChange?`       | `function`  | Обработчик изменений    |
+| `label`           | `string`    | Текст лейбла            |
+| `placeholder?`    | `string`    | Placeholder текст       |
+| `disabled?`       | `boolean`   | Состояние disabled      |
+| `className?`      | `string`    | Классы контейнера       |
+| `inputClassName?` | `string`    | Классы инпута           |
+| `labelClassName?` | `string`    | Классы лейбла           |
+| `icon?`           | `ReactNode` | Опциональная иконка     |
 
 ### Dynamic Island
 
@@ -198,14 +198,14 @@ pnpm dlx shadcn add @smoothui/dynamic-island
 
 **Props:**
 
-| Prop | Type | Description |
-|------|------|-------------|
-| `view?` | `"music" \| "notification" \| "timer" \| "ring" \| "idle"` | Режим отображения |
-| `onViewChange?` | `function` | Callback смены режима |
-| `idleContent?` | `ReactNode` | Контент в idle режиме |
-| `ringContent?` | `ReactNode` | Контент для звонка |
-| `timerContent?` | `ReactNode` | Контент таймера |
-| `className?` | `string` | CSS классы |
+| Prop            | Type                                                       | Description           |
+| --------------- | ---------------------------------------------------------- | --------------------- |
+| `view?`         | `"music" \| "notification" \| "timer" \| "ring" \| "idle"` | Режим отображения     |
+| `onViewChange?` | `function`                                                 | Callback смены режима |
+| `idleContent?`  | `ReactNode`                                                | Контент в idle режиме |
+| `ringContent?`  | `ReactNode`                                                | Контент для звонка    |
+| `timerContent?` | `ReactNode`                                                | Контент таймера       |
+| `className?`    | `string`                                                   | CSS классы            |
 
 ### Scrollable Card Stack
 
@@ -215,13 +215,13 @@ pnpm dlx shadcn add @smoothui/scrollable-card-stack
 
 **Props:**
 
-| Prop | Type | Description |
-|------|------|-------------|
-| `items` | `array` | Коллекция данных карточек |
-| `cardHeight?` | `number` | Высота карточек |
-| `perspective?` | `number` | 3D перспектива |
+| Prop                  | Type     | Description                |
+| --------------------- | -------- | -------------------------- |
+| `items`               | `array`  | Коллекция данных карточек  |
+| `cardHeight?`         | `number` | Высота карточек            |
+| `perspective?`        | `number` | 3D перспектива             |
 | `transitionDuration?` | `number` | Длительность анимации в мс |
-| `className?` | `string` | CSS классы |
+| `className?`          | `string` | CSS классы                 |
 
 ### Number Flow
 
@@ -231,15 +231,15 @@ pnpm dlx shadcn add @smoothui/number-flow
 
 **Props:**
 
-| Prop | Type | Description |
-|------|------|-------------|
-| `value?` | `number` | Числовое значение |
-| `onChange?` | `function` | Callback изменения |
-| `min?` | `number` | Минимальное значение |
-| `max?` | `number` | Максимальное значение |
-| `className?` | `string` | CSS классы |
-| `digitClassName?` | `string` | Классы для цифр |
-| `buttonClassName?` | `string` | Классы для кнопок |
+| Prop               | Type       | Description           |
+| ------------------ | ---------- | --------------------- |
+| `value?`           | `number`   | Числовое значение     |
+| `onChange?`        | `function` | Callback изменения    |
+| `min?`             | `number`   | Минимальное значение  |
+| `max?`             | `number`   | Максимальное значение |
+| `className?`       | `string`   | CSS классы            |
+| `digitClassName?`  | `string`   | Классы для цифр       |
+| `buttonClassName?` | `string`   | Классы для кнопок     |
 
 ---
 
@@ -249,23 +249,23 @@ pnpm dlx shadcn add @smoothui/number-flow
 
 ### Hero Blocks
 
-| Блок | Описание | Установка |
-|------|----------|-----------|
-| Hero Grid | Современная hero секция с анимированным grid фоном | `@smoothui/header-1` |
+| Блок         | Описание                                                  | Установка            |
+| ------------ | --------------------------------------------------------- | -------------------- |
+| Hero Grid    | Современная hero секция с анимированным grid фоном        | `@smoothui/header-1` |
 | Hero Product | Premium product hero с badge и анимированными заголовками | `@smoothui/header-2` |
-| Hero Block 3 | Coming soon | `@smoothui/header-3` |
+| Hero Block 3 | Coming soon                                               | `@smoothui/header-3` |
 
 ### Другие блоки
 
-| Категория | Описание |
-|-----------|----------|
-| **FAQs** | Секции часто задаваемых вопросов |
-| **Footer** | Футер секции |
-| **Logo Clouds** | Секции с логотипами партнеров |
-| **Pricing** | Таблицы цен |
-| **Stats** | Секции статистики |
-| **Team Sections** | Секции команды |
-| **Testimonial** | Отзывы |
+| Категория         | Описание                         |
+| ----------------- | -------------------------------- |
+| **FAQs**          | Секции часто задаваемых вопросов |
+| **Footer**        | Футер секции                     |
+| **Logo Clouds**   | Секции с логотипами партнеров    |
+| **Pricing**       | Таблицы цен                      |
+| **Stats**         | Секции статистики                |
+| **Team Sections** | Секции команды                   |
+| **Testimonial**   | Отзывы                           |
 
 ---
 
@@ -295,13 +295,13 @@ pnpm dlx shadcn add @smoothui/number-flow
 
 ## Статистика репозитория
 
-| Метрика | Значение |
-|---------|----------|
-| Stars | 623 |
-| Forks | 29 |
-| Commits | 456 |
-| Issues | 0 |
-| Pull Requests | 0 |
+| Метрика       | Значение |
+| ------------- | -------- |
+| Stars         | 623      |
+| Forks         | 29       |
+| Commits       | 456      |
+| Issues        | 0        |
+| Pull Requests | 0        |
 
 ---
 

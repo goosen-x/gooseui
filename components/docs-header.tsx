@@ -92,11 +92,7 @@ export function DocsHeader() {
           <LanguageSwitcher />
           <ThemeToggle />
           <Button variant="ghost" size="sm" asChild>
-            <a
-              href={siteConfig.links.github}
-              target="_blank"
-              rel="noreferrer"
-            >
+            <a href={siteConfig.links.github} target="_blank" rel="noreferrer">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="16"

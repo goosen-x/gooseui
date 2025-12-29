@@ -16,10 +16,10 @@
 
 ## Референсы
 
-| Библиотека | Ссылка | Что понравилось |
-|------------|--------|-----------------|
-| 8bitcn/ui | https://8bitcn.com | Полный виджет |
-| shadcn/ui | https://ui.shadcn.com/docs | Простые табы |
+| Библиотека | Ссылка                     | Что понравилось |
+| ---------- | -------------------------- | --------------- |
+| 8bitcn/ui  | https://8bitcn.com         | Полный виджет   |
+| shadcn/ui  | https://ui.shadcn.com/docs | Простые табы    |
 
 ## Пример использования
 
@@ -29,7 +29,7 @@
     npm: "npx shadcn@latest add",
     pnpm: "pnpm dlx shadcn@latest add",
     yarn: "npx shadcn@latest add",
-    bun: "bunx --bun shadcn@latest add"
+    bun: "bunx --bun shadcn@latest add",
   }}
   package="@gooseui/button"
 />

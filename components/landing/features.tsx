@@ -1,17 +1,17 @@
 "use client"
 
 import { useTranslations } from "next-intl"
-import {
-  Sparkles,
-  Zap,
-  Code2,
-  Palette,
-  Blocks,
-  Terminal
-} from "lucide-react"
+import { Sparkles, Zap, Code2, Palette, Blocks, Terminal } from "lucide-react"
 
 const featureIcons = [Sparkles, Zap, Code2, Palette, Blocks, Terminal]
-const featureKeys = ['animations', 'installation', 'control', 'styling', 'blocks', 'cli'] as const
+const featureKeys = [
+  "animations",
+  "installation",
+  "control",
+  "styling",
+  "blocks",
+  "cli",
+] as const
 
 export function Features() {
   const t = useTranslations("features")
@@ -39,8 +39,12 @@ export function Features() {
                 <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
                   <Icon className="h-6 w-6 text-primary" />
                 </div>
-                <h3 className="text-xl font-semibold mb-2">{t(`${key}.title`)}</h3>
-                <p className="text-muted-foreground">{t(`${key}.description`)}</p>
+                <h3 className="text-xl font-semibold mb-2">
+                  {t(`${key}.title`)}
+                </h3>
+                <p className="text-muted-foreground">
+                  {t(`${key}.description`)}
+                </p>
               </div>
             )
           })}

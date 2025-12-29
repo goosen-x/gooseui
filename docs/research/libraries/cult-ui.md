@@ -84,91 +84,91 @@ pnpm dlx shadcn@latest add https://cult-ui.com/r/floating-panel.json
 
 ### Кнопки и элементы управления
 
-| Компонент | Описание |
-|-----------|----------|
-| **Neumorph Button** | Кнопка с neumorphism эффектом |
-| **Family Button** | Кнопка с family-стилем |
-| **Family Drawer** | Выдвижная панель (new) |
-| **Texture Button** | Кнопка с текстурой и градиентами (6 вариантов: primary, accent, secondary, destructive, minimal, icon) |
+| Компонент             | Описание                                                                                                        |
+| --------------------- | --------------------------------------------------------------------------------------------------------------- |
+| **Neumorph Button**   | Кнопка с neumorphism эффектом                                                                                   |
+| **Family Button**     | Кнопка с family-стилем                                                                                          |
+| **Family Drawer**     | Выдвижная панель (new)                                                                                          |
+| **Texture Button**    | Кнопка с текстурой и градиентами (6 вариантов: primary, accent, secondary, destructive, minimal, icon)          |
 | **Bg Animate Button** | Кнопка с анимированным градиентным фоном (7 градиентов: sunrise, ocean, candy, default, forest, sunset, nebula) |
 
 ### Карточки и контейнеры
 
-| Компонент | Описание |
-|-----------|----------|
-| **Expandable Screen** | Раскрывающийся экран (new) |
-| **Expandable Card** | Раскрывающаяся карточка с анимацией |
-| **Minimal Card** | Минималистичная карточка |
-| **Neumorph Eyebrow** | Neumorphism элемент |
-| **Texture Card** | Карточка с текстурой |
-| **Shift Card** | Карточка со сдвигом |
-| **Browser Window** | Имитация окна браузера (new) |
-| **Texture Overlay** | Текстурный оверлей |
-| **Distorted Glass** | Эффект искаженного стекла (new) |
-| **Background Texture** | Фоновая текстура (new) |
+| Компонент              | Описание                            |
+| ---------------------- | ----------------------------------- |
+| **Expandable Screen**  | Раскрывающийся экран (new)          |
+| **Expandable Card**    | Раскрывающаяся карточка с анимацией |
+| **Minimal Card**       | Минималистичная карточка            |
+| **Neumorph Eyebrow**   | Neumorphism элемент                 |
+| **Texture Card**       | Карточка с текстурой                |
+| **Shift Card**         | Карточка со сдвигом                 |
+| **Browser Window**     | Имитация окна браузера (new)        |
+| **Texture Overlay**    | Текстурный оверлей                  |
+| **Distorted Glass**    | Эффект искаженного стекла (new)     |
+| **Background Texture** | Фоновая текстура (new)              |
 
 ### Лейаут и формы
 
-| Компонент | Описание |
-|-----------|----------|
-| **Morph Surface** | Морфирующая поверхность (new) |
-| **Direction Aware Tabs** | Табы с direction-aware анимацией переключения |
-| **Side Panel** | Боковая панель |
-| **Floating Panel** | Headless composable плавающая панель с accessibility |
-| **Popover** | Всплывающее окно |
-| **Popover Form** | Форма во всплывающем окне |
-| **Sortable List** | Сортируемый список |
-| **Toolbar Expandable** | Расширяемый тулбар |
-| **Code Block** | Блок кода (new) |
+| Компонент                | Описание                                             |
+| ------------------------ | ---------------------------------------------------- |
+| **Morph Surface**        | Морфирующая поверхность (new)                        |
+| **Direction Aware Tabs** | Табы с direction-aware анимацией переключения        |
+| **Side Panel**           | Боковая панель                                       |
+| **Floating Panel**       | Headless composable плавающая панель с accessibility |
+| **Popover**              | Всплывающее окно                                     |
+| **Popover Form**         | Форма во всплывающем окне                            |
+| **Sortable List**        | Сортируемый список                                   |
+| **Toolbar Expandable**   | Расширяемый тулбар                                   |
+| **Code Block**           | Блок кода (new)                                      |
 
 ### Онбординг и туры
 
-| Компонент | Описание |
-|-----------|----------|
-| **Feature Carousel** | Карусель для демонстрации фич |
+| Компонент            | Описание                            |
+| -------------------- | ----------------------------------- |
+| **Feature Carousel** | Карусель для демонстрации фич       |
 | **Intro Disclosure** | Раскрытие информации при онбординге |
-| **Loading Carousel** | Карусель загрузки |
+| **Loading Carousel** | Карусель загрузки                   |
 
 ### Интерактивные элементы
 
-| Компонент | Описание |
-|-----------|----------|
+| Компонент          | Описание                                                                                 |
+| ------------------ | ---------------------------------------------------------------------------------------- |
 | **Dynamic Island** | Компонент в стиле Apple Dynamic Island с состояниями: compact, large, tall, long, medium |
-| **Color Picker** | Выбор цвета |
-| **Timer** | Таймер |
-| **MacOS Dock** | Док в стиле macOS с magnification эффектом |
-| **Squiggle Arrow** | Волнистая стрелка (new) |
+| **Color Picker**   | Выбор цвета                                                                              |
+| **Timer**          | Таймер                                                                                   |
+| **MacOS Dock**     | Док в стиле macOS с magnification эффектом                                               |
+| **Squiggle Arrow** | Волнистая стрелка (new)                                                                  |
 
 ### Медиа
 
-| Компонент | Описание |
-|-----------|----------|
-| **Stripe Bg Guides** | Направляющие линии в стиле Stripe |
-| **Logo Carousel** | Карусель логотипов |
-| **3D Carousel** | 3D карусель |
-| **Hover Video Player** | Видеоплеер при наведении |
-| **Bg Media Hero** | Hero-секция с медиа фоном |
-| **Tweet Grid** | Сетка твитов |
-| **YouTube Video Player** | YouTube плеер |
+| Компонент                | Описание                          |
+| ------------------------ | --------------------------------- |
+| **Stripe Bg Guides**     | Направляющие линии в стиле Stripe |
+| **Logo Carousel**        | Карусель логотипов                |
+| **3D Carousel**          | 3D карусель                       |
+| **Hover Video Player**   | Видеоплеер при наведении          |
+| **Bg Media Hero**        | Hero-секция с медиа фоном         |
+| **Tweet Grid**           | Сетка твитов                      |
+| **YouTube Video Player** | YouTube плеер                     |
 
 ### Типографика и текст
 
-| Компонент | Описание |
-|-----------|----------|
-| **Text Gif** | Текст с GIF эффектом |
-| **Gradient Heading** | Заголовок с градиентом |
-| **Text Animate** | Анимация текста (8 типов: rollIn, whipIn, fadeIn, popIn, fadeInUp, shiftInUp, whipInUp, calmInUp) |
-| **Typewriter** | Эффект печатной машинки |
-| **Animated Number** | Анимированные числа |
+| Компонент            | Описание                                                                                          |
+| -------------------- | ------------------------------------------------------------------------------------------------- |
+| **Text Gif**         | Текст с GIF эффектом                                                                              |
+| **Gradient Heading** | Заголовок с градиентом                                                                            |
+| **Text Animate**     | Анимация текста (8 типов: rollIn, whipIn, fadeIn, popIn, fadeInUp, shiftInUp, whipInUp, calmInUp) |
+| **Typewriter**       | Эффект печатной машинки                                                                           |
+| **Animated Number**  | Анимированные числа                                                                               |
 
 ### Визуальные эффекты
 
-| Компонент | Описание |
-|-----------|----------|
-| **LightBoard** | Интерактивная световая доска с dot-matrix отображением текста и возможностью рисования |
-| **Fractal Grid** | Фрактальная сетка |
-| **Canvas Fractal Grid** | Canvas-версия фрактальной сетки |
-| **Shader Lens Blur** | WebGL шейдерный эффект линзового размытия с mouse tracking |
+| Компонент               | Описание                                                                               |
+| ----------------------- | -------------------------------------------------------------------------------------- |
+| **LightBoard**          | Интерактивная световая доска с dot-matrix отображением текста и возможностью рисования |
+| **Fractal Grid**        | Фрактальная сетка                                                                      |
+| **Canvas Fractal Grid** | Canvas-версия фрактальной сетки                                                        |
+| **Shader Lens Blur**    | WebGL шейдерный эффект линзового размытия с mouse tracking                             |
 
 ---
 
@@ -179,11 +179,13 @@ pnpm dlx shadcn@latest add https://cult-ui.com/r/floating-panel.json
 Универсальный компонент, вдохновленный Apple Dynamic Island.
 
 **Особенности:**
+
 - Множество состояний размера: compact, large, tall, long, medium
 - Context-based управление через хуки
 - Интеграция с Framer Motion
 
 **API:**
+
 ```tsx
 import {
   DynamicIslandProvider,
@@ -191,10 +193,10 @@ import {
   DynamicContainer,
   DynamicTitle,
   DynamicDescription,
-  useDynamicIslandSize
+  useDynamicIslandSize,
 } from "@/components/ui/dynamic-island"
 
-<DynamicIslandProvider initialSize="compact">
+;<DynamicIslandProvider initialSize="compact">
   <DynamicIsland id="main">
     <DynamicContainer>
       <DynamicTitle>Title</DynamicTitle>
@@ -209,11 +211,13 @@ import {
 Headless composable плавающая панель.
 
 **Особенности:**
+
 - Полная accessibility (keyboard navigation, ARIA, focus management)
 - Composable архитектура
 - Framer Motion анимации
 
 **Субкомпоненты:**
+
 - `FloatingPanelRoot` - контейнер с context
 - `FloatingPanelTrigger` - триггер открытия
 - `FloatingPanelContent` - контент с анимацией
@@ -226,6 +230,7 @@ Headless composable плавающая панель.
 Анимация текста посимвольно.
 
 **8 типов анимации:**
+
 1. **rollIn** - плавное появление с вращением
 2. **whipIn** - быстрое появление с импульсом
 3. **fadeIn** - плавное появление
@@ -240,6 +245,7 @@ Headless composable плавающая панель.
 WebGL шейдерный эффект.
 
 **Технологии:**
+
 - Three.js для управления сценой
 - WebGL fragment shaders
 - Signed Distance Field (SDF) для отрисовки форм
@@ -248,6 +254,7 @@ WebGL шейдерный эффект.
 **Формы:** square, circle, hollow circle, triangle
 
 **Возможности:**
+
 - Mouse tracking с инверсией
 - 4 цветовых канала для градиентов
 - Респонсивность через ResizeObserver
@@ -258,6 +265,7 @@ WebGL шейдерный эффект.
 Интерактивная световая доска.
 
 **Особенности:**
+
 - Настраиваемая сетка световых точек
 - Отображение текста в dot-matrix стиле
 - Рисование мышью/touch
@@ -270,24 +278,31 @@ WebGL шейдерный эффект.
 ## Уникальные особенности Cult UI
 
 ### 1. Дизайн-инженерный подход
+
 Компоненты создаются дизайн-инженерами с фокусом на визуальное качество и детали анимации.
 
 ### 2. Neumorphism и текстуры
+
 Уникальные стили с эффектами neumorphism, текстурами и градиентами.
 
 ### 3. WebGL/Shader эффекты
+
 Продвинутые визуальные эффекты через Three.js и WebGL шейдеры.
 
 ### 4. Apple-inspired компоненты
+
 Dynamic Island, macOS Dock - компоненты, вдохновленные дизайном Apple.
 
 ### 5. Headless + Composable
+
 Floating Panel и другие компоненты следуют headless/composable паттерну.
 
 ### 6. AI интеграции
+
 Блоки для интеграции с Google Gemini, OpenAI, Anthropic Claude, Upstash.
 
 ### 7. Полное владение кодом
+
 Copy-paste подход дает полный контроль над кодом компонентов.
 
 ---
@@ -295,6 +310,7 @@ Copy-paste подход дает полный контроль над кодом
 ## AI Patterns (aisdkagents.com)
 
 В июле 2024 добавлено 72 новых паттерна для AI агентов:
+
 - Интеграция с Google Gemini 2.5 Flash
 - Генерация и редактирование изображений
 - Анализ текста
@@ -348,4 +364,4 @@ Copy-paste подход дает полный контроль над кодом
 
 ---
 
-*Дата исследования: 2025-12-28*
+_Дата исследования: 2025-12-28_

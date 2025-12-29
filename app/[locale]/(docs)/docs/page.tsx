@@ -19,18 +19,14 @@ export default async function DocsPage() {
         <h1 className="scroll-m-20 text-4xl font-bold tracking-tight">
           {t("heading")}
         </h1>
-        <p className="text-lg text-muted-foreground mt-2">
-          {t("description")}
-        </p>
+        <p className="text-lg text-muted-foreground mt-2">{t("description")}</p>
       </div>
 
       <div className="space-y-4">
         <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight">
           {t("whatIs")}
         </h2>
-        <p className="leading-7">
-          {t("whatIsText")}
-        </p>
+        <p className="leading-7">{t("whatIsText")}</p>
       </div>
 
       <div className="space-y-4">
@@ -50,9 +46,7 @@ export default async function DocsPage() {
         <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight">
           {t("quickStart")}
         </h2>
-        <p className="leading-7">
-          {t("quickStartText")}
-        </p>
+        <p className="leading-7">{t("quickStartText")}</p>
         <InstallCommand packageName="https://gooseui.pro/r/button.json" />
       </div>
 

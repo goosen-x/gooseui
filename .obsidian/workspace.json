@@ -185,6 +185,7 @@
   },
   "active": "19de4cd65c54c36c",
   "lastOpenFiles": [
+    "tsconfig.tsbuildinfo",
     "pnpm-lock.yaml.1902686448",
     "components/docs/install-command.tsx",
     "components/ui/tabs.tsx",
@@ -195,7 +196,6 @@
     "components/ui/dropdown-menu.tsx",
     "components/site/site-search.tsx",
     "components/ui/command.tsx",
-    "components/ui/kbd.tsx",
     "docs/research/shadcn-registry-directory.md",
     "docs/backlog/ideas/sponsors-page.md",
     "docs/backlog/ideas/components-grid-page.md",

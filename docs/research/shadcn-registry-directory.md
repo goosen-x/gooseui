@@ -20,19 +20,23 @@
 ## Animation & Motion Libraries
 
 ### @animate-ui
+
 **URL:** https://animate-ui.com
 
 Open-source библиотека анимированных компонентов.
+
 - **Stack:** React, TypeScript, Tailwind CSS, Framer Motion
 - **Установка:** через shadcn CLI
 - **Twitter:** @animate_ui
 
 ### @motion-primitives
+
 **URL:** https://www.motion-primitives.com
 
 UI kit для создания красивых анимированных интерфейсов.
 
 **Ключевые компоненты:**
+
 - Text Effect — эффекты для текста
 - Morphing Dialog — диалоги с морфинг-эффектами
 - Text Scramble — перемешивание текста
@@ -43,31 +47,37 @@ UI kit для создания красивых анимированных ин�
 - Text Loop / Text Shimmer — циклические текстовые эффекты
 
 ### @magicui
+
 **URL:** https://magicui.design
 
 150+ бесплатных open-source анимированных компонентов для Design Engineers.
 
 ### @smoothui
+
 **URL:** https://smoothui.dev
 
 Библиотека от Eduardo Calvo, совместимая с shadcn/ui.
 
 **Особенности:**
+
 - Tailwind CSS v4 + Motion
 - Готовые блоки: Hero, Pricing, Testimonials, FAQ, Footer, Team
 - Компоненты: Animated Tags, Social Selector, Power Off Slide, Scrollable Card Stack
 
 ### @eldoraui
+
 **URL:** https://eldoraui.site
 
 Современная библиотека на TypeScript, Tailwind CSS и Framer Motion.
 
 ### @aceternity
+
 **URL:** https://ui.aceternity.com
 
 Компоненты с готовыми анимациями для Next.js.
 
 **Популярные компоненты:**
+
 - CardStack — автоматическое перелистывание карточек
 - Glare Card — эффект блеска при наведении
 - Spotlight — эффект прожектора
@@ -80,12 +90,14 @@ UI kit для создания красивых анимированных ин�
 ## AI Components
 
 ### @assistant-ui
+
 **URL:** https://www.assistant-ui.com
 **Поддержка:** Y Combinator
 
 React-набор для создания AI-чатов в стиле ChatGPT.
 
 **Функции:**
+
 - Готовый UI с темизацией
 - Управление состоянием для потоков данных
 - Оптимизированный рендеринг для стриминга
@@ -94,22 +106,26 @@ React-набор для создания AI-чатов в стиле ChatGPT.
 **Установка:** `npx assistant-ui init`
 
 ### @prompt-kit
+
 **URL:** https://www.prompt-kit.com
 
 Core building blocks для AI приложений.
 
 **Компоненты:**
+
 - **Ввод:** Prompt Input, Textarea, File Upload
 - **Отображение:** Chat Container, Message, Markdown, Code Block
 - **Функциональные:** Prompt Suggestion, Feedback Bar, Thinking Bar, Text Shimmer
 - **Расширенные:** Chain of Thought, Reasoning, Steps, Tool, Source
 
 ### @ai-elements (Vercel)
+
 **URL:** https://ai-sdk.dev/elements
 
 Официальные компоненты от Vercel для AI приложений.
 
 **Ключевые компоненты:**
+
 - Conversation — контейнер чата с автопрокруткой
 - Message — сообщения с ветвлением
 - Prompt Input — поле ввода с файлами
@@ -122,11 +138,13 @@ Core building blocks для AI приложений.
 **Stack:** React 19, Tailwind CSS 4
 
 ### @livekit / @agents-ui
+
 **URL:** https://livekit.io/ui
 
 Платформа для голосовых, видео и AI агентов.
 
 **Компоненты:**
+
 - Agents Framework (8.6K GitHub stars)
 - LiveKit Media Server (16.2K stars)
 
@@ -137,58 +155,69 @@ Core building blocks для AI приложений.
 ## Unique Style Libraries
 
 ### @8bitcn
+
 **URL:** https://www.8bitcn.com
 
 Компоненты в стиле 8-битных видеоигр.
 
 **Компоненты:**
+
 - Button, Dropdown Menu, Label, Badge, Alert, Card
 - Slider, Switch, Select, Checkbox, Tabs
 - DatePicker, Menubar, Command
 
 **Особенности:**
+
 - Пиксельные границы и текстуры
 - Эффект нажатия (translate-y)
 - Light/Dark режимы
 
 ### @glass-ui
+
 **URL:** https://glass-ui.crenspire.com
 
 40+ компонентов с glassmorphism эффектами.
 
 **Варианты эффектов:**
+
 - Glass (стандартный)
 - Frosted (матовый)
 - Fluted (рифленый)
 - Crystal (кристаллический)
 
 **Особенности:**
+
 - Blur фона, полупрозрачность
 - На основе Radix UI
 - Полная кастомизация
 
 ### @cult-ui
+
 **URL:** https://www.cult-ui.com
 
 "Components for Design Engineers" — редкие, курируемые компоненты.
 
 **Особенности:**
+
 - 8+ готовых блоков
 - Next.js шаблоны
 - AI SDK интеграции
 - "Configured for vibe coding"
 
 ### @kokonutui
+
 **URL:** https://kokonutui.com
 
 100+ компонентов на Tailwind CSS, shadcn/ui и Motion.
 
 **Особенности:**
+
 - Glass Effect Filter
 - Интеграция с V0 для кастомизации через промпты
 - Pro версия: 70+ компонентов, 8 шаблонов
 
 ### @retroui
+
 **URL:** https://retroui.dev
 
 Neobrutalism стиль для React + TailwindCSS.
@@ -198,17 +227,20 @@ Neobrutalism стиль для React + TailwindCSS.
 ## Rich Text Editors
 
 ### @plate
+
 **URL:** https://platejs.org
 
 AI-powered редактор на Slate и React.
 
 **Функции:**
+
 - Rich formatting: bold, italic, underline, strikethrough, code
 - Блоки: headings, blockquotes, lists, tables, code blocks
 - Медиа: images, videos, audio, embeds + drag-and-drop
 - Collaborative editing через Yjs
 
 **AI возможности:**
+
 - AI SDK интеграция
 - Copilot mode — ghost text suggestions
 - Горячие клавиши: ⌘+J или Space
@@ -217,6 +249,7 @@ AI-powered редактор на Slate и React.
 **Преимущество:** Многие премиум-функции бесплатны (в отличие от Tiptap)
 
 ### @prosekit
+
 **URL:** https://prosekit.dev
 
 Headless extensible framework на ProseMirror (используется NYT, Atlassian).
@@ -224,16 +257,19 @@ Headless extensible framework на ProseMirror (используется NYT, At
 **Фреймворки:** React, Vue, Preact, Svelte, Solid
 
 **Особенности:**
+
 - Copy-paste TailwindCSS компоненты
 - Yjs и Loro для коллаборации
 - Встроенный поиск
 
 ### @shadcn-editor
+
 **URL:** https://shadcn-editor.vercel.app
 
 Редактор на Lexical и Shadcn/UI.
 
 **Функции:**
+
 - Базовое форматирование + fonts + colors
 - Import/Export, Undo/Redo
 - Tables с resizing
@@ -248,11 +284,13 @@ Headless extensible framework на ProseMirror (используется NYT, At
 ## Backend Integrations
 
 ### @supabase
+
 **URL:** https://supabase.com/ui
 
 React компоненты для интеграции с Supabase backend.
 
 **Блоки:**
+
 - **Auth:** Password-Based, Social Auth
 - **Realtime:** Cursor, Avatar Stack, Chat
 - **Data:** Dropzone, Current User Avatar, Infinite Query Hook
@@ -260,11 +298,13 @@ React компоненты для интеграции с Supabase backend.
 **Фреймворки:** Next.js, React Router, TanStack, Vue, Nuxt
 
 ### @clerk
+
 **URL:** https://clerk.com/docs/guides/development/shadcn-cli
 
 Аутентификация и user management.
 
 **Компоненты:**
+
 - ClerkProvider — контекст сессии
 - Sign In / Sign Up страницы
 - Waitlist компонент
@@ -274,20 +314,24 @@ React компоненты для интеграции с Supabase backend.
 **Установка:** `npx shadcn@latest add @clerk/nextjs-quickstart`
 
 ### @better-upload
+
 **URL:** https://better-upload.com
 
 Загрузка файлов напрямую в S3.
 
 **Компоненты:**
+
 - UploadDropzone — drag-and-drop
 - Конфигурация: multipleFiles, maxFiles, fileTypes, maxFileSize
 
 ### @nuqs
+
 **URL:** https://nuqs.dev/registry
 
 URL state management для React.
 
 **Адаптеры:**
+
 - Inertia.js (Laravel, Phoenix, Django, Rails)
 - One.js
 - React Router v5
@@ -297,11 +341,13 @@ URL state management для React.
 **Утилиты:** Typed Links для Next.js
 
 ### @elements
+
 **URL:** https://www.tryelements.dev
 
 Full-stack компоненты от Crafter Station.
 
 **Активные:**
+
 - Brand Logos (48 шт)
 - Polar — спонсорство для open source
 - Theme Switcher (6 вариантов)
@@ -315,11 +361,13 @@ Full-stack компоненты от Crafter Station.
 ## Blocks & Templates
 
 ### @shadcnblocks
+
 **URL:** https://shadcnblocks.com
 
 **1110 блоков** и **1148 компонентов** в 80+ категориях.
 
 **Категории:**
+
 - Marketing: Hero (175), Features (272), CTA (26), Testimonials (28)
 - E-commerce: Product Card, Shopping Cart, Checkout
 - Navigation: Navbar (18), Footer (25)
@@ -330,22 +378,26 @@ Full-stack компоненты от Crafter Station.
 **Дополнительно:** 11 премиум-шаблонов, Figma Kit, Admin Dashboard Kit
 
 ### @tailark
+
 **URL:** https://tailark.com
 
 Блоки для marketing сайтов на Shadcn UI.
 
 **Категории:**
+
 - Hero, Features, Pricing, Testimonials
 - Footer, Contact, Logo clouds, CTA
 - Team, FAQ, Stats, Sign in
 - Integrations, Content sections
 
 **Наборы:**
+
 - Tailark Pro — корпоративный
 - Tailark Dusk — темные дизайны
 - Tailark Mist — Notion-стиль
 
 ### @blocks
+
 **URL:** https://blocks.so
 
 60+ компонентов в 11 категориях.
@@ -366,6 +418,7 @@ Full-stack компоненты от Crafter Station.
 | Tables | 5 |
 
 ### @hextaui
+
 **URL:** https://hextaui.com
 
 Расширенные компоненты и блоки для shadcn/ui.
@@ -379,11 +432,13 @@ Full-stack компоненты от Crafter Station.
 ## Specialized Components
 
 ### @formcn
+
 **URL:** https://formcn.dev
 
 Production-ready формы на shadcn.
 
 **Функции:**
+
 - Многошаговые формы
 - Zod валидация (клиент + сервер через next-safe-action)
 - ARIA доступность
@@ -391,11 +446,13 @@ Production-ready формы на shadcn.
 - Stepper, Tag input компоненты
 
 ### @tour
+
 **URL:** https://onboarding-tour.vercel.app
 
 Компонент для onboarding туров.
 
 **Возможности:**
+
 - Многошаговые туры
 - Мультистраничные туры
 - Множественные элементы в одном шаге
@@ -403,11 +460,13 @@ Production-ready формы на shadcn.
 - Несколько независимых туров
 
 ### @kibo-ui
+
 **URL:** https://www.kibo-ui.com
 
 Composable компоненты для shadcn/ui.
 
 **Категории:**
+
 - **Управление проектами:** Gantt, Kanban, Calendar, Tables
 - **Формы:** Dropzone, Choicebox, Combobox, Tags
 - **Медиа:** Image Crop/Zoom, Video Player, Reel, Stories
@@ -416,6 +475,7 @@ Composable компоненты для shadcn/ui.
 - **Коллаборация:** Avatar Stack, Cursor
 
 ### @diceui
+
 **URL:** https://www.diceui.com
 
 Accessible компоненты с фокусом на WAI-ARIA.
@@ -423,11 +483,13 @@ Accessible компоненты с фокусом на WAI-ARIA.
 **Stack:** React, TypeScript, Tailwind CSS
 
 ### @react-aria
+
 **URL:** https://react-aria.adobe.com
 
 50+ компонентов от Adobe с высоким приоритетом доступности.
 
 **Особенности:**
+
 - Стиль-свободный подход
 - 30+ языков, 13 календарных систем
 - Адаптация для клавиатуры и screen readers
@@ -438,26 +500,31 @@ Accessible компоненты с фокусом на WAI-ARIA.
 ## Icons & Assets
 
 ### @svgl
+
 **URL:** https://svgl.app
 
 **573+ SVG логотипов** по категориям.
 
 **Категории:**
+
 - AI (48), Framework (49), Library (76)
 - Software (201), Database (21), Design (29)
 
 **Функции:**
+
 - Поиск и сортировка
 - shadcn/ui интеграция
 - Open API
 - GitHub: 5000+ stars
 
 ### @lucide-animated
+
 **URL:** https://lucide-animated.com
 
 **361+ анимированных иконок** на Motion (Framer Motion).
 
 **Особенности:**
+
 - MIT лицензия
 - SVG компоненты на TypeScript
 - Copy-paste готовые
@@ -478,16 +545,16 @@ Accessible компоненты с фокусом на WAI-ARIA.
 
 ### Рекомендации для GooseUI
 
-| Категория | Рекомендуемые библиотеки |
-|-----------|-------------------------|
-| Анимации | motion-primitives, animate-ui |
-| AI чаты | assistant-ui, prompt-kit |
-| Стиль | 8bitcn (если ретро), glass-ui (если минимализм) |
-| Редакторы | plate (с AI), prosekit (легковесный) |
-| Auth | clerk |
-| Forms | formcn |
-| Blocks | shadcnblocks, tailark |
-| Icons | svgl, lucide-animated |
+| Категория | Рекомендуемые библиотеки                        |
+| --------- | ----------------------------------------------- |
+| Анимации  | motion-primitives, animate-ui                   |
+| AI чаты   | assistant-ui, prompt-kit                        |
+| Стиль     | 8bitcn (если ретро), glass-ui (если минимализм) |
+| Редакторы | plate (с AI), prosekit (легковесный)            |
+| Auth      | clerk                                           |
+| Forms     | formcn                                          |
+| Blocks    | shadcnblocks, tailark                           |
+| Icons     | svgl, lucide-animated                           |
 
 ### Интересные находки
 

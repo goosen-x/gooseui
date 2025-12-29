@@ -37,68 +37,68 @@ React Bits организует компоненты в 4 основные ка�
 
 **Оценка качества: 9.0/10** - Полная реализация на Framer Motion
 
-| Компонент | Описание |
-|-----------|----------|
-| **SplitText** | Анимация текста по символам (character-by-character) |
-| **BlurText** | Плавные переходы blur-to-focus |
-| **GlitchText** | Cyberpunk-стиль с эффектом глитча |
-| **ScrambleText** | Эффект скремблирования в стиле Matrix |
-| **ShinyText** | Металлический блеск текста |
-| **GradientText** | Анимированный градиентный текст |
-| **DecryptedText** | Анимация расшифровки |
-| **FallingText** | Текст с эффектом гравитации |
-| **CountUp** | Анимированные счетчики чисел |
-| **CircularText** | Текст по кругу |
-| **TrueFocus** | Эффект фокусировки на тексте |
-| **TextPressure** | Интерактивный текст с эффектом давления |
+| Компонент         | Описание                                             |
+| ----------------- | ---------------------------------------------------- |
+| **SplitText**     | Анимация текста по символам (character-by-character) |
+| **BlurText**      | Плавные переходы blur-to-focus                       |
+| **GlitchText**    | Cyberpunk-стиль с эффектом глитча                    |
+| **ScrambleText**  | Эффект скремблирования в стиле Matrix                |
+| **ShinyText**     | Металлический блеск текста                           |
+| **GradientText**  | Анимированный градиентный текст                      |
+| **DecryptedText** | Анимация расшифровки                                 |
+| **FallingText**   | Текст с эффектом гравитации                          |
+| **CountUp**       | Анимированные счетчики чисел                         |
+| **CircularText**  | Текст по кругу                                       |
+| **TrueFocus**     | Эффект фокусировки на тексте                         |
+| **TextPressure**  | Интерактивный текст с эффектом давления              |
 
 ### 2. Animations (Анимации)
 
 **Оценка качества: 9.5/10** - Профессиональные анимации
 
-| Компонент | Описание |
-|-----------|----------|
-| **BlobCursor** | Морфирующий blob-курсор |
-| **SplashCursor** | Жидкий эффект курсора |
-| **Magnet** | Эффект магнитного притяжения |
-| **ClickSpark** | Взрывы частиц при клике |
-| **StarBorder** | Анимированные звездные границы |
-| **GlareHover** | Металлический hover-эффект |
-| **MagnetLines** | Магнитное притяжение линий |
-| **PixelTrail** | Пиксельный след за мышью |
-| **ImageTrail** | След изображений за мышью |
-| **Crosshair** | Эффект прицела |
+| Компонент        | Описание                       |
+| ---------------- | ------------------------------ |
+| **BlobCursor**   | Морфирующий blob-курсор        |
+| **SplashCursor** | Жидкий эффект курсора          |
+| **Magnet**       | Эффект магнитного притяжения   |
+| **ClickSpark**   | Взрывы частиц при клике        |
+| **StarBorder**   | Анимированные звездные границы |
+| **GlareHover**   | Металлический hover-эффект     |
+| **MagnetLines**  | Магнитное притяжение линий     |
+| **PixelTrail**   | Пиксельный след за мышью       |
+| **ImageTrail**   | След изображений за мышью      |
+| **Crosshair**    | Эффект прицела                 |
 
 ### 3. Backgrounds (Фоны)
 
 **Оценка качества: 9.8/10** - Production-ready WebGL эффекты
 
-| Компонент | Описание |
-|-----------|----------|
-| **Aurora** | Эффект северного сияния (шейдер) |
-| **Beams** | Анимированные лучи света |
-| **Particles** | Система частиц |
-| **Hyperspeed** | Эффект гиперскорости/warp |
-| **Lightning** | Эффект молний |
-| **Ballpit** | Интерактивный 3D ball pit на Three.js |
+| Компонент      | Описание                              |
+| -------------- | ------------------------------------- |
+| **Aurora**     | Эффект северного сияния (шейдер)      |
+| **Beams**      | Анимированные лучи света              |
+| **Particles**  | Система частиц                        |
+| **Hyperspeed** | Эффект гиперскорости/warp             |
+| **Lightning**  | Эффект молний                         |
+| **Ballpit**    | Интерактивный 3D ball pit на Three.js |
 
 ### 4. Components (UI Компоненты)
 
-| Компонент | Описание |
-|-----------|----------|
-| **TiltedCard** | Карточка с 3D наклоном |
-| **SpotlightCard** | Карточка с эффектом прожектора |
-| **ProfileCard** | Анимированная карточка профиля |
-| **CardSwap** | Переключение карточек |
-| **ChromaGrid** | Интерактивная цветовая сетка |
-| **PillNav** | Навигация с плавными переходами |
-| **Dock** | Dock в стиле macOS |
-| **ModelViewer** | 3D просмотрщик моделей |
-| **LetterGlitch** | Глитч-эффект букв |
-| **Iridescence** | Радужный переливающийся эффект |
-| **AnimatedContent** | Анимированный контент |
-| **FadeContent** | Плавное появление контента |
-| **Bounce** | Эффект отскока |
+| Компонент           | Описание                        |
+| ------------------- | ------------------------------- |
+| **TiltedCard**      | Карточка с 3D наклоном          |
+| **SpotlightCard**   | Карточка с эффектом прожектора  |
+| **ProfileCard**     | Анимированная карточка профиля  |
+| **CardSwap**        | Переключение карточек           |
+| **ChromaGrid**      | Интерактивная цветовая сетка    |
+| **PillNav**         | Навигация с плавными переходами |
+| **Dock**            | Dock в стиле macOS              |
+| **ModelViewer**     | 3D просмотрщик моделей          |
+| **LetterGlitch**    | Глитч-эффект букв               |
+| **Iridescence**     | Радужный переливающийся эффект  |
+| **AnimatedContent** | Анимированный контент           |
+| **FadeContent**     | Плавное появление контента      |
+| **Bounce**          | Эффект отскока                  |
 
 ---
 
@@ -117,6 +117,7 @@ npx jsrepo add https://reactbits.dev/[variant]/[Category]/[ComponentName]
 ```
 
 Варианты (`[variant]`):
+
 - `ts-tw` - TypeScript + Tailwind
 - `ts-css` - TypeScript + CSS
 - `js-tw` - JavaScript + Tailwind
@@ -135,6 +136,7 @@ pnpm add @appletosolutions/reactbits
 ### Дополнительные зависимости
 
 Для 3D компонентов (Aurora, Ballpit и др.):
+
 ```bash
 npm install three @react-three/fiber @react-three/drei
 ```
@@ -146,7 +148,7 @@ npm install three @react-three/fiber @react-three/drei
 ### GradientText
 
 ```tsx
-import { GradientText } from "@/components/text/gradient-text";
+import { GradientText } from "@/components/text/gradient-text"
 
 function Hero() {
   return (
@@ -154,7 +156,7 @@ function Hero() {
       text="Smooth flowing gradients"
       gradient="linear-gradient(90deg, #3b82f6 0%, #a855f7 50%, #ec4899 100%)"
     />
-  );
+  )
 }
 ```
 
@@ -172,7 +174,7 @@ function Hero() {
 ### Aurora Background
 
 ```tsx
-import { Aurora } from "@/components/backgrounds/aurora";
+import { Aurora } from "@/components/backgrounds/aurora"
 
 function Background() {
   return (
@@ -181,7 +183,7 @@ function Background() {
       amplitude={1.2}
       speed={0.8}
     />
-  );
+  )
 }
 ```
 
@@ -201,24 +203,21 @@ function LandingPage() {
         </AnimatedContent>
       </FadeContent>
     </div>
-  );
+  )
 }
 ```
 
 ### ClickSpark
 
 ```tsx
-import { ClickSpark } from "@/components/animations/click-spark";
+import { ClickSpark } from "@/components/animations/click-spark"
 
 function InteractiveArea() {
   return (
-    <ClickSpark
-      sparkColor="#FFD700"
-      sparkCount={12}
-    >
+    <ClickSpark sparkColor="#FFD700" sparkCount={12}>
       <button>Click me!</button>
     </ClickSpark>
-  );
+  )
 }
 ```
 
@@ -259,12 +258,14 @@ npm install reactbits-dev-mcp-server
 ```
 
 **Возможности:**
+
 - Поиск компонентов по имени, категории, описанию
 - Получение кода компонентов напрямую
 - Поддержка CSS и Tailwind версий
 - Кеширование для производительности
 
 **Оценка качества компонентов (по данным MCP):**
+
 - Backgrounds: 9.8/10
 - Animations: 9.5/10
 - Text Animations: 9.0/10
@@ -321,12 +322,12 @@ npm install reactbits-dev-mcp-server
 
 ## Альтернативы
 
-| Библиотека | Фокус |
-|------------|-------|
-| **Framer Motion** | Низкоуровневые анимации |
-| **Magic UI** | Готовые анимированные компоненты |
+| Библиотека        | Фокус                            |
+| ----------------- | -------------------------------- |
+| **Framer Motion** | Низкоуровневые анимации          |
+| **Magic UI**      | Готовые анимированные компоненты |
 | **Aceternity UI** | Премиум анимированные компоненты |
-| **shadcn/ui** | Базовые UI компоненты |
+| **shadcn/ui**     | Базовые UI компоненты            |
 
 ---
 

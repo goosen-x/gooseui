@@ -9,14 +9,14 @@
 
 ### Ключевые характеристики
 
-| Параметр | Значение |
-|----------|----------|
-| GitHub Stars | 7.8k+ |
-| Forks | 840+ |
-| NPM Downloads | 400k+/месяц |
-| Contributors | 107 |
-| Лицензия | MIT |
-| Язык | TypeScript (71.6%), MDX (21.2%) |
+| Параметр      | Значение                        |
+| ------------- | ------------------------------- |
+| GitHub Stars  | 7.8k+                           |
+| Forks         | 840+                            |
+| NPM Downloads | 400k+/месяц                     |
+| Contributors  | 107                             |
+| Лицензия      | MIT                             |
+| Язык          | TypeScript (71.6%), MDX (21.2%) |
 
 ### Девиз
 
@@ -50,6 +50,7 @@
 ### 4. Универсальная совместимость
 
 Поддержка множества AI-провайдеров:
+
 - OpenAI
 - Anthropic
 - Azure
@@ -103,6 +104,7 @@ npx assistant-ui@latest create
 ```
 
 Доступные шаблоны:
+
 - Cloud persistence
 - LangGraph интеграция
 - MCP поддержка
@@ -126,6 +128,7 @@ npm install @assistant-ui/react
 ```
 
 Дополнительные пакеты:
+
 - `@assistant-ui/react-ui` - стилизованные компоненты
 - `@assistant-ui/react-ai-sdk` - интеграция с Vercel AI SDK
 - `@assistant-ui/react-langgraph` - интеграция с LangGraph
@@ -143,9 +146,9 @@ npm install @assistant-ui/react
 Контейнер для всей беседы.
 
 ```tsx
-import { ThreadPrimitive } from "@assistant-ui/react";
+import { ThreadPrimitive } from "@assistant-ui/react"
 
-<ThreadPrimitive.Root>
+;<ThreadPrimitive.Root>
   <ThreadPrimitive.Viewport>
     <ThreadPrimitive.Messages />
   </ThreadPrimitive.Viewport>
@@ -155,6 +158,7 @@ import { ThreadPrimitive } from "@assistant-ui/react";
 ```
 
 **Компоненты:**
+
 - `Root` - контейнер (рендерит `<div>`)
 - `Viewport` - скроллируемая область с сообщениями
 - `Messages` - список сообщений
@@ -166,9 +170,9 @@ import { ThreadPrimitive } from "@assistant-ui/react";
 Область ввода сообщений.
 
 ```tsx
-import { ComposerPrimitive } from "@assistant-ui/react";
+import { ComposerPrimitive } from "@assistant-ui/react"
 
-<ComposerPrimitive.Root>
+;<ComposerPrimitive.Root>
   <ComposerPrimitive.Attachments />
   <ComposerPrimitive.AddAttachment />
   <ComposerPrimitive.Input />
@@ -178,6 +182,7 @@ import { ComposerPrimitive } from "@assistant-ui/react";
 ```
 
 **Компоненты:**
+
 - `Root` - контейнер (рендерит `<form>`)
 - `Input` - textarea с горячими клавишами (Enter - отправить, Escape - отменить)
 - `Send` - кнопка отправки
@@ -192,9 +197,9 @@ import { ComposerPrimitive } from "@assistant-ui/react";
 Отдельное сообщение в беседе.
 
 ```tsx
-import { MessagePrimitive } from "@assistant-ui/react";
+import { MessagePrimitive } from "@assistant-ui/react"
 
-<MessagePrimitive.Root>
+;<MessagePrimitive.Root>
   <MessagePrimitive.Content />
   <MessagePrimitive.Attachments />
   <MessagePrimitive.If user>...</MessagePrimitive.If>
@@ -203,6 +208,7 @@ import { MessagePrimitive } from "@assistant-ui/react";
 ```
 
 **Компоненты:**
+
 - `Root` - контейнер (рендерит `<div>`)
 - `Content` - содержимое сообщения
 - `Parts` - отдельные части (текст, изображения, tool calls)
@@ -211,6 +217,7 @@ import { MessagePrimitive } from "@assistant-ui/react";
 - `Error` - отображение ошибок
 
 **Content Parts Components:**
+
 - Text
 - Image
 - Sources
@@ -223,9 +230,9 @@ import { MessagePrimitive } from "@assistant-ui/react";
 Панель действий для сообщений.
 
 ```tsx
-import { ActionBarPrimitive } from "@assistant-ui/react";
+import { ActionBarPrimitive } from "@assistant-ui/react"
 
-<ActionBarPrimitive.Root hideWhenRunning autohide>
+;<ActionBarPrimitive.Root hideWhenRunning autohide>
   <ActionBarPrimitive.Copy />
   <ActionBarPrimitive.Edit />
   <ActionBarPrimitive.Reload />
@@ -238,6 +245,7 @@ import { ActionBarPrimitive } from "@assistant-ui/react";
 ```
 
 **Компоненты:**
+
 - `Root` - контейнер с опциями `hideWhenRunning`, `autohide`, `autohideFloat`
 - `Copy` - копирование в буфер обмена (data-copied атрибут)
 - `Edit` - режим редактирования
@@ -270,19 +278,20 @@ import {
   useAssistantRuntime,
   useAttachment,
   useMessagePart,
-} from "@assistant-ui/react";
+} from "@assistant-ui/react"
 ```
 
 ### useThread
 
 ```tsx
-const thread = useThread();
-const isRunning = useThread((t) => t.isRunning);
-const isLoading = useThread((t) => t.isLoading);
-const messages = useThread((t) => t.messages);
+const thread = useThread()
+const isRunning = useThread((t) => t.isRunning)
+const isLoading = useThread((t) => t.isLoading)
+const messages = useThread((t) => t.messages)
 ```
 
 **Доступные свойства:**
+
 - `id` - ID потока
 - `isDisabled` - отключенный поток не может получать новые сообщения
 - `isLoading` - загрузка истории
@@ -294,34 +303,34 @@ const messages = useThread((t) => t.messages);
 ### useMessage
 
 ```tsx
-const { message } = useMessage();
-const msg = useMessage((m) => m.message);
-const branches = useMessage((m) => m.branches);
-const isLast = useMessage((m) => m.isLast);
+const { message } = useMessage()
+const msg = useMessage((m) => m.message)
+const branches = useMessage((m) => m.branches)
+const isLast = useMessage((m) => m.isLast)
 ```
 
 ### useComposer
 
 ```tsx
-const composerText = useComposer((c) => c.text);
-const composerRuntime = useComposerRuntime();
-composerRuntime.send();
+const composerText = useComposer((c) => c.text)
+const composerRuntime = useComposerRuntime()
+composerRuntime.send()
 ```
 
 ### Унифицированный API (v0.12+)
 
 ```tsx
-import { useAssistantState, useAssistantApi } from "@assistant-ui/react";
+import { useAssistantState, useAssistantApi } from "@assistant-ui/react"
 
 // Чтение состояния
-const messages = useAssistantState(({ thread }) => thread.messages);
-const isRunning = useAssistantState(({ thread }) => thread.isRunning);
-const composerText = useAssistantState(({ composer }) => composer.text);
+const messages = useAssistantState(({ thread }) => thread.messages)
+const isRunning = useAssistantState(({ thread }) => thread.isRunning)
+const composerText = useAssistantState(({ composer }) => composer.text)
 
 // API для действий (стабильный объект, не вызывает ре-рендеры)
-const api = useAssistantApi();
-api.composer().send();
-api.thread().cancelRun();
+const api = useAssistantApi()
+api.composer().send()
+api.thread().cancelRun()
 ```
 
 ---
@@ -331,7 +340,7 @@ api.thread().cancelRun();
 ### Vercel AI SDK
 
 ```tsx
-import { useVercelAI } from "@assistant-ui/react-ai-sdk";
+import { useVercelAI } from "@assistant-ui/react-ai-sdk"
 ```
 
 Первоклассная интеграция с AI SDK от Vercel.
@@ -339,7 +348,7 @@ import { useVercelAI } from "@assistant-ui/react-ai-sdk";
 ### LangGraph
 
 ```tsx
-import { useLangGraph } from "@assistant-ui/react-langgraph";
+import { useLangGraph } from "@assistant-ui/react-langgraph"
 ```
 
 Поддержка LangGraph и LangGraph Cloud.
@@ -361,7 +370,7 @@ import { useLangGraph } from "@assistant-ui/react-langgraph";
 Обертка для React-компонентов, делающая их видимыми и интерактивными для AI.
 
 ```tsx
-const VisibleComponent = makeAssistantVisible(MyComponent);
+const VisibleComponent = makeAssistantVisible(MyComponent)
 ```
 
 ### makeAssistantTool
@@ -369,7 +378,7 @@ const VisibleComponent = makeAssistantVisible(MyComponent);
 Создание инструментов, которые AI может вызывать:
 
 ```tsx
-import { z } from "zod";
+import { z } from "zod"
 
 const myTool = makeAssistantTool({
   name: "get_weather",
@@ -379,7 +388,7 @@ const myTool = makeAssistantTool({
   execute: async ({ location }) => {
     // логика
   },
-});
+})
 ```
 
 ### makeAssistantToolUI
@@ -395,7 +404,7 @@ const myTool = makeAssistantTool({
 Инспектор для отладки runtime state, контекстов и событий:
 
 ```tsx
-import { AssistantDevTools } from "@assistant-ui/react-devtools";
+import { AssistantDevTools } from "@assistant-ui/react-devtools"
 ```
 
 ---
@@ -425,6 +434,7 @@ import { AssistantDevTools } from "@assistant-ui/react-devtools";
 ## Showcase: Кто использует
 
 ### Developer Tools
+
 - **Chat LangChain** (OSS) - чат с документацией LangChain
 - **Helicone** (OSS) - платформа мониторинга LLM
 - **LangGraph Stockbroker** (OSS) - финансовый исследовательский инструмент
@@ -432,11 +442,13 @@ import { AssistantDevTools } from "@assistant-ui/react-devtools";
 - **Komodo** - платформа развертывания моделей
 
 ### AI Assistants
+
 - **Closing.wtf** - анализ ипотеки для покупателей жилья
 - **Open Canvas** (OSS) - OSS версия Canvas от OpenAI
 - **CoreViz** - визуальная разведка для фото/видео
 
 ### Browser Extensions
+
 - **Portal** - AI исполнительный помощник
 
 ---
@@ -446,17 +458,18 @@ import { AssistantDevTools } from "@assistant-ui/react-devtools";
 ### assistant-ui (Библиотека)
 
 **Бесплатно навсегда** - MIT лицензия
+
 - Все UI компоненты
 - Bring your own backend
 - Community поддержка
 
 ### assistant-cloud (Управляемый бэкенд)
 
-| План | Цена | Включено |
-|------|------|----------|
-| Free | $0 | 200 MAU, история чатов |
-| Pro | $50/мес | 500 MAU + $0.10 за доп. пользователя |
-| Enterprise | Custom | SLA 99.99%, on-premises, security compliance |
+| План       | Цена    | Включено                                     |
+| ---------- | ------- | -------------------------------------------- |
+| Free       | $0      | 200 MAU, история чатов                       |
+| Pro        | $50/мес | 500 MAU + $0.10 за доп. пользователя         |
+| Enterprise | Custom  | SLA 99.99%, on-premises, security compliance |
 
 ---
 
@@ -501,6 +514,7 @@ import { AssistantDevTools } from "@assistant-ui/react-devtools";
 ### Рекомендации к использованию
 
 Идеально подходит для:
+
 - AI-чат приложений корпоративного уровня
 - Продуктов, требующих глубокой кастомизации чат-интерфейса
 - Интеграции с различными LLM-провайдерами
@@ -508,4 +522,4 @@ import { AssistantDevTools } from "@assistant-ui/react-devtools";
 
 ---
 
-*Исследование проведено на основе официальной документации, GitHub репозитория и npm пакетов.*
+_Исследование проведено на основе официальной документации, GitHub репозитория и npm пакетов._

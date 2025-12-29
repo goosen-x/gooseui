@@ -22,9 +22,7 @@ export default async function ButtonPage() {
         prevHref="/docs/components"
         nextHref="/docs/components/card"
       />
-      <p className="text-lg text-muted-foreground">
-        {t("description")}
-      </p>
+      <p className="text-lg text-muted-foreground">{t("description")}</p>
 
       <div className="space-y-4">
         <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight">
@@ -52,7 +50,7 @@ export default async function ButtonPage() {
           {tCommon("usage")}
         </h2>
         <pre className="rounded-lg border bg-muted px-4 py-3 font-mono text-sm overflow-x-auto">
-{`import { Button } from "@/components/ui/button"
+          {`import { Button } from "@/components/ui/button"
 
 export function MyComponent() {
   return <Button>Click me</Button>
@@ -72,7 +70,7 @@ export function MyComponent() {
           <Button>Button</Button>
         </div>
         <pre className="rounded-lg border bg-muted px-4 py-3 font-mono text-sm overflow-x-auto">
-{`<Button>Button</Button>`}
+          {`<Button>Button</Button>`}
         </pre>
 
         <h3 className="scroll-m-20 text-xl font-semibold tracking-tight mt-6">
@@ -82,7 +80,7 @@ export function MyComponent() {
           <Button variant="secondary">Secondary</Button>
         </div>
         <pre className="rounded-lg border bg-muted px-4 py-3 font-mono text-sm overflow-x-auto">
-{`<Button variant="secondary">Secondary</Button>`}
+          {`<Button variant="secondary">Secondary</Button>`}
         </pre>
 
         <h3 className="scroll-m-20 text-xl font-semibold tracking-tight mt-6">
@@ -92,7 +90,7 @@ export function MyComponent() {
           <Button variant="destructive">Destructive</Button>
         </div>
         <pre className="rounded-lg border bg-muted px-4 py-3 font-mono text-sm overflow-x-auto">
-{`<Button variant="destructive">Destructive</Button>`}
+          {`<Button variant="destructive">Destructive</Button>`}
         </pre>
 
         <h3 className="scroll-m-20 text-xl font-semibold tracking-tight mt-6">
@@ -102,7 +100,7 @@ export function MyComponent() {
           <Button variant="outline">Outline</Button>
         </div>
         <pre className="rounded-lg border bg-muted px-4 py-3 font-mono text-sm overflow-x-auto">
-{`<Button variant="outline">Outline</Button>`}
+          {`<Button variant="outline">Outline</Button>`}
         </pre>
 
         <h3 className="scroll-m-20 text-xl font-semibold tracking-tight mt-6">
@@ -112,7 +110,7 @@ export function MyComponent() {
           <Button variant="ghost">Ghost</Button>
         </div>
         <pre className="rounded-lg border bg-muted px-4 py-3 font-mono text-sm overflow-x-auto">
-{`<Button variant="ghost">Ghost</Button>`}
+          {`<Button variant="ghost">Ghost</Button>`}
         </pre>
 
         <h3 className="scroll-m-20 text-xl font-semibold tracking-tight mt-6">
@@ -122,7 +120,7 @@ export function MyComponent() {
           <Button variant="link">Link</Button>
         </div>
         <pre className="rounded-lg border bg-muted px-4 py-3 font-mono text-sm overflow-x-auto">
-{`<Button variant="link">Link</Button>`}
+          {`<Button variant="link">Link</Button>`}
         </pre>
       </div>
 
@@ -152,7 +150,7 @@ export function MyComponent() {
           </Button>
         </div>
         <pre className="rounded-lg border bg-muted px-4 py-3 font-mono text-sm overflow-x-auto">
-{`<Button size="sm">Small</Button>
+          {`<Button size="sm">Small</Button>
 <Button size="default">Default</Button>
 <Button size="lg">Large</Button>
 <Button size="icon">...</Button>`}
@@ -167,29 +165,40 @@ export function MyComponent() {
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b">
-                <th className="text-left py-3 px-4 font-semibold">{t("propName")}</th>
-                <th className="text-left py-3 px-4 font-semibold">{t("propType")}</th>
-                <th className="text-left py-3 px-4 font-semibold">{t("propDefault")}</th>
+                <th className="text-left py-3 px-4 font-semibold">
+                  {t("propName")}
+                </th>
+                <th className="text-left py-3 px-4 font-semibold">
+                  {t("propType")}
+                </th>
+                <th className="text-left py-3 px-4 font-semibold">
+                  {t("propDefault")}
+                </th>
               </tr>
             </thead>
             <tbody>
               <tr className="border-b">
                 <td className="py-3 px-4 font-mono">variant</td>
                 <td className="py-3 px-4 font-mono text-muted-foreground">
-                  &quot;default&quot; | &quot;destructive&quot; | &quot;outline&quot; | &quot;secondary&quot; | &quot;ghost&quot; | &quot;link&quot;
+                  &quot;default&quot; | &quot;destructive&quot; |
+                  &quot;outline&quot; | &quot;secondary&quot; |
+                  &quot;ghost&quot; | &quot;link&quot;
                 </td>
                 <td className="py-3 px-4 font-mono">&quot;default&quot;</td>
               </tr>
               <tr className="border-b">
                 <td className="py-3 px-4 font-mono">size</td>
                 <td className="py-3 px-4 font-mono text-muted-foreground">
-                  &quot;default&quot; | &quot;sm&quot; | &quot;lg&quot; | &quot;icon&quot;
+                  &quot;default&quot; | &quot;sm&quot; | &quot;lg&quot; |
+                  &quot;icon&quot;
                 </td>
                 <td className="py-3 px-4 font-mono">&quot;default&quot;</td>
               </tr>
               <tr className="border-b">
                 <td className="py-3 px-4 font-mono">asChild</td>
-                <td className="py-3 px-4 font-mono text-muted-foreground">boolean</td>
+                <td className="py-3 px-4 font-mono text-muted-foreground">
+                  boolean
+                </td>
                 <td className="py-3 px-4 font-mono">false</td>
               </tr>
             </tbody>

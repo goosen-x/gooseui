@@ -1,9 +1,9 @@
-import { NextIntlClientProvider } from 'next-intl'
-import { getMessages, setRequestLocale } from 'next-intl/server'
-import { notFound } from 'next/navigation'
-import { routing } from '@/i18n/routing'
-import { Locale } from '@/i18n/config'
-import { HtmlLangSetter } from '@/components/html-lang-setter'
+import { NextIntlClientProvider } from "next-intl"
+import { getMessages, setRequestLocale } from "next-intl/server"
+import { notFound } from "next/navigation"
+import { routing } from "@/i18n/routing"
+import { Locale } from "@/i18n/config"
+import { HtmlLangSetter } from "@/components/html-lang-setter"
 
 type Props = {
   children: React.ReactNode

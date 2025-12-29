@@ -4,12 +4,8 @@
   "type": "registry:ui",
   "title": "Label",
   "description": "Renders an accessible label associated with controls.",
-  "dependencies": [
-    "@radix-ui/react-label"
-  ],
-  "devDependencies": [
-    "class-variance-authority"
-  ],
+  "dependencies": ["@radix-ui/react-label"],
+  "devDependencies": ["class-variance-authority"],
   "files": [
     {
       "path": "registry/new-york/ui/label.tsx",

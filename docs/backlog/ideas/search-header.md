@@ -16,11 +16,11 @@
 
 ## Референсы
 
-| Библиотека | Ссылка | Что понравилось |
-|------------|--------|-----------------|
-| 8bitcn/ui | https://8bitcn.com | ⌘K search |
-| shadcn/ui | https://ui.shadcn.com | cmdk интеграция |
-| Vercel | https://vercel.com | Command palette |
+| Библиотека | Ссылка                | Что понравилось |
+| ---------- | --------------------- | --------------- |
+| 8bitcn/ui  | https://8bitcn.com    | ⌘K search       |
+| shadcn/ui  | https://ui.shadcn.com | cmdk интеграция |
+| Vercel     | https://vercel.com    | Command palette |
 
 ## Варианты реализации
 
@@ -30,9 +30,9 @@
 
 ```tsx
 // cmdk пример
-import { Command } from 'cmdk'
+import { Command } from "cmdk"
 
-<Command.Dialog open={open} onOpenChange={setOpen}>
+;<Command.Dialog open={open} onOpenChange={setOpen}>
   <Command.Input placeholder="Search..." />
   <Command.List>
     <Command.Group heading="Components">

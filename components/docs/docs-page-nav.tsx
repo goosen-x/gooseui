@@ -3,7 +3,13 @@
 import * as React from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { ArrowLeftIcon, ArrowRightIcon, CheckIcon, ChevronDownIcon, CopyIcon } from "lucide-react"
+import {
+  ArrowLeftIcon,
+  ArrowRightIcon,
+  CheckIcon,
+  ChevronDownIcon,
+  CopyIcon,
+} from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
@@ -145,7 +151,7 @@ export function DocsPageNav({
     const clone = main.cloneNode(true) as HTMLElement
 
     // Remove navigation elements
-    clone.querySelectorAll(".docs-nav, nav, .toc").forEach(el => el.remove())
+    clone.querySelectorAll(".docs-nav, nav, .toc").forEach((el) => el.remove())
 
     // Get text content with basic formatting
     const content = clone.innerText || clone.textContent || ""
@@ -239,12 +245,18 @@ ${registryUrl ? `Registry: ${registryUrl}` : ""}
     },
     {
       icon: ChatGPTIcon,
-      label: copiedAction === "chatgpt" ? "Copied! Opening ChatGPT..." : "Open in ChatGPT",
+      label:
+        copiedAction === "chatgpt"
+          ? "Copied! Opening ChatGPT..."
+          : "Open in ChatGPT",
       onClick: handleOpenInChatGPT,
     },
     {
       icon: ClaudeIcon,
-      label: copiedAction === "claude" ? "Copied! Opening Claude..." : "Open in Claude",
+      label:
+        copiedAction === "claude"
+          ? "Copied! Opening Claude..."
+          : "Open in Claude",
       onClick: handleOpenInClaude,
     },
   ]
@@ -354,7 +366,10 @@ ${registryUrl ? `Registry: ${registryUrl}` : ""}
           <Button
             variant="secondary"
             size="icon"
-            className={cn("size-8 rounded-md shadow-none md:size-7", !prevHref && "ml-auto")}
+            className={cn(
+              "size-8 rounded-md shadow-none md:size-7",
+              !prevHref && "ml-auto"
+            )}
             asChild
           >
             <Link href={nextHref}>

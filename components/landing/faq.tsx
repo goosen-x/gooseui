@@ -4,7 +4,7 @@ import { useTranslations } from "next-intl"
 import { HelpCircle, Download, Palette, Code, Shield, Zap } from "lucide-react"
 
 const faqIcons = [HelpCircle, Download, Palette, Code, Shield, Zap]
-const faqKeys = ['q1', 'q2', 'q3', 'q4', 'q5', 'q6'] as const
+const faqKeys = ["q1", "q2", "q3", "q4", "q5", "q6"] as const
 
 export function FAQ() {
   const t = useTranslations("faq")
@@ -33,7 +33,9 @@ export function FAQ() {
                   <Icon className="h-5 w-5 text-muted-foreground" />
                 </div>
                 <h3 className="font-semibold mb-2">{t(`${key}.question`)}</h3>
-                <p className="text-sm text-muted-foreground">{t(`${key}.answer`)}</p>
+                <p className="text-sm text-muted-foreground">
+                  {t(`${key}.answer`)}
+                </p>
               </div>
             )
           })}

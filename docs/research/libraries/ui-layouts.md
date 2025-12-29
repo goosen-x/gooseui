@@ -19,18 +19,18 @@ UI Layouts — это open-source библиотека интерактивны�
 
 ## Технологический стек
 
-| Технология | Назначение |
-|------------|------------|
-| React / Next.js | Основной фреймворк |
-| TailwindCSS | Стилизация |
-| Framer Motion (motion) | Основные анимации |
-| GSAP | Продвинутые анимации |
-| Three.js / R3F | 3D-эффекты |
-| Cobe | 3D Globe компонент |
-| Embla Carousel | Карусели |
-| Lenis | Smooth scrolling |
-| tsparticles | Частицы (Sparkles) |
-| Number Flow | Анимированные числа |
+| Технология             | Назначение           |
+| ---------------------- | -------------------- |
+| React / Next.js        | Основной фреймворк   |
+| TailwindCSS            | Стилизация           |
+| Framer Motion (motion) | Основные анимации    |
+| GSAP                   | Продвинутые анимации |
+| Three.js / R3F         | 3D-эффекты           |
+| Cobe                   | 3D Globe компонент   |
+| Embla Carousel         | Карусели             |
+| Lenis                  | Smooth scrolling     |
+| tsparticles            | Частицы (Sparkles)   |
+| Number Flow            | Анимированные числа  |
 
 ## Установка
 
@@ -50,8 +50,8 @@ npm install motion clsx tailwind-merge
 
 ```typescript
 // lib/utils.ts
-import { type ClassValue, clsx } from 'clsx'
-import { twMerge } from 'tailwind-merge'
+import { type ClassValue, clsx } from "clsx"
+import { twMerge } from "tailwind-merge"
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -74,59 +74,60 @@ npx shadcn@latest add 'https://www.ui-layouts.com/r/[component-name].json'
 
 ### Визуальные эффекты
 
-| Компонент | Описание | Зависимости |
-|-----------|----------|-------------|
-| **Mesh Gradients** | Градиентные визуальные эффекты | — |
-| **Image Ripple Effect** | Интерактивные ripple-анимации на изображениях | motion |
-| **R3F Blob** | 3D blob-анимации | Three.js, R3F |
-| **Sparkles** | Декоративные эффекты частиц | @tsparticles/react, @tsparticles/slim |
-| **Clip-Path** | CSS clip-path эффекты с SVG | — |
-| **Image Mousetrail** | Изображения следуют за курсором | motion |
-| **Image Reveal** | Анимации появления изображений | motion |
-| **Video-Masking** | Маскирование видео | — |
-| **Globe** | Интерактивный 3D-глобус | cobe |
+| Компонент               | Описание                                      | Зависимости                           |
+| ----------------------- | --------------------------------------------- | ------------------------------------- |
+| **Mesh Gradients**      | Градиентные визуальные эффекты                | —                                     |
+| **Image Ripple Effect** | Интерактивные ripple-анимации на изображениях | motion                                |
+| **R3F Blob**            | 3D blob-анимации                              | Three.js, R3F                         |
+| **Sparkles**            | Декоративные эффекты частиц                   | @tsparticles/react, @tsparticles/slim |
+| **Clip-Path**           | CSS clip-path эффекты с SVG                   | —                                     |
+| **Image Mousetrail**    | Изображения следуют за курсором               | motion                                |
+| **Image Reveal**        | Анимации появления изображений                | motion                                |
+| **Video-Masking**       | Маскирование видео                            | —                                     |
+| **Globe**               | Интерактивный 3D-глобус                       | cobe                                  |
 
 ### Интерактивные компоненты
 
-| Компонент | Описание | Зависимости |
-|-----------|----------|-------------|
-| **Tabs** | Vercel-style табы с анимациями | motion |
-| **Accordion** | Аккордеон с multi-expand | motion |
-| **Carousel** | Карусель с множеством вариаций | embla-carousel, embla-carousel-autoplay |
-| **Range Slider** | Анимированный слайдер | shadcn/ui slider, @number-flow/react |
-| **Motion Number** | Анимированные счетчики | @number-flow/react |
-| **Drag Items** | Перетаскиваемые элементы | motion |
-| **Horizontal Scroll** | Горизонтальная прокрутка | motion, lenis |
-| **Sticky Scroll** | Sticky-эффекты при скролле | lenis |
-| **Image Accordion** | Аккордеон с изображениями | motion |
+| Компонент             | Описание                       | Зависимости                             |
+| --------------------- | ------------------------------ | --------------------------------------- |
+| **Tabs**              | Vercel-style табы с анимациями | motion                                  |
+| **Accordion**         | Аккордеон с multi-expand       | motion                                  |
+| **Carousel**          | Карусель с множеством вариаций | embla-carousel, embla-carousel-autoplay |
+| **Range Slider**      | Анимированный слайдер          | shadcn/ui slider, @number-flow/react    |
+| **Motion Number**     | Анимированные счетчики         | @number-flow/react                      |
+| **Drag Items**        | Перетаскиваемые элементы       | motion                                  |
+| **Horizontal Scroll** | Горизонтальная прокрутка       | motion, lenis                           |
+| **Sticky Scroll**     | Sticky-эффекты при скролле     | lenis                                   |
+| **Image Accordion**   | Аккордеон с изображениями      | motion                                  |
 
 ### Модальные окна и оверлеи
 
-| Компонент | Описание |
-|-----------|----------|
-| **Modal** | Модальные диалоги |
-| **Drawer** | Боковые панели |
+| Компонент  | Описание          |
+| ---------- | ----------------- |
+| **Modal**  | Модальные диалоги |
+| **Drawer** | Боковые панели    |
 
 ### Карточки и лейауты
 
-| Компонент | Описание |
-|-----------|----------|
-| **Card** | Карточки с hover-эффектами |
-| **Stacking Card** | Многослойные анимированные карточки |
-| **Grid** | Система сеток (Box, Condition, Normal Grid) |
+| Компонент         | Описание                                    |
+| ----------------- | ------------------------------------------- |
+| **Card**          | Карточки с hover-эффектами                  |
+| **Stacking Card** | Многослойные анимированные карточки         |
+| **Grid**          | Система сеток (Box, Condition, Normal Grid) |
 
 ### Формы
 
-| Компонент | Описание | Установка |
-|-----------|----------|-----------|
-| **Password Input** | Защищенное поле пароля | `npx uilayouts@latest add password-input` |
-| **Tags Input** | Мульти-тег ввод (YouTube-style) | `npx uilayouts@latest add tags-input` |
-| **Date Picker** | Выбор даты/времени | — |
-| **Multi Selector** | Множественный выбор | — |
+| Компонент          | Описание                        | Установка                                 |
+| ------------------ | ------------------------------- | ----------------------------------------- |
+| **Password Input** | Защищенное поле пароля          | `npx uilayouts@latest add password-input` |
+| **Tags Input**     | Мульти-тег ввод (YouTube-style) | `npx uilayouts@latest add tags-input`     |
+| **Date Picker**    | Выбор даты/времени              | —                                         |
+| **Multi Selector** | Множественный выбор             | —                                         |
 
 ### Кнопки
 
 19+ вариантов креативных кнопок:
+
 - Background shine / spotlight
 - Hover flip (top, left)
 - Underline effects
@@ -158,6 +159,7 @@ import { TabsProvider, TabsBtn, TabsContent } from '@/components/ui/tabs';
 ```
 
 **Props:**
+
 - `defaultValue` — начально выбранный таб
 - `wobbly` (boolean, default: true) — эффект "колебания"
 - `hover` (boolean, default: false) — активация по наведению
@@ -178,6 +180,7 @@ import { Accordion, AccordionItem, AccordionHeader, AccordionPanel } from '@/com
 ```
 
 **Вариации:**
+
 - Single Layout — один раскрытый элемент
 - Multi Layout — несколько раскрытых
 - Grid Layout — двухколоночное расположение
@@ -309,6 +312,7 @@ npm install @number-flow/react
 ```
 
 **Примеры использования:**
+
 - Dashboards с метриками
 - Upvote счетчики
 - Финансовые дисплеи
@@ -319,18 +323,23 @@ npm install @number-flow/react
 Три типа сеток:
 
 ### Box Grid
+
 ```css
 grid grid-rows-10 grid-cols-12 grid-flow-col gap-2
 ```
+
 Точный контроль позиционирования с row/column spans.
 
 ### Condition Grid
+
 ```css
-lg:columns-2 columns-1
+lg: columns-2 columns-1;
 ```
+
 Респонсивная многоколоночная раскладка.
 
 ### Normal Grid
+
 Стандартное равномерное распределение.
 
 ## Особенности
@@ -354,14 +363,14 @@ lg:columns-2 columns-1
 
 ## Сравнение с альтернативами
 
-| Критерий | UI Layouts | shadcn/ui | Radix UI |
-|----------|------------|-----------|----------|
-| Фокус | Анимации, эффекты | Базовые компоненты | Примитивы |
-| Стилизация | TailwindCSS | TailwindCSS | CSS-in-JS / любой |
-| Установка | CLI / copy-paste | CLI | npm |
-| 3D-эффекты | Да | Нет | Нет |
-| Accessibility | Частично | Полная | Полная |
-| Bundle size | Больше | Меньше | Минимальный |
+| Критерий      | UI Layouts        | shadcn/ui          | Radix UI          |
+| ------------- | ----------------- | ------------------ | ----------------- |
+| Фокус         | Анимации, эффекты | Базовые компоненты | Примитивы         |
+| Стилизация    | TailwindCSS       | TailwindCSS        | CSS-in-JS / любой |
+| Установка     | CLI / copy-paste  | CLI                | npm               |
+| 3D-эффекты    | Да                | Нет                | Нет               |
+| Accessibility | Частично          | Полная             | Полная            |
+| Bundle size   | Больше            | Меньше             | Минимальный       |
 
 ## Связанные проекты
 

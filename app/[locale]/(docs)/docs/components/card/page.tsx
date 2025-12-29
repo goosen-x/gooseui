@@ -30,9 +30,7 @@ export default async function CardPage() {
         prevHref="/docs/components/button"
         nextHref="/docs/components/input"
       />
-      <p className="text-lg text-muted-foreground">
-        {t("description")}
-      </p>
+      <p className="text-lg text-muted-foreground">{t("description")}</p>
 
       <div className="space-y-4">
         <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight">
@@ -42,9 +40,7 @@ export default async function CardPage() {
           <Card className="w-[350px]">
             <CardHeader>
               <CardTitle>{t("createProject")}</CardTitle>
-              <CardDescription>
-                {t("createProjectDesc")}
-              </CardDescription>
+              <CardDescription>{t("createProjectDesc")}</CardDescription>
             </CardHeader>
             <CardContent>
               <p className="text-sm text-muted-foreground">
@@ -71,7 +67,7 @@ export default async function CardPage() {
           {tCommon("usage")}
         </h2>
         <pre className="rounded-lg border bg-muted px-4 py-3 font-mono text-sm overflow-x-auto">
-{`import {
+          {`import {
   Card,
   CardContent,
   CardDescription,
@@ -108,7 +104,9 @@ export function MyCard() {
             <thead>
               <tr className="border-b">
                 <th className="text-left py-3 px-4 font-semibold">Component</th>
-                <th className="text-left py-3 px-4 font-semibold">Description</th>
+                <th className="text-left py-3 px-4 font-semibold">
+                  Description
+                </th>
               </tr>
             </thead>
             <tbody>

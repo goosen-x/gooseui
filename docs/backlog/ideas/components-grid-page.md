@@ -16,11 +16,11 @@
 
 ## Референсы
 
-| Библиотека | Ссылка | Что понравилось |
-|------------|--------|-----------------|
-| 8bitcn/ui | https://8bitcn.com/components | Грид всех компонентов |
-| MagicUI | https://magicui.design | Карточки с превью |
-| Aceternity | https://ui.aceternity.com | Анимированные превью |
+| Библиотека | Ссылка                        | Что понравилось       |
+| ---------- | ----------------------------- | --------------------- |
+| 8bitcn/ui  | https://8bitcn.com/components | Грид всех компонентов |
+| MagicUI    | https://magicui.design        | Карточки с превью     |
+| Aceternity | https://ui.aceternity.com     | Анимированные превью  |
 
 ## Структура страницы
 

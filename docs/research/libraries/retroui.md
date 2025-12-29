@@ -28,17 +28,17 @@ RetroUI создана для тех, кто хочет выделиться с�
 
 ## Технологии
 
-| Технология | Использование |
-|------------|---------------|
-| React | Основной фреймворк |
-| TypeScript | 70.6% кодовой базы |
-| TailwindCSS | Стилизация компонентов |
-| Radix UI | Примитивы доступности |
-| class-variance-authority (CVA) | Управление вариантами |
-| Next.js | Демо-сайт и документация |
-| Embla Carousel | Carousel компонент |
-| react-day-picker | Calendar компонент |
-| lucide-react | Иконки |
+| Технология                     | Использование            |
+| ------------------------------ | ------------------------ |
+| React                          | Основной фреймворк       |
+| TypeScript                     | 70.6% кодовой базы       |
+| TailwindCSS                    | Стилизация компонентов   |
+| Radix UI                       | Примитивы доступности    |
+| class-variance-authority (CVA) | Управление вариантами    |
+| Next.js                        | Демо-сайт и документация |
+| Embla Carousel                 | Carousel компонент       |
+| react-day-picker               | Calendar компонент       |
+| lucide-react                   | Иконки                   |
 
 ---
 
@@ -56,11 +56,13 @@ RetroUI создана для тех, кто хочет выделиться с�
 ## Установка
 
 ### Требования
+
 - React 18+
 - TailwindCSS 3+
 - TypeScript (рекомендуется)
 
 ### Поддерживаемые фреймворки
+
 - Next.js (основной)
 - Vite
 
@@ -103,9 +105,11 @@ npm install react-day-picker
 ### Базовые компоненты
 
 #### Button
+
 Главный интерактивный элемент с несколькими вариантами стилизации.
 
 **Варианты:**
+
 - `default` — основной стиль с тенью и эффектами наведения
 - `secondary` — вторичный вариант
 - `outline` — прозрачный фон с границей
@@ -129,9 +133,11 @@ import { Button } from "@/components/retroui/Button"
 ---
 
 #### Badge
+
 Компонент для отображения меток и статусов.
 
 **Варианты:**
+
 - `default` — `bg-muted text-muted-foreground`
 - `outline` — граница без заливки
 - `solid` — инвертированные цвета
@@ -149,6 +155,7 @@ import { Badge } from "@/components/retroui/Badge"
 ---
 
 #### Avatar
+
 Компонент для отображения аватаров пользователей.
 
 **Структура:** Compound component pattern
@@ -173,6 +180,7 @@ import { Avatar } from "@/components/retroui/Avatar"
 ### Форм-элементы
 
 #### Input
+
 Текстовое поле ввода с поддержкой состояния ошибки.
 
 ```tsx
@@ -196,24 +204,23 @@ import { Label } from "@/components/retroui/Label"
 ---
 
 #### Textarea
+
 Многострочное текстовое поле.
 
 ```tsx
 import { Textarea } from "@/components/retroui/Textarea"
 
-<Textarea
-  rows={4}
-  placeholder="Type something..."
-  className="w-full"
-/>
+;<Textarea rows={4} placeholder="Type something..." className="w-full" />
 ```
 
 ---
 
 #### Select
+
 Выпадающий список для выбора опций.
 
 **Структура:**
+
 - `Select` — корневой компонент
 - `Select.Trigger` — кнопка открытия
 - `Select.Value` — отображение значения
@@ -226,7 +233,7 @@ import { Textarea } from "@/components/retroui/Textarea"
 ```tsx
 import { Select } from "@/components/retroui/Select"
 
-<Select>
+;<Select>
   <Select.Trigger className="w-60">
     <Select.Value placeholder="Select option" />
   </Select.Trigger>
@@ -248,6 +255,7 @@ import { Select } from "@/components/retroui/Select"
 ---
 
 #### Checkbox
+
 Чекбокс для выбора опций.
 
 **Варианты:** `default`, `outline`, `solid`
@@ -268,6 +276,7 @@ import { Label } from "@/components/retroui/Label"
 ---
 
 #### Switch
+
 Переключатель для boolean значений.
 
 ```tsx
@@ -285,12 +294,13 @@ import { Switch } from "@/components/retroui/Switch"
 ---
 
 #### Label
+
 Универсальный компонент меток для форм.
 
 ```tsx
 import { Label } from "@/components/retroui/Label"
 
-<Label htmlFor="input-id">Field Label</Label>
+;<Label htmlFor="input-id">Field Label</Label>
 ```
 
 ---
@@ -298,9 +308,11 @@ import { Label } from "@/components/retroui/Label"
 ### Контейнеры
 
 #### Card
+
 Карточка для отображения контента.
 
 **Структура:**
+
 - `Card` — основной контейнер
 - `Card.Header` — заголовочная секция
 - `Card.Title` — заголовок (h3)
@@ -337,9 +349,11 @@ import { Card } from "@/components/retroui/Card"
 ---
 
 #### Accordion
+
 Раскрывающиеся секции для FAQ и контента.
 
 **Структура:**
+
 - `Accordion` — корневой компонент
 - `Accordion.Item` — отдельная секция
 - `Accordion.Header` — заголовок-триггер
@@ -348,7 +362,7 @@ import { Card } from "@/components/retroui/Card"
 ```tsx
 import { Accordion } from "@/components/retroui/Accordion"
 
-<Accordion type="single" collapsible className="w-full space-y-4">
+;<Accordion type="single" collapsible className="w-full space-y-4">
   <Accordion.Item value="item-1">
     <Accordion.Header>What is RetroUI?</Accordion.Header>
     <Accordion.Content>
@@ -369,6 +383,7 @@ import { Accordion } from "@/components/retroui/Accordion"
 ### Обратная связь
 
 #### Alert
+
 Уведомления и предупреждения.
 
 **Варианты:** `default`, `solid`
@@ -403,6 +418,7 @@ import { CheckCircle, XIcon, InfoIcon } from "lucide-react"
 ---
 
 #### Progress
+
 Индикатор прогресса.
 
 ```tsx
@@ -425,6 +441,7 @@ useEffect(() => {
 ---
 
 #### Tooltip
+
 Всплывающие подсказки.
 
 **Варианты:** `default`, `primary`, `solid`
@@ -432,14 +449,12 @@ useEffect(() => {
 ```tsx
 import { Tooltip } from "@/components/retroui/Tooltip"
 
-<Tooltip.Provider>
+;<Tooltip.Provider>
   <Tooltip>
     <Tooltip.Trigger asChild>
       <Button>Hover me</Button>
     </Tooltip.Trigger>
-    <Tooltip.Content variant="primary">
-      This is a tooltip
-    </Tooltip.Content>
+    <Tooltip.Content variant="primary">This is a tooltip</Tooltip.Content>
   </Tooltip>
 </Tooltip.Provider>
 ```
@@ -449,6 +464,7 @@ import { Tooltip } from "@/components/retroui/Tooltip"
 ### Overlay компоненты
 
 #### Dialog
+
 Модальные окна.
 
 **Размеры:** `auto`, `sm`, `md`, `lg`, `xl`, `2xl`, `3xl`, `4xl`, `screen`
@@ -457,7 +473,7 @@ import { Tooltip } from "@/components/retroui/Tooltip"
 ```tsx
 import { Dialog } from "@/components/retroui/Dialog"
 
-<Dialog>
+;<Dialog>
   <Dialog.Trigger asChild>
     <Button>Open Dialog</Button>
   </Dialog.Trigger>
@@ -465,9 +481,7 @@ import { Dialog } from "@/components/retroui/Dialog"
     <Dialog.Header>
       <Dialog.Title>Confirm Action</Dialog.Title>
     </Dialog.Header>
-    <Dialog.Description>
-      Are you sure you want to proceed?
-    </Dialog.Description>
+    <Dialog.Description>Are you sure you want to proceed?</Dialog.Description>
     <Dialog.Footer>
       <Button variant="outline">Cancel</Button>
       <Button>Confirm</Button>
@@ -479,6 +493,7 @@ import { Dialog } from "@/components/retroui/Dialog"
 ---
 
 #### Popover
+
 Всплывающие панели.
 
 ```tsx
@@ -507,6 +522,7 @@ import { Popover } from "@/components/retroui/Popover"
 ### Навигация и отображение
 
 #### Carousel
+
 Слайдер изображений и контента.
 
 **Ориентация:** `horizontal`, `vertical`
@@ -539,6 +555,7 @@ import { Carousel } from "@/components/retroui/Carousel"
 ---
 
 #### Calendar
+
 Выбор даты.
 
 ```tsx
@@ -596,7 +613,7 @@ RetroUI поддерживает светлую и темную темы чер�
 // ThemeProvider уже включен в библиотеку
 import { ThemeProvider } from "@/components/ThemeProvider"
 
-<ThemeProvider defaultTheme="system" storageKey="retroui-theme">
+;<ThemeProvider defaultTheme="system" storageKey="retroui-theme">
   <App />
 </ThemeProvider>
 ```
@@ -605,15 +622,15 @@ import { ThemeProvider } from "@/components/ThemeProvider"
 
 ## Сравнение с аналогами
 
-| Критерий | RetroUI | shadcn/ui | Radix Themes |
-|----------|---------|-----------|--------------|
-| Стиль | NeoBrutalism | Minimal | Modern |
-| Подход | Copy-paste | Copy-paste | Install |
-| Radix UI | Да | Да | Да |
-| TailwindCSS | Да | Да | Нет |
-| TypeScript | Да | Да | Да |
-| Темизация | Light/Dark | Extensive | Full theming |
-| Уникальность | Высокая | Средняя | Средняя |
+| Критерий     | RetroUI      | shadcn/ui  | Radix Themes |
+| ------------ | ------------ | ---------- | ------------ |
+| Стиль        | NeoBrutalism | Minimal    | Modern       |
+| Подход       | Copy-paste   | Copy-paste | Install      |
+| Radix UI     | Да           | Да         | Да           |
+| TailwindCSS  | Да           | Да         | Нет          |
+| TypeScript   | Да           | Да         | Да           |
+| Темизация    | Light/Dark   | Extensive  | Full theming |
+| Уникальность | Высокая      | Средняя    | Средняя      |
 
 ---
 
@@ -656,4 +673,4 @@ import { ThemeProvider } from "@/components/ThemeProvider"
 
 ---
 
-*Дата исследования: 28 декабря 2025*
+_Дата исследования: 28 декабря 2025_

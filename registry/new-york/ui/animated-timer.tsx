@@ -97,7 +97,9 @@ export function AnimatedTimer({
     const minutes = formatSegment(time.getMinutes())
     const seconds = formatSegment(time.getSeconds())
 
-    return showSeconds ? `${hours}:${minutes}:${seconds}` : `${hours}:${minutes}`
+    return showSeconds
+      ? `${hours}:${minutes}:${seconds}`
+      : `${hours}:${minutes}`
   }
 
   const chars = getTimeString().split("")

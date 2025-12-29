@@ -23,16 +23,16 @@
 
 ## Технологический стек
 
-| Технология | Назначение |
-|------------|------------|
-| TypeScript | 73.4% кодовой базы |
-| MDX | 17.8% - документация |
-| CSS | 8.8% - стили |
-| Next.js | Фреймворк |
-| Tailwind CSS | Стилизация |
-| Radix UI | Доступность компонентов |
-| Biome | Линтинг и форматирование |
-| pnpm | Пакетный менеджер |
+| Технология   | Назначение               |
+| ------------ | ------------------------ |
+| TypeScript   | 73.4% кодовой базы       |
+| MDX          | 17.8% - документация     |
+| CSS          | 8.8% - стили             |
+| Next.js      | Фреймворк                |
+| Tailwind CSS | Стилизация               |
+| Radix UI     | Доступность компонентов  |
+| Biome        | Линтинг и форматирование |
+| pnpm         | Пакетный менеджер        |
 
 ---
 
@@ -82,68 +82,68 @@ pnpm dlx shadcn@latest mcp init
 
 ### Базовые UI компоненты
 
-| Компонент | Описание |
-|-----------|----------|
-| Accordion | Аккордеон |
-| Alert | Уведомление |
-| Alert Dialog | Диалог подтверждения |
-| Avatar | Аватар пользователя |
-| Badge | Бейдж/метка |
-| Breadcrumb | Хлебные крошки |
-| Button | Кнопка |
-| Calendar | Календарь |
-| Card | Карточка |
-| Carousel | Карусель |
-| Chart | Графики |
-| Checkbox | Чекбокс |
-| Collapsible | Сворачиваемый блок |
-| Combo Box | Комбобокс |
-| Command | Командная палитра |
-| Context Menu | Контекстное меню |
-| Date Picker | Выбор даты |
-| Dialog | Модальное окно |
-| Drawer | Выдвижная панель |
-| Dropdown Menu | Выпадающее меню |
-| Empty | Пустое состояние |
-| Hover Card | Карточка при наведении |
-| Input | Текстовое поле |
-| Input OTP | Поле ввода OTP |
-| Kbd | Клавиатурная подсказка |
-| Label | Метка |
-| Menubar | Строка меню |
-| Navigation Menu | Навигационное меню |
-| Pagination | Пагинация |
-| Popover | Всплывающее окно |
-| Progress | Прогресс-бар |
-| Radio Group | Радио-группа |
-| Resizable | Изменяемый размер |
-| Scroll Area | Область прокрутки |
-| Select | Выпадающий список |
-| Separator | Разделитель |
-| Sheet | Боковая панель |
-| Sidebar | Сайдбар |
-| Skeleton | Скелетон загрузки |
-| Slider | Слайдер |
-| Spinner | Индикатор загрузки |
-| Switch | Переключатель |
-| Table | Таблица |
-| Tabs | Вкладки |
-| Textarea | Многострочное поле |
-| Toast | Тост-уведомление |
-| Toggle | Переключатель |
-| Toggle Group | Группа переключателей |
-| Tooltip | Подсказка |
+| Компонент       | Описание               |
+| --------------- | ---------------------- |
+| Accordion       | Аккордеон              |
+| Alert           | Уведомление            |
+| Alert Dialog    | Диалог подтверждения   |
+| Avatar          | Аватар пользователя    |
+| Badge           | Бейдж/метка            |
+| Breadcrumb      | Хлебные крошки         |
+| Button          | Кнопка                 |
+| Calendar        | Календарь              |
+| Card            | Карточка               |
+| Carousel        | Карусель               |
+| Chart           | Графики                |
+| Checkbox        | Чекбокс                |
+| Collapsible     | Сворачиваемый блок     |
+| Combo Box       | Комбобокс              |
+| Command         | Командная палитра      |
+| Context Menu    | Контекстное меню       |
+| Date Picker     | Выбор даты             |
+| Dialog          | Модальное окно         |
+| Drawer          | Выдвижная панель       |
+| Dropdown Menu   | Выпадающее меню        |
+| Empty           | Пустое состояние       |
+| Hover Card      | Карточка при наведении |
+| Input           | Текстовое поле         |
+| Input OTP       | Поле ввода OTP         |
+| Kbd             | Клавиатурная подсказка |
+| Label           | Метка                  |
+| Menubar         | Строка меню            |
+| Navigation Menu | Навигационное меню     |
+| Pagination      | Пагинация              |
+| Popover         | Всплывающее окно       |
+| Progress        | Прогресс-бар           |
+| Radio Group     | Радио-группа           |
+| Resizable       | Изменяемый размер      |
+| Scroll Area     | Область прокрутки      |
+| Select          | Выпадающий список      |
+| Separator       | Разделитель            |
+| Sheet           | Боковая панель         |
+| Sidebar         | Сайдбар                |
+| Skeleton        | Скелетон загрузки      |
+| Slider          | Слайдер                |
+| Spinner         | Индикатор загрузки     |
+| Switch          | Переключатель          |
+| Table           | Таблица                |
+| Tabs            | Вкладки                |
+| Textarea        | Многострочное поле     |
+| Toast           | Тост-уведомление       |
+| Toggle          | Переключатель          |
+| Toggle Group    | Группа переключателей  |
+| Tooltip         | Подсказка              |
 
 ### Игровые компоненты (уникальные)
 
-| Компонент | Описание |
-|-----------|----------|
-| Health Bar | Полоса здоровья персонажа |
-| Mana Bar | Полоса маны/энергии |
+| Компонент            | Описание                   |
+| -------------------- | -------------------------- |
+| Health Bar           | Полоса здоровья персонажа  |
+| Mana Bar             | Полоса маны/энергии        |
 | Enemy Health Display | Отображение здоровья врага |
-| Item | Игровой предмет |
-| Retro Mode Switcher | Переключатель ретро-режима |
-| Theme Selector | Выбор темы |
+| Item                 | Игровой предмет            |
+| Retro Mode Switcher  | Переключатель ретро-режима |
+| Theme Selector       | Выбор темы                 |
 
 ---
 
@@ -153,54 +153,54 @@ pnpm dlx shadcn@latest mcp init
 
 Уникальная коллекция игровых интерфейсов:
 
-| Блок | Описание |
-|------|----------|
-| Audio Settings | Настройки звука |
-| Chapter Intro | Введение главы |
-| Character Sheet | Лист персонажа |
-| Dialogue | Диалоговое окно |
-| Difficulty Select | Выбор сложности |
-| Friend List | Список друзей |
-| Game Over | Экран окончания игры |
-| Game Progress | Прогресс игры |
-| Leaderboard | Таблица лидеров |
-| Main Menu | Главное меню игры |
-| Pause Menu | Меню паузы |
+| Блок                | Описание                |
+| ------------------- | ----------------------- |
+| Audio Settings      | Настройки звука         |
+| Chapter Intro       | Введение главы          |
+| Character Sheet     | Лист персонажа          |
+| Dialogue            | Диалоговое окно         |
+| Difficulty Select   | Выбор сложности         |
+| Friend List         | Список друзей           |
+| Game Over           | Экран окончания игры    |
+| Game Progress       | Прогресс игры           |
+| Leaderboard         | Таблица лидеров         |
+| Main Menu           | Главное меню игры       |
+| Pause Menu          | Меню паузы              |
 | Player Profile Card | Карточка профиля игрока |
-| Quest Log | Журнал заданий |
-| Save Slots | Слоты сохранения |
-| Victory Screen | Экран победы |
+| Quest Log           | Журнал заданий          |
+| Save Slots          | Слоты сохранения        |
+| Victory Screen      | Экран победы            |
 
 ### Authentication Blocks (4 блока)
 
-| Блок | Описание |
-|------|----------|
-| Login Form | Форма входа |
-| Login Page | Страница входа |
-| Login Form with Icons | Форма с иконками |
+| Блок                  | Описание             |
+| --------------------- | -------------------- |
+| Login Form            | Форма входа          |
+| Login Page            | Страница входа       |
+| Login Form with Icons | Форма с иконками     |
 | Login Form with Image | Форма с изображением |
 
 ### Dashboard Blocks (1 блок)
 
-| Блок | Описание |
-|------|----------|
+| Блок      | Описание                               |
+| --------- | -------------------------------------- |
 | Dashboard | Полный дашборд с сайдбаром и графиками |
 
 ### Calendar Blocks (3 блока)
 
-| Блок | Описание |
-|------|----------|
-| Calendar Block | Блок календаря |
-| Range Calendar | Календарь с диапазоном |
-| Single Date Calendar | Выбор одной даты |
+| Блок                 | Описание               |
+| -------------------- | ---------------------- |
+| Calendar Block       | Блок календаря         |
+| Range Calendar       | Календарь с диапазоном |
+| Single Date Calendar | Выбор одной даты       |
 
 ### Charts Blocks (3 блока)
 
-| Блок | Описание |
-|------|----------|
-| Bar Chart | Столбчатая диаграмма |
+| Блок               | Описание                |
+| ------------------ | ----------------------- |
+| Bar Chart          | Столбчатая диаграмма    |
 | Multiple Bar Chart | Множественная диаграмма |
-| Step Area Chart | Ступенчатая диаграмма |
+| Step Area Chart    | Ступенчатая диаграмма   |
 
 ---
 
@@ -221,6 +221,7 @@ export function ButtonDemo() {
 ```
 
 Особенности:
+
 - Пиксельные границы со всех сторон
 - Декоративные углы
 - Анимация при нажатии (`active:translate-y-1`)
@@ -249,9 +250,7 @@ export function CardDemo() {
         <CardTitle>Create project</CardTitle>
         <CardDescription>Deploy your new project</CardDescription>
       </CardHeader>
-      <CardContent>
-        {/* Содержимое карточки */}
-      </CardContent>
+      <CardContent>{/* Содержимое карточки */}</CardContent>
       <CardFooter>
         <Button>Create</Button>
       </CardFooter>
@@ -286,9 +285,7 @@ export function DialogDemo() {
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Dialog Title</DialogTitle>
-          <DialogDescription>
-            This is the dialog description.
-          </DialogDescription>
+          <DialogDescription>This is the dialog description.</DialogDescription>
         </DialogHeader>
         <DialogFooter>
           <Button>Close</Button>
@@ -309,16 +306,12 @@ pnpm dlx shadcn@latest add @8bitcn/health-bar
 import { HealthBar } from "@/components/ui/health-bar"
 
 export function HealthBarDemo() {
-  return (
-    <HealthBar
-      currentHealth={75}
-      maxHealth={100}
-    />
-  )
+  return <HealthBar currentHealth={75} maxHealth={100} />
 }
 ```
 
 Особенности:
+
 - Пиксельная стилизация
 - Плавные анимации изменения
 - Поддержка ретро-режима с отдельными сегментами
@@ -333,12 +326,7 @@ pnpm dlx shadcn@latest add @8bitcn/mana-bar
 import { ManaBar } from "@/components/ui/mana-bar"
 
 export function ManaBarDemo() {
-  return (
-    <ManaBar
-      currentMana={45}
-      maxMana={100}
-    />
-  )
+  return <ManaBar currentMana={45} maxMana={100} />
 }
 ```
 
@@ -364,6 +352,7 @@ export function EnemyDemo() {
 ```
 
 Опциональные пропсы:
+
 - `level` - уровень врага
 - `showLevel` - показывать ли уровень
 - `showHealthText` - показывать ли текст здоровья
@@ -384,6 +373,7 @@ export function EnemyDemo() {
 ### Реализация
 
 Темизация реализована через:
+
 - CSS-классы на корневом элементе
 - `ThemeProvider` и `ActiveThemeProvider` для управления состоянием
 - LocalStorage для сохранения выбора пользователя

@@ -18,9 +18,7 @@ export function SiteFooter() {
       { title: t("installation"), href: "/docs/installation" },
       { title: t("cli"), href: "/docs/cli" },
     ],
-    community: [
-      { title: t("github"), href: siteConfig.links.github },
-    ],
+    community: [{ title: t("github"), href: siteConfig.links.github }],
   }
 
   return (
@@ -93,7 +91,8 @@ export function SiteFooter() {
 
         <div className="mt-12 pt-8 border-t flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-sm text-muted-foreground">
-            &copy; {new Date().getFullYear()} {siteConfig.name}. {t("copyright")}
+            &copy; {new Date().getFullYear()} {siteConfig.name}.{" "}
+            {t("copyright")}
           </p>
           <a
             href={siteConfig.links.github}

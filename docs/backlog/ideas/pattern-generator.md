@@ -16,12 +16,12 @@
 
 ## Референсы
 
-| Библиотека | Ссылка | Что понравилось |
-|------------|--------|-----------------|
-| MagicUI | https://magicui.design/docs/components/dot-pattern | Dot pattern с анимацией |
-| BGJar | https://bgjar.com | Генератор с UI |
-| Haikei | https://haikei.app | Blob, waves, stacked |
-| Hero Patterns | https://heropatterns.com | SVG паттерны |
+| Библиотека    | Ссылка                                             | Что понравилось         |
+| ------------- | -------------------------------------------------- | ----------------------- |
+| MagicUI       | https://magicui.design/docs/components/dot-pattern | Dot pattern с анимацией |
+| BGJar         | https://bgjar.com                                  | Генератор с UI          |
+| Haikei        | https://haikei.app                                 | Blob, waves, stacked    |
+| Hero Patterns | https://heropatterns.com                           | SVG паттерны            |
 
 ## Примеры использования
 

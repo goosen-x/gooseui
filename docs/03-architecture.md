@@ -12,13 +12,13 @@ ShadCN UI — это **система дистрибуции кода**, а не
 
 ## Основные принципы
 
-| Принцип | Описание |
-|---------|----------|
-| **Open Code** | Полный контроль над кодом компонентов |
-| **Composition** | Композиция вместо конфигурации |
-| **Distribution** | Код распределяется, а не устанавливается как зависимость |
-| **Beautiful Defaults** | Готовые к использованию стили по умолчанию |
-| **AI-Ready** | Архитектура оптимизирована для AI-инструментов |
+| Принцип                | Описание                                                 |
+| ---------------------- | -------------------------------------------------------- |
+| **Open Code**          | Полный контроль над кодом компонентов                    |
+| **Composition**        | Композиция вместо конфигурации                           |
+| **Distribution**       | Код распределяется, а не устанавливается как зависимость |
+| **Beautiful Defaults** | Готовые к использованию стили по умолчанию               |
+| **AI-Ready**           | Архитектура оптимизирована для AI-инструментов           |
 
 ---
 
@@ -82,13 +82,13 @@ project/
 
 ### Ключевые поля
 
-| Поле | Описание |
-|------|----------|
-| `style` | Стиль компонентов (new-york, default) |
+| Поле                    | Описание                                          |
+| ----------------------- | ------------------------------------------------- |
+| `style`                 | Стиль компонентов (new-york, default)             |
 | `tailwind.cssVariables` | CSS переменные (true) или Tailwind классы (false) |
-| `aliases` | Пути импорта для компонентов и утилит |
-| `registries` | Конфигурация внешних registry с namespace |
-| `rsc` | Поддержка React Server Components |
+| `aliases`               | Пути импорта для компонентов и утилит             |
+| `registries`            | Конфигурация внешних registry с namespace         |
+| `rsc`                   | Поддержка React Server Components                 |
 
 ---
 
@@ -101,6 +101,7 @@ npx shadcn@latest init
 ```
 
 Опции:
+
 - `-t, --template` — шаблон (next, next-monorepo)
 - `-b, --base-color` — базовый цвет
 - `-y, --yes` — пропустить подтверждения
@@ -142,6 +143,7 @@ npx shadcn@latest build
 Registry — система дистрибуции исходного кода. Компоненты распространяются как JSON-файлы со встроенным исходным кодом.
 
 **Преимущества:**
+
 - Полный контроль над кодом
 - Добавляется только нужное
 - Framework-agnostic
@@ -211,17 +213,17 @@ Registry — система дистрибуции исходного кода. 
 
 ### Типы элементов registry
 
-| Тип | Описание |
-|-----|----------|
-| `registry:ui` | Базовые UI компоненты (button, input) |
-| `registry:component` | Простые компоненты |
-| `registry:block` | Комплексные блоки из нескольких файлов |
-| `registry:lib` | Утилиты и библиотечные функции |
-| `registry:hook` | React hooks |
-| `registry:page` | Страницы/роуты |
-| `registry:file` | Произвольные файлы |
-| `registry:style` | Стили и темы |
-| `registry:theme` | Полные темы |
+| Тип                  | Описание                               |
+| -------------------- | -------------------------------------- |
+| `registry:ui`        | Базовые UI компоненты (button, input)  |
+| `registry:component` | Простые компоненты                     |
+| `registry:block`     | Комплексные блоки из нескольких файлов |
+| `registry:lib`       | Утилиты и библиотечные функции         |
+| `registry:hook`      | React hooks                            |
+| `registry:page`      | Страницы/роуты                         |
+| `registry:file`      | Произвольные файлы                     |
+| `registry:style`     | Стили и темы                           |
+| `registry:theme`     | Полные темы                            |
 
 ---
 
@@ -348,6 +350,7 @@ npx shadcn@latest add @private/internal-component
 ```
 
 `.env.local`:
+
 ```
 REGISTRY_TOKEN=your_secret_token_here
 ```
@@ -366,6 +369,7 @@ REGISTRY_TOKEN=your_secret_token_here
 В официальном registry `@shadcn` — **438 элементов**:
 
 ### UI компоненты (registry:ui)
+
 - `button`, `card`, `input`, `form`, `dialog`
 - `table`, `tabs`, `accordion`, `alert`
 - `avatar`, `badge`, `breadcrumb`, `calendar`
@@ -376,11 +380,11 @@ REGISTRY_TOKEN=your_secret_token_here
 
 ### Зависимости
 
-| Компонент | NPM зависимости |
-|-----------|-----------------|
-| `button` | @radix-ui/react-slot |
-| `form` | @radix-ui/react-label, @hookform/resolvers, zod, react-hook-form |
-| `card` | Без внешних зависимостей |
+| Компонент | NPM зависимости                                                  |
+| --------- | ---------------------------------------------------------------- |
+| `button`  | @radix-ui/react-slot                                             |
+| `form`    | @radix-ui/react-label, @hookform/resolvers, zod, react-hook-form |
+| `card`    | Без внешних зависимостей                                         |
 
 ---
 

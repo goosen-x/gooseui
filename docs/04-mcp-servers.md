@@ -6,15 +6,16 @@
 
 ### Ключевые концепции
 
-| Концепция | Описание |
-|-----------|----------|
-| **MCP Server** | Предоставляет tools, resources, prompts для AI |
+| Концепция      | Описание                                         |
+| -------------- | ------------------------------------------------ |
+| **MCP Server** | Предоставляет tools, resources, prompts для AI   |
 | **MCP Client** | AI-клиент (Claude Code, Cursor, VS Code Copilot) |
-| **Transport** | Способ коммуникации (stdio, HTTP/SSE) |
+| **Transport**  | Способ коммуникации (stdio, HTTP/SSE)            |
 
 ### Почему MCP важен для UI-библиотек
 
 MCP решает проблему **галлюцинаций AI** при генерации UI-кода:
+
 - Точная генерация кода с правильными props
 - Актуальные примеры из официальной документации
 - Экономия токенов (100-500k → эффективные запросы)
@@ -28,6 +29,7 @@ MCP решает проблему **галлюцинаций AI** при ген�
 ### Конфигурация для Claude Code
 
 `.mcp.json`:
+
 ```json
 {
   "mcpServers": {
@@ -42,6 +44,7 @@ MCP решает проблему **галлюцинаций AI** при ген�
 ### Конфигурация для Cursor
 
 `.cursor/mcp.json`:
+
 ```json
 {
   "mcpServers": {
@@ -56,6 +59,7 @@ MCP решает проблему **галлюцинаций AI** при ген�
 ### Конфигурация для VS Code
 
 `.vscode/mcp.json`:
+
 ```json
 {
   "mcpServers": {
@@ -99,19 +103,20 @@ MCP решает проблему **галлюцинаций AI** при ген�
 **URL:** https://chakra-ui.com/docs/get-started/ai/mcp-server
 
 **Установка:**
+
 ```bash
 claude mcp add chakra-ui -- npx -y @chakra-ui/react-mcp
 ```
 
 **Инструменты:**
 
-| Инструмент | Описание |
-|------------|----------|
-| `list_components` | Список всех компонентов |
-| `get_component_props` | Детальные props и типы |
-| `get_component_example` | Примеры использования |
-| `get_theme` | Дизайн-токены |
-| `v2_to_v3_code_review` | Миграция v2 → v3 |
+| Инструмент              | Описание                |
+| ----------------------- | ----------------------- |
+| `list_components`       | Список всех компонентов |
+| `get_component_props`   | Детальные props и типы  |
+| `get_component_example` | Примеры использования   |
+| `get_theme`             | Дизайн-токены           |
+| `v2_to_v3_code_review`  | Миграция v2 → v3        |
 
 ### Material UI (MUI)
 
@@ -149,6 +154,7 @@ claude mcp add mui-mcp -- npx -y @mui/mcp@latest
 **URL:** https://github.com/agentience/react-design-systems-mcp
 
 Единый сервер с поддержкой:
+
 - AWS Cloudscape (уже)
 - Material UI (в разработке)
 - Chakra UI (в разработке)
@@ -186,6 +192,7 @@ npm init -y
 ```
 
 **package.json:**
+
 ```json
 {
   "name": "my-ui-library-mcp",
@@ -215,26 +222,28 @@ npm init -y
 ### Шаг 2: Конфигурация
 
 **src/lib/config.ts:**
+
 ```typescript
 export const mcpConfig = {
   projectName: "my-ui-library",
   baseUrl: "https://my-ui-library.com",
   registryUrl: "https://my-ui-library.com/r",
   registryFileUrl: "https://my-ui-library.com/registry.json",
-};
+}
 ```
 
 ### Шаг 3: Валидация (Zod)
 
 **src/utils/schemas.ts:**
+
 ```typescript
-import { z } from "zod";
+import { z } from "zod"
 
 export const ComponentSchema = z.object({
   name: z.string(),
   type: z.string(),
   description: z.string().optional(),
-});
+})
 
 export const ComponentDetailSchema = z.object({
   name: z.string(),
@@ -246,46 +255,48 @@ export const ComponentDetailSchema = z.object({
     })
   ),
   dependencies: z.array(z.string()).optional(),
-});
+})
 ```
 
 ### Шаг 4: API
 
 **src/utils/api.ts:**
+
 ```typescript
-import { mcpConfig } from "../lib/config.js";
-import { ComponentSchema, ComponentDetailSchema } from "./schemas.js";
+import { mcpConfig } from "../lib/config.js"
+import { ComponentSchema, ComponentDetailSchema } from "./schemas.js"
 
 export async function fetchUIComponents() {
-  const response = await fetch(mcpConfig.registryFileUrl);
-  const data = await response.json();
+  const response = await fetch(mcpConfig.registryFileUrl)
+  const data = await response.json()
   return data.registry
     .filter((item: any) => item.type === "registry:component")
-    .map((item: any) => ComponentSchema.parse(item));
+    .map((item: any) => ComponentSchema.parse(item))
 }
 
 export async function fetchComponentDetails(name: string) {
-  const response = await fetch(`${mcpConfig.registryUrl}/${name}.json`);
-  const data = await response.json();
-  return ComponentDetailSchema.parse(data);
+  const response = await fetch(`${mcpConfig.registryUrl}/${name}.json`)
+  const data = await response.json()
+  return ComponentDetailSchema.parse(data)
 }
 ```
 
 ### Шаг 5: Основной сервер
 
 **src/server.ts:**
+
 ```typescript
 #!/usr/bin/env node
 
-import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
-import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
-import { z } from "zod";
-import { fetchUIComponents, fetchComponentDetails } from "./utils/api.js";
+import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js"
+import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js"
+import { z } from "zod"
+import { fetchUIComponents, fetchComponentDetails } from "./utils/api.js"
 
 const server = new McpServer({
   name: "my-ui-library-mcp",
   version: "1.0.0",
-});
+})
 
 // Tool 1: Список компонентов
 server.tool(
@@ -293,12 +304,12 @@ server.tool(
   "Get all available UI components",
   {},
   async () => {
-    const components = await fetchUIComponents();
+    const components = await fetchUIComponents()
     return {
       content: [{ type: "text", text: JSON.stringify(components, null, 2) }],
-    };
+    }
   }
-);
+)
 
 // Tool 2: Детали компонента
 server.tool(
@@ -306,12 +317,12 @@ server.tool(
   "Get component details",
   { name: z.string().describe("Component name") },
   async ({ name }) => {
-    const details = await fetchComponentDetails(name);
+    const details = await fetchComponentDetails(name)
     return {
       content: [{ type: "text", text: JSON.stringify(details, null, 2) }],
-    };
+    }
   }
-);
+)
 
 // Tool 3: Поиск
 server.tool(
@@ -319,22 +330,22 @@ server.tool(
   "Search components",
   { query: z.string().describe("Search query") },
   async ({ query }) => {
-    const components = await fetchUIComponents();
+    const components = await fetchUIComponents()
     const filtered = components.filter((c: any) =>
       c.name.toLowerCase().includes(query.toLowerCase())
-    );
+    )
     return {
       content: [{ type: "text", text: JSON.stringify(filtered, null, 2) }],
-    };
+    }
   }
-);
+)
 
 async function main() {
-  const transport = new StdioServerTransport();
-  await server.connect(transport);
+  const transport = new StdioServerTransport()
+  await server.connect(transport)
 }
 
-main().catch(console.error);
+main().catch(console.error)
 ```
 
 ### Шаг 6: Сборка и тестирование
@@ -351,6 +362,7 @@ npm publish
 ```
 
 После публикации:
+
 ```json
 {
   "mcpServers": {
@@ -368,27 +380,28 @@ npm publish
 
 ### Для разработчиков
 
-| Преимущество | Описание |
-|--------------|----------|
-| **Точность** | AI генерирует код на основе актуальной документации |
-| **Время** | Нет переключения между IDE и документацией |
-| **Токены** | Эффективные запросы вместо 100-500k токенов |
-| **Примеры** | Реальные demo из официальных источников |
-| **Установка** | AI сам добавляет компоненты |
+| Преимущество  | Описание                                            |
+| ------------- | --------------------------------------------------- |
+| **Точность**  | AI генерирует код на основе актуальной документации |
+| **Время**     | Нет переключения между IDE и документацией          |
+| **Токены**    | Эффективные запросы вместо 100-500k токенов         |
+| **Примеры**   | Реальные demo из официальных источников             |
+| **Установка** | AI сам добавляет компоненты                         |
 
 ### Для авторов библиотек
 
-| Преимущество | Описание |
-|--------------|----------|
-| **DX** | Лучший опыт работы с библиотекой |
-| **Поддержка** | AI отвечает на вопросы по документации |
+| Преимущество      | Описание                                     |
+| ----------------- | -------------------------------------------- |
+| **DX**            | Лучший опыт работы с библиотекой             |
+| **Поддержка**     | AI отвечает на вопросы по документации       |
 | **Использование** | Разработчики используют компоненты правильно |
-| **Миграция** | Инструменты типа `v2_to_v3_code_review` |
-| **Монетизация** | Интеграция Pro-функций |
+| **Миграция**      | Инструменты типа `v2_to_v3_code_review`      |
+| **Монетизация**   | Интеграция Pro-функций                       |
 
 ### Индустриальное принятие
 
 MCP принят:
+
 - **OpenAI** — поддержка в SDK
 - **Google DeepMind** — интеграция
 - **Block, Apollo** — production
@@ -399,16 +412,19 @@ MCP принят:
 ## Источники
 
 ### Официальная документация
+
 - [shadcn/ui MCP Server](https://ui.shadcn.com/docs/mcp)
 - [Chakra UI MCP](https://chakra-ui.com/docs/get-started/ai/mcp-server)
 - [Material UI MCP](https://mui.com/material-ui/getting-started/mcp/)
 - [Model Context Protocol](https://modelcontextprotocol.io/specification/2025-11-25)
 
 ### GitHub
+
 - [TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk)
 - [MCP Starter Template](https://github.com/mnove/mcp-server-starter)
 
 ### Туториалы
+
 - [How to build MCP for UI libraries](https://dev.to/mnove/how-to-build-a-mcp-model-context-protocol-server-for-ui-libraries-repo-5ea2)
 - [Build MCP Server with TypeScript](https://www.freecodecamp.org/news/how-to-build-a-custom-mcp-server-with-typescript-a-handbook-for-developers/)
 - [Introducing MCP (Anthropic)](https://www.anthropic.com/news/model-context-protocol)

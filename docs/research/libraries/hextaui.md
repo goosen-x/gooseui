@@ -14,13 +14,13 @@
 
 ## Статистика репозитория
 
-| Метрика | Значение |
-|---------|----------|
-| Stars | 548 |
-| Forks | 41 |
-| Contributors | 10 |
-| Commits | 900 |
-| Основной язык | TypeScript (99.6%) |
+| Метрика         | Значение               |
+| --------------- | ---------------------- |
+| Stars           | 548                    |
+| Forks           | 41                     |
+| Contributors    | 10                     |
+| Commits         | 900                    |
+| Основной язык   | TypeScript (99.6%)     |
 | Последний релиз | HextaUI v2 (Июнь 2025) |
 
 ## Технологический стек
@@ -54,6 +54,7 @@ npx hexta-ui add dropdown
 ```
 
 CLI позволяет:
+
 - Выбрать фреймворк (Next.js или React)
 - Просмотреть список доступных компонентов
 - Скачать компоненты в директорию `src/components/hexta-ui`
@@ -61,7 +62,7 @@ CLI позволяет:
 ### Пример использования
 
 ```tsx
-import { Button } from "components/ui/button";
+import { Button } from "components/ui/button"
 
 export default function Home() {
   return (
@@ -69,7 +70,7 @@ export default function Home() {
       <h1>Welcome to HextaUI with Next.js!</h1>
       <Button>Click Me!</Button>
     </main>
-  );
+  )
 }
 ```
 
@@ -77,16 +78,16 @@ export default function Home() {
 
 ### Базовые компоненты
 
-| Категория | Компоненты |
-|-----------|------------|
-| **Actions** | Button, Button Group, Toggle, Toggle Group |
-| **Forms** | Input, Input Group, Input OTP, Textarea, Checkbox, Radio Group, Select, Native Select, Switch, Slider, Date Picker, Color Picker, Field |
-| **Layout** | Card, Separator, Resizable, Scroll Area, Aspect Ratio, Collapsible |
-| **Navigation** | Breadcrumb, Navigation Menu, Menubar, Pagination, Sidebar, Tabs, Tree |
-| **Feedback** | Alert, Alert Dialog, Dialog, Drawer, Sheet, Toast (Sonner), Tooltip, Hover Card, Progress, Skeleton, Spinner, Empty |
-| **Data Display** | Avatar, Badge, Table, Calendar, Carousel, Kbd, Label |
-| **Overlays** | Command Menu, Context Menu, Dropdown Menu |
-| **Media** | Video Player |
+| Категория        | Компоненты                                                                                                                              |
+| ---------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| **Actions**      | Button, Button Group, Toggle, Toggle Group                                                                                              |
+| **Forms**        | Input, Input Group, Input OTP, Textarea, Checkbox, Radio Group, Select, Native Select, Switch, Slider, Date Picker, Color Picker, Field |
+| **Layout**       | Card, Separator, Resizable, Scroll Area, Aspect Ratio, Collapsible                                                                      |
+| **Navigation**   | Breadcrumb, Navigation Menu, Menubar, Pagination, Sidebar, Tabs, Tree                                                                   |
+| **Feedback**     | Alert, Alert Dialog, Dialog, Drawer, Sheet, Toast (Sonner), Tooltip, Hover Card, Progress, Skeleton, Spinner, Empty                     |
+| **Data Display** | Avatar, Badge, Table, Calendar, Carousel, Kbd, Label                                                                                    |
+| **Overlays**     | Command Menu, Context Menu, Dropdown Menu                                                                                               |
+| **Media**        | Video Player                                                                                                                            |
 
 ### Уникальные компоненты (не в стандартном shadcn/ui)
 
@@ -146,10 +147,10 @@ export default function Home() {
 
 ### Ценообразование
 
-| План | Цена | Описание |
-|------|------|----------|
-| Solo | $169 | Для индивидуальных разработчиков |
-| Startup | $669 | Для команд |
+| План    | Цена   | Описание                          |
+| ------- | ------ | --------------------------------- |
+| Solo    | $169   | Для индивидуальных разработчиков  |
+| Startup | $669   | Для команд                        |
 | Шаблоны | от $49 | Отдельные шаблоны (AI SaaS и др.) |
 
 Все покупки - одноразовые, без подписки, с пожизненным доступом.
@@ -166,34 +167,40 @@ export default function Home() {
 ## Уникальные особенности
 
 ### 1. Расширение shadcn/ui
+
 HextaUI не заменяет shadcn/ui, а расширяет его. Компоненты модифицированы и улучшены для лучшего соответствия реальным потребностям разработки.
 
 ### 2. Полная свобода кастомизации
+
 Компоненты копируются в проект - нет vendor lock-in. Можно изменять что угодно.
 
 ### 3. CLI для быстрого добавления
+
 Не нужно вручную копировать код - CLI автоматизирует процесс.
 
 ### 4. Готовые блоки
+
 Целые секции (hero, auth, dashboard) можно скопировать и использовать сразу.
 
 ### 5. Активная разработка
+
 900 коммитов, 10 контрибьюторов, регулярные релизы.
 
 ### 6. Благотворительность
+
 2-5% от месячного дохода HextaUI направляется на благотворительность.
 
 ## Сравнение с shadcn/ui
 
-| Критерий | shadcn/ui | HextaUI |
-|----------|-----------|---------|
-| Базовые компоненты | Да | Да (расширенные) |
-| Готовые блоки | Нет | Да (Pro) |
-| CLI | shadcn CLI | hexta-ui CLI |
-| Темы | Базовые | 6+ тем с вариациями |
-| Уникальные компоненты | - | Color Picker, Video Player, Tree и др. |
-| Стоимость | Бесплатно | Бесплатно (core) / Платно (Pro) |
-| Лицензия | MIT | MIT / GPL-3.0 |
+| Критерий              | shadcn/ui  | HextaUI                                |
+| --------------------- | ---------- | -------------------------------------- |
+| Базовые компоненты    | Да         | Да (расширенные)                       |
+| Готовые блоки         | Нет        | Да (Pro)                               |
+| CLI                   | shadcn CLI | hexta-ui CLI                           |
+| Темы                  | Базовые    | 6+ тем с вариациями                    |
+| Уникальные компоненты | -          | Color Picker, Video Player, Tree и др. |
+| Стоимость             | Бесплатно  | Бесплатно (core) / Платно (Pro)        |
+| Лицензия              | MIT        | MIT / GPL-3.0                          |
 
 ## Преимущества
 
@@ -239,4 +246,4 @@ HextaUI не заменяет shadcn/ui, а расширяет его. Комп�
 
 ---
 
-*Документ создан для внутреннего исследования библиотек UI компонентов.*
+_Документ создан для внутреннего исследования библиотек UI компонентов._

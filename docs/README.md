@@ -4,13 +4,13 @@
 
 ## Структура документации
 
-| Файл | Описание |
-|------|----------|
-| [01-references.md](./01-references.md) | 10 референсов UI-библиотек на базе ShadCN |
-| [02-articles.md](./02-articles.md) | 10 статей о создании компонентных библиотек |
-| [03-architecture.md](./03-architecture.md) | Архитектура ShadCN и Registry System |
-| [04-mcp-servers.md](./04-mcp-servers.md) | MCP-серверы для UI-библиотек |
-| [05-templates.md](./05-templates.md) | Шаблоны и стартеры для создания библиотек |
+| Файл                                       | Описание                                    |
+| ------------------------------------------ | ------------------------------------------- |
+| [01-references.md](./01-references.md)     | 10 референсов UI-библиотек на базе ShadCN   |
+| [02-articles.md](./02-articles.md)         | 10 статей о создании компонентных библиотек |
+| [03-architecture.md](./03-architecture.md) | Архитектура ShadCN и Registry System        |
+| [04-mcp-servers.md](./04-mcp-servers.md)   | MCP-серверы для UI-библиотек                |
+| [05-templates.md](./05-templates.md)       | Шаблоны и стартеры для создания библиотек   |
 
 ## Ключевые выводы
 
@@ -21,6 +21,7 @@ ShadCN UI — это **система дистрибуции кода**, а не
 ### Registry System
 
 Registry — система распространения компонентов через JSON-файлы:
+
 - Компоненты устанавливаются через CLI: `npx shadcn add button`
 - Поддержка namespace: `npx shadcn add @magicui/animated-button`
 - Framework-agnostic архитектура
@@ -28,6 +29,7 @@ Registry — система распространения компоненто�
 ### MCP (Model Context Protocol)
 
 Протокол от Anthropic для интеграции AI с UI-библиотеками:
+
 - Точная генерация кода без галлюцинаций
 - Доступ к актуальной документации
 - Автоматическая установка компонентов

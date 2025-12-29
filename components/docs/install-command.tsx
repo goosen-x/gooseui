@@ -94,11 +94,7 @@ export function InstallCommand({
 
           <div className="no-scrollbar overflow-x-auto">
             {packageManagers.map((pm) => (
-              <TabsContent
-                key={pm}
-                value={pm}
-                className="mt-0 px-4 py-3.5"
-              >
+              <TabsContent key={pm} value={pm} className="mt-0 px-4 py-3.5">
                 <pre>
                   <code className="relative font-mono text-sm leading-none">
                     {getCommand(pm)}
@@ -116,11 +112,7 @@ export function InstallCommand({
           onClick={handleCopy}
         >
           <span className="sr-only">Copy</span>
-          {copied ? (
-            <Check className="size-4" />
-          ) : (
-            <Copy className="size-4" />
-          )}
+          {copied ? <Check className="size-4" /> : <Copy className="size-4" />}
         </Button>
       </Tabs>
     </div>
