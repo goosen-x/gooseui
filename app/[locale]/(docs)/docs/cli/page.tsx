@@ -13,7 +13,7 @@ export default async function CLIPage() {
   const t = await getTranslations("docs.cli")
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 test">
       <div>
         <h1 className="scroll-m-20 text-4xl font-bold tracking-tight">
           {t("title")}
