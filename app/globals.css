@@ -122,20 +122,6 @@
     overscroll-behavior: none;
   }
 
-  /* All clickable elements should have pointer cursor */
-  button,
-  a,
-  [role="button"],
-  [type="button"],
-  [type="submit"],
-  [type="reset"],
-  label[for],
-  select,
-  summary,
-  [tabindex]:not([tabindex="-1"]),
-  .cursor-pointer {
-    cursor: pointer;
-  }
 }
 
 @layer utilities {
