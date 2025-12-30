@@ -67,7 +67,7 @@ export function DocsSidebar({
             {/* Components option */}
             <Link
               href="/docs/components"
-              className={`relative z-10 flex flex-1 items-center justify-center text-xs font-medium ${
+              className={`relative z-10 flex flex-1 items-center justify-center text-xs font-medium transition-colors duration-300 ${
                 activeView === "components"
                   ? "text-primary-foreground"
                   : "text-muted-foreground dark:text-white"
@@ -78,7 +78,7 @@ export function DocsSidebar({
             {/* Blocks option */}
             <Link
               href="/docs/blocks"
-              className={`relative z-10 flex flex-1 items-center justify-center text-xs font-medium ${
+              className={`relative z-10 flex flex-1 items-center justify-center text-xs font-medium transition-colors duration-300 ${
                 activeView === "blocks"
                   ? "text-primary-foreground"
                   : "text-muted-foreground dark:text-white"
