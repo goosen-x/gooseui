@@ -17,7 +17,7 @@ const components = [
     category: "Display",
     preview: (
       <div className="scale-[0.35] origin-center">
-        <AnimatedTimer showSeconds={false} />
+        <AnimatedTimer showSeconds={false} use24Hour />
       </div>
     ),
   },
