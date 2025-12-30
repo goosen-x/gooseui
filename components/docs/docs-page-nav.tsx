@@ -18,6 +18,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { Separator } from "@/components/ui/separator"
+import { getRegistryUrl } from "@/lib/config/registry"
 import { cn } from "@/lib/utils"
 
 // Custom icons
@@ -164,13 +165,29 @@ export function DocsPageNav({
   prevHref,
   nextHref,
   componentSlug,
-  registryUrl,
+  registryUrl: registryUrlProp,
   sourceUrl,
   className,
 }: DocsPageNavProps) {
   const pathname = usePathname()
   const [copied, setCopied] = React.useState(false)
   const [copiedAction, setCopiedAction] = React.useState<string | null>(null)
+
+  // Auto-derive registryUrl from pathname if not provided
+  // e.g., /docs/components/button -> button -> https://gooseui.pro/r/button.json
+  const registryUrl = React.useMemo(() => {
+    if (registryUrlProp) return registryUrlProp
+
+    // Extract slug from pathname
+    const segments = pathname.split("/").filter(Boolean)
+    const slug = segments[segments.length - 1]
+
+    if (slug && slug !== "docs" && slug !== "components" && slug !== "effects") {
+      return getRegistryUrl(slug)
+    }
+
+    return undefined
+  }, [registryUrlProp, pathname])
 
   // Get page content for copying
   const getPageContent = React.useCallback(() => {
