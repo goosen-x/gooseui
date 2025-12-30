@@ -98,12 +98,16 @@ function Colon({
 }) {
   const displayColor = visible ? color : "#333"
   return (
-    <div
-      className="relative w-[10px] h-[110px] mx-2"
-      style={{
-        backgroundColor: displayColor,
-      }}
-    />
+    <div className="relative w-[10px] h-[110px] mx-2 flex flex-col items-center justify-center gap-[15px]">
+      <div
+        className="w-[10px] h-[10px]"
+        style={{ backgroundColor: displayColor }}
+      />
+      <div
+        className="w-[10px] h-[10px]"
+        style={{ backgroundColor: displayColor }}
+      />
+    </div>
   )
 }
 
