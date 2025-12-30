@@ -75,13 +75,6 @@ export const docsNavigation: NavSection[] = [
         href: "/docs/components/animated-timer",
       },
       {
-        slug: "animated-toggle-group",
-        title: "Animated Toggle Group",
-        href: "/docs/components/animated-toggle-group",
-        isNew: true,
-        isDraft: true,
-      },
-      {
         slug: "baseline-status",
         title: "Baseline Status",
         href: "/docs/components/baseline-status",

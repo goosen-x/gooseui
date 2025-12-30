@@ -3,6 +3,24 @@
 > Исследование 80+ registry из официального каталога https://ui.shadcn.com/docs/directory
 > Дата: 2024-12-29
 
+## Ключевые GitHub репозитории
+
+| Библиотека | GitHub | Stars |
+|------------|--------|-------|
+| shadcn/ui (официальный) | [shadcn-ui/ui](https://github.com/shadcn-ui/ui) | 80k+ |
+| Magic UI | [magicuidesign/magicui](https://github.com/magicuidesign/magicui) | 19k+ |
+| Motion Primitives | [ibelick/motion-primitives](https://github.com/ibelick/motion-primitives) | 4.4k |
+| Animate UI | [imskyleen/animate-ui](https://github.com/imskyleen/animate-ui) | 2.6k |
+| Cult UI | [nolly-studio/cult-ui](https://github.com/nolly-studio/cult-ui) | — |
+| 8bitcn/ui | [TheOrcDev/8bitcn-ui](https://github.com/TheOrcDev/8bitcn-ui) | — |
+| Plate Editor | [udecode/plate](https://github.com/udecode/plate) | — |
+| ProseKit | [prosekit/prosekit](https://github.com/prosekit/prosekit) | — |
+| SVGL | [pheralb/svgl](https://github.com/pheralb/svgl) | 5k+ |
+| React Aria | [adobe/react-spectrum](https://github.com/adobe/react-spectrum) | 12k+ |
+| Assistant UI | [Yonom/assistant-ui](https://github.com/Yonom/assistant-ui) | — |
+
+> См. также: [Анализ автоматизации компонентов](./competitor-component-automation.md)
+
 ## Содержание
 
 1. [Animation & Motion Libraries](#animation--motion-libraries)
@@ -22,18 +40,23 @@
 ### @animate-ui
 
 **URL:** https://animate-ui.com
+**GitHub:** https://github.com/imskyleen/animate-ui
 
 Open-source библиотека анимированных компонентов.
 
 - **Stack:** React, TypeScript, Tailwind CSS, Framer Motion
 - **Установка:** через shadcn CLI
 - **Twitter:** @animate_ui
+- **Stars:** 2.6k+
 
 ### @motion-primitives
 
 **URL:** https://www.motion-primitives.com
+**GitHub:** https://github.com/ibelick/motion-primitives
 
 UI kit для создания красивых анимированных интерфейсов.
+
+- **Stars:** 4.4k+
 
 **Ключевые компоненты:**
 
@@ -49,8 +72,11 @@ UI kit для создания красивых анимированных ин�
 ### @magicui
 
 **URL:** https://magicui.design
+**GitHub:** https://github.com/magicuidesign/magicui
 
 150+ бесплатных open-source анимированных компонентов для Design Engineers.
+
+- **Stars:** 19k+
 
 ### @smoothui
 
@@ -92,6 +118,7 @@ UI kit для создания красивых анимированных ин�
 ### @assistant-ui
 
 **URL:** https://www.assistant-ui.com
+**GitHub:** https://github.com/Yonom/assistant-ui
 **Поддержка:** Y Combinator
 
 React-набор для создания AI-чатов в стиле ChatGPT.
@@ -157,6 +184,7 @@ Core building blocks для AI приложений.
 ### @8bitcn
 
 **URL:** https://www.8bitcn.com
+**GitHub:** https://github.com/TheOrcDev/8bitcn-ui
 
 Компоненты в стиле 8-битных видеоигр.
 
@@ -194,6 +222,7 @@ Core building blocks для AI приложений.
 ### @cult-ui
 
 **URL:** https://www.cult-ui.com
+**GitHub:** https://github.com/nolly-studio/cult-ui
 
 "Components for Design Engineers" — редкие, курируемые компоненты.
 
@@ -229,6 +258,7 @@ Neobrutalism стиль для React + TailwindCSS.
 ### @plate
 
 **URL:** https://platejs.org
+**GitHub:** https://github.com/udecode/plate
 
 AI-powered редактор на Slate и React.
 
@@ -251,6 +281,7 @@ AI-powered редактор на Slate и React.
 ### @prosekit
 
 **URL:** https://prosekit.dev
+**GitHub:** https://github.com/prosekit/prosekit
 
 Headless extensible framework на ProseMirror (используется NYT, Atlassian).
 
@@ -485,6 +516,7 @@ Accessible компоненты с фокусом на WAI-ARIA.
 ### @react-aria
 
 **URL:** https://react-aria.adobe.com
+**GitHub:** https://github.com/adobe/react-spectrum
 
 50+ компонентов от Adobe с высоким приоритетом доступности.
 
@@ -502,6 +534,7 @@ Accessible компоненты с фокусом на WAI-ARIA.
 ### @svgl
 
 **URL:** https://svgl.app
+**GitHub:** https://github.com/pheralb/svgl
 
 **573+ SVG логотипов** по категориям.
 

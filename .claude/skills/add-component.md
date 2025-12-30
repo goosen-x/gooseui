@@ -1,5 +1,7 @@
 # Adding New Components to GooseUI
 
+> **IMPORTANT:** Always use this skill when adding new components! Do not create components manually without following this checklist.
+
 ## Quick Checklist
 
 When adding a new component, follow these steps:
@@ -82,9 +84,112 @@ export default function MyComponentPage() {
 }
 ```
 
-### 5. Update Sidebar Navigation
+### 5. Update Navigation Config (Single Source of Truth)
 
-Edit `lib/config/navigation.ts` to add the component to the sidebar.
+Edit **`lib/config/docs-navigation.ts`** — the unified navigation config:
+
+```typescript
+// lib/config/docs-navigation.ts
+export const docsNavigation: NavSection[] = [
+  // ...
+  {
+    title: "Components",
+    slug: "components",
+    href: "/docs/components",
+    items: [
+      // ... existing items
+      {
+        slug: "my-component",
+        title: "My Component",
+        href: "/docs/components/my-component",
+        isNew: true,
+      },
+    ],
+  },
+]
+```
+
+**Required fields:**
+- `slug`: URL path segment (used for breadcrumbs and search)
+- `title`: Display name
+- `href`: Full URL path
+
+This config is the **single source of truth** for:
+- Sidebar navigation (`components/docs-sidebar.tsx`)
+- Breadcrumbs (`components/docs-header-nav.tsx`)
+- Site search (`components/site/site-search.tsx`)
+
+#### Draft Components
+
+Use `isDraft: true` to hide components in production while keeping them visible in development:
+
+```typescript
+{
+  slug: "my-component",
+  title: "My Component",
+  href: "/docs/components/my-component",
+  isNew: true,
+  isDraft: true,
+},
+```
+
+- **Development:** Shows with orange "DRAFT" badge
+- **Production:** Hidden from sidebar and search completely
+
+When ready for release, simply remove `isDraft: true`.
+
+#### Validate Navigation
+
+After adding a component, run the validation script:
+
+```bash
+pnpm validate:nav
+```
+
+This checks:
+- All navigation items have corresponding pages
+- No duplicate slugs or hrefs
+- All hrefs are valid paths
+
+### 6. Baseline Features (if needed)
+
+Add only if the component uses **modern CSS/JS features** worth documenting:
+
+| Tailwind class | Feature ID | Status |
+|----------------|------------|--------|
+| `snap-x`, `snap-mandatory` | scroll-snap | Widely 2022 |
+| `@container` | container-queries | Widely 2023 |
+| `anchor-*` | anchor-positioning | Limited |
+| `popover` | popover | Newly 2024 |
+| `view-transition-*` | view-transitions | Limited |
+
+**If the component uses such features:**
+
+1. Add to `lib/config/baseline-features.ts`:
+```typescript
+export const COMPONENT_BASELINE_FEATURES: Record<string, string[]> = {
+  // ...existing
+  "my-component": ["scroll-snap"],
+}
+```
+
+2. Add `<ComponentBaseline slug="my-component" />` to the docs page:
+```tsx
+import { ComponentBaseline } from "@/components/docs/component-baseline"
+
+export default function MyComponentPage() {
+  return (
+    <div className="space-y-8">
+      {/* ... other sections ... */}
+      <ComponentBaseline slug="my-component" />
+    </div>
+  )
+}
+```
+
+**If component only uses flexbox/transitions** — skip this step (98%+ support).
+
+---
 
 ## Auto-Generated Features
 
@@ -108,6 +213,10 @@ For custom filenames (e.g., toast uses sonner.json):
 
 ## Testing
 
-1. Run `pnpm build` to verify no errors
-2. Check that "Open in v0" opens with correct registry URL
-3. Verify component appears in sidebar navigation
+1. Run `pnpm validate:nav` to check navigation consistency
+2. Run `pnpm build` to verify no errors
+3. Check that "Open in v0" opens with correct registry URL
+4. Verify component appears in:
+   - Sidebar navigation
+   - Breadcrumbs (correct title case)
+   - Site search (Cmd+K)
