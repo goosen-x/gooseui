@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "animated-toggle-group",
+  "type": "registry:ui",
+  "title": "Animated Toggle Group",
+  "description": "A toggle group with selection animation and particle effects",
+  "dependencies": ["@radix-ui/react-toggle-group", "class-variance-authority"],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "components/ui/animated-toggle-group.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "cssVars": {
+    "light": {},
+    "dark": {}
+  },
+  "css": "@keyframes toggle-select {\n  0% { transform: scale(0.95); }\n  50% { transform: scale(1.05); }\n  100% { transform: scale(1); }\n}\n\n@keyframes particle-up {\n  0% { opacity: 0; transform: translateX(-50%) translateY(0); }\n  50% { opacity: 1; }\n  100% { opacity: 0; transform: translateX(-50%) translateY(-10px); }\n}\n\n@keyframes particle-down {\n  0% { opacity: 0; transform: translateX(-50%) translateY(0); }\n  50% { opacity: 1; }\n  100% { opacity: 0; transform: translateX(-50%) translateY(10px); }\n}\n\n.animate-toggle-select { animation: toggle-select 0.3s ease; }\n.animate-particle-up { animation: particle-up 0.5s ease forwards; }\n.animate-particle-down { animation: particle-down 0.5s ease forwards; }"
+}

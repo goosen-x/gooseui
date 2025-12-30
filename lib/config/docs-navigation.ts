@@ -75,6 +75,13 @@ export const docsNavigation: NavSection[] = [
         href: "/docs/components/animated-timer",
       },
       {
+        slug: "animated-toggle-group",
+        title: "Animated Toggle Group",
+        href: "/docs/components/animated-toggle-group",
+        isNew: true,
+        isDraft: true,
+      },
+      {
         slug: "baseline-status",
         title: "Baseline Status",
         href: "/docs/components/baseline-status",
@@ -85,6 +92,13 @@ export const docsNavigation: NavSection[] = [
         slug: "button",
         title: "Button",
         href: "/docs/components/button",
+      },
+      {
+        slug: "button-group",
+        title: "Button Group",
+        href: "/docs/components/button-group",
+        isNew: true,
+        isDraft: true,
       },
       {
         slug: "card",
@@ -106,6 +120,12 @@ export const docsNavigation: NavSection[] = [
         slug: "theme-customizer",
         title: "Theme Customizer",
         href: "/docs/components/theme-customizer",
+        isNew: true,
+      },
+      {
+        slug: "theme-switcher",
+        title: "Theme Switcher",
+        href: "/docs/components/theme-switcher",
         isNew: true,
       },
       {

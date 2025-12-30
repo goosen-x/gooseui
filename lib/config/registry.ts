@@ -29,12 +29,22 @@ export interface RegistryItem {
 export const REGISTRY_ITEMS: RegistryItem[] = [
   // Components
   { slug: "button", name: "Button", type: "component" },
+  { slug: "button-group", name: "Button Group", type: "component" },
   { slug: "card", name: "Card", type: "component" },
   { slug: "input", name: "Input", type: "component" },
   { slug: "animated-timer", name: "Animated Timer", type: "component" },
-  { slug: "toast", name: "Toast", type: "component", registryFile: "sonner.json" },
+  { slug: "animated-toggle-group", name: "Animated Toggle Group", type: "component" },
+  {
+    slug: "toast",
+    name: "Toast",
+    type: "component",
+    registryFile: "sonner.json",
+  },
   { slug: "typography", name: "Typography", type: "component" },
   { slug: "theme-customizer", name: "Theme Customizer", type: "component" },
+  { slug: "carousel", name: "Carousel", type: "component" },
+  { slug: "baseline-status", name: "Baseline Status", type: "component" },
+  { slug: "theme-switcher", name: "Theme Switcher", type: "component" },
 
   // Effects
   { slug: "border-beam", name: "Border Beam", type: "effect" },
