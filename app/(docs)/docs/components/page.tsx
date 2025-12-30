@@ -1,4 +1,4 @@
-import { ArrowRightIcon, Palette, Sun, Bell, LayoutGrid } from "lucide-react"
+import { ArrowRightIcon, Bell, Palette, Sun } from "lucide-react"
 import Link from "next/link"
 
 import { cn } from "@/lib/utils"
