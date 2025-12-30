@@ -1,6 +1,6 @@
 "use client"
 
-import { HelpCircle, Download, Palette, Code, Shield, Zap } from "lucide-react"
+import { Code, Download, HelpCircle, Palette, Shield, Zap } from "lucide-react"
 
 const faqs = [
   {

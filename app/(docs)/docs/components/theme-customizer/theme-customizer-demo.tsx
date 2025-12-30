@@ -1,8 +1,8 @@
 "use client"
 
-import * as React from "react"
-import { Moon, Sun, Palette, Check, Monitor, Paintbrush } from "lucide-react"
+import { Check, Monitor, Moon, Paintbrush, Palette, Sun } from "lucide-react"
 import { useTheme } from "next-themes"
+import * as React from "react"
 import { cn } from "@/lib/utils"
 
 const colors = [
@@ -71,7 +71,7 @@ function DemoPill() {
               onClick={() => setColor(c.name)}
               className={cn(
                 "relative size-7 rounded-full transition-transform hover:scale-110",
-                c.class
+                c.class,
               )}
             >
               {activeColor === c.name && (
@@ -107,7 +107,7 @@ function DemoBar() {
               "flex size-8 items-center justify-center rounded-md transition-colors",
               theme === value
                 ? "bg-primary text-primary-foreground"
-                : "hover:bg-accent"
+                : "hover:bg-accent",
             )}
           >
             <Icon className="size-4" />
@@ -124,7 +124,7 @@ function DemoBar() {
               "size-6 rounded-full transition-all hover:scale-110",
               c.class,
               activeColor === c.name &&
-                "ring-2 ring-ring ring-offset-2 ring-offset-background"
+                "ring-2 ring-ring ring-offset-2 ring-offset-background",
             )}
           />
         ))}
@@ -159,7 +159,7 @@ function DemoSidebar() {
           onClick={() => setColor(c.name)}
           className={cn(
             "relative size-8 rounded-full transition-transform hover:scale-110",
-            c.class
+            c.class,
           )}
         >
           {activeColor === c.name && (
@@ -199,7 +199,7 @@ function DemoDock() {
             "relative size-10 rounded-xl transition-all hover:-translate-y-1",
             c.class,
             activeColor === c.name &&
-              "ring-2 ring-primary ring-offset-2 ring-offset-background"
+              "ring-2 ring-primary ring-offset-2 ring-offset-background",
           )}
         >
           {activeColor === c.name && (
@@ -250,7 +250,7 @@ function DemoCorner() {
               onClick={() => setColor(c.name)}
               className={cn(
                 "relative size-10 rounded-xl transition-transform hover:scale-105",
-                c.class
+                c.class,
               )}
             >
               {activeColor === c.name && (
@@ -304,7 +304,7 @@ export function ThemeCustomizerDemo() {
               "rounded-full border px-4 py-2 text-sm transition-colors",
               active === v.id
                 ? "border-primary bg-primary text-primary-foreground"
-                : "hover:bg-accent"
+                : "hover:bg-accent",
             )}
           >
             {v.name}

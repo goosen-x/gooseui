@@ -1,10 +1,10 @@
 "use client"
 
 import Link from "next/link"
-import { Button } from "@/registry/new-york/ui/button"
-import { BorderBeam } from "@/registry/new-york/effects/border-beam"
-import { cn } from "@/lib/utils"
 import { customToast } from "@/lib/toast"
+import { cn } from "@/lib/utils"
+import { BorderBeam } from "@/registry/new-york/effects/border-beam"
+import { Button } from "@/registry/new-york/ui/button"
 
 export function Hero() {
   return (
@@ -15,7 +15,7 @@ export function Hero() {
           "absolute inset-0",
           "[background-size:20px_20px]",
           "[background-image:radial-gradient(#d4d4d4_1px,transparent_1px)]",
-          "dark:[background-image:radial-gradient(#404040_1px,transparent_1px)]"
+          "dark:[background-image:radial-gradient(#404040_1px,transparent_1px)]",
         )}
       />
       {/* Radial gradient fade */}

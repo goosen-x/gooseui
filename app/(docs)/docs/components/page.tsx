@@ -1,11 +1,11 @@
-import Link from "next/link"
 import { ArrowRightIcon } from "lucide-react"
+import Link from "next/link"
 
 import { cn } from "@/lib/utils"
+import { AnimatedTimer } from "@/registry/new-york/ui/animated-timer"
 import { Button } from "@/registry/new-york/ui/button"
 import { Card } from "@/registry/new-york/ui/card"
 import { Input } from "@/registry/new-york/ui/input"
-import { AnimatedTimer } from "@/registry/new-york/ui/animated-timer"
 import { Typography } from "@/registry/new-york/ui/typography"
 
 // Component definitions
@@ -81,7 +81,7 @@ const groupedComponents = components.reduce(
     acc[component.category].push(component)
     return acc
   },
-  {} as Record<string, typeof components>
+  {} as Record<string, typeof components>,
 )
 
 export const metadata = {
@@ -125,7 +125,7 @@ export default function ComponentsPage() {
                     className={cn(
                       "relative flex flex-col overflow-hidden rounded-xl border bg-background",
                       "transition-all duration-200",
-                      "hover:border-foreground/20 hover:shadow-md"
+                      "hover:border-foreground/20 hover:shadow-md",
                     )}
                   >
                     {/* Preview Area */}
@@ -148,7 +148,7 @@ export default function ComponentsPage() {
               ))}
             </div>
           </div>
-        )
+        ),
       )}
 
       {/* Coming Soon Section */}
@@ -165,7 +165,7 @@ export default function ComponentsPage() {
               <div
                 key={name}
                 className={cn(
-                  "relative flex flex-col overflow-hidden rounded-xl border bg-background opacity-60"
+                  "relative flex flex-col overflow-hidden rounded-xl border bg-background opacity-60",
                 )}
               >
                 <div className="flex h-[140px] items-center justify-center border-b bg-muted/30 p-4">
@@ -180,7 +180,7 @@ export default function ComponentsPage() {
                   </p>
                 </div>
               </div>
-            )
+            ),
           )}
         </div>
       </div>

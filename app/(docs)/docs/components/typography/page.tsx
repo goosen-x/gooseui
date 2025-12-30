@@ -1,14 +1,14 @@
 import { DocsPageNav } from "@/components/docs/docs-page-nav"
 import { InstallCommand } from "@/components/docs/install-command"
 import {
+  TypographyAffectsDemo,
+  TypographyAsDemo,
+  TypographyBlockquoteDemo,
+  TypographyCodeDemo,
   TypographyDemo,
   TypographyGradientDemo,
   TypographyHighlightDemo,
-  TypographyCodeDemo,
-  TypographyBlockquoteDemo,
   TypographyInteractiveDemo,
-  TypographyAsDemo,
-  TypographyAffectsDemo,
 } from "./typography-demo"
 
 export const metadata = {

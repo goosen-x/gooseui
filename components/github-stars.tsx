@@ -43,7 +43,7 @@ export async function GitHubStars({
       rel="noopener noreferrer"
       className={cn(
         "flex items-center gap-2 text-sm font-medium transition-colors hover:text-primary",
-        className
+        className,
       )}
     >
       <svg className="size-3.5" fill="currentColor" viewBox="0 0 24 24">

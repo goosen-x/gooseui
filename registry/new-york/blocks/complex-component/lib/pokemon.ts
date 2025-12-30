@@ -3,7 +3,7 @@ import { z } from "zod"
 export async function getPokemonList({ limit = 10 }: { limit?: number }) {
   try {
     const response = await fetch(
-      `https://pokeapi.co/api/v2/pokemon?limit=${limit}`
+      `https://pokeapi.co/api/v2/pokemon?limit=${limit}`,
     )
     return z
       .object({
@@ -37,7 +37,7 @@ export async function getPokemon(name: string) {
             stat: z.object({
               name: z.string(),
             }),
-          })
+          }),
         ),
       })
       .parse(await response.json())

@@ -1,6 +1,6 @@
-import { AnimatedTimer } from "@/registry/new-york/ui/animated-timer"
 import { DocsPageNav } from "@/components/docs/docs-page-nav"
 import { InstallCommand } from "@/components/docs/install-command"
+import { AnimatedTimer } from "@/registry/new-york/ui/animated-timer"
 
 export const metadata = {
   title: "Animated Timer",

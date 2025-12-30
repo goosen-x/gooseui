@@ -2,8 +2,8 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { cn } from "@/lib/utils"
 import { docsNav } from "@/lib/config/navigation"
+import { cn } from "@/lib/utils"
 
 export function DocsSidebar() {
   const pathname = usePathname()
@@ -27,7 +27,7 @@ export function DocsSidebar() {
                         "group flex w-full items-center rounded-md border border-transparent px-2 py-1 hover:underline",
                         pathname === item.href
                           ? "font-medium text-foreground"
-                          : "text-muted-foreground"
+                          : "text-muted-foreground",
                       )}
                     >
                       {item.title}

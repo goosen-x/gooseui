@@ -1,7 +1,7 @@
 "use client"
 
-import * as React from "react"
 import { Check, Copy, ExternalLink, MoreVertical } from "lucide-react"
+import * as React from "react"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -119,7 +119,7 @@ export function CodeBlock({ children, className }: CodeBlockProps) {
                 asChild
                 className={cn(
                   "cursor-pointer",
-                  service.highlight && "text-orange-500"
+                  service.highlight && "text-orange-500",
                 )}
               >
                 <a

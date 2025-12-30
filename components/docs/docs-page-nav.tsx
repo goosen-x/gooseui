@@ -1,8 +1,5 @@
 "use client"
 
-import * as React from "react"
-import Link from "next/link"
-import { usePathname } from "next/navigation"
 import {
   ArrowLeftIcon,
   ArrowRightIcon,
@@ -10,8 +7,9 @@ import {
   ChevronDownIcon,
   CopyIcon,
 } from "lucide-react"
-
-import { cn } from "@/lib/utils"
+import Link from "next/link"
+import { usePathname } from "next/navigation"
+import * as React from "react"
 import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
@@ -20,6 +18,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { Separator } from "@/components/ui/separator"
+import { cn } from "@/lib/utils"
 
 // Custom icons
 function MarkdownIcon({ className }: { className?: string }) {
@@ -316,7 +315,7 @@ ${registryUrl ? `Registry: ${registryUrl}` : ""}
           "bg-background/80 border-border/50",
           "fixed inset-x-0 bottom-0 isolate z-50",
           "flex items-center gap-2 border-t px-6 py-4 backdrop-blur-sm",
-          "sm:static sm:z-0 sm:border-t-0 sm:bg-transparent sm:px-0 sm:pt-1.5 sm:backdrop-blur-none"
+          "sm:static sm:z-0 sm:border-t-0 sm:bg-transparent sm:px-0 sm:pt-1.5 sm:backdrop-blur-none",
         )}
       >
         {/* Copy Page Button Group */}
@@ -362,7 +361,7 @@ ${registryUrl ? `Registry: ${registryUrl}` : ""}
             className={cn(
               "!bg-foreground/10 absolute top-0 right-8 z-0 !h-8",
               "peer-focus-visible:opacity-0",
-              "sm:right-7 sm:!h-7"
+              "sm:right-7 sm:!h-7",
             )}
           />
 
@@ -409,7 +408,7 @@ ${registryUrl ? `Registry: ${registryUrl}` : ""}
             size="icon"
             className={cn(
               "size-8 rounded-md shadow-none md:size-7",
-              !prevHref && "ml-auto"
+              !prevHref && "ml-auto",
             )}
             asChild
           >

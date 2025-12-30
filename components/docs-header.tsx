@@ -1,7 +1,7 @@
 import { Suspense } from "react"
+import { DocsHeaderNav } from "@/components/docs-header-nav"
 import { GitHubStars } from "@/components/github-stars"
 import { GitHubStarsSkeleton } from "@/components/github-stars-skeleton"
-import { DocsHeaderNav } from "@/components/docs-header-nav"
 
 export function DocsHeader() {
   return (

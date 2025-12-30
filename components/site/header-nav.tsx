@@ -23,7 +23,7 @@ export function HeaderNav() {
             "transition-colors hover:text-foreground/80",
             pathname?.startsWith(item.href)
               ? "text-foreground"
-              : "text-foreground/60"
+              : "text-foreground/60",
           )}
         >
           {item.title}

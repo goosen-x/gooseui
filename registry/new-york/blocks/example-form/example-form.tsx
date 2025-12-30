@@ -1,19 +1,19 @@
 "use client"
 
 import * as React from "react"
+import { z } from "zod"
+import { Button } from "@/registry/new-york/ui/button"
 import {
   Card,
-  CardTitle,
-  CardHeader,
-  CardDescription,
   CardContent,
+  CardDescription,
   CardFooter,
+  CardHeader,
+  CardTitle,
 } from "@/registry/new-york/ui/card"
 import { Input } from "@/registry/new-york/ui/input"
 import { Label } from "@/registry/new-york/ui/label"
-import { Button } from "@/registry/new-york/ui/button"
 import { Textarea } from "@/registry/new-york/ui/textarea"
-import { z } from "zod"
 
 const exampleFormSchema = z.object({
   name: z.string().min(1),
@@ -51,8 +51,8 @@ export function ExampleForm() {
           ...state,
           errors: Object.fromEntries(
             Object.entries(result.error.flatten().fieldErrors).map(
-              ([key, value]) => [key, value?.[0] ?? ""]
-            )
+              ([key, value]) => [key, value?.[0] ?? ""],
+            ),
           ) as Record<keyof typeof state.errors, string>,
         })
         setPending(false)
@@ -61,7 +61,7 @@ export function ExampleForm() {
 
       setPending(false)
     },
-    [state]
+    [state],
   )
 
   return (

@@ -1,8 +1,8 @@
-import { Suspense } from "react"
 import Link from "next/link"
-import { siteConfig } from "@/lib/config/navigation"
+import { Suspense } from "react"
 import { GitHubStars } from "@/components/github-stars"
 import { GitHubStarsSkeleton } from "@/components/github-stars-skeleton"
+import { siteConfig } from "@/lib/config/navigation"
 import { HeaderNav } from "./header-nav"
 
 export function SiteHeader() {

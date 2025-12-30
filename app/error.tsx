@@ -1,10 +1,10 @@
 "use client"
 
-import { useEffect } from "react"
 import Link from "next/link"
-import { Button } from "@/registry/new-york/ui/button"
+import { useEffect } from "react"
 import { SiteHeader } from "@/components/site/header"
 import { ThemeCustomizer } from "@/components/theme-customizer"
+import { Button } from "@/registry/new-york/ui/button"
 
 export default function Error({
   error,

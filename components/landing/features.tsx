@@ -1,6 +1,6 @@
 "use client"
 
-import { Sparkles, Zap, Code2, Palette, Blocks, Terminal } from "lucide-react"
+import { Blocks, Code2, Palette, Sparkles, Terminal, Zap } from "lucide-react"
 
 const features = [
   {

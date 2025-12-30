@@ -1,6 +1,6 @@
-import { Button } from "@/registry/new-york/ui/button"
 import { DocsPageNav } from "@/components/docs/docs-page-nav"
 import { InstallCommand } from "@/components/docs/install-command"
+import { Button } from "@/registry/new-york/ui/button"
 
 export const metadata = {
   title: "Button",

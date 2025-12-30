@@ -1,8 +1,8 @@
 "use client"
 
-import * as React from "react"
 import { Check, Copy, File } from "lucide-react"
-import { codeToHtml, type BundledLanguage } from "shiki"
+import * as React from "react"
+import { type BundledLanguage, codeToHtml } from "shiki"
 import { cn } from "@/lib/utils"
 
 interface CodeBlockProps {
@@ -57,7 +57,7 @@ export function CodeBlock({
     <div
       className={cn(
         "group relative overflow-hidden rounded-lg border bg-muted/50",
-        className
+        className,
       )}
     >
       {filename && (
@@ -73,7 +73,7 @@ export function CodeBlock({
             "overflow-x-auto p-4 text-sm",
             "[&_pre]:!m-0 [&_pre]:!bg-transparent [&_pre]:!p-0",
             "[&_code]:!bg-transparent",
-            "[&_.highlighted-line]:bg-primary/10 [&_.highlighted-line]:border-l-2 [&_.highlighted-line]:border-primary [&_.highlighted-line]:-ml-4 [&_.highlighted-line]:pl-[14px] [&_.highlighted-line]:pr-4 [&_.highlighted-line]:-mr-4"
+            "[&_.highlighted-line]:bg-primary/10 [&_.highlighted-line]:border-l-2 [&_.highlighted-line]:border-primary [&_.highlighted-line]:-ml-4 [&_.highlighted-line]:pl-[14px] [&_.highlighted-line]:pr-4 [&_.highlighted-line]:-mr-4",
           )}
           dangerouslySetInnerHTML={{ __html: html }}
         />

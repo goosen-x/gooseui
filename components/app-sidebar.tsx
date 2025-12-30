@@ -1,5 +1,5 @@
-import * as React from "react"
 import { GalleryVerticalEnd } from "lucide-react"
+import type * as React from "react"
 
 import {
   Sidebar,

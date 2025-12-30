@@ -1,7 +1,7 @@
-import { DocsHeader } from "@/components/docs-header"
-import { DocsSidebar } from "@/components/docs-sidebar"
 import { FloatingNav } from "@/components/docs/floating-nav"
 import { TableOfContents } from "@/components/docs/table-of-contents"
+import { DocsHeader } from "@/components/docs-header"
+import { DocsSidebar } from "@/components/docs-sidebar"
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar"
 
 export default function DocsLayout({

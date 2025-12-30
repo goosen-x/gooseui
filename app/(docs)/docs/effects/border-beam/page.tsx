@@ -1,3 +1,4 @@
+import { InstallCommand } from "@/components/docs/install-command"
 import { BorderBeam } from "@/registry/new-york/effects/border-beam"
 import {
   Card,
@@ -6,7 +7,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/registry/new-york/ui/card"
-import { InstallCommand } from "@/components/docs/install-command"
 
 export const metadata = {
   title: "Border Beam",

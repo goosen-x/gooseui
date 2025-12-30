@@ -1,15 +1,13 @@
 "use client"
 
-import * as React from "react"
-import { useRouter } from "next/navigation"
 import {
   ArrowRightIcon,
   CircleIcon,
   CornerDownLeftIcon,
   SearchIcon,
 } from "lucide-react"
-
-import { cn } from "@/lib/utils"
+import { useRouter } from "next/navigation"
+import * as React from "react"
 import {
   Command,
   CommandEmpty,
@@ -27,6 +25,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog"
 import { Kbd } from "@/components/ui/kbd"
+import { cn } from "@/lib/utils"
 
 interface SearchLink {
   title: string
@@ -74,7 +73,7 @@ export function SiteSearch({
       setIsOpen(false)
       router.push(href)
     },
-    [router, setIsOpen]
+    [router, setIsOpen],
   )
 
   return (
@@ -87,7 +86,7 @@ export function SiteSearch({
         className={cn(
           "overflow-hidden rounded-xl border-none p-2 pb-11",
           "shadow-2xl ring-4 ring-neutral-200/80",
-          "dark:bg-neutral-900 dark:ring-neutral-800"
+          "dark:bg-neutral-900 dark:ring-neutral-800",
         )}
         showCloseButton={false}
       >
@@ -101,7 +100,7 @@ export function SiteSearch({
             "**:data-[slot=command-input-wrapper]:border-input",
             "**:data-[slot=command-input-wrapper]:bg-input/50",
             "**:data-[slot=command-input]:!h-9",
-            "**:data-[slot=command-input]:py-0"
+            "**:data-[slot=command-input]:py-0",
           )}
         >
           <CommandInput placeholder="Type a command or search..." />
@@ -117,7 +116,7 @@ export function SiteSearch({
                     onSelect={() => handleSelect(link.href)}
                     className={cn(
                       "h-9 rounded-md border border-transparent !px-3 font-medium",
-                      "data-[selected=true]:border-input data-[selected=true]:bg-input/50"
+                      "data-[selected=true]:border-input data-[selected=true]:bg-input/50",
                     )}
                   >
                     <ArrowRightIcon className="mr-2 h-4 w-4" />
@@ -138,7 +137,7 @@ export function SiteSearch({
                     onSelect={() => handleSelect(faq.href)}
                     className={cn(
                       "h-9 rounded-md border border-transparent !px-3 font-medium",
-                      "data-[selected=true]:border-input data-[selected=true]:bg-input/50"
+                      "data-[selected=true]:border-input data-[selected=true]:bg-input/50",
                     )}
                   >
                     <div className="mr-2 flex h-4 w-4 items-center justify-center">
@@ -159,7 +158,7 @@ export function SiteSearch({
             "flex h-10 items-center gap-2 px-4",
             "rounded-b-xl border-t border-t-neutral-100 bg-neutral-50",
             "text-xs font-medium text-muted-foreground",
-            "dark:border-t-neutral-700 dark:bg-neutral-800"
+            "dark:border-t-neutral-700 dark:bg-neutral-800",
           )}
         >
           <div className="flex items-center gap-2">
@@ -183,7 +182,7 @@ export function SiteSearchTrigger({
     <button
       className={cn(
         "inline-flex items-center gap-2 rounded-md border border-input bg-background px-3 py-1.5 text-sm text-muted-foreground shadow-sm transition-colors hover:bg-accent hover:text-accent-foreground",
-        className
+        className,
       )}
       {...props}
     >

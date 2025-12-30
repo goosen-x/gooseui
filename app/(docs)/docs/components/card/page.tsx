@@ -1,3 +1,6 @@
+import { DocsPageNav } from "@/components/docs/docs-page-nav"
+import { InstallCommand } from "@/components/docs/install-command"
+import { Button } from "@/registry/new-york/ui/button"
 import {
   Card,
   CardContent,
@@ -6,9 +9,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/registry/new-york/ui/card"
-import { Button } from "@/registry/new-york/ui/button"
-import { DocsPageNav } from "@/components/docs/docs-page-nav"
-import { InstallCommand } from "@/components/docs/install-command"
 
 export const metadata = {
   title: "Card",

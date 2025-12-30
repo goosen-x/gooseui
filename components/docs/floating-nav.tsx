@@ -1,8 +1,8 @@
 "use client"
 
-import * as React from "react"
 import { Check, Moon, Palette, Sun } from "lucide-react"
 import { useTheme } from "next-themes"
+import * as React from "react"
 import { cn } from "@/lib/utils"
 
 const colors = [
@@ -71,7 +71,7 @@ export function FloatingNav() {
           aria-label="Color Picker"
           className={cn(
             "flex size-9 cursor-pointer items-center justify-center rounded-full transition-colors hover:bg-accent",
-            showColors && "bg-accent"
+            showColors && "bg-accent",
           )}
           type="button"
           onClick={() => setShowColors(!showColors)}
@@ -88,7 +88,7 @@ export function FloatingNav() {
               onClick={() => setColor(c.name)}
               className={cn(
                 "relative size-7 rounded-full transition-transform hover:scale-110",
-                c.class
+                c.class,
               )}
             >
               {activeColor === c.name && (

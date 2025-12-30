@@ -1,9 +1,8 @@
 "use client"
 
-import * as React from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { cn } from "@/lib/utils"
+import * as React from "react"
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -12,6 +11,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
+import { cn } from "@/lib/utils"
 
 const pathNames: Record<string, string> = {
   docs: "Docs",
@@ -75,7 +75,7 @@ export function DocsHeaderNav() {
                 "transition-colors hover:text-foreground/80",
                 pathname?.startsWith(item.href)
                   ? "text-foreground"
-                  : "text-foreground/60"
+                  : "text-foreground/60",
               )}
             >
               {item.title}

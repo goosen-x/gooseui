@@ -1,7 +1,7 @@
 "use client"
 
-import * as React from "react"
 import { usePathname } from "next/navigation"
+import * as React from "react"
 import { cn } from "@/lib/utils"
 
 interface TocItem {
@@ -52,7 +52,7 @@ export function TableOfContents() {
       {
         rootMargin: "-100px 0% -80% 0%",
         threshold: 0,
-      }
+      },
     )
 
     headings.forEach((heading) => {
@@ -105,7 +105,7 @@ export function TableOfContents() {
                       heading.level === 3 && "pl-3",
                       activeId === heading.id
                         ? "text-primary font-medium"
-                        : "text-muted-foreground"
+                        : "text-muted-foreground",
                     )}
                   >
                     {heading.title}

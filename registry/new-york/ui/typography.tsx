@@ -1,5 +1,5 @@
-import * as React from "react"
 import { cva, type VariantProps } from "class-variance-authority"
+import * as React from "react"
 import { cn } from "@/lib/utils"
 
 const typographyVariants = cva("", {
@@ -33,7 +33,15 @@ const typographyVariants = cva("", {
   },
 })
 
-type TypographyElement = "h1" | "h2" | "h3" | "h4" | "p" | "span" | "blockquote" | "code"
+type TypographyElement =
+  | "h1"
+  | "h2"
+  | "h3"
+  | "h4"
+  | "p"
+  | "span"
+  | "blockquote"
+  | "code"
 
 const variantElementMap: Record<string, TypographyElement> = {
   h1: "h1",
@@ -73,7 +81,7 @@ function Typography({
       className: cn(typographyVariants({ variant, affects, className })),
       ...props,
     },
-    children
+    children,
   )
 }
 

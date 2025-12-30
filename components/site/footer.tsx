@@ -1,7 +1,6 @@
-"use client"
-
 import Link from "next/link"
 import { siteConfig } from "@/lib/config/navigation"
+import { CurrentYear } from "./current-year"
 
 export function SiteFooter() {
   const footerLinks = {
@@ -89,7 +88,7 @@ export function SiteFooter() {
 
         <div className="mt-12 pt-8 border-t flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-sm text-muted-foreground">
-            &copy; {new Date().getFullYear()} {siteConfig.name}. Open Source.
+            &copy; <CurrentYear /> {siteConfig.name}. Open Source.
           </p>
           <a
             href={siteConfig.links.github}

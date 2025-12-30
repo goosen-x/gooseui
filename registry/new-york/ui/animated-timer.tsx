@@ -25,7 +25,7 @@ function TimerChar({ char }: TimerCharProps) {
     )
   }
 
-  const number = parseInt(char)
+  const number = parseInt(char, 10)
   const top = height > 0 ? number * height * -1 : 0
 
   return (
@@ -47,7 +47,7 @@ function TimerChar({ char }: TimerCharProps) {
                 "text-white transition-all duration-300",
                 number === digit
                   ? "text-4xl md:text-6xl lg:text-8xl opacity-100"
-                  : "text-2xl md:text-3xl lg:text-4xl opacity-5"
+                  : "text-2xl md:text-3xl lg:text-4xl opacity-5",
               )}
             >
               {digit}
@@ -117,7 +117,7 @@ export function AnimatedTimer({
       <div
         className={cn(
           "rounded-xl md:rounded-2xl lg:rounded-[22px] bg-gradient-to-br from-blue-600 to-red-500 p-1",
-          className
+          className,
         )}
       >
         <div className="flex items-center bg-zinc-900 rounded-lg md:rounded-xl lg:rounded-[20px] px-3 md:px-4 lg:px-5">
@@ -128,7 +128,7 @@ export function AnimatedTimer({
                 "flex items-center justify-center",
                 char === ":"
                   ? "h-[60px] md:h-[100px] lg:h-[150px] w-5 md:w-10 lg:w-12"
-                  : "h-[60px] md:h-[100px] lg:h-[150px] w-[30px] md:w-[50px] lg:w-[80px]"
+                  : "h-[60px] md:h-[100px] lg:h-[150px] w-[30px] md:w-[50px] lg:w-[80px]",
               )}
             >
               <span className="text-white text-4xl md:text-6xl lg:text-8xl opacity-20">
@@ -145,7 +145,7 @@ export function AnimatedTimer({
     <div
       className={cn(
         "rounded-xl md:rounded-2xl lg:rounded-[22px] bg-gradient-to-br from-blue-600 to-red-500 p-1",
-        className
+        className,
       )}
     >
       <div className="flex items-center bg-zinc-900 rounded-lg md:rounded-xl lg:rounded-[20px] px-3 md:px-4 lg:px-5">

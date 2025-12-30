@@ -1,9 +1,9 @@
-import type { Metadata } from "next"
-import { GeistSans } from "geist/font/sans"
 import { GeistMono } from "geist/font/mono"
-import { siteConfig } from "@/lib/config/navigation"
+import { GeistSans } from "geist/font/sans"
+import type { Metadata } from "next"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Toaster } from "@/components/ui/sonner"
+import { siteConfig } from "@/lib/config/navigation"
 import "./globals.css"
 
 export const metadata: Metadata = {

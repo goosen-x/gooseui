@@ -1,8 +1,8 @@
 "use client"
 
 import Link from "next/link"
-import { Button } from "@/registry/new-york/ui/button"
 import { BorderBeam } from "@/registry/new-york/effects/border-beam"
+import { Button } from "@/registry/new-york/ui/button"
 
 export function CTA() {
   return (

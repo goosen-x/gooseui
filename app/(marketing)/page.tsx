@@ -1,9 +1,9 @@
-import { Hero } from "@/components/landing/hero"
-import { Features } from "@/components/landing/features"
-import { ComponentPreview } from "@/components/landing/component-preview"
-import { FAQ } from "@/components/landing/faq"
-import { CTA } from "@/components/landing/cta"
 import { BackgroundPattern } from "@/components/landing/background-pattern"
+import { ComponentPreview } from "@/components/landing/component-preview"
+import { CTA } from "@/components/landing/cta"
+import { FAQ } from "@/components/landing/faq"
+import { Features } from "@/components/landing/features"
+import { Hero } from "@/components/landing/hero"
 
 export default function HomePage() {
   return (

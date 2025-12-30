@@ -1,10 +1,9 @@
 "use client"
 
-import * as React from "react"
 import { Check, Copy, Terminal } from "lucide-react"
-
-import { cn } from "@/lib/utils"
+import * as React from "react"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { cn } from "@/lib/utils"
 import { Button } from "@/registry/new-york/ui/button"
 
 type PackageManager = "npm" | "pnpm" | "yarn" | "bun"
@@ -83,7 +82,7 @@ export function InstallCommand({
                   className={cn(
                     "h-7 rounded-md border border-transparent px-2 pt-0.5 text-sm",
                     "data-[state=active]:border-input data-[state=active]:bg-accent",
-                    "data-[state=active]:shadow-none"
+                    "data-[state=active]:shadow-none",
                   )}
                 >
                   {pm}

@@ -1,6 +1,6 @@
+import { createElement } from "react"
 import { toast } from "sonner"
 import { CustomToast } from "@/components/ui/custom-toast"
-import { createElement } from "react"
 
 interface ToastOptions {
   description?: string
@@ -18,7 +18,7 @@ export const customToast = {
           description: options?.description,
           duration: options?.duration,
         }),
-      { duration: Infinity }
+      { duration: Infinity },
     )
   },
 
@@ -32,7 +32,7 @@ export const customToast = {
           description: options?.description,
           duration: options?.duration,
         }),
-      { duration: Infinity }
+      { duration: Infinity },
     )
   },
 
@@ -46,7 +46,7 @@ export const customToast = {
           description: options?.description,
           duration: options?.duration,
         }),
-      { duration: Infinity }
+      { duration: Infinity },
     )
   },
 
@@ -60,7 +60,7 @@ export const customToast = {
           description: options?.description,
           duration: options?.duration,
         }),
-      { duration: Infinity }
+      { duration: Infinity },
     )
   },
 }

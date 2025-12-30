@@ -1,16 +1,16 @@
 "use client"
 
-import { useState, useEffect } from "react"
-import { toast } from "sonner"
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
 import {
   CircleCheckIcon,
+  InfoIcon,
   OctagonXIcon,
   TriangleAlertIcon,
-  InfoIcon,
   XIcon,
 } from "lucide-react"
+import { useEffect, useState } from "react"
+import { toast } from "sonner"
+import { Button } from "@/components/ui/button"
+import { cn } from "@/lib/utils"
 
 type ToastType = "success" | "error" | "warning" | "info"
 
@@ -83,7 +83,7 @@ export function CustomToast({
         type === "success" && "border-l-green-500",
         type === "error" && "border-l-red-500",
         type === "warning" && "border-l-amber-500",
-        type === "info" && "border-l-blue-500"
+        type === "info" && "border-l-blue-500",
       )}
     >
       <Icon className={cn("mt-0.5 size-5 shrink-0", iconColor)} />
@@ -111,7 +111,7 @@ export function CustomToast({
         <div
           className={cn(
             "h-full transition-all duration-[16ms] ease-linear",
-            progressColor
+            progressColor,
           )}
           style={{ width: `${progress}%` }}
         />

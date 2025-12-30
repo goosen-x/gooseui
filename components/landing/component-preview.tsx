@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import { BorderBeam } from "@/registry/new-york/effects/border-beam"
 import { Button } from "@/registry/new-york/ui/button"
 import {
   Card,
@@ -10,7 +11,6 @@ import {
   CardTitle,
 } from "@/registry/new-york/ui/card"
 import { Input } from "@/registry/new-york/ui/input"
-import { BorderBeam } from "@/registry/new-york/effects/border-beam"
 
 export function ComponentPreview() {
   return (
