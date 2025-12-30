@@ -3,7 +3,6 @@
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import * as React from "react"
-import { Suspense } from "react"
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -12,8 +11,6 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
-import { GitHubStars } from "@/components/github-stars"
-import { GitHubStarsSkeleton } from "@/components/github-stars-skeleton"
 import { cn } from "@/lib/utils"
 
 const pathNames: Record<string, string> = {
@@ -68,7 +65,7 @@ export function DocsHeaderNav() {
           ))}
         </BreadcrumbList>
       </Breadcrumb>
-      <div className="flex flex-1 items-center justify-end space-x-6">
+      <div className="flex flex-1 items-center justify-end space-x-4">
         <nav className="hidden md:flex items-center space-x-6 text-sm font-medium">
           {mainNav.map((item) => (
             <Link
@@ -85,15 +82,6 @@ export function DocsHeaderNav() {
             </Link>
           ))}
         </nav>
-        <Suspense
-          fallback={<GitHubStarsSkeleton className="hidden sm:flex" />}
-        >
-          <GitHubStars
-            owner="goosen-x"
-            repo="gooseui"
-            className="hidden sm:flex"
-          />
-        </Suspense>
       </div>
     </>
   )
