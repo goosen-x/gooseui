@@ -28,14 +28,19 @@ export default function CardPage() {
       </p>
 
       <div className="space-y-4">
-        <h2 id="preview" className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight">
+        <h2
+          id="preview"
+          className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight"
+        >
           Preview
         </h2>
         <div className="flex items-center justify-center rounded-lg border p-6">
           <Card className="w-[350px]">
             <CardHeader>
               <CardTitle>Create Project</CardTitle>
-              <CardDescription>Deploy a new project in one click</CardDescription>
+              <CardDescription>
+                Deploy a new project in one click
+              </CardDescription>
             </CardHeader>
             <CardContent>
               <p className="text-sm text-muted-foreground">
@@ -51,14 +56,20 @@ export default function CardPage() {
       </div>
 
       <div className="space-y-4">
-        <h2 id="installation" className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight">
+        <h2
+          id="installation"
+          className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight"
+        >
           Installation
         </h2>
         <InstallCommand packageName="https://gooseui.pro/r/card.json" />
       </div>
 
       <div className="space-y-4">
-        <h2 id="usage" className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight">
+        <h2
+          id="usage"
+          className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight"
+        >
           Usage
         </h2>
         <pre className="rounded-lg border bg-muted px-4 py-3 font-mono text-sm overflow-x-auto">
@@ -91,7 +102,10 @@ export function MyCard() {
       </div>
 
       <div className="space-y-4">
-        <h2 id="components" className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight">
+        <h2
+          id="components"
+          className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight"
+        >
           Components
         </h2>
         <div className="overflow-x-auto">
@@ -99,13 +113,17 @@ export function MyCard() {
             <thead>
               <tr className="border-b">
                 <th className="text-left py-3 px-4 font-semibold">Component</th>
-                <th className="text-left py-3 px-4 font-semibold">Description</th>
+                <th className="text-left py-3 px-4 font-semibold">
+                  Description
+                </th>
               </tr>
             </thead>
             <tbody>
               <tr className="border-b">
                 <td className="py-3 px-4 font-mono">Card</td>
-                <td className="py-3 px-4 text-muted-foreground">Card container</td>
+                <td className="py-3 px-4 text-muted-foreground">
+                  Card container
+                </td>
               </tr>
               <tr className="border-b">
                 <td className="py-3 px-4 font-mono">CardHeader</td>
@@ -123,7 +141,9 @@ export function MyCard() {
               </tr>
               <tr className="border-b">
                 <td className="py-3 px-4 font-mono">CardContent</td>
-                <td className="py-3 px-4 text-muted-foreground">Main content</td>
+                <td className="py-3 px-4 text-muted-foreground">
+                  Main content
+                </td>
               </tr>
               <tr className="border-b">
                 <td className="py-3 px-4 font-mono">CardFooter</td>

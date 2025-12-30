@@ -16,10 +16,15 @@ export default function InputPage() {
         prevHref="/docs/components/card"
         nextHref="/docs/components/animated-timer"
       />
-      <p className="text-lg text-muted-foreground">Displays a text input field</p>
+      <p className="text-lg text-muted-foreground">
+        Displays a text input field
+      </p>
 
       <div className="space-y-4">
-        <h2 id="preview" className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight">
+        <h2
+          id="preview"
+          className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight"
+        >
           Preview
         </h2>
         <div className="flex flex-col gap-4 rounded-lg border p-6 max-w-sm">
@@ -28,14 +33,20 @@ export default function InputPage() {
       </div>
 
       <div className="space-y-4">
-        <h2 id="installation" className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight">
+        <h2
+          id="installation"
+          className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight"
+        >
           Installation
         </h2>
         <InstallCommand packageName="https://gooseui.pro/r/input.json" />
       </div>
 
       <div className="space-y-4">
-        <h2 id="usage" className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight">
+        <h2
+          id="usage"
+          className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight"
+        >
           Usage
         </h2>
         <pre className="rounded-lg border bg-muted px-4 py-3 font-mono text-sm overflow-x-auto">
@@ -48,7 +59,10 @@ export function MyInput() {
       </div>
 
       <div className="space-y-4">
-        <h2 id="examples" className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight">
+        <h2
+          id="examples"
+          className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight"
+        >
           Examples
         </h2>
 
@@ -89,7 +103,10 @@ export function MyInput() {
       </div>
 
       <div className="space-y-4">
-        <h2 id="props" className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight">
+        <h2
+          id="props"
+          className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight"
+        >
           Props
         </h2>
         <p className="text-muted-foreground">

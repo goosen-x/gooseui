@@ -1,6 +1,7 @@
 export const siteConfig = {
   name: "GooseUI",
-  description: "Open source component library for building modern web applications",
+  description:
+    "Open source component library for building modern web applications",
   url: "https://gooseui.pro",
   links: {
     github: "https://github.com/goosen-x/gooseui",

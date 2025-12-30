@@ -46,7 +46,11 @@ const docsNavConfig: NavSection[] = [
       { title: "Button", href: "/docs/components/button" },
       { title: "Card", href: "/docs/components/card" },
       { title: "Input", href: "/docs/components/input" },
-      { title: "Theme Customizer", href: "/docs/components/theme-customizer", isNew: true },
+      {
+        title: "Theme Customizer",
+        href: "/docs/components/theme-customizer",
+        isNew: true,
+      },
       { title: "Toast", href: "/docs/components/toast" },
       { title: "Typography", href: "/docs/components/typography", isNew: true },
     ],

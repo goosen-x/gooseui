@@ -71,7 +71,9 @@ export default function InstallationPage() {
         >
           Project Structure
         </h2>
-        <p className="leading-7">After installation, components will appear in:</p>
+        <p className="leading-7">
+          After installation, components will appear in:
+        </p>
         <pre className="rounded-lg border bg-muted px-4 py-3 font-mono text-sm overflow-x-auto">
           {`your-project/
 ├── components/

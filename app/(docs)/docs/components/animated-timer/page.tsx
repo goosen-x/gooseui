@@ -13,23 +13,39 @@ export default function AnimatedTimerPage() {
     <div className="space-y-8">
       <DocsPageNav title="Animated Timer" prevHref="/docs/components/input" />
       <p className="text-muted-foreground">
-        Beautiful animated clock with smoothly sliding digits and gradient border
+        Beautiful animated clock with smoothly sliding digits and gradient
+        border
       </p>
 
       <div className="space-y-4">
-        <h2 id="demo" className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight">Demo</h2>
+        <h2
+          id="demo"
+          className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight"
+        >
+          Demo
+        </h2>
         <div className="flex justify-center py-12 bg-zinc-950 rounded-lg">
           <AnimatedTimer />
         </div>
       </div>
 
       <div className="space-y-4">
-        <h2 id="installation" className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight">Installation</h2>
+        <h2
+          id="installation"
+          className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight"
+        >
+          Installation
+        </h2>
         <InstallCommand packageName="https://gooseui.pro/r/animated-timer.json" />
       </div>
 
       <div className="space-y-4">
-        <h2 id="usage" className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight">Usage</h2>
+        <h2
+          id="usage"
+          className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight"
+        >
+          Usage
+        </h2>
         <pre className="bg-muted p-4 rounded-lg overflow-x-auto">
           <code>{`import { AnimatedTimer } from "@/components/ui/animated-timer"
 
@@ -40,7 +56,12 @@ export default function Page() {
       </div>
 
       <div className="space-y-4">
-        <h2 id="examples" className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight">Examples</h2>
+        <h2
+          id="examples"
+          className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight"
+        >
+          Examples
+        </h2>
 
         <div className="space-y-6">
           <div>
@@ -66,7 +87,12 @@ export default function Page() {
       </div>
 
       <div className="space-y-4">
-        <h2 id="props" className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight">Props</h2>
+        <h2
+          id="props"
+          className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight"
+        >
+          Props
+        </h2>
         <div className="border rounded-lg overflow-hidden">
           <table className="w-full text-sm">
             <thead className="bg-muted">

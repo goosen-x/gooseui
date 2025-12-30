@@ -26,7 +26,10 @@ export default function BorderBeamPage() {
       </div>
 
       <div className="space-y-4">
-        <h2 id="preview" className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight">
+        <h2
+          id="preview"
+          className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight"
+        >
           Preview
         </h2>
         <div className="flex items-center justify-center rounded-lg border p-10 bg-background">
@@ -47,14 +50,20 @@ export default function BorderBeamPage() {
       </div>
 
       <div className="space-y-4">
-        <h2 id="installation" className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight">
+        <h2
+          id="installation"
+          className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight"
+        >
           Installation
         </h2>
         <InstallCommand packageName="https://gooseui.pro/r/border-beam.json" />
       </div>
 
       <div className="space-y-4">
-        <h2 id="usage" className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight">
+        <h2
+          id="usage"
+          className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight"
+        >
           Usage
         </h2>
         <pre className="rounded-lg border bg-muted px-4 py-3 font-mono text-sm overflow-x-auto">
@@ -76,7 +85,10 @@ export function MyCard() {
       </div>
 
       <div className="space-y-4">
-        <h2 id="examples" className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight">
+        <h2
+          id="examples"
+          className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight"
+        >
           Examples
         </h2>
 
@@ -129,7 +141,10 @@ export function MyCard() {
       </div>
 
       <div className="space-y-4">
-        <h2 id="props" className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight">
+        <h2
+          id="props"
+          className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight"
+        >
           Props
         </h2>
         <div className="overflow-x-auto">

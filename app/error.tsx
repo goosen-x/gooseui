@@ -1,7 +1,10 @@
 "use client"
 
 import { useEffect } from "react"
+import Link from "next/link"
 import { Button } from "@/registry/new-york/ui/button"
+import { SiteHeader } from "@/components/site/header"
+import { ThemeCustomizer } from "@/components/theme-customizer"
 
 export default function Error({
   error,
@@ -15,29 +18,41 @@ export default function Error({
   }, [error])
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center gap-6 px-4">
-      <div className="flex flex-col items-center gap-2 text-center">
-        <h1 className="text-8xl font-bold tracking-tighter text-destructive">500</h1>
-        <h2 className="text-2xl font-semibold tracking-tight">
-          Something went wrong
-        </h2>
-        <p className="max-w-md text-muted-foreground">
-          An unexpected error occurred. Please try again later.
-        </p>
-        {error.digest && (
-          <p className="text-xs text-muted-foreground/60">
-            Error ID: {error.digest}
+    <>
+      <SiteHeader />
+      <div className="flex min-h-[calc(100vh-4rem)] flex-col items-center justify-center gap-8 px-4">
+        <div className="flex flex-col items-center gap-4 text-center">
+          <div className="relative">
+            <h1 className="text-[10rem] font-bold leading-none tracking-tighter text-primary/10">
+              500
+            </h1>
+            <div className="absolute inset-0 flex items-center justify-center">
+              <span className="text-6xl font-bold tracking-tighter text-primary">
+                500
+              </span>
+            </div>
+          </div>
+          <h2 className="text-2xl font-semibold tracking-tight">
+            Something went wrong
+          </h2>
+          <p className="max-w-md text-muted-foreground">
+            An unexpected error occurred. Please try again later.
           </p>
-        )}
+          {error.digest && (
+            <p className="text-xs text-muted-foreground/60">
+              Error ID: {error.digest}
+            </p>
+          )}
+        </div>
+        <div className="flex gap-3">
+          <Button asChild variant="outline">
+            <Link href="/">Go home</Link>
+          </Button>
+          <Button onClick={reset}>Try again</Button>
+        </div>
+
+        <ThemeCustomizer />
       </div>
-      <div className="flex gap-3">
-        <Button variant="outline" onClick={() => window.location.href = "/"}>
-          Go home
-        </Button>
-        <Button onClick={reset}>
-          Try again
-        </Button>
-      </div>
-    </div>
+    </>
   )
 }

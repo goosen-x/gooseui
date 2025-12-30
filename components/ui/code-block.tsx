@@ -54,7 +54,12 @@ export function CodeBlock({
   }
 
   return (
-    <div className={cn("group relative overflow-hidden rounded-lg border bg-muted/50", className)}>
+    <div
+      className={cn(
+        "group relative overflow-hidden rounded-lg border bg-muted/50",
+        className
+      )}
+    >
       {filename && (
         <div className="flex items-center gap-2 border-b bg-muted/80 px-4 py-2 text-sm text-muted-foreground">
           <File className="size-4" />

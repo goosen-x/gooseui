@@ -16,7 +16,10 @@ export default function CLIPage() {
       </div>
 
       <div className="space-y-4">
-        <h2 id="adding-a-component" className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight">
+        <h2
+          id="adding-a-component"
+          className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight"
+        >
           Adding a Component
         </h2>
         <p className="leading-7">Use the add command to install a component:</p>
@@ -24,10 +27,15 @@ export default function CLIPage() {
       </div>
 
       <div className="space-y-4">
-        <h2 id="adding-multiple-components" className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight">
+        <h2
+          id="adding-multiple-components"
+          className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight"
+        >
           Adding Multiple Components
         </h2>
-        <p className="leading-7">You can install multiple components at once:</p>
+        <p className="leading-7">
+          You can install multiple components at once:
+        </p>
         <InstallCommand
           packageName=""
           commands={{
@@ -40,7 +48,10 @@ export default function CLIPage() {
       </div>
 
       <div className="space-y-4">
-        <h2 id="available-components" className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight">
+        <h2
+          id="available-components"
+          className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight"
+        >
           Available Components
         </h2>
         <p className="leading-7">List of all available components:</p>

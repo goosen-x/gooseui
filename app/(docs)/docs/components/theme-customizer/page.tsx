@@ -19,21 +19,30 @@ export default function ThemeCustomizerPage() {
       </p>
 
       <div className="space-y-4">
-        <h2 id="preview" className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight">
+        <h2
+          id="preview"
+          className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight"
+        >
           Preview
         </h2>
         <ThemeCustomizerDemo />
       </div>
 
       <div className="space-y-4">
-        <h2 id="installation" className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight">
+        <h2
+          id="installation"
+          className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight"
+        >
           Installation
         </h2>
         <InstallCommand packageName="https://gooseui.pro/r/theme-customizer.json" />
       </div>
 
       <div className="space-y-4">
-        <h2 id="usage" className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight">
+        <h2
+          id="usage"
+          className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight"
+        >
           Usage
         </h2>
         <pre className="rounded-lg border bg-muted px-4 py-3 font-mono text-sm overflow-x-auto">
@@ -51,7 +60,10 @@ export default function Page() {
       </div>
 
       <div className="space-y-4">
-        <h2 id="variants" className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight">
+        <h2
+          id="variants"
+          className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight"
+        >
           Variants
         </h2>
 
@@ -71,7 +83,8 @@ export default function Page() {
           2. Bar
         </h3>
         <p className="text-muted-foreground">
-          Horizontal bar with all options visible: light/dark/system buttons and color palette.
+          Horizontal bar with all options visible: light/dark/system buttons and
+          color palette.
         </p>
         <pre className="rounded-lg border bg-muted px-4 py-3 font-mono text-sm overflow-x-auto">
           {`import { ThemeCustomizerBar } from "@/components/ui/theme-customizer"
@@ -117,7 +130,10 @@ export default function Page() {
       </div>
 
       <div className="space-y-4">
-        <h2 id="color-setup" className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight">
+        <h2
+          id="color-setup"
+          className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight"
+        >
           Color Setup
         </h2>
         <p className="text-muted-foreground">
@@ -167,7 +183,10 @@ export default function Page() {
       </div>
 
       <div className="space-y-4">
-        <h2 id="props" className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight">
+        <h2
+          id="props"
+          className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight"
+        >
           Props
         </h2>
         <div className="overflow-x-auto">
@@ -182,7 +201,9 @@ export default function Page() {
             <tbody>
               <tr className="border-b">
                 <td className="py-3 px-4 font-mono">className</td>
-                <td className="py-3 px-4 font-mono text-muted-foreground">string</td>
+                <td className="py-3 px-4 font-mono text-muted-foreground">
+                  string
+                </td>
                 <td className="py-3 px-4 font-mono">-</td>
               </tr>
             </tbody>

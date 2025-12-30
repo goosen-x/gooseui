@@ -29,7 +29,11 @@ function formatStars(count: number): string {
   return count.toString()
 }
 
-export async function GitHubStars({ owner, repo, className }: GitHubStarsProps) {
+export async function GitHubStars({
+  owner,
+  repo,
+  className,
+}: GitHubStarsProps) {
   const stars = await getStars(owner, repo)
 
   return (
@@ -51,7 +55,9 @@ export async function GitHubStars({ owner, repo, className }: GitHubStarsProps) 
       </span>
       <span className="flex items-center gap-1 text-muted-foreground">
         <Star className="size-3.5 fill-current" aria-hidden="true" />
-        <span className="text-xs">{stars !== null ? formatStars(stars) : "—"}</span>
+        <span className="text-xs">
+          {stars !== null ? formatStars(stars) : "—"}
+        </span>
       </span>
     </a>
   )

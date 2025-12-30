@@ -4,7 +4,8 @@ import { ToastDemo } from "./toast-demo"
 
 export const metadata = {
   title: "Toast",
-  description: "Beautiful toast notifications with progress bar and colored variants",
+  description:
+    "Beautiful toast notifications with progress bar and colored variants",
 }
 
 export default function ToastPage() {
@@ -20,7 +21,12 @@ export default function ToastPage() {
       </p>
 
       <div className="space-y-4">
-        <h2 id="demo" className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight">Demo</h2>
+        <h2
+          id="demo"
+          className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight"
+        >
+          Demo
+        </h2>
         <div className="p-6 bg-muted/30 rounded-lg">
           <ToastDemo
             labels={{
@@ -38,7 +44,12 @@ export default function ToastPage() {
       </div>
 
       <div className="space-y-4">
-        <h2 id="installation" className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight">Installation</h2>
+        <h2
+          id="installation"
+          className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight"
+        >
+          Installation
+        </h2>
 
         <div className="space-y-6">
           <div>
@@ -68,7 +79,12 @@ export default function ToastPage() {
       </div>
 
       <div className="space-y-4">
-        <h2 id="setup" className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight">Setup</h2>
+        <h2
+          id="setup"
+          className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight"
+        >
+          Setup
+        </h2>
         <p className="text-muted-foreground">
           Add Toaster component to your root layout
         </p>
@@ -90,7 +106,12 @@ export default function RootLayout({ children }) {
       </div>
 
       <div className="space-y-4">
-        <h2 id="usage" className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight">Usage</h2>
+        <h2
+          id="usage"
+          className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight"
+        >
+          Usage
+        </h2>
         <pre className="bg-muted p-4 rounded-lg overflow-x-auto">
           <code>{`import { customToast } from "@/lib/toast"
 
@@ -117,7 +138,12 @@ customToast.info("Info", {
       </div>
 
       <div className="space-y-4">
-        <h2 id="variants" className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight">Variants</h2>
+        <h2
+          id="variants"
+          className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight"
+        >
+          Variants
+        </h2>
         <div className="border rounded-lg overflow-hidden">
           <table className="w-full text-sm">
             <thead className="bg-muted">
@@ -162,7 +188,12 @@ customToast.info("Info", {
       </div>
 
       <div className="space-y-4">
-        <h2 id="props" className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight">Props</h2>
+        <h2
+          id="props"
+          className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight"
+        >
+          Props
+        </h2>
         <div className="border rounded-lg overflow-hidden">
           <table className="w-full text-sm">
             <thead className="bg-muted">

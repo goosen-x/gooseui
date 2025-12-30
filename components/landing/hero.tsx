@@ -1,28 +1,12 @@
 "use client"
 
-import { useRouter } from "next/navigation"
+import Link from "next/link"
 import { Button } from "@/registry/new-york/ui/button"
 import { BorderBeam } from "@/registry/new-york/effects/border-beam"
 import { cn } from "@/lib/utils"
 import { customToast } from "@/lib/toast"
 
 export function Hero() {
-  const router = useRouter()
-
-  const handleGetStarted = () => {
-    customToast.success("Welcome to GooseUI!", {
-      description: "Let's build something beautiful together",
-    })
-    router.push("/docs")
-  }
-
-  const handleComponents = () => {
-    customToast.info("Exploring Components", {
-      description: "Check out our collection of UI components",
-    })
-    router.push("/docs/components/button")
-  }
-
   return (
     <div className="relative min-h-[calc(100svh-5rem)] flex items-center">
       {/* Dot background */}
@@ -42,7 +26,35 @@ export function Hero() {
           {/* Left side - Text content */}
           <div className="flex-1">
             <div className="inline-flex items-center rounded-full border px-4 py-1.5 text-sm font-medium mb-6 backdrop-blur-[1px] bg-background/20">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" className="size-4 mr-2"><rect width="256" height="256" fill="none"/><line x1="208" y1="128" x2="128" y2="208" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="32"/><line x1="192" y1="40" x2="40" y2="192" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="32"/></svg>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 256 256"
+                className="size-4 mr-2"
+              >
+                <rect width="256" height="256" fill="none" />
+                <line
+                  x1="208"
+                  y1="128"
+                  x2="128"
+                  y2="208"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="32"
+                />
+                <line
+                  x1="192"
+                  y1="40"
+                  x2="40"
+                  y2="192"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="32"
+                />
+              </svg>
               <span>Custom shadcn/ui Registry</span>
             </div>
 
@@ -56,11 +68,16 @@ export function Hero() {
             </p>
 
             <div className="mt-10 flex flex-col sm:flex-row gap-4">
-              <Button size="lg" onClick={handleGetStarted}>
-                Get Started
+              <Button size="lg" asChild>
+                <Link href="/docs">Get Started</Link>
               </Button>
-              <Button variant="outline" size="lg" className="backdrop-blur-[1px] bg-background/20" onClick={handleComponents}>
-                Components
+              <Button
+                variant="outline"
+                size="lg"
+                className="backdrop-blur-[1px] bg-background/20"
+                asChild
+              >
+                <Link href="/docs/components">Components</Link>
               </Button>
             </div>
 
@@ -131,10 +148,45 @@ export function Hero() {
                   </code>
                 </div>
                 <div className="p-8 flex items-center justify-center gap-4 min-h-[200px]">
-                  <Button onClick={() => customToast.success("Primary Button", { description: "Default button style" })}>Primary</Button>
-                  <Button variant="secondary" onClick={() => customToast.info("Secondary Button", { description: "Secondary button style" })}>Secondary</Button>
-                  <Button variant="outline" onClick={() => customToast.warning("Outline Button", { description: "Outline button style" })}>Outline</Button>
-                  <Button variant="ghost" onClick={() => customToast.error("Ghost Button", { description: "Ghost button style" })}>Ghost</Button>
+                  <Button
+                    onClick={() =>
+                      customToast.success("Primary Button", {
+                        description: "Default button style",
+                      })
+                    }
+                  >
+                    Primary
+                  </Button>
+                  <Button
+                    variant="secondary"
+                    onClick={() =>
+                      customToast.info("Secondary Button", {
+                        description: "Secondary button style",
+                      })
+                    }
+                  >
+                    Secondary
+                  </Button>
+                  <Button
+                    variant="outline"
+                    onClick={() =>
+                      customToast.warning("Outline Button", {
+                        description: "Outline button style",
+                      })
+                    }
+                  >
+                    Outline
+                  </Button>
+                  <Button
+                    variant="ghost"
+                    onClick={() =>
+                      customToast.error("Ghost Button", {
+                        description: "Ghost button style",
+                      })
+                    }
+                  >
+                    Ghost
+                  </Button>
                 </div>
               </div>
               <BorderBeam duration={8} />

@@ -47,12 +47,15 @@ const components = [
   {
     name: "Typography",
     slug: "typography",
-    description: "Consistent text styling with semantic variants and gradient effects.",
+    description:
+      "Consistent text styling with semantic variants and gradient effects.",
     category: "Typography",
     preview: (
       <div className="flex flex-col items-center gap-1 text-center">
         <Typography variant="h4">Heading</Typography>
-        <Typography variant="gradient" as="span" className="text-sm">Gradient</Typography>
+        <Typography variant="gradient" as="span" className="text-sm">
+          Gradient
+        </Typography>
       </div>
     ),
   },
@@ -105,7 +108,10 @@ export default function ComponentsPage() {
       {Object.entries(groupedComponents).map(
         ([category, categoryComponents]) => (
           <div key={category} className="space-y-6">
-            <h2 id={category.toLowerCase().replace(/\s+/g, '-')} className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight">
+            <h2
+              id={category.toLowerCase().replace(/\s+/g, "-")}
+              className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight"
+            >
               {category}
             </h2>
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -147,7 +153,10 @@ export default function ComponentsPage() {
 
       {/* Coming Soon Section */}
       <div className="space-y-6">
-        <h2 id="coming-soon" className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight">
+        <h2
+          id="coming-soon"
+          className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight"
+        >
           Coming Soon
         </h2>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

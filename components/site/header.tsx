@@ -19,7 +19,9 @@ export function SiteHeader() {
         </Link>
         <div className="flex flex-1 items-center justify-end space-x-6">
           <HeaderNav />
-          <Suspense fallback={<GitHubStarsSkeleton className="hidden sm:flex" />}>
+          <Suspense
+            fallback={<GitHubStarsSkeleton className="hidden sm:flex" />}
+          >
             <GitHubStars
               owner="goosen-x"
               repo="gooseui"

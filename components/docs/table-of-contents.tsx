@@ -87,30 +87,32 @@ export function TableOfContents() {
                 <li className="h-4 w-32 animate-pulse rounded bg-muted" />
                 <li className="h-4 w-20 animate-pulse rounded bg-muted" />
               </>
-            ) : headings.map((heading) => (
-              <li key={heading.id}>
-                <a
-                  href={`#${heading.id}`}
-                  onClick={(e) => {
-                    e.preventDefault()
-                    const element = document.getElementById(heading.id)
-                    if (element) {
-                      element.scrollIntoView({ behavior: "smooth" })
-                      setActiveId(heading.id)
-                    }
-                  }}
-                  className={cn(
-                    "block leading-relaxed transition-colors hover:text-foreground",
-                    heading.level === 3 && "pl-3",
-                    activeId === heading.id
-                      ? "text-primary font-medium"
-                      : "text-muted-foreground"
-                  )}
-                >
-                  {heading.title}
-                </a>
-              </li>
-            ))}
+            ) : (
+              headings.map((heading) => (
+                <li key={heading.id}>
+                  <a
+                    href={`#${heading.id}`}
+                    onClick={(e) => {
+                      e.preventDefault()
+                      const element = document.getElementById(heading.id)
+                      if (element) {
+                        element.scrollIntoView({ behavior: "smooth" })
+                        setActiveId(heading.id)
+                      }
+                    }}
+                    className={cn(
+                      "block leading-relaxed transition-colors hover:text-foreground",
+                      heading.level === 3 && "pl-3",
+                      activeId === heading.id
+                        ? "text-primary font-medium"
+                        : "text-muted-foreground"
+                    )}
+                  >
+                    {heading.title}
+                  </a>
+                </li>
+              ))
+            )}
           </ul>
         </div>
 
