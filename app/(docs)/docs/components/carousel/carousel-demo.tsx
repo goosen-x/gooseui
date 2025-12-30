@@ -134,7 +134,10 @@ export function CarouselAutoPlay() {
 
 export function CarouselVertical() {
   return (
-    <Carousel orientation="vertical" className="h-[400px] w-full max-w-lg mx-auto">
+    <Carousel
+      orientation="vertical"
+      className="h-[400px] w-full max-w-lg mx-auto"
+    >
       {slides.map((slide) => (
         <CarouselItem key={slide.id} className="h-full">
           <div

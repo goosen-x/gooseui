@@ -1,16 +1,15 @@
 import { DocsPageNav } from "@/components/docs/docs-page-nav"
 import { InstallCommand } from "@/components/docs/install-command"
 import {
+  AnimatedToggleGroupMultipleDemo,
   AnimatedToggleGroupPreview,
   AnimatedToggleGroupSizesDemo,
-  AnimatedToggleGroupMultipleDemo,
   AnimatedToggleGroupTabsDemo,
 } from "./animated-toggle-group-demo"
 
 export const metadata = {
   title: "Animated Toggle Group",
-  description:
-    "A toggle group with selection animation and particle effects",
+  description: "A toggle group with selection animation and particle effects",
 }
 
 export default function AnimatedToggleGroupPage() {

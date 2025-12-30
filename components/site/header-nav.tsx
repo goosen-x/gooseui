@@ -6,8 +6,8 @@ import { cn } from "@/lib/utils"
 
 const mainNav = [
   { href: "/docs", title: "Docs" },
-  { href: "/docs/components/button", title: "Components" },
-  { href: "/docs/effects/border-beam", title: "Effects" },
+  { href: "/docs/components", title: "Components" },
+  { href: "/docs/blocks", title: "Blocks" },
 ]
 
 export function HeaderNav() {

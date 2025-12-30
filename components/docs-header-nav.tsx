@@ -11,29 +11,21 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
-
-const pathNames: Record<string, string> = {
-  docs: "Docs",
-  components: "Components",
-  effects: "Effects",
-  installation: "Installation",
-  cli: "CLI",
-  "animated-timer": "Animated Timer",
-  button: "Button",
-  card: "Card",
-  input: "Input",
-  toast: "Toast",
-  "border-beam": "Border Beam",
-}
+import { getSlugTitle } from "@/lib/config/docs-navigation"
 
 export function DocsHeaderNav() {
   const pathname = usePathname()
   const segments = pathname.split("/").filter(Boolean)
 
-  const breadcrumbs = segments.map((segment, index) => {
-    const href = "/" + segments.slice(0, index + 1).join("/")
-    const isLast = index === segments.length - 1
-    const name = pathNames[segment] || segment
+  // Filter out locale segment (e.g., "en", "ru")
+  const filteredSegments = segments.filter(
+    (segment) => !["en", "ru"].includes(segment),
+  )
+
+  const breadcrumbs = filteredSegments.map((segment, index) => {
+    const href = "/" + filteredSegments.slice(0, index + 1).join("/")
+    const isLast = index === filteredSegments.length - 1
+    const name = getSlugTitle(segment)
 
     return { href, name, isLast }
   })

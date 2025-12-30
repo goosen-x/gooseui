@@ -11,10 +11,7 @@ export const metadata = {
 export default function AnimatedTimerPage() {
   return (
     <div className="space-y-8">
-      <DocsPageNav
-        title="Animated Timer"
-        prevHref="/docs/components/input"
-      />
+      <DocsPageNav title="Animated Timer" prevHref="/docs/components/input" />
       <p className="text-muted-foreground">
         Beautiful animated clock with smoothly sliding digits and gradient
         border

@@ -60,6 +60,18 @@ export const docsNav = [
       {
         title: "Toast",
         href: "/docs/components/toast",
+      },
+      {
+        title: "Typography",
+        href: "/docs/components/typography",
+      },
+      {
+        title: "Theme Customizer",
+        href: "/docs/components/theme-customizer",
+      },
+      {
+        title: "Carousel",
+        href: "/docs/components/carousel",
         isNew: true,
       },
     ],

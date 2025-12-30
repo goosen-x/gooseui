@@ -3,6 +3,7 @@ import { DocsHeaderNav } from "@/components/docs-header-nav"
 import { GitHubStars } from "@/components/github-stars"
 import { GitHubStarsSkeleton } from "@/components/github-stars-skeleton"
 import { HeaderNav } from "@/components/site/header-nav"
+import { SiteSearch } from "@/components/site/site-search"
 
 export function DocsHeader() {
   return (
@@ -11,6 +12,7 @@ export function DocsHeader() {
         <DocsHeaderNav />
         <div className="flex flex-1 items-center justify-end space-x-6">
           <HeaderNav />
+          <SiteSearch />
           <Suspense
             fallback={<GitHubStarsSkeleton className="hidden sm:flex" />}
           >

@@ -1,0 +1,318 @@
+import { DocsPageNav } from "@/components/docs/docs-page-nav"
+import { InstallCommand } from "@/components/docs/install-command"
+import { BaselineStatus } from "@/registry/new-york/ui/baseline-status"
+
+export const metadata = {
+  title: "Baseline Status",
+  description:
+    "Display browser support status for web features based on the W3C WebDX Baseline specification",
+}
+
+export default function BaselineStatusPage() {
+  return (
+    <div className="space-y-8">
+      <DocsPageNav
+        title="Baseline Status"
+        prevHref="/docs/components/carousel"
+      />
+      <p className="text-muted-foreground">
+        Display browser support status for web features based on the W3C WebDX
+        Baseline specification.
+      </p>
+
+      <div className="space-y-4">
+        <h2
+          id="demo"
+          className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight"
+        >
+          Demo
+        </h2>
+        <div className="flex flex-col gap-4 py-8 px-6 bg-muted/50 rounded-lg">
+          <div className="flex items-center gap-4">
+            <span className="text-sm text-muted-foreground w-32">
+              Widely Available:
+            </span>
+            <BaselineStatus status="widely" year={2022} />
+          </div>
+          <div className="flex items-center gap-4">
+            <span className="text-sm text-muted-foreground w-32">
+              Newly Available:
+            </span>
+            <BaselineStatus status="newly" year={2024} />
+          </div>
+          <div className="flex items-center gap-4">
+            <span className="text-sm text-muted-foreground w-32">Limited:</span>
+            <BaselineStatus status="limited" />
+          </div>
+          <div className="flex items-center gap-4">
+            <span className="text-sm text-muted-foreground w-32">No Data:</span>
+            <BaselineStatus status="no_data" />
+          </div>
+        </div>
+      </div>
+
+      <div className="space-y-4">
+        <h2
+          id="installation"
+          className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight"
+        >
+          Installation
+        </h2>
+        <InstallCommand packageName="https://gooseui.pro/r/baseline-status.json" />
+      </div>
+
+      <div className="space-y-4">
+        <h2
+          id="usage"
+          className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight"
+        >
+          Usage
+        </h2>
+        <pre className="bg-muted p-4 rounded-lg overflow-x-auto">
+          <code>{`import { BaselineStatus } from "@/components/ui/baseline-status"
+
+// With static data
+<BaselineStatus status="widely" year={2022} />
+
+// With feature ID (fetches from API)
+<BaselineStatus featureId="scroll-snap" />`}</code>
+        </pre>
+      </div>
+
+      <div className="space-y-4">
+        <h2
+          id="examples"
+          className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight"
+        >
+          Examples
+        </h2>
+
+        <div className="space-y-6">
+          <div>
+            <h3 className="text-lg font-medium mb-3">Size variants</h3>
+            <div className="flex flex-col gap-4 py-6 px-6 bg-muted/50 rounded-lg">
+              <div className="flex items-center gap-4">
+                <span className="text-sm text-muted-foreground w-16">sm:</span>
+                <BaselineStatus status="widely" year={2022} size="sm" />
+              </div>
+              <div className="flex items-center gap-4">
+                <span className="text-sm text-muted-foreground w-16">md:</span>
+                <BaselineStatus status="widely" year={2022} size="md" />
+              </div>
+              <div className="flex items-center gap-4">
+                <span className="text-sm text-muted-foreground w-16">lg:</span>
+                <BaselineStatus status="widely" year={2022} size="lg" />
+              </div>
+            </div>
+            <pre className="bg-muted p-4 rounded-lg overflow-x-auto mt-2">
+              <code>{`<BaselineStatus status="widely" year={2022} size="sm" />
+<BaselineStatus status="widely" year={2022} size="md" />
+<BaselineStatus status="widely" year={2022} size="lg" />`}</code>
+            </pre>
+          </div>
+
+          <div>
+            <h3 className="text-lg font-medium mb-3">Icon only</h3>
+            <div className="flex gap-4 py-6 px-6 bg-muted/50 rounded-lg">
+              <BaselineStatus status="widely" iconOnly />
+              <BaselineStatus status="newly" iconOnly />
+              <BaselineStatus status="limited" iconOnly />
+              <BaselineStatus status="no_data" iconOnly />
+            </div>
+            <pre className="bg-muted p-4 rounded-lg overflow-x-auto mt-2">
+              <code>{`<BaselineStatus status="widely" iconOnly />
+<BaselineStatus status="newly" iconOnly />
+<BaselineStatus status="limited" iconOnly />
+<BaselineStatus status="no_data" iconOnly />`}</code>
+            </pre>
+          </div>
+
+          <div>
+            <h3 className="text-lg font-medium mb-3">Without year</h3>
+            <div className="flex gap-4 py-6 px-6 bg-muted/50 rounded-lg">
+              <BaselineStatus status="widely" showYear={false} />
+            </div>
+            <pre className="bg-muted p-4 rounded-lg overflow-x-auto mt-2">
+              <code>{`<BaselineStatus status="widely" showYear={false} />`}</code>
+            </pre>
+          </div>
+
+          <div>
+            <h3 className="text-lg font-medium mb-3">With Feature ID (API)</h3>
+            <div className="flex gap-4 py-6 px-6 bg-muted/50 rounded-lg">
+              <BaselineStatus featureId="scroll-snap" />
+            </div>
+            <pre className="bg-muted p-4 rounded-lg overflow-x-auto mt-2">
+              <code>{`// Fetches data from webstatus.dev API
+<BaselineStatus featureId="scroll-snap" />`}</code>
+            </pre>
+          </div>
+        </div>
+      </div>
+
+      <div className="space-y-4">
+        <h2
+          id="props"
+          className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight"
+        >
+          Props
+        </h2>
+        <div className="border rounded-lg overflow-hidden">
+          <table className="w-full text-sm">
+            <thead className="bg-muted">
+              <tr>
+                <th className="text-left p-3 font-medium">Prop</th>
+                <th className="text-left p-3 font-medium">Type</th>
+                <th className="text-left p-3 font-medium">Default</th>
+                <th className="text-left p-3 font-medium">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-t">
+                <td className="p-3 font-mono text-xs">featureId</td>
+                <td className="p-3 font-mono text-xs">string</td>
+                <td className="p-3 font-mono text-xs">-</td>
+                <td className="p-3">
+                  Feature ID from web-features (e.g., &quot;scroll-snap&quot;)
+                </td>
+              </tr>
+              <tr className="border-t">
+                <td className="p-3 font-mono text-xs">status</td>
+                <td className="p-3 font-mono text-xs">
+                  &quot;widely&quot; | &quot;newly&quot; | &quot;limited&quot; |
+                  &quot;no_data&quot;
+                </td>
+                <td className="p-3 font-mono text-xs">-</td>
+                <td className="p-3">Direct status override (static data)</td>
+              </tr>
+              <tr className="border-t">
+                <td className="p-3 font-mono text-xs">year</td>
+                <td className="p-3 font-mono text-xs">number</td>
+                <td className="p-3 font-mono text-xs">-</td>
+                <td className="p-3">Year when feature became available</td>
+              </tr>
+              <tr className="border-t">
+                <td className="p-3 font-mono text-xs">size</td>
+                <td className="p-3 font-mono text-xs">
+                  &quot;sm&quot; | &quot;md&quot; | &quot;lg&quot;
+                </td>
+                <td className="p-3 font-mono text-xs">&quot;md&quot;</td>
+                <td className="p-3">Size variant</td>
+              </tr>
+              <tr className="border-t">
+                <td className="p-3 font-mono text-xs">showYear</td>
+                <td className="p-3 font-mono text-xs">boolean</td>
+                <td className="p-3 font-mono text-xs">true</td>
+                <td className="p-3">Show year in the label</td>
+              </tr>
+              <tr className="border-t">
+                <td className="p-3 font-mono text-xs">iconOnly</td>
+                <td className="p-3 font-mono text-xs">boolean</td>
+                <td className="p-3 font-mono text-xs">false</td>
+                <td className="p-3">Show only the icon without text</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div className="space-y-4">
+        <h2
+          id="feature-ids"
+          className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight"
+        >
+          Common Feature IDs
+        </h2>
+        <p className="text-muted-foreground">
+          Feature IDs can be found at{" "}
+          <a
+            href="https://github.com/web-platform-dx/web-features/tree/main/features"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-primary underline"
+          >
+            web-features repository
+          </a>
+          .
+        </p>
+        <div className="border rounded-lg overflow-hidden">
+          <table className="w-full text-sm">
+            <thead className="bg-muted">
+              <tr>
+                <th className="text-left p-3 font-medium">Feature</th>
+                <th className="text-left p-3 font-medium">ID</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-t">
+                <td className="p-3">CSS Scroll Snap</td>
+                <td className="p-3 font-mono text-xs">scroll-snap</td>
+              </tr>
+              <tr className="border-t">
+                <td className="p-3">Container Queries</td>
+                <td className="p-3 font-mono text-xs">container-queries</td>
+              </tr>
+              <tr className="border-t">
+                <td className="p-3">CSS Grid</td>
+                <td className="p-3 font-mono text-xs">css-grid</td>
+              </tr>
+              <tr className="border-t">
+                <td className="p-3">Anchor Positioning</td>
+                <td className="p-3 font-mono text-xs">anchor-positioning</td>
+              </tr>
+              <tr className="border-t">
+                <td className="p-3">View Transitions</td>
+                <td className="p-3 font-mono text-xs">view-transitions</td>
+              </tr>
+              <tr className="border-t">
+                <td className="p-3">Popover API</td>
+                <td className="p-3 font-mono text-xs">popover</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div className="space-y-4">
+        <h2
+          id="references"
+          className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight"
+        >
+          References
+        </h2>
+        <ul className="list-disc list-inside space-y-2 text-muted-foreground">
+          <li>
+            <a
+              href="https://web.dev/baseline"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary underline"
+            >
+              Baseline Official Documentation
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://github.com/web-platform-dx/web-features"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary underline"
+            >
+              web-features GitHub Repository
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://api.webstatus.dev/v1/features/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary underline"
+            >
+              WebStatus API
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  )
+}

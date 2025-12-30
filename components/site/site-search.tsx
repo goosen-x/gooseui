@@ -1,13 +1,15 @@
 "use client"
 
 import {
-  ArrowRightIcon,
-  CircleIcon,
+  ComponentIcon,
   CornerDownLeftIcon,
+  FileTextIcon,
   SearchIcon,
+  SparklesIcon,
 } from "lucide-react"
 import { useRouter } from "next/navigation"
-import * as React from "react"
+import { useCallback, useEffect, useRef, useState } from "react"
+
 import {
   Command,
   CommandEmpty,
@@ -23,175 +25,266 @@ import {
   DialogDescription,
   DialogHeader,
   DialogTitle,
+  DialogTrigger,
 } from "@/components/ui/dialog"
-import { Kbd } from "@/components/ui/kbd"
+import { Kbd, KbdGroup } from "@/components/ui/kbd"
+import { useIsMac } from "@/hooks/use-is-mac"
+import { useMutationObserver } from "@/hooks/use-mutation-observer"
+import { getSearchableItems } from "@/lib/config/docs-navigation"
 import { cn } from "@/lib/utils"
 
-interface SearchLink {
-  title: string
-  href: string
-}
+// Get navigation data from shared config
+const searchData = getSearchableItems()
 
-interface SearchFAQ {
-  question: string
-  href: string
-}
+function CommandMenuItem({
+  children,
+  className,
+  onHighlight,
+  ...props
+}: React.ComponentProps<typeof CommandItem> & {
+  onHighlight?: () => void
+}) {
+  const ref = useRef<HTMLDivElement>(null)
 
-interface SiteSearchProps {
-  links?: SearchLink[]
-  faqs?: SearchFAQ[]
-  open?: boolean
-  onOpenChange?: (open: boolean) => void
-}
-
-export function SiteSearch({
-  links = [],
-  faqs = [],
-  open,
-  onOpenChange,
-}: SiteSearchProps) {
-  const router = useRouter()
-  const [internalOpen, setInternalOpen] = React.useState(false)
-
-  const isOpen = open ?? internalOpen
-  const setIsOpen = onOpenChange ?? setInternalOpen
-
-  // Keyboard shortcut to open search
-  React.useEffect(() => {
-    const down = (e: KeyboardEvent) => {
-      if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
-        e.preventDefault()
-        setIsOpen(!isOpen)
+  useMutationObserver(ref, (mutations) => {
+    for (const mutation of mutations) {
+      if (
+        mutation.type === "attributes" &&
+        mutation.attributeName === "aria-selected" &&
+        ref.current?.getAttribute("aria-selected") === "true"
+      ) {
+        onHighlight?.()
       }
     }
-    document.addEventListener("keydown", down)
-    return () => document.removeEventListener("keydown", down)
-  }, [isOpen, setIsOpen])
-
-  const handleSelect = React.useCallback(
-    (href: string) => {
-      setIsOpen(false)
-      router.push(href)
-    },
-    [router, setIsOpen],
-  )
+  })
 
   return (
-    <Dialog open={isOpen} onOpenChange={setIsOpen}>
-      <DialogHeader className="sr-only">
-        <DialogTitle>Search documentation...</DialogTitle>
-        <DialogDescription>Search for a command to run...</DialogDescription>
-      </DialogHeader>
+    <CommandItem
+      ref={ref}
+      className={cn(
+        "h-9 rounded-md border border-transparent !px-3 font-medium cursor-pointer",
+        "data-[selected=true]:border-input data-[selected=true]:bg-accent/50",
+        className,
+      )}
+      {...props}
+    >
+      {children}
+    </CommandItem>
+  )
+}
+
+export function SiteSearch() {
+  const router = useRouter()
+  const isMac = useIsMac()
+  const [open, setOpen] = useState(false)
+  const [selectedType, setSelectedType] = useState<
+    "page" | "component" | "effect" | null
+  >(null)
+  const [copyPayload, setCopyPayload] = useState("")
+
+  const runCommand = useCallback((command: () => void) => {
+    setOpen(false)
+    command()
+  }, [])
+
+  // Global keyboard shortcuts
+  useEffect(() => {
+    const down = (e: KeyboardEvent) => {
+      // Cmd/Ctrl+K or "/" opens the menu
+      if ((e.key === "k" && (e.metaKey || e.ctrlKey)) || e.key === "/") {
+        if (
+          (e.target instanceof HTMLElement && e.target.isContentEditable) ||
+          e.target instanceof HTMLInputElement ||
+          e.target instanceof HTMLTextAreaElement ||
+          e.target instanceof HTMLSelectElement
+        ) {
+          return
+        }
+        e.preventDefault()
+        setOpen((open) => !open)
+      }
+    }
+
+    document.addEventListener("keydown", down)
+    return () => document.removeEventListener("keydown", down)
+  }, [])
+
+  return (
+    <Dialog open={open} onOpenChange={setOpen}>
+      <DialogTrigger asChild>
+        <button
+          className={cn(
+            "inline-flex items-center gap-2 rounded-md border border-input",
+            "bg-muted/50 px-3 py-1.5 text-sm text-muted-foreground",
+            "shadow-sm transition-colors cursor-pointer",
+            "hover:bg-accent hover:text-accent-foreground",
+            "md:w-40 lg:w-56",
+          )}
+          onClick={() => setOpen(true)}
+        >
+          <SearchIcon className="size-4" />
+          <span className="hidden lg:inline-flex">Search docs...</span>
+          <span className="inline-flex lg:hidden">Search...</span>
+          <KbdGroup className="ml-auto hidden sm:inline-flex">
+            <Kbd>{isMac ? "⌘" : "Ctrl"}</Kbd>
+            <Kbd>K</Kbd>
+          </KbdGroup>
+        </button>
+      </DialogTrigger>
+
       <DialogContent
+        showCloseButton={false}
         className={cn(
-          "overflow-hidden rounded-xl border-none p-2 pb-11",
-          "shadow-2xl ring-4 ring-neutral-200/80",
+          "rounded-xl border-none bg-clip-padding p-2 pb-11 shadow-2xl",
+          "ring-4 ring-neutral-200/80",
           "dark:bg-neutral-900 dark:ring-neutral-800",
         )}
-        showCloseButton={false}
       >
+        <DialogHeader className="sr-only">
+          <DialogTitle>Search documentation</DialogTitle>
+          <DialogDescription>
+            Search for pages and components...
+          </DialogDescription>
+        </DialogHeader>
+
         <Command
           className={cn(
             "rounded-none bg-transparent",
-            "**:data-[slot=command-input-wrapper]:mb-0",
-            "**:data-[slot=command-input-wrapper]:h-9",
-            "**:data-[slot=command-input-wrapper]:rounded-md",
-            "**:data-[slot=command-input-wrapper]:border",
-            "**:data-[slot=command-input-wrapper]:border-input",
             "**:data-[slot=command-input-wrapper]:bg-input/50",
+            "**:data-[slot=command-input-wrapper]:border-input",
             "**:data-[slot=command-input]:!h-9",
             "**:data-[slot=command-input]:py-0",
+            "**:data-[slot=command-input-wrapper]:mb-0",
+            "**:data-[slot=command-input-wrapper]:!h-9",
+            "**:data-[slot=command-input-wrapper]:rounded-md",
+            "**:data-[slot=command-input-wrapper]:border",
           )}
+          filter={(value, search, keywords) => {
+            const extendValue = value + " " + (keywords?.join(" ") || "")
+            if (extendValue.toLowerCase().includes(search.toLowerCase())) {
+              return 1
+            }
+            return 0
+          }}
         >
           <CommandInput placeholder="Type a command or search..." />
-          <CommandList className="no-scrollbar min-h-80 max-h-[300px] scroll-py-1 scroll-pt-2 scroll-pb-1.5">
+
+          <CommandList className="max-h-[300px]">
             <CommandEmpty>No results found.</CommandEmpty>
 
-            {links.length > 0 && (
-              <CommandGroup heading="Links">
-                {links.map((link) => (
-                  <CommandItem
-                    key={link.href}
-                    value={link.title}
-                    onSelect={() => handleSelect(link.href)}
-                    className={cn(
-                      "h-9 rounded-md border border-transparent !px-3 font-medium",
-                      "data-[selected=true]:border-input data-[selected=true]:bg-input/50",
-                    )}
-                  >
-                    <ArrowRightIcon className="mr-2 h-4 w-4" />
-                    {link.title}
-                  </CommandItem>
-                ))}
-              </CommandGroup>
-            )}
+            {/* Pages */}
+            <CommandGroup
+              heading="Pages"
+              className="!p-0 [&_[cmdk-group-heading]]:!p-3 [&_[cmdk-group-heading]]:!pb-1"
+            >
+              {searchData.pages.map((item) => (
+                <CommandMenuItem
+                  key={item.href}
+                  value={item.title}
+                  keywords={item.keywords}
+                  onHighlight={() => {
+                    setSelectedType("page")
+                    setCopyPayload("")
+                  }}
+                  onSelect={() => runCommand(() => router.push(item.href))}
+                >
+                  <FileTextIcon className="mr-2 size-4 text-muted-foreground" />
+                  {item.title}
+                </CommandMenuItem>
+              ))}
+            </CommandGroup>
 
-            {links.length > 0 && faqs.length > 0 && <CommandSeparator />}
+            <CommandSeparator />
 
-            {faqs.length > 0 && (
-              <CommandGroup heading="FAQ">
-                {faqs.map((faq) => (
-                  <CommandItem
-                    key={faq.href}
-                    value={faq.question}
-                    onSelect={() => handleSelect(faq.href)}
-                    className={cn(
-                      "h-9 rounded-md border border-transparent !px-3 font-medium",
-                      "data-[selected=true]:border-input data-[selected=true]:bg-input/50",
-                    )}
+            {/* Components */}
+            <CommandGroup
+              heading="Components"
+              className="!p-0 [&_[cmdk-group-heading]]:!p-3 [&_[cmdk-group-heading]]:!pb-1"
+            >
+              {searchData.components.map((item) => {
+                const componentName = item.href.split("/").pop()
+                return (
+                  <CommandMenuItem
+                    key={item.href}
+                    value={item.title}
+                    keywords={["component", componentName || ""]}
+                    onHighlight={() => {
+                      setSelectedType("component")
+                      setCopyPayload(
+                        `npx shadcn@latest add https://gooseui.pro/r/${componentName}.json`,
+                      )
+                    }}
+                    onSelect={() => runCommand(() => router.push(item.href))}
                   >
-                    <div className="mr-2 flex h-4 w-4 items-center justify-center">
-                      <CircleIcon className="h-3 w-3" />
-                    </div>
-                    {faq.question}
-                  </CommandItem>
-                ))}
-              </CommandGroup>
-            )}
+                    <ComponentIcon className="mr-2 size-4 text-muted-foreground" />
+                    {item.title}
+                  </CommandMenuItem>
+                )
+              })}
+            </CommandGroup>
+
+            <CommandSeparator />
+
+            {/* Effects */}
+            <CommandGroup
+              heading="Effects"
+              className="!p-0 [&_[cmdk-group-heading]]:!p-3 [&_[cmdk-group-heading]]:!pb-1"
+            >
+              {searchData.effects.map((item) => {
+                const effectName = item.href.split("/").pop()
+                return (
+                  <CommandMenuItem
+                    key={item.href}
+                    value={item.title}
+                    keywords={["effect", effectName || ""]}
+                    onHighlight={() => {
+                      setSelectedType("effect")
+                      setCopyPayload(
+                        `npx shadcn@latest add https://gooseui.pro/r/${effectName}.json`,
+                      )
+                    }}
+                    onSelect={() => runCommand(() => router.push(item.href))}
+                  >
+                    <SparklesIcon className="mr-2 size-4 text-muted-foreground" />
+                    {item.title}
+                  </CommandMenuItem>
+                )
+              })}
+            </CommandGroup>
           </CommandList>
         </Command>
 
-        {/* Footer */}
+        {/* Dynamic Footer */}
         <div
           className={cn(
             "absolute inset-x-0 bottom-0 z-20",
             "flex h-10 items-center gap-2 px-4",
-            "rounded-b-xl border-t border-t-neutral-100 bg-neutral-50",
-            "text-xs font-medium text-muted-foreground",
+            "rounded-b-xl border-t",
+            "border-t-neutral-100 bg-neutral-50",
             "dark:border-t-neutral-700 dark:bg-neutral-800",
+            "text-muted-foreground text-xs font-medium",
           )}
         >
           <div className="flex items-center gap-2">
             <Kbd className="border">
               <CornerDownLeftIcon className="size-3" />
             </Kbd>
-            Go to Page
+            {selectedType === "page" && "Go to Page"}
+            {selectedType === "component" && "Go to Component"}
+            {selectedType === "effect" && "Go to Effect"}
+            {!selectedType && "Select"}
           </div>
+
+          {copyPayload && (
+            <>
+              <div className="h-4 w-px bg-border" />
+              <code className="text-[10px] truncate max-w-[280px] text-muted-foreground/70">
+                {copyPayload}
+              </code>
+            </>
+          )}
         </div>
       </DialogContent>
     </Dialog>
-  )
-}
-
-// Trigger button component
-export function SiteSearchTrigger({
-  className,
-  ...props
-}: React.ButtonHTMLAttributes<HTMLButtonElement>) {
-  return (
-    <button
-      className={cn(
-        "inline-flex items-center gap-2 rounded-md border border-input bg-background px-3 py-1.5 text-sm text-muted-foreground shadow-sm transition-colors hover:bg-accent hover:text-accent-foreground",
-        className,
-      )}
-      {...props}
-    >
-      <SearchIcon className="h-4 w-4" />
-      <span className="hidden lg:inline-flex">Search documentation...</span>
-      <span className="lg:hidden">Search...</span>
-      <Kbd className="ml-auto hidden lg:inline-flex">
-        <span className="text-xs">⌘</span>K
-      </Kbd>
-    </button>
   )
 }

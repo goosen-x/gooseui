@@ -84,7 +84,7 @@ export function InstallCommand({
                     "h-7 rounded-md border px-2 pt-0.5 text-sm inline-flex items-center",
                     pm === defaultPm
                       ? "border-input bg-accent"
-                      : "border-transparent"
+                      : "border-transparent",
                   )}
                 >
                   {pm}

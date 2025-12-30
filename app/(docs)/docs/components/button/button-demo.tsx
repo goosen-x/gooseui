@@ -1,7 +1,7 @@
 "use client"
 
-import { Button } from "@/registry/new-york/ui/button"
 import { customToast } from "@/lib/toast"
+import { Button } from "@/registry/new-york/ui/button"
 
 export function ButtonPreview() {
   return (
@@ -76,7 +76,10 @@ export function ButtonVariantDemo({
 export function ButtonSizesDemo() {
   return (
     <div className="flex flex-wrap items-center gap-4 rounded-lg border p-6">
-      <Button size="sm" onClick={() => customToast.info("Small button clicked")}>
+      <Button
+        size="sm"
+        onClick={() => customToast.info("Small button clicked")}
+      >
         Small
       </Button>
       <Button
@@ -85,7 +88,10 @@ export function ButtonSizesDemo() {
       >
         Default
       </Button>
-      <Button size="lg" onClick={() => customToast.info("Large button clicked")}>
+      <Button
+        size="lg"
+        onClick={() => customToast.info("Large button clicked")}
+      >
         Large
       </Button>
       <Button

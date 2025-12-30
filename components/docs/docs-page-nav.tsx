@@ -27,16 +27,10 @@ function MarkdownIcon({ className }: { className?: string }) {
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
+      fill="currentColor"
       className={className}
     >
-      <rect x="3" y="5" width="18" height="14" rx="2" />
-      <path d="M7 15V9l2 3 2-3v6" />
-      <path d="M17 9v6l-2-2" />
+      <path d="M22.27 19.385H1.73A1.73 1.73 0 010 17.655V6.345a1.73 1.73 0 011.73-1.73h20.54A1.73 1.73 0 0124 6.345v11.308a1.73 1.73 0 01-1.73 1.731zM5.769 15.923v-4.5l2.308 2.885 2.307-2.885v4.5h2.308V8.078h-2.308l-2.307 2.885-2.308-2.885H3.46v7.847zM21.232 12h-2.309V8.077h-2.307V12h-2.308l3.461 4.039z" />
     </svg>
   )
 }
@@ -44,19 +38,12 @@ function MarkdownIcon({ className }: { className?: string }) {
 function V0Icon({ className }: { className?: string }) {
   return (
     <svg
-      viewBox="0 0 40 20"
-      fill="none"
+      viewBox="0 0 24 24"
+      fill="currentColor"
       xmlns="http://www.w3.org/2000/svg"
       className={className}
     >
-      <path
-        d="M23.3919 0H32.9188C36.7819 0 39.9136 3.13165 39.9136 6.99475V16.0805H36.0006V6.99475C36.0006 6.90167 35.9969 6.80925 35.9898 6.71766L26.4628 16.079C26.4949 16.08 26.5272 16.0805 26.5765 16.0805H36.0006V19.7762H26.5765C22.7164 19.7762 19.5765 16.6426 19.5765 12.7848V3.68923H23.4999V12.6479L32.8398 3.4609C32.756 3.4268 32.6398 3.39552 32.5765 3.39552H23.3919V0Z"
-        fill="currentColor"
-      />
-      <path
-        d="M13.7688 19.9999L0 0L4.53479 0L13.6391 13.2145L22.7434 0H27.2782L13.7688 19.9999Z"
-        fill="currentColor"
-      />
+      <path d="M14.066 6.028v2.22h5.729q.075-.001.148.005l-5.853 5.752a2 2 0 0 1-.024-.309V8.247h-2.353v5.45c0 2.322 1.935 4.222 4.258 4.222h5.675v-2.22h-5.675q-.03 0-.059-.003l5.729-5.629q.006.082.006.166v5.465H24v-5.465a4.204 4.204 0 0 0-4.205-4.205zM0 8.245l8.28 9.266c.839.94 2.396.346 2.396-.914V8.245H8.19v5.44l-4.86-5.44Z" />
     </svg>
   )
 }
@@ -86,7 +73,7 @@ function ClaudeIcon({ className }: { className?: string }) {
       className={className}
     >
       <path
-        d="M16.734 2.037a.644.644 0 0 0-.631.521L13.09 16.631a.644.644 0 0 0 .631.767h2.207a.644.644 0 0 0 .631-.521l3.013-14.073a.644.644 0 0 0-.631-.767zM8.472 2.037a.644.644 0 0 0-.631.521L4.828 16.631a.644.644 0 0 0 .631.767h2.207a.644.644 0 0 0 .631-.521l1.38-6.448 2.89 6.687a.644.644 0 0 0 .591.39h2.404a.644.644 0 0 0 .591-.91l-3.62-8.116 2.34-5.694a.644.644 0 0 0-.595-.849H11.96a.644.644 0 0 0-.608.429L9.683 6.824 8.472 2.037z"
+        d="m4.7144 15.9555 4.7174-2.6471.079-.2307-.079-.1275h-.2307l-.7893-.0486-2.6956-.0729-2.3375-.0971-2.2646-.1214-.5707-.1215-.5343-.7042.0546-.3522.4797-.3218.686.0608 1.5179.1032 2.2767.1578 1.6514.0972 2.4468.255h.3886l.0546-.1579-.1336-.0971-.1032-.0972L6.973 9.8356l-2.55-1.6879-1.3356-.9714-.7225-.4918-.3643-.4614-.1578-1.0078.6557-.7225.8803.0607.2246.0607.8925.686 1.9064 1.4754 2.4893 1.8336.3643.3035.1457-.1032.0182-.0728-.164-.2733-1.3539-2.4467-1.445-2.4893-.6435-1.032-.17-.6194c-.0607-.255-.1032-.4674-.1032-.7285L6.287.1335 6.6997 0l.9957.1336.419.3642.6192 1.4147 1.0018 2.2282 1.5543 3.0296.4553.8985.2429.8318.091.255h.1579v-.1457l.1275-1.706.2368-2.0947.2307-2.6957.0789-.7589.3764-.9107.7468-.4918.5828.2793.4797.686-.0668.4433-.2853 1.8517-.5586 2.9021-.3643 1.9429h.2125l.2429-.2429.9835-1.3053 1.6514-2.0643.7286-.8196.85-.9046.5464-.4311h1.0321l.759 1.1293-.34 1.1657-1.0625 1.3478-.8804 1.1414-1.2628 1.7-.7893 1.36.0729.1093.1882-.0183 2.8535-.607 1.5421-.2794 1.8396-.3157.8318.3886.091.3946-.3278.8075-1.967.4857-2.3072.4614-3.4364.8136-.0425.0304.0486.0607 1.5482.1457.6618.0364h1.621l3.0175.2247.7892.522.4736.6376-.079.4857-1.2142.6193-1.6393-.3886-3.825-.9107-1.3113-.3279h-.1822v.1093l1.0929 1.0686 2.0035 1.8092 2.5075 2.3314.1275.5768-.3218.4554-.34-.0486-2.2039-1.6575-.85-.7468-1.9246-1.621h-.1275v.17l.4432.6496 2.3436 3.5214.1214 1.0807-.17.3521-.6071.2125-.6679-.1214-1.3721-1.9246L14.38 17.959l-1.1414-1.9428-.1397.079-.674 7.2552-.3156.3703-.7286.2793-.6071-.4614-.3218-.7468.3218-1.4753.3886-1.9246.3157-1.53.2853-1.9004.17-.6314-.0121-.0425-.1397.0182-1.4328 1.9672-2.1796 2.9446-1.7243 1.8456-.4128.164-.7164-.3704.0667-.6618.4008-.5889 2.386-3.0357 1.4389-1.882.929-1.0868-.0062-.1579h-.0546l-6.3385 4.1164-1.1293.1457-.4857-.4554.0608-.7467.2307-.2429 1.9064-1.3114Z"
         fill="currentColor"
       />
     </svg>
@@ -182,7 +169,12 @@ export function DocsPageNav({
     const segments = pathname.split("/").filter(Boolean)
     const slug = segments[segments.length - 1]
 
-    if (slug && slug !== "docs" && slug !== "components" && slug !== "effects") {
+    if (
+      slug &&
+      slug !== "docs" &&
+      slug !== "components" &&
+      slug !== "effects"
+    ) {
       return getRegistryUrl(slug)
     }
 
@@ -261,22 +253,38 @@ ${registryUrl ? `Registry: ${registryUrl}` : ""}
     }
   }, [registryUrl, generateCodeForAI])
 
-  // Open in ChatGPT - copy code first, then open
+  // Open in ChatGPT - pass content via URL parameter
   const handleOpenInChatGPT = React.useCallback(async () => {
     const content = generateCodeForAI()
-    await copyToClipboard(content)
-    setCopiedAction("chatgpt")
-    setTimeout(() => setCopiedAction(null), 3000)
-    window.open("https://chat.openai.com/", "_blank")
+    const encodedContent = encodeURIComponent(content)
+
+    // URL length limit is ~2000 chars, use URL param if content fits
+    if (encodedContent.length < 1800) {
+      window.open(`https://chat.openai.com/?q=${encodedContent}`, "_blank")
+    } else {
+      // Fallback to clipboard for long content
+      await copyToClipboard(content)
+      setCopiedAction("chatgpt")
+      setTimeout(() => setCopiedAction(null), 3000)
+      window.open("https://chat.openai.com/", "_blank")
+    }
   }, [generateCodeForAI])
 
-  // Open in Claude - copy code first, then open
+  // Open in Claude - pass content via URL parameter
   const handleOpenInClaude = React.useCallback(async () => {
     const content = generateCodeForAI()
-    await copyToClipboard(content)
-    setCopiedAction("claude")
-    setTimeout(() => setCopiedAction(null), 3000)
-    window.open("https://claude.ai/new", "_blank")
+    const encodedContent = encodeURIComponent(content)
+
+    // URL length limit is ~2000 chars, use URL param if content fits
+    if (encodedContent.length < 1800) {
+      window.open(`https://claude.ai/new?q=${encodedContent}`, "_blank")
+    } else {
+      // Fallback to clipboard for long content
+      await copyToClipboard(content)
+      setCopiedAction("claude")
+      setTimeout(() => setCopiedAction(null), 3000)
+      window.open("https://claude.ai/new", "_blank")
+    }
   }, [generateCodeForAI])
 
   // Open in T3 Chat - pass content via URL parameter

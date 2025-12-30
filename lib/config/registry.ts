@@ -33,7 +33,11 @@ export const REGISTRY_ITEMS: RegistryItem[] = [
   { slug: "card", name: "Card", type: "component" },
   { slug: "input", name: "Input", type: "component" },
   { slug: "animated-timer", name: "Animated Timer", type: "component" },
-  { slug: "animated-toggle-group", name: "Animated Toggle Group", type: "component" },
+  {
+    slug: "animated-toggle-group",
+    name: "Animated Toggle Group",
+    type: "component",
+  },
   {
     slug: "toast",
     name: "Toast",

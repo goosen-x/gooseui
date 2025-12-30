@@ -19,7 +19,7 @@ const animatedToggleGroupVariants = cva(
     defaultVariants: {
       size: "default",
     },
-  }
+  },
 )
 
 const animatedToggleGroupItemVariants = cva(
@@ -53,7 +53,7 @@ const animatedToggleGroupItemVariants = cva(
     defaultVariants: {
       size: "default",
     },
-  }
+  },
 )
 
 type AnimatedToggleGroupContextValue = VariantProps<
@@ -99,7 +99,7 @@ function AnimatedToggleGroupItem({
       data-slot="animated-toggle-group-item"
       className={cn(
         animatedToggleGroupItemVariants({ size: size || context.size }),
-        className
+        className,
       )}
       {...props}
     >

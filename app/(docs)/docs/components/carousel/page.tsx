@@ -1,6 +1,6 @@
+import { ComponentBaseline } from "@/components/docs/component-baseline"
 import { DocsPageNav } from "@/components/docs/docs-page-nav"
 import { InstallCommand } from "@/components/docs/install-command"
-import { ComponentBaseline } from "@/components/docs/component-baseline"
 import {
   CarouselAutoPlay,
   CarouselDemo,
@@ -162,9 +162,9 @@ export default function Example() {
         </h2>
         <ul className="list-disc list-inside space-y-2 text-muted-foreground">
           <li>
-            <strong className="text-foreground">CSS Scroll Snap</strong> — Native
-            scroll snapping for smooth, performant scrolling (96.4% browser
-            support)
+            <strong className="text-foreground">CSS Scroll Snap</strong> —
+            Native scroll snapping for smooth, performant scrolling (96.4%
+            browser support)
           </li>
           <li>
             <strong className="text-foreground">Drag to Scroll</strong> — Mouse
@@ -179,20 +179,20 @@ export default function Example() {
             auto-advance with pause on hover
           </li>
           <li>
-            <strong className="text-foreground">Loop</strong> — Optional infinite
-            loop mode
+            <strong className="text-foreground">Loop</strong> — Optional
+            infinite loop mode
           </li>
           <li>
             <strong className="text-foreground">Multiple Indicators</strong> —
             Dots, lines, numbers, progress bar, counter
           </li>
           <li>
-            <strong className="text-foreground">Accessible</strong> — ARIA roles,
-            labels, and keyboard support
+            <strong className="text-foreground">Accessible</strong> — ARIA
+            roles, labels, and keyboard support
           </li>
           <li>
-            <strong className="text-foreground">Vertical Mode</strong> — Supports
-            both horizontal and vertical orientation
+            <strong className="text-foreground">Vertical Mode</strong> —
+            Supports both horizontal and vertical orientation
           </li>
         </ul>
       </div>
@@ -355,26 +355,56 @@ function CustomControls() {
         </h2>
         <div className="space-y-4 text-muted-foreground">
           <p>
-            This carousel uses <strong className="text-foreground">CSS Scroll Snap</strong> for
-            native scroll snapping with JavaScript for navigation controls. This approach
-            ensures <strong className="text-foreground">96.4% browser support</strong> while
-            providing smooth, performant scrolling.
+            This carousel uses{" "}
+            <strong className="text-foreground">CSS Scroll Snap</strong> for
+            native scroll snapping with JavaScript for navigation controls. This
+            approach ensures{" "}
+            <strong className="text-foreground">96.4% browser support</strong>{" "}
+            while providing smooth, performant scrolling.
           </p>
           <div className="rounded-lg border bg-card p-4">
-            <h4 className="font-medium text-foreground mb-2">CSS Features Used</h4>
+            <h4 className="font-medium text-foreground mb-2">
+              CSS Features Used
+            </h4>
             <ul className="list-disc list-inside space-y-1 text-sm">
-              <li><code className="text-xs bg-muted px-1 py-0.5 rounded">scroll-snap-type: x mandatory</code> — Snap alignment</li>
-              <li><code className="text-xs bg-muted px-1 py-0.5 rounded">snap-start</code> — Item snap points</li>
-              <li><code className="text-xs bg-muted px-1 py-0.5 rounded">overscroll-behavior: contain</code> — Prevent page scroll</li>
+              <li>
+                <code className="text-xs bg-muted px-1 py-0.5 rounded">
+                  scroll-snap-type: x mandatory
+                </code>{" "}
+                — Snap alignment
+              </li>
+              <li>
+                <code className="text-xs bg-muted px-1 py-0.5 rounded">
+                  snap-start
+                </code>{" "}
+                — Item snap points
+              </li>
+              <li>
+                <code className="text-xs bg-muted px-1 py-0.5 rounded">
+                  overscroll-behavior: contain
+                </code>{" "}
+                — Prevent page scroll
+              </li>
             </ul>
           </div>
           <div className="rounded-lg border border-dashed p-4">
-            <h4 className="font-medium text-foreground mb-2">Future CSS Carousels (Chrome 135+)</h4>
+            <h4 className="font-medium text-foreground mb-2">
+              Future CSS Carousels (Chrome 135+)
+            </h4>
             <p className="text-sm mb-2">
-              New CSS features like <code className="text-xs bg-muted px-1 py-0.5 rounded">::scroll-button</code>,{" "}
-              <code className="text-xs bg-muted px-1 py-0.5 rounded">::scroll-marker</code>, and{" "}
-              <code className="text-xs bg-muted px-1 py-0.5 rounded">scroll-state()</code> queries
-              enable pure-CSS carousels but are not yet Baseline.
+              New CSS features like{" "}
+              <code className="text-xs bg-muted px-1 py-0.5 rounded">
+                ::scroll-button
+              </code>
+              ,{" "}
+              <code className="text-xs bg-muted px-1 py-0.5 rounded">
+                ::scroll-marker
+              </code>
+              , and{" "}
+              <code className="text-xs bg-muted px-1 py-0.5 rounded">
+                scroll-state()
+              </code>{" "}
+              queries enable pure-CSS carousels but are not yet Baseline.
             </p>
             <a
               href="https://chrome.dev/carousel/"
