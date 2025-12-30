@@ -16,52 +16,12 @@ import {
   SidebarMenuSubButton,
   SidebarMenuSubItem,
 } from "@/components/ui/sidebar"
+import {
+  docsNavigation,
+  filterDraftItems,
+} from "@/lib/config/docs-navigation"
 
-type NavItem = {
-  title: string
-  href: string
-  isNew?: boolean
-}
-
-type NavSection = {
-  title: string
-  href?: string
-  items: NavItem[]
-}
-
-const docsNavConfig: NavSection[] = [
-  {
-    title: "Getting Started",
-    items: [
-      { title: "Introduction", href: "/docs" },
-      { title: "Installation", href: "/docs/installation" },
-      { title: "CLI", href: "/docs/cli" },
-    ],
-  },
-  {
-    title: "Components",
-    href: "/docs/components",
-    items: [
-      { title: "Animated Timer", href: "/docs/components/animated-timer" },
-      { title: "Button", href: "/docs/components/button" },
-      { title: "Card", href: "/docs/components/card" },
-      { title: "Input", href: "/docs/components/input" },
-      {
-        title: "Theme Customizer",
-        href: "/docs/components/theme-customizer",
-        isNew: true,
-      },
-      { title: "Toast", href: "/docs/components/toast" },
-      { title: "Typography", href: "/docs/components/typography", isNew: true },
-    ],
-  },
-  {
-    title: "Effects",
-    items: [
-      { title: "Border Beam", href: "/docs/effects/border-beam", isNew: true },
-    ],
-  },
-]
+const isDev = process.env.NODE_ENV === "development"
 
 export function DocsSidebar({
   ...props
@@ -92,7 +52,7 @@ export function DocsSidebar({
       <SidebarContent>
         <SidebarGroup>
           <SidebarMenu className="gap-2">
-            {docsNavConfig.map((section) => (
+            {filterDraftItems(docsNavigation).map((section) => (
               <SidebarMenuItem key={section.title}>
                 {section.href ? (
                   <SidebarMenuButton className="font-medium" asChild>
@@ -113,7 +73,12 @@ export function DocsSidebar({
                         >
                           <Link href={item.href}>
                             {item.title}
-                            {item.isNew && (
+                            {item.isDraft && isDev && (
+                              <span className="ml-auto text-[10px] bg-orange-500 text-white px-1.5 py-0.5 rounded-full">
+                                DRAFT
+                              </span>
+                            )}
+                            {item.isNew && !item.isDraft && (
                               <span className="ml-auto text-[10px] bg-primary text-primary-foreground px-1.5 py-0.5 rounded-full">
                                 NEW
                               </span>

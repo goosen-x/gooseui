@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "carousel",
+  "type": "registry:ui",
+  "title": "Carousel",
+  "description": "A carousel component with drag-to-scroll, auto-play, and accessible navigation built on CSS scroll-snap.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "devDependencies": [
+    "class-variance-authority"
+  ],
+  "files": [
+    {
+      "path": "registry/new-york/ui/carousel.tsx",
+      "type": "registry:ui"
+    }
+  ]
+}
