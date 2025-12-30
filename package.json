@@ -11,6 +11,7 @@
     "format": "biome format --write .",
     "typecheck": "tsc --noEmit",
     "registry:build": "shadcn build",
+    "validate:nav": "tsx scripts/validate-navigation.ts",
     "prepare": "husky"
   },
   "dependencies": {
@@ -20,6 +21,8 @@
     "@radix-ui/react-separator": "^1.1.8",
     "@radix-ui/react-slot": "^1.2.3",
     "@radix-ui/react-tabs": "^1.1.13",
+    "@radix-ui/react-toggle": "^1.1.10",
+    "@radix-ui/react-toggle-group": "^1.1.11",
     "@radix-ui/react-tooltip": "^1.2.8",
     "clsx": "^2.1.1",
     "cmdk": "^1.1.1",
