@@ -112,6 +112,84 @@
   --sidebar-ring: oklch(0.556 0 0);
 }
 
+/* Color themes - Red */
+[data-theme-color="red"] {
+  --primary: oklch(0.577 0.245 27.325);
+  --primary-foreground: oklch(0.985 0 0);
+  --ring: oklch(0.577 0.245 27.325);
+}
+[data-theme-color="red"].dark,
+.dark[data-theme-color="red"] {
+  --primary: oklch(0.704 0.191 22.216);
+  --primary-foreground: oklch(0.145 0 0);
+  --ring: oklch(0.704 0.191 22.216);
+}
+
+/* Color themes - Orange */
+[data-theme-color="orange"] {
+  --primary: oklch(0.705 0.213 47.604);
+  --primary-foreground: oklch(0.985 0 0);
+  --ring: oklch(0.705 0.213 47.604);
+}
+[data-theme-color="orange"].dark,
+.dark[data-theme-color="orange"] {
+  --primary: oklch(0.792 0.184 70.08);
+  --primary-foreground: oklch(0.145 0 0);
+  --ring: oklch(0.792 0.184 70.08);
+}
+
+/* Color themes - Green */
+[data-theme-color="green"] {
+  --primary: oklch(0.596 0.145 163.225);
+  --primary-foreground: oklch(0.985 0 0);
+  --ring: oklch(0.596 0.145 163.225);
+}
+[data-theme-color="green"].dark,
+.dark[data-theme-color="green"] {
+  --primary: oklch(0.696 0.17 162.48);
+  --primary-foreground: oklch(0.145 0 0);
+  --ring: oklch(0.696 0.17 162.48);
+}
+
+/* Color themes - Blue */
+[data-theme-color="blue"] {
+  --primary: oklch(0.546 0.245 262.881);
+  --primary-foreground: oklch(0.985 0 0);
+  --ring: oklch(0.546 0.245 262.881);
+}
+[data-theme-color="blue"].dark,
+.dark[data-theme-color="blue"] {
+  --primary: oklch(0.623 0.214 259.815);
+  --primary-foreground: oklch(0.145 0 0);
+  --ring: oklch(0.623 0.214 259.815);
+}
+
+/* Color themes - Violet */
+[data-theme-color="violet"] {
+  --primary: oklch(0.606 0.25 292.717);
+  --primary-foreground: oklch(0.985 0 0);
+  --ring: oklch(0.606 0.25 292.717);
+}
+[data-theme-color="violet"].dark,
+.dark[data-theme-color="violet"] {
+  --primary: oklch(0.702 0.183 293.541);
+  --primary-foreground: oklch(0.145 0 0);
+  --ring: oklch(0.702 0.183 293.541);
+}
+
+/* Color themes - Pink */
+[data-theme-color="pink"] {
+  --primary: oklch(0.656 0.241 354.308);
+  --primary-foreground: oklch(0.985 0 0);
+  --ring: oklch(0.656 0.241 354.308);
+}
+[data-theme-color="pink"].dark,
+.dark[data-theme-color="pink"] {
+  --primary: oklch(0.74 0.189 0.0);
+  --primary-foreground: oklch(0.145 0 0);
+  --ring: oklch(0.74 0.189 0.0);
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;

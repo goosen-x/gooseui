@@ -93,6 +93,22 @@ function ClaudeIcon({ className }: { className?: string }) {
   )
 }
 
+function T3ChatIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+    >
+      <path
+        d="M4 6h16v2H4V6zm4 5h8v2H8v-2zm-4 5h16v2H4v-2z"
+        fill="currentColor"
+      />
+    </svg>
+  )
+}
+
 // Copy to clipboard utility
 async function copyToClipboard(text: string): Promise<boolean> {
   try {
@@ -231,6 +247,23 @@ ${registryUrl ? `Registry: ${registryUrl}` : ""}
     window.open("https://claude.ai/new", "_blank")
   }, [generateCodeForAI])
 
+  // Open in T3 Chat - pass content via URL parameter
+  const handleOpenInT3Chat = React.useCallback(async () => {
+    const content = generateCodeForAI()
+    const encodedContent = encodeURIComponent(content)
+
+    // URL length limit is ~2000 chars, use URL param if content fits
+    if (encodedContent.length < 1800) {
+      window.open(`https://t3.chat/new?q=${encodedContent}`, "_blank")
+    } else {
+      // Fallback to clipboard for long content
+      await copyToClipboard(content)
+      setCopiedAction("t3chat")
+      setTimeout(() => setCopiedAction(null), 3000)
+      window.open("https://t3.chat/new", "_blank")
+    }
+  }, [generateCodeForAI])
+
   // Menu items configuration
   const menuItems = [
     {
@@ -258,6 +291,14 @@ ${registryUrl ? `Registry: ${registryUrl}` : ""}
           ? "Copied! Opening Claude..."
           : "Open in Claude",
       onClick: handleOpenInClaude,
+    },
+    {
+      icon: T3ChatIcon,
+      label:
+        copiedAction === "t3chat"
+          ? "Copied! Opening T3 Chat..."
+          : "Open in T3 Chat",
+      onClick: handleOpenInT3Chat,
     },
   ]
 

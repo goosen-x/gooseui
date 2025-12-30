@@ -1,24 +1,21 @@
 "use client"
 
-import { Link } from "@/i18n/routing"
-import { useTranslations } from "next-intl"
+import Link from "next/link"
 import { siteConfig } from "@/lib/config/navigation"
 
 export function SiteFooter() {
-  const t = useTranslations("footer")
-
   const footerLinks = {
     product: [
-      { title: t("components"), href: "/docs/components/button" },
-      { title: t("effects"), href: "/docs/effects/border-beam" },
-      { title: t("blocks"), href: "/docs/blocks" },
+      { title: "Components", href: "/docs/components/button" },
+      { title: "Effects", href: "/docs/effects/border-beam" },
+      { title: "Blocks", href: "/docs/blocks" },
     ],
     resources: [
-      { title: t("documentation"), href: "/docs" },
-      { title: t("installation"), href: "/docs/installation" },
-      { title: t("cli"), href: "/docs/cli" },
+      { title: "Documentation", href: "/docs" },
+      { title: "Installation", href: "/docs/installation" },
+      { title: "CLI", href: "/docs/cli" },
     ],
-    community: [{ title: t("github"), href: siteConfig.links.github }],
+    community: [{ title: "GitHub", href: siteConfig.links.github }],
   }
 
   return (
@@ -31,13 +28,14 @@ export function SiteFooter() {
               {siteConfig.name}
             </Link>
             <p className="mt-4 text-sm text-muted-foreground">
-              {t("description")}
+              Open source component library for building modern web applications
+              with React.
             </p>
           </div>
 
           {/* Product */}
           <div>
-            <h4 className="font-semibold mb-4">{t("product")}</h4>
+            <h4 className="font-semibold mb-4">Product</h4>
             <ul className="space-y-3">
               {footerLinks.product.map((link) => (
                 <li key={link.href}>
@@ -54,7 +52,7 @@ export function SiteFooter() {
 
           {/* Resources */}
           <div>
-            <h4 className="font-semibold mb-4">{t("resources")}</h4>
+            <h4 className="font-semibold mb-4">Resources</h4>
             <ul className="space-y-3">
               {footerLinks.resources.map((link) => (
                 <li key={link.href}>
@@ -71,7 +69,7 @@ export function SiteFooter() {
 
           {/* Community */}
           <div>
-            <h4 className="font-semibold mb-4">{t("community")}</h4>
+            <h4 className="font-semibold mb-4">Community</h4>
             <ul className="space-y-3">
               {footerLinks.community.map((link) => (
                 <li key={link.href}>
@@ -91,8 +89,7 @@ export function SiteFooter() {
 
         <div className="mt-12 pt-8 border-t flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-sm text-muted-foreground">
-            &copy; {new Date().getFullYear()} {siteConfig.name}.{" "}
-            {t("copyright")}
+            &copy; {new Date().getFullYear()} {siteConfig.name}. Open Source.
           </p>
           <a
             href={siteConfig.links.github}

@@ -1,13 +1,27 @@
 "use client"
 
-import { Link } from "@/i18n/routing"
-import { useTranslations } from "next-intl"
+import { useRouter } from "next/navigation"
 import { Button } from "@/registry/new-york/ui/button"
 import { BorderBeam } from "@/registry/new-york/effects/border-beam"
 import { cn } from "@/lib/utils"
+import { customToast } from "@/lib/toast"
 
 export function Hero() {
-  const t = useTranslations("hero")
+  const router = useRouter()
+
+  const handleGetStarted = () => {
+    customToast.success("Welcome to GooseUI!", {
+      description: "Let's build something beautiful together",
+    })
+    router.push("/docs")
+  }
+
+  const handleComponents = () => {
+    customToast.info("Exploring Components", {
+      description: "Check out our collection of UI components",
+    })
+    router.push("/docs/components/button")
+  }
 
   return (
     <div className="relative min-h-[calc(100svh-5rem)] flex items-center">
@@ -27,25 +41,26 @@ export function Hero() {
         <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-start w-full">
           {/* Left side - Text content */}
           <div className="flex-1">
-            <div className="inline-flex items-center rounded-full border px-4 py-1.5 text-sm font-medium mb-6">
-              <span className="mr-2">✨</span>
-              <span>{t("badge")}</span>
+            <div className="inline-flex items-center rounded-full border px-4 py-1.5 text-sm font-medium mb-6 backdrop-blur-[1px] bg-background/20">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" className="size-4 mr-2"><rect width="256" height="256" fill="none"/><line x1="208" y1="128" x2="128" y2="208" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="32"/><line x1="192" y1="40" x2="40" y2="192" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="32"/></svg>
+              <span>Custom shadcn/ui Registry</span>
             </div>
 
             <h1 className="mt-4 text-4xl sm:text-5xl lg:text-6xl leading-[1.1] font-bold tracking-tight text-balance">
-              {t("title")}
+              Build Modern Interfaces Faster
             </h1>
 
             <p className="mt-6 text-lg md:text-xl text-muted-foreground text-balance max-w-xl">
-              {t("description")}
+              A collection of beautiful components and effects for React. Copy
+              the code, customize it, ship to production.
             </p>
 
             <div className="mt-10 flex flex-col sm:flex-row gap-4">
-              <Button size="lg" asChild>
-                <Link href="/docs">{t("getStarted")}</Link>
+              <Button size="lg" onClick={handleGetStarted}>
+                Get Started
               </Button>
-              <Button variant="outline" size="lg" asChild>
-                <Link href="/docs/components/button">{t("components")}</Link>
+              <Button variant="outline" size="lg" className="backdrop-blur-[1px] bg-background/20" onClick={handleComponents}>
+                Components
               </Button>
             </div>
 
@@ -64,7 +79,7 @@ export function Hero() {
                     d="M5 13l4 4L19 7"
                   />
                 </svg>
-                <span>{t("openSource")}</span>
+                <span>Open Source</span>
               </div>
               <div className="flex items-center gap-2">
                 <svg
@@ -80,7 +95,7 @@ export function Hero() {
                     d="M5 13l4 4L19 7"
                   />
                 </svg>
-                <span>{t("typescript")}</span>
+                <span>TypeScript</span>
               </div>
               <div className="flex items-center gap-2">
                 <svg
@@ -96,7 +111,7 @@ export function Hero() {
                     d="M5 13l4 4L19 7"
                   />
                 </svg>
-                <span>{t("tailwind")}</span>
+                <span>Tailwind CSS</span>
               </div>
             </div>
           </div>
@@ -116,10 +131,10 @@ export function Hero() {
                   </code>
                 </div>
                 <div className="p-8 flex items-center justify-center gap-4 min-h-[200px]">
-                  <Button>Primary</Button>
-                  <Button variant="secondary">Secondary</Button>
-                  <Button variant="outline">Outline</Button>
-                  <Button variant="ghost">Ghost</Button>
+                  <Button onClick={() => customToast.success("Primary Button", { description: "Default button style" })}>Primary</Button>
+                  <Button variant="secondary" onClick={() => customToast.info("Secondary Button", { description: "Secondary button style" })}>Secondary</Button>
+                  <Button variant="outline" onClick={() => customToast.warning("Outline Button", { description: "Outline button style" })}>Outline</Button>
+                  <Button variant="ghost" onClick={() => customToast.error("Ghost Button", { description: "Ghost button style" })}>Ghost</Button>
                 </div>
               </div>
               <BorderBeam duration={8} />

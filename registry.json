@@ -4,6 +4,19 @@
   "homepage": "https://gooseui.pro",
   "items": [
     {
+      "name": "theme-customizer",
+      "type": "registry:ui",
+      "title": "Theme Customizer",
+      "description": "Floating theme and color picker with 5 different variants.",
+      "dependencies": ["next-themes", "lucide-react"],
+      "files": [
+        {
+          "path": "registry/new-york/ui/theme-customizer.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "animated-timer",
       "type": "registry:ui",
       "title": "Animated Timer",
@@ -87,6 +100,19 @@
       "files": [
         {
           "path": "registry/new-york/ui/textarea.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "typography",
+      "type": "registry:ui",
+      "title": "Typography",
+      "description": "Consistent text styling with semantic variants and gradient effects.",
+      "devDependencies": ["class-variance-authority"],
+      "files": [
+        {
+          "path": "registry/new-york/ui/typography.tsx",
           "type": "registry:ui"
         }
       ]

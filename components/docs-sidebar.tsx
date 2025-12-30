@@ -1,8 +1,8 @@
 "use client"
 
 import * as React from "react"
-import { Link, usePathname } from "@/i18n/routing"
-import { useTranslations } from "next-intl"
+import Link from "next/link"
+import { usePathname } from "next/navigation"
 
 import {
   Sidebar,
@@ -18,65 +18,51 @@ import {
 } from "@/components/ui/sidebar"
 
 type NavItem = {
-  titleKey: string
+  title: string
   href: string
   isNew?: boolean
 }
 
 type NavSection = {
-  titleKey: string
-  href?: string // Link for section header
+  title: string
+  href?: string
   items: NavItem[]
 }
 
 const docsNavConfig: NavSection[] = [
   {
-    titleKey: "gettingStarted",
+    title: "Getting Started",
     items: [
-      { titleKey: "introduction", href: "/docs" },
-      { titleKey: "installation", href: "/docs/installation" },
-      { titleKey: "cli", href: "/docs/cli" },
+      { title: "Introduction", href: "/docs" },
+      { title: "Installation", href: "/docs/installation" },
+      { title: "CLI", href: "/docs/cli" },
     ],
   },
   {
-    titleKey: "components",
+    title: "Components",
     href: "/docs/components",
     items: [
-      {
-        titleKey: "animatedTimer",
-        href: "/docs/components/animated-timer",
-        isNew: true,
-      },
-      { titleKey: "button", href: "/docs/components/button" },
-      { titleKey: "card", href: "/docs/components/card" },
-      { titleKey: "input", href: "/docs/components/input" },
+      { title: "Animated Timer", href: "/docs/components/animated-timer" },
+      { title: "Button", href: "/docs/components/button" },
+      { title: "Card", href: "/docs/components/card" },
+      { title: "Input", href: "/docs/components/input" },
+      { title: "Theme Customizer", href: "/docs/components/theme-customizer", isNew: true },
+      { title: "Toast", href: "/docs/components/toast" },
+      { title: "Typography", href: "/docs/components/typography", isNew: true },
     ],
   },
   {
-    titleKey: "effects",
+    title: "Effects",
     items: [
-      {
-        titleKey: "borderBeam",
-        href: "/docs/effects/border-beam",
-        isNew: true,
-      },
+      { title: "Border Beam", href: "/docs/effects/border-beam", isNew: true },
     ],
   },
 ]
-
-const itemTitles: Record<string, string> = {
-  animatedTimer: "Animated Timer",
-  button: "Button",
-  card: "Card",
-  input: "Input",
-  borderBeam: "Border Beam",
-}
 
 export function DocsSidebar({
   ...props
 }: React.ComponentProps<typeof Sidebar>) {
   const pathname = usePathname()
-  const t = useTranslations("navigation")
 
   return (
     <Sidebar variant="floating" {...props}>
@@ -103,14 +89,14 @@ export function DocsSidebar({
         <SidebarGroup>
           <SidebarMenu className="gap-2">
             {docsNavConfig.map((section) => (
-              <SidebarMenuItem key={section.titleKey}>
+              <SidebarMenuItem key={section.title}>
                 {section.href ? (
                   <SidebarMenuButton className="font-medium" asChild>
-                    <Link href={section.href}>{t(section.titleKey)}</Link>
+                    <Link href={section.href}>{section.title}</Link>
                   </SidebarMenuButton>
                 ) : (
                   <SidebarMenuButton className="font-medium">
-                    {t(section.titleKey)}
+                    {section.title}
                   </SidebarMenuButton>
                 )}
                 {section.items?.length ? (
@@ -122,7 +108,7 @@ export function DocsSidebar({
                           isActive={pathname === item.href}
                         >
                           <Link href={item.href}>
-                            {itemTitles[item.titleKey] || t(item.titleKey)}
+                            {item.title}
                             {item.isNew && (
                               <span className="ml-auto text-[10px] bg-primary text-primary-foreground px-1.5 py-0.5 rounded-full">
                                 NEW

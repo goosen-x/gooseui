@@ -92,6 +92,19 @@
       ]
     },
     {
+      "name": "typography",
+      "type": "registry:ui",
+      "title": "Typography",
+      "description": "Consistent text styling with semantic variants and gradient effects.",
+      "devDependencies": ["class-variance-authority"],
+      "files": [
+        {
+          "path": "registry/new-york/ui/typography.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "sonner",
       "type": "registry:ui",
       "title": "Sonner",

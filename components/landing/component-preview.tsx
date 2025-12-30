@@ -1,7 +1,6 @@
 "use client"
 
-import { Link } from "@/i18n/routing"
-import { useTranslations } from "next-intl"
+import Link from "next/link"
 import { Button } from "@/registry/new-york/ui/button"
 import {
   Card,
@@ -14,18 +13,15 @@ import { Input } from "@/registry/new-york/ui/input"
 import { BorderBeam } from "@/registry/new-york/effects/border-beam"
 
 export function ComponentPreview() {
-  const t = useTranslations("componentPreview")
-  const tCommon = useTranslations("common")
-
   return (
     <section className="py-20 px-6 bg-muted/30">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
-            {t("title")}
+            Component Library
           </h2>
           <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-            {t("subtitle")}
+            UI components and effects, ready to use
           </p>
         </div>
 
@@ -53,16 +49,16 @@ export function ComponentPreview() {
             <h3 className="font-semibold mb-4">Cards</h3>
             <Card>
               <CardHeader className="pb-3">
-                <CardTitle className="text-base">
-                  {t("notifications")}
-                </CardTitle>
-                <CardDescription>{t("notificationsDesc")}</CardDescription>
+                <CardTitle className="text-base">Notifications</CardTitle>
+                <CardDescription>
+                  Configure how you receive notifications
+                </CardDescription>
               </CardHeader>
               <CardContent className="flex gap-2">
                 <Button size="sm" variant="outline">
-                  {tCommon("cancel")}
+                  Cancel
                 </Button>
-                <Button size="sm">{tCommon("save")}</Button>
+                <Button size="sm">Save</Button>
               </CardContent>
             </Card>
           </div>
@@ -72,8 +68,8 @@ export function ComponentPreview() {
             <h3 className="font-semibold mb-4">Inputs</h3>
             <div className="space-y-3 max-w-sm">
               <Input placeholder="Email" type="email" />
-              <Input placeholder={t("password")} type="password" />
-              <Input placeholder={t("disabled")} disabled />
+              <Input placeholder="Password" type="password" />
+              <Input placeholder="Disabled" disabled />
             </div>
           </div>
 
@@ -87,7 +83,7 @@ export function ComponentPreview() {
             </div>
             <div className="relative overflow-hidden rounded-lg border p-8 flex items-center justify-center">
               <p className="text-muted-foreground text-center">
-                {t("animatedBeam")}
+                Animated beam of light
               </p>
               <BorderBeam duration={6} />
             </div>
@@ -96,7 +92,7 @@ export function ComponentPreview() {
 
         <div className="mt-12 text-center">
           <Button size="lg" variant="outline" asChild>
-            <Link href="/docs/components/button">{t("viewAll")}</Link>
+            <Link href="/docs/components/button">View All Components</Link>
           </Button>
         </div>
       </div>

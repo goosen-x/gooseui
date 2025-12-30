@@ -1,0 +1,297 @@
+"use client"
+
+import * as React from "react"
+import { Moon, Sun, Palette, Check, Monitor, Paintbrush } from "lucide-react"
+import { useTheme } from "next-themes"
+import { cn } from "@/lib/utils"
+
+const colors = [
+  { name: "zinc", class: "bg-zinc-900 dark:bg-zinc-50" },
+  { name: "red", class: "bg-red-500" },
+  { name: "orange", class: "bg-orange-500" },
+  { name: "green", class: "bg-green-500" },
+  { name: "blue", class: "bg-blue-500" },
+  { name: "violet", class: "bg-violet-500" },
+  { name: "pink", class: "bg-pink-500" },
+]
+
+function useThemeColor() {
+  const [activeColor, setActiveColor] = React.useState("zinc")
+  const [mounted, setMounted] = React.useState(false)
+
+  React.useEffect(() => {
+    setMounted(true)
+    const saved = localStorage.getItem("theme-color")
+    if (saved) setActiveColor(saved)
+  }, [])
+
+  const setColor = (colorName: string) => {
+    setActiveColor(colorName)
+    localStorage.setItem("theme-color", colorName)
+    document.documentElement.setAttribute("data-theme-color", colorName)
+  }
+
+  return { activeColor, setColor, mounted }
+}
+
+// Variant 1: Floating Pill with Popup
+export function ThemeCustomizerPill({ className }: { className?: string }) {
+  const { setTheme, resolvedTheme } = useTheme()
+  const { activeColor, setColor, mounted } = useThemeColor()
+  const [showColors, setShowColors] = React.useState(false)
+
+  if (!mounted) {
+    return (
+      <nav className={cn(
+        "fixed bottom-5 left-1/2 z-50 flex -translate-x-1/2 gap-1 rounded-full border bg-background/70 p-1 shadow-lg backdrop-blur-xl",
+        className
+      )}>
+        <div className="size-9 animate-pulse rounded-full bg-muted" />
+        <div className="size-9 animate-pulse rounded-full bg-muted" />
+      </nav>
+    )
+  }
+
+  return (
+    <>
+      <nav className={cn(
+        "fixed bottom-5 left-1/2 z-50 flex -translate-x-1/2 gap-1 rounded-full border bg-background/70 p-1 shadow-lg backdrop-blur-xl transition-all",
+        className
+      )}>
+        <button
+          className="flex size-9 items-center justify-center rounded-full transition-colors hover:bg-accent"
+          onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
+        >
+          {resolvedTheme === "dark" ? <Sun className="size-5" /> : <Moon className="size-5" />}
+        </button>
+        <button
+          className="flex size-9 items-center justify-center rounded-full transition-colors hover:bg-accent"
+          onClick={() => setShowColors(!showColors)}
+        >
+          <Palette className="size-5" />
+        </button>
+      </nav>
+
+      {showColors && (
+        <div className="fixed bottom-20 left-1/2 z-50 flex -translate-x-1/2 gap-2 rounded-full border bg-background/70 px-3 py-2 shadow-lg backdrop-blur-xl animate-in fade-in slide-in-from-bottom-2">
+          {colors.map((c) => (
+            <button
+              key={c.name}
+              onClick={() => setColor(c.name)}
+              className={cn("relative size-7 rounded-full transition-transform hover:scale-110", c.class)}
+            >
+              {activeColor === c.name && (
+                <Check className="absolute inset-0 m-auto size-4 text-white dark:text-black" />
+              )}
+            </button>
+          ))}
+        </div>
+      )}
+    </>
+  )
+}
+
+// Variant 2: Inline Bar with All Options
+export function ThemeCustomizerBar({ className }: { className?: string }) {
+  const { theme, setTheme, resolvedTheme } = useTheme()
+  const { activeColor, setColor, mounted } = useThemeColor()
+
+  if (!mounted) {
+    return (
+      <div className={cn("flex items-center gap-4 rounded-full border bg-background/70 px-4 py-2 shadow-lg backdrop-blur-xl", className)}>
+        <div className="flex gap-1">
+          {[1, 2, 3].map((i) => <div key={i} className="size-8 animate-pulse rounded-md bg-muted" />)}
+        </div>
+        <div className="h-6 w-px bg-border" />
+        <div className="flex gap-1.5">
+          {[1, 2, 3, 4, 5].map((i) => <div key={i} className="size-6 animate-pulse rounded-full bg-muted" />)}
+        </div>
+      </div>
+    )
+  }
+
+  return (
+    <div className={cn("flex items-center gap-4 rounded-full border bg-background/70 px-4 py-2 shadow-lg backdrop-blur-xl", className)}>
+      <div className="flex gap-1">
+        {[
+          { value: "light", icon: Sun },
+          { value: "dark", icon: Moon },
+          { value: "system", icon: Monitor },
+        ].map(({ value, icon: Icon }) => (
+          <button
+            key={value}
+            onClick={() => setTheme(value)}
+            className={cn(
+              "flex size-8 items-center justify-center rounded-md transition-colors",
+              theme === value ? "bg-primary text-primary-foreground" : "hover:bg-accent"
+            )}
+          >
+            <Icon className="size-4" />
+          </button>
+        ))}
+      </div>
+
+      <div className="h-6 w-px bg-border" />
+
+      <div className="flex gap-1.5">
+        {colors.map((c) => (
+          <button
+            key={c.name}
+            onClick={() => setColor(c.name)}
+            className={cn(
+              "size-6 rounded-full transition-all hover:scale-110",
+              c.class,
+              activeColor === c.name && "ring-2 ring-ring ring-offset-2 ring-offset-background"
+            )}
+          />
+        ))}
+      </div>
+    </div>
+  )
+}
+
+// Variant 3: Vertical Sidebar
+export function ThemeCustomizerSidebar({ className }: { className?: string }) {
+  const { setTheme, resolvedTheme } = useTheme()
+  const { activeColor, setColor, mounted } = useThemeColor()
+
+  if (!mounted) {
+    return (
+      <div className={cn("fixed right-4 top-1/2 z-50 flex -translate-y-1/2 flex-col gap-2 rounded-2xl border bg-background/70 p-2 shadow-lg backdrop-blur-xl", className)}>
+        {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((i) => (
+          <div key={i} className="size-8 animate-pulse rounded-full bg-muted" />
+        ))}
+      </div>
+    )
+  }
+
+  return (
+    <div className={cn("fixed right-4 top-1/2 z-50 flex -translate-y-1/2 flex-col gap-2 rounded-2xl border bg-background/70 p-2 shadow-lg backdrop-blur-xl", className)}>
+      <button
+        onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
+        className="flex size-8 items-center justify-center rounded-full transition-colors hover:bg-accent"
+      >
+        {resolvedTheme === "dark" ? <Sun className="size-4" /> : <Moon className="size-4" />}
+      </button>
+
+      <div className="mx-auto h-px w-6 bg-border" />
+
+      {colors.map((c) => (
+        <button
+          key={c.name}
+          onClick={() => setColor(c.name)}
+          className={cn(
+            "relative size-8 rounded-full transition-transform hover:scale-110",
+            c.class
+          )}
+        >
+          {activeColor === c.name && (
+            <Check className="absolute inset-0 m-auto size-4 text-white dark:text-black" />
+          )}
+        </button>
+      ))}
+    </div>
+  )
+}
+
+// Variant 4: Bottom Dock (macOS style)
+export function ThemeCustomizerDock({ className }: { className?: string }) {
+  const { setTheme, resolvedTheme } = useTheme()
+  const { activeColor, setColor, mounted } = useThemeColor()
+
+  if (!mounted) {
+    return (
+      <div className={cn("fixed bottom-4 left-1/2 z-50 flex -translate-x-1/2 gap-1 rounded-2xl border bg-background/80 p-1.5 shadow-2xl backdrop-blur-xl", className)}>
+        {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
+          <div key={i} className="size-10 animate-pulse rounded-xl bg-muted" />
+        ))}
+      </div>
+    )
+  }
+
+  return (
+    <div className={cn("fixed bottom-4 left-1/2 z-50 flex -translate-x-1/2 gap-1 rounded-2xl border bg-background/80 p-1.5 shadow-2xl backdrop-blur-xl", className)}>
+      <button
+        onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
+        className="group flex size-10 items-center justify-center rounded-xl bg-muted/50 transition-all hover:-translate-y-1 hover:bg-accent"
+      >
+        {resolvedTheme === "dark" ? <Sun className="size-5" /> : <Moon className="size-5" />}
+      </button>
+
+      <div className="mx-1 w-px bg-border" />
+
+      {colors.map((c) => (
+        <button
+          key={c.name}
+          onClick={() => setColor(c.name)}
+          className={cn(
+            "relative size-10 rounded-xl transition-all hover:-translate-y-1",
+            c.class,
+            activeColor === c.name && "ring-2 ring-primary ring-offset-2 ring-offset-background"
+          )}
+        >
+          {activeColor === c.name && (
+            <Check className="absolute inset-0 m-auto size-5 text-white drop-shadow-md dark:text-black" />
+          )}
+        </button>
+      ))}
+    </div>
+  )
+}
+
+// Variant 5: Minimal Corner
+export function ThemeCustomizerCorner({ className }: { className?: string }) {
+  const { setTheme, resolvedTheme } = useTheme()
+  const { activeColor, setColor, mounted } = useThemeColor()
+  const [expanded, setExpanded] = React.useState(false)
+
+  if (!mounted) {
+    return (
+      <div className={cn("fixed bottom-4 right-4 z-50", className)}>
+        <div className="size-12 animate-pulse rounded-full bg-muted shadow-lg" />
+      </div>
+    )
+  }
+
+  return (
+    <div className={cn("fixed bottom-4 right-4 z-50 flex flex-col-reverse items-end gap-2", className)}>
+      <button
+        onClick={() => setExpanded(!expanded)}
+        className="flex size-12 items-center justify-center rounded-full border bg-background shadow-lg transition-transform hover:scale-105"
+      >
+        <Paintbrush className={cn("size-5 transition-transform", expanded && "rotate-45")} />
+      </button>
+
+      {expanded && (
+        <div className="flex flex-col gap-2 rounded-2xl border bg-background/90 p-2 shadow-lg backdrop-blur-xl animate-in fade-in slide-in-from-bottom-2">
+          <button
+            onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
+            className="flex size-10 items-center justify-center rounded-xl transition-colors hover:bg-accent"
+          >
+            {resolvedTheme === "dark" ? <Sun className="size-5" /> : <Moon className="size-5" />}
+          </button>
+
+          <div className="h-px bg-border" />
+
+          {colors.map((c) => (
+            <button
+              key={c.name}
+              onClick={() => setColor(c.name)}
+              className={cn(
+                "relative size-10 rounded-xl transition-transform hover:scale-105",
+                c.class
+              )}
+            >
+              {activeColor === c.name && (
+                <Check className="absolute inset-0 m-auto size-5 text-white dark:text-black" />
+              )}
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  )
+}
+
+// Default export - the pill variant
+export { ThemeCustomizerPill as ThemeCustomizer }

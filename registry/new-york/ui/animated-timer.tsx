@@ -70,18 +70,23 @@ export function AnimatedTimer({
   showSeconds = true,
   use24Hour = false,
 }: AnimatedTimerProps) {
-  const [time, setTime] = React.useState<Date>(new Date())
+  const [time, setTime] = React.useState<Date | null>(null)
+  const [mounted, setMounted] = React.useState(false)
 
   React.useEffect(() => {
+    setMounted(true)
+    setTime(new Date())
+  }, [])
+
+  React.useEffect(() => {
+    if (!mounted) return
+
     const interval = setInterval(() => {
-      const now = new Date()
-      if (now.getSeconds() !== time.getSeconds()) {
-        setTime(now)
-      }
-    }, 100)
+      setTime(new Date())
+    }, 1000)
 
     return () => clearInterval(interval)
-  }, [time])
+  }, [mounted])
 
   const formatSegment = (segment: number): string => {
     return segment < 10 ? `0${segment}` : String(segment)
@@ -93,6 +98,8 @@ export function AnimatedTimer({
   }
 
   const getTimeString = (): string => {
+    if (!time) return showSeconds ? "00:00:00" : "00:00"
+
     const hours = formatSegment(getHours(time.getHours()))
     const minutes = formatSegment(time.getMinutes())
     const seconds = formatSegment(time.getSeconds())
@@ -103,6 +110,36 @@ export function AnimatedTimer({
   }
 
   const chars = getTimeString().split("")
+
+  // Show skeleton during SSR
+  if (!mounted) {
+    return (
+      <div
+        className={cn(
+          "rounded-xl md:rounded-2xl lg:rounded-[22px] bg-gradient-to-br from-blue-600 to-red-500 p-1",
+          className
+        )}
+      >
+        <div className="flex items-center bg-zinc-900 rounded-lg md:rounded-xl lg:rounded-[20px] px-3 md:px-4 lg:px-5">
+          {chars.map((char, index) => (
+            <div
+              key={index}
+              className={cn(
+                "flex items-center justify-center",
+                char === ":"
+                  ? "h-[60px] md:h-[100px] lg:h-[150px] w-5 md:w-10 lg:w-12"
+                  : "h-[60px] md:h-[100px] lg:h-[150px] w-[30px] md:w-[50px] lg:w-[80px]"
+              )}
+            >
+              <span className="text-white text-4xl md:text-6xl lg:text-8xl opacity-20">
+                {char}
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div

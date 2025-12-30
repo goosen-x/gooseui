@@ -50,8 +50,23 @@ const AI_SERVICES = [
     name: "T3 Chat",
     icon: () => (
       <svg className="size-4" viewBox="0 0 24 24" fill="currentColor">
-        <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2" fill="none" />
-        <text x="12" y="16" textAnchor="middle" fontSize="10" fill="currentColor">T3</text>
+        <circle
+          cx="12"
+          cy="12"
+          r="10"
+          stroke="currentColor"
+          strokeWidth="2"
+          fill="none"
+        />
+        <text
+          x="12"
+          y="16"
+          textAnchor="middle"
+          fontSize="10"
+          fill="currentColor"
+        >
+          T3
+        </text>
       </svg>
     ),
     getUrl: (code: string) =>

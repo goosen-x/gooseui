@@ -1,6 +1,6 @@
 export const siteConfig = {
   name: "GooseUI",
-  description: "Коллекция компонентов для создания современных веб-приложений",
+  description: "Open source component library for building modern web applications",
   url: "https://gooseui.pro",
   links: {
     github: "https://github.com/goosen-x/gooseui",
@@ -9,25 +9,25 @@ export const siteConfig = {
 
 export const mainNav = [
   {
-    title: "Документация",
+    title: "Docs",
     href: "/docs",
   },
   {
-    title: "Компоненты",
+    title: "Components",
     href: "/docs/components/button",
   },
 ]
 
 export const docsNav = [
   {
-    title: "Начало работы",
+    title: "Getting Started",
     items: [
       {
-        title: "Введение",
+        title: "Introduction",
         href: "/docs",
       },
       {
-        title: "Установка",
+        title: "Installation",
         href: "/docs/installation",
       },
       {
@@ -37,7 +37,7 @@ export const docsNav = [
     ],
   },
   {
-    title: "Компоненты",
+    title: "Components",
     items: [
       {
         title: "Animated Timer",
@@ -64,7 +64,7 @@ export const docsNav = [
     ],
   },
   {
-    title: "Эффекты",
+    title: "Effects",
     items: [
       {
         title: "Border Beam",
