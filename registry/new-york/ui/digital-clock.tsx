@@ -18,16 +18,24 @@ export function DigitalClock({
 }: DigitalClockProps) {
   const [time, setTime] = React.useState<Date | null>(null)
   const [mounted, setMounted] = React.useState(false)
+  const [colonVisible, setColonVisible] = React.useState(true)
 
   React.useEffect(() => {
     setMounted(true)
     setTime(new Date())
 
-    const interval = setInterval(() => {
+    const timeInterval = setInterval(() => {
       setTime(new Date())
     }, 1000)
 
-    return () => clearInterval(interval)
+    const blinkInterval = setInterval(() => {
+      setColonVisible((prev) => !prev)
+    }, 500)
+
+    return () => {
+      clearInterval(timeInterval)
+      clearInterval(blinkInterval)
+    }
   }, [])
 
   if (!mounted || !time) {
@@ -67,12 +75,12 @@ export function DigitalClock({
     <div className={cn("flex items-center justify-center gap-1", className)}>
       <Digit digit={hourTens} color={color} />
       <Digit digit={hourOnes} color={color} />
-      <Colon color={color} />
+      <Colon color={color} visible={colonVisible} />
       <Digit digit={minTens} color={color} />
       <Digit digit={minOnes} color={color} />
       {showSeconds && (
         <>
-          <Colon color={color} />
+          <Colon color={color} visible={colonVisible} />
           <Digit digit={secTens} color={color} />
           <Digit digit={secOnes} color={color} />
         </>
@@ -81,14 +89,15 @@ export function DigitalClock({
   )
 }
 
-function Colon({ color }: { color: string }) {
+function Colon({ color, visible = true }: { color: string; visible?: boolean }) {
+  const displayColor = visible ? color : "#333"
   return (
     <div
-      className="relative w-[10px] h-[110px] mx-1"
+      className="relative w-[10px] h-[110px] mx-1 transition-opacity duration-100"
       style={{
         background: `
-          linear-gradient(-90deg, ${color} 10px, transparent 10px),
-          linear-gradient(-90deg, ${color} 10px, transparent 10px)
+          linear-gradient(-90deg, ${displayColor} 10px, transparent 10px),
+          linear-gradient(-90deg, ${displayColor} 10px, transparent 10px)
         `,
         backgroundPosition: "0 40px, 0 65px",
         backgroundRepeat: "no-repeat",
