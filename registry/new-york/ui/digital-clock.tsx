@@ -89,19 +89,19 @@ export function DigitalClock({
   )
 }
 
-function Colon({ color, visible = true }: { color: string; visible?: boolean }) {
+function Colon({
+  color,
+  visible = true,
+}: {
+  color: string
+  visible?: boolean
+}) {
   const displayColor = visible ? color : "#333"
   return (
     <div
-      className="relative w-[10px] h-[110px] mx-1 transition-opacity duration-100"
+      className="relative w-[10px] h-[110px] mx-2"
       style={{
-        background: `
-          linear-gradient(-90deg, ${displayColor} 10px, transparent 10px),
-          linear-gradient(-90deg, ${displayColor} 10px, transparent 10px)
-        `,
-        backgroundPosition: "0 40px, 0 65px",
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "10px 10px, 10px 10px",
+        backgroundColor: displayColor,
       }}
     />
   )
