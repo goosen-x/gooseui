@@ -14,7 +14,7 @@ import {
 export const metadata = {
   title: "Carousel",
   description:
-    "A carousel component with drag-to-scroll, auto-play, and accessible navigation built on CSS scroll-snap.",
+    "A zero-dependency carousel with drag-to-scroll, auto-play, and accessible navigation built on CSS scroll-snap.",
 }
 
 export default function CarouselPage() {
@@ -25,7 +25,7 @@ export default function CarouselPage() {
         prevHref="/docs/components/theme-customizer"
       />
       <p className="text-muted-foreground">
-        A carousel component with drag-to-scroll, auto-play, and accessible
+        A zero-dependency carousel with drag-to-scroll, auto-play, and accessible
         navigation built on CSS scroll-snap.
       </p>
 

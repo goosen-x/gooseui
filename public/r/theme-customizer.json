@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "theme-customizer",
+  "type": "registry:ui",
+  "title": "Theme Customizer",
+  "description": "A floating theme customizer with multiple variants: pill, bar, sidebar, dock, and corner.",
+  "dependencies": [
+    "lucide-react",
+    "next-themes"
+  ],
+  "files": [
+    {
+      "path": "registry/new-york/ui/theme-customizer.tsx",
+      "type": "registry:ui"
+    }
+  ]
+}

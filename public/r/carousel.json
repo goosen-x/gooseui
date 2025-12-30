@@ -3,7 +3,7 @@
   "name": "carousel",
   "type": "registry:ui",
   "title": "Carousel",
-  "description": "A carousel component with drag-to-scroll, auto-play, and accessible navigation built on CSS scroll-snap.",
+  "description": "A zero-dependency carousel with drag-to-scroll, auto-play, and accessible navigation built on CSS scroll-snap.",
   "dependencies": [
     "lucide-react"
   ],

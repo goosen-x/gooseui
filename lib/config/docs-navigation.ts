@@ -79,19 +79,11 @@ export const docsNavigation: NavSection[] = [
         title: "Baseline Status",
         href: "/docs/components/baseline-status",
         isNew: true,
-        isDraft: true,
       },
       {
         slug: "button",
         title: "Button",
         href: "/docs/components/button",
-      },
-      {
-        slug: "button-group",
-        title: "Button Group",
-        href: "/docs/components/button-group",
-        isNew: true,
-        isDraft: true,
       },
       {
         slug: "card",
@@ -109,7 +101,6 @@ export const docsNavigation: NavSection[] = [
         title: "Digital Clock",
         href: "/docs/components/digital-clock",
         isNew: true,
-        isDraft: true,
       },
       {
         slug: "input",
@@ -120,12 +111,6 @@ export const docsNavigation: NavSection[] = [
         slug: "theme-customizer",
         title: "Theme Customizer",
         href: "/docs/components/theme-customizer",
-        isNew: true,
-      },
-      {
-        slug: "theme-switcher",
-        title: "Theme Switcher",
-        href: "/docs/components/theme-switcher",
         isNew: true,
       },
       {

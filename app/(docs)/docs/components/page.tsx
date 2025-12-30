@@ -1,10 +1,12 @@
-import { ArrowRightIcon, Bell, Palette, Sun } from "lucide-react"
+import { ArrowRightIcon, Bell, Palette } from "lucide-react"
 import Link from "next/link"
 
 import { cn } from "@/lib/utils"
 import { AnimatedTimer } from "@/registry/new-york/ui/animated-timer"
+import { BaselineStatus } from "@/registry/new-york/ui/baseline-status"
 import { Button } from "@/registry/new-york/ui/button"
 import { Card } from "@/registry/new-york/ui/card"
+import { DigitalClock } from "@/registry/new-york/ui/digital-clock"
 import { Input } from "@/registry/new-york/ui/input"
 import { Typography } from "@/registry/new-york/ui/typography"
 
@@ -18,6 +20,19 @@ const components = [
     preview: (
       <div className="scale-[0.35] origin-center">
         <AnimatedTimer showSeconds={false} />
+      </div>
+    ),
+  },
+  {
+    name: "Baseline Status",
+    slug: "baseline-status",
+    description: "Display browser compatibility status for web features.",
+    category: "Display",
+    isNew: true,
+    preview: (
+      <div className="flex flex-col gap-2">
+        <BaselineStatus status="widely" year={2023} size="sm" />
+        <BaselineStatus status="newly" year={2024} size="sm" />
       </div>
     ),
   },
@@ -50,7 +65,7 @@ const components = [
   {
     name: "Carousel",
     slug: "carousel",
-    description: "A carousel with motion and swipe gestures built on Embla.",
+    description: "A zero-dependency carousel with drag-to-scroll and auto-play.",
     category: "Display",
     isNew: true,
     preview: (
@@ -60,6 +75,18 @@ const components = [
         <div className="h-16 w-12 rounded bg-primary" />
         <div className="h-16 w-12 rounded bg-primary/40" />
         <div className="h-16 w-12 rounded bg-primary/20" />
+      </div>
+    ),
+  },
+  {
+    name: "Digital Clock",
+    slug: "digital-clock",
+    description: "A retro 7-segment LED digital clock with customizable colors.",
+    category: "Display",
+    isNew: true,
+    preview: (
+      <div className="scale-[0.25] origin-center">
+        <DigitalClock showSeconds={false} />
       </div>
     ),
   },
@@ -85,18 +112,6 @@ const components = [
           <div className="h-4 w-4 rounded-full bg-blue-500" />
           <div className="h-4 w-4 rounded-full bg-green-500" />
         </div>
-      </div>
-    ),
-  },
-  {
-    name: "Theme Switcher",
-    slug: "theme-switcher",
-    description: "Toggle between light, dark, and system themes.",
-    category: "Theme",
-    isNew: true,
-    preview: (
-      <div className="flex items-center gap-2">
-        <Sun className="h-6 w-6 text-yellow-500" />
       </div>
     ),
   },

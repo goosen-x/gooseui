@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "digital-clock",
+  "type": "registry:ui",
+  "title": "Digital Clock",
+  "description": "A retro 7-segment LED digital clock with customizable colors and blinking colons.",
+  "dependencies": [
+    "next-themes"
+  ],
+  "files": [
+    {
+      "path": "registry/new-york/ui/digital-clock.tsx",
+      "type": "registry:ui"
+    }
+  ]
+}
