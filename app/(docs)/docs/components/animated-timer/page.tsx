@@ -75,12 +75,12 @@ export default function Page() {
           </div>
 
           <div>
-            <h3 className="text-lg font-medium mb-3">24-hour format</h3>
+            <h3 className="text-lg font-medium mb-3">12-hour format</h3>
             <div className="flex justify-center py-8 bg-zinc-950 rounded-lg">
-              <AnimatedTimer use24Hour />
+              <AnimatedTimer use24Hour={false} />
             </div>
             <pre className="bg-muted p-4 rounded-lg overflow-x-auto mt-2">
-              <code>{`<AnimatedTimer use24Hour />`}</code>
+              <code>{`<AnimatedTimer use24Hour={false} />`}</code>
             </pre>
           </div>
         </div>
@@ -113,7 +113,7 @@ export default function Page() {
               <tr className="border-t">
                 <td className="p-3 font-mono text-xs">use24Hour</td>
                 <td className="p-3 font-mono text-xs">boolean</td>
-                <td className="p-3 font-mono text-xs">false</td>
+                <td className="p-3 font-mono text-xs">true</td>
                 <td className="p-3">24-hour format</td>
               </tr>
               <tr className="border-t">

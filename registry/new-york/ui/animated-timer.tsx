@@ -68,7 +68,7 @@ interface AnimatedTimerProps {
 export function AnimatedTimer({
   className,
   showSeconds = true,
-  use24Hour = false,
+  use24Hour = true,
 }: AnimatedTimerProps) {
   const [time, setTime] = React.useState<Date | null>(null)
   const [mounted, setMounted] = React.useState(false)
