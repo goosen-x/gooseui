@@ -60,10 +60,8 @@ export function DocsSidebar({
           <div className="relative flex h-10 w-full items-center rounded-full bg-zinc-800 p-1">
             {/* Sliding indicator */}
             <div
-              className={`absolute h-8 w-[calc(50%-4px)] rounded-full bg-primary transition-transform duration-300 ease-in-out ${
-                activeView === "components"
-                  ? "translate-x-0.5"
-                  : "translate-x-[calc(100%+4px)]"
+              className={`absolute h-8 w-[calc(50%-4px)] rounded-full bg-primary transition-transform duration-300 ${
+                activeView === "blocks" && "translate-x-full"
               }`}
             />
             {/* Components option */}
