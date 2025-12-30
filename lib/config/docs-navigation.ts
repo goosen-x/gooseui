@@ -105,6 +105,13 @@ export const docsNavigation: NavSection[] = [
         isNew: true,
       },
       {
+        slug: "digital-clock",
+        title: "Digital Clock",
+        href: "/docs/components/digital-clock",
+        isNew: true,
+        isDraft: true,
+      },
+      {
         slug: "input",
         title: "Input",
         href: "/docs/components/input",

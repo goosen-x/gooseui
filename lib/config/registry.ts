@@ -42,6 +42,7 @@ export const REGISTRY_ITEMS: RegistryItem[] = [
   { slug: "typography", name: "Typography", type: "component" },
   { slug: "theme-customizer", name: "Theme Customizer", type: "component" },
   { slug: "carousel", name: "Carousel", type: "component" },
+  { slug: "digital-clock", name: "Digital Clock", type: "component" },
   { slug: "baseline-status", name: "Baseline Status", type: "component" },
   { slug: "theme-switcher", name: "Theme Switcher", type: "component" },
 
