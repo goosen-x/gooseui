@@ -42,7 +42,7 @@ export async function GitHubStars({
       target="_blank"
       rel="noopener noreferrer"
       className={cn(
-        "flex items-center gap-2 text-sm font-medium transition-colors hover:text-primary",
+        "flex items-center gap-2 text-sm font-medium transition-colors hover:text-primary min-w-[160px]",
         className,
       )}
     >

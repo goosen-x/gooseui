@@ -185,6 +185,8 @@
   },
   "active": "19de4cd65c54c36c",
   "lastOpenFiles": [
+    "app/twitter-image.tsx",
+    "app/opengraph-image.tsx",
     "biome.json",
     "pnpm-lock.yaml.878049838",
     "node_modules/@biomejs",
@@ -194,8 +196,6 @@
     "app/test-error/page.tsx",
     "app/test-error",
     "app/(docs)/docs/components/theme-customizer/page.tsx",
-    "app/(docs)/docs/components/theme-customizer/theme-customizer-demo.tsx",
-    "app/(docs)/docs/components/theme-customizer",
     "CLAUDE.md",
     "docs/backlog/ideas/hooks-and-utilities.md",
     "docs/research/crypto-russia-legal.md",
