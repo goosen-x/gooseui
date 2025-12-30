@@ -46,7 +46,7 @@ export function DocsHeaderNav() {
   })
 
   return (
-    <>
+    <div className="flex items-center gap-6">
       <Breadcrumb>
         <BreadcrumbList>
           {breadcrumbs.map((crumb, index) => (
@@ -81,6 +81,6 @@ export function DocsHeaderNav() {
           </Link>
         ))}
       </nav>
-    </>
+    </div>
   )
 }
