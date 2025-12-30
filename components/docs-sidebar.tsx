@@ -18,7 +18,6 @@ import {
   SidebarMenuSubButton,
   SidebarMenuSubItem,
 } from "@/components/ui/sidebar"
-import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group"
 import { BLOCK_CATEGORIES } from "@/lib/config/blocks-categories"
 import { countBlocksInCategory } from "@/lib/config/blocks-registry"
 import { docsNavigation, filterDraftItems } from "@/lib/config/docs-navigation"
@@ -59,32 +58,34 @@ export function DocsSidebar({
 
         {/* View Switcher */}
         <div className="px-2 pt-2">
-          <ToggleGroup
-            type="single"
-            value={activeView}
-            className="w-full justify-start bg-muted/50 p-1 rounded-lg"
-          >
-            <ToggleGroupItem
-              value="components"
-              className="flex-1 gap-1.5 data-[state=on]:bg-primary data-[state=on]:text-primary-foreground data-[state=on]:hover:bg-primary data-[state=on]:hover:text-primary-foreground data-[state=on]:shadow-sm"
-              asChild
+          <div className="relative flex h-10 w-full items-center rounded-full bg-zinc-800 p-1">
+            {/* Sliding indicator */}
+            <div
+              className="absolute h-8 w-[calc(50%-4px)] rounded-full bg-primary transition-transform duration-300 ease-in-out"
+              style={{
+                transform:
+                  activeView === "components"
+                    ? "translateX(2px)"
+                    : "translateX(calc(100% + 4px))",
+              }}
+            />
+            {/* Components option */}
+            <Link
+              href="/docs/components"
+              className="relative z-10 flex flex-1 items-center justify-center gap-1.5 text-xs font-medium text-white"
             >
-              <Link href="/docs/components">
-                <Component className="h-4 w-4" />
-                <span className="text-xs">Components</span>
-              </Link>
-            </ToggleGroupItem>
-            <ToggleGroupItem
-              value="blocks"
-              className="flex-1 gap-1.5 data-[state=on]:bg-primary data-[state=on]:text-primary-foreground data-[state=on]:hover:bg-primary data-[state=on]:hover:text-primary-foreground data-[state=on]:shadow-sm"
-              asChild
+              <Component className="h-4 w-4" />
+              <span>Components</span>
+            </Link>
+            {/* Blocks option */}
+            <Link
+              href="/docs/blocks"
+              className="relative z-10 flex flex-1 items-center justify-center gap-1.5 text-xs font-medium text-white"
             >
-              <Link href="/docs/blocks">
-                <Blocks className="h-4 w-4" />
-                <span className="text-xs">Blocks</span>
-              </Link>
-            </ToggleGroupItem>
-          </ToggleGroup>
+              <Blocks className="h-4 w-4" />
+              <span>Blocks</span>
+            </Link>
+          </div>
         </div>
       </SidebarHeader>
 
