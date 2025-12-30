@@ -65,24 +65,22 @@ export function DocsHeaderNav() {
           ))}
         </BreadcrumbList>
       </Breadcrumb>
-      <div className="flex flex-1 items-center justify-end space-x-4">
-        <nav className="hidden md:flex items-center space-x-6 text-sm font-medium">
-          {mainNav.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={cn(
-                "transition-colors hover:text-foreground/80",
-                pathname?.startsWith(item.href)
-                  ? "text-foreground"
-                  : "text-foreground/60",
-              )}
-            >
-              {item.title}
-            </Link>
-          ))}
-        </nav>
-      </div>
+      <nav className="hidden md:flex items-center space-x-6 text-sm font-medium">
+        {mainNav.map((item) => (
+          <Link
+            key={item.href}
+            href={item.href}
+            className={cn(
+              "transition-colors hover:text-foreground/80",
+              pathname?.startsWith(item.href)
+                ? "text-foreground"
+                : "text-foreground/60",
+            )}
+          >
+            {item.title}
+          </Link>
+        ))}
+      </nav>
     </>
   )
 }

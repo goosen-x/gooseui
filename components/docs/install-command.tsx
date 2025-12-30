@@ -31,8 +31,13 @@ export function InstallCommand({
   defaultPm = "npm",
   className,
 }: InstallCommandProps) {
+  const [mounted, setMounted] = React.useState(false)
   const [copied, setCopied] = React.useState(false)
   const [activePm, setActivePm] = React.useState<PackageManager>(defaultPm)
+
+  React.useEffect(() => {
+    setMounted(true)
+  }, [])
 
   const getCommand = (pm: PackageManager) => {
     if (commands?.[pm]) return commands[pm]
@@ -61,6 +66,43 @@ export function InstallCommand({
   }
 
   const packageManagers: PackageManager[] = ["npm", "pnpm", "yarn", "bun"]
+
+  // Skeleton for SSR
+  if (!mounted) {
+    return (
+      <div className={cn("relative", className)}>
+        <div className="overflow-hidden rounded-lg border bg-muted/30">
+          <div className="flex items-center gap-2 border-b border-border/50 px-3 py-1">
+            <div className="flex size-4 items-center justify-center rounded-[1px] bg-foreground opacity-70">
+              <Terminal className="size-3 text-background" />
+            </div>
+            <div className="flex h-9 items-center gap-1 p-0">
+              {packageManagers.map((pm) => (
+                <div
+                  key={pm}
+                  className={cn(
+                    "h-7 rounded-md border px-2 pt-0.5 text-sm inline-flex items-center",
+                    pm === defaultPm
+                      ? "border-input bg-accent"
+                      : "border-transparent"
+                  )}
+                >
+                  {pm}
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="px-4 py-3.5">
+            <pre>
+              <code className="relative font-mono text-sm leading-none">
+                {getCommand(defaultPm)}
+              </code>
+            </pre>
+          </div>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className={cn("relative", className)}>
