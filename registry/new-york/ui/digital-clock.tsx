@@ -110,7 +110,7 @@ function Digit({ digit, color }: { digit: number; color: string }) {
     3: [true, true, true, false, true, false, true],
     4: [false, true, false, true, true, false, true],
     5: [true, true, true, true, false, false, true],
-    6: [false, true, true, true, false, true, true],
+    6: [true, true, true, true, false, true, true],
     7: [true, false, false, false, true, false, true],
     8: [true, true, true, true, true, true, true],
     9: [true, true, true, true, true, false, true],
