@@ -96,7 +96,6 @@ export const docsNavigation: NavSection[] = [
         title: "Carousel",
         href: "/docs/components/carousel",
         isNew: true,
-        isDraft: true,
       },
       {
         slug: "input",
