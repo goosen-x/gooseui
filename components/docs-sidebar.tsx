@@ -1,10 +1,10 @@
-"use client";
+"use client"
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import type * as React from "react";
+import Link from "next/link"
+import { usePathname } from "next/navigation"
+import type * as React from "react"
 
-import { Badge } from "@/components/ui/badge";
+import { Badge } from "@/components/ui/badge"
 import {
   Sidebar,
   SidebarContent,
@@ -16,23 +16,23 @@ import {
   SidebarMenuSub,
   SidebarMenuSubButton,
   SidebarMenuSubItem,
-} from "@/components/ui/sidebar";
-import { BLOCK_CATEGORIES } from "@/lib/config/blocks-categories";
-import { countBlocksInCategory } from "@/lib/config/blocks-registry";
-import { docsNavigation, filterDraftItems } from "@/lib/config/docs-navigation";
+} from "@/components/ui/sidebar"
+import { BLOCK_CATEGORIES } from "@/lib/config/blocks-categories"
+import { countBlocksInCategory } from "@/lib/config/blocks-registry"
+import { docsNavigation, filterDraftItems } from "@/lib/config/docs-navigation"
 
-const isDev = process.env.NODE_ENV === "development";
+const isDev = process.env.NODE_ENV === "development"
 
-type ViewMode = "components" | "blocks";
+type ViewMode = "components" | "blocks"
 
 export function DocsSidebar({
   ...props
 }: React.ComponentProps<typeof Sidebar>) {
-  const pathname = usePathname();
+  const pathname = usePathname()
 
   // Determine active view based on current path
-  const isBlocksPath = pathname.startsWith("/docs/blocks");
-  const activeView: ViewMode = isBlocksPath ? "blocks" : "components";
+  const isBlocksPath = pathname.startsWith("/docs/blocks")
+  const activeView: ViewMode = isBlocksPath ? "blocks" : "components"
 
   return (
     <Sidebar variant="floating" {...props}>
@@ -57,7 +57,7 @@ export function DocsSidebar({
 
         {/* View Switcher */}
         <div className="px-2 pt-2">
-          <div className="relative flex h-10 w-full items-center rounded-full bg-zinc-800 p-1">
+          <div className="relative flex h-10 w-full items-center rounded-full bg-muted p-1 dark:bg-zinc-800">
             {/* Sliding indicator */}
             <div
               className={`absolute h-8 w-[calc(50%-4px)] rounded-full bg-primary transition-transform duration-300 ${
@@ -67,14 +67,14 @@ export function DocsSidebar({
             {/* Components option */}
             <Link
               href="/docs/components"
-              className="relative z-10 flex flex-1 items-center justify-center text-xs font-medium text-white"
+              className="relative z-10 flex flex-1 items-center justify-center text-xs font-medium text-muted-foreground dark:text-white"
             >
               Components
             </Link>
             {/* Blocks option */}
             <Link
               href="/docs/blocks"
-              className="relative z-10 flex flex-1 items-center justify-center text-xs font-medium text-white"
+              className="relative z-10 flex flex-1 items-center justify-center text-xs font-medium text-muted-foreground dark:text-white"
             >
               Blocks
             </Link>
@@ -90,7 +90,7 @@ export function DocsSidebar({
         )}
       </SidebarContent>
     </Sidebar>
-  );
+  )
 }
 
 function ComponentsNav({ pathname }: { pathname: string }) {
@@ -138,7 +138,7 @@ function ComponentsNav({ pathname }: { pathname: string }) {
         ))}
       </SidebarMenu>
     </SidebarGroup>
-  );
+  )
 }
 
 function BlocksNav({ pathname }: { pathname: string }) {
@@ -163,9 +163,9 @@ function BlocksNav({ pathname }: { pathname: string }) {
           </SidebarMenuButton>
           <SidebarMenuSub className="ml-0 border-l-0 px-1.5">
             {BLOCK_CATEGORIES.map((category) => {
-              const Icon = category.icon;
-              const blockCount = countBlocksInCategory(category.slug);
-              const isActive = pathname === `/docs/blocks/${category.slug}`;
+              const Icon = category.icon
+              const blockCount = countBlocksInCategory(category.slug)
+              const isActive = pathname === `/docs/blocks/${category.slug}`
 
               return (
                 <SidebarMenuSubItem key={category.slug}>
@@ -191,7 +191,7 @@ function BlocksNav({ pathname }: { pathname: string }) {
                     </Link>
                   </SidebarMenuSubButton>
                 </SidebarMenuSubItem>
-              );
+              )
             })}
           </SidebarMenuSub>
         </SidebarMenuItem>
@@ -208,5 +208,5 @@ function BlocksNav({ pathname }: { pathname: string }) {
         </SidebarMenuItem>
       </SidebarMenu>
     </SidebarGroup>
-  );
+  )
 }
