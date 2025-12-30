@@ -1,6 +1,10 @@
 import { DocsPageNav } from "@/components/docs/docs-page-nav"
 import { InstallCommand } from "@/components/docs/install-command"
-import { Button } from "@/registry/new-york/ui/button"
+import {
+  ButtonPreview,
+  ButtonSizesDemo,
+  ButtonVariantDemo,
+} from "./button-demo"
 
 export const metadata = {
   title: "Button",
@@ -26,14 +30,7 @@ export default function ButtonPage() {
         >
           Preview
         </h2>
-        <div className="flex flex-wrap items-center gap-4 rounded-lg border p-6">
-          <Button>Primary</Button>
-          <Button variant="secondary">Secondary</Button>
-          <Button variant="destructive">Destructive</Button>
-          <Button variant="outline">Outline</Button>
-          <Button variant="ghost">Ghost</Button>
-          <Button variant="link">Link</Button>
-        </div>
+        <ButtonPreview />
       </div>
 
       <div className="space-y-4">
@@ -76,9 +73,7 @@ export function MyComponent() {
         >
           Default
         </h3>
-        <div className="flex items-center gap-4 rounded-lg border p-4">
-          <Button>Button</Button>
-        </div>
+        <ButtonVariantDemo label="Button" />
         <pre className="rounded-lg border bg-muted px-4 py-3 font-mono text-sm overflow-x-auto">
           {`<Button>Button</Button>`}
         </pre>
@@ -86,9 +81,7 @@ export function MyComponent() {
         <h3 className="scroll-m-20 text-xl font-semibold tracking-tight mt-6">
           Secondary
         </h3>
-        <div className="flex items-center gap-4 rounded-lg border p-4">
-          <Button variant="secondary">Secondary</Button>
-        </div>
+        <ButtonVariantDemo variant="secondary" label="Secondary" />
         <pre className="rounded-lg border bg-muted px-4 py-3 font-mono text-sm overflow-x-auto">
           {`<Button variant="secondary">Secondary</Button>`}
         </pre>
@@ -96,9 +89,7 @@ export function MyComponent() {
         <h3 className="scroll-m-20 text-xl font-semibold tracking-tight mt-6">
           Destructive
         </h3>
-        <div className="flex items-center gap-4 rounded-lg border p-4">
-          <Button variant="destructive">Destructive</Button>
-        </div>
+        <ButtonVariantDemo variant="destructive" label="Destructive" />
         <pre className="rounded-lg border bg-muted px-4 py-3 font-mono text-sm overflow-x-auto">
           {`<Button variant="destructive">Destructive</Button>`}
         </pre>
@@ -106,9 +97,7 @@ export function MyComponent() {
         <h3 className="scroll-m-20 text-xl font-semibold tracking-tight mt-6">
           Outline
         </h3>
-        <div className="flex items-center gap-4 rounded-lg border p-4">
-          <Button variant="outline">Outline</Button>
-        </div>
+        <ButtonVariantDemo variant="outline" label="Outline" />
         <pre className="rounded-lg border bg-muted px-4 py-3 font-mono text-sm overflow-x-auto">
           {`<Button variant="outline">Outline</Button>`}
         </pre>
@@ -116,9 +105,7 @@ export function MyComponent() {
         <h3 className="scroll-m-20 text-xl font-semibold tracking-tight mt-6">
           Ghost
         </h3>
-        <div className="flex items-center gap-4 rounded-lg border p-4">
-          <Button variant="ghost">Ghost</Button>
-        </div>
+        <ButtonVariantDemo variant="ghost" label="Ghost" />
         <pre className="rounded-lg border bg-muted px-4 py-3 font-mono text-sm overflow-x-auto">
           {`<Button variant="ghost">Ghost</Button>`}
         </pre>
@@ -126,9 +113,7 @@ export function MyComponent() {
         <h3 className="scroll-m-20 text-xl font-semibold tracking-tight mt-6">
           Link
         </h3>
-        <div className="flex items-center gap-4 rounded-lg border p-4">
-          <Button variant="link">Link</Button>
-        </div>
+        <ButtonVariantDemo variant="link" label="Link" />
         <pre className="rounded-lg border bg-muted px-4 py-3 font-mono text-sm overflow-x-auto">
           {`<Button variant="link">Link</Button>`}
         </pre>
@@ -141,27 +126,7 @@ export function MyComponent() {
         >
           Sizes
         </h2>
-        <div className="flex flex-wrap items-center gap-4 rounded-lg border p-6">
-          <Button size="sm">Small</Button>
-          <Button size="default">Default</Button>
-          <Button size="lg">Large</Button>
-          <Button size="icon">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="M5 12h14" />
-              <path d="m12 5 7 7-7 7" />
-            </svg>
-          </Button>
-        </div>
+        <ButtonSizesDemo />
         <pre className="rounded-lg border bg-muted px-4 py-3 font-mono text-sm overflow-x-auto">
           {`<Button size="sm">Small</Button>
 <Button size="default">Default</Button>
