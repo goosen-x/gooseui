@@ -27,7 +27,7 @@ export default function DigitalClockPage() {
         >
           Preview
         </h2>
-        <div className="flex justify-center py-12 bg-zinc-950 rounded-lg">
+        <div className="flex justify-center py-12 bg-zinc-100 dark:bg-zinc-950 rounded-lg">
           <DigitalClock />
         </div>
       </div>
@@ -43,7 +43,7 @@ export default function DigitalClockPage() {
         <div className="grid gap-8">
           <div>
             <h3 className="text-lg font-medium mb-3">Without seconds</h3>
-            <div className="flex justify-center py-8 bg-zinc-950 rounded-lg">
+            <div className="flex justify-center py-8 bg-zinc-100 dark:bg-zinc-950 rounded-lg">
               <DigitalClock showSeconds={false} />
             </div>
             <pre className="bg-muted p-4 rounded-lg overflow-x-auto mt-2">
@@ -53,7 +53,7 @@ export default function DigitalClockPage() {
 
           <div>
             <h3 className="text-lg font-medium mb-3">Custom colors</h3>
-            <div className="flex justify-center py-8 bg-zinc-950 rounded-lg gap-8 flex-wrap">
+            <div className="flex justify-center py-8 bg-zinc-100 dark:bg-zinc-950 rounded-lg gap-8 flex-wrap">
               <DigitalClock showSeconds={false} color="#00BFFF" />
               <DigitalClock showSeconds={false} color="#FF6B6B" />
               <DigitalClock showSeconds={false} color="#FFD93D" />
@@ -67,7 +67,7 @@ export default function DigitalClockPage() {
 
           <div>
             <h3 className="text-lg font-medium mb-3">12-hour format</h3>
-            <div className="flex justify-center py-8 bg-zinc-950 rounded-lg">
+            <div className="flex justify-center py-8 bg-zinc-100 dark:bg-zinc-950 rounded-lg">
               <DigitalClock use24Hour={false} />
             </div>
             <pre className="bg-muted p-4 rounded-lg overflow-x-auto mt-2">

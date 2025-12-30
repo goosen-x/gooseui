@@ -1,7 +1,6 @@
 "use client"
 
 import * as React from "react"
-import { useTheme } from "next-themes"
 import { cn } from "@/lib/utils"
 
 interface DigitalClockProps {
@@ -17,12 +16,9 @@ export function DigitalClock({
   use24Hour = true,
   color = "#82FA58",
 }: DigitalClockProps) {
-  const { resolvedTheme } = useTheme()
   const [time, setTime] = React.useState<Date | null>(null)
   const [mounted, setMounted] = React.useState(false)
   const [colonVisible, setColonVisible] = React.useState(true)
-
-  const offColor = resolvedTheme === "dark" ? "#333" : "#ddd"
 
   React.useEffect(() => {
     setMounted(true)
@@ -45,16 +41,16 @@ export function DigitalClock({
   if (!mounted || !time) {
     return (
       <div className={cn("flex items-center justify-center gap-1", className)}>
-        <Digit digit={0} color={color} offColor={offColor} />
-        <Digit digit={0} color={color} offColor={offColor} />
-        <Colon color={color} offColor={offColor} />
-        <Digit digit={0} color={color} offColor={offColor} />
-        <Digit digit={0} color={color} offColor={offColor} />
+        <Digit digit={0} color={color} />
+        <Digit digit={0} color={color} />
+        <Colon color={color} />
+        <Digit digit={0} color={color} />
+        <Digit digit={0} color={color} />
         {showSeconds && (
           <>
-            <Colon color={color} offColor={offColor} />
-            <Digit digit={0} color={color} offColor={offColor} />
-            <Digit digit={0} color={color} offColor={offColor} />
+            <Colon color={color} />
+            <Digit digit={0} color={color} />
+            <Digit digit={0} color={color} />
           </>
         )}
       </div>
@@ -77,16 +73,16 @@ export function DigitalClock({
 
   return (
     <div className={cn("flex items-center justify-center gap-1", className)}>
-      <Digit digit={hourTens} color={color} offColor={offColor} />
-      <Digit digit={hourOnes} color={color} offColor={offColor} />
-      <Colon color={color} offColor={offColor} visible={colonVisible} />
-      <Digit digit={minTens} color={color} offColor={offColor} />
-      <Digit digit={minOnes} color={color} offColor={offColor} />
+      <Digit digit={hourTens} color={color} />
+      <Digit digit={hourOnes} color={color} />
+      <Colon color={color} visible={colonVisible} />
+      <Digit digit={minTens} color={color} />
+      <Digit digit={minOnes} color={color} />
       {showSeconds && (
         <>
-          <Colon color={color} offColor={offColor} visible={colonVisible} />
-          <Digit digit={secTens} color={color} offColor={offColor} />
-          <Digit digit={secOnes} color={color} offColor={offColor} />
+          <Colon color={color} visible={colonVisible} />
+          <Digit digit={secTens} color={color} />
+          <Digit digit={secOnes} color={color} />
         </>
       )}
     </div>
@@ -95,14 +91,12 @@ export function DigitalClock({
 
 function Colon({
   color,
-  offColor,
   visible = true,
 }: {
   color: string
-  offColor: string
   visible?: boolean
 }) {
-  const displayColor = visible ? color : offColor
+  const displayColor = visible ? color : "#333"
   return (
     <div className="relative w-[10px] h-[110px] mx-2 flex flex-col items-center justify-center gap-[15px]">
       <div
@@ -117,16 +111,8 @@ function Colon({
   )
 }
 
-function Digit({
-  digit,
-  color,
-  offColor,
-}: {
-  digit: number
-  color: string
-  offColor: string
-}) {
-  const off = offColor
+function Digit({ digit, color }: { digit: number; color: string }) {
+  const off = "#333"
 
   // Segment patterns for each digit
   // [top, middle, bottom, topLeft, topRight, bottomLeft, bottomRight]
