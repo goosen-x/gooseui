@@ -1,4 +1,4 @@
-import { ArrowRightIcon } from "lucide-react"
+import { ArrowRightIcon, Palette, Sun, Bell, LayoutGrid } from "lucide-react"
 import Link from "next/link"
 
 import { cn } from "@/lib/utils"
@@ -10,6 +10,17 @@ import { Typography } from "@/registry/new-york/ui/typography"
 
 // Component definitions
 const components = [
+  {
+    name: "Animated Timer",
+    slug: "animated-timer",
+    description: "A beautiful animated countdown timer with flip animation.",
+    category: "Display",
+    preview: (
+      <div className="scale-[0.35] origin-center">
+        <AnimatedTimer showSeconds={false} />
+      </div>
+    ),
+  },
   {
     name: "Button",
     slug: "button",
@@ -37,12 +48,69 @@ const components = [
     ),
   },
   {
+    name: "Carousel",
+    slug: "carousel",
+    description: "A carousel with motion and swipe gestures built on Embla.",
+    category: "Display",
+    isNew: true,
+    preview: (
+      <div className="flex items-center gap-1">
+        <div className="h-16 w-12 rounded bg-primary/20" />
+        <div className="h-16 w-12 rounded bg-primary/40" />
+        <div className="h-16 w-12 rounded bg-primary" />
+        <div className="h-16 w-12 rounded bg-primary/40" />
+        <div className="h-16 w-12 rounded bg-primary/20" />
+      </div>
+    ),
+  },
+  {
     name: "Input",
     slug: "input",
     description:
       "Displays a form input field or a component that looks like an input.",
     category: "Inputs",
     preview: <Input placeholder="Enter text..." className="max-w-[200px]" />,
+  },
+  {
+    name: "Theme Customizer",
+    slug: "theme-customizer",
+    description: "Customize colors, radius, and appearance of your theme.",
+    category: "Theme",
+    isNew: true,
+    preview: (
+      <div className="flex items-center gap-2">
+        <Palette className="h-8 w-8 text-primary" />
+        <div className="flex gap-1">
+          <div className="h-4 w-4 rounded-full bg-red-500" />
+          <div className="h-4 w-4 rounded-full bg-blue-500" />
+          <div className="h-4 w-4 rounded-full bg-green-500" />
+        </div>
+      </div>
+    ),
+  },
+  {
+    name: "Theme Switcher",
+    slug: "theme-switcher",
+    description: "Toggle between light, dark, and system themes.",
+    category: "Theme",
+    isNew: true,
+    preview: (
+      <div className="flex items-center gap-2">
+        <Sun className="h-6 w-6 text-yellow-500" />
+      </div>
+    ),
+  },
+  {
+    name: "Toast",
+    slug: "toast",
+    description: "A toast notification component powered by Sonner.",
+    category: "Feedback",
+    preview: (
+      <div className="flex items-center gap-2 rounded-lg border bg-background px-3 py-2 shadow-sm">
+        <Bell className="h-4 w-4" />
+        <span className="text-xs">Toast message</span>
+      </div>
+    ),
   },
   {
     name: "Typography",
@@ -56,17 +124,6 @@ const components = [
         <Typography variant="gradient" as="span" className="text-sm">
           Gradient
         </Typography>
-      </div>
-    ),
-  },
-  {
-    name: "Animated Timer",
-    slug: "animated-timer",
-    description: "A beautiful animated countdown timer with flip animation.",
-    category: "Display",
-    preview: (
-      <div className="scale-[0.35] origin-center">
-        <AnimatedTimer showSeconds={false} />
       </div>
     ),
   },
