@@ -76,8 +76,24 @@ function Carousel({
   const [canScrollPrev, setCanScrollPrev] = React.useState(false)
   const [canScrollNext, setCanScrollNext] = React.useState(true)
   const [activeIndex, setActiveIndex] = React.useState(0)
-  const [itemCount, setItemCount] = React.useState(0)
   const [isPaused, setIsPaused] = React.useState(false)
+
+  // Count CarouselItem children for initial render (no flash)
+  const itemCount = React.useMemo(() => {
+    let count = 0
+    React.Children.forEach(children, (child) => {
+      if (React.isValidElement(child)) {
+        const displayName =
+          typeof child.type === "function"
+            ? (child.type as { displayName?: string }).displayName
+            : undefined
+        if (displayName === "CarouselItem") {
+          count++
+        }
+      }
+    })
+    return count
+  }, [children])
 
   // Drag state (disabled for now)
   // const isDragging = React.useRef(false)
@@ -102,7 +118,6 @@ function Carousel({
 
     // Calculate active index
     const items = el.querySelectorAll("[data-carousel-item]")
-    setItemCount(items.length)
 
     if (items.length > 0) {
       const itemSize = isHorizontal
@@ -131,7 +146,9 @@ function Carousel({
     let targetScroll = currentScroll - itemSize - 16
 
     if (loop && targetScroll < 0) {
-      targetScroll = el[isHorizontal ? "scrollWidth" : "scrollHeight"] - el[isHorizontal ? "clientWidth" : "clientHeight"]
+      targetScroll =
+        el[isHorizontal ? "scrollWidth" : "scrollHeight"] -
+        el[isHorizontal ? "clientWidth" : "clientHeight"]
     }
 
     el.scrollTo({
@@ -154,7 +171,9 @@ function Carousel({
       : (items[0] as HTMLElement).offsetHeight
 
     const currentScroll = isHorizontal ? el.scrollLeft : el.scrollTop
-    const maxScroll = el[isHorizontal ? "scrollWidth" : "scrollHeight"] - el[isHorizontal ? "clientWidth" : "clientHeight"]
+    const maxScroll =
+      el[isHorizontal ? "scrollWidth" : "scrollHeight"] -
+      el[isHorizontal ? "clientWidth" : "clientHeight"]
     let targetScroll = currentScroll + itemSize + 16
 
     if (loop && targetScroll > maxScroll) {
@@ -191,7 +210,7 @@ function Carousel({
         }
       }
     },
-    [orientation]
+    [orientation],
   )
 
   // Drag handlers (disabled for now)
@@ -302,7 +321,7 @@ function Carousel({
         scrollNext()
       }
     },
-    [orientation, scrollPrev, scrollNext]
+    [orientation, scrollPrev, scrollNext],
   )
 
   const contextValue = React.useMemo(
@@ -328,7 +347,7 @@ function Carousel({
       itemCount,
       orientation,
       draggable,
-    ]
+    ],
   )
 
   // Separate children into categories:
@@ -372,7 +391,7 @@ function Carousel({
         className={cn(
           carouselVariants({ orientation }),
           "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
-          className
+          className,
         )}
         {...props}
       >
@@ -387,11 +406,13 @@ function Carousel({
                 ? "snap-x snap-mandatory overflow-x-auto"
                 : "h-full flex-col snap-y snap-mandatory overflow-y-auto [&>*]:h-full [&>*]:shrink-0",
               // Hide scrollbar
-              "scrollbar-none [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none]"
+              "scrollbar-none [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none]",
             )}
             style={{
-              scrollSnapType: orientation === "horizontal" ? "x mandatory" : "y mandatory",
-              overscrollBehavior: orientation === "horizontal" ? "x contain" : "y contain",
+              scrollSnapType:
+                orientation === "horizontal" ? "x mandatory" : "y mandatory",
+              overscrollBehavior:
+                orientation === "horizontal" ? "x contain" : "y contain",
             }}
           >
             {items}
@@ -409,10 +430,7 @@ function Carousel({
  * CarouselContent
  * -------------------------------------------------------------------------------------------------*/
 
-function CarouselContent({
-  className,
-  ...props
-}: React.ComponentProps<"div">) {
+function CarouselContent({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="carousel-content"
@@ -426,23 +444,20 @@ function CarouselContent({
  * CarouselItem
  * -------------------------------------------------------------------------------------------------*/
 
-const carouselItemVariants = cva(
-  "shrink-0 snap-start scroll-ml-0",
-  {
-    variants: {
-      size: {
-        full: "w-full",
-        "1/2": "w-1/2",
-        "1/3": "w-1/3",
-        "1/4": "w-1/4",
-        auto: "w-auto",
-      },
+const carouselItemVariants = cva("shrink-0 snap-start scroll-ml-0", {
+  variants: {
+    size: {
+      full: "w-full",
+      "1/2": "w-1/2",
+      "1/3": "w-1/3",
+      "1/4": "w-1/4",
+      auto: "w-auto",
     },
-    defaultVariants: {
-      size: "full",
-    },
-  }
-)
+  },
+  defaultVariants: {
+    size: "full",
+  },
+})
 
 interface CarouselItemProps
   extends React.ComponentProps<"div">,
@@ -495,11 +510,13 @@ function CarouselPrevious({
         orientation === "horizontal"
           ? "left-2 top-1/2 -translate-y-1/2"
           : "top-2 left-1/2 -translate-x-1/2 rotate-90",
-        className
+        className,
       )}
       {...props}
     >
-      {children ?? <ChevronLeftIcon style={{ width: iconSize, height: iconSize }} />}
+      {children ?? (
+        <ChevronLeftIcon style={{ width: iconSize, height: iconSize }} />
+      )}
     </button>
   )
 }
@@ -533,11 +550,13 @@ function CarouselNext({
         orientation === "horizontal"
           ? "right-2 top-1/2 -translate-y-1/2"
           : "bottom-2 left-1/2 -translate-x-1/2 rotate-90",
-        className
+        className,
       )}
       {...props}
     >
-      {children ?? <ChevronRightIcon style={{ width: iconSize, height: iconSize }} />}
+      {children ?? (
+        <ChevronRightIcon style={{ width: iconSize, height: iconSize }} />
+      )}
     </button>
   )
 }
@@ -566,10 +585,7 @@ function CarouselDots({
       data-slot="carousel-dots"
       role="tablist"
       aria-label="Carousel navigation"
-      className={cn(
-        "flex items-center justify-center gap-2 py-4",
-        className
-      )}
+      className={cn("flex items-center justify-center gap-2 py-4", className)}
       {...props}
     >
       {Array.from({ length: itemCount }).map((_, index) => (
@@ -599,7 +615,7 @@ function CarouselDots({
               index === activeIndex
                 ? "bg-primary text-primary-foreground"
                 : "bg-muted hover:bg-muted-foreground/20",
-            ]
+            ],
           )}
         >
           {variant === "numbers" ? index + 1 : null}
@@ -632,7 +648,10 @@ function CarouselProgress({
       aria-valuemin={1}
       aria-valuemax={itemCount}
       aria-label={`Slide ${activeIndex + 1} of ${itemCount}`}
-      className={cn("h-1 w-full bg-muted rounded-full overflow-hidden", className)}
+      className={cn(
+        "h-1 w-full bg-muted rounded-full overflow-hidden",
+        className,
+      )}
       {...props}
     >
       <div
@@ -648,10 +667,7 @@ CarouselProgress.displayName = "CarouselProgress"
  * CarouselCounter
  * -------------------------------------------------------------------------------------------------*/
 
-function CarouselCounter({
-  className,
-  ...props
-}: React.ComponentProps<"div">) {
+function CarouselCounter({ className, ...props }: React.ComponentProps<"div">) {
   const { activeIndex, itemCount } = useCarousel()
 
   if (itemCount === 0) return null
@@ -661,10 +677,7 @@ function CarouselCounter({
       data-slot="carousel-counter"
       aria-live="polite"
       aria-atomic="true"
-      className={cn(
-        "text-sm text-muted-foreground tabular-nums",
-        className
-      )}
+      className={cn("text-sm text-muted-foreground tabular-nums", className)}
       {...props}
     >
       <span className="font-medium text-foreground">{activeIndex + 1}</span>
