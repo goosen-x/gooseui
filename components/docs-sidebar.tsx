@@ -1,6 +1,5 @@
 "use client"
 
-import { Blocks, Component } from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import type * as React from "react"
@@ -72,18 +71,16 @@ export function DocsSidebar({
             {/* Components option */}
             <Link
               href="/docs/components"
-              className="relative z-10 flex flex-1 items-center justify-center gap-1.5 text-xs font-medium text-white"
+              className="relative z-10 flex flex-1 items-center justify-center text-xs font-medium text-white"
             >
-              <Component className="h-4 w-4" />
-              <span>Components</span>
+              Components
             </Link>
             {/* Blocks option */}
             <Link
               href="/docs/blocks"
-              className="relative z-10 flex flex-1 items-center justify-center gap-1.5 text-xs font-medium text-white"
+              className="relative z-10 flex flex-1 items-center justify-center text-xs font-medium text-white"
             >
-              <Blocks className="h-4 w-4" />
-              <span>Blocks</span>
+              Blocks
             </Link>
           </div>
         </div>
