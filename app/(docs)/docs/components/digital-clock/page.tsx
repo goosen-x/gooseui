@@ -2,8 +2,7 @@ import { DigitalClock } from "@/registry/new-york/ui/digital-clock"
 
 export const metadata = {
   title: "Digital Clock",
-  description:
-    "A retro 7-segment LED digital clock with customizable colors.",
+  description: "A retro 7-segment LED digital clock with customizable colors.",
 }
 
 export default function DigitalClockPage() {

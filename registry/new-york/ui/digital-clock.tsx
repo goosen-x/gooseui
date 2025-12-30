@@ -3,19 +3,6 @@
 import * as React from "react"
 import { cn } from "@/lib/utils"
 
-const DIGIT_CLASSES = [
-  "zero",
-  "one",
-  "two",
-  "three",
-  "four",
-  "five",
-  "six",
-  "seven",
-  "eight",
-  "nine",
-]
-
 interface DigitalClockProps {
   className?: string
   showSeconds?: boolean
