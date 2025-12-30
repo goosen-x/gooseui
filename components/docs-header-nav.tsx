@@ -11,7 +11,6 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
-import { cn } from "@/lib/utils"
 
 const pathNames: Record<string, string> = {
   docs: "Docs",
@@ -27,12 +26,6 @@ const pathNames: Record<string, string> = {
   "border-beam": "Border Beam",
 }
 
-const mainNav = [
-  { href: "/docs", title: "Docs" },
-  { href: "/docs/components/button", title: "Components" },
-  { href: "/docs/effects/border-beam", title: "Effects" },
-]
-
 export function DocsHeaderNav() {
   const pathname = usePathname()
   const segments = pathname.split("/").filter(Boolean)
@@ -46,41 +39,23 @@ export function DocsHeaderNav() {
   })
 
   return (
-    <div className="flex items-center gap-6">
-      <Breadcrumb>
-        <BreadcrumbList>
-          {breadcrumbs.map((crumb, index) => (
-            <React.Fragment key={crumb.href}>
-              {index > 0 && <BreadcrumbSeparator />}
-              <BreadcrumbItem>
-                {crumb.isLast ? (
-                  <BreadcrumbPage>{crumb.name}</BreadcrumbPage>
-                ) : (
-                  <BreadcrumbLink asChild>
-                    <Link href={crumb.href}>{crumb.name}</Link>
-                  </BreadcrumbLink>
-                )}
-              </BreadcrumbItem>
-            </React.Fragment>
-          ))}
-        </BreadcrumbList>
-      </Breadcrumb>
-      <nav className="hidden md:flex items-center space-x-6 text-sm font-medium">
-        {mainNav.map((item) => (
-          <Link
-            key={item.href}
-            href={item.href}
-            className={cn(
-              "transition-colors hover:text-foreground/80",
-              pathname?.startsWith(item.href)
-                ? "text-foreground"
-                : "text-foreground/60",
-            )}
-          >
-            {item.title}
-          </Link>
+    <Breadcrumb>
+      <BreadcrumbList>
+        {breadcrumbs.map((crumb, index) => (
+          <React.Fragment key={crumb.href}>
+            {index > 0 && <BreadcrumbSeparator />}
+            <BreadcrumbItem>
+              {crumb.isLast ? (
+                <BreadcrumbPage>{crumb.name}</BreadcrumbPage>
+              ) : (
+                <BreadcrumbLink asChild>
+                  <Link href={crumb.href}>{crumb.name}</Link>
+                </BreadcrumbLink>
+              )}
+            </BreadcrumbItem>
+          </React.Fragment>
         ))}
-      </nav>
-    </div>
+      </BreadcrumbList>
+    </Breadcrumb>
   )
 }

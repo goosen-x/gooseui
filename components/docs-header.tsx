@@ -1,7 +1,8 @@
 import { Suspense } from "react"
+import { DocsHeaderNav } from "@/components/docs-header-nav"
 import { GitHubStars } from "@/components/github-stars"
 import { GitHubStarsSkeleton } from "@/components/github-stars-skeleton"
-import { DocsHeaderNav } from "@/components/docs-header-nav"
+import { HeaderNav } from "@/components/site/header-nav"
 
 export function DocsHeader() {
   return (
@@ -9,6 +10,7 @@ export function DocsHeader() {
       <div className="mx-auto flex h-14 max-w-screen-2xl items-center px-4 md:px-8">
         <DocsHeaderNav />
         <div className="flex flex-1 items-center justify-end space-x-6">
+          <HeaderNav />
           <Suspense
             fallback={<GitHubStarsSkeleton className="hidden sm:flex" />}
           >
