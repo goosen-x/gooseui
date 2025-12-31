@@ -1,7 +1,9 @@
+import { Plus } from "lucide-react"
+import Link from "next/link"
 import { BlockCard } from "@/components/blocks/block-card"
+import { Button } from "@/components/ui/button"
 import { BLOCK_CATEGORIES } from "@/lib/config/blocks-categories"
 import {
-  BLOCK_ITEMS,
   getBlocksByCategory,
   getFeaturedBlocks,
 } from "@/lib/config/blocks-registry"
@@ -18,7 +20,19 @@ export default function BlocksPage() {
     <div className="space-y-12">
       {/* Hero */}
       <div className="space-y-4">
-        <h1 className="text-4xl font-bold tracking-tight">Blocks</h1>
+        <div className="flex items-center justify-between">
+          <h1 className="text-4xl font-bold tracking-tight">Blocks</h1>
+          <Button asChild>
+            <Link
+              href="https://github.com/goosen-x/gooseui/issues/new?labels=block-request&title=Block+request:+"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Plus className="mr-2 h-4 w-4" />
+              Add a block
+            </Link>
+          </Button>
+        </div>
         <p className="max-w-2xl text-lg text-muted-foreground">
           Premium UI blocks for Web3, Dashboards, Marketing, and E-commerce.
           Copy and paste into your apps.

@@ -65,7 +65,8 @@ const components = [
   {
     name: "Carousel",
     slug: "carousel",
-    description: "A zero-dependency carousel with drag-to-scroll and auto-play.",
+    description:
+      "A zero-dependency carousel with drag-to-scroll and auto-play.",
     category: "Display",
     isNew: true,
     preview: (
@@ -81,7 +82,8 @@ const components = [
   {
     name: "Digital Clock",
     slug: "digital-clock",
-    description: "A retro 7-segment LED digital clock with customizable colors.",
+    description:
+      "A retro 7-segment LED digital clock with customizable colors.",
     category: "Display",
     isNew: true,
     preview: (

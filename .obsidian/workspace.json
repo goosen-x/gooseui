@@ -185,6 +185,10 @@
   },
   "active": "19de4cd65c54c36c",
   "lastOpenFiles": [
+    "docs/backlog/ideas/dashboard-widgets-blocks.md",
+    "docs/backlog/ideas/widgets-section.md",
+    "docs/backlog/ideas/changelog-page.md",
+    "docs/backlog/ideas/header-block.md",
     "public/r/theme-switcher.json",
     "public/r/theme-customizer.json",
     "public/r/digital-clock.json",
@@ -195,7 +199,6 @@
     "app/(docs)/docs/components/digital-clock/page.tsx",
     "app/(docs)/docs/components/digital-clock",
     "registry/new-york/ui/digital-clock.tsx",
-    "registry/gooseui/animated-toggle-group.tsx",
     "docs/backlog/ideas/navbar-improvements.md",
     "docs/backlog/ideas/blocks-marketplace.md",
     "docs/inspiration/marketing-blocks.md",
@@ -217,8 +220,6 @@
     "docs/backlog/ideas/search-header.md",
     "docs/inspiration/8bitcn-ui.md",
     "docs/backlog/ideas/_template.md",
-    "docs/backlog/ideas/pattern-generator.md",
-    "docs/backlog/_index.md",
-    "docs/01-references.md"
+    "docs/backlog/ideas/pattern-generator.md"
   ]
 }
