@@ -53,6 +53,46 @@ export default function BaselineStatusPage() {
 
       <div className="space-y-4">
         <h2
+          id="browser-check"
+          className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight"
+        >
+          Browser Check
+        </h2>
+        <p className="text-muted-foreground">
+          Use the{" "}
+          <code className="text-xs bg-muted px-1 py-0.5 rounded">
+            browserCheck
+          </code>{" "}
+          prop to show real-time browser support detection alongside the
+          Baseline status.
+        </p>
+        <div className="flex flex-col gap-4 py-8 px-6 bg-muted/50 rounded-lg">
+          <BaselineStatus
+            featureId="view-transitions"
+            browserCheck="view-transitions"
+          />
+          <BaselineStatus featureId="popover" browserCheck="popover" />
+          <BaselineStatus
+            featureId="anchor-positioning"
+            browserCheck="anchor-positioning"
+          />
+        </div>
+        <pre className="bg-muted p-4 rounded-lg overflow-x-auto mt-2">
+          <code>{`// Combined Baseline status + real-time browser check
+<BaselineStatus
+  featureId="view-transitions"
+  browserCheck="view-transitions"
+/>
+
+// Available browser checks:
+// "view-transitions" - View Transitions API
+// "popover" - Popover API
+// "anchor-positioning" - CSS Anchor Positioning`}</code>
+        </pre>
+      </div>
+
+      <div className="space-y-4">
+        <h2
           id="installation"
           className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight"
         >
@@ -210,6 +250,18 @@ export default function BaselineStatusPage() {
                 <td className="p-3 font-mono text-xs">boolean</td>
                 <td className="p-3 font-mono text-xs">false</td>
                 <td className="p-3">Show only the icon without text</td>
+              </tr>
+              <tr className="border-t">
+                <td className="p-3 font-mono text-xs">browserCheck</td>
+                <td className="p-3 font-mono text-xs">
+                  &quot;view-transitions&quot; | &quot;popover&quot; |
+                  &quot;anchor-positioning&quot;
+                </td>
+                <td className="p-3 font-mono text-xs">-</td>
+                <td className="p-3">
+                  Browser feature to detect support for. Shows real-time support
+                  status alongside Baseline.
+                </td>
               </tr>
             </tbody>
           </table>

@@ -1,222 +1,368 @@
+---
+name: add-component
+description: Creates new components for GooseUI library with proper registry, documentation, and styling. Use when adding new UI components, effects, or blocks.
+allowed-tools: Read, Write, Edit, Grep, Glob, Bash
+---
+
 # Adding New Components to GooseUI
 
-> **IMPORTANT:** Always use this skill when adding new components! Do not create components manually without following this checklist.
+> **IMPORTANT:** Always use this skill when adding new components!
 
 ## Quick Checklist
 
-When adding a new component, follow these steps:
+1. [ ] `registry/new-york/ui/{slug}.tsx` — компонент
+2. [ ] `public/r/{slug}.json` — registry JSON
+3. [ ] `lib/config/registry.ts` — добавить в REGISTRY_ITEMS
+4. [ ] `lib/config/docs-navigation.ts` — добавить в навигацию
+5. [ ] `app/(docs)/docs/components/{slug}/page.tsx` — docs page
+6. [ ] `app/(docs)/docs/components/page.tsx` — добавить в каталог
+7. [ ] `pnpm validate:nav` — проверить навигацию
 
-### 1. Add to Registry Config
+---
 
-Edit `lib/config/registry.ts` and add your component:
+## Project Structure
+
+```
+registry/new-york/
+├── ui/              # UI components (button, input, card)
+├── effects/         # Visual effects (border-beam)
+├── blocks/          # Ready-to-use examples
+└── lib/             # Utilities (toast.ts)
+
+app/(docs)/docs/
+├── components/      # Component documentation
+│   └── {slug}/
+│       ├── page.tsx
+│       └── {slug}-demo.tsx  # Client demos (if needed)
+└── effects/         # Effects documentation
+```
+
+---
+
+## Step 1: Create Component
+
+Location: `registry/new-york/ui/{slug}.tsx`
+
+```tsx
+"use client"  // Only if using hooks/state
+
+import * as React from "react"
+import { cva, type VariantProps } from "class-variance-authority"
+import { cn } from "@/lib/utils"
+
+const componentVariants = cva(
+  "base-classes-here",
+  {
+    variants: {
+      variant: {
+        default: "variant-classes",
+      },
+      size: {
+        default: "size-classes",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+      size: "default",
+    },
+  }
+)
+
+interface ComponentNameProps
+  extends React.ComponentProps<"div">,
+    VariantProps<typeof componentVariants> {}
+
+export function ComponentName({
+  className,
+  variant,
+  size,
+  ...props
+}: ComponentNameProps) {
+  return (
+    <div
+      className={cn(componentVariants({ variant, size, className }))}
+      {...props}
+    />
+  )
+}
+```
+
+---
+
+## Step 2: Create Registry JSON
+
+Location: `public/r/{slug}.json`
+
+```json
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "component-name",
+  "type": "registry:ui",
+  "title": "Component Name",
+  "description": "Short description of the component.",
+  "dependencies": ["lucide-react"],
+  "devDependencies": ["class-variance-authority"],
+  "files": [
+    {
+      "path": "registry/new-york/ui/component-name.tsx",
+      "type": "registry:ui"
+    }
+  ]
+}
+```
+
+---
+
+## Step 3: Add to Registry Config
+
+Edit `lib/config/registry.ts`:
 
 ```typescript
 export const REGISTRY_ITEMS: RegistryItem[] = [
   // ... existing items
-  { slug: "my-component", name: "My Component", type: "component" },
+  { slug: "component-name", name: "Component Name", type: "component" },
 ]
 ```
 
 **Fields:**
-- `slug`: URL path segment (e.g., "my-component" for `/docs/components/my-component`)
+- `slug`: URL path segment (e.g., "my-component")
 - `name`: Display name
 - `type`: "component" | "effect" | "hook" | "lib"
 - `registryFile`: Optional custom filename if different from `{slug}.json`
 
-### 2. Create Component Files
+---
 
-```
-registry/new-york/ui/my-component.tsx    # Component code
-app/(docs)/docs/components/my-component/
-  page.tsx                                # Docs page
-  my-component-demo.tsx                   # Interactive demos (if needed)
-```
+## Step 4: Add to Navigation
 
-### 3. Create Registry JSON
+Edit `lib/config/docs-navigation.ts`:
 
-Create `public/r/my-component.json` with shadcn registry format:
-
-```json
+```typescript
 {
-  "name": "my-component",
-  "type": "registry:ui",
-  "files": [
+  title: "Components",
+  slug: "components",
+  href: "/docs/components",
+  items: [
+    // ... existing items (alphabetically sorted)
     {
-      "path": "ui/my-component.tsx",
-      "type": "registry:ui"
-    }
+      slug: "component-name",
+      title: "Component Name",
+      href: "/docs/components/component-name",
+      isNew: true,
+    },
   ],
-  "dependencies": ["@radix-ui/react-slot"],
-  "devDependencies": [],
-  "tailwind": {}
 }
 ```
 
-### 4. Create Docs Page
+**Options:**
+- `isNew: true` — shows "NEW" badge
+- `isDraft: true` — hidden in production, visible in development
+
+---
+
+## Step 5: Create Docs Page
+
+Location: `app/(docs)/docs/components/{slug}/page.tsx`
 
 ```tsx
-// app/(docs)/docs/components/my-component/page.tsx
 import { DocsPageNav } from "@/components/docs/docs-page-nav"
 import { InstallCommand } from "@/components/docs/install-command"
-import { MyComponent } from "@/registry/new-york/ui/my-component"
+import { ComponentName } from "@/registry/new-york/ui/component-name"
 
 export const metadata = {
-  title: "My Component",
-  description: "Description of my component",
+  title: "Component Name",
+  description: "Short description for SEO",
 }
 
-export default function MyComponentPage() {
+export default function ComponentNamePage() {
   return (
-    <div className="space-y-6">
-      {/* DocsPageNav auto-derives registryUrl from pathname */}
-      <DocsPageNav
-        title="My Component"
-        prevHref="/docs/components/previous"
-        nextHref="/docs/components/next"
-      />
+    <div className="space-y-8">
+      <DocsPageNav title="Component Name" />
+      <p className="text-muted-foreground">
+        Component description here.
+      </p>
 
-      {/* Install command uses same URL pattern */}
-      <InstallCommand packageName="https://gooseui.pro/r/my-component.json" />
+      {/* Demo */}
+      <div className="space-y-4">
+        <h2
+          id="demo"
+          className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight"
+        >
+          Demo
+        </h2>
+        <div className="flex items-center justify-center rounded-lg border p-6">
+          <ComponentName />
+        </div>
+      </div>
 
-      {/* Component preview and examples */}
+      {/* Installation */}
+      <div className="space-y-4">
+        <h2
+          id="installation"
+          className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight"
+        >
+          Installation
+        </h2>
+        <InstallCommand packageName="https://gooseui.pro/r/component-name.json" />
+      </div>
+
+      {/* Usage */}
+      <div className="space-y-4">
+        <h2
+          id="usage"
+          className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight"
+        >
+          Usage
+        </h2>
+        <pre className="bg-muted p-4 rounded-lg overflow-x-auto">
+          <code>{`import { ComponentName } from "@/components/ui/component-name"
+
+export default function Page() {
+  return <ComponentName />
+}`}</code>
+        </pre>
+      </div>
+
+      {/* Props */}
+      <div className="space-y-4">
+        <h2
+          id="props"
+          className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight"
+        >
+          Props
+        </h2>
+        <div className="border rounded-lg overflow-hidden">
+          <table className="w-full text-sm">
+            <thead className="bg-muted">
+              <tr>
+                <th className="text-left p-3 font-medium">Prop</th>
+                <th className="text-left p-3 font-medium">Type</th>
+                <th className="text-left p-3 font-medium">Default</th>
+                <th className="text-left p-3 font-medium">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-t">
+                <td className="p-3 font-mono text-xs">variant</td>
+                <td className="p-3 font-mono text-xs">string</td>
+                <td className="p-3 font-mono text-xs">"default"</td>
+                <td className="p-3">Style variant</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   )
 }
 ```
 
-### 5. Update Navigation Config (Single Source of Truth)
+### CRITICAL: h2 IDs for Table of Contents
 
-Edit **`lib/config/docs-navigation.ts`** — the unified navigation config:
+Every `h2` MUST have an `id` attribute:
 
-```typescript
-// lib/config/docs-navigation.ts
-export const docsNavigation: NavSection[] = [
-  // ...
+```tsx
+// CORRECT
+<h2 id="demo">Demo</h2>
+
+// WRONG - won't appear in TOC
+<h2>Demo</h2>
+```
+
+**Standard IDs:** `demo`, `installation`, `usage`, `examples`, `props`, `features`
+
+---
+
+## Step 6: Add to Components Index
+
+Edit `app/(docs)/docs/components/page.tsx`:
+
+```tsx
+const components = [
+  // ... existing (alphabetically sorted)
   {
-    title: "Components",
-    slug: "components",
-    href: "/docs/components",
-    items: [
-      // ... existing items
-      {
-        slug: "my-component",
-        title: "My Component",
-        href: "/docs/components/my-component",
-        isNew: true,
-      },
-    ],
+    name: "Component Name",
+    slug: "component-name",
+    description: "Short description.",
+    category: "Display", // Display, Inputs, Layout, Feedback, Theme, Typography
+    isNew: true,
+    preview: (
+      <ComponentName />
+    ),
   },
 ]
 ```
 
-**Required fields:**
-- `slug`: URL path segment (used for breadcrumbs and search)
-- `title`: Display name
-- `href`: Full URL path
+---
 
-This config is the **single source of truth** for:
-- Sidebar navigation (`components/docs-sidebar.tsx`)
-- Breadcrumbs (`components/docs-header-nav.tsx`)
-- Site search (`components/site/site-search.tsx`)
+## Interactive Demos (Client Components)
 
-#### Draft Components
+For components with onClick handlers, create a separate client file:
 
-Use `isDraft: true` to hide components in production while keeping them visible in development:
-
-```typescript
-{
-  slug: "my-component",
-  title: "My Component",
-  href: "/docs/components/my-component",
-  isNew: true,
-  isDraft: true,
-},
-```
-
-- **Development:** Shows with orange "DRAFT" badge
-- **Production:** Hidden from sidebar and search completely
-
-When ready for release, simply remove `isDraft: true`.
-
-#### Validate Navigation
-
-After adding a component, run the validation script:
-
-```bash
-pnpm validate:nav
-```
-
-This checks:
-- All navigation items have corresponding pages
-- No duplicate slugs or hrefs
-- All hrefs are valid paths
-
-### 6. Baseline Features (if needed)
-
-Add only if the component uses **modern CSS/JS features** worth documenting:
-
-| Tailwind class | Feature ID | Status |
-|----------------|------------|--------|
-| `snap-x`, `snap-mandatory` | scroll-snap | Widely 2022 |
-| `@container` | container-queries | Widely 2023 |
-| `anchor-*` | anchor-positioning | Limited |
-| `popover` | popover | Newly 2024 |
-| `view-transition-*` | view-transitions | Limited |
-
-**If the component uses such features:**
-
-1. Add to `lib/config/baseline-features.ts`:
-```typescript
-export const COMPONENT_BASELINE_FEATURES: Record<string, string[]> = {
-  // ...existing
-  "my-component": ["scroll-snap"],
-}
-```
-
-2. Add `<ComponentBaseline slug="my-component" />` to the docs page:
 ```tsx
-import { ComponentBaseline } from "@/components/docs/component-baseline"
+// app/(docs)/docs/components/{slug}/{slug}-demo.tsx
+"use client"
 
-export default function MyComponentPage() {
+import { customToast } from "@/lib/toast"
+import { ComponentName } from "@/registry/new-york/ui/component-name"
+
+export function ComponentNameDemo() {
   return (
-    <div className="space-y-8">
-      {/* ... other sections ... */}
-      <ComponentBaseline slug="my-component" />
-    </div>
+    <ComponentName onClick={() => customToast.success("Clicked!")}>
+      Click me
+    </ComponentName>
   )
 }
 ```
 
-**If component only uses flexbox/transitions** — skip this step (98%+ support).
+Then import in page.tsx:
+```tsx
+import { ComponentNameDemo } from "./{slug}-demo"
+```
 
 ---
 
-## Auto-Generated Features
+## Baseline Features (Optional)
 
-When you add a component to `lib/config/registry.ts`:
+Add only if component uses modern CSS features worth documenting.
 
-1. **"Open in v0"** button automatically works
-2. **"Open in Claude/ChatGPT/T3 Chat"** buttons copy context
-3. **Registry URL** is auto-derived from pathname
+1. Add to `lib/config/baseline-features.ts`:
+```typescript
+export const COMPONENT_BASELINE_FEATURES: Record<string, string[]> = {
+  "component-name": ["scroll-snap"],
+}
+```
+
+2. Add to docs page:
+```tsx
+import { ComponentBaseline } from "@/components/docs/component-baseline"
+
+<ComponentBaseline slug="component-name" />
+```
+
+---
+
+## Validation & Testing
+
+```bash
+# Validate navigation
+pnpm validate:nav
+
+# Build to check for errors
+pnpm build
+
+# Check component appears in:
+# - Sidebar navigation
+# - Site search (Cmd+K)
+# - /docs/components page
+```
+
+---
 
 ## Registry URL Pattern
 
-All registry URLs follow this pattern:
-```
-https://gooseui.pro/r/{slug}.json
-```
+All URLs follow: `https://gooseui.pro/r/{slug}.json`
 
-For custom filenames (e.g., toast uses sonner.json):
+For custom filenames:
 ```typescript
 { slug: "toast", name: "Toast", type: "component", registryFile: "sonner.json" }
 ```
-
-## Testing
-
-1. Run `pnpm validate:nav` to check navigation consistency
-2. Run `pnpm build` to verify no errors
-3. Check that "Open in v0" opens with correct registry URL
-4. Verify component appears in:
-   - Sidebar navigation
-   - Breadcrumbs (correct title case)
-   - Site search (Cmd+K)

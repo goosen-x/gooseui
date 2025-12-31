@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "animated-checkbox",
+  "type": "registry:ui",
+  "title": "Animated Checkbox",
+  "description": "A checkbox with smooth SVG path animation when checked.",
+  "dependencies": [],
+  "devDependencies": ["class-variance-authority"],
+  "files": [
+    {
+      "path": "registry/new-york/ui/animated-checkbox.tsx",
+      "type": "registry:ui"
+    }
+  ]
+}

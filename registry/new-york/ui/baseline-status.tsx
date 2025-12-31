@@ -1,5 +1,6 @@
 "use client"
 
+import { CheckCircle2, XCircle } from "lucide-react"
 import * as React from "react"
 import {
   type BaselineFeature,
@@ -8,6 +9,41 @@ import {
   getBaselineStatusText,
 } from "@/lib/baseline"
 import { cn } from "@/lib/utils"
+
+// ============================================================================
+// Browser Feature Detection
+// ============================================================================
+
+type BrowserFeature = "view-transitions" | "popover" | "anchor-positioning"
+
+function checkBrowserFeature(feature: BrowserFeature): boolean {
+  if (typeof document === "undefined" || typeof window === "undefined")
+    return false
+
+  switch (feature) {
+    case "view-transitions":
+      return "startViewTransition" in document
+    case "popover":
+      return "popover" in HTMLElement.prototype
+    case "anchor-positioning":
+      return CSS.supports("anchor-name", "--test")
+    default:
+      return false
+  }
+}
+
+function getBrowserFeatureLabel(feature: BrowserFeature): string {
+  switch (feature) {
+    case "view-transitions":
+      return "View Transitions API"
+    case "popover":
+      return "Popover API"
+    case "anchor-positioning":
+      return "CSS Anchor Positioning"
+    default:
+      return feature
+  }
+}
 
 /**
  * Official Baseline icons from W3C WebDX Community Group
@@ -127,6 +163,8 @@ export interface BaselineStatusProps
   showYear?: boolean
   /** Show only the icon without text */
   iconOnly?: boolean
+  /** Browser feature to check support for */
+  browserCheck?: BrowserFeature
 }
 
 /**
@@ -155,6 +193,7 @@ export function BaselineStatus({
   size = "md",
   showYear = true,
   iconOnly = false,
+  browserCheck,
   className,
   ...props
 }: BaselineStatusProps) {
@@ -162,6 +201,9 @@ export function BaselineStatus({
     statusProp ? { status: statusProp, year: yearProp } : null,
   )
   const [isLoading, setIsLoading] = React.useState(!statusProp && !!featureId)
+  const [browserSupport, setBrowserSupport] = React.useState<boolean | null>(
+    null,
+  )
 
   React.useEffect(() => {
     if (statusProp || !featureId) return
@@ -180,6 +222,13 @@ export function BaselineStatus({
       cancelled = true
     }
   }, [featureId, statusProp])
+
+  // Check browser support on mount
+  React.useEffect(() => {
+    if (browserCheck) {
+      setBrowserSupport(checkBrowserFeature(browserCheck))
+    }
+  }, [browserCheck])
 
   if (isLoading) {
     return (
@@ -201,6 +250,61 @@ export function BaselineStatus({
   const year = showYear ? feature?.year : undefined
   const label = getBaselineStatusText(status, year)
   const icon = BaselineIcons[status]
+
+  // If browserCheck is provided, render combined layout
+  if (browserCheck && browserSupport !== null) {
+    const featureLabel = getBrowserFeatureLabel(browserCheck)
+
+    return (
+      <div
+        className={cn(
+          "inline-flex items-center gap-3 rounded-lg border border-border/50 bg-muted/30 px-3 py-2",
+          className,
+        )}
+        role="status"
+        {...props}
+      >
+        {/* Baseline Status */}
+        <div
+          className={cn(
+            "flex items-center",
+            sizeClasses[size],
+            iconSizeClasses[size],
+          )}
+        >
+          {icon}
+          {!iconOnly && (
+            <span className="text-muted-foreground whitespace-nowrap">
+              {label}
+            </span>
+          )}
+        </div>
+
+        {/* Divider */}
+        <div className="h-4 w-px bg-border" />
+
+        {/* Browser Support Check */}
+        <div
+          className={cn(
+            "flex items-center gap-1.5 text-sm",
+            browserSupport
+              ? "text-green-600 dark:text-green-400"
+              : "text-red-600 dark:text-red-400",
+          )}
+        >
+          {browserSupport ? (
+            <CheckCircle2 className="h-4 w-4" />
+          ) : (
+            <XCircle className="h-4 w-4" />
+          )}
+          <span className="whitespace-nowrap">
+            {browserSupport ? "Your browser supports" : "Not supported:"}{" "}
+            {featureLabel}
+          </span>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div

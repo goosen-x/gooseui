@@ -211,4 +211,57 @@
     display: none;
   }
 
+  .animate-marquee {
+    animation: marquee var(--duration, 20s) linear infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-marquee {
+      animation: none;
+    }
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-100% - 1rem));
+  }
+}
+
+/* View Transitions for MorphingDialog */
+/* Spring-like easing from https://codepen.io/medienbaecker/pen/MYyZbPN */
+::view-transition-group(*) {
+  animation-duration: 0.35s;
+  animation-timing-function: linear(
+    0,
+    0.006,
+    0.025 2.8%,
+    0.101 6.1%,
+    0.539 18.9%,
+    0.721 25.3%,
+    0.849 31.5%,
+    0.937 38.1%,
+    0.968 41.8%,
+    0.991 45.7%,
+    1.006 50.1%,
+    1.015 55%,
+    1.017 63.9%,
+    1.001
+  );
+}
+
+/* Disable root transition to avoid page flash */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+/* Prevent content from breaking out during morph */
+::view-transition-image-pair(*) {
+  overflow: hidden;
+  isolation: isolate;
 }

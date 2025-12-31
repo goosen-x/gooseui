@@ -1,8 +1,18 @@
 "use client"
 
-import { Check, Monitor, Moon, Paintbrush, Palette, Sun } from "lucide-react"
+import {
+  ArrowLeft,
+  Check,
+  Monitor,
+  Moon,
+  Paintbrush,
+  Palette,
+  Sun,
+} from "lucide-react"
+import { MotionConfig, motion } from "motion/react"
 import { useTheme } from "next-themes"
 import * as React from "react"
+import { useClickOutside } from "@/hooks/use-click-outside"
 import { cn } from "@/lib/utils"
 
 const colors = [
@@ -363,6 +373,134 @@ export function ThemeCustomizerCorner({ className }: { className?: string }) {
         </div>
       )}
     </div>
+  )
+}
+
+// Variant 6: Dynamic Toolbar with animation
+const toolbarTransition = {
+  type: "spring" as const,
+  bounce: 0.1,
+  duration: 0.2,
+}
+
+function ToolbarButton({
+  children,
+  onClick,
+  disabled,
+  ariaLabel,
+}: {
+  children: React.ReactNode
+  onClick?: () => void
+  disabled?: boolean
+  ariaLabel?: string
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      disabled={disabled}
+      aria-label={ariaLabel}
+      className="relative flex size-9 shrink-0 cursor-pointer select-none appearance-none items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-accent hover:text-foreground focus-visible:ring-2 active:scale-[0.98] disabled:pointer-events-none disabled:opacity-50"
+    >
+      {children}
+    </button>
+  )
+}
+
+export function ThemeCustomizerToolbar({ className }: { className?: string }) {
+  const { setTheme, resolvedTheme } = useTheme()
+  const { activeColor, setColor, mounted } = useThemeColor()
+  const [isOpen, setIsOpen] = React.useState(false)
+  const containerRef = React.useRef<HTMLDivElement>(null)
+
+  useClickOutside(containerRef, () => {
+    setIsOpen(false)
+  })
+
+  if (!mounted) {
+    return (
+      <div
+        className={cn(
+          "fixed bottom-4 left-1/2 z-50 -translate-x-1/2",
+          className,
+        )}
+      >
+        <div className="h-[52px] w-[100px] animate-pulse rounded-xl border bg-background" />
+      </div>
+    )
+  }
+
+  return (
+    <MotionConfig transition={toolbarTransition}>
+      <div
+        className={cn(
+          "fixed bottom-4 left-1/2 z-50 -translate-x-1/2",
+          className,
+        )}
+        ref={containerRef}
+      >
+        <div className="rounded-xl border bg-background/80 shadow-lg backdrop-blur-xl">
+          <motion.div
+            animate={{
+              width: isOpen ? "320px" : "100px",
+            }}
+            initial={false}
+          >
+            <div className="overflow-hidden p-2">
+              {!isOpen ? (
+                <div className="flex space-x-1">
+                  <ToolbarButton
+                    onClick={() =>
+                      setTheme(resolvedTheme === "dark" ? "light" : "dark")
+                    }
+                    ariaLabel="Toggle theme"
+                  >
+                    {resolvedTheme === "dark" ? (
+                      <Sun className="size-5" />
+                    ) : (
+                      <Moon className="size-5" />
+                    )}
+                  </ToolbarButton>
+                  <ToolbarButton
+                    onClick={() => setIsOpen(true)}
+                    ariaLabel="Open color picker"
+                  >
+                    <Palette className="size-5" />
+                  </ToolbarButton>
+                </div>
+              ) : (
+                <div className="flex items-center space-x-2">
+                  <ToolbarButton
+                    onClick={() => setIsOpen(false)}
+                    ariaLabel="Back"
+                  >
+                    <ArrowLeft className="size-5" />
+                  </ToolbarButton>
+                  <div className="flex flex-1 items-center justify-center gap-2">
+                    {colors.map((c) => (
+                      <button
+                        key={c.name}
+                        onClick={() => setColor(c.name)}
+                        className={cn(
+                          "relative size-7 cursor-pointer rounded-full transition-transform hover:scale-110",
+                          c.class,
+                          activeColor === c.name &&
+                            "ring-2 ring-ring ring-offset-2 ring-offset-background",
+                        )}
+                      >
+                        {activeColor === c.name && (
+                          <Check className="absolute inset-0 m-auto size-4 text-white dark:text-black" />
+                        )}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          </motion.div>
+        </div>
+      </div>
+    </MotionConfig>
   )
 }
 

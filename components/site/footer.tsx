@@ -14,7 +14,10 @@ export function SiteFooter() {
       { title: "Installation", href: "/docs/installation" },
       { title: "CLI", href: "/docs/cli" },
     ],
-    community: [{ title: "GitHub", href: siteConfig.links.github }],
+    community: [
+      { title: "GitHub", href: siteConfig.links.github },
+      { title: "Contact", href: `mailto:${siteConfig.email}` },
+    ],
   }
 
   return (
@@ -87,9 +90,17 @@ export function SiteFooter() {
         </div>
 
         <div className="mt-12 pt-8 border-t flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-sm text-muted-foreground">
-            &copy; <CurrentYear /> {siteConfig.name}. Open Source.
-          </p>
+          <div className="flex flex-col md:flex-row items-center gap-2 md:gap-4">
+            <p className="text-sm text-muted-foreground">
+              &copy; <CurrentYear /> {siteConfig.name}. Open Source.
+            </p>
+            <a
+              href={`mailto:${siteConfig.email}`}
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+            >
+              {siteConfig.email}
+            </a>
+          </div>
           <a
             href={siteConfig.links.github}
             target="_blank"

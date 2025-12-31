@@ -70,6 +70,13 @@ export const docsNavigation: NavSection[] = [
     href: "/docs/components",
     items: [
       {
+        slug: "animated-checkbox",
+        title: "Animated Checkbox",
+        href: "/docs/components/animated-checkbox",
+        isDraft: true,
+        isNew: true,
+      },
+      {
         slug: "animated-timer",
         title: "Animated Timer",
         href: "/docs/components/animated-timer",
@@ -103,9 +110,31 @@ export const docsNavigation: NavSection[] = [
         isNew: true,
       },
       {
+        slug: "github-promo-banner",
+        title: "GitHub Promo Banner",
+        href: "/docs/components/github-promo-banner",
+        isNew: true,
+        keywords: ["github", "stars", "marketing", "popup", "promotion"],
+      },
+      {
         slug: "input",
         title: "Input",
         href: "/docs/components/input",
+      },
+      {
+        slug: "morphing-dialog",
+        title: "Morphing Dialog",
+        href: "/docs/components/morphing-dialog",
+        isDraft: true,
+        isNew: true,
+        keywords: ["modal", "popup", "view transitions", "animation"],
+      },
+      {
+        slug: "promo-banner",
+        title: "Promo Banner",
+        href: "/docs/components/promo-banner",
+        isNew: true,
+        keywords: ["marketing", "popup", "sale", "campaign", "promotion"],
       },
       {
         slug: "theme-customizer",

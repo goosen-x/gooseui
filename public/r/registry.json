@@ -4,6 +4,19 @@
   "homepage": "https://gooseui.pro",
   "items": [
     {
+      "name": "theme-customizer",
+      "type": "registry:ui",
+      "title": "Theme Customizer",
+      "description": "Floating theme and color picker with 5 different variants.",
+      "dependencies": ["next-themes", "lucide-react"],
+      "files": [
+        {
+          "path": "registry/new-york/ui/theme-customizer.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "animated-timer",
       "type": "registry:ui",
       "title": "Animated Timer",
@@ -214,6 +227,63 @@
         },
         {
           "path": "registry/new-york/blocks/example-with-css/example-card.css",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "promo-banner",
+      "type": "registry:ui",
+      "title": "Promo Banner",
+      "description": "Floating promotional banner with marquee animation, discount badges, and localStorage persistence.",
+      "dependencies": ["lucide-react"],
+      "files": [
+        {
+          "path": "registry/new-york/ui/promo-banner.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "morphing-dialog",
+      "type": "registry:ui",
+      "title": "Morphing Dialog",
+      "description": "Dialog with morphing animation using native View Transitions API. Supports click-outside and Escape key.",
+      "dependencies": ["lucide-react"],
+      "files": [
+        {
+          "path": "registry/new-york/ui/morphing-dialog.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "baseline-status",
+      "type": "registry:ui",
+      "title": "Baseline Status",
+      "description": "Display browser support status for web features based on the W3C WebDX Baseline specification. Includes real-time browser feature detection.",
+      "dependencies": ["lucide-react"],
+      "files": [
+        {
+          "path": "registry/new-york/ui/baseline-status.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "lib/baseline.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "github-promo-banner",
+      "type": "registry:component",
+      "title": "GitHub Promo Banner",
+      "description": "Floating banner to promote GitHub repository stars with animated counter, marquee, and diagonal pattern.",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": ["promo-banner"],
+      "files": [
+        {
+          "path": "registry/new-york/blocks/github-promo-banner/github-promo-banner.tsx",
           "type": "registry:component"
         }
       ]

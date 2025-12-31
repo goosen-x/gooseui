@@ -3,6 +3,7 @@ export const siteConfig = {
   description:
     "Open source component library for building modern web applications",
   url: "https://gooseui.pro",
+  email: "info@gooseui.pro",
   links: {
     github: "https://github.com/goosen-x/gooseui",
   },

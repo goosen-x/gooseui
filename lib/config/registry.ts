@@ -31,6 +31,7 @@ export const REGISTRY_ITEMS: RegistryItem[] = [
   { slug: "button", name: "Button", type: "component" },
   { slug: "card", name: "Card", type: "component" },
   { slug: "input", name: "Input", type: "component" },
+  { slug: "animated-checkbox", name: "Animated Checkbox", type: "component" },
   { slug: "animated-timer", name: "Animated Timer", type: "component" },
   {
     slug: "toast",
@@ -43,6 +44,13 @@ export const REGISTRY_ITEMS: RegistryItem[] = [
   { slug: "carousel", name: "Carousel", type: "component" },
   { slug: "digital-clock", name: "Digital Clock", type: "component" },
   { slug: "baseline-status", name: "Baseline Status", type: "component" },
+  { slug: "promo-banner", name: "Promo Banner", type: "component" },
+  { slug: "morphing-dialog", name: "Morphing Dialog", type: "component" },
+  {
+    slug: "github-promo-banner",
+    name: "GitHub Promo Banner",
+    type: "component",
+  },
 
   // Effects
   { slug: "border-beam", name: "Border Beam", type: "effect" },
