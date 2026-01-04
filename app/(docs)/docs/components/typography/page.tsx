@@ -1,3 +1,4 @@
+import { CodeBlock } from "@/components/docs/code-block"
 import { DocsPageNav } from "@/components/docs/docs-page-nav"
 import { InstallCommand } from "@/components/docs/install-command"
 import {
@@ -62,8 +63,7 @@ export default function TypographyPage() {
         >
           Usage
         </h2>
-        <pre className="bg-muted p-4 rounded-lg overflow-x-auto">
-          <code>{`import { Typography } from "@/components/ui/typography"
+        <CodeBlock>{`import { Typography } from "@/components/ui/typography"
 
 export function MyComponent() {
   return (
@@ -73,8 +73,7 @@ export function MyComponent() {
       <Typography variant="muted">Secondary text</Typography>
     </div>
   )
-}`}</code>
-        </pre>
+}`}</CodeBlock>
       </div>
 
       {/* Examples Section */}
@@ -94,11 +93,9 @@ export function MyComponent() {
           <div className="p-6 bg-muted/30 rounded-lg">
             <TypographyGradientDemo />
           </div>
-          <pre className="bg-muted p-4 rounded-lg overflow-x-auto">
-            <code>{`<Typography variant="h1">
+          <CodeBlock>{`<Typography variant="h1">
   Build with <Typography variant="gradient" as="span">GooseUI</Typography>
-</Typography>`}</code>
-          </pre>
+</Typography>`}</CodeBlock>
         </div>
 
         {/* Highlight */}
@@ -109,11 +106,9 @@ export function MyComponent() {
           <div className="p-6 bg-muted/30 rounded-lg">
             <TypographyHighlightDemo />
           </div>
-          <pre className="bg-muted p-4 rounded-lg overflow-x-auto">
-            <code>{`<Typography variant="p">
+          <CodeBlock>{`<Typography variant="p">
   This text has a <Typography variant="highlight" as="span">highlighted</Typography> word.
-</Typography>`}</code>
-          </pre>
+</Typography>`}</CodeBlock>
         </div>
 
         {/* Code */}
@@ -124,11 +119,9 @@ export function MyComponent() {
           <div className="p-6 bg-muted/30 rounded-lg">
             <TypographyCodeDemo />
           </div>
-          <pre className="bg-muted p-4 rounded-lg overflow-x-auto">
-            <code>{`<Typography variant="p">
+          <CodeBlock>{`<Typography variant="p">
   Use <Typography variant="code" as="code">npm install gooseui</Typography> to install.
-</Typography>`}</code>
-          </pre>
+</Typography>`}</CodeBlock>
         </div>
 
         {/* Blockquote */}
@@ -139,11 +132,9 @@ export function MyComponent() {
           <div className="p-6 bg-muted/30 rounded-lg">
             <TypographyBlockquoteDemo />
           </div>
-          <pre className="bg-muted p-4 rounded-lg overflow-x-auto">
-            <code>{`<Typography variant="blockquote">
+          <CodeBlock>{`<Typography variant="blockquote">
   "Design is not just what it looks like..."
-</Typography>`}</code>
-          </pre>
+</Typography>`}</CodeBlock>
         </div>
 
         {/* Custom Element */}
@@ -154,12 +145,10 @@ export function MyComponent() {
           <div className="p-6 bg-muted/30 rounded-lg">
             <TypographyAsDemo />
           </div>
-          <pre className="bg-muted p-4 rounded-lg overflow-x-auto">
-            <code>{`// Renders as <p> but looks like <h1>
+          <CodeBlock>{`// Renders as <p> but looks like <h1>
 <Typography variant="h1" as="p">
   This looks like H1 but renders as a paragraph
-</Typography>`}</code>
-          </pre>
+</Typography>`}</CodeBlock>
         </div>
 
         {/* Affects (margins) */}
@@ -170,10 +159,8 @@ export function MyComponent() {
           <div className="p-6 bg-muted/30 rounded-lg">
             <TypographyAffectsDemo />
           </div>
-          <pre className="bg-muted p-4 rounded-lg overflow-x-auto">
-            <code>{`<Typography variant="p" affects="withPMargin">With margin</Typography>
-<Typography variant="p" affects="removePMargin">Without margin</Typography>`}</code>
-          </pre>
+          <CodeBlock>{`<Typography variant="p" affects="withPMargin">With margin</Typography>
+<Typography variant="p" affects="removePMargin">Without margin</Typography>`}</CodeBlock>
         </div>
 
         {/* Interactive Demo */}

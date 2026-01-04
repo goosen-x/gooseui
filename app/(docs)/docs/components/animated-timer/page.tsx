@@ -1,3 +1,4 @@
+import { CodeBlock } from "@/components/docs/code-block"
 import { DocsPageNav } from "@/components/docs/docs-page-nav"
 import { InstallCommand } from "@/components/docs/install-command"
 import { AnimatedTimer } from "@/registry/new-york/ui/animated-timer"
@@ -46,13 +47,11 @@ export default function AnimatedTimerPage() {
         >
           Usage
         </h2>
-        <pre className="bg-muted p-4 rounded-lg overflow-x-auto">
-          <code>{`import { AnimatedTimer } from "@/components/ui/animated-timer"
+        <CodeBlock>{`import { AnimatedTimer } from "@/components/ui/animated-timer"
 
 export default function Page() {
   return <AnimatedTimer />
-}`}</code>
-        </pre>
+}`}</CodeBlock>
       </div>
 
       <div className="space-y-4">
@@ -69,9 +68,7 @@ export default function Page() {
             <div className="flex justify-center py-8 bg-zinc-950 rounded-lg">
               <AnimatedTimer showSeconds={false} />
             </div>
-            <pre className="bg-muted p-4 rounded-lg overflow-x-auto mt-2">
-              <code>{`<AnimatedTimer showSeconds={false} />`}</code>
-            </pre>
+            <CodeBlock>{`<AnimatedTimer showSeconds={false} />`}</CodeBlock>
           </div>
 
           <div>
@@ -79,9 +76,7 @@ export default function Page() {
             <div className="flex justify-center py-8 bg-zinc-950 rounded-lg">
               <AnimatedTimer use24Hour={false} />
             </div>
-            <pre className="bg-muted p-4 rounded-lg overflow-x-auto mt-2">
-              <code>{`<AnimatedTimer use24Hour={false} />`}</code>
-            </pre>
+            <CodeBlock>{`<AnimatedTimer use24Hour={false} />`}</CodeBlock>
           </div>
         </div>
       </div>

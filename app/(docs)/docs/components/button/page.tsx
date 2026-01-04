@@ -1,3 +1,4 @@
+import { CodeBlock } from "@/components/docs/code-block"
 import { DocsPageNav } from "@/components/docs/docs-page-nav"
 import { InstallCommand } from "@/components/docs/install-command"
 import {
@@ -50,13 +51,11 @@ export default function ButtonPage() {
         >
           Usage
         </h2>
-        <pre className="rounded-lg border bg-muted px-4 py-3 font-mono text-sm overflow-x-auto">
-          {`import { Button } from "@/components/ui/button"
+        <CodeBlock>{`import { Button } from "@/components/ui/button"
 
 export function MyComponent() {
   return <Button>Click me</Button>
-}`}
-        </pre>
+}`}</CodeBlock>
       </div>
 
       <div className="space-y-4">
@@ -74,49 +73,37 @@ export function MyComponent() {
           Default
         </h3>
         <ButtonVariantDemo label="Button" />
-        <pre className="rounded-lg border bg-muted px-4 py-3 font-mono text-sm overflow-x-auto">
-          {`<Button>Button</Button>`}
-        </pre>
+        <CodeBlock>{`<Button>Button</Button>`}</CodeBlock>
 
         <h3 className="scroll-m-20 text-xl font-semibold tracking-tight mt-6">
           Secondary
         </h3>
         <ButtonVariantDemo variant="secondary" label="Secondary" />
-        <pre className="rounded-lg border bg-muted px-4 py-3 font-mono text-sm overflow-x-auto">
-          {`<Button variant="secondary">Secondary</Button>`}
-        </pre>
+        <CodeBlock>{`<Button variant="secondary">Secondary</Button>`}</CodeBlock>
 
         <h3 className="scroll-m-20 text-xl font-semibold tracking-tight mt-6">
           Destructive
         </h3>
         <ButtonVariantDemo variant="destructive" label="Destructive" />
-        <pre className="rounded-lg border bg-muted px-4 py-3 font-mono text-sm overflow-x-auto">
-          {`<Button variant="destructive">Destructive</Button>`}
-        </pre>
+        <CodeBlock>{`<Button variant="destructive">Destructive</Button>`}</CodeBlock>
 
         <h3 className="scroll-m-20 text-xl font-semibold tracking-tight mt-6">
           Outline
         </h3>
         <ButtonVariantDemo variant="outline" label="Outline" />
-        <pre className="rounded-lg border bg-muted px-4 py-3 font-mono text-sm overflow-x-auto">
-          {`<Button variant="outline">Outline</Button>`}
-        </pre>
+        <CodeBlock>{`<Button variant="outline">Outline</Button>`}</CodeBlock>
 
         <h3 className="scroll-m-20 text-xl font-semibold tracking-tight mt-6">
           Ghost
         </h3>
         <ButtonVariantDemo variant="ghost" label="Ghost" />
-        <pre className="rounded-lg border bg-muted px-4 py-3 font-mono text-sm overflow-x-auto">
-          {`<Button variant="ghost">Ghost</Button>`}
-        </pre>
+        <CodeBlock>{`<Button variant="ghost">Ghost</Button>`}</CodeBlock>
 
         <h3 className="scroll-m-20 text-xl font-semibold tracking-tight mt-6">
           Link
         </h3>
         <ButtonVariantDemo variant="link" label="Link" />
-        <pre className="rounded-lg border bg-muted px-4 py-3 font-mono text-sm overflow-x-auto">
-          {`<Button variant="link">Link</Button>`}
-        </pre>
+        <CodeBlock>{`<Button variant="link">Link</Button>`}</CodeBlock>
       </div>
 
       <div className="space-y-4">
@@ -127,12 +114,10 @@ export function MyComponent() {
           Sizes
         </h2>
         <ButtonSizesDemo />
-        <pre className="rounded-lg border bg-muted px-4 py-3 font-mono text-sm overflow-x-auto">
-          {`<Button size="sm">Small</Button>
+        <CodeBlock>{`<Button size="sm">Small</Button>
 <Button size="default">Default</Button>
 <Button size="lg">Large</Button>
-<Button size="icon">...</Button>`}
-        </pre>
+<Button size="icon">...</Button>`}</CodeBlock>
       </div>
 
       <div className="space-y-4">

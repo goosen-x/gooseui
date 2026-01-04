@@ -1,3 +1,4 @@
+import { CodeBlock } from "@/components/docs/code-block"
 import { ComponentBaseline } from "@/components/docs/component-baseline"
 import { DocsPageNav } from "@/components/docs/docs-page-nav"
 import { InstallCommand } from "@/components/docs/install-command"
@@ -56,8 +57,7 @@ export default function CarouselPage() {
         >
           Usage
         </h2>
-        <pre className="bg-muted p-4 rounded-lg overflow-x-auto">
-          <code>{`import {
+        <CodeBlock>{`import {
   Carousel,
   CarouselItem,
   CarouselPrevious,
@@ -76,8 +76,7 @@ export default function Example() {
       <CarouselDots />
     </Carousel>
   )
-}`}</code>
-        </pre>
+}`}</CodeBlock>
       </div>
 
       <div className="space-y-4">
@@ -92,8 +91,7 @@ export default function Example() {
           <div>
             <h3 className="text-lg font-medium mb-3">With Progress Bar</h3>
             <CarouselWithProgress />
-            <pre className="bg-muted p-4 rounded-lg overflow-x-auto mt-4">
-              <code>{`<Carousel>
+            <CodeBlock className="mt-4">{`<Carousel>
   {items.map((item) => (
     <CarouselItem key={item.id}>{item.content}</CarouselItem>
   ))}
@@ -101,54 +99,43 @@ export default function Example() {
   <CarouselNext />
   <CarouselProgress />
   <CarouselCounter />
-</Carousel>`}</code>
-            </pre>
+</Carousel>`}</CodeBlock>
           </div>
 
           <div>
             <h3 className="text-lg font-medium mb-3">Number Indicators</h3>
             <CarouselWithNumbers />
-            <pre className="bg-muted p-4 rounded-lg overflow-x-auto mt-4">
-              <code>{`<CarouselDots variant="numbers" />`}</code>
-            </pre>
+            <CodeBlock className="mt-4">{`<CarouselDots variant="numbers" />`}</CodeBlock>
           </div>
 
           <div>
             <h3 className="text-lg font-medium mb-3">Line Indicators</h3>
             <CarouselWithLines />
-            <pre className="bg-muted p-4 rounded-lg overflow-x-auto mt-4">
-              <code>{`<CarouselDots variant="line" />`}</code>
-            </pre>
+            <CodeBlock className="mt-4">{`<CarouselDots variant="line" />`}</CodeBlock>
           </div>
 
           <div>
             <h3 className="text-lg font-medium mb-3">Multiple Items</h3>
             <CarouselMultiple />
-            <pre className="bg-muted p-4 rounded-lg overflow-x-auto mt-4">
-              <code>{`<CarouselItem size="1/3">
+            <CodeBlock className="mt-4">{`<CarouselItem size="1/3">
   {/* Shows 3 items at once */}
-</CarouselItem>`}</code>
-            </pre>
+</CarouselItem>`}</CodeBlock>
           </div>
 
           <div>
             <h3 className="text-lg font-medium mb-3">Auto-Play with Loop</h3>
             <CarouselAutoPlay />
-            <pre className="bg-muted p-4 rounded-lg overflow-x-auto mt-4">
-              <code>{`<Carousel autoPlay={3000} loop>
+            <CodeBlock className="mt-4">{`<Carousel autoPlay={3000} loop>
   {/* Auto-advances every 3 seconds */}
-</Carousel>`}</code>
-            </pre>
+</Carousel>`}</CodeBlock>
           </div>
 
           <div>
             <h3 className="text-lg font-medium mb-3">Vertical</h3>
             <CarouselVertical />
-            <pre className="bg-muted p-4 rounded-lg overflow-x-auto mt-4">
-              <code>{`<Carousel orientation="vertical" className="h-[400px]">
+            <CodeBlock className="mt-4">{`<Carousel orientation="vertical" className="h-[400px]">
   {/* Vertical scrolling */}
-</Carousel>`}</code>
-            </pre>
+</Carousel>`}</CodeBlock>
           </div>
         </div>
       </div>
@@ -315,8 +302,7 @@ export default function Example() {
         <p className="text-muted-foreground">
           Access carousel state and controls programmatically:
         </p>
-        <pre className="bg-muted p-4 rounded-lg overflow-x-auto">
-          <code>{`import { useCarousel } from "@/components/ui/carousel"
+        <CodeBlock>{`import { useCarousel } from "@/components/ui/carousel"
 
 function CustomControls() {
   const {
@@ -340,8 +326,7 @@ function CustomControls() {
       </button>
     </div>
   )
-}`}</code>
-        </pre>
+}`}</CodeBlock>
       </div>
 
       <ComponentBaseline slug="carousel" />

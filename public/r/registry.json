@@ -41,12 +41,24 @@
       ]
     },
     {
+      "name": "slot",
+      "type": "registry:lib",
+      "title": "Slot",
+      "description": "Composition utility for asChild pattern. Renders child element with merged props.",
+      "files": [
+        {
+          "path": "lib/slot.tsx",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
       "name": "button",
       "type": "registry:ui",
       "title": "Button",
       "description": "Displays a button or a component that looks like a button.",
-      "dependencies": ["@radix-ui/react-slot"],
       "devDependencies": ["class-variance-authority"],
+      "registryDependencies": ["slot"],
       "files": [
         {
           "path": "registry/new-york/ui/button.tsx",
@@ -83,8 +95,6 @@
       "type": "registry:ui",
       "title": "Label",
       "description": "Renders an accessible label associated with controls.",
-      "dependencies": ["@radix-ui/react-label"],
-      "devDependencies": ["class-variance-authority"],
       "files": [
         {
           "path": "registry/new-york/ui/label.tsx",
@@ -271,20 +281,6 @@
         {
           "path": "lib/baseline.ts",
           "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "github-promo-banner",
-      "type": "registry:component",
-      "title": "GitHub Promo Banner",
-      "description": "Floating banner to promote GitHub repository stars with animated counter, marquee, and diagonal pattern.",
-      "dependencies": ["lucide-react"],
-      "registryDependencies": ["promo-banner"],
-      "files": [
-        {
-          "path": "registry/new-york/blocks/github-promo-banner/github-promo-banner.tsx",
-          "type": "registry:component"
         }
       ]
     }

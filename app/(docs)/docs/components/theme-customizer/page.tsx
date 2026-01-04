@@ -1,3 +1,4 @@
+import { CodeBlock } from "@/components/docs/code-block"
 import { DocsPageNav } from "@/components/docs/docs-page-nav"
 import { InstallCommand } from "@/components/docs/install-command"
 import { ThemeCustomizerDemo } from "./theme-customizer-demo"
@@ -45,8 +46,7 @@ export default function ThemeCustomizerPage() {
         >
           Usage
         </h2>
-        <pre className="rounded-lg border bg-muted px-4 py-3 font-mono text-sm overflow-x-auto">
-          {`import { ThemeCustomizer } from "@/components/ui/theme-customizer"
+        <CodeBlock>{`import { ThemeCustomizer } from "@/components/ui/theme-customizer"
 
 export default function Page() {
   return (
@@ -55,8 +55,7 @@ export default function Page() {
       <ThemeCustomizer />
     </div>
   )
-}`}
-        </pre>
+}`}</CodeBlock>
       </div>
 
       <div className="space-y-4">
@@ -73,11 +72,9 @@ export default function Page() {
         <p className="text-muted-foreground">
           Compact floating pill with theme toggle and popup color picker.
         </p>
-        <pre className="rounded-lg border bg-muted px-4 py-3 font-mono text-sm overflow-x-auto">
-          {`import { ThemeCustomizerPill } from "@/components/ui/theme-customizer"
+        <CodeBlock>{`import { ThemeCustomizerPill } from "@/components/ui/theme-customizer"
 
-<ThemeCustomizerPill />`}
-        </pre>
+<ThemeCustomizerPill />`}</CodeBlock>
 
         <h3 className="scroll-m-20 text-xl font-semibold tracking-tight mt-6">
           2. Bar
@@ -86,11 +83,9 @@ export default function Page() {
           Horizontal bar with all options visible: light/dark/system buttons and
           color palette.
         </p>
-        <pre className="rounded-lg border bg-muted px-4 py-3 font-mono text-sm overflow-x-auto">
-          {`import { ThemeCustomizerBar } from "@/components/ui/theme-customizer"
+        <CodeBlock>{`import { ThemeCustomizerBar } from "@/components/ui/theme-customizer"
 
-<ThemeCustomizerBar />`}
-        </pre>
+<ThemeCustomizerBar />`}</CodeBlock>
 
         <h3 className="scroll-m-20 text-xl font-semibold tracking-tight mt-6">
           3. Sidebar
@@ -98,11 +93,9 @@ export default function Page() {
         <p className="text-muted-foreground">
           Vertical sidebar fixed to the right edge of the screen.
         </p>
-        <pre className="rounded-lg border bg-muted px-4 py-3 font-mono text-sm overflow-x-auto">
-          {`import { ThemeCustomizerSidebar } from "@/components/ui/theme-customizer"
+        <CodeBlock>{`import { ThemeCustomizerSidebar } from "@/components/ui/theme-customizer"
 
-<ThemeCustomizerSidebar />`}
-        </pre>
+<ThemeCustomizerSidebar />`}</CodeBlock>
 
         <h3 className="scroll-m-20 text-xl font-semibold tracking-tight mt-6">
           4. Dock
@@ -110,11 +103,9 @@ export default function Page() {
         <p className="text-muted-foreground">
           macOS-style dock at the bottom with hover lift effect.
         </p>
-        <pre className="rounded-lg border bg-muted px-4 py-3 font-mono text-sm overflow-x-auto">
-          {`import { ThemeCustomizerDock } from "@/components/ui/theme-customizer"
+        <CodeBlock>{`import { ThemeCustomizerDock } from "@/components/ui/theme-customizer"
 
-<ThemeCustomizerDock />`}
-        </pre>
+<ThemeCustomizerDock />`}</CodeBlock>
 
         <h3 className="scroll-m-20 text-xl font-semibold tracking-tight mt-6">
           5. Corner
@@ -122,11 +113,9 @@ export default function Page() {
         <p className="text-muted-foreground">
           Minimal expandable button in the bottom-right corner.
         </p>
-        <pre className="rounded-lg border bg-muted px-4 py-3 font-mono text-sm overflow-x-auto">
-          {`import { ThemeCustomizerCorner } from "@/components/ui/theme-customizer"
+        <CodeBlock>{`import { ThemeCustomizerCorner } from "@/components/ui/theme-customizer"
 
-<ThemeCustomizerCorner />`}
-        </pre>
+<ThemeCustomizerCorner />`}</CodeBlock>
       </div>
 
       <div className="space-y-4">
@@ -139,8 +128,7 @@ export default function Page() {
         <p className="text-muted-foreground">
           Add this script to your layout.tsx to persist color selection:
         </p>
-        <pre className="rounded-lg border bg-muted px-4 py-3 font-mono text-sm overflow-x-auto">
-          {`// app/layout.tsx
+        <CodeBlock>{`// app/layout.tsx
 <html>
   <head>
     <script
@@ -159,14 +147,12 @@ export default function Page() {
     />
   </head>
   ...
-</html>`}
-        </pre>
+</html>`}</CodeBlock>
 
         <p className="text-muted-foreground mt-4">
           Add color CSS variables to your globals.css:
         </p>
-        <pre className="rounded-lg border bg-muted px-4 py-3 font-mono text-sm overflow-x-auto">
-          {`/* Color themes */
+        <CodeBlock>{`/* Color themes */
 [data-theme-color="blue"] {
   --primary: oklch(0.546 0.245 262.881);
   --primary-foreground: oklch(0.985 0 0);
@@ -178,8 +164,7 @@ export default function Page() {
   --primary-foreground: oklch(0.145 0 0);
   --ring: oklch(0.623 0.214 259.815);
 }
-/* Add more colors: red, orange, green, violet, pink */`}
-        </pre>
+/* Add more colors: red, orange, green, violet, pink */`}</CodeBlock>
       </div>
 
       <div className="space-y-4">

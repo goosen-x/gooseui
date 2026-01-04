@@ -1,6 +1,6 @@
 "use client"
 
-import { Slot } from "@radix-ui/react-slot"
+import { Slot } from "@/lib/slot"
 import * as React from "react"
 import { useAsRef } from "@/hooks/use-as-ref"
 import { useIsomorphicLayoutEffect } from "@/hooks/use-isomorphic-layout-effect"

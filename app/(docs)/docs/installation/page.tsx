@@ -1,3 +1,4 @@
+import { CodeBlock } from "@/components/docs/code-block"
 import { InstallCommand } from "@/components/docs/install-command"
 
 export const metadata = {
@@ -27,9 +28,13 @@ export default function InstallationPage() {
         <ul className="my-6 ml-6 list-disc [&>li]:mt-2">
           <li>React 18+</li>
           <li>Next.js 13+ (App Router)</li>
-          <li>Tailwind CSS</li>
-          <li>TypeScript (recommended)</li>
+          <li>Tailwind CSS 4+</li>
+          <li>TypeScript</li>
         </ul>
+        <p className="text-sm text-muted-foreground">
+          Component dependencies are installed automatically when you add a
+          component via CLI.
+        </p>
       </div>
 
       <div className="space-y-4">
@@ -53,13 +58,11 @@ export default function InstallationPage() {
         <p className="leading-7">
           Add the GooseUI namespace to your components.json:
         </p>
-        <pre className="rounded-lg border bg-muted px-4 py-3 font-mono text-sm overflow-x-auto">
-          {`{
+        <CodeBlock>{`{
   "registries": {
     "@gooseui": "https://gooseui.pro/r/{name}.json"
   }
-}`}
-        </pre>
+}`}</CodeBlock>
         <p className="leading-7">Now you can install components:</p>
         <InstallCommand packageName="@gooseui/button" />
       </div>
@@ -74,15 +77,13 @@ export default function InstallationPage() {
         <p className="leading-7">
           After installation, components will appear in:
         </p>
-        <pre className="rounded-lg border bg-muted px-4 py-3 font-mono text-sm overflow-x-auto">
-          {`your-project/
+        <CodeBlock>{`your-project/
 ├── components/
 │   └── ui/
 │       └── button.tsx
 ├── lib/
 │   └── utils.ts
-└── ...`}
-        </pre>
+└── ...`}</CodeBlock>
       </div>
     </div>
   )

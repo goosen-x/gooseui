@@ -1,3 +1,4 @@
+import { CodeBlock } from "@/components/docs/code-block"
 import { DocsPageNav } from "@/components/docs/docs-page-nav"
 import { InstallCommand } from "@/components/docs/install-command"
 import { ToastDemo } from "./toast-demo"
@@ -88,8 +89,7 @@ export default function ToastPage() {
         <p className="text-muted-foreground">
           Add Toaster component to your root layout
         </p>
-        <pre className="bg-muted p-4 rounded-lg overflow-x-auto">
-          <code>{`// app/layout.tsx
+        <CodeBlock>{`// app/layout.tsx
 import { Toaster } from "@/components/ui/sonner"
 
 export default function RootLayout({ children }) {
@@ -101,8 +101,7 @@ export default function RootLayout({ children }) {
       </body>
     </html>
   )
-}`}</code>
-        </pre>
+}`}</CodeBlock>
       </div>
 
       <div className="space-y-4">
@@ -112,8 +111,7 @@ export default function RootLayout({ children }) {
         >
           Usage
         </h2>
-        <pre className="bg-muted p-4 rounded-lg overflow-x-auto">
-          <code>{`import { customToast } from "@/lib/toast"
+        <CodeBlock>{`import { customToast } from "@/lib/toast"
 
 // Success toast
 customToast.success("Success!", {
@@ -133,8 +131,7 @@ customToast.warning("Warning!", {
 // Info toast
 customToast.info("Info", {
   description: "New update available"
-})`}</code>
-        </pre>
+})`}</CodeBlock>
       </div>
 
       <div className="space-y-4">

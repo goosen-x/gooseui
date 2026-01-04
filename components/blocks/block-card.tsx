@@ -1,10 +1,10 @@
 "use client"
 
-import { Clock, Lock, Sparkles } from "lucide-react"
+import { Clock, Sparkles } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { Badge } from "@/components/ui/badge"
-import type { BlockItem, BlockTier } from "@/lib/config/blocks-registry"
+import type { BlockItem } from "@/lib/config/blocks-registry"
 import { cn } from "@/lib/utils"
 
 interface BlockCardProps {
@@ -12,30 +12,14 @@ interface BlockCardProps {
   className?: string
 }
 
-const tierConfig: Record<BlockTier, { label: string; className: string }> = {
-  free: {
-    label: "Free",
-    className: "bg-green-500/10 text-green-600 dark:text-green-400",
-  },
-  pro: {
-    label: "Pro",
-    className: "bg-amber-500/10 text-amber-600 dark:text-amber-400",
-  },
-  team: {
-    label: "Team",
-    className: "bg-purple-500/10 text-purple-600 dark:text-purple-400",
-  },
-}
-
 export function BlockCard({ block, className }: BlockCardProps) {
-  const tier = tierConfig[block.tier]
   const href = `/docs/blocks/${block.category}/${block.slug}`
 
   return (
     <Link
       href={href}
       className={cn(
-        "group relative flex flex-col overflow-hidden rounded-lg border bg-card transition-all hover:shadow-md",
+        "group relative flex flex-col overflow-hidden rounded-lg border bg-card transition-all hover:shadow-md cursor-pointer",
         block.isComingSoon && "pointer-events-none opacity-60",
         className,
       )}
@@ -58,6 +42,12 @@ export function BlockCard({ block, className }: BlockCardProps) {
               {block.category === "e-commerce" && "EC"}
               {block.category === "forms" && "FM"}
               {block.category === "ai" && "AI"}
+              {block.category === "authentication" && "AU"}
+              {block.category === "headers" && "HD"}
+              {block.category === "footers" && "FT"}
+              {block.category === "hero" && "HR"}
+              {block.category === "data-display" && "DD"}
+              {block.category === "feedback" && "FB"}
             </div>
           </div>
         )}
@@ -76,14 +66,6 @@ export function BlockCard({ block, className }: BlockCardProps) {
               Soon
             </Badge>
           )}
-        </div>
-
-        {/* Tier badge */}
-        <div className="absolute right-2 top-2">
-          <Badge className={cn("gap-1", tier.className)}>
-            {block.tier !== "free" && <Lock className="h-3 w-3" />}
-            {tier.label}
-          </Badge>
         </div>
       </div>
 

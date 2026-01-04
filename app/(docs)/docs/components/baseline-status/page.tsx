@@ -1,3 +1,4 @@
+import { CodeBlock } from "@/components/docs/code-block"
 import { DocsPageNav } from "@/components/docs/docs-page-nav"
 import { InstallCommand } from "@/components/docs/install-command"
 import { BaselineStatus } from "@/registry/new-york/ui/baseline-status"
@@ -77,8 +78,7 @@ export default function BaselineStatusPage() {
             browserCheck="anchor-positioning"
           />
         </div>
-        <pre className="bg-muted p-4 rounded-lg overflow-x-auto mt-2">
-          <code>{`// Combined Baseline status + real-time browser check
+        <CodeBlock>{`// Combined Baseline status + real-time browser check
 <BaselineStatus
   featureId="view-transitions"
   browserCheck="view-transitions"
@@ -87,8 +87,7 @@ export default function BaselineStatusPage() {
 // Available browser checks:
 // "view-transitions" - View Transitions API
 // "popover" - Popover API
-// "anchor-positioning" - CSS Anchor Positioning`}</code>
-        </pre>
+// "anchor-positioning" - CSS Anchor Positioning`}</CodeBlock>
       </div>
 
       <div className="space-y-4">
@@ -108,15 +107,13 @@ export default function BaselineStatusPage() {
         >
           Usage
         </h2>
-        <pre className="bg-muted p-4 rounded-lg overflow-x-auto">
-          <code>{`import { BaselineStatus } from "@/components/ui/baseline-status"
+        <CodeBlock>{`import { BaselineStatus } from "@/components/ui/baseline-status"
 
 // With static data
 <BaselineStatus status="widely" year={2022} />
 
 // With feature ID (fetches from API)
-<BaselineStatus featureId="scroll-snap" />`}</code>
-        </pre>
+<BaselineStatus featureId="scroll-snap" />`}</CodeBlock>
       </div>
 
       <div className="space-y-4">
@@ -144,11 +141,9 @@ export default function BaselineStatusPage() {
                 <BaselineStatus status="widely" year={2022} size="lg" />
               </div>
             </div>
-            <pre className="bg-muted p-4 rounded-lg overflow-x-auto mt-2">
-              <code>{`<BaselineStatus status="widely" year={2022} size="sm" />
+            <CodeBlock>{`<BaselineStatus status="widely" year={2022} size="sm" />
 <BaselineStatus status="widely" year={2022} size="md" />
-<BaselineStatus status="widely" year={2022} size="lg" />`}</code>
-            </pre>
+<BaselineStatus status="widely" year={2022} size="lg" />`}</CodeBlock>
           </div>
 
           <div>
@@ -159,12 +154,10 @@ export default function BaselineStatusPage() {
               <BaselineStatus status="limited" iconOnly />
               <BaselineStatus status="no_data" iconOnly />
             </div>
-            <pre className="bg-muted p-4 rounded-lg overflow-x-auto mt-2">
-              <code>{`<BaselineStatus status="widely" iconOnly />
+            <CodeBlock>{`<BaselineStatus status="widely" iconOnly />
 <BaselineStatus status="newly" iconOnly />
 <BaselineStatus status="limited" iconOnly />
-<BaselineStatus status="no_data" iconOnly />`}</code>
-            </pre>
+<BaselineStatus status="no_data" iconOnly />`}</CodeBlock>
           </div>
 
           <div>
@@ -172,9 +165,7 @@ export default function BaselineStatusPage() {
             <div className="flex gap-4 py-6 px-6 bg-muted/50 rounded-lg">
               <BaselineStatus status="widely" showYear={false} />
             </div>
-            <pre className="bg-muted p-4 rounded-lg overflow-x-auto mt-2">
-              <code>{`<BaselineStatus status="widely" showYear={false} />`}</code>
-            </pre>
+            <CodeBlock>{`<BaselineStatus status="widely" showYear={false} />`}</CodeBlock>
           </div>
 
           <div>
@@ -182,10 +173,8 @@ export default function BaselineStatusPage() {
             <div className="flex gap-4 py-6 px-6 bg-muted/50 rounded-lg">
               <BaselineStatus featureId="scroll-snap" />
             </div>
-            <pre className="bg-muted p-4 rounded-lg overflow-x-auto mt-2">
-              <code>{`// Fetches data from webstatus.dev API
-<BaselineStatus featureId="scroll-snap" />`}</code>
-            </pre>
+            <CodeBlock>{`// Fetches data from webstatus.dev API
+<BaselineStatus featureId="scroll-snap" />`}</CodeBlock>
           </div>
         </div>
       </div>

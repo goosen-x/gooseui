@@ -1,6 +1,6 @@
 "use client"
 
-import { Slot } from "@radix-ui/react-slot"
+import { Slot } from "@/lib/slot"
 import {
   ChevronDownIcon,
   ChevronLeftIcon,

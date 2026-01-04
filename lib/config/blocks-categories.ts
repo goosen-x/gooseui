@@ -2,16 +2,22 @@
  * Block categories configuration for GooseUI Blocks Marketplace
  *
  * Each category represents a collection of related blocks
- * that can be purchased/downloaded together or individually.
+ * that can be installed via the shadcn CLI.
  */
 
 import type { LucideIcon } from "lucide-react"
 import {
+  Bell,
   Bot,
   FormInput,
+  KeyRound,
   LayoutDashboard,
   Megaphone,
+  PanelBottom,
+  PanelTop,
+  Rocket,
   ShoppingCart,
+  TableProperties,
   Wallet,
 } from "lucide-react"
 
@@ -26,8 +32,6 @@ export interface BlockCategory {
   icon: LucideIcon
   /** Number of blocks in category */
   count: number
-  /** Is this a premium category? */
-  isPremium?: boolean
   /** Coming soon? */
   isComingSoon?: boolean
 }
@@ -42,7 +46,6 @@ export const BLOCK_CATEGORIES: BlockCategory[] = [
     description: "Wallet connections, NFT cards, token dashboards",
     icon: Wallet,
     count: 0,
-    isPremium: true,
   },
   {
     slug: "dashboard",
@@ -50,7 +53,6 @@ export const BLOCK_CATEGORIES: BlockCategory[] = [
     description: "Analytics, charts, metrics, admin panels",
     icon: LayoutDashboard,
     count: 0,
-    isPremium: true,
   },
   {
     slug: "marketing",
@@ -58,7 +60,6 @@ export const BLOCK_CATEGORIES: BlockCategory[] = [
     description: "Promo banners, CTAs, pricing tables",
     icon: Megaphone,
     count: 0,
-    isPremium: true,
   },
   {
     slug: "e-commerce",
@@ -66,7 +67,6 @@ export const BLOCK_CATEGORIES: BlockCategory[] = [
     description: "Product cards, carts, checkout flows",
     icon: ShoppingCart,
     count: 0,
-    isPremium: true,
   },
   {
     slug: "forms",
@@ -81,6 +81,51 @@ export const BLOCK_CATEGORIES: BlockCategory[] = [
     name: "AI",
     description: "Chat interfaces, prompts, AI workflows",
     icon: Bot,
+    count: 0,
+    isComingSoon: true,
+  },
+  {
+    slug: "authentication",
+    name: "Authentication",
+    description: "Login, sign-up, password reset forms",
+    icon: KeyRound,
+    count: 0,
+    isComingSoon: true,
+  },
+  {
+    slug: "headers",
+    name: "Headers",
+    description: "Navigation bars, mega menus, sticky headers",
+    icon: PanelTop,
+    count: 0,
+  },
+  {
+    slug: "footers",
+    name: "Footers",
+    description: "Site footers, newsletter, social links",
+    icon: PanelBottom,
+    count: 0,
+  },
+  {
+    slug: "hero",
+    name: "Hero Sections",
+    description: "Landing heroes, split layouts, with video/images",
+    icon: Rocket,
+    count: 0,
+  },
+  {
+    slug: "data-display",
+    name: "Data Display",
+    description: "Tables, lists, grids, cards",
+    icon: TableProperties,
+    count: 0,
+    isComingSoon: true,
+  },
+  {
+    slug: "feedback",
+    name: "Feedback",
+    description: "Alerts, notifications, modals, toasts",
+    icon: Bell,
     count: 0,
     isComingSoon: true,
   },
@@ -101,8 +146,27 @@ export function getAvailableCategories(): BlockCategory[] {
 }
 
 /**
- * Get premium categories
+ * Check if we're in development mode
  */
-export function getPremiumCategories(): BlockCategory[] {
-  return BLOCK_CATEGORIES.filter((c) => c.isPremium)
+export function isDevelopment(): boolean {
+  return process.env.NODE_ENV === "development"
 }
+
+/**
+ * Get categories for display (respects dev/prod mode)
+ * In production: only shows categories that have available blocks
+ * In development: shows all categories
+ */
+export function getDisplayCategories(
+  countAvailableBlocks: (category: string) => number
+): BlockCategory[] {
+  if (isDevelopment()) {
+    return BLOCK_CATEGORIES
+  }
+  // In production, only show categories with available blocks
+  return BLOCK_CATEGORIES.filter((c) => {
+    if (c.isComingSoon) return false
+    return countAvailableBlocks(c.slug) > 0
+  })
+}
+

@@ -1,3 +1,4 @@
+import { CodeBlock } from "@/components/docs/code-block"
 import { DigitalClock } from "@/registry/new-york/ui/digital-clock"
 
 export const metadata = {
@@ -46,9 +47,7 @@ export default function DigitalClockPage() {
             <div className="flex justify-center py-8 bg-zinc-100 dark:bg-zinc-950 rounded-lg">
               <DigitalClock showSeconds={false} />
             </div>
-            <pre className="bg-muted p-4 rounded-lg overflow-x-auto mt-2">
-              <code>{`<DigitalClock showSeconds={false} />`}</code>
-            </pre>
+            <CodeBlock>{`<DigitalClock showSeconds={false} />`}</CodeBlock>
           </div>
 
           <div>
@@ -58,11 +57,9 @@ export default function DigitalClockPage() {
               <DigitalClock showSeconds={false} color="#FF6B6B" />
               <DigitalClock showSeconds={false} color="#FFD93D" />
             </div>
-            <pre className="bg-muted p-4 rounded-lg overflow-x-auto mt-2">
-              <code>{`<DigitalClock color="#00BFFF" />
+            <CodeBlock>{`<DigitalClock color="#00BFFF" />
 <DigitalClock color="#FF6B6B" />
-<DigitalClock color="#FFD93D" />`}</code>
-            </pre>
+<DigitalClock color="#FFD93D" />`}</CodeBlock>
           </div>
 
           <div>
@@ -70,9 +67,7 @@ export default function DigitalClockPage() {
             <div className="flex justify-center py-8 bg-zinc-100 dark:bg-zinc-950 rounded-lg">
               <DigitalClock use24Hour={false} />
             </div>
-            <pre className="bg-muted p-4 rounded-lg overflow-x-auto mt-2">
-              <code>{`<DigitalClock use24Hour={false} />`}</code>
-            </pre>
+            <CodeBlock>{`<DigitalClock use24Hour={false} />`}</CodeBlock>
           </div>
         </div>
       </div>

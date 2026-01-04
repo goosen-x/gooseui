@@ -1,4 +1,4 @@
-import { ChevronLeft, Lock } from "lucide-react"
+import { ChevronLeft } from "lucide-react"
 import Link from "next/link"
 import { notFound } from "next/navigation"
 import { BlockPreview } from "@/components/blocks/block-preview"
@@ -79,11 +79,8 @@ export default async function BlockPage({ params }: BlockPageProps) {
             {block.isNew && (
               <Badge className="bg-blue-500/10 text-blue-600">New</Badge>
             )}
-            {block.tier !== "free" && (
-              <Badge variant="secondary" className="gap-1">
-                <Lock className="h-3 w-3" />
-                {block.tier === "pro" ? "Pro" : "Team"}
-              </Badge>
+            {block.isFeatured && (
+              <Badge className="bg-amber-500/10 text-amber-600">Featured</Badge>
             )}
           </div>
           <p className="text-lg text-muted-foreground">{block.description}</p>

@@ -1,3 +1,4 @@
+import { CodeBlock } from "@/components/docs/code-block"
 import { DocsPageNav } from "@/components/docs/docs-page-nav"
 import { InstallCommand } from "@/components/docs/install-command"
 import { Input } from "@/registry/new-york/ui/input"
@@ -49,13 +50,11 @@ export default function InputPage() {
         >
           Usage
         </h2>
-        <pre className="rounded-lg border bg-muted px-4 py-3 font-mono text-sm overflow-x-auto">
-          {`import { Input } from "@/components/ui/input"
+        <CodeBlock>{`import { Input } from "@/components/ui/input"
 
 export function MyInput() {
   return <Input type="email" placeholder="Email" />
-}`}
-        </pre>
+}`}</CodeBlock>
       </div>
 
       <div className="space-y-4">
@@ -87,12 +86,10 @@ export function MyInput() {
           <Label htmlFor="email">Email</Label>
           <Input id="email" type="email" placeholder="email@example.com" />
         </div>
-        <pre className="rounded-lg border bg-muted px-4 py-3 font-mono text-sm overflow-x-auto">
-          {`<div className="grid gap-2">
+        <CodeBlock>{`<div className="grid gap-2">
   <Label htmlFor="email">Email</Label>
   <Input id="email" type="email" placeholder="email@example.com" />
-</div>`}
-        </pre>
+</div>`}</CodeBlock>
 
         <h3 className="scroll-m-20 text-xl font-semibold tracking-tight mt-6">
           File Input

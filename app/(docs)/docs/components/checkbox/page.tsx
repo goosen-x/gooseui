@@ -1,3 +1,4 @@
+import { CodeBlock } from "@/components/docs/code-block"
 import { DocsPageNav } from "@/components/docs/docs-page-nav"
 import { InstallCommand } from "@/components/docs/install-command"
 import {
@@ -8,14 +9,14 @@ import {
 } from "./animated-checkbox-demo"
 
 export const metadata = {
-  title: "Animated Checkbox",
+  title: "Checkbox",
   description: "A checkbox with smooth SVG path animation when checked",
 }
 
 export default function AnimatedCheckboxPage() {
   return (
     <div className="space-y-6">
-      <DocsPageNav title="Animated Checkbox" />
+      <DocsPageNav title="Checkbox" />
       <p className="text-lg text-muted-foreground">
         A checkbox with smooth SVG path animation when checked. Zero
         dependencies, pure CSS animation.
@@ -38,7 +39,7 @@ export default function AnimatedCheckboxPage() {
         >
           Installation
         </h2>
-        <InstallCommand packageName="https://gooseui.pro/r/animated-checkbox.json" />
+        <InstallCommand packageName="https://gooseui.pro/r/checkbox.json" />
       </div>
 
       <div className="space-y-4">
@@ -48,13 +49,11 @@ export default function AnimatedCheckboxPage() {
         >
           Usage
         </h2>
-        <pre className="rounded-lg border bg-muted px-4 py-3 font-mono text-sm overflow-x-auto">
-          {`import { AnimatedCheckbox } from "@/components/ui/animated-checkbox"
+        <CodeBlock>{`import { AnimatedCheckbox } from "@/components/ui/animated-checkbox"
 
 export function MyComponent() {
   return <AnimatedCheckbox label="Accept terms" />
-}`}
-        </pre>
+}`}</CodeBlock>
       </div>
 
       <div className="space-y-4">
@@ -65,11 +64,9 @@ export function MyComponent() {
           Variants
         </h2>
         <AnimatedCheckboxVariants />
-        <pre className="rounded-lg border bg-muted px-4 py-3 font-mono text-sm overflow-x-auto">
-          {`<AnimatedCheckbox variant="default" label="Default" />
+        <CodeBlock>{`<AnimatedCheckbox variant="default" label="Default" />
 <AnimatedCheckbox variant="destructive" label="Destructive" />
-<AnimatedCheckbox variant="success" label="Success" />`}
-        </pre>
+<AnimatedCheckbox variant="success" label="Success" />`}</CodeBlock>
       </div>
 
       <div className="space-y-4">
@@ -80,11 +77,9 @@ export function MyComponent() {
           Sizes
         </h2>
         <AnimatedCheckboxSizes />
-        <pre className="rounded-lg border bg-muted px-4 py-3 font-mono text-sm overflow-x-auto">
-          {`<AnimatedCheckbox size="sm" label="Small" />
+        <CodeBlock>{`<AnimatedCheckbox size="sm" label="Small" />
 <AnimatedCheckbox size="default" label="Default" />
-<AnimatedCheckbox size="lg" label="Large" />`}
-        </pre>
+<AnimatedCheckbox size="lg" label="Large" />`}</CodeBlock>
       </div>
 
       <div className="space-y-4">
@@ -95,11 +90,9 @@ export function MyComponent() {
           Without Label
         </h2>
         <AnimatedCheckboxWithoutLabel />
-        <pre className="rounded-lg border bg-muted px-4 py-3 font-mono text-sm overflow-x-auto">
-          {`<AnimatedCheckbox size="sm" />
+        <CodeBlock>{`<AnimatedCheckbox size="sm" />
 <AnimatedCheckbox size="default" />
-<AnimatedCheckbox size="lg" />`}
-        </pre>
+<AnimatedCheckbox size="lg" />`}</CodeBlock>
       </div>
 
       <div className="space-y-4">

@@ -1,3 +1,4 @@
+import { CodeBlock } from "@/components/docs/code-block"
 import { DocsPageNav } from "@/components/docs/docs-page-nav"
 import { InstallCommand } from "@/components/docs/install-command"
 import { BaselineStatus } from "@/registry/new-york/ui/baseline-status"
@@ -75,8 +76,7 @@ export default function MorphingDialogPage() {
         >
           Usage
         </h2>
-        <pre className="bg-muted p-4 rounded-lg overflow-x-auto">
-          <code>{`import {
+        <CodeBlock>{`import {
   MorphingDialog,
   MorphingDialogTrigger,
   MorphingDialogContainer,
@@ -110,8 +110,7 @@ export default function Example() {
       </MorphingDialogContainer>
     </MorphingDialog>
   )
-}`}</code>
-        </pre>
+}`}</CodeBlock>
       </div>
 
       <div className="space-y-4">

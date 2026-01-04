@@ -3,7 +3,6 @@ import { ComponentPreview } from "@/components/landing/component-preview"
 import { CTA } from "@/components/landing/cta"
 import { FAQ } from "@/components/landing/faq"
 import { Features } from "@/components/landing/features"
-import { GitHubPromoBanner } from "@/components/landing/github-promo-banner"
 import { Hero } from "@/components/landing/hero"
 
 export default function HomePage() {
@@ -26,9 +25,6 @@ export default function HomePage() {
 
       {/* CTA */}
       <CTA />
-
-      {/* GitHub Star Promo */}
-      <GitHubPromoBanner />
     </div>
   )
 }

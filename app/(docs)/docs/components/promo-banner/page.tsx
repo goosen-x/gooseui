@@ -1,3 +1,4 @@
+import { CodeBlock } from "@/components/docs/code-block"
 import { DocsPageNav } from "@/components/docs/docs-page-nav"
 import { InstallCommand } from "@/components/docs/install-command"
 import {
@@ -48,8 +49,7 @@ export default function PromoBannerPage() {
         <p className="text-sm text-muted-foreground">
           Add the marquee animation to your globals.css:
         </p>
-        <pre className="bg-muted p-4 rounded-lg overflow-x-auto">
-          <code>{`@layer utilities {
+        <CodeBlock>{`@layer utilities {
   .animate-marquee {
     animation: marquee var(--duration, 20s) linear infinite;
   }
@@ -58,8 +58,7 @@ export default function PromoBannerPage() {
 @keyframes marquee {
   from { transform: translateX(0); }
   to { transform: translateX(calc(-100% - 1rem)); }
-}`}</code>
-        </pre>
+}`}</CodeBlock>
       </div>
 
       <div className="space-y-4">
@@ -69,8 +68,7 @@ export default function PromoBannerPage() {
         >
           Usage
         </h2>
-        <pre className="bg-muted p-4 rounded-lg overflow-x-auto">
-          <code>{`import { PromoBanner } from "@/components/ui/promo-banner"
+        <CodeBlock>{`import { PromoBanner } from "@/components/ui/promo-banner"
 
 export default function Page() {
   return (
@@ -85,8 +83,7 @@ export default function Page() {
       storageKey="promo-winter-2025"
     />
   )
-}`}</code>
-        </pre>
+}`}</CodeBlock>
       </div>
 
       <div className="space-y-4">
@@ -106,12 +103,10 @@ export default function Page() {
             <div className="flex justify-center py-8 bg-muted/50 rounded-lg min-h-[150px]">
               <PromoBannerPositions />
             </div>
-            <pre className="bg-muted p-4 rounded-lg overflow-x-auto mt-2">
-              <code>{`<PromoBanner position="top-left" />
+            <CodeBlock>{`<PromoBanner position="top-left" />
 <PromoBanner position="top-right" />
 <PromoBanner position="bottom-left" />
-<PromoBanner position="bottom-right" /> // default`}</code>
-            </pre>
+<PromoBanner position="bottom-right" /> // default`}</CodeBlock>
           </div>
 
           <div>
@@ -122,12 +117,10 @@ export default function Page() {
             <div className="flex justify-center py-8 bg-muted/50 rounded-lg min-h-[150px]">
               <PromoBannerGradients />
             </div>
-            <pre className="bg-muted p-4 rounded-lg overflow-x-auto mt-2">
-              <code>{`<PromoBanner
+            <CodeBlock>{`<PromoBanner
   gradientFrom="from-blue-600"
   gradientTo="to-cyan-500"
-/>`}</code>
-            </pre>
+/>`}</CodeBlock>
           </div>
 
           <div>
@@ -135,12 +128,10 @@ export default function Page() {
             <p className="text-sm text-muted-foreground mb-4">
               Remember when user closes the banner
             </p>
-            <pre className="bg-muted p-4 rounded-lg overflow-x-auto">
-              <code>{`<PromoBanner
+            <CodeBlock>{`<PromoBanner
   storageKey="promo-winter-2025"
   delay={3000} // show after 3 seconds
-/>`}</code>
-            </pre>
+/>`}</CodeBlock>
           </div>
 
           <div>
@@ -148,8 +139,7 @@ export default function Page() {
             <p className="text-sm text-muted-foreground mb-4">
               Global banner management with context
             </p>
-            <pre className="bg-muted p-4 rounded-lg overflow-x-auto">
-              <code>{`import { PromoBannerProvider, usePromoBanner } from "@/components/ui/promo-banner"
+            <CodeBlock>{`import { PromoBannerProvider, usePromoBanner } from "@/components/ui/promo-banner"
 
 // In layout or app
 <PromoBannerProvider>
@@ -169,8 +159,7 @@ function Component() {
       Show Promo
     </button>
   )
-}`}</code>
-            </pre>
+}`}</CodeBlock>
           </div>
         </div>
       </div>

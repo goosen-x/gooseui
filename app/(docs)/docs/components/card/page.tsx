@@ -1,3 +1,4 @@
+import { CodeBlock } from "@/components/docs/code-block"
 import { DocsPageNav } from "@/components/docs/docs-page-nav"
 import { InstallCommand } from "@/components/docs/install-command"
 import { Button } from "@/registry/new-york/ui/button"
@@ -72,8 +73,7 @@ export default function CardPage() {
         >
           Usage
         </h2>
-        <pre className="rounded-lg border bg-muted px-4 py-3 font-mono text-sm overflow-x-auto">
-          {`import {
+        <CodeBlock>{`import {
   Card,
   CardContent,
   CardDescription,
@@ -97,8 +97,7 @@ export function MyCard() {
       </CardFooter>
     </Card>
   )
-}`}
-        </pre>
+}`}</CodeBlock>
       </div>
 
       <div className="space-y-4">

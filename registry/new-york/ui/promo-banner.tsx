@@ -81,6 +81,8 @@ interface PromoBannerProps {
   defaultOpen?: boolean
   /** Show diagonal lines pattern on background */
   showPattern?: boolean
+  /** Callback when CTA button is clicked */
+  onCtaClick?: () => void
   /** Custom className */
   className?: string
 }
@@ -103,6 +105,7 @@ export function PromoBanner({
   delay = 0,
   defaultOpen = true,
   showPattern = false,
+  onCtaClick,
   className,
 }: PromoBannerProps) {
   const [isVisible, setIsVisible] = React.useState(false)
@@ -266,6 +269,9 @@ export function PromoBanner({
           {/* CTA Button */}
           <a
             href={ctaHref}
+            onClick={onCtaClick}
+            target="_blank"
+            rel="noopener noreferrer"
             className="mt-5 inline-block rounded-full bg-white px-6 py-2.5 text-sm font-semibold text-gray-900 shadow-lg transition-all hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
           >
             {ctaText}

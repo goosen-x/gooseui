@@ -1,10 +1,11 @@
 "use client"
 
-import { Check, Copy, Terminal } from "lucide-react"
+import { Terminal } from "lucide-react"
+import { usePostHog } from "posthog-js/react"
 import * as React from "react"
+import { AnimatedCopyButton } from "./animated-copy-button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { cn } from "@/lib/utils"
-import { Button } from "@/registry/new-york/ui/button"
 
 type PackageManager = "npm" | "pnpm" | "yarn" | "bun"
 
@@ -32,8 +33,8 @@ export function InstallCommand({
   className,
 }: InstallCommandProps) {
   const [mounted, setMounted] = React.useState(false)
-  const [copied, setCopied] = React.useState(false)
   const [activePm, setActivePm] = React.useState<PackageManager>(defaultPm)
+  const posthog = usePostHog()
 
   React.useEffect(() => {
     setMounted(true)
@@ -44,25 +45,11 @@ export function InstallCommand({
     return defaultCommands[pm](packageName)
   }
 
-  const handleCopy = async () => {
-    const command = getCommand(activePm)
-    try {
-      await navigator.clipboard.writeText(command)
-      setCopied(true)
-      setTimeout(() => setCopied(false), 2000)
-    } catch {
-      // Fallback
-      const textArea = document.createElement("textarea")
-      textArea.value = command
-      textArea.style.position = "fixed"
-      textArea.style.left = "-999999px"
-      document.body.appendChild(textArea)
-      textArea.select()
-      document.execCommand("copy")
-      document.body.removeChild(textArea)
-      setCopied(true)
-      setTimeout(() => setCopied(false), 2000)
-    }
+  const handleCopy = () => {
+    posthog.capture("install_command_copied", {
+      package_manager: activePm,
+      package_name: packageName,
+    })
   }
 
   const packageManagers: PackageManager[] = ["npm", "pnpm", "yarn", "bun"]
@@ -146,15 +133,11 @@ export function InstallCommand({
           </div>
         </div>
 
-        <Button
-          variant="ghost"
-          size="icon"
-          className="absolute right-2 top-2 z-10 size-7 opacity-70 hover:opacity-100"
-          onClick={handleCopy}
-        >
-          <span className="sr-only">Copy</span>
-          {copied ? <Check className="size-4" /> : <Copy className="size-4" />}
-        </Button>
+        <AnimatedCopyButton
+          text={getCommand(activePm)}
+          className="absolute right-2 top-2 z-10"
+          onCopy={handleCopy}
+        />
       </Tabs>
     </div>
   )

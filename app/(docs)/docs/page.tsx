@@ -40,10 +40,12 @@ export default function DocsPage() {
           Features
         </h2>
         <ul className="my-6 ml-6 list-disc [&>li]:mt-2">
-          <li>Accessible components based on Radix UI</li>
-          <li>Styling via Tailwind CSS</li>
+          <li>Accessible components using native HTML and CSS</li>
+          <li>Minimal JavaScript, maximum browser APIs</li>
+          <li>Styling via Tailwind CSS 4</li>
           <li>Dark theme out of the box</li>
           <li>Full TypeScript support</li>
+          <li>Minimal external dependencies</li>
           <li>Copy-paste installation via CLI</li>
         </ul>
       </div>

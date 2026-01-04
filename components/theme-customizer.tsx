@@ -6,4 +6,5 @@ export {
   ThemeCustomizerDock,
   ThemeCustomizerPill,
   ThemeCustomizerSidebar,
+  ThemeCustomizerToolbar,
 } from "@/registry/new-york/ui/theme-customizer"

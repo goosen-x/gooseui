@@ -70,10 +70,9 @@ export const docsNavigation: NavSection[] = [
     href: "/docs/components",
     items: [
       {
-        slug: "animated-checkbox",
-        title: "Animated Checkbox",
-        href: "/docs/components/animated-checkbox",
-        isDraft: true,
+        slug: "checkbox",
+        title: "Checkbox",
+        href: "/docs/components/checkbox",
         isNew: true,
       },
       {
@@ -108,13 +107,6 @@ export const docsNavigation: NavSection[] = [
         title: "Digital Clock",
         href: "/docs/components/digital-clock",
         isNew: true,
-      },
-      {
-        slug: "github-promo-banner",
-        title: "GitHub Promo Banner",
-        href: "/docs/components/github-promo-banner",
-        isNew: true,
-        keywords: ["github", "stars", "marketing", "popup", "promotion"],
       },
       {
         slug: "input",
