@@ -1,0 +1,148 @@
+import { CodeBlock } from "@/components/docs/code-block"
+import { DocsPageNav } from "@/components/docs/docs-page-nav"
+import { InstallCommand } from "@/components/docs/install-command"
+import { DocsBrowserSupport } from "@/components/docs/docs-browser-support"
+
+export const metadata = {
+  title: "Anchor Tooltip",
+  description: "CSS-only tooltips using Anchor Positioning API and Popover API",
+}
+
+export default function AnchorTooltipPage() {
+  return (
+    <div className="space-y-8">
+      {/* 1. Navigation */}
+      <DocsPageNav
+        title="Anchor Tooltip"
+        prevHref="/docs/effects/parallax-cards"
+        nextHref="/docs/effects/morphing-header"
+      />
+
+      {/* 2. Description */}
+      <p className="text-muted-foreground">
+        CSS-only tooltips using Anchor Positioning API and Popover API.
+        No JavaScript positioning calculations needed.
+      </p>
+
+      {/* 3. Browser Support */}
+      <DocsBrowserSupport
+        features={[
+          { featureId: "anchor-positioning", browserCheck: "anchor-positioning" },
+          { featureId: "popover", browserCheck: "popover" },
+        ]}
+      >
+        Uses <code className="bg-muted px-1.5 py-0.5 rounded">anchor-name</code> and{" "}
+        <code className="bg-muted px-1.5 py-0.5 rounded">position-anchor</code> for CSS-based positioning.
+      </DocsBrowserSupport>
+
+      {/* 4. Preview */}
+      <div className="space-y-4">
+        <h2
+          id="preview"
+          className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight"
+        >
+          Preview
+        </h2>
+        <div className="flex justify-center py-12 bg-muted/30 rounded-lg">
+          <p className="text-muted-foreground">
+            Hover over elements to see CSS-positioned tooltips.
+          </p>
+        </div>
+      </div>
+
+      {/* 5. Installation */}
+      <div className="space-y-4">
+        <h2
+          id="installation"
+          className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight"
+        >
+          Installation
+        </h2>
+        <InstallCommand packageName="https://gooseui.pro/r/anchor-tooltip.json" />
+      </div>
+
+      {/* 6. Usage */}
+      <div className="space-y-4">
+        <h2
+          id="usage"
+          className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight"
+        >
+          Usage
+        </h2>
+        <CodeBlock>{`import { AnchorTooltip } from "@/components/effects/anchor-tooltip"
+
+<AnchorTooltip content="This is a tooltip">
+  <span>Hover me</span>
+</AnchorTooltip>
+
+// With position
+<AnchorTooltip content="Bottom tooltip" position="bottom">
+  <Button>Click me</Button>
+</AnchorTooltip>`}</CodeBlock>
+      </div>
+
+      {/* 7. CSS Feature */}
+      <div className="space-y-4">
+        <h2
+          id="css-feature"
+          className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight"
+        >
+          CSS Feature
+        </h2>
+        <CodeBlock>{`.anchor-trigger {
+  anchor-name: --tooltip-anchor;
+}
+
+.tooltip {
+  position: fixed;
+  position-anchor: --tooltip-anchor;
+  top: anchor(bottom);
+  left: anchor(center);
+  translate: -50% 8px;
+}`}</CodeBlock>
+      </div>
+
+      {/* 8. Props */}
+      <div className="space-y-4">
+        <h2
+          id="props"
+          className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight"
+        >
+          Props
+        </h2>
+        <div className="border rounded-lg overflow-x-auto">
+          <table className="w-full text-sm min-w-[500px]">
+            <thead className="bg-muted">
+              <tr>
+                <th className="text-left p-3 font-medium">Prop</th>
+                <th className="text-left p-3 font-medium">Type</th>
+                <th className="text-left p-3 font-medium">Default</th>
+                <th className="text-left p-3 font-medium">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-t">
+                <td className="p-3 font-mono text-xs">content</td>
+                <td className="p-3 font-mono text-xs">ReactNode</td>
+                <td className="p-3 font-mono text-xs">-</td>
+                <td className="p-3">Tooltip content</td>
+              </tr>
+              <tr className="border-t">
+                <td className="p-3 font-mono text-xs">position</td>
+                <td className="p-3 font-mono text-xs">&quot;top&quot; | &quot;bottom&quot; | &quot;left&quot; | &quot;right&quot;</td>
+                <td className="p-3 font-mono text-xs">&quot;top&quot;</td>
+                <td className="p-3">Tooltip position</td>
+              </tr>
+              <tr className="border-t">
+                <td className="p-3 font-mono text-xs">className</td>
+                <td className="p-3 font-mono text-xs">string</td>
+                <td className="p-3 font-mono text-xs">-</td>
+                <td className="p-3">Additional CSS classes</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  )
+}

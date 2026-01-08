@@ -14,7 +14,15 @@ import { cn } from "@/lib/utils"
 // Browser Feature Detection
 // ============================================================================
 
-type BrowserFeature = "view-transitions" | "popover" | "anchor-positioning"
+export type BrowserFeature =
+  | "view-transitions"
+  | "popover"
+  | "anchor-positioning"
+  | "container-queries"
+  | "has"
+  | "scroll-driven-animations"
+  | "text-wrap-balance"
+  | "text-wrap-pretty"
 
 function checkBrowserFeature(feature: BrowserFeature): boolean {
   if (typeof document === "undefined" || typeof window === "undefined")
@@ -27,6 +35,16 @@ function checkBrowserFeature(feature: BrowserFeature): boolean {
       return "popover" in HTMLElement.prototype
     case "anchor-positioning":
       return CSS.supports("anchor-name", "--test")
+    case "container-queries":
+      return CSS.supports("container-type", "inline-size")
+    case "has":
+      return CSS.supports("selector(:has(*))")
+    case "scroll-driven-animations":
+      return CSS.supports("animation-timeline", "scroll()")
+    case "text-wrap-balance":
+      return CSS.supports("text-wrap", "balance")
+    case "text-wrap-pretty":
+      return CSS.supports("text-wrap", "pretty")
     default:
       return false
   }
@@ -40,6 +58,16 @@ function getBrowserFeatureLabel(feature: BrowserFeature): string {
       return "Popover API"
     case "anchor-positioning":
       return "CSS Anchor Positioning"
+    case "container-queries":
+      return "Container Queries"
+    case "has":
+      return ":has() selector"
+    case "scroll-driven-animations":
+      return "Scroll-driven Animations"
+    case "text-wrap-balance":
+      return "text-wrap: balance"
+    case "text-wrap-pretty":
+      return "text-wrap: pretty"
     default:
       return feature
   }
@@ -258,7 +286,7 @@ export function BaselineStatus({
     return (
       <div
         className={cn(
-          "inline-flex items-center gap-3 rounded-lg border border-border/50 bg-muted/30 px-3 py-2",
+          "inline-flex flex-wrap items-center gap-3 rounded-lg border border-border/50 bg-muted/30 px-3 py-2",
           className,
         )}
         role="status"
@@ -280,9 +308,6 @@ export function BaselineStatus({
           )}
         </div>
 
-        {/* Divider */}
-        <div className="h-4 w-px bg-border" />
-
         {/* Browser Support Check */}
         <div
           className={cn(
@@ -293,11 +318,11 @@ export function BaselineStatus({
           )}
         >
           {browserSupport ? (
-            <CheckCircle2 className="h-4 w-4" />
+            <CheckCircle2 className="h-4 w-4 shrink-0" />
           ) : (
-            <XCircle className="h-4 w-4" />
+            <XCircle className="h-4 w-4 shrink-0" />
           )}
-          <span className="whitespace-nowrap">
+          <span>
             {browserSupport ? "Your browser supports" : "Not supported:"}{" "}
             {featureLabel}
           </span>
