@@ -1,7 +1,7 @@
 import Link from "next/link"
-import { Badge } from "@/components/ui/badge"
 import { DocsPageNav } from "@/components/docs/docs-page-nav"
 import { InstallCommand } from "@/components/docs/install-command"
+import { Badge } from "@/components/ui/badge"
 import { getAvailableComponents } from "@/lib/config/docs-navigation"
 import { getInstallPackageName } from "@/lib/config/registry"
 

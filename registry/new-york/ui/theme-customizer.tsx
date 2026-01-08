@@ -161,9 +161,7 @@ export function ThemeCustomizerBar({ className }: { className?: string }) {
             onClick={() => setTheme(value)}
             className={cn(
               "flex size-8 items-center justify-center rounded-md transition-colors",
-              theme === value
-                ? "bg-primary text-white"
-                : "hover:bg-accent",
+              theme === value ? "bg-primary text-white" : "hover:bg-accent",
             )}
           >
             <Icon className="size-4" />

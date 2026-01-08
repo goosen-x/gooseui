@@ -11,13 +11,8 @@ export const metadata = {
 export default function DocsPage() {
   return (
     <div className="space-y-6">
-      <DocsPageNav
-        title="Introduction"
-        nextHref="/docs/installation"
-      />
-      <p className="text-lg text-muted-foreground">
-        Guide to using GooseUI
-      </p>
+      <DocsPageNav title="Introduction" nextHref="/docs/installation" />
+      <p className="text-lg text-muted-foreground">Guide to using GooseUI</p>
 
       <div className="space-y-4">
         <h2

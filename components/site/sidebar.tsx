@@ -1,5 +1,8 @@
 "use client"
 
+import Link from "next/link"
+import { usePathname } from "next/navigation"
+import * as React from "react"
 import { Badge } from "@/components/ui/badge"
 import {
   docsNavigation,
@@ -7,9 +10,6 @@ import {
   type NavItem,
 } from "@/lib/config/docs-navigation"
 import { cn } from "@/lib/utils"
-import Link from "next/link"
-import { usePathname } from "next/navigation"
-import * as React from "react"
 
 export function DocsSidebar() {
   const pathname = usePathname()

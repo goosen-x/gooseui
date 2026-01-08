@@ -1,9 +1,8 @@
 import { ArrowRightIcon, Bell, Check, Palette } from "lucide-react"
 import Link from "next/link"
 import type { ReactNode } from "react"
-
-import { Badge } from "@/components/ui/badge"
 import { DocsPageNav } from "@/components/docs/docs-page-nav"
+import { Badge } from "@/components/ui/badge"
 import {
   getAvailableComponents,
   getComingSoonComponents,

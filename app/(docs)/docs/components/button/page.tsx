@@ -72,8 +72,8 @@ export function MyComponent() {
         >
           Default
         </h3>
-        <ButtonVariantDemo label="Button" />
-        <CodeBlock>{`<Button>Button</Button>`}</CodeBlock>
+        <ButtonVariantDemo label="Default" />
+        <CodeBlock>{`<Button>Default</Button>`}</CodeBlock>
 
         <h3 className="scroll-m-20 text-xl font-semibold tracking-tight mt-6">
           Secondary

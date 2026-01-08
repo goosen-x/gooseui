@@ -508,7 +508,9 @@ ${registryUrl ? `Registry: ${registryUrl}` : ""}
             variant="secondary"
             size="icon"
             className="ml-auto size-8 rounded-md shadow-none sm:hidden"
-            onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
+            onClick={() =>
+              setTheme(resolvedTheme === "dark" ? "light" : "dark")
+            }
           >
             {resolvedTheme === "dark" ? (
               <SunIcon className="size-4" />

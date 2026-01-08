@@ -1,5 +1,9 @@
 "use client"
 
+import { Menu } from "lucide-react"
+import Link from "next/link"
+import { usePathname } from "next/navigation"
+import * as React from "react"
 import { Badge } from "@/components/ui/badge"
 import {
   Sheet,
@@ -15,10 +19,6 @@ import {
 } from "@/lib/config/docs-navigation"
 import { siteConfig } from "@/lib/config/navigation"
 import { cn } from "@/lib/utils"
-import { Menu } from "lucide-react"
-import Link from "next/link"
-import { usePathname } from "next/navigation"
-import * as React from "react"
 
 const mainNav = [
   { href: "/docs", title: "Docs" },

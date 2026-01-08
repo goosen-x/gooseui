@@ -198,6 +198,7 @@
   body {
     @apply bg-background text-foreground;
     overscroll-behavior: none;
+    scrollbar-gutter: stable;
   }
 
 }
