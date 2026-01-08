@@ -271,6 +271,15 @@ const rawNavigation: NavSection[] = [
         isDraft: true,
         keywords: ["cards", "stack", "sticky", "scroll"],
       },
+      {
+        slug: "svg-drawable",
+        title: "SVG Drawable",
+        href: "/docs/components/svg-drawable",
+        description: "Animate SVG path drawing with CSS",
+        category: "Effects",
+        isDraft: true,
+        keywords: ["svg", "draw", "animation", "path", "stroke"],
+      },
       // Coming Soon components (alphabetically sorted)
       {
         slug: "radio",
@@ -364,7 +373,13 @@ const rawNavigation: NavSection[] = [
         description: "CSS-only tooltips with Anchor Positioning API",
         category: "Experimental",
         isNew: true,
-        keywords: ["tooltip", "anchor", "popover", "positioning", "experimental"],
+        keywords: [
+          "tooltip",
+          "anchor",
+          "popover",
+          "positioning",
+          "experimental",
+        ],
       },
     ],
   },
