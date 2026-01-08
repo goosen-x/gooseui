@@ -1,19 +1,29 @@
+import Link from "next/link"
+import { Badge } from "@/components/ui/badge"
+import { DocsPageNav } from "@/components/docs/docs-page-nav"
 import { InstallCommand } from "@/components/docs/install-command"
+import { getAvailableComponents } from "@/lib/config/docs-navigation"
+import { getInstallPackageName } from "@/lib/config/registry"
 
 export const metadata = {
   title: "CLI",
   description: "Using shadcn CLI to install components",
 }
 
+// Get components from single source of truth
+const availableComponents = getAvailableComponents()
+
 export default function CLIPage() {
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="scroll-m-20 text-4xl font-bold tracking-tight">CLI</h1>
-        <p className="text-lg text-muted-foreground mt-2">
-          Using shadcn CLI to install components
-        </p>
-      </div>
+      <DocsPageNav
+        title="CLI"
+        prevHref="/docs/installation"
+        nextHref="/docs/components"
+      />
+      <p className="text-lg text-muted-foreground">
+        Using shadcn CLI to install components
+      </p>
 
       <div className="space-y-4">
         <h2
@@ -23,7 +33,7 @@ export default function CLIPage() {
           Adding a Component
         </h2>
         <p className="leading-7">Use the add command to install a component:</p>
-        <InstallCommand packageName="@gooseui/button" />
+        <InstallCommand packageName={getInstallPackageName("button")} />
       </div>
 
       <div className="space-y-4">
@@ -39,10 +49,10 @@ export default function CLIPage() {
         <InstallCommand
           packageName=""
           commands={{
-            npm: "npx shadcn@latest add @gooseui/button @gooseui/card @gooseui/input",
-            pnpm: "pnpm dlx shadcn@latest add @gooseui/button @gooseui/card @gooseui/input",
-            yarn: "npx shadcn@latest add @gooseui/button @gooseui/card @gooseui/input",
-            bun: "bunx --bun shadcn@latest add @gooseui/button @gooseui/card @gooseui/input",
+            npm: `npx shadcn@latest add ${getInstallPackageName("button")} ${getInstallPackageName("card")} ${getInstallPackageName("input")}`,
+            pnpm: `pnpm dlx shadcn@latest add ${getInstallPackageName("button")} ${getInstallPackageName("card")} ${getInstallPackageName("input")}`,
+            yarn: `npx shadcn@latest add ${getInstallPackageName("button")} ${getInstallPackageName("card")} ${getInstallPackageName("input")}`,
+            bun: `bunx --bun shadcn@latest add ${getInstallPackageName("button")} ${getInstallPackageName("card")} ${getInstallPackageName("input")}`,
           }}
         />
       </div>
@@ -56,42 +66,25 @@ export default function CLIPage() {
         </h2>
         <p className="leading-7">List of all available components:</p>
         <div className="grid gap-2">
-          <div className="flex items-center justify-between rounded-lg border p-3">
-            <span className="font-mono text-sm">border-beam</span>
-            <code className="rounded bg-muted px-2 py-1 text-xs">
-              @gooseui/border-beam
-            </code>
-          </div>
-          <div className="flex items-center justify-between rounded-lg border p-3">
-            <span className="font-mono text-sm">button</span>
-            <code className="rounded bg-muted px-2 py-1 text-xs">
-              @gooseui/button
-            </code>
-          </div>
-          <div className="flex items-center justify-between rounded-lg border p-3">
-            <span className="font-mono text-sm">card</span>
-            <code className="rounded bg-muted px-2 py-1 text-xs">
-              @gooseui/card
-            </code>
-          </div>
-          <div className="flex items-center justify-between rounded-lg border p-3">
-            <span className="font-mono text-sm">input</span>
-            <code className="rounded bg-muted px-2 py-1 text-xs">
-              @gooseui/input
-            </code>
-          </div>
-          <div className="flex items-center justify-between rounded-lg border p-3">
-            <span className="font-mono text-sm">label</span>
-            <code className="rounded bg-muted px-2 py-1 text-xs">
-              @gooseui/label
-            </code>
-          </div>
-          <div className="flex items-center justify-between rounded-lg border p-3">
-            <span className="font-mono text-sm">textarea</span>
-            <code className="rounded bg-muted px-2 py-1 text-xs">
-              @gooseui/textarea
-            </code>
-          </div>
+          {availableComponents.map((component) => (
+            <Link
+              key={component.slug}
+              href={component.href}
+              className="flex cursor-pointer flex-col gap-2 rounded-lg border p-3 transition-colors hover:border-foreground/20 hover:bg-muted/50 sm:flex-row sm:items-center sm:justify-between"
+            >
+              <div className="flex items-center gap-2">
+                <span className="font-mono text-sm">{component.slug}</span>
+                {component.isNew && !component.isDraft && (
+                  <Badge className="h-5 bg-primary px-1.5 text-[10px] text-white">
+                    New
+                  </Badge>
+                )}
+              </div>
+              <code className="w-fit rounded bg-muted px-2 py-1 text-xs break-all">
+                {getInstallPackageName(component.slug)}
+              </code>
+            </Link>
+          ))}
         </div>
       </div>
     </div>

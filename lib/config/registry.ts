@@ -9,6 +9,13 @@
 
 export const REGISTRY_BASE_URL = "https://gooseui.pro/r"
 
+/**
+ * Registry namespace for shadcn CLI
+ * When registered in shadcn, flip this to true and use "@gooseui" format
+ */
+export const REGISTRY_IS_OFFICIAL = false
+export const REGISTRY_NAMESPACE = "@gooseui"
+
 export type RegistryItemType = "component" | "effect" | "hook" | "lib"
 
 export interface RegistryItem {
@@ -74,4 +81,16 @@ export function getRegistryItem(slug: string): RegistryItem | undefined {
  */
 export function getRegistryItemsByType(type: RegistryItemType): RegistryItem[] {
   return REGISTRY_ITEMS.filter((i) => i.type === type)
+}
+
+/**
+ * Get install package name for CLI
+ * Returns short format (@gooseui/button) if officially registered,
+ * otherwise returns full URL (https://gooseui.pro/r/button.json)
+ */
+export function getInstallPackageName(slug: string): string {
+  if (REGISTRY_IS_OFFICIAL) {
+    return `${REGISTRY_NAMESPACE}/${slug}`
+  }
+  return `${REGISTRY_BASE_URL}/${slug}.json`
 }

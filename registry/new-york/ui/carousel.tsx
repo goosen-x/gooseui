@@ -613,7 +613,7 @@ function CarouselDots({
             variant === "numbers" && [
               "size-8 rounded-full text-xs font-medium",
               index === activeIndex
-                ? "bg-primary text-primary-foreground"
+                ? "bg-primary text-white"
                 : "bg-muted hover:bg-muted-foreground/20",
             ],
           )}

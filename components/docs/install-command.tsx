@@ -3,9 +3,9 @@
 import { Terminal } from "lucide-react"
 import { usePostHog } from "posthog-js/react"
 import * as React from "react"
-import { AnimatedCopyButton } from "./animated-copy-button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { cn } from "@/lib/utils"
+import { AnimatedCopyButton } from "./animated-copy-button"
 
 type PackageManager = "npm" | "pnpm" | "yarn" | "bun"
 
@@ -59,11 +59,13 @@ export function InstallCommand({
     return (
       <div className={cn("relative", className)}>
         <div className="overflow-hidden rounded-lg border bg-muted/30">
-          <div className="flex items-center gap-2 border-b border-border/50 px-3 py-1">
-            <div className="flex size-4 items-center justify-center rounded-[1px] bg-foreground opacity-70">
-              <Terminal className="size-3 text-background" />
+          <div className="no-scrollbar flex items-center gap-2 overflow-x-auto border-b border-border/50 py-1">
+            <div className="flex shrink-0 items-center gap-2 pl-3">
+              <div className="flex size-4 items-center justify-center rounded-[1px] bg-foreground opacity-70">
+                <Terminal className="size-3 text-background" />
+              </div>
             </div>
-            <div className="flex h-9 items-center gap-1 p-0">
+            <div className="flex h-9 items-center gap-1 p-0 pr-3">
               {packageManagers.map((pm) => (
                 <div
                   key={pm}
@@ -79,8 +81,8 @@ export function InstallCommand({
               ))}
             </div>
           </div>
-          <div className="px-4 py-3.5">
-            <pre>
+          <div className="no-scrollbar overflow-x-auto py-3.5">
+            <pre className="px-4">
               <code className="relative font-mono text-sm leading-none">
                 {getCommand(defaultPm)}
               </code>
@@ -99,11 +101,13 @@ export function InstallCommand({
         className="gap-0"
       >
         <div className="overflow-hidden rounded-lg border bg-muted/30">
-          <div className="flex items-center gap-2 border-b border-border/50 px-3 py-1">
-            <div className="flex size-4 items-center justify-center rounded-[1px] bg-foreground opacity-70">
-              <Terminal className="size-3 text-background" />
+          <div className="no-scrollbar flex items-center gap-2 overflow-x-auto border-b border-border/50 py-1">
+            <div className="flex shrink-0 items-center gap-2 pl-3">
+              <div className="flex size-4 items-center justify-center rounded-[1px] bg-foreground opacity-70">
+                <Terminal className="size-3 text-background" />
+              </div>
             </div>
-            <TabsList className="h-9 bg-transparent p-0">
+            <TabsList className="h-9 bg-transparent p-0 pr-3">
               {packageManagers.map((pm) => (
                 <TabsTrigger
                   key={pm}
@@ -122,9 +126,9 @@ export function InstallCommand({
 
           <div className="no-scrollbar overflow-x-auto">
             {packageManagers.map((pm) => (
-              <TabsContent key={pm} value={pm} className="mt-0 px-4 py-3.5">
-                <pre>
-                  <code className="relative font-mono text-sm leading-none">
+              <TabsContent key={pm} value={pm} className="mt-0 py-3.5">
+                <pre className="inline-block min-w-full px-4">
+                  <code className="relative font-mono text-sm leading-none whitespace-nowrap">
                     {getCommand(pm)}
                   </code>
                 </pre>

@@ -158,7 +158,7 @@ export function isDevelopment(): boolean {
  * In development: shows all categories
  */
 export function getDisplayCategories(
-  countAvailableBlocks: (category: string) => number
+  countAvailableBlocks: (category: string) => number,
 ): BlockCategory[] {
   if (isDevelopment()) {
     return BLOCK_CATEGORIES
@@ -169,4 +169,3 @@ export function getDisplayCategories(
     return countAvailableBlocks(c.slug) > 0
   })
 }
-

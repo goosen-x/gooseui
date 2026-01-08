@@ -1,36 +1,58 @@
 "use client"
 
+import { Badge } from "@/components/ui/badge"
+import {
+  docsNavigation,
+  filterDraftItems,
+  type NavItem,
+} from "@/lib/config/docs-navigation"
+import { cn } from "@/lib/utils"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { docsNav } from "@/lib/config/navigation"
-import { cn } from "@/lib/utils"
+import * as React from "react"
 
 export function DocsSidebar() {
   const pathname = usePathname()
+
+  // Filter out drafts in production, exclude Coming Soon, and remove empty sections
+  const sections = React.useMemo(() => {
+    const filtered = filterDraftItems(docsNavigation)
+    return filtered
+      .map((section) => ({
+        ...section,
+        items: section.items.filter((item) => !item.isComingSoon),
+      }))
+      .filter((section) => section.items.length > 0)
+  }, [])
 
   return (
     <aside className="fixed top-14 z-30 -ml-2 hidden h-[calc(100vh-3.5rem)] w-full shrink-0 md:sticky md:block">
       <div className="h-full overflow-y-auto py-6 pr-6 lg:py-8">
         <nav className="w-full">
-          {docsNav.map((section) => (
+          {sections.map((section) => (
             <div key={section.title} className="pb-4">
               <h4 className="mb-1 rounded-md px-2 py-1 text-sm font-semibold">
                 {section.title}
               </h4>
-              {section.items?.length && (
+              {section.items.length > 0 && (
                 <div className="grid grid-flow-row auto-rows-max text-sm">
-                  {section.items.map((item) => (
+                  {section.items.map((item: NavItem) => (
                     <Link
                       key={item.href}
                       href={item.href}
                       className={cn(
-                        "group flex w-full items-center rounded-md border border-transparent px-2 py-1 hover:underline",
+                        "group flex w-full items-center gap-2 rounded-md border border-transparent px-2 py-1 hover:underline",
                         pathname === item.href
                           ? "font-medium text-foreground"
                           : "text-muted-foreground",
                       )}
                     >
                       {item.title}
+                      {item.isNew && !item.isDraft && (
+                        <Badge className="h-5 bg-primary px-1.5 text-[10px] text-white">
+                          New
+                        </Badge>
+                      )}
                     </Link>
                   ))}
                 </div>

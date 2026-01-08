@@ -1,5 +1,7 @@
 import Link from "next/link"
+import { DocsPageNav } from "@/components/docs/docs-page-nav"
 import { InstallCommand } from "@/components/docs/install-command"
+import { Button } from "@/components/ui/button"
 
 export const metadata = {
   title: "Documentation",
@@ -9,14 +11,13 @@ export const metadata = {
 export default function DocsPage() {
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="scroll-m-20 text-4xl font-bold tracking-tight">
-          Introduction
-        </h1>
-        <p className="text-lg text-muted-foreground mt-2">
-          Guide to using GooseUI
-        </p>
-      </div>
+      <DocsPageNav
+        title="Introduction"
+        nextHref="/docs/installation"
+      />
+      <p className="text-lg text-muted-foreground">
+        Guide to using GooseUI
+      </p>
 
       <div className="space-y-4">
         <h2
@@ -64,18 +65,12 @@ export default function DocsPage() {
       </div>
 
       <div className="flex gap-4 pt-4">
-        <Link
-          href="/docs/installation"
-          className="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
-        >
-          Installation
-        </Link>
-        <Link
-          href="/docs/components/button"
-          className="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2"
-        >
-          Components
-        </Link>
+        <Button asChild>
+          <Link href="/docs/installation">Installation</Link>
+        </Button>
+        <Button variant="outline" asChild>
+          <Link href="/docs/components">Components</Link>
+        </Button>
       </div>
     </div>
   )

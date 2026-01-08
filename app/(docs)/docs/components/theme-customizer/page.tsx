@@ -10,7 +10,7 @@ export const metadata = {
 
 export default function ThemeCustomizerPage() {
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       <DocsPageNav
         title="Theme Customizer"
         prevHref="/docs/components/typography"
@@ -174,22 +174,22 @@ export default function Page() {
         >
           Props
         </h2>
-        <div className="overflow-x-auto">
+        <div className="border rounded-lg overflow-hidden">
           <table className="w-full text-sm">
-            <thead>
-              <tr className="border-b">
-                <th className="text-left py-3 px-4 font-semibold">Prop</th>
-                <th className="text-left py-3 px-4 font-semibold">Type</th>
-                <th className="text-left py-3 px-4 font-semibold">Default</th>
+            <thead className="bg-muted">
+              <tr>
+                <th className="text-left p-3 font-medium">Prop</th>
+                <th className="text-left p-3 font-medium">Type</th>
+                <th className="text-left p-3 font-medium">Default</th>
+                <th className="text-left p-3 font-medium">Description</th>
               </tr>
             </thead>
             <tbody>
-              <tr className="border-b">
-                <td className="py-3 px-4 font-mono">className</td>
-                <td className="py-3 px-4 font-mono text-muted-foreground">
-                  string
-                </td>
-                <td className="py-3 px-4 font-mono">-</td>
+              <tr className="border-t">
+                <td className="p-3 font-mono text-xs">className</td>
+                <td className="p-3 font-mono text-xs">string</td>
+                <td className="p-3 font-mono text-xs">-</td>
+                <td className="p-3">Additional CSS classes</td>
               </tr>
             </tbody>
           </table>

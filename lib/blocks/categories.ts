@@ -22,7 +22,11 @@ import {
   Wallet,
 } from "lucide-react"
 import type { CategoryMetadata } from "./declarations"
-import { countAvailableBlocksInCategory, countBlocksInCategory, isDevelopment } from "./metadata"
+import {
+  countAvailableBlocksInCategory,
+  countBlocksInCategory,
+  isDevelopment,
+} from "./metadata"
 
 /**
  * All block categories
@@ -132,13 +136,17 @@ export function getCategoryById(id: string): CategoryMetadata | undefined {
  * Get all categories sorted alphabetically
  */
 export function getAllCategories(): CategoryMetadata[] {
-  return [...blocksCategoriesMetadata].sort((a, b) => a.name.localeCompare(b.name))
+  return [...blocksCategoriesMetadata].sort((a, b) =>
+    a.name.localeCompare(b.name),
+  )
 }
 
 /**
  * Get categories with block counts
  */
-export function getCategoriesWithCounts(): (CategoryMetadata & { count: number })[] {
+export function getCategoriesWithCounts(): (CategoryMetadata & {
+  count: number
+})[] {
   return blocksCategoriesMetadata.map((category) => ({
     ...category,
     count: isDevelopment()
@@ -152,7 +160,9 @@ export function getCategoriesWithCounts(): (CategoryMetadata & { count: number }
  * In production: only shows categories with available blocks
  * In development: shows all categories
  */
-export function getDisplayCategories(): (CategoryMetadata & { count: number })[] {
+export function getDisplayCategories(): (CategoryMetadata & {
+  count: number
+})[] {
   const categoriesWithCounts = getCategoriesWithCounts()
 
   if (isDevelopment()) {

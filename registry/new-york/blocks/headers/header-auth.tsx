@@ -3,8 +3,8 @@
 import { Menu, User, X } from "lucide-react"
 import Link from "next/link"
 import * as React from "react"
-import { Button } from "@/registry/new-york/ui/button"
 import { cn } from "@/lib/utils"
+import { Button } from "@/registry/new-york/ui/button"
 
 const navItems = [
   { label: "Dashboard", href: "#dashboard" },
@@ -32,7 +32,9 @@ export function HeaderAuth({
           <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground font-bold">
             A
           </div>
-          <span className="font-bold text-xl hidden sm:inline-block">AppName</span>
+          <span className="font-bold text-xl hidden sm:inline-block">
+            AppName
+          </span>
         </Link>
 
         {/* Desktop Navigation */}
@@ -87,7 +89,7 @@ export function HeaderAuth({
       <div
         className={cn(
           "md:hidden border-t overflow-hidden transition-all",
-          isOpen ? "max-h-96" : "max-h-0"
+          isOpen ? "max-h-96" : "max-h-0",
         )}
       >
         <div className="container py-4 space-y-4">

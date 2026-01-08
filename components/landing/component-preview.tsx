@@ -77,7 +77,7 @@ export function ComponentPreview() {
           <div className="relative overflow-hidden rounded-xl border bg-card p-6">
             <div className="flex items-center gap-2 mb-4">
               <h3 className="font-semibold">Border Beam</h3>
-              <span className="text-xs bg-primary text-primary-foreground px-2 py-0.5 rounded-full">
+              <span className="text-xs bg-primary text-white px-2 py-0.5 rounded-full">
                 NEW
               </span>
             </div>

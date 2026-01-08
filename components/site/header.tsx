@@ -4,6 +4,7 @@ import { GitHubStars } from "@/components/github-stars"
 import { GitHubStarsSkeleton } from "@/components/github-stars-skeleton"
 import { siteConfig } from "@/lib/config/navigation"
 import { HeaderNav } from "./header-nav"
+import { MobileNav } from "./mobile-nav"
 import { SiteSearch } from "./site-search"
 
 export function SiteHeader() {
@@ -20,7 +21,9 @@ export function SiteHeader() {
         </Link>
         <div className="flex flex-1 items-center justify-end space-x-4">
           <HeaderNav />
-          <SiteSearch />
+          <div className="hidden md:flex">
+            <SiteSearch />
+          </div>
           <Suspense
             fallback={<GitHubStarsSkeleton className="hidden sm:flex" />}
           >
@@ -30,6 +33,7 @@ export function SiteHeader() {
               className="hidden sm:flex"
             />
           </Suspense>
+          <MobileNav />
         </div>
       </div>
     </header>

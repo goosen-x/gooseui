@@ -59,12 +59,43 @@ pnpm build            # Production build
 pnpm registry:build   # Build shadcn registry
 ```
 
+## Documentation Structure
+
+**IMPORTANT:** All documentation MUST follow the structure defined in:
+- `app/(docs)/docs/STRUCTURE.md` — full documentation standards
+- `app/(docs)/docs/components/_TEMPLATE.tsx` — template for new components
+
+### Section Order (STRICT)
+
+1. **DocsPageNav** — title and navigation
+2. **Description** — short component description
+3. **Browser Support** — BaselineStatus (if uses modern APIs) ← AT THE TOP!
+4. **Preview** — interactive demo (id="preview")
+5. **Installation** — InstallCommand (id="installation")
+6. **Usage** — basic code example (id="usage")
+7. **Examples** — use cases with code (id="examples")
+8. **Props** — properties table with 4 columns (id="props")
+9. **[Components]** — for compound components (optional)
+10. **[Features]** — feature list (optional)
+11. **[Hook]** — hook documentation (optional)
+12. **[References]** — external links (optional)
+
+### Reference Example
+
+See `morphing-dialog/page.tsx` as the reference implementation.
+
+### Style Standards
+
+- Container: `space-y-8`
+- Preview background: `bg-muted/30 rounded-lg`
+- Props table: 4 columns (Prop, Type, Default, Description)
+- Table header: `bg-muted`, `p-3`, `font-medium`
+
 ## Important Notes
 
 - All h2 elements in docs MUST have `id` attributes for Table of Contents
 - Use `<InstallCommand packageName="https://gooseui.pro/r/{name}.json" />`
 - Use `<DocsPageNav title="..." prevHref="..." nextHref="..." />`
-- Standard sections: Preview, Installation, Usage, Examples, Props
 - Interactive demos should use `customToast` from `@/lib/toast`
 
 ## Registry URL

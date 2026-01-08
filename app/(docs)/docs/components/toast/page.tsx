@@ -23,10 +23,10 @@ export default function ToastPage() {
 
       <div className="space-y-4">
         <h2
-          id="demo"
+          id="preview"
           className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight"
         >
-          Demo
+          Preview
         </h2>
         <div className="p-6 bg-muted/30 rounded-lg">
           <ToastDemo
@@ -198,6 +198,7 @@ customToast.info("Info", {
                 <th className="text-left p-3 font-medium">Prop</th>
                 <th className="text-left p-3 font-medium">Type</th>
                 <th className="text-left p-3 font-medium">Default</th>
+                <th className="text-left p-3 font-medium">Description</th>
               </tr>
             </thead>
             <tbody>
@@ -205,16 +206,19 @@ customToast.info("Info", {
                 <td className="p-3 font-mono text-xs">message</td>
                 <td className="p-3 font-mono text-xs">string</td>
                 <td className="p-3 font-mono text-xs">-</td>
+                <td className="p-3">Toast title text</td>
               </tr>
               <tr className="border-t">
                 <td className="p-3 font-mono text-xs">description</td>
                 <td className="p-3 font-mono text-xs">string</td>
                 <td className="p-3 font-mono text-xs">undefined</td>
+                <td className="p-3">Optional description text</td>
               </tr>
               <tr className="border-t">
                 <td className="p-3 font-mono text-xs">duration</td>
                 <td className="p-3 font-mono text-xs">number</td>
                 <td className="p-3 font-mono text-xs">4000</td>
+                <td className="p-3">Duration in milliseconds</td>
               </tr>
             </tbody>
           </table>

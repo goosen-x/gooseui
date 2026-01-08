@@ -90,7 +90,7 @@ export default function EffectsPage() {
                     <div className="flex items-center gap-2">
                       <h3 className="font-semibold">{effect.name}</h3>
                       {effect.isNew && (
-                        <span className="text-[10px] bg-primary text-primary-foreground px-1.5 py-0.5 rounded-full">
+                        <span className="text-[10px] bg-primary text-white px-1.5 py-0.5 rounded-full">
                           NEW
                         </span>
                       )}

@@ -13,11 +13,7 @@ export function DocsContentWrapper({ children }: DocsContentWrapperProps) {
 
   // Blocks pages - full width, no ToC
   if (isBlocksPage) {
-    return (
-      <div className="mx-auto w-full max-w-6xl">
-        {children}
-      </div>
-    )
+    return <div className="mx-auto w-full max-w-6xl">{children}</div>
   }
 
   // Regular docs pages - with ToC

@@ -311,7 +311,8 @@ export const BLOCK_ITEMS: BlockItem[] = [
   {
     slug: "footer-full",
     name: "Full Footer",
-    description: "Complete footer with all sections: links, newsletter, social, legal",
+    description:
+      "Complete footer with all sections: links, newsletter, social, legal",
     category: "footers",
     isComingSoon: true,
   },
@@ -436,9 +437,8 @@ export function countBlocksInCategory(category: string): number {
  * Count available blocks in a category (not coming soon)
  */
 export function countAvailableBlocksInCategory(category: string): number {
-  return BLOCK_ITEMS.filter(
-    (b) => b.category === category && !b.isComingSoon
-  ).length
+  return BLOCK_ITEMS.filter((b) => b.category === category && !b.isComingSoon)
+    .length
 }
 
 /**

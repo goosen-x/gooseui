@@ -41,7 +41,7 @@ export async function getBlockCode(id: string): Promise<string | null> {
  */
 export function generateFileTree(
   folderPath: string,
-  baseFolder?: string
+  baseFolder?: string,
 ): FileTreeItem[] {
   const result: FileTreeItem[] = []
   const basePath = baseFolder || folderPath
@@ -80,7 +80,9 @@ export function generateFileTree(
 /**
  * Get block with source code
  */
-export async function getBlockWithCode(id: string): Promise<BlockWithCode | null> {
+export async function getBlockWithCode(
+  id: string,
+): Promise<BlockWithCode | null> {
   const block = getBlockById(id)
   if (!block) return null
 
@@ -90,7 +92,8 @@ export async function getBlockWithCode(id: string): Promise<BlockWithCode | null
   }
 
   // For directory-type blocks, get file tree
-  const categoryFolder = block.category === "e-commerce" ? "ecommerce" : block.category
+  const categoryFolder =
+    block.category === "e-commerce" ? "ecommerce" : block.category
   const folderPath = path.join(process.cwd(), REGISTRY_PATH, categoryFolder, id)
   const files = generateFileTree(folderPath)
 
@@ -101,13 +104,13 @@ export async function getBlockWithCode(id: string): Promise<BlockWithCode | null
  * Get blocks data for a category (with code)
  */
 export async function getBlocksWithCode(
-  blocks: BlockMetadata[]
+  blocks: BlockMetadata[],
 ): Promise<BlockWithCode[]> {
   const results = await Promise.all(
     blocks.map(async (block) => {
       const blockWithCode = await getBlockWithCode(block.id)
       return blockWithCode || { ...block }
-    })
+    }),
   )
   return results
 }

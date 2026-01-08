@@ -6,9 +6,13 @@ import {
   CheckIcon,
   ChevronDownIcon,
   CopyIcon,
+  MoonIcon,
+  PaletteIcon,
+  SunIcon,
 } from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
+import { useTheme } from "next-themes"
 import { usePostHog } from "posthog-js/react"
 import * as React from "react"
 import { Button } from "@/components/ui/button"
@@ -21,6 +25,16 @@ import {
 import { Separator } from "@/components/ui/separator"
 import { getRegistryUrl } from "@/lib/config/registry"
 import { cn } from "@/lib/utils"
+
+const themeColors = [
+  { name: "zinc", class: "bg-zinc-900 dark:bg-zinc-50" },
+  { name: "red", class: "bg-red-500" },
+  { name: "orange", class: "bg-orange-500" },
+  { name: "green", class: "bg-green-500" },
+  { name: "blue", class: "bg-blue-500" },
+  { name: "violet", class: "bg-violet-500" },
+  { name: "pink", class: "bg-pink-500" },
+]
 
 // Custom icons
 function MarkdownIcon({ className }: { className?: string }) {
@@ -159,8 +173,23 @@ export function DocsPageNav({
 }: DocsPageNavProps) {
   const pathname = usePathname()
   const posthog = usePostHog()
+  const { setTheme, resolvedTheme } = useTheme()
+  const [mounted, setMounted] = React.useState(false)
   const [copied, setCopied] = React.useState(false)
   const [copiedAction, setCopiedAction] = React.useState<string | null>(null)
+  const [activeColor, setActiveColor] = React.useState("zinc")
+
+  React.useEffect(() => {
+    setMounted(true)
+    const saved = localStorage.getItem("theme-color")
+    if (saved) setActiveColor(saved)
+  }, [])
+
+  const handleColorChange = (colorName: string) => {
+    setActiveColor(colorName)
+    localStorage.setItem("theme-color", colorName)
+    document.documentElement.setAttribute("data-theme-color", colorName)
+  }
 
   // Auto-derive registryUrl from pathname if not provided
   // e.g., /docs/components/button -> button -> https://gooseui.pro/r/button.json
@@ -395,15 +424,29 @@ ${registryUrl ? `Registry: ${registryUrl}` : ""}
           <Button
             variant="secondary"
             size="sm"
-            className="gap-1.5 rounded-md shadow-none h-8 md:h-7 md:text-[0.8rem]"
+            className="rounded-md shadow-none h-8 md:h-7 md:text-[0.8rem]"
             onClick={handleCopyPage}
           >
-            {copied ? (
-              <CheckIcon className="size-4" />
-            ) : (
-              <CopyIcon className="size-4" />
-            )}
-            {copied ? "Copied!" : "Copy Page"}
+            <span className="relative overflow-hidden h-4 inline-flex items-center">
+              <span
+                className={cn(
+                  "inline-flex items-center gap-1.5 transition-transform duration-300 ease-in-out",
+                  copied && "-translate-y-full",
+                )}
+              >
+                <CopyIcon className="size-4" />
+                <span>Copy Page</span>
+              </span>
+              <span
+                className={cn(
+                  "absolute top-full left-0 inline-flex items-center gap-1.5 transition-transform duration-300 ease-in-out",
+                  copied && "-translate-y-[calc(100%-2px)]",
+                )}
+              >
+                <CheckIcon className="size-4" />
+                <span>Copied!</span>
+              </span>
+            </span>
           </Button>
 
           {/* Desktop Dropdown */}
@@ -448,7 +491,7 @@ ${registryUrl ? `Registry: ${registryUrl}` : ""}
                 <ChevronDownIcon className="size-4 rotate-180" />
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" side="top" className="w-52">
+            <DropdownMenuContent align="center" side="top" className="w-52">
               {menuItems.map((item) => (
                 <DropdownMenuItem key={item.label} onClick={item.onClick}>
                   <item.icon className="size-4" />
@@ -459,12 +502,75 @@ ${registryUrl ? `Registry: ${registryUrl}` : ""}
           </DropdownMenu>
         </div>
 
+        {/* Theme Toggle - Mobile only */}
+        {mounted && (
+          <Button
+            variant="secondary"
+            size="icon"
+            className="ml-auto size-8 rounded-md shadow-none sm:hidden"
+            onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
+          >
+            {resolvedTheme === "dark" ? (
+              <SunIcon className="size-4" />
+            ) : (
+              <MoonIcon className="size-4" />
+            )}
+            <span className="sr-only">Toggle theme</span>
+          </Button>
+        )}
+
+        {/* Color Picker - Mobile only */}
+        {mounted && (
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button
+                variant="secondary"
+                size="icon"
+                className="size-8 rounded-md shadow-none sm:hidden"
+              >
+                <PaletteIcon className="size-4" />
+                <span className="sr-only">Change color</span>
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent
+              side="top"
+              align="center"
+              className="min-w-0 p-2"
+            >
+              <div className="flex flex-col gap-2">
+                {themeColors.map((c) => (
+                  <button
+                    key={c.name}
+                    type="button"
+                    onClick={() => handleColorChange(c.name)}
+                    className={cn(
+                      "relative size-6 cursor-pointer rounded-full transition-transform hover:scale-110",
+                      c.class,
+                      activeColor === c.name &&
+                        "ring-2 ring-ring ring-offset-2 ring-offset-background",
+                    )}
+                  >
+                    {activeColor === c.name && (
+                      <CheckIcon className="absolute inset-0 m-auto size-3 text-white dark:text-black" />
+                    )}
+                    <span className="sr-only">{c.name}</span>
+                  </button>
+                ))}
+              </div>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        )}
+
         {/* Navigation Buttons */}
         {prevHref && (
           <Button
             variant="secondary"
             size="icon"
-            className="ml-auto size-8 rounded-md shadow-none md:size-7"
+            className={cn(
+              "size-8 rounded-md shadow-none md:size-7",
+              !mounted && "ml-auto",
+              mounted && "sm:ml-auto",
+            )}
             asChild
           >
             <Link href={prevHref}>
@@ -480,7 +586,8 @@ ${registryUrl ? `Registry: ${registryUrl}` : ""}
             size="icon"
             className={cn(
               "size-8 rounded-md shadow-none md:size-7",
-              !prevHref && "ml-auto",
+              !prevHref && !mounted && "ml-auto",
+              !prevHref && mounted && "sm:ml-auto",
             )}
             asChild
           >

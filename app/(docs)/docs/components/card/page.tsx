@@ -18,7 +18,7 @@ export const metadata = {
 
 export default function CardPage() {
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       <DocsPageNav
         title="Card"
         prevHref="/docs/components/button"
@@ -107,46 +107,38 @@ export function MyCard() {
         >
           Components
         </h2>
-        <div className="overflow-x-auto">
+        <div className="border rounded-lg overflow-hidden">
           <table className="w-full text-sm">
-            <thead>
-              <tr className="border-b">
-                <th className="text-left py-3 px-4 font-semibold">Component</th>
-                <th className="text-left py-3 px-4 font-semibold">
-                  Description
-                </th>
+            <thead className="bg-muted">
+              <tr>
+                <th className="text-left p-3 font-medium">Component</th>
+                <th className="text-left p-3 font-medium">Description</th>
               </tr>
             </thead>
             <tbody>
-              <tr className="border-b">
-                <td className="py-3 px-4 font-mono">Card</td>
-                <td className="py-3 px-4 text-muted-foreground">
-                  Card container
-                </td>
+              <tr className="border-t">
+                <td className="p-3 font-mono text-xs">Card</td>
+                <td className="p-3">Card container</td>
               </tr>
-              <tr className="border-b">
-                <td className="py-3 px-4 font-mono">CardHeader</td>
-                <td className="py-3 px-4 text-muted-foreground">Card header</td>
+              <tr className="border-t">
+                <td className="p-3 font-mono text-xs">CardHeader</td>
+                <td className="p-3">Card header section</td>
               </tr>
-              <tr className="border-b">
-                <td className="py-3 px-4 font-mono">CardTitle</td>
-                <td className="py-3 px-4 text-muted-foreground">Card title</td>
+              <tr className="border-t">
+                <td className="p-3 font-mono text-xs">CardTitle</td>
+                <td className="p-3">Card title text</td>
               </tr>
-              <tr className="border-b">
-                <td className="py-3 px-4 font-mono">CardDescription</td>
-                <td className="py-3 px-4 text-muted-foreground">
-                  Card description
-                </td>
+              <tr className="border-t">
+                <td className="p-3 font-mono text-xs">CardDescription</td>
+                <td className="p-3">Card description text</td>
               </tr>
-              <tr className="border-b">
-                <td className="py-3 px-4 font-mono">CardContent</td>
-                <td className="py-3 px-4 text-muted-foreground">
-                  Main content
-                </td>
+              <tr className="border-t">
+                <td className="p-3 font-mono text-xs">CardContent</td>
+                <td className="p-3">Main content area</td>
               </tr>
-              <tr className="border-b">
-                <td className="py-3 px-4 font-mono">CardFooter</td>
-                <td className="py-3 px-4 text-muted-foreground">Card footer</td>
+              <tr className="border-t">
+                <td className="p-3 font-mono text-xs">CardFooter</td>
+                <td className="p-3">Card footer section</td>
               </tr>
             </tbody>
           </table>

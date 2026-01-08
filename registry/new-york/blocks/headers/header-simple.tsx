@@ -3,8 +3,8 @@
 import { Menu, X } from "lucide-react"
 import Link from "next/link"
 import * as React from "react"
-import { Button } from "@/registry/new-york/ui/button"
 import { cn } from "@/lib/utils"
+import { Button } from "@/registry/new-york/ui/button"
 
 const navItems = [
   { label: "Features", href: "#features" },
@@ -55,7 +55,7 @@ export function HeaderSimple() {
       <div
         className={cn(
           "md:hidden border-t overflow-hidden transition-all",
-          isOpen ? "max-h-64" : "max-h-0"
+          isOpen ? "max-h-64" : "max-h-0",
         )}
       >
         <nav className="container flex flex-col space-y-3 py-4">

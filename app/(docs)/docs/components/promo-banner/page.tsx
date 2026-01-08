@@ -28,12 +28,12 @@ export default function PromoBannerPage() {
 
       <div className="space-y-4">
         <h2
-          id="demo"
+          id="preview"
           className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight"
         >
-          Demo
+          Preview
         </h2>
-        <div className="flex justify-center py-12 bg-muted/50 rounded-lg min-h-[200px]">
+        <div className="flex justify-center py-12 bg-muted/30 rounded-lg min-h-[200px]">
           <PromoBannerDemo />
         </div>
       </div>
@@ -100,7 +100,7 @@ export default function Page() {
             <p className="text-sm text-muted-foreground mb-4">
               Choose where the banner appears on screen
             </p>
-            <div className="flex justify-center py-8 bg-muted/50 rounded-lg min-h-[150px]">
+            <div className="flex justify-center py-8 bg-muted/30 rounded-lg min-h-[150px]">
               <PromoBannerPositions />
             </div>
             <CodeBlock>{`<PromoBanner position="top-left" />
@@ -114,7 +114,7 @@ export default function Page() {
             <p className="text-sm text-muted-foreground mb-4">
               Customize the gradient colors to match your brand
             </p>
-            <div className="flex justify-center py-8 bg-muted/50 rounded-lg min-h-[150px]">
+            <div className="flex justify-center py-8 bg-muted/30 rounded-lg min-h-[150px]">
               <PromoBannerGradients />
             </div>
             <CodeBlock>{`<PromoBanner

@@ -1,4 +1,5 @@
 import { CodeBlock } from "@/components/docs/code-block"
+import { DocsPageNav } from "@/components/docs/docs-page-nav"
 import { InstallCommand } from "@/components/docs/install-command"
 
 export const metadata = {
@@ -9,14 +10,14 @@ export const metadata = {
 export default function InstallationPage() {
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="scroll-m-20 text-4xl font-bold tracking-tight">
-          Installation
-        </h1>
-        <p className="text-lg text-muted-foreground mt-2">
-          How to install and configure GooseUI in your project
-        </p>
-      </div>
+      <DocsPageNav
+        title="Installation"
+        prevHref="/docs"
+        nextHref="/docs/cli"
+      />
+      <p className="text-lg text-muted-foreground">
+        How to install and configure GooseUI in your project
+      </p>
 
       <div className="space-y-4">
         <h2

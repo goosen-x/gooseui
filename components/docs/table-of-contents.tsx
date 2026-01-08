@@ -69,6 +69,15 @@ export function TableOfContents() {
     window.scrollTo({ top: 0, behavior: "smooth" })
   }
 
+  // Generate GitHub edit URL based on current path
+  const getGitHubEditUrl = () => {
+    const basePath = "https://github.com/goosen-x/gooseui/edit/main/app/(docs)"
+    // /docs -> /docs/page.tsx
+    // /docs/components -> /docs/components/page.tsx
+    // /docs/components/button -> /docs/components/button/page.tsx
+    return `${basePath}${pathname}/page.tsx`
+  }
+
   if (!isLoading && headings.length === 0) {
     return null
   }
@@ -125,7 +134,7 @@ export function TableOfContents() {
           ) : (
             <>
               <a
-                href="https://github.com/goosen-x/gooseui"
+                href={getGitHubEditUrl()}
                 target="_blank"
                 rel="noreferrer"
                 className="flex items-center gap-1.5 text-muted-foreground transition-colors hover:text-foreground"

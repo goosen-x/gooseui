@@ -162,7 +162,7 @@ export function ThemeCustomizerBar({ className }: { className?: string }) {
             className={cn(
               "flex size-8 items-center justify-center rounded-md transition-colors",
               theme === value
-                ? "bg-primary text-primary-foreground"
+                ? "bg-primary text-white"
                 : "hover:bg-accent",
             )}
           >
@@ -421,7 +421,7 @@ export function ThemeCustomizerToolbar({ className }: { className?: string }) {
     return (
       <div
         className={cn(
-          "fixed bottom-4 left-1/2 z-50 -translate-x-1/2",
+          "fixed bottom-4 left-1/2 z-50 hidden -translate-x-1/2 sm:block",
           className,
         )}
       >
@@ -434,7 +434,7 @@ export function ThemeCustomizerToolbar({ className }: { className?: string }) {
     <MotionConfig transition={toolbarTransition}>
       <div
         className={cn(
-          "fixed bottom-4 left-1/2 z-50 -translate-x-1/2",
+          "fixed bottom-4 left-1/2 z-50 hidden -translate-x-1/2 sm:block",
           className,
         )}
         ref={containerRef}

@@ -77,7 +77,7 @@ export default async function BlockPage({ params }: BlockPageProps) {
           <div className="flex items-center gap-3">
             <h1 className="text-3xl font-bold tracking-tight">{block.name}</h1>
             {block.isNew && (
-              <Badge className="bg-blue-500/10 text-blue-600">New</Badge>
+              <Badge className="bg-primary text-white">New</Badge>
             )}
             {block.isFeatured && (
               <Badge className="bg-amber-500/10 text-amber-600">Featured</Badge>

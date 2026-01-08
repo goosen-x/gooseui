@@ -116,7 +116,7 @@ function DemoBar() {
             className={cn(
               "flex size-8 items-center justify-center rounded-md transition-colors",
               theme === value
-                ? "bg-primary text-primary-foreground"
+                ? "bg-primary text-white"
                 : "hover:bg-accent",
             )}
           >

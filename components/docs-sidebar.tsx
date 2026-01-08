@@ -55,39 +55,41 @@ export function DocsSidebar({
           </SidebarMenuItem>
         </SidebarMenu>
 
-        {/* View Switcher */}
-        <div className="px-2 pt-2">
-          <div className="relative flex h-10 w-full items-center rounded-full bg-muted p-1 dark:bg-zinc-800">
-            {/* Sliding indicator */}
-            <div
-              className={`absolute h-8 w-[calc(50%-4px)] rounded-full bg-primary transition-transform duration-300 ${
-                activeView === "blocks" && "translate-x-full"
-              }`}
-            />
-            {/* Components option */}
-            <Link
-              href="/docs/components"
-              className={`relative z-10 flex flex-1 items-center justify-center text-xs font-medium transition-colors duration-300 ${
-                activeView === "components"
-                  ? "text-primary-foreground"
-                  : "text-muted-foreground dark:text-white"
-              }`}
-            >
-              Components
-            </Link>
-            {/* Blocks option */}
-            <Link
-              href="/docs/blocks"
-              className={`relative z-10 flex flex-1 items-center justify-center text-xs font-medium transition-colors duration-300 ${
-                activeView === "blocks"
-                  ? "text-primary-foreground"
-                  : "text-muted-foreground dark:text-white"
-              }`}
-            >
-              Blocks
-            </Link>
+        {/* View Switcher - Only show in development */}
+        {isDev && (
+          <div className="px-2 pt-2">
+            <div className="relative flex h-10 w-full items-center rounded-full bg-muted p-1 dark:bg-zinc-800">
+              {/* Sliding indicator */}
+              <div
+                className={`absolute h-8 w-[calc(50%-4px)] rounded-full bg-primary transition-transform duration-300 ${
+                  activeView === "blocks" && "translate-x-full"
+                }`}
+              />
+              {/* Components option */}
+              <Link
+                href="/docs/components"
+                className={`relative z-10 flex flex-1 items-center justify-center text-xs font-medium transition-colors duration-300 ${
+                  activeView === "components"
+                    ? "text-white"
+                    : "text-muted-foreground dark:text-white"
+                }`}
+              >
+                Components
+              </Link>
+              {/* Blocks option */}
+              <Link
+                href="/docs/blocks"
+                className={`relative z-10 flex flex-1 items-center justify-center text-xs font-medium transition-colors duration-300 ${
+                  activeView === "blocks"
+                    ? "text-white"
+                    : "text-muted-foreground dark:text-white"
+                }`}
+              >
+                Blocks
+              </Link>
+            </div>
           </div>
-        </div>
+        )}
       </SidebarHeader>
 
       <SidebarContent>
@@ -132,7 +134,7 @@ function ComponentsNav({ pathname }: { pathname: string }) {
                           </span>
                         )}
                         {item.isNew && !item.isDraft && (
-                          <span className="ml-auto text-[10px] bg-primary text-primary-foreground px-1.5 py-0.5 rounded-full">
+                          <span className="ml-auto text-[10px] bg-primary text-white px-1.5 py-0.5 rounded-full">
                             NEW
                           </span>
                         )}

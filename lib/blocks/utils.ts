@@ -27,7 +27,8 @@ export function getBlockFilePath(id: string): string {
     "footer-03": "footers/footer-newsletter.tsx",
   }
 
-  const categoryFolder = block.category === "e-commerce" ? "ecommerce" : block.category
+  const categoryFolder =
+    block.category === "e-commerce" ? "ecommerce" : block.category
   return idToFile[id] || `${categoryFolder}/${id}.tsx`
 }
 
@@ -36,7 +37,8 @@ export function getBlockFilePath(id: string): string {
  * Removes the ```tsx wrapper if present
  */
 export function getCleanCode(code: string): string {
-  const codeBlockRegex = /```(?:tsx|typescript|javascript|js|jsx|ts|[a-z]*)\n([\s\S]*?)```/g
+  const codeBlockRegex =
+    /```(?:tsx|typescript|javascript|js|jsx|ts|[a-z]*)\n([\s\S]*?)```/g
   const match = codeBlockRegex.exec(code)
   return match ? match[1].trim() : code.trim()
 }

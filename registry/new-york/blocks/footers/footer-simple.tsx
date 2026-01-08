@@ -21,7 +21,9 @@ export function FooterSimple() {
           <div className="flex h-5 w-5 items-center justify-center rounded bg-primary text-primary-foreground text-xs font-bold">
             B
           </div>
-          <span>&copy; {new Date().getFullYear()} Brand. All rights reserved.</span>
+          <span>
+            &copy; {new Date().getFullYear()} Brand. All rights reserved.
+          </span>
         </div>
 
         {/* Navigation Links */}

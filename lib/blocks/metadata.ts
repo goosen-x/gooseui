@@ -177,7 +177,8 @@ export const blocksMetadata: BlockMetadata[] = [
     id: "footer-08",
     category: "footers",
     name: "Full Footer",
-    description: "Complete footer with all sections: links, newsletter, social, legal",
+    description:
+      "Complete footer with all sections: links, newsletter, social, legal",
     type: "file",
     iframeHeight: 500,
     isComingSoon: true,
@@ -281,7 +282,8 @@ export const blocksMetadata: BlockMetadata[] = [
     id: "stats-01",
     category: "stats",
     name: "Stats Card",
-    description: "Card with metric value, change percentage, and sparkline chart",
+    description:
+      "Card with metric value, change percentage, and sparkline chart",
     type: "file",
     iframeHeight: 200,
     isFeatured: true,
@@ -476,7 +478,7 @@ export function getDisplayBlocksByCategory(category: string): BlockMetadata[] {
  */
 export function countAvailableBlocksInCategory(category: string): number {
   return blocksMetadata.filter(
-    (b) => b.category === category && !b.isComingSoon
+    (b) => b.category === category && !b.isComingSoon,
   ).length
 }
 

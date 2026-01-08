@@ -1,5 +1,10 @@
 import { notFound } from "next/navigation"
-import { blocksMetadata, getBlockById, getBlockComponent, hasBlockComponent } from "@/lib/blocks"
+import {
+  blocksMetadata,
+  getBlockById,
+  getBlockComponent,
+  hasBlockComponent,
+} from "@/lib/blocks"
 
 interface PreviewPageProps {
   params: Promise<{ blockId: string }>

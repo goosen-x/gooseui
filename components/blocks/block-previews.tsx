@@ -1,16 +1,14 @@
 "use client"
 
-import * as React from "react"
-
+import type * as React from "react"
+import { FooterColumns } from "@/registry/new-york/blocks/footers/footer-columns"
+import { FooterNewsletter } from "@/registry/new-york/blocks/footers/footer-newsletter"
+// Footers
+import { FooterSimple } from "@/registry/new-york/blocks/footers/footer-simple"
+import { HeaderAuth } from "@/registry/new-york/blocks/headers/header-auth"
 // Headers
 import { HeaderSimple } from "@/registry/new-york/blocks/headers/header-simple"
 import { HeaderWithCta } from "@/registry/new-york/blocks/headers/header-with-cta"
-import { HeaderAuth } from "@/registry/new-york/blocks/headers/header-auth"
-
-// Footers
-import { FooterSimple } from "@/registry/new-york/blocks/footers/footer-simple"
-import { FooterColumns } from "@/registry/new-york/blocks/footers/footer-columns"
-import { FooterNewsletter } from "@/registry/new-york/blocks/footers/footer-newsletter"
 
 /**
  * Map of block slugs to their preview components

@@ -8,7 +8,7 @@ import { Button } from "@/registry/new-york/ui/button"
 
 export function Hero() {
   return (
-    <div className="relative min-h-[calc(100svh-5rem)] flex items-center">
+    <div className="relative min-h-[calc(100svh-3.5rem)] flex items-center">
       {/* Dot background */}
       <div
         className={cn(
@@ -21,11 +21,11 @@ export function Hero() {
       {/* Radial gradient fade */}
       <div className="pointer-events-none absolute inset-0 bg-background [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]" />
 
-      <div className="relative z-10 py-20 max-w-6xl mx-auto px-6 w-full">
-        <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-start w-full">
+      <div className="relative z-10 py-8 sm:py-12 md:py-20 max-w-6xl mx-auto px-4 sm:px-6 w-full">
+        <div className="flex flex-col lg:flex-row gap-6 sm:gap-8 lg:gap-16 items-start w-full">
           {/* Left side - Text content */}
           <div className="flex-1">
-            <div className="inline-flex items-center rounded-full border px-4 py-1.5 text-sm font-medium mb-6 backdrop-blur-[1px] bg-background/20">
+            <div className="inline-flex items-center rounded-full border px-3 py-1 sm:px-4 sm:py-1.5 text-xs sm:text-sm font-medium mb-4 sm:mb-6 backdrop-blur-[1px] bg-background/20">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 256 256"
@@ -58,23 +58,23 @@ export function Hero() {
               <span>Custom shadcn/ui Registry</span>
             </div>
 
-            <h1 className="mt-4 text-4xl sm:text-5xl lg:text-6xl leading-[1.1] font-bold tracking-tight text-balance">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-[1.1] font-bold tracking-tight text-balance">
               Build Modern Interfaces Faster
             </h1>
 
-            <p className="mt-6 text-lg md:text-xl text-muted-foreground text-balance max-w-xl">
+            <p className="mt-3 sm:mt-4 md:mt-6 text-base sm:text-lg md:text-xl text-muted-foreground text-balance max-w-xl">
               A collection of beautiful components and effects for React. Copy
               the code, customize it, ship to production.
             </p>
 
-            <div className="mt-10 flex flex-col sm:flex-row gap-4">
-              <Button size="lg" asChild>
+            <div className="mt-6 sm:mt-8 md:mt-10 flex flex-col sm:flex-row gap-3 sm:gap-4">
+              <Button size="default" className="sm:h-11 sm:px-8" asChild>
                 <Link href="/docs">Get Started</Link>
               </Button>
               <Button
                 variant="outline"
-                size="lg"
-                className="backdrop-blur-[1px] bg-background/20"
+                size="default"
+                className="sm:h-11 sm:px-8 backdrop-blur-[1px] bg-background/20"
                 asChild
               >
                 <Link href="/docs/components">Components</Link>
@@ -151,8 +151,10 @@ export function Hero() {
                     npx shadcn@latest add @gooseui/button
                   </code>
                 </div>
-                <div className="p-8 flex items-center justify-center gap-4 min-h-[200px]">
+                <div className="p-3 sm:p-6 md:p-8 grid grid-cols-2 sm:flex items-center justify-center gap-2 sm:gap-4">
                   <Button
+                    size="sm"
+                    className="sm:h-9 sm:px-4 text-xs sm:text-sm"
                     onClick={() =>
                       customToast.success("Primary Button", {
                         description: "Default button style",
@@ -163,6 +165,8 @@ export function Hero() {
                   </Button>
                   <Button
                     variant="secondary"
+                    size="sm"
+                    className="sm:h-9 sm:px-4 text-xs sm:text-sm"
                     onClick={() =>
                       customToast.info("Secondary Button", {
                         description: "Secondary button style",
@@ -173,6 +177,8 @@ export function Hero() {
                   </Button>
                   <Button
                     variant="outline"
+                    size="sm"
+                    className="sm:h-9 sm:px-4 text-xs sm:text-sm"
                     onClick={() =>
                       customToast.warning("Outline Button", {
                         description: "Outline button style",
@@ -183,6 +189,8 @@ export function Hero() {
                   </Button>
                   <Button
                     variant="ghost"
+                    size="sm"
+                    className="sm:h-9 sm:px-4 text-xs sm:text-sm"
                     onClick={() =>
                       customToast.error("Ghost Button", {
                         description: "Ghost button style",

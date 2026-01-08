@@ -1,4 +1,6 @@
 import { CodeBlock } from "@/components/docs/code-block"
+import { DocsPageNav } from "@/components/docs/docs-page-nav"
+import { InstallCommand } from "@/components/docs/install-command"
 import { DigitalClock } from "@/registry/new-york/ui/digital-clock"
 
 export const metadata = {
@@ -8,17 +10,16 @@ export const metadata = {
 
 export default function DigitalClockPage() {
   return (
-    <div className="space-y-10">
-      {/* Header */}
-      <div className="space-y-4">
-        <h1 className="scroll-m-20 text-4xl font-bold tracking-tight">
-          Digital Clock
-        </h1>
-        <p className="text-lg text-muted-foreground max-w-3xl">
-          A retro 7-segment LED digital clock built with CSS gradients. Features
-          customizable colors and optional seconds display.
-        </p>
-      </div>
+    <div className="space-y-8">
+      <DocsPageNav
+        title="Digital Clock"
+        prevHref="/docs/components/carousel"
+        nextHref="/docs/components/baseline-status"
+      />
+      <p className="text-muted-foreground">
+        A retro 7-segment LED digital clock built with CSS gradients. Features
+        customizable colors and optional seconds display.
+      </p>
 
       {/* Preview */}
       <div className="space-y-4">
@@ -28,9 +29,35 @@ export default function DigitalClockPage() {
         >
           Preview
         </h2>
-        <div className="flex justify-center py-12 bg-zinc-100 dark:bg-zinc-950 rounded-lg">
+        <div className="flex justify-center py-12 bg-muted/30 rounded-lg">
           <DigitalClock />
         </div>
+      </div>
+
+      {/* Installation */}
+      <div className="space-y-4">
+        <h2
+          id="installation"
+          className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight"
+        >
+          Installation
+        </h2>
+        <InstallCommand packageName="https://gooseui.pro/r/digital-clock.json" />
+      </div>
+
+      {/* Usage */}
+      <div className="space-y-4">
+        <h2
+          id="usage"
+          className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight"
+        >
+          Usage
+        </h2>
+        <CodeBlock>{`import { DigitalClock } from "@/components/ui/digital-clock"
+
+export default function Example() {
+  return <DigitalClock />
+}`}</CodeBlock>
       </div>
 
       {/* Examples */}
@@ -44,7 +71,7 @@ export default function DigitalClockPage() {
         <div className="grid gap-8">
           <div>
             <h3 className="text-lg font-medium mb-3">Without seconds</h3>
-            <div className="flex justify-center py-8 bg-zinc-100 dark:bg-zinc-950 rounded-lg">
+            <div className="flex justify-center py-8 bg-muted/30 rounded-lg">
               <DigitalClock showSeconds={false} />
             </div>
             <CodeBlock>{`<DigitalClock showSeconds={false} />`}</CodeBlock>
@@ -52,7 +79,7 @@ export default function DigitalClockPage() {
 
           <div>
             <h3 className="text-lg font-medium mb-3">Custom colors</h3>
-            <div className="flex justify-center py-8 bg-zinc-100 dark:bg-zinc-950 rounded-lg gap-8 flex-wrap">
+            <div className="flex justify-center py-8 bg-muted/30 rounded-lg gap-8 flex-wrap">
               <DigitalClock showSeconds={false} color="#00BFFF" />
               <DigitalClock showSeconds={false} color="#FF6B6B" />
               <DigitalClock showSeconds={false} color="#FFD93D" />
@@ -64,7 +91,7 @@ export default function DigitalClockPage() {
 
           <div>
             <h3 className="text-lg font-medium mb-3">12-hour format</h3>
-            <div className="flex justify-center py-8 bg-zinc-100 dark:bg-zinc-950 rounded-lg">
+            <div className="flex justify-center py-8 bg-muted/30 rounded-lg">
               <DigitalClock use24Hour={false} />
             </div>
             <CodeBlock>{`<DigitalClock use24Hour={false} />`}</CodeBlock>

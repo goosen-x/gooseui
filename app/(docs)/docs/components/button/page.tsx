@@ -14,7 +14,7 @@ export const metadata = {
 
 export default function ButtonPage() {
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       <DocsPageNav
         title="Button"
         prevHref="/docs/components"
@@ -127,39 +127,41 @@ export function MyComponent() {
         >
           Props
         </h2>
-        <div className="overflow-x-auto">
+        <div className="border rounded-lg overflow-hidden">
           <table className="w-full text-sm">
-            <thead>
-              <tr className="border-b">
-                <th className="text-left py-3 px-4 font-semibold">Name</th>
-                <th className="text-left py-3 px-4 font-semibold">Type</th>
-                <th className="text-left py-3 px-4 font-semibold">Default</th>
+            <thead className="bg-muted">
+              <tr>
+                <th className="text-left p-3 font-medium">Prop</th>
+                <th className="text-left p-3 font-medium">Type</th>
+                <th className="text-left p-3 font-medium">Default</th>
+                <th className="text-left p-3 font-medium">Description</th>
               </tr>
             </thead>
             <tbody>
-              <tr className="border-b">
-                <td className="py-3 px-4 font-mono">variant</td>
-                <td className="py-3 px-4 font-mono text-muted-foreground">
+              <tr className="border-t">
+                <td className="p-3 font-mono text-xs">variant</td>
+                <td className="p-3 font-mono text-xs">
                   &quot;default&quot; | &quot;destructive&quot; |
                   &quot;outline&quot; | &quot;secondary&quot; |
                   &quot;ghost&quot; | &quot;link&quot;
                 </td>
-                <td className="py-3 px-4 font-mono">&quot;default&quot;</td>
+                <td className="p-3 font-mono text-xs">&quot;default&quot;</td>
+                <td className="p-3">Visual style variant</td>
               </tr>
-              <tr className="border-b">
-                <td className="py-3 px-4 font-mono">size</td>
-                <td className="py-3 px-4 font-mono text-muted-foreground">
+              <tr className="border-t">
+                <td className="p-3 font-mono text-xs">size</td>
+                <td className="p-3 font-mono text-xs">
                   &quot;default&quot; | &quot;sm&quot; | &quot;lg&quot; |
                   &quot;icon&quot;
                 </td>
-                <td className="py-3 px-4 font-mono">&quot;default&quot;</td>
+                <td className="p-3 font-mono text-xs">&quot;default&quot;</td>
+                <td className="p-3">Size of the button</td>
               </tr>
-              <tr className="border-b">
-                <td className="py-3 px-4 font-mono">asChild</td>
-                <td className="py-3 px-4 font-mono text-muted-foreground">
-                  boolean
-                </td>
-                <td className="py-3 px-4 font-mono">false</td>
+              <tr className="border-t">
+                <td className="p-3 font-mono text-xs">asChild</td>
+                <td className="p-3 font-mono text-xs">boolean</td>
+                <td className="p-3 font-mono text-xs">false</td>
+                <td className="p-3">Render as child element</td>
               </tr>
             </tbody>
           </table>

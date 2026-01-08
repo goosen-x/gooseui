@@ -20,12 +20,12 @@ export default function AnimatedTimerPage() {
 
       <div className="space-y-4">
         <h2
-          id="demo"
+          id="preview"
           className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight"
         >
-          Demo
+          Preview
         </h2>
-        <div className="flex justify-center py-12 bg-zinc-950 rounded-lg">
+        <div className="flex justify-center py-12 bg-muted/30 rounded-lg">
           <AnimatedTimer />
         </div>
       </div>
@@ -65,7 +65,7 @@ export default function Page() {
         <div className="space-y-6">
           <div>
             <h3 className="text-lg font-medium mb-3">Without seconds</h3>
-            <div className="flex justify-center py-8 bg-zinc-950 rounded-lg">
+            <div className="flex justify-center py-8 bg-muted/30 rounded-lg">
               <AnimatedTimer showSeconds={false} />
             </div>
             <CodeBlock>{`<AnimatedTimer showSeconds={false} />`}</CodeBlock>
@@ -73,7 +73,7 @@ export default function Page() {
 
           <div>
             <h3 className="text-lg font-medium mb-3">12-hour format</h3>
-            <div className="flex justify-center py-8 bg-zinc-950 rounded-lg">
+            <div className="flex justify-center py-8 bg-muted/30 rounded-lg">
               <AnimatedTimer use24Hour={false} />
             </div>
             <CodeBlock>{`<AnimatedTimer use24Hour={false} />`}</CodeBlock>

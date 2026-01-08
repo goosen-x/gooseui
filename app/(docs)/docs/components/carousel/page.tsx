@@ -32,10 +32,10 @@ export default function CarouselPage() {
 
       <div className="space-y-4">
         <h2
-          id="demo"
+          id="preview"
           className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight"
         >
-          Demo
+          Preview
         </h2>
         <CarouselDemo />
       </div>

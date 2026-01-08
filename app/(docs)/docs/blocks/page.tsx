@@ -2,10 +2,7 @@ import { Plus } from "lucide-react"
 import Link from "next/link"
 import { CategoryCard } from "@/components/blocks/category-card"
 import { Button } from "@/components/ui/button"
-import {
-  getDisplayCategories,
-  isDevelopment,
-} from "@/lib/blocks"
+import { getDisplayCategories, isDevelopment } from "@/lib/blocks"
 
 export const metadata = {
   title: "Blocks - GooseUI",
@@ -34,8 +31,8 @@ export default function BlocksPage() {
           </Button>
         </div>
         <p className="max-w-2xl text-lg text-muted-foreground">
-          Free, open-source UI blocks built with React, Tailwind CSS, and shadcn/ui.
-          Copy and paste into your apps.
+          Free, open-source UI blocks built with React, Tailwind CSS, and
+          shadcn/ui. Copy and paste into your apps.
         </p>
       </div>
 

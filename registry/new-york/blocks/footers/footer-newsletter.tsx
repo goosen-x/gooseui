@@ -43,7 +43,8 @@ export function FooterNewsletter() {
               Stay up to date
             </h3>
             <p className="text-muted-foreground max-w-md">
-              Get notified about new features, updates, and tips. No spam, unsubscribe at any time.
+              Get notified about new features, updates, and tips. No spam,
+              unsubscribe at any time.
             </p>
             <form onSubmit={handleSubmit} className="flex gap-2 max-w-md">
               <Input
@@ -54,7 +55,11 @@ export function FooterNewsletter() {
                 required
                 className="flex-1"
               />
-              <Button type="submit" disabled={isSubmitting} className="cursor-pointer">
+              <Button
+                type="submit"
+                disabled={isSubmitting}
+                className="cursor-pointer"
+              >
                 {isSubmitting ? (
                   "Subscribing..."
                 ) : (
@@ -109,10 +114,16 @@ export function FooterNewsletter() {
             &copy; {new Date().getFullYear()} Brand, Inc. All rights reserved.
           </p>
           <div className="flex items-center gap-4 text-sm text-muted-foreground">
-            <Link href="#privacy" className="hover:text-foreground cursor-pointer">
+            <Link
+              href="#privacy"
+              className="hover:text-foreground cursor-pointer"
+            >
               Privacy
             </Link>
-            <Link href="#terms" className="hover:text-foreground cursor-pointer">
+            <Link
+              href="#terms"
+              className="hover:text-foreground cursor-pointer"
+            >
               Terms
             </Link>
           </div>

@@ -1,6 +1,5 @@
 "use client"
 
-import { Slot } from "@/lib/slot"
 import {
   ChevronDownIcon,
   ChevronLeftIcon,
@@ -12,6 +11,7 @@ import { useAsRef } from "@/hooks/use-as-ref"
 import { useIsomorphicLayoutEffect } from "@/hooks/use-isomorphic-layout-effect"
 import { useLazyRef } from "@/hooks/use-lazy-ref"
 import { useComposedRefs } from "@/lib/compose-refs"
+import { Slot } from "@/lib/slot"
 import { cn } from "@/lib/utils"
 
 const ROOT_NAME = "CompareSlider"

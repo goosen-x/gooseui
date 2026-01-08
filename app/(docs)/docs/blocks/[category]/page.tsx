@@ -7,8 +7,8 @@ import {
   blocksCategoriesMetadata,
   getCategoryById,
   getDisplayBlocksByCategory,
-  isDevelopment,
   hasBlockComponent,
+  isDevelopment,
 } from "@/lib/blocks"
 import { getBlockCode } from "@/lib/blocks/utils.server"
 
@@ -51,7 +51,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
     blocks.map(async (block) => {
       const code = await getBlockCode(block.id)
       return { ...block, code }
-    })
+    }),
   )
 
   return (
@@ -76,7 +76,9 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
                 {category.name}
               </h1>
               {category.isComingSoon && isDevMode && (
-                <span className="text-xs bg-muted px-2 py-0.5 rounded">DEV</span>
+                <span className="text-xs bg-muted px-2 py-0.5 rounded">
+                  DEV
+                </span>
               )}
             </div>
             <p className="text-muted-foreground">{category.description}</p>

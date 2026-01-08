@@ -15,7 +15,7 @@ export const metadata = {
 
 export default function AnimatedCheckboxPage() {
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       <DocsPageNav title="Checkbox" />
       <p className="text-lg text-muted-foreground">
         A checkbox with smooth SVG path animation when checked. Zero
@@ -102,37 +102,39 @@ export function MyComponent() {
         >
           Props
         </h2>
-        <div className="overflow-x-auto">
+        <div className="border rounded-lg overflow-hidden">
           <table className="w-full text-sm">
-            <thead>
-              <tr className="border-b">
-                <th className="text-left py-3 px-4 font-semibold">Name</th>
-                <th className="text-left py-3 px-4 font-semibold">Type</th>
-                <th className="text-left py-3 px-4 font-semibold">Default</th>
+            <thead className="bg-muted">
+              <tr>
+                <th className="text-left p-3 font-medium">Prop</th>
+                <th className="text-left p-3 font-medium">Type</th>
+                <th className="text-left p-3 font-medium">Default</th>
+                <th className="text-left p-3 font-medium">Description</th>
               </tr>
             </thead>
             <tbody>
-              <tr className="border-b">
-                <td className="py-3 px-4 font-mono">variant</td>
-                <td className="py-3 px-4 font-mono text-muted-foreground">
+              <tr className="border-t">
+                <td className="p-3 font-mono text-xs">variant</td>
+                <td className="p-3 font-mono text-xs">
                   &quot;default&quot; | &quot;destructive&quot; |
                   &quot;success&quot;
                 </td>
-                <td className="py-3 px-4 font-mono">&quot;default&quot;</td>
+                <td className="p-3 font-mono text-xs">&quot;default&quot;</td>
+                <td className="p-3">Visual style variant</td>
               </tr>
-              <tr className="border-b">
-                <td className="py-3 px-4 font-mono">size</td>
-                <td className="py-3 px-4 font-mono text-muted-foreground">
+              <tr className="border-t">
+                <td className="p-3 font-mono text-xs">size</td>
+                <td className="p-3 font-mono text-xs">
                   &quot;sm&quot; | &quot;default&quot; | &quot;lg&quot;
                 </td>
-                <td className="py-3 px-4 font-mono">&quot;default&quot;</td>
+                <td className="p-3 font-mono text-xs">&quot;default&quot;</td>
+                <td className="p-3">Size of the checkbox</td>
               </tr>
-              <tr className="border-b">
-                <td className="py-3 px-4 font-mono">label</td>
-                <td className="py-3 px-4 font-mono text-muted-foreground">
-                  string
-                </td>
-                <td className="py-3 px-4 font-mono">undefined</td>
+              <tr className="border-t">
+                <td className="p-3 font-mono text-xs">label</td>
+                <td className="p-3 font-mono text-xs">string</td>
+                <td className="p-3 font-mono text-xs">undefined</td>
+                <td className="p-3">Label text displayed next to checkbox</td>
               </tr>
             </tbody>
           </table>

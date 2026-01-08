@@ -5,47 +5,44 @@
  * Inspired by blocks.so structure.
  */
 
-// Types and declarations
-export * from "./declarations"
-
-// Block metadata
-export {
-  blocksMetadata,
-  getBlockById,
-  getBlocksByCategory,
-  getFeaturedBlocks,
-  getAvailableBlocks,
-  getDisplayBlocks,
-  getDisplayBlocksByCategory,
-  countAvailableBlocksInCategory,
-  countBlocksInCategory,
-  isDevelopment,
-} from "./metadata"
-
 // Categories
 export {
   blocksCategoriesMetadata,
-  getCategoryById,
   getAllCategories,
-  getCategoriesWithCounts,
-  getDisplayCategories,
   getAvailableCategories,
+  getCategoriesWithCounts,
+  getCategoryById,
+  getDisplayCategories,
 } from "./categories"
-
 // Component registry
 export {
   blocksComponents,
   getBlockComponent,
-  hasBlockComponent,
   getRegisteredBlockIds,
+  hasBlockComponent,
 } from "./components"
+// Types and declarations
+export * from "./declarations"
+// Block metadata
+export {
+  blocksMetadata,
+  countAvailableBlocksInCategory,
+  countBlocksInCategory,
+  getAvailableBlocks,
+  getBlockById,
+  getBlocksByCategory,
+  getDisplayBlocks,
+  getDisplayBlocksByCategory,
+  getFeaturedBlocks,
+  isDevelopment,
+} from "./metadata"
 
 // Client-safe utilities
 export {
+  findFirstFile,
   getBlockFilePath,
   getCleanCode,
   getFileIcon,
-  findFirstFile,
 } from "./utils"
 
 // Server-only utilities are imported directly from "./utils.server"

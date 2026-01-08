@@ -2,8 +2,8 @@
 
 import * as React from "react"
 import { highlight } from "sugar-high"
-import { AnimatedCopyButton } from "./animated-copy-button"
 import { cn } from "@/lib/utils"
+import { AnimatedCopyButton } from "./animated-copy-button"
 
 interface CodeBlockProps {
   children: string

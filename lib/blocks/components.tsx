@@ -6,16 +6,14 @@
  */
 
 import type { ComponentType } from "react"
-
+import { FooterColumns } from "@/registry/new-york/blocks/footers/footer-columns"
+import { FooterNewsletter } from "@/registry/new-york/blocks/footers/footer-newsletter"
+// ===== FOOTERS =====
+import { FooterSimple } from "@/registry/new-york/blocks/footers/footer-simple"
+import { HeaderAuth } from "@/registry/new-york/blocks/headers/header-auth"
 // ===== HEADERS =====
 import { HeaderSimple } from "@/registry/new-york/blocks/headers/header-simple"
 import { HeaderWithCta } from "@/registry/new-york/blocks/headers/header-with-cta"
-import { HeaderAuth } from "@/registry/new-york/blocks/headers/header-auth"
-
-// ===== FOOTERS =====
-import { FooterSimple } from "@/registry/new-york/blocks/footers/footer-simple"
-import { FooterColumns } from "@/registry/new-york/blocks/footers/footer-columns"
-import { FooterNewsletter } from "@/registry/new-york/blocks/footers/footer-newsletter"
 
 /**
  * Component registry mapping block IDs to React components

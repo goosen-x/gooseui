@@ -41,7 +41,7 @@ export function FloatingNav() {
     return (
       <nav
         aria-label="Floating Navigation"
-        className="fixed bottom-5 left-1/2 z-50 flex -translate-x-1/2 gap-1 rounded-full border bg-background/70 p-1 shadow-lg backdrop-blur-xl"
+        className="fixed bottom-5 left-1/2 z-50 hidden -translate-x-1/2 gap-1 rounded-full border bg-background/70 p-1 shadow-lg backdrop-blur-xl sm:flex"
       >
         <div className="size-9 animate-pulse rounded-full bg-muted" />
         <div className="size-9 animate-pulse rounded-full bg-muted" />
@@ -53,7 +53,7 @@ export function FloatingNav() {
     <>
       <nav
         aria-label="Floating Navigation"
-        className="fixed bottom-5 left-1/2 z-50 flex -translate-x-1/2 gap-1 rounded-full border bg-background/70 p-1 shadow-lg backdrop-blur-xl transition-all"
+        className="fixed bottom-5 left-1/2 z-50 hidden -translate-x-1/2 gap-1 rounded-full border bg-background/70 p-1 shadow-lg backdrop-blur-xl transition-all sm:flex"
       >
         <button
           aria-label="Theme Switcher"
@@ -81,7 +81,7 @@ export function FloatingNav() {
       </nav>
 
       {showColors && (
-        <div className="fixed bottom-20 left-1/2 z-50 flex -translate-x-1/2 gap-2 rounded-full border bg-background/70 px-3 py-2 shadow-lg backdrop-blur-xl animate-in fade-in slide-in-from-bottom-2">
+        <div className="fixed bottom-20 left-1/2 z-50 hidden -translate-x-1/2 gap-2 rounded-full border bg-background/70 px-3 py-2 shadow-lg backdrop-blur-xl animate-in fade-in slide-in-from-bottom-2 sm:flex">
           {colors.map((c) => (
             <button
               key={c.name}

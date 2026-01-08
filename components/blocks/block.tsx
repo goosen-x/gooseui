@@ -49,10 +49,7 @@ export function Block({ block, code, hasComponent, className }: BlockProps) {
   }
 
   return (
-    <section
-      id={block.id}
-      className={cn("scroll-mt-20 space-y-4", className)}
-    >
+    <section id={block.id} className={cn("scroll-mt-20 space-y-4", className)}>
       {/* Header */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
@@ -99,7 +96,10 @@ export function Block({ block, code, hasComponent, className }: BlockProps) {
       <p className="text-sm text-muted-foreground">{block.description}</p>
 
       {/* Tabs */}
-      <Tabs value={view} onValueChange={(v) => setView(v as "preview" | "code")}>
+      <Tabs
+        value={view}
+        onValueChange={(v) => setView(v as "preview" | "code")}
+      >
         <div className="flex items-center justify-between gap-4 border-b pb-3">
           <TabsList className="h-9">
             <TabsTrigger value="preview" className="gap-1.5 cursor-pointer">

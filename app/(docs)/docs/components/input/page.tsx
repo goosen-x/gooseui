@@ -11,7 +11,7 @@ export const metadata = {
 
 export default function InputPage() {
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       <DocsPageNav
         title="Input"
         prevHref="/docs/components/card"

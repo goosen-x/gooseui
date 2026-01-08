@@ -1,5 +1,5 @@
-import Link from "next/link"
 import type { LucideIcon } from "lucide-react"
+import Link from "next/link"
 import { Badge } from "@/components/ui/badge"
 import { cn } from "@/lib/utils"
 
@@ -16,7 +16,11 @@ interface CategoryCardProps {
   className?: string
 }
 
-export function CategoryCard({ category, showDevBadge, className }: CategoryCardProps) {
+export function CategoryCard({
+  category,
+  showDevBadge,
+  className,
+}: CategoryCardProps) {
   const Icon = category.icon
   const href = `/docs/blocks/${category.id}`
   const isDisabled = category.isComingSoon && !showDevBadge
@@ -27,7 +31,7 @@ export function CategoryCard({ category, showDevBadge, className }: CategoryCard
       className={cn(
         "group relative flex flex-col gap-3 rounded-xl border bg-card p-6 transition-all hover:border-foreground/20 hover:shadow-md cursor-pointer",
         isDisabled && "pointer-events-none opacity-50",
-        className
+        className,
       )}
     >
       {/* Icon */}

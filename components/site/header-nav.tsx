@@ -7,8 +7,12 @@ import { cn } from "@/lib/utils"
 const mainNav = [
   { href: "/docs", title: "Docs" },
   { href: "/docs/components", title: "Components" },
-  { href: "/docs/blocks", title: "Blocks" },
 ]
+
+// Add Blocks only in development
+if (process.env.NODE_ENV === "development") {
+  mainNav.push({ href: "/docs/blocks", title: "Blocks" })
+}
 
 export function HeaderNav() {
   const pathname = usePathname()

@@ -60,7 +60,8 @@ export function FooterColumns() {
               <span className="font-bold text-xl">Brand</span>
             </Link>
             <p className="mt-4 text-sm text-muted-foreground max-w-xs">
-              Building the future of web development with beautiful, accessible components.
+              Building the future of web development with beautiful, accessible
+              components.
             </p>
             <div className="mt-6 flex items-center gap-4">
               {socialLinks.map((social) => (
@@ -104,10 +105,16 @@ export function FooterColumns() {
             &copy; {new Date().getFullYear()} Brand, Inc. All rights reserved.
           </p>
           <div className="flex items-center gap-4 text-sm text-muted-foreground">
-            <Link href="#privacy" className="hover:text-foreground cursor-pointer">
+            <Link
+              href="#privacy"
+              className="hover:text-foreground cursor-pointer"
+            >
               Privacy Policy
             </Link>
-            <Link href="#terms" className="hover:text-foreground cursor-pointer">
+            <Link
+              href="#terms"
+              className="hover:text-foreground cursor-pointer"
+            >
               Terms of Service
             </Link>
           </div>

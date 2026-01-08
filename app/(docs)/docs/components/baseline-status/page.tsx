@@ -23,12 +23,12 @@ export default function BaselineStatusPage() {
 
       <div className="space-y-4">
         <h2
-          id="demo"
+          id="preview"
           className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight"
         >
-          Demo
+          Preview
         </h2>
-        <div className="flex flex-col gap-4 py-8 px-6 bg-muted/50 rounded-lg">
+        <div className="flex flex-col gap-4 py-8 px-6 bg-muted/30 rounded-lg">
           <div className="flex items-center gap-4">
             <span className="text-sm text-muted-foreground w-32">
               Widely Available:
@@ -67,7 +67,7 @@ export default function BaselineStatusPage() {
           prop to show real-time browser support detection alongside the
           Baseline status.
         </p>
-        <div className="flex flex-col gap-4 py-8 px-6 bg-muted/50 rounded-lg">
+        <div className="flex flex-col gap-4 py-8 px-6 bg-muted/30 rounded-lg">
           <BaselineStatus
             featureId="view-transitions"
             browserCheck="view-transitions"
@@ -127,7 +127,7 @@ export default function BaselineStatusPage() {
         <div className="space-y-6">
           <div>
             <h3 className="text-lg font-medium mb-3">Size variants</h3>
-            <div className="flex flex-col gap-4 py-6 px-6 bg-muted/50 rounded-lg">
+            <div className="flex flex-col gap-4 py-6 px-6 bg-muted/30 rounded-lg">
               <div className="flex items-center gap-4">
                 <span className="text-sm text-muted-foreground w-16">sm:</span>
                 <BaselineStatus status="widely" year={2022} size="sm" />
@@ -148,7 +148,7 @@ export default function BaselineStatusPage() {
 
           <div>
             <h3 className="text-lg font-medium mb-3">Icon only</h3>
-            <div className="flex gap-4 py-6 px-6 bg-muted/50 rounded-lg">
+            <div className="flex gap-4 py-6 px-6 bg-muted/30 rounded-lg">
               <BaselineStatus status="widely" iconOnly />
               <BaselineStatus status="newly" iconOnly />
               <BaselineStatus status="limited" iconOnly />
@@ -162,7 +162,7 @@ export default function BaselineStatusPage() {
 
           <div>
             <h3 className="text-lg font-medium mb-3">Without year</h3>
-            <div className="flex gap-4 py-6 px-6 bg-muted/50 rounded-lg">
+            <div className="flex gap-4 py-6 px-6 bg-muted/30 rounded-lg">
               <BaselineStatus status="widely" showYear={false} />
             </div>
             <CodeBlock>{`<BaselineStatus status="widely" showYear={false} />`}</CodeBlock>
@@ -170,7 +170,7 @@ export default function BaselineStatusPage() {
 
           <div>
             <h3 className="text-lg font-medium mb-3">With Feature ID (API)</h3>
-            <div className="flex gap-4 py-6 px-6 bg-muted/50 rounded-lg">
+            <div className="flex gap-4 py-6 px-6 bg-muted/30 rounded-lg">
               <BaselineStatus featureId="scroll-snap" />
             </div>
             <CodeBlock>{`// Fetches data from webstatus.dev API

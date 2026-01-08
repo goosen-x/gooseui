@@ -28,7 +28,7 @@ export default function MorphingDialogPage() {
 
       <div className="space-y-4">
         <h2
-          id="baseline"
+          id="browser-support"
           className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight"
         >
           Browser Support
@@ -46,15 +46,15 @@ export default function MorphingDialogPage() {
 
       <div className="space-y-4">
         <h2
-          id="demo"
+          id="preview"
           className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight"
         >
-          Demo
+          Preview
         </h2>
         <p className="text-sm text-muted-foreground">
           Click on the card to open the dialog with a morphing animation.
         </p>
-        <div className="flex justify-center py-12 bg-muted/50 rounded-lg">
+        <div className="flex justify-center py-12 bg-muted/30 rounded-lg">
           <MorphingDialogDemo />
         </div>
       </div>
@@ -127,7 +127,7 @@ export default function Example() {
             <p className="text-sm text-muted-foreground mb-4">
               Use with profile cards for a smooth expansion effect
             </p>
-            <div className="flex justify-center py-8 bg-muted/50 rounded-lg">
+            <div className="flex justify-center py-8 bg-muted/30 rounded-lg">
               <MorphingDialogCardDemo />
             </div>
           </div>
