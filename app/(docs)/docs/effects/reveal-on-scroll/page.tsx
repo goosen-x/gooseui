@@ -1,36 +1,42 @@
 import { CodeBlock } from "@/components/docs/code-block"
+import { DocsBrowserSupport } from "@/components/docs/docs-browser-support"
 import { DocsPageNav } from "@/components/docs/docs-page-nav"
 import { InstallCommand } from "@/components/docs/install-command"
-import { DocsBrowserSupport } from "@/components/docs/docs-browser-support"
 
 export const metadata = {
   title: "Reveal on Scroll",
-  description: "Elements reveal with animation as they enter the viewport using CSS scroll-driven animations",
+  description:
+    "Elements reveal with animation as they enter the viewport using CSS scroll-driven animations",
 }
 
 export default function RevealOnScrollPage() {
   return (
     <div className="space-y-8">
       {/* 1. Navigation */}
-      <DocsPageNav
-        title="Reveal on Scroll"
-        prevHref="/docs/effects/adaptive-grid"
-        nextHref="/docs/effects/balanced-text"
-      />
+      <DocsPageNav title="Reveal on Scroll" />
 
       {/* 2. Description */}
       <p className="text-muted-foreground">
-        Elements reveal with animation as they enter the viewport
-        using CSS scroll-driven animations with view() timeline.
+        Elements reveal with animation as they enter the viewport using CSS
+        scroll-driven animations with view() timeline.
       </p>
 
       {/* 3. Browser Support */}
       <DocsBrowserSupport
-        features={{ featureId: "scroll-driven-animations", browserCheck: "scroll-driven-animations" }}
+        features={{
+          featureId: "scroll-driven-animations",
+          browserCheck: "scroll-driven-animations",
+        }}
       >
-        Uses <code className="bg-muted px-1.5 py-0.5 rounded">animation-timeline: view()</code> with{" "}
-        <code className="bg-muted px-1.5 py-0.5 rounded">animation-range: entry</code> to trigger
-        animation as element enters viewport.
+        Uses{" "}
+        <code className="bg-muted px-1.5 py-0.5 rounded">
+          animation-timeline: view()
+        </code>{" "}
+        with{" "}
+        <code className="bg-muted px-1.5 py-0.5 rounded">
+          animation-range: entry
+        </code>{" "}
+        to trigger animation as element enters viewport.
       </DocsBrowserSupport>
 
       {/* 4. Preview */}
@@ -129,7 +135,10 @@ export default function RevealOnScrollPage() {
             <tbody>
               <tr className="border-t">
                 <td className="p-3 font-mono text-xs">direction</td>
-                <td className="p-3 font-mono text-xs">&quot;up&quot; | &quot;down&quot; | &quot;left&quot; | &quot;right&quot; | &quot;fade&quot;</td>
+                <td className="p-3 font-mono text-xs">
+                  &quot;up&quot; | &quot;down&quot; | &quot;left&quot; |
+                  &quot;right&quot; | &quot;fade&quot;
+                </td>
                 <td className="p-3 font-mono text-xs">&quot;up&quot;</td>
                 <td className="p-3">Animation direction</td>
               </tr>

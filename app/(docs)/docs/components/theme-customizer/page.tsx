@@ -5,18 +5,16 @@ import { ThemeCustomizerDemo } from "./theme-customizer-demo"
 
 export const metadata = {
   title: "Theme Customizer",
-  description: "Floating theme and color picker with 5 different variants",
+  description: "Floating theme and color picker with 6 different variants",
 }
 
 export default function ThemeCustomizerPage() {
   return (
     <div className="space-y-8">
-      <DocsPageNav
-        title="Theme Customizer"
-        prevHref="/docs/components/typography"
-      />
-      <p className="text-lg text-muted-foreground">
-        Floating theme and color picker with 5 different variants
+      <DocsPageNav title="Theme Customizer" />
+      <p className="text-muted-foreground">
+        Floating theme and color picker with 6 different variants: Pill, Bar,
+        Sidebar, Dock, Corner, and Toolbar.
       </p>
 
       <div className="space-y-4">
@@ -116,6 +114,17 @@ export default function Page() {
         <CodeBlock>{`import { ThemeCustomizerCorner } from "@/components/ui/theme-customizer"
 
 <ThemeCustomizerCorner />`}</CodeBlock>
+
+        <h3 className="scroll-m-20 text-xl font-semibold tracking-tight mt-6">
+          6. Toolbar
+        </h3>
+        <p className="text-muted-foreground">
+          Animated expanding toolbar with smooth transitions. Compact by
+          default, expands to show color picker on click.
+        </p>
+        <CodeBlock>{`import { ThemeCustomizerToolbar } from "@/components/ui/theme-customizer"
+
+<ThemeCustomizerToolbar />`}</CodeBlock>
       </div>
 
       <div className="space-y-4">
@@ -174,8 +183,8 @@ export default function Page() {
         >
           Props
         </h2>
-        <div className="border rounded-lg overflow-hidden">
-          <table className="w-full text-sm">
+        <div className="border rounded-lg overflow-x-auto">
+          <table className="w-full text-sm min-w-[500px]">
             <thead className="bg-muted">
               <tr>
                 <th className="text-left p-3 font-medium">Prop</th>

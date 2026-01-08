@@ -16,11 +16,7 @@ const availableComponents = getAvailableComponents()
 export default function CLIPage() {
   return (
     <div className="space-y-6">
-      <DocsPageNav
-        title="CLI"
-        prevHref="/docs/installation"
-        nextHref="/docs/components"
-      />
+      <DocsPageNav title="CLI" />
       <p className="text-lg text-muted-foreground">
         Using shadcn CLI to install components
       </p>

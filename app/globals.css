@@ -112,6 +112,19 @@
   --sidebar-ring: oklch(0.556 0 0);
 }
 
+/* Color themes - Zinc (Gray) */
+[data-theme-color="zinc"] {
+  --primary: oklch(0.55 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --ring: oklch(0.55 0 0);
+}
+[data-theme-color="zinc"].dark,
+.dark[data-theme-color="zinc"] {
+  --primary: oklch(0.55 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --ring: oklch(0.55 0 0);
+}
+
 /* Color themes - Red */
 [data-theme-color="red"] {
   --primary: oklch(0.577 0.245 27.325);
@@ -201,6 +214,11 @@
     scrollbar-gutter: stable;
   }
 
+  /* Text selection styling */
+  ::selection {
+    background-color: oklch(from var(--primary) l c h / 35%);
+    color: var(--foreground);
+  }
 }
 
 @layer utilities {
@@ -230,6 +248,20 @@
   to {
     transform: translateX(calc(-100% - 1rem));
   }
+}
+
+/* Scroll Progress - CSS scroll-driven animation */
+@keyframes scroll-progress {
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.scroll-progress-bar {
+  animation: scroll-progress linear;
+  animation-timeline: scroll(root);
+  transform: scaleX(0);
+  transform-origin: left;
 }
 
 /* View Transitions for MorphingDialog */

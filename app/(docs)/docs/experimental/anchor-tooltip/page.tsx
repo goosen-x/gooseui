@@ -1,7 +1,8 @@
 import { CodeBlock } from "@/components/docs/code-block"
+import { DocsBrowserSupport } from "@/components/docs/docs-browser-support"
 import { DocsPageNav } from "@/components/docs/docs-page-nav"
 import { InstallCommand } from "@/components/docs/install-command"
-import { DocsBrowserSupport } from "@/components/docs/docs-browser-support"
+import { AnchorTooltip } from "@/registry/new-york/ui/anchor-tooltip"
 
 export const metadata = {
   title: "Anchor Tooltip",
@@ -12,27 +13,28 @@ export default function AnchorTooltipPage() {
   return (
     <div className="space-y-8">
       {/* 1. Navigation */}
-      <DocsPageNav
-        title="Anchor Tooltip"
-        prevHref="/docs/effects/parallax-cards"
-        nextHref="/docs/effects/morphing-header"
-      />
+      <DocsPageNav title="Anchor Tooltip" />
 
       {/* 2. Description */}
       <p className="text-muted-foreground">
-        CSS-only tooltips using Anchor Positioning API and Popover API.
-        No JavaScript positioning calculations needed.
+        CSS-only tooltips using Anchor Positioning API and Popover API. No
+        JavaScript positioning calculations needed.
       </p>
 
       {/* 3. Browser Support */}
       <DocsBrowserSupport
         features={[
-          { featureId: "anchor-positioning", browserCheck: "anchor-positioning" },
+          {
+            featureId: "anchor-positioning",
+            browserCheck: "anchor-positioning",
+          },
           { featureId: "popover", browserCheck: "popover" },
         ]}
       >
-        Uses <code className="bg-muted px-1.5 py-0.5 rounded">anchor-name</code> and{" "}
-        <code className="bg-muted px-1.5 py-0.5 rounded">position-anchor</code> for CSS-based positioning.
+        Uses <code className="bg-muted px-1.5 py-0.5 rounded">anchor-name</code>{" "}
+        and{" "}
+        <code className="bg-muted px-1.5 py-0.5 rounded">position-anchor</code>{" "}
+        for CSS-based positioning.
       </DocsBrowserSupport>
 
       {/* 4. Preview */}
@@ -43,10 +45,27 @@ export default function AnchorTooltipPage() {
         >
           Preview
         </h2>
-        <div className="flex justify-center py-12 bg-muted/30 rounded-lg">
-          <p className="text-muted-foreground">
-            Hover over elements to see CSS-positioned tooltips.
-          </p>
+        <div className="flex flex-wrap items-center justify-center gap-8 p-8 bg-muted/30 rounded-lg">
+          <AnchorTooltip content="Tooltip on top" position="top">
+            <span className="inline-flex items-center justify-center rounded-md border bg-background px-4 py-2 text-sm font-medium hover:bg-accent">
+              Top
+            </span>
+          </AnchorTooltip>
+          <AnchorTooltip content="Tooltip on bottom" position="bottom">
+            <span className="inline-flex items-center justify-center rounded-md border bg-background px-4 py-2 text-sm font-medium hover:bg-accent">
+              Bottom
+            </span>
+          </AnchorTooltip>
+          <AnchorTooltip content="Tooltip on left" position="left">
+            <span className="inline-flex items-center justify-center rounded-md border bg-background px-4 py-2 text-sm font-medium hover:bg-accent">
+              Left
+            </span>
+          </AnchorTooltip>
+          <AnchorTooltip content="Tooltip on right" position="right">
+            <span className="inline-flex items-center justify-center rounded-md border bg-background px-4 py-2 text-sm font-medium hover:bg-accent">
+              Right
+            </span>
+          </AnchorTooltip>
         </div>
       </div>
 
@@ -69,7 +88,7 @@ export default function AnchorTooltipPage() {
         >
           Usage
         </h2>
-        <CodeBlock>{`import { AnchorTooltip } from "@/components/effects/anchor-tooltip"
+        <CodeBlock>{`import { AnchorTooltip } from "@/components/ui/anchor-tooltip"
 
 <AnchorTooltip content="This is a tooltip">
   <span>Hover me</span>
@@ -129,7 +148,10 @@ export default function AnchorTooltipPage() {
               </tr>
               <tr className="border-t">
                 <td className="p-3 font-mono text-xs">position</td>
-                <td className="p-3 font-mono text-xs">&quot;top&quot; | &quot;bottom&quot; | &quot;left&quot; | &quot;right&quot;</td>
+                <td className="p-3 font-mono text-xs">
+                  &quot;top&quot; | &quot;bottom&quot; | &quot;left&quot; |
+                  &quot;right&quot;
+                </td>
                 <td className="p-3 font-mono text-xs">&quot;top&quot;</td>
                 <td className="p-3">Tooltip position</td>
               </tr>

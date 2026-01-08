@@ -16,7 +16,7 @@ import { useClickOutside } from "@/hooks/use-click-outside"
 import { cn } from "@/lib/utils"
 
 const colors = [
-  { name: "zinc", class: "bg-zinc-900 dark:bg-zinc-50" },
+  { name: "zinc", class: "bg-zinc-500" },
   { name: "red", class: "bg-red-500" },
   { name: "orange", class: "bg-orange-500" },
   { name: "green", class: "bg-green-500" },
@@ -439,13 +439,15 @@ export function ThemeCustomizerDemo() {
         {variants.find((v) => v.id === active)?.description}
       </p>
 
-      <div className="flex min-h-[300px] items-center justify-center rounded-xl border bg-muted/30 p-8">
-        {active === "pill" && <DemoPill />}
-        {active === "bar" && <DemoBar />}
-        {active === "sidebar" && <DemoSidebar />}
-        {active === "dock" && <DemoDock />}
-        {active === "corner" && <DemoCorner />}
-        {active === "toolbar" && <DemoToolbar />}
+      <div className="min-h-[18.75rem] rounded-xl border bg-muted/30 p-8 overflow-x-auto">
+        <div className="flex min-w-fit items-center justify-center min-h-[14.75rem]">
+          {active === "pill" && <DemoPill />}
+          {active === "bar" && <DemoBar />}
+          {active === "sidebar" && <DemoSidebar />}
+          {active === "dock" && <DemoDock />}
+          {active === "corner" && <DemoCorner />}
+          {active === "toolbar" && <DemoToolbar />}
+        </div>
       </div>
     </div>
   )

@@ -11,14 +11,10 @@ export const metadata = {
 export default function DigitalClockPage() {
   return (
     <div className="space-y-8">
-      <DocsPageNav
-        title="Digital Clock"
-        prevHref="/docs/components/carousel"
-        nextHref="/docs/components/baseline-status"
-      />
+      <DocsPageNav title="Digital Clock" />
       <p className="text-muted-foreground">
         A retro 7-segment LED digital clock built with CSS gradients. Features
-        customizable colors and optional seconds display.
+        customizable colors, optional seconds display, and scalable size.
       </p>
 
       {/* Preview */}
@@ -29,8 +25,8 @@ export default function DigitalClockPage() {
         >
           Preview
         </h2>
-        <div className="flex justify-center py-12 bg-muted/30 rounded-lg">
-          <DigitalClock />
+        <div className="flex justify-center py-8 bg-muted/30 rounded-lg overflow-hidden">
+          <DigitalClock scale={0.5} />
         </div>
       </div>
 
@@ -68,33 +64,46 @@ export default function Example() {
         >
           Examples
         </h2>
-        <div className="grid gap-8">
-          <div>
-            <h3 className="text-lg font-medium mb-3">Without seconds</h3>
-            <div className="flex justify-center py-8 bg-muted/30 rounded-lg">
-              <DigitalClock showSeconds={false} />
+
+        <div className="space-y-8">
+          <div className="space-y-3">
+            <h3 className="text-lg font-medium">Without seconds</h3>
+            <div className="flex justify-center py-8 bg-muted/30 rounded-lg overflow-hidden">
+              <DigitalClock showSeconds={false} scale={0.5} />
             </div>
             <CodeBlock>{`<DigitalClock showSeconds={false} />`}</CodeBlock>
           </div>
 
-          <div>
-            <h3 className="text-lg font-medium mb-3">Custom colors</h3>
-            <div className="flex justify-center py-8 bg-muted/30 rounded-lg gap-8 flex-wrap">
-              <DigitalClock showSeconds={false} color="#00BFFF" />
-              <DigitalClock showSeconds={false} color="#FF6B6B" />
-              <DigitalClock showSeconds={false} color="#FFD93D" />
+          <div className="space-y-3">
+            <h3 className="text-lg font-medium">Custom colors</h3>
+            <div className="flex flex-wrap justify-center gap-4 py-8 bg-muted/30 rounded-lg overflow-hidden">
+              <DigitalClock showSeconds={false} color="#00BFFF" scale={0.35} />
+              <DigitalClock showSeconds={false} color="#FF6B6B" scale={0.35} />
+              <DigitalClock showSeconds={false} color="#FFD93D" scale={0.35} />
             </div>
             <CodeBlock>{`<DigitalClock color="#00BFFF" />
 <DigitalClock color="#FF6B6B" />
 <DigitalClock color="#FFD93D" />`}</CodeBlock>
           </div>
 
-          <div>
-            <h3 className="text-lg font-medium mb-3">12-hour format</h3>
-            <div className="flex justify-center py-8 bg-muted/30 rounded-lg">
-              <DigitalClock use24Hour={false} />
+          <div className="space-y-3">
+            <h3 className="text-lg font-medium">12-hour format</h3>
+            <div className="flex justify-center py-8 bg-muted/30 rounded-lg overflow-hidden">
+              <DigitalClock use24Hour={false} scale={0.5} />
             </div>
             <CodeBlock>{`<DigitalClock use24Hour={false} />`}</CodeBlock>
+          </div>
+
+          <div className="space-y-3">
+            <h3 className="text-lg font-medium">Different sizes</h3>
+            <div className="flex flex-wrap items-end justify-center gap-4 py-8 bg-muted/30 rounded-lg overflow-hidden">
+              <DigitalClock showSeconds={false} scale={0.3} />
+              <DigitalClock showSeconds={false} scale={0.5} />
+              <DigitalClock showSeconds={false} scale={0.7} />
+            </div>
+            <CodeBlock>{`<DigitalClock scale={0.3} />
+<DigitalClock scale={0.5} />
+<DigitalClock scale={0.7} />`}</CodeBlock>
           </div>
         </div>
       </div>
@@ -108,7 +117,7 @@ export default function Example() {
           Props
         </h2>
         <div className="overflow-x-auto">
-          <table className="w-full text-sm">
+          <table className="w-full text-sm min-w-[31.25rem]">
             <thead>
               <tr className="border-b">
                 <th className="text-left p-3 font-medium">Prop</th>
@@ -135,6 +144,12 @@ export default function Example() {
                 <td className="p-3 font-mono text-xs">string</td>
                 <td className="p-3 font-mono text-xs">#82FA58</td>
                 <td className="p-3">LED segment color</td>
+              </tr>
+              <tr className="border-t">
+                <td className="p-3 font-mono text-xs">scale</td>
+                <td className="p-3 font-mono text-xs">number</td>
+                <td className="p-3 font-mono text-xs">1</td>
+                <td className="p-3">Size scale factor</td>
               </tr>
               <tr className="border-t">
                 <td className="p-3 font-mono text-xs">className</td>

@@ -35,12 +35,8 @@ export const metadata = {
 export default function ComponentNamePage() {
   return (
     <div className="space-y-8">
-      {/* 1. Navigation */}
-      <DocsPageNav
-        title="Component Name"
-        prevHref="/docs/components/prev-component"
-        nextHref="/docs/components/next-component"
-      />
+      {/* 1. Navigation - prev/next links are auto-generated from docs-navigation.ts */}
+      <DocsPageNav title="Component Name" />
 
       {/* 2. Description */}
       <p className="text-muted-foreground">
@@ -148,8 +144,8 @@ export default function Example() {
         >
           Props
         </h2>
-        <div className="border rounded-lg overflow-hidden">
-          <table className="w-full text-sm">
+        <div className="border rounded-lg overflow-x-auto">
+          <table className="w-full text-sm min-w-[500px]">
             <thead className="bg-muted">
               <tr>
                 <th className="text-left p-3 font-medium">Prop</th>
@@ -196,8 +192,8 @@ export default function Example() {
         >
           Components
         </h2>
-        <div className="border rounded-lg overflow-hidden">
-          <table className="w-full text-sm">
+        <div className="border rounded-lg overflow-x-auto">
+          <table className="w-full text-sm min-w-[500px]">
             <thead className="bg-muted">
               <tr>
                 <th className="text-left p-3 font-medium">Component</th>

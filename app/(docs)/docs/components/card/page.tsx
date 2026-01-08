@@ -19,11 +19,7 @@ export const metadata = {
 export default function CardPage() {
   return (
     <div className="space-y-8">
-      <DocsPageNav
-        title="Card"
-        prevHref="/docs/components/button"
-        nextHref="/docs/components/input"
-      />
+      <DocsPageNav title="Card" />
       <p className="text-lg text-muted-foreground">
         Displays a card with header, content and footer
       </p>
@@ -107,8 +103,8 @@ export function MyCard() {
         >
           Components
         </h2>
-        <div className="border rounded-lg overflow-hidden">
-          <table className="w-full text-sm">
+        <div className="border rounded-lg overflow-x-auto">
+          <table className="w-full text-sm min-w-[500px]">
             <thead className="bg-muted">
               <tr>
                 <th className="text-left p-3 font-medium">Component</th>

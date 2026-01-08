@@ -1,35 +1,37 @@
 import { CodeBlock } from "@/components/docs/code-block"
+import { DocsBrowserSupport } from "@/components/docs/docs-browser-support"
 import { DocsPageNav } from "@/components/docs/docs-page-nav"
 import { InstallCommand } from "@/components/docs/install-command"
-import { DocsBrowserSupport } from "@/components/docs/docs-browser-support"
 
 export const metadata = {
   title: "Stacking Cards",
-  description: "Cards that stack on top of each other as user scrolls using CSS position: sticky",
+  description:
+    "Cards that stack on top of each other as user scrolls using CSS position: sticky",
 }
 
 export default function StackingCardsPage() {
   return (
     <div className="space-y-8">
       {/* 1. Navigation */}
-      <DocsPageNav
-        title="Stacking Cards"
-        prevHref="/docs/effects/balanced-text"
-        nextHref="/docs/blocks"
-      />
+      <DocsPageNav title="Stacking Cards" />
 
       {/* 2. Description */}
       <p className="text-muted-foreground">
-        Cards that stack on top of each other as user scrolls,
-        using CSS position: sticky and scroll-driven animations.
+        Cards that stack on top of each other as user scrolls, using CSS
+        position: sticky and scroll-driven animations.
       </p>
 
       {/* 3. Browser Support */}
       <DocsBrowserSupport
-        features={{ featureId: "scroll-driven-animations", browserCheck: "scroll-driven-animations" }}
+        features={{
+          featureId: "scroll-driven-animations",
+          browserCheck: "scroll-driven-animations",
+        }}
       >
-        Combines <code className="bg-muted px-1.5 py-0.5 rounded">position: sticky</code> with
-        scroll-driven animations to create stacking effect. Cards scale down slightly as they stack.
+        Combines{" "}
+        <code className="bg-muted px-1.5 py-0.5 rounded">position: sticky</code>{" "}
+        with scroll-driven animations to create stacking effect. Cards scale
+        down slightly as they stack.
       </DocsBrowserSupport>
 
       {/* 4. Preview */}
@@ -142,7 +144,9 @@ import { StackingCardsAnimated, StackingCardsStyles } from "@/components/effects
                 <td className="p-3 font-mono text-xs">index</td>
                 <td className="p-3 font-mono text-xs">number</td>
                 <td className="p-3 font-mono text-xs">auto</td>
-                <td className="p-3">Card index for stacking offset (auto-assigned)</td>
+                <td className="p-3">
+                  Card index for stacking offset (auto-assigned)
+                </td>
               </tr>
               <tr className="border-t">
                 <td className="p-3 font-mono text-xs">stickyTop</td>

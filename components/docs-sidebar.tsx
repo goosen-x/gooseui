@@ -104,10 +104,16 @@ export function DocsSidebar({
 }
 
 function ComponentsNav({ pathname }: { pathname: string }) {
+  // Filter out coming soon items from navigation
+  const filteredNavigation = filterDraftItems(docsNavigation).map((section) => ({
+    ...section,
+    items: section.items.filter((item) => !item.isComingSoon),
+  }))
+
   return (
     <SidebarGroup>
       <SidebarMenu className="gap-2">
-        {filterDraftItems(docsNavigation).map((section) => (
+        {filteredNavigation.map((section) => (
           <SidebarMenuItem key={section.title}>
             {section.href ? (
               <SidebarMenuButton className="font-medium" asChild>

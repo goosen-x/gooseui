@@ -10,7 +10,7 @@ export const metadata = {
 export default function InstallationPage() {
   return (
     <div className="space-y-6">
-      <DocsPageNav title="Installation" prevHref="/docs" nextHref="/docs/cli" />
+      <DocsPageNav title="Installation" />
       <p className="text-lg text-muted-foreground">
         How to install and configure GooseUI in your project
       </p>

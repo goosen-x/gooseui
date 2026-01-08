@@ -16,10 +16,7 @@ export const metadata = {
 export default function PromoBannerPage() {
   return (
     <div className="space-y-8">
-      <DocsPageNav
-        title="Promo Banner"
-        prevHref="/docs/components/digital-clock"
-      />
+      <DocsPageNav title="Promo Banner" />
       <p className="text-muted-foreground">
         Floating promotional banner with marquee animation, discount badges, and
         localStorage persistence. Perfect for campaigns, sales, and special
@@ -95,12 +92,12 @@ export default function Page() {
         </h2>
 
         <div className="space-y-8">
-          <div>
-            <h3 className="text-lg font-medium mb-3">Positions</h3>
-            <p className="text-sm text-muted-foreground mb-4">
+          <div className="space-y-3">
+            <h3 className="text-lg font-medium">Positions</h3>
+            <p className="text-sm text-muted-foreground">
               Choose where the banner appears on screen
             </p>
-            <div className="flex justify-center py-8 bg-muted/30 rounded-lg min-h-[150px]">
+            <div className="flex justify-center py-8 bg-muted/30 rounded-lg min-h-[9.375rem]">
               <PromoBannerPositions />
             </div>
             <CodeBlock>{`<PromoBanner position="top-left" />
@@ -109,12 +106,12 @@ export default function Page() {
 <PromoBanner position="bottom-right" /> // default`}</CodeBlock>
           </div>
 
-          <div>
-            <h3 className="text-lg font-medium mb-3">Custom Gradients</h3>
-            <p className="text-sm text-muted-foreground mb-4">
+          <div className="space-y-3">
+            <h3 className="text-lg font-medium">Custom Gradients</h3>
+            <p className="text-sm text-muted-foreground">
               Customize the gradient colors to match your brand
             </p>
-            <div className="flex justify-center py-8 bg-muted/30 rounded-lg min-h-[150px]">
+            <div className="flex justify-center py-8 bg-muted/30 rounded-lg min-h-[9.375rem]">
               <PromoBannerGradients />
             </div>
             <CodeBlock>{`<PromoBanner
@@ -123,9 +120,9 @@ export default function Page() {
 />`}</CodeBlock>
           </div>
 
-          <div>
-            <h3 className="text-lg font-medium mb-3">With localStorage</h3>
-            <p className="text-sm text-muted-foreground mb-4">
+          <div className="space-y-3">
+            <h3 className="text-lg font-medium">With localStorage</h3>
+            <p className="text-sm text-muted-foreground">
               Remember when user closes the banner
             </p>
             <CodeBlock>{`<PromoBanner
@@ -134,9 +131,9 @@ export default function Page() {
 />`}</CodeBlock>
           </div>
 
-          <div>
-            <h3 className="text-lg font-medium mb-3">Using Provider</h3>
-            <p className="text-sm text-muted-foreground mb-4">
+          <div className="space-y-3">
+            <h3 className="text-lg font-medium">Using Provider</h3>
+            <p className="text-sm text-muted-foreground">
               Global banner management with context
             </p>
             <CodeBlock>{`import { PromoBannerProvider, usePromoBanner } from "@/components/ui/promo-banner"
@@ -171,8 +168,8 @@ function Component() {
         >
           Props
         </h2>
-        <div className="border rounded-lg overflow-hidden">
-          <table className="w-full text-sm">
+        <div className="border rounded-lg overflow-x-auto">
+          <table className="w-full text-sm min-w-[500px]">
             <thead className="bg-muted">
               <tr>
                 <th className="text-left p-3 font-medium">Prop</th>

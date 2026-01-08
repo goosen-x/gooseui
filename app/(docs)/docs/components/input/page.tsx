@@ -12,11 +12,7 @@ export const metadata = {
 export default function InputPage() {
   return (
     <div className="space-y-8">
-      <DocsPageNav
-        title="Input"
-        prevHref="/docs/components/card"
-        nextHref="/docs/components/animated-timer"
-      />
+      <DocsPageNav title="Input" />
       <p className="text-lg text-muted-foreground">
         Displays a text input field
       </p>

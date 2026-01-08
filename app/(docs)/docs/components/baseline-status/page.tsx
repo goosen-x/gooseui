@@ -12,10 +12,7 @@ export const metadata = {
 export default function BaselineStatusPage() {
   return (
     <div className="space-y-8">
-      <DocsPageNav
-        title="Baseline Status"
-        prevHref="/docs/components/carousel"
-      />
+      <DocsPageNav title="Baseline Status" />
       <p className="text-muted-foreground">
         Display browser support status for web features based on the W3C WebDX
         Baseline specification.
@@ -28,27 +25,11 @@ export default function BaselineStatusPage() {
         >
           Preview
         </h2>
-        <div className="flex flex-col gap-4 py-8 px-6 bg-muted/30 rounded-lg">
-          <div className="flex items-center gap-4">
-            <span className="text-sm text-muted-foreground w-32">
-              Widely Available:
-            </span>
-            <BaselineStatus status="widely" year={2022} />
-          </div>
-          <div className="flex items-center gap-4">
-            <span className="text-sm text-muted-foreground w-32">
-              Newly Available:
-            </span>
-            <BaselineStatus status="newly" year={2024} />
-          </div>
-          <div className="flex items-center gap-4">
-            <span className="text-sm text-muted-foreground w-32">Limited:</span>
-            <BaselineStatus status="limited" />
-          </div>
-          <div className="flex items-center gap-4">
-            <span className="text-sm text-muted-foreground w-32">No Data:</span>
-            <BaselineStatus status="no_data" />
-          </div>
+        <div className="flex flex-col gap-3 py-8 px-6 bg-muted/30 rounded-lg items-start">
+          <BaselineStatus status="widely" year={2022} />
+          <BaselineStatus status="newly" year={2024} />
+          <BaselineStatus status="limited" />
+          <BaselineStatus status="no_data" />
         </div>
       </div>
 
@@ -127,19 +108,13 @@ export default function BaselineStatusPage() {
         <div className="space-y-6">
           <div>
             <h3 className="text-lg font-medium mb-3">Size variants</h3>
-            <div className="flex flex-col gap-4 py-6 px-6 bg-muted/30 rounded-lg">
-              <div className="flex items-center gap-4">
-                <span className="text-sm text-muted-foreground w-16">sm:</span>
-                <BaselineStatus status="widely" year={2022} size="sm" />
-              </div>
-              <div className="flex items-center gap-4">
-                <span className="text-sm text-muted-foreground w-16">md:</span>
-                <BaselineStatus status="widely" year={2022} size="md" />
-              </div>
-              <div className="flex items-center gap-4">
-                <span className="text-sm text-muted-foreground w-16">lg:</span>
-                <BaselineStatus status="widely" year={2022} size="lg" />
-              </div>
+            <div className="grid grid-cols-[auto_1fr] gap-x-4 gap-y-3 items-center py-6 px-6 bg-muted/30 rounded-lg">
+              <span className="text-sm text-muted-foreground">sm:</span>
+              <BaselineStatus status="widely" year={2022} size="sm" />
+              <span className="text-sm text-muted-foreground">md:</span>
+              <BaselineStatus status="widely" year={2022} size="md" />
+              <span className="text-sm text-muted-foreground">lg:</span>
+              <BaselineStatus status="widely" year={2022} size="lg" />
             </div>
             <CodeBlock>{`<BaselineStatus status="widely" year={2022} size="sm" />
 <BaselineStatus status="widely" year={2022} size="md" />
@@ -186,8 +161,8 @@ export default function BaselineStatusPage() {
         >
           Props
         </h2>
-        <div className="border rounded-lg overflow-hidden">
-          <table className="w-full text-sm">
+        <div className="border rounded-lg overflow-x-auto">
+          <table className="w-full text-sm min-w-[500px]">
             <thead className="bg-muted">
               <tr>
                 <th className="text-left p-3 font-medium">Prop</th>
@@ -276,8 +251,8 @@ export default function BaselineStatusPage() {
           </a>
           .
         </p>
-        <div className="border rounded-lg overflow-hidden">
-          <table className="w-full text-sm">
+        <div className="border rounded-lg overflow-x-auto">
+          <table className="w-full text-sm min-w-[500px]">
             <thead className="bg-muted">
               <tr>
                 <th className="text-left p-3 font-medium">Feature</th>

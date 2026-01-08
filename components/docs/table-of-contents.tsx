@@ -65,8 +65,12 @@ export function TableOfContents() {
     return () => observer.disconnect()
   }, [headings])
 
+  const [isScrolling, setIsScrolling] = React.useState(false)
+
   const scrollToTop = () => {
+    setIsScrolling(true)
     window.scrollTo({ top: 0, behavior: "smooth" })
+    setTimeout(() => setIsScrolling(false), 600)
   }
 
   // Generate GitHub edit URL based on current path
@@ -83,8 +87,8 @@ export function TableOfContents() {
   }
 
   return (
-    <nav className="order-last hidden w-56 shrink-0 lg:block">
-      <div className="sticky top-[100px] h-[calc(100vh-120px)]">
+    <nav className="order-last hidden w-56 shrink-0 xl:block sticky top-36 min-[1440px]:top-24 h-fit self-start">
+      <div className="max-h-[calc(100vh-9rem)] min-[1440px]:max-h-[calc(100vh-6rem)]">
         <div className="text-foreground mb-2 text-sm font-medium">
           On this page
         </div>
@@ -158,23 +162,44 @@ export function TableOfContents() {
               </a>
               <button
                 onClick={scrollToTop}
-                className="flex items-center gap-1.5 text-muted-foreground transition-colors hover:text-foreground"
+                className="flex items-center gap-1.5 text-muted-foreground transition-colors hover:text-foreground cursor-pointer"
                 type="button"
               >
                 Scroll to top
                 <svg
-                  height="16"
-                  strokeLinejoin="round"
-                  viewBox="0 0 16 16"
                   width="16"
-                  className="inline-block"
-                  style={{ color: "currentcolor" }}
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  className="overflow-visible"
                 >
+                  {/* Circle */}
+                  <circle
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    className={cn(
+                      "stroke-current stroke-[1.5]",
+                      "transition-all duration-500 ease-out",
+                      "[stroke-dasharray:63]",
+                      isScrolling
+                        ? "[stroke-dashoffset:0]"
+                        : "[stroke-dashoffset:63]",
+                    )}
+                  />
+                  {/* Arrow */}
                   <path
-                    fillRule="evenodd"
-                    clipRule="evenodd"
-                    d="M7.25 10.75V11.5H8.75V10.75V6.56066L10.2197 8.03033L10.75 8.56066L11.8107 7.5L11.2803 6.96967L8.53033 4.21967C8.23744 3.92678 7.76256 3.92678 7.46967 4.21967L4.71967 6.96967L4.18934 7.5L5.25 8.56066L5.78033 8.03033L7.25 6.56066V10.75ZM14.5 8C14.5 11.5899 11.5899 14.5 8 14.5C4.41015 14.5 1.5 11.5899 1.5 8C1.5 4.41015 4.41015 1.5 8 1.5C11.5899 1.5 14.5 4.41015 14.5 8ZM8 16C12.4183 16 16 12.4183 16 8C16 3.58172 12.4183 0 8 0C3.58172 0 0 3.58172 0 8C0 12.4183 3.58172 16 8 16Z"
-                    fill="currentColor"
+                    d="M12 16V8M8 12l4-4 4 4"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className={cn(
+                      "stroke-current stroke-[1.5]",
+                      "transition-all duration-500 ease-out",
+                      "[stroke-dasharray:20]",
+                      isScrolling
+                        ? "[stroke-dashoffset:0]"
+                        : "[stroke-dashoffset:20]",
+                    )}
                   />
                 </svg>
               </button>

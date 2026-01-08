@@ -15,11 +15,7 @@ export const metadata = {
 export default function ButtonPage() {
   return (
     <div className="space-y-8">
-      <DocsPageNav
-        title="Button"
-        prevHref="/docs/components"
-        nextHref="/docs/components/card"
-      />
+      <DocsPageNav title="Button" />
       <p className="text-lg text-muted-foreground">
         A button with various variants and sizes
       </p>
@@ -127,8 +123,8 @@ export function MyComponent() {
         >
           Props
         </h2>
-        <div className="border rounded-lg overflow-hidden">
-          <table className="w-full text-sm">
+        <div className="border rounded-lg overflow-x-auto">
+          <table className="w-full text-sm min-w-[500px]">
             <thead className="bg-muted">
               <tr>
                 <th className="text-left p-3 font-medium">Prop</th>

@@ -2,18 +2,18 @@ import { CodeBlock } from "@/components/docs/code-block"
 import { DocsPageNav } from "@/components/docs/docs-page-nav"
 import { InstallCommand } from "@/components/docs/install-command"
 import {
-  AnimatedCheckboxPreview,
-  AnimatedCheckboxSizes,
-  AnimatedCheckboxVariants,
-  AnimatedCheckboxWithoutLabel,
-} from "./animated-checkbox-demo"
+  CheckboxPreview,
+  CheckboxSizes,
+  CheckboxVariants,
+  CheckboxWithoutLabel,
+} from "./checkbox-demo"
 
 export const metadata = {
   title: "Checkbox",
   description: "A checkbox with smooth SVG path animation when checked",
 }
 
-export default function AnimatedCheckboxPage() {
+export default function CheckboxPage() {
   return (
     <div className="space-y-8">
       <DocsPageNav title="Checkbox" />
@@ -29,7 +29,7 @@ export default function AnimatedCheckboxPage() {
         >
           Preview
         </h2>
-        <AnimatedCheckboxPreview />
+        <CheckboxPreview />
       </div>
 
       <div className="space-y-4">
@@ -49,10 +49,10 @@ export default function AnimatedCheckboxPage() {
         >
           Usage
         </h2>
-        <CodeBlock>{`import { AnimatedCheckbox } from "@/components/ui/animated-checkbox"
+        <CodeBlock>{`import { Checkbox } from "@/components/ui/checkbox"
 
 export function MyComponent() {
-  return <AnimatedCheckbox label="Accept terms" />
+  return <Checkbox label="Accept terms" />
 }`}</CodeBlock>
       </div>
 
@@ -63,10 +63,10 @@ export function MyComponent() {
         >
           Variants
         </h2>
-        <AnimatedCheckboxVariants />
-        <CodeBlock>{`<AnimatedCheckbox variant="default" label="Default" />
-<AnimatedCheckbox variant="destructive" label="Destructive" />
-<AnimatedCheckbox variant="success" label="Success" />`}</CodeBlock>
+        <CheckboxVariants />
+        <CodeBlock>{`<Checkbox variant="default" label="Default" />
+<Checkbox variant="destructive" label="Destructive" />
+<Checkbox variant="success" label="Success" />`}</CodeBlock>
       </div>
 
       <div className="space-y-4">
@@ -76,10 +76,10 @@ export function MyComponent() {
         >
           Sizes
         </h2>
-        <AnimatedCheckboxSizes />
-        <CodeBlock>{`<AnimatedCheckbox size="sm" label="Small" />
-<AnimatedCheckbox size="default" label="Default" />
-<AnimatedCheckbox size="lg" label="Large" />`}</CodeBlock>
+        <CheckboxSizes />
+        <CodeBlock>{`<Checkbox size="sm" label="Small" />
+<Checkbox size="default" label="Default" />
+<Checkbox size="lg" label="Large" />`}</CodeBlock>
       </div>
 
       <div className="space-y-4">
@@ -89,10 +89,10 @@ export function MyComponent() {
         >
           Without Label
         </h2>
-        <AnimatedCheckboxWithoutLabel />
-        <CodeBlock>{`<AnimatedCheckbox size="sm" />
-<AnimatedCheckbox size="default" />
-<AnimatedCheckbox size="lg" />`}</CodeBlock>
+        <CheckboxWithoutLabel />
+        <CodeBlock>{`<Checkbox size="sm" />
+<Checkbox size="default" />
+<Checkbox size="lg" />`}</CodeBlock>
       </div>
 
       <div className="space-y-4">
@@ -102,8 +102,8 @@ export function MyComponent() {
         >
           Props
         </h2>
-        <div className="border rounded-lg overflow-hidden">
-          <table className="w-full text-sm">
+        <div className="border rounded-lg overflow-x-auto">
+          <table className="w-full text-sm min-w-[500px]">
             <thead className="bg-muted">
               <tr>
                 <th className="text-left p-3 font-medium">Prop</th>

@@ -1,7 +1,8 @@
 import { CodeBlock } from "@/components/docs/code-block"
+import { DocsBrowserSupport } from "@/components/docs/docs-browser-support"
 import { DocsPageNav } from "@/components/docs/docs-page-nav"
 import { InstallCommand } from "@/components/docs/install-command"
-import { DocsBrowserSupport } from "@/components/docs/docs-browser-support"
+import { ScrollProgress } from "@/registry/new-york/ui/scroll-progress"
 
 export const metadata = {
   title: "Scroll Progress",
@@ -10,26 +11,33 @@ export const metadata = {
 
 export default function ScrollProgressPage() {
   return (
-    <div className="space-y-8">
-      {/* 1. Navigation */}
-      <DocsPageNav
-        title="Scroll Progress"
-        prevHref="/docs/effects/border-beam"
-        nextHref="/docs/effects/parallax-cards"
-      />
+    <>
+      {/* Live demo - scroll progress bar */}
+      <ScrollProgress />
+
+      <div className="space-y-8">
+        {/* 1. Navigation */}
+        <DocsPageNav title="Scroll Progress" />
 
       {/* 2. Description */}
       <p className="text-muted-foreground">
-        Page scroll progress bar using CSS scroll-driven animations.
-        No JavaScript calculations needed — the browser handles everything.
+        Page scroll progress bar using CSS scroll-driven animations. No
+        JavaScript calculations needed — the browser handles everything.
       </p>
 
       {/* 3. Browser Support */}
       <DocsBrowserSupport
-        features={{ featureId: "scroll-driven-animations", browserCheck: "scroll-driven-animations" }}
+        features={{
+          featureId: "scroll-driven-animations",
+          browserCheck: "scroll-driven-animations",
+        }}
       >
-        Uses <code className="bg-muted px-1.5 py-0.5 rounded">animation-timeline: scroll()</code> to
-        drive animation based on scroll position. Falls back gracefully in unsupported browsers.
+        Uses{" "}
+        <code className="bg-muted px-1.5 py-0.5 rounded">
+          animation-timeline: scroll()
+        </code>{" "}
+        to drive animation based on scroll position. Falls back gracefully in
+        unsupported browsers.
       </DocsBrowserSupport>
 
       {/* 4. Preview */}
@@ -40,9 +48,13 @@ export default function ScrollProgressPage() {
         >
           Preview
         </h2>
-        <div className="flex justify-center py-12 bg-muted/30 rounded-lg">
-          <p className="text-muted-foreground">
-            The scroll progress bar appears at the top of the page as you scroll.
+        <div className="flex flex-col items-center gap-3 p-6 bg-muted/30 rounded-lg text-center">
+          <div className="flex items-center gap-2">
+            <span className="text-sm text-muted-foreground">↑</span>
+            <div className="h-1 w-16 bg-primary rounded-full" />
+          </div>
+          <p className="text-sm text-muted-foreground">
+            Scroll this page to see the progress bar at the top.
           </p>
         </div>
       </div>
@@ -66,12 +78,9 @@ export default function ScrollProgressPage() {
         >
           Usage
         </h2>
-        <CodeBlock>{`import { ScrollProgress, ScrollProgressStyles } from "@/components/effects/scroll-progress"
+        <CodeBlock>{`import { ScrollProgress } from "@/components/ui/scroll-progress"
 
-// Add styles once in your layout
-<ScrollProgressStyles />
-
-// Add progress bar
+// Add progress bar to your page/layout
 <ScrollProgress />`}</CodeBlock>
       </div>
 
@@ -87,7 +96,7 @@ export default function ScrollProgressPage() {
         <div className="space-y-8">
           <div>
             <h3 className="text-lg font-medium mb-3">Custom Color</h3>
-            <CodeBlock>{`<ScrollProgress color="hsl(var(--primary))" />`}</CodeBlock>
+            <CodeBlock>{`<ScrollProgress color="#e11d48" />`}</CodeBlock>
           </div>
 
           <div>
@@ -113,13 +122,14 @@ export default function ScrollProgressPage() {
         <p className="text-muted-foreground mb-4">
           The component uses CSS scroll-driven animations specification:
         </p>
-        <CodeBlock>{`.scroll-progress {
-  animation: progress linear;
-  animation-timeline: scroll();
+        <CodeBlock>{`.scroll-progress-bar {
+  animation: scroll-progress linear;
+  animation-timeline: scroll(root);
   transform: scaleX(0);
+  transform-origin: left;
 }
 
-@keyframes progress {
+@keyframes scroll-progress {
   to { transform: scaleX(1); }
 }`}</CodeBlock>
       </div>
@@ -157,7 +167,9 @@ export default function ScrollProgressPage() {
               </tr>
               <tr className="border-t">
                 <td className="p-3 font-mono text-xs">position</td>
-                <td className="p-3 font-mono text-xs">&quot;top&quot; | &quot;bottom&quot;</td>
+                <td className="p-3 font-mono text-xs">
+                  &quot;top&quot; | &quot;bottom&quot;
+                </td>
                 <td className="p-3 font-mono text-xs">&quot;top&quot;</td>
                 <td className="p-3">Position on screen</td>
               </tr>
@@ -203,6 +215,7 @@ export default function ScrollProgressPage() {
           </li>
         </ul>
       </div>
-    </div>
+      </div>
+    </>
   )
 }

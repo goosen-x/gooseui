@@ -12,7 +12,7 @@ export const metadata = {
 export default function AnimatedTimerPage() {
   return (
     <div className="space-y-8">
-      <DocsPageNav title="Animated Timer" prevHref="/docs/components/input" />
+      <DocsPageNav title="Animated Timer" />
       <p className="text-muted-foreground">
         Beautiful animated clock with smoothly sliding digits and gradient
         border
@@ -63,16 +63,16 @@ export default function Page() {
         </h2>
 
         <div className="space-y-6">
-          <div>
-            <h3 className="text-lg font-medium mb-3">Without seconds</h3>
+          <div className="space-y-3">
+            <h3 className="text-lg font-medium">Without seconds</h3>
             <div className="flex justify-center py-8 bg-muted/30 rounded-lg">
               <AnimatedTimer showSeconds={false} />
             </div>
             <CodeBlock>{`<AnimatedTimer showSeconds={false} />`}</CodeBlock>
           </div>
 
-          <div>
-            <h3 className="text-lg font-medium mb-3">12-hour format</h3>
+          <div className="space-y-3">
+            <h3 className="text-lg font-medium">12-hour format</h3>
             <div className="flex justify-center py-8 bg-muted/30 rounded-lg">
               <AnimatedTimer use24Hour={false} />
             </div>
@@ -88,8 +88,8 @@ export default function Page() {
         >
           Props
         </h2>
-        <div className="border rounded-lg overflow-hidden">
-          <table className="w-full text-sm">
+        <div className="border rounded-lg overflow-x-auto">
+          <table className="w-full text-sm min-w-[500px]">
             <thead className="bg-muted">
               <tr>
                 <th className="text-left p-3 font-medium">Prop</th>

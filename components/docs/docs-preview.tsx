@@ -1,4 +1,4 @@
-import * as React from "react"
+import type * as React from "react"
 
 interface DocsPreviewProps {
   /** Optional description shown before preview */
@@ -29,7 +29,7 @@ export function DocsPreview({ description, children }: DocsPreviewProps) {
       {description && (
         <p className="text-sm text-muted-foreground">{description}</p>
       )}
-      <div className="flex justify-center py-12 bg-muted/30 rounded-lg">
+      <div className="flex justify-center p-4 bg-muted/30 rounded-lg">
         {children}
       </div>
     </div>

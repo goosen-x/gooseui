@@ -1,22 +1,19 @@
 import { CodeBlock } from "@/components/docs/code-block"
+import { DocsBrowserSupport } from "@/components/docs/docs-browser-support"
 import { DocsPageNav } from "@/components/docs/docs-page-nav"
 import { InstallCommand } from "@/components/docs/install-command"
-import { DocsBrowserSupport } from "@/components/docs/docs-browser-support"
 
 export const metadata = {
   title: "Parallax Cards",
-  description: "Cards with parallax effect on scroll using CSS scroll-driven animations",
+  description:
+    "Cards with parallax effect on scroll using CSS scroll-driven animations",
 }
 
 export default function ParallaxCardsPage() {
   return (
     <div className="space-y-8">
       {/* 1. Navigation */}
-      <DocsPageNav
-        title="Parallax Cards"
-        prevHref="/docs/effects/scroll-progress"
-        nextHref="/docs/effects/anchor-tooltip"
-      />
+      <DocsPageNav title="Parallax Cards" />
 
       {/* 2. Description */}
       <p className="text-muted-foreground">
@@ -25,10 +22,16 @@ export default function ParallaxCardsPage() {
 
       {/* 3. Browser Support */}
       <DocsBrowserSupport
-        features={{ featureId: "scroll-driven-animations", browserCheck: "scroll-driven-animations" }}
+        features={{
+          featureId: "scroll-driven-animations",
+          browserCheck: "scroll-driven-animations",
+        }}
       >
-        Uses <code className="bg-muted px-1.5 py-0.5 rounded">animation-timeline: view()</code> to
-        trigger animation based on element&apos;s position in the viewport.
+        Uses{" "}
+        <code className="bg-muted px-1.5 py-0.5 rounded">
+          animation-timeline: view()
+        </code>{" "}
+        to trigger animation based on element&apos;s position in the viewport.
       </DocsBrowserSupport>
 
       {/* 4. Preview */}

@@ -21,14 +21,13 @@ export const metadata = {
 export default function CarouselPage() {
   return (
     <div className="space-y-8">
-      <DocsPageNav
-        title="Carousel"
-        prevHref="/docs/components/theme-customizer"
-      />
+      <DocsPageNav title="Carousel" />
       <p className="text-muted-foreground">
         A zero-dependency carousel with drag-to-scroll, auto-play, and
         accessible navigation built on CSS scroll-snap.
       </p>
+
+      <ComponentBaseline slug="carousel" />
 
       <div className="space-y-4">
         <h2
@@ -193,8 +192,8 @@ export default function Example() {
         </h2>
 
         <h3 className="text-lg font-medium mt-6">Carousel</h3>
-        <div className="border rounded-lg overflow-hidden">
-          <table className="w-full text-sm">
+        <div className="border rounded-lg overflow-x-auto">
+          <table className="w-full text-sm min-w-[500px]">
             <thead className="bg-muted">
               <tr>
                 <th className="text-left p-3 font-medium">Prop</th>
@@ -243,8 +242,8 @@ export default function Example() {
         </div>
 
         <h3 className="text-lg font-medium mt-6">CarouselItem</h3>
-        <div className="border rounded-lg overflow-hidden">
-          <table className="w-full text-sm">
+        <div className="border rounded-lg overflow-x-auto">
+          <table className="w-full text-sm min-w-[500px]">
             <thead className="bg-muted">
               <tr>
                 <th className="text-left p-3 font-medium">Prop</th>
@@ -268,8 +267,8 @@ export default function Example() {
         </div>
 
         <h3 className="text-lg font-medium mt-6">CarouselDots</h3>
-        <div className="border rounded-lg overflow-hidden">
-          <table className="w-full text-sm">
+        <div className="border rounded-lg overflow-x-auto">
+          <table className="w-full text-sm min-w-[500px]">
             <thead className="bg-muted">
               <tr>
                 <th className="text-left p-3 font-medium">Prop</th>
@@ -328,8 +327,6 @@ function CustomControls() {
   )
 }`}</CodeBlock>
       </div>
-
-      <ComponentBaseline slug="carousel" />
 
       <div className="space-y-4">
         <h2

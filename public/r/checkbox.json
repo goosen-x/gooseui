@@ -8,7 +8,7 @@
   "devDependencies": ["class-variance-authority"],
   "files": [
     {
-      "path": "registry/new-york/ui/animated-checkbox.tsx",
+      "path": "registry/new-york/ui/checkbox.tsx",
       "type": "registry:ui"
     }
   ]

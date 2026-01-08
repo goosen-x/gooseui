@@ -4,6 +4,7 @@ import {
   ComponentIcon,
   CornerDownLeftIcon,
   FileTextIcon,
+  FlaskConicalIcon,
   SearchIcon,
   SparklesIcon,
 } from "lucide-react"
@@ -78,7 +79,7 @@ export function SiteSearch() {
   const isMac = useIsMac()
   const [open, setOpen] = useState(false)
   const [selectedType, setSelectedType] = useState<
-    "page" | "component" | "effect" | null
+    "page" | "component" | "effect" | "experimental" | null
   >(null)
   const [copyPayload, setCopyPayload] = useState("")
 
@@ -251,6 +252,38 @@ export function SiteSearch() {
                 )
               })}
             </CommandGroup>
+
+            {/* Experimental */}
+            {searchData.experimental.length > 0 && (
+              <>
+                <CommandSeparator />
+                <CommandGroup
+                  heading="Experimental"
+                  className="!p-0 [&_[cmdk-group-heading]]:!p-3 [&_[cmdk-group-heading]]:!pb-1"
+                >
+                  {searchData.experimental.map((item) => {
+                    const itemName = item.href.split("/").pop()
+                    return (
+                      <CommandMenuItem
+                        key={item.href}
+                        value={item.title}
+                        keywords={["experimental", itemName || ""]}
+                        onHighlight={() => {
+                          setSelectedType("experimental")
+                          setCopyPayload(
+                            `npx shadcn@latest add https://gooseui.pro/r/${itemName}.json`,
+                          )
+                        }}
+                        onSelect={() => runCommand(() => router.push(item.href))}
+                      >
+                        <FlaskConicalIcon className="mr-2 size-4 text-muted-foreground" />
+                        {item.title}
+                      </CommandMenuItem>
+                    )
+                  })}
+                </CommandGroup>
+              </>
+            )}
           </CommandList>
         </Command>
 
@@ -272,6 +305,7 @@ export function SiteSearch() {
             {selectedType === "page" && "Go to Page"}
             {selectedType === "component" && "Go to Component"}
             {selectedType === "effect" && "Go to Effect"}
+            {selectedType === "experimental" && "Go to Experimental"}
             {!selectedType && "Select"}
           </div>
 

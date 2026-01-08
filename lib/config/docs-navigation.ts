@@ -43,9 +43,26 @@ export interface NavSection {
 }
 
 /**
- * Main documentation navigation structure
+ * Sort navigation items:
+ * 1. Regular items (alphabetically)
+ * 2. Draft items (alphabetically)
+ * 3. Coming soon items (alphabetically)
  */
-export const docsNavigation: NavSection[] = [
+function sortNavItems(items: NavItem[]): NavItem[] {
+  return [...items].sort((a, b) => {
+    // Coming soon always last
+    if (a.isComingSoon !== b.isComingSoon) return a.isComingSoon ? 1 : -1
+    // Drafts after regular
+    if (a.isDraft !== b.isDraft) return a.isDraft ? 1 : -1
+    // Alphabetically within groups
+    return a.title.localeCompare(b.title)
+  })
+}
+
+/**
+ * Raw navigation data (unsorted)
+ */
+const rawNavigation: NavSection[] = [
   {
     title: "Getting Started",
     slug: "getting-started",
@@ -78,6 +95,16 @@ export const docsNavigation: NavSection[] = [
     slug: "components",
     href: "/docs/components",
     items: [
+      // A
+      {
+        slug: "adaptive-grid",
+        title: "Adaptive Grid",
+        href: "/docs/components/adaptive-grid",
+        description: "Grid that adapts with Container Queries + :has()",
+        category: "Layout",
+        isNew: true,
+        keywords: ["grid", "container", "queries", "adaptive"],
+      },
       {
         slug: "animated-timer",
         title: "Animated Timer",
@@ -86,6 +113,7 @@ export const docsNavigation: NavSection[] = [
         category: "Display",
         keywords: ["countdown", "timer", "flip", "animation"],
       },
+      // B
       {
         slug: "baseline-status",
         title: "Baseline Status",
@@ -103,6 +131,7 @@ export const docsNavigation: NavSection[] = [
         category: "Inputs",
         keywords: ["click", "action", "submit"],
       },
+      // C
       {
         slug: "card",
         title: "Card",
@@ -129,6 +158,7 @@ export const docsNavigation: NavSection[] = [
         isNew: true,
         keywords: ["check", "toggle", "form", "input"],
       },
+      // D
       {
         slug: "digital-clock",
         title: "Digital Clock",
@@ -138,6 +168,7 @@ export const docsNavigation: NavSection[] = [
         isNew: true,
         keywords: ["time", "clock", "led", "display"],
       },
+      // I
       {
         slug: "input",
         title: "Input",
@@ -146,16 +177,17 @@ export const docsNavigation: NavSection[] = [
         category: "Inputs",
         keywords: ["text", "field", "form", "input"],
       },
+      // M
       {
         slug: "morphing-dialog",
         title: "Morphing Dialog",
         href: "/docs/components/morphing-dialog",
         description: "Dialog with View Transitions API animation",
         category: "Overlay",
-        isDraft: true,
         isNew: true,
         keywords: ["modal", "popup", "view transitions", "animation"],
       },
+      // P
       {
         slug: "promo-banner",
         title: "Promo Banner",
@@ -165,6 +197,18 @@ export const docsNavigation: NavSection[] = [
         isNew: true,
         keywords: ["marketing", "popup", "sale", "campaign", "promotion"],
       },
+      // S
+      {
+        slug: "scroll-progress",
+        title: "Scroll Progress",
+        href: "/docs/components/scroll-progress",
+        description:
+          "Page scroll progress bar using CSS scroll-driven animations",
+        category: "Display",
+        isNew: true,
+        keywords: ["scroll", "progress", "animation", "timeline"],
+      },
+      // T
       {
         slug: "theme-customizer",
         title: "Theme Customizer",
@@ -190,7 +234,44 @@ export const docsNavigation: NavSection[] = [
         category: "Display",
         keywords: ["text", "heading", "paragraph", "font"],
       },
-      // Coming Soon components
+      // Draft components (alphabetically sorted)
+      {
+        slug: "morphing-header",
+        title: "Morphing Header",
+        href: "/docs/components/morphing-header",
+        description: "Header that morphs on scroll with View Transitions",
+        category: "Navigation",
+        isDraft: true,
+        keywords: ["header", "morph", "view transitions", "scroll"],
+      },
+      {
+        slug: "scroll-container",
+        title: "Scroll Container",
+        href: "/docs/components/scroll-container",
+        description: "Container with custom styled scrollbar",
+        category: "Layout",
+        isDraft: true,
+        keywords: ["scroll", "scrollbar", "container", "custom"],
+      },
+      {
+        slug: "smart-form",
+        title: "Smart Form",
+        href: "/docs/components/smart-form",
+        description: "CSS-only form validation with :has() selector",
+        category: "Inputs",
+        isDraft: true,
+        keywords: ["form", "validation", "has", "css-only"],
+      },
+      {
+        slug: "stacking-cards",
+        title: "Stacking Cards",
+        href: "/docs/components/stacking-cards",
+        description: "Cards that stack on scroll",
+        category: "Display",
+        isDraft: true,
+        keywords: ["cards", "stack", "sticky", "scroll"],
+      },
+      // Coming Soon components (alphabetically sorted)
       {
         slug: "radio",
         title: "Radio",
@@ -251,6 +332,40 @@ export const docsNavigation: NavSection[] = [
         isNew: true,
         keywords: ["border", "beam", "glow", "animation"],
       },
+      {
+        slug: "parallax-cards",
+        title: "Parallax Cards",
+        href: "/docs/effects/parallax-cards",
+        description: "Cards with parallax effect on scroll",
+        category: "Effects",
+        isDraft: true,
+        keywords: ["parallax", "scroll", "cards", "animation"],
+      },
+      {
+        slug: "reveal-on-scroll",
+        title: "Reveal on Scroll",
+        href: "/docs/effects/reveal-on-scroll",
+        description: "Elements reveal as they enter viewport",
+        category: "Effects",
+        isDraft: true,
+        keywords: ["reveal", "scroll", "animation", "view"],
+      },
+    ],
+  },
+  {
+    title: "Experimental",
+    slug: "experimental",
+    href: "/docs/experimental",
+    items: [
+      {
+        slug: "anchor-tooltip",
+        title: "Anchor Tooltip",
+        href: "/docs/experimental/anchor-tooltip",
+        description: "CSS-only tooltips with Anchor Positioning API",
+        category: "Experimental",
+        isNew: true,
+        keywords: ["tooltip", "anchor", "popover", "positioning", "experimental"],
+      },
     ],
   },
   {
@@ -269,6 +384,14 @@ export const docsNavigation: NavSection[] = [
     ],
   },
 ]
+
+/**
+ * Main documentation navigation structure (sorted)
+ */
+export const docsNavigation: NavSection[] = rawNavigation.map((section) => ({
+  ...section,
+  items: sortNavItems(section.items),
+}))
 
 /**
  * Get all navigation items flattened
@@ -323,16 +446,19 @@ export function getSearchableItems(): {
   pages: NavItem[]
   components: NavItem[]
   effects: NavItem[]
+  experimental: NavItem[]
 } {
   const filtered = filterDraftItems(docsNavigation)
   const gettingStarted = filtered.find((s) => s.slug === "getting-started")
   const components = filtered.find((s) => s.slug === "components")
   const effects = filtered.find((s) => s.slug === "effects")
+  const experimental = filtered.find((s) => s.slug === "experimental")
 
   return {
     pages: gettingStarted?.items || [],
     components: components?.items || [],
     effects: effects?.items || [],
+    experimental: experimental?.items || [],
   }
 }
 
@@ -371,5 +497,34 @@ export function getComponentsForDisplay(): {
   return {
     available: getAvailableComponents(),
     comingSoon: getComingSoonComponents(),
+  }
+}
+
+/**
+ * Get prev/next navigation items for a given path
+ * Returns undefined for prev if at the start, undefined for next if at the end
+ */
+export function getPrevNextNavigation(pathname: string): {
+  prev: NavItem | undefined
+  next: NavItem | undefined
+} {
+  // Get all navigable items (flatten sections, exclude coming soon)
+  const allItems = filterDraftItems(docsNavigation)
+    .flatMap((section) => section.items)
+    .filter((item) => !item.isComingSoon)
+
+  // Find current index
+  const currentIndex = allItems.findIndex((item) => item.href === pathname)
+
+  if (currentIndex === -1) {
+    return { prev: undefined, next: undefined }
+  }
+
+  return {
+    prev: currentIndex > 0 ? allItems[currentIndex - 1] : undefined,
+    next:
+      currentIndex < allItems.length - 1
+        ? allItems[currentIndex + 1]
+        : undefined,
   }
 }

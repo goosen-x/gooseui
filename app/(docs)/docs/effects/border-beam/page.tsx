@@ -1,3 +1,5 @@
+import { CodeBlock } from "@/components/docs/code-block"
+import { DocsPageNav } from "@/components/docs/docs-page-nav"
 import { InstallCommand } from "@/components/docs/install-command"
 import { BorderBeam } from "@/registry/new-york/effects/border-beam"
 import {
@@ -15,15 +17,11 @@ export const metadata = {
 
 export default function BorderBeamPage() {
   return (
-    <div className="space-y-6">
-      <div>
-        <h1 className="scroll-m-20 text-4xl font-bold tracking-tight">
-          Border Beam
-        </h1>
-        <p className="text-lg text-muted-foreground mt-2">
-          An animated beam of light traveling along the container border
-        </p>
-      </div>
+    <div className="space-y-8">
+      <DocsPageNav title="Border Beam" />
+      <p className="text-muted-foreground">
+        An animated beam of light traveling along the container border
+      </p>
 
       <div className="space-y-4">
         <h2
@@ -32,8 +30,8 @@ export default function BorderBeamPage() {
         >
           Preview
         </h2>
-        <div className="flex items-center justify-center rounded-lg border p-10 bg-background">
-          <Card className="relative w-[350px] overflow-hidden">
+        <div className="flex items-center justify-center rounded-lg border p-10 bg-muted/30">
+          <Card className="relative w-[21.875rem] overflow-hidden">
             <CardHeader>
               <CardTitle>Border Beam</CardTitle>
               <CardDescription>Animated border effect</CardDescription>
@@ -66,8 +64,7 @@ export default function BorderBeamPage() {
         >
           Usage
         </h2>
-        <pre className="rounded-lg border bg-muted px-4 py-3 font-mono text-sm overflow-x-auto">
-          {`import { BorderBeam } from "@/components/ui/border-beam"
+        <CodeBlock>{`import { BorderBeam } from "@/components/effects/border-beam"
 
 export function MyCard() {
   return (
@@ -76,11 +73,15 @@ export function MyCard() {
       <BorderBeam />
     </div>
   )
-}`}
-        </pre>
+}`}</CodeBlock>
         <p className="text-sm text-muted-foreground">
-          <strong>Important:</strong> Container must have relative and
-          overflow-hidden classes
+          <strong>Important:</strong> Container must have{" "}
+          <code className="text-xs bg-muted px-1 py-0.5 rounded">relative</code>{" "}
+          and{" "}
+          <code className="text-xs bg-muted px-1 py-0.5 rounded">
+            overflow-hidden
+          </code>{" "}
+          classes
         </p>
       </div>
 
@@ -92,52 +93,50 @@ export function MyCard() {
           Examples
         </h2>
 
-        <h3 className="scroll-m-20 text-xl font-semibold tracking-tight mt-6">
-          Different colors
-        </h3>
-        <div className="grid gap-4 md:grid-cols-2">
-          <div className="relative overflow-hidden rounded-lg border p-6 text-center">
-            <p className="text-sm font-medium">Orange → Purple</p>
-            <BorderBeam colorFrom="#ffaa40" colorTo="#9c40ff" />
+        <div className="space-y-8">
+          <div className="space-y-3">
+            <h3 className="text-lg font-medium">Different colors</h3>
+            <div className="grid gap-4 md:grid-cols-2">
+              <div className="relative overflow-hidden rounded-lg border p-6 text-center">
+                <p className="text-sm font-medium">Orange → Purple</p>
+                <BorderBeam colorFrom="#ffaa40" colorTo="#9c40ff" />
+              </div>
+              <div className="relative overflow-hidden rounded-lg border p-6 text-center">
+                <p className="text-sm font-medium">Cyan → Blue</p>
+                <BorderBeam colorFrom="#00ffff" colorTo="#0066ff" />
+              </div>
+              <div className="relative overflow-hidden rounded-lg border p-6 text-center">
+                <p className="text-sm font-medium">Green → Yellow</p>
+                <BorderBeam colorFrom="#00ff88" colorTo="#ffff00" />
+              </div>
+              <div className="relative overflow-hidden rounded-lg border p-6 text-center">
+                <p className="text-sm font-medium">Pink → Red</p>
+                <BorderBeam colorFrom="#ff69b4" colorTo="#ff0000" />
+              </div>
+            </div>
+            <CodeBlock>{`<BorderBeam colorFrom="#00ffff" colorTo="#0066ff" />`}</CodeBlock>
           </div>
-          <div className="relative overflow-hidden rounded-lg border p-6 text-center">
-            <p className="text-sm font-medium">Cyan → Blue</p>
-            <BorderBeam colorFrom="#00ffff" colorTo="#0066ff" />
-          </div>
-          <div className="relative overflow-hidden rounded-lg border p-6 text-center">
-            <p className="text-sm font-medium">Green → Yellow</p>
-            <BorderBeam colorFrom="#00ff88" colorTo="#ffff00" />
-          </div>
-          <div className="relative overflow-hidden rounded-lg border p-6 text-center">
-            <p className="text-sm font-medium">Pink → Red</p>
-            <BorderBeam colorFrom="#ff69b4" colorTo="#ff0000" />
-          </div>
-        </div>
-        <pre className="rounded-lg border bg-muted px-4 py-3 font-mono text-sm overflow-x-auto">
-          {`<BorderBeam colorFrom="#00ffff" colorTo="#0066ff" />`}
-        </pre>
 
-        <h3 className="scroll-m-20 text-xl font-semibold tracking-tight mt-6">
-          Different speeds
-        </h3>
-        <div className="grid gap-4 md:grid-cols-3">
-          <div className="relative overflow-hidden rounded-lg border p-6 text-center">
-            <p className="text-sm font-medium">Fast (6s)</p>
-            <BorderBeam duration={6} />
-          </div>
-          <div className="relative overflow-hidden rounded-lg border p-6 text-center">
-            <p className="text-sm font-medium">Normal (12s)</p>
-            <BorderBeam duration={12} />
-          </div>
-          <div className="relative overflow-hidden rounded-lg border p-6 text-center">
-            <p className="text-sm font-medium">Slow (20s)</p>
-            <BorderBeam duration={20} />
+          <div className="space-y-3">
+            <h3 className="text-lg font-medium">Different speeds</h3>
+            <div className="grid gap-4 md:grid-cols-3">
+              <div className="relative overflow-hidden rounded-lg border p-6 text-center">
+                <p className="text-sm font-medium">Fast (6s)</p>
+                <BorderBeam duration={6} />
+              </div>
+              <div className="relative overflow-hidden rounded-lg border p-6 text-center">
+                <p className="text-sm font-medium">Normal (12s)</p>
+                <BorderBeam duration={12} />
+              </div>
+              <div className="relative overflow-hidden rounded-lg border p-6 text-center">
+                <p className="text-sm font-medium">Slow (20s)</p>
+                <BorderBeam duration={20} />
+              </div>
+            </div>
+            <CodeBlock>{`<BorderBeam duration={6} />  {/* fast */}
+<BorderBeam duration={20} /> {/* slow */}`}</CodeBlock>
           </div>
         </div>
-        <pre className="rounded-lg border bg-muted px-4 py-3 font-mono text-sm overflow-x-auto">
-          {`<BorderBeam duration={6} />  /* fast */
-<BorderBeam duration={20} /> /* slow */`}
-        </pre>
       </div>
 
       <div className="space-y-4">
@@ -147,57 +146,52 @@ export function MyCard() {
         >
           Props
         </h2>
-        <div className="overflow-x-auto">
-          <table className="w-full text-sm">
-            <thead>
-              <tr className="border-b">
-                <th className="text-left py-3 px-4 font-semibold">Prop</th>
-                <th className="text-left py-3 px-4 font-semibold">Type</th>
-                <th className="text-left py-3 px-4 font-semibold">Default</th>
+        <div className="border rounded-lg overflow-x-auto">
+          <table className="w-full text-sm min-w-[31.25rem]">
+            <thead className="bg-muted">
+              <tr>
+                <th className="text-left p-3 font-medium">Prop</th>
+                <th className="text-left p-3 font-medium">Type</th>
+                <th className="text-left p-3 font-medium">Default</th>
+                <th className="text-left p-3 font-medium">Description</th>
               </tr>
             </thead>
             <tbody>
-              <tr className="border-b">
-                <td className="py-3 px-4 font-mono">size</td>
-                <td className="py-3 px-4 font-mono text-muted-foreground">
-                  number
-                </td>
-                <td className="py-3 px-4 font-mono">200</td>
+              <tr className="border-t">
+                <td className="p-3 font-mono text-xs">size</td>
+                <td className="p-3 font-mono text-xs">number</td>
+                <td className="p-3 font-mono text-xs">200</td>
+                <td className="p-3">Beam size in pixels</td>
               </tr>
-              <tr className="border-b">
-                <td className="py-3 px-4 font-mono">duration</td>
-                <td className="py-3 px-4 font-mono text-muted-foreground">
-                  number
-                </td>
-                <td className="py-3 px-4 font-mono">12</td>
+              <tr className="border-t">
+                <td className="p-3 font-mono text-xs">duration</td>
+                <td className="p-3 font-mono text-xs">number</td>
+                <td className="p-3 font-mono text-xs">12</td>
+                <td className="p-3">Animation duration in seconds</td>
               </tr>
-              <tr className="border-b">
-                <td className="py-3 px-4 font-mono">delay</td>
-                <td className="py-3 px-4 font-mono text-muted-foreground">
-                  number
-                </td>
-                <td className="py-3 px-4 font-mono">0</td>
+              <tr className="border-t">
+                <td className="p-3 font-mono text-xs">delay</td>
+                <td className="p-3 font-mono text-xs">number</td>
+                <td className="p-3 font-mono text-xs">0</td>
+                <td className="p-3">Animation delay in seconds</td>
               </tr>
-              <tr className="border-b">
-                <td className="py-3 px-4 font-mono">colorFrom</td>
-                <td className="py-3 px-4 font-mono text-muted-foreground">
-                  string
-                </td>
-                <td className="py-3 px-4 font-mono">#ffaa40</td>
+              <tr className="border-t">
+                <td className="p-3 font-mono text-xs">colorFrom</td>
+                <td className="p-3 font-mono text-xs">string</td>
+                <td className="p-3 font-mono text-xs">#ffaa40</td>
+                <td className="p-3">Gradient start color</td>
               </tr>
-              <tr className="border-b">
-                <td className="py-3 px-4 font-mono">colorTo</td>
-                <td className="py-3 px-4 font-mono text-muted-foreground">
-                  string
-                </td>
-                <td className="py-3 px-4 font-mono">#9c40ff</td>
+              <tr className="border-t">
+                <td className="p-3 font-mono text-xs">colorTo</td>
+                <td className="p-3 font-mono text-xs">string</td>
+                <td className="p-3 font-mono text-xs">#9c40ff</td>
+                <td className="p-3">Gradient end color</td>
               </tr>
-              <tr className="border-b">
-                <td className="py-3 px-4 font-mono">borderWidth</td>
-                <td className="py-3 px-4 font-mono text-muted-foreground">
-                  number
-                </td>
-                <td className="py-3 px-4 font-mono">1.5</td>
+              <tr className="border-t">
+                <td className="p-3 font-mono text-xs">borderWidth</td>
+                <td className="p-3 font-mono text-xs">number</td>
+                <td className="p-3 font-mono text-xs">1.5</td>
+                <td className="p-3">Border width in pixels</td>
               </tr>
             </tbody>
           </table>

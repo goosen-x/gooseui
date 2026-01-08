@@ -23,11 +23,12 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { Separator } from "@/components/ui/separator"
+import { getPrevNextNavigation } from "@/lib/config/docs-navigation"
 import { getRegistryUrl } from "@/lib/config/registry"
 import { cn } from "@/lib/utils"
 
 const themeColors = [
-  { name: "zinc", class: "bg-zinc-900 dark:bg-zinc-50" },
+  { name: "zinc", class: "bg-zinc-500" },
   { name: "red", class: "bg-red-500" },
   { name: "orange", class: "bg-orange-500" },
   { name: "green", class: "bg-green-500" },
@@ -153,7 +154,9 @@ async function copyToClipboard(text: string): Promise<boolean> {
 
 interface DocsPageNavProps {
   title?: string
+  /** Manual override for previous link (auto-derived if not provided) */
   prevHref?: string
+  /** Manual override for next link (auto-derived if not provided) */
   nextHref?: string
   // Component info for actions
   componentSlug?: string // e.g., "button", "card"
@@ -164,8 +167,8 @@ interface DocsPageNavProps {
 
 export function DocsPageNav({
   title,
-  prevHref,
-  nextHref,
+  prevHref: prevHrefProp,
+  nextHref: nextHrefProp,
   componentSlug,
   registryUrl: registryUrlProp,
   sourceUrl,
@@ -178,6 +181,14 @@ export function DocsPageNav({
   const [copied, setCopied] = React.useState(false)
   const [copiedAction, setCopiedAction] = React.useState<string | null>(null)
   const [activeColor, setActiveColor] = React.useState("zinc")
+
+  // Auto-derive prev/next from navigation config
+  const { prev, next } = React.useMemo(
+    () => getPrevNextNavigation(pathname),
+    [pathname],
+  )
+  const prevHref = prevHrefProp ?? prev?.href
+  const nextHref = nextHrefProp ?? next?.href
 
   React.useEffect(() => {
     setMounted(true)

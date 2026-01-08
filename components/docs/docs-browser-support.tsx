@@ -1,5 +1,8 @@
-import * as React from "react"
-import { BaselineStatus, type BrowserFeature } from "@/registry/new-york/ui/baseline-status"
+import type * as React from "react"
+import {
+  BaselineStatus,
+  type BrowserFeature,
+} from "@/registry/new-york/ui/baseline-status"
 
 interface FeatureConfig {
   featureId: string

@@ -16,10 +16,7 @@ export const metadata = {
 export default function MorphingDialogPage() {
   return (
     <div className="space-y-8">
-      <DocsPageNav
-        title="Morphing Dialog"
-        prevHref="/docs/components/promo-banner"
-      />
+      <DocsPageNav title="Morphing Dialog" />
       <p className="text-muted-foreground">
         A dialog component with smooth morphing animations powered by the native{" "}
         <strong>View Transitions API</strong>. Supports click-outside and Escape
@@ -141,8 +138,8 @@ export default function Example() {
         >
           Components
         </h2>
-        <div className="border rounded-lg overflow-hidden">
-          <table className="w-full text-sm">
+        <div className="border rounded-lg overflow-x-auto">
+          <table className="w-full text-sm min-w-[500px]">
             <thead className="bg-muted">
               <tr>
                 <th className="text-left p-3 font-medium">Component</th>

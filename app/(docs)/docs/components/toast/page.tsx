@@ -12,11 +12,7 @@ export const metadata = {
 export default function ToastPage() {
   return (
     <div className="space-y-8">
-      <DocsPageNav
-        title="Toast"
-        prevHref="/docs/components/animated-timer"
-        nextHref="/docs/components/typography"
-      />
+      <DocsPageNav title="Toast" />
       <p className="text-muted-foreground">
         Beautiful toast notifications with progress bar and colored variants
       </p>
@@ -141,8 +137,8 @@ customToast.info("Info", {
         >
           Variants
         </h2>
-        <div className="border rounded-lg overflow-hidden">
-          <table className="w-full text-sm">
+        <div className="border rounded-lg overflow-x-auto">
+          <table className="w-full text-sm min-w-[500px]">
             <thead className="bg-muted">
               <tr>
                 <th className="text-left p-3 font-medium">Variant</th>
@@ -191,8 +187,8 @@ customToast.info("Info", {
         >
           Props
         </h2>
-        <div className="border rounded-lg overflow-hidden">
-          <table className="w-full text-sm">
+        <div className="border rounded-lg overflow-x-auto">
+          <table className="w-full text-sm min-w-[500px]">
             <thead className="bg-muted">
               <tr>
                 <th className="text-left p-3 font-medium">Prop</th>

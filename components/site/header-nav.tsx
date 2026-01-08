@@ -18,7 +18,7 @@ export function HeaderNav() {
   const pathname = usePathname()
 
   return (
-    <nav className="hidden md:flex items-center space-x-6 text-sm font-medium">
+    <nav className="hidden lg:flex items-center space-x-6 text-sm font-medium">
       {mainNav.map((item) => (
         <Link
           key={item.href}

@@ -1,35 +1,43 @@
 import { CodeBlock } from "@/components/docs/code-block"
+import { DocsBrowserSupport } from "@/components/docs/docs-browser-support"
 import { DocsPageNav } from "@/components/docs/docs-page-nav"
 import { InstallCommand } from "@/components/docs/install-command"
-import { DocsBrowserSupport } from "@/components/docs/docs-browser-support"
+import { MorphingHeaderDemo } from "./demo"
 
 export const metadata = {
   title: "Morphing Header",
-  description: "Header that morphs between full and compact states on scroll using View Transitions API",
+  description:
+    "Header that morphs between full and compact states on scroll using View Transitions API",
 }
 
 export default function MorphingHeaderPage() {
   return (
     <div className="space-y-8">
       {/* 1. Navigation */}
-      <DocsPageNav
-        title="Morphing Header"
-        prevHref="/docs/effects/anchor-tooltip"
-        nextHref="/docs/effects/smart-form"
-      />
+      <DocsPageNav title="Morphing Header" />
 
       {/* 2. Description */}
       <p className="text-muted-foreground">
-        Header that morphs between full and compact states on scroll
-        using View Transitions API.
+        Header that morphs between full and compact states on scroll using View
+        Transitions API.
       </p>
 
       {/* 3. Browser Support */}
       <DocsBrowserSupport
-        features={{ featureId: "view-transitions", browserCheck: "view-transitions" }}
+        features={{
+          featureId: "view-transitions",
+          browserCheck: "view-transitions",
+        }}
       >
-        Uses <code className="bg-muted px-1.5 py-0.5 rounded">document.startViewTransition()</code> for
-        smooth state transitions with <code className="bg-muted px-1.5 py-0.5 rounded">view-transition-name</code>.
+        Uses{" "}
+        <code className="bg-muted px-1.5 py-0.5 rounded">
+          document.startViewTransition()
+        </code>{" "}
+        for smooth state transitions with{" "}
+        <code className="bg-muted px-1.5 py-0.5 rounded">
+          view-transition-name
+        </code>
+        .
       </DocsBrowserSupport>
 
       {/* 4. Preview */}
@@ -40,11 +48,10 @@ export default function MorphingHeaderPage() {
         >
           Preview
         </h2>
-        <div className="flex justify-center py-12 bg-muted/30 rounded-lg">
-          <p className="text-muted-foreground">
-            Scroll down to see the header morph into a compact state.
-          </p>
-        </div>
+        <MorphingHeaderDemo />
+        <p className="text-sm text-muted-foreground">
+          Scroll inside the container to see the header morph. Uses View Transitions API for smooth animation.
+        </p>
       </div>
 
       {/* 5. Installation */}
@@ -130,7 +137,9 @@ export default function MorphingHeaderPage() {
               </tr>
               <tr className="border-t">
                 <td className="p-3 font-mono text-xs">children</td>
-                <td className="p-3 font-mono text-xs">(isCompact: boolean) =&gt; ReactNode</td>
+                <td className="p-3 font-mono text-xs">
+                  (isCompact: boolean) =&gt; ReactNode
+                </td>
                 <td className="p-3 font-mono text-xs">-</td>
                 <td className="p-3">Render function with compact state</td>
               </tr>

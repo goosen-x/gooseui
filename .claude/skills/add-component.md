@@ -59,12 +59,8 @@ export const metadata = {
 export default function ComponentNamePage() {
   return (
     <div className="space-y-8">
-      {/* 1. Navigation */}
-      <DocsPageNav
-        title="Component Name"
-        prevHref="/docs/components/prev-component"
-        nextHref="/docs/components/next-component"
-      />
+      {/* 1. Navigation - prev/next auto-generated from docs-navigation.ts */}
+      <DocsPageNav title="Component Name" />
 
       {/* 2. Description */}
       <p className="text-muted-foreground">
@@ -205,6 +201,22 @@ export default function Page() {
 ---
 
 ## Critical Rules
+
+### NEVER add manual prev/next links
+
+```tsx
+// ✅ CORRECT - auto-navigation from docs-navigation.ts
+<DocsPageNav title="Component Name" />
+
+// ❌ WRONG - NEVER DO THIS!
+<DocsPageNav
+  title="Component Name"
+  prevHref="/docs/components/prev"
+  nextHref="/docs/components/next"
+/>
+```
+
+Navigation is auto-generated based on the order in `lib/config/docs-navigation.ts`.
 
 ### ALWAYS use CodeBlock for code
 

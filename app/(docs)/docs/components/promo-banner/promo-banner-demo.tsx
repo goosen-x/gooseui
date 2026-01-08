@@ -10,7 +10,7 @@ export function PromoBannerDemo() {
     <div className="flex flex-col items-center gap-4">
       <button
         onClick={() => setIsOpen(true)}
-        className="rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90 cursor-pointer"
+        className="rounded-lg bg-violet-600 px-4 py-2 text-sm font-medium text-white hover:bg-violet-700 cursor-pointer"
       >
         Show Promo Banner
       </button>

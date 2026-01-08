@@ -26,7 +26,7 @@ Every component documentation page MUST follow this structure:
 
 | # | Section | ID | Description |
 |---|---------|-----|-------------|
-| 1 | **DocsPageNav** | - | Title and prev/next navigation |
+| 1 | **DocsPageNav** | - | Title only (prev/next auto-generated from `docs-navigation.ts`) |
 | 2 | **Description** | - | Short component description |
 | 3 | **Browser Support** | `browser-support` | BaselineStatus (if uses modern APIs) |
 | 4 | **Preview** | `preview` | Interactive component demo |
@@ -162,14 +162,35 @@ Every component documentation page MUST follow this structure:
 
 - [ ] Create folder: `components/{name}/page.tsx`
 - [ ] Copy from `_TEMPLATE.tsx`
-- [ ] Add DocsPageNav with correct prev/next links
+- [ ] Add `DocsPageNav` with title only (prev/next auto-generated!)
+- [ ] **Add to `lib/config/docs-navigation.ts`** (required for auto-navigation!)
 - [ ] Add Browser Support section (if uses modern APIs)
 - [ ] Create demo component: `{name}-demo.tsx` (if needed)
-- [ ] Add to sidebar: `components/docs-sidebar.tsx`
-- [ ] Update prev/next links in adjacent component pages
 - [ ] All h2 elements have `id` attributes
 - [ ] Props table has 4 columns
 - [ ] Preview uses `bg-muted/30 rounded-lg`
+
+### Navigation (IMPORTANT!)
+
+**Do NOT add manual `prevHref`/`nextHref` props to DocsPageNav!**
+
+Navigation links are automatically generated from `lib/config/docs-navigation.ts`.
+
+```tsx
+// ✅ CORRECT - auto-navigation
+<DocsPageNav title="Component Name" />
+
+// ❌ WRONG - manual links (don't do this!)
+<DocsPageNav
+  title="Component Name"
+  prevHref="/docs/components/prev"
+  nextHref="/docs/components/next"
+/>
+```
+
+When adding a new component:
+1. Add entry to `lib/config/docs-navigation.ts` in the correct section
+2. The order in the navigation config determines prev/next links
 
 ---
 

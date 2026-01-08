@@ -16,7 +16,7 @@ import { useClickOutside } from "@/hooks/use-click-outside"
 import { cn } from "@/lib/utils"
 
 const colors = [
-  { name: "zinc", class: "bg-zinc-900 dark:bg-zinc-50" },
+  { name: "zinc", class: "bg-zinc-500" },
   { name: "red", class: "bg-red-500" },
   { name: "orange", class: "bg-orange-500" },
   { name: "green", class: "bg-green-500" },

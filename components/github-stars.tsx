@@ -54,7 +54,10 @@ export async function GitHubStars({
         {owner}/{repo}
       </span>
       <span className="flex items-center gap-1 text-muted-foreground">
-        <Star className="size-3.5 fill-current" aria-hidden="true" />
+        <Star
+          className="size-3.5 fill-primary text-primary"
+          aria-hidden="true"
+        />
         <span className="text-xs">
           {stars !== null ? formatStars(stars) : "—"}
         </span>

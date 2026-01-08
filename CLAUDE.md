@@ -7,7 +7,7 @@ Custom component library based on shadcn/ui with additional UI components and ef
 **ALWAYS use the skill when adding components:**
 
 ```
-@.claude/skills/gooseui-component-creator/SKILL.md
+@.claude/skills/add-component.md
 ```
 
 ### Mandatory Checklist (DO NOT SKIP!)

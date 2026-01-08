@@ -9,7 +9,6 @@ import {
   TypographyDemo,
   TypographyGradientDemo,
   TypographyHighlightDemo,
-  TypographyInteractiveDemo,
 } from "./typography-demo"
 
 export const metadata = {
@@ -21,11 +20,7 @@ export const metadata = {
 export default function TypographyPage() {
   return (
     <div className="space-y-8">
-      <DocsPageNav
-        title="Typography"
-        prevHref="/docs/components/toast"
-        nextHref="/docs/components/theme-customizer"
-      />
+      <DocsPageNav title="Typography" />
       <p className="text-muted-foreground">
         Consistent text styling with semantic variants, gradient effects, and
         highlights.
@@ -162,16 +157,6 @@ export function MyComponent() {
           <CodeBlock>{`<Typography variant="p" affects="withPMargin">With margin</Typography>
 <Typography variant="p" affects="removePMargin">Without margin</Typography>`}</CodeBlock>
         </div>
-
-        {/* Interactive Demo */}
-        <div className="space-y-4">
-          <h3 className="scroll-m-20 text-xl font-semibold tracking-tight">
-            Interactive Demo
-          </h3>
-          <div className="p-6 bg-muted/30 rounded-lg">
-            <TypographyInteractiveDemo />
-          </div>
-        </div>
       </div>
 
       {/* Variants Section */}
@@ -182,8 +167,8 @@ export function MyComponent() {
         >
           Variants
         </h2>
-        <div className="border rounded-lg overflow-hidden">
-          <table className="w-full text-sm">
+        <div className="border rounded-lg overflow-x-auto">
+          <table className="w-full text-sm min-w-[500px]">
             <thead className="bg-muted">
               <tr>
                 <th className="text-left p-3 font-medium">Variant</th>
@@ -270,8 +255,8 @@ export function MyComponent() {
         >
           Props
         </h2>
-        <div className="border rounded-lg overflow-hidden">
-          <table className="w-full text-sm">
+        <div className="border rounded-lg overflow-x-auto">
+          <table className="w-full text-sm min-w-[500px]">
             <thead className="bg-muted">
               <tr>
                 <th className="text-left p-3 font-medium">Prop</th>

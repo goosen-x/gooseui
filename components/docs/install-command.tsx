@@ -81,7 +81,15 @@ export function InstallCommand({
               ))}
             </div>
           </div>
-          <div className="no-scrollbar overflow-x-auto py-3.5">
+          <div
+            className="no-scrollbar overflow-x-auto py-3.5"
+            style={{
+              maskImage:
+                "linear-gradient(to right, black calc(100% - 3rem), transparent)",
+              WebkitMaskImage:
+                "linear-gradient(to right, black calc(100% - 3rem), transparent)",
+            }}
+          >
             <pre className="px-4">
               <code className="relative font-mono text-sm leading-none">
                 {getCommand(defaultPm)}
@@ -124,7 +132,15 @@ export function InstallCommand({
             </TabsList>
           </div>
 
-          <div className="no-scrollbar overflow-x-auto">
+          <div
+            className="no-scrollbar overflow-x-auto"
+            style={{
+              maskImage:
+                "linear-gradient(to right, black calc(100% - 3rem), transparent)",
+              WebkitMaskImage:
+                "linear-gradient(to right, black calc(100% - 3rem), transparent)",
+            }}
+          >
             {packageManagers.map((pm) => (
               <TabsContent key={pm} value={pm} className="mt-0 py-3.5">
                 <pre className="inline-block min-w-full px-4">

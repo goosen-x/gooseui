@@ -1,0 +1,14 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "scroll-container",
+  "type": "registry:ui",
+  "title": "Scroll Container",
+  "description": "Container with custom styled scrollbar.",
+  "dependencies": [],
+  "files": [
+    {
+      "path": "registry/new-york/ui/scroll-container.tsx",
+      "type": "registry:ui"
+    }
+  ]
+}

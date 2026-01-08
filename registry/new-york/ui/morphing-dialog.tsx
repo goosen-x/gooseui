@@ -379,12 +379,16 @@ export function MorphingDialogClose({
     <button
       onClick={closeDialog}
       className={cn(
-        "absolute right-4 top-4 rounded-full p-1.5 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground cursor-pointer",
+        "absolute right-2 top-2 rounded-full p-1 transition-colors cursor-pointer",
+        "bg-background/80 text-foreground backdrop-blur-sm",
+        "hover:bg-background",
+        // Invisible touch target extension for mobile (44x44px minimum)
+        "after:absolute after:inset-0 after:-m-2 after:content-['']",
         className,
       )}
       aria-label="Close dialog"
     >
-      {children || <X className="h-4 w-4" />}
+      {children || <X className="h-3.5 w-3.5" />}
     </button>
   )
 }

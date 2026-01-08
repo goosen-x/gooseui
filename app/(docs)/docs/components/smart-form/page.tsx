@@ -1,22 +1,19 @@
 import { CodeBlock } from "@/components/docs/code-block"
+import { DocsBrowserSupport } from "@/components/docs/docs-browser-support"
 import { DocsPageNav } from "@/components/docs/docs-page-nav"
 import { InstallCommand } from "@/components/docs/install-command"
-import { DocsBrowserSupport } from "@/components/docs/docs-browser-support"
 
 export const metadata = {
   title: "Smart Form",
-  description: "CSS-only form validation with visual feedback using the :has() selector",
+  description:
+    "CSS-only form validation with visual feedback using the :has() selector",
 }
 
 export default function SmartFormPage() {
   return (
     <div className="space-y-8">
       {/* 1. Navigation */}
-      <DocsPageNav
-        title="Smart Form"
-        prevHref="/docs/effects/morphing-header"
-        nextHref="/docs/effects/adaptive-grid"
-      />
+      <DocsPageNav title="Smart Form" />
 
       {/* 2. Description */}
       <p className="text-muted-foreground">
@@ -25,11 +22,10 @@ export default function SmartFormPage() {
       </p>
 
       {/* 3. Browser Support */}
-      <DocsBrowserSupport
-        features={{ featureId: "has", browserCheck: "has" }}
-      >
-        Uses <code className="bg-muted px-1.5 py-0.5 rounded">:has()</code> to style parent elements
-        based on child input states like <code className="bg-muted px-1.5 py-0.5 rounded">:valid</code> and{" "}
+      <DocsBrowserSupport features={{ featureId: "has", browserCheck: "has" }}>
+        Uses <code className="bg-muted px-1.5 py-0.5 rounded">:has()</code> to
+        style parent elements based on child input states like{" "}
+        <code className="bg-muted px-1.5 py-0.5 rounded">:valid</code> and{" "}
         <code className="bg-muted px-1.5 py-0.5 rounded">:invalid</code>.
       </DocsBrowserSupport>
 
@@ -43,7 +39,8 @@ export default function SmartFormPage() {
         </h2>
         <div className="flex justify-center py-12 bg-muted/30 rounded-lg">
           <p className="text-muted-foreground">
-            Form fields show validation states automatically based on HTML5 validation.
+            Form fields show validation states automatically based on HTML5
+            validation.
           </p>
         </div>
       </div>
@@ -131,13 +128,17 @@ export default function SmartFormPage() {
               <tr className="border-t">
                 <td className="p-3 font-mono text-xs">errorMessage</td>
                 <td className="p-3 font-mono text-xs">string</td>
-                <td className="p-3 font-mono text-xs">&quot;This field is invalid&quot;</td>
+                <td className="p-3 font-mono text-xs">
+                  &quot;This field is invalid&quot;
+                </td>
                 <td className="p-3">Message shown when invalid</td>
               </tr>
               <tr className="border-t">
                 <td className="p-3 font-mono text-xs">successMessage</td>
                 <td className="p-3 font-mono text-xs">string</td>
-                <td className="p-3 font-mono text-xs">&quot;Looks good!&quot;</td>
+                <td className="p-3 font-mono text-xs">
+                  &quot;Looks good!&quot;
+                </td>
                 <td className="p-3">Message shown when valid</td>
               </tr>
               <tr className="border-t">

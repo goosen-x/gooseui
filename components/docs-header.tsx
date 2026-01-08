@@ -10,11 +10,11 @@ import { siteConfig } from "@/lib/config/navigation"
 
 export function DocsHeader() {
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="sticky top-0 z-50 w-full overflow-hidden border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       {/* Main header row */}
       <div className="mx-auto flex h-14 max-w-screen-2xl items-center px-4 md:px-8">
-        {/* Logo - visible on mobile */}
-        <Link href="/" className="flex items-center gap-2 md:hidden">
+        {/* Logo - visible when sidebar is hidden (<1024px) */}
+        <Link href="/" className="flex items-center gap-2 lg:hidden">
           <img
             src="/favicon/favicon.svg"
             alt=""
@@ -23,14 +23,14 @@ export function DocsHeader() {
           <span className="font-bold">{siteConfig.name}</span>
         </Link>
 
-        {/* Breadcrumbs - hidden on mobile */}
-        <div className="hidden md:block">
+        {/* Breadcrumbs - visible only on large screens (≥1440px) */}
+        <div className="hidden min-[1440px]:block">
           <DocsHeaderNav />
         </div>
 
         <div className="flex flex-1 items-center justify-end space-x-4">
           <HeaderNav />
-          <div className="hidden md:flex">
+          <div className="hidden lg:flex">
             <SiteSearch />
           </div>
           <Suspense
@@ -46,8 +46,8 @@ export function DocsHeader() {
         </div>
       </div>
 
-      {/* Breadcrumbs row - mobile only */}
-      <div className="border-t px-4 py-2 md:hidden">
+      {/* Breadcrumbs row - visible below 1440px */}
+      <div className="mx-auto max-w-screen-2xl border-t px-4 py-2 md:px-8 min-[1440px]:hidden">
         <DocsHeaderNav />
       </div>
     </header>

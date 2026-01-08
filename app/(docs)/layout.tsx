@@ -14,9 +14,9 @@ export default function DocsLayout({
       <DocsSidebar />
       <SidebarInset>
         <DocsHeader />
-        <main className="flex-1 px-6 py-6 pb-24 lg:px-8 lg:py-8 lg:pb-24">
+        <div className="flex-1 px-6 py-6 pb-24 lg:px-8 lg:py-8 lg:pb-24">
           <DocsContentWrapper>{children}</DocsContentWrapper>
-        </main>
+        </div>
       </SidebarInset>
       <ThemeCustomizerToolbar />
     </SidebarProvider>

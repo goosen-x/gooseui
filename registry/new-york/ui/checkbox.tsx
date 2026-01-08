@@ -10,11 +10,11 @@ const checkboxVariants = cva(
     variants: {
       variant: {
         default:
-          "[--checkbox-checked:theme(colors.primary.DEFAULT)] [--checkbox-unchecked:theme(colors.muted.foreground)]",
+          "[--checkbox-checked:theme(colors.primary.DEFAULT)] [--checkbox-unchecked:theme(colors.border)]",
         destructive:
-          "[--checkbox-checked:theme(colors.destructive.DEFAULT)] [--checkbox-unchecked:theme(colors.muted.foreground)]",
+          "[--checkbox-checked:theme(colors.destructive.DEFAULT)] [--checkbox-unchecked:theme(colors.border)]",
         success:
-          "[--checkbox-checked:#22c55e] [--checkbox-unchecked:theme(colors.muted.foreground)]",
+          "[--checkbox-checked:#22c55e] [--checkbox-unchecked:theme(colors.border)]",
       },
       size: {
         sm: "[--checkbox-size:1rem]",
@@ -29,20 +29,20 @@ const checkboxVariants = cva(
   },
 )
 
-interface AnimatedCheckboxProps
+interface CheckboxProps
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "size">,
     VariantProps<typeof checkboxVariants> {
   label?: string
 }
 
-export function AnimatedCheckbox({
+export function Checkbox({
   className,
   variant,
   size,
   label,
   id,
   ...props
-}: AnimatedCheckboxProps) {
+}: CheckboxProps) {
   const generatedId = React.useId()
   const inputId = id || generatedId
 
