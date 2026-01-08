@@ -18,7 +18,10 @@ export function MorphingHeaderDemo() {
       const shouldBeCompact = container.scrollTop > 60
 
       // Skip if state hasn't changed or transition in progress
-      if (shouldBeCompact === lastCompactState.current || isTransitioning.current) {
+      if (
+        shouldBeCompact === lastCompactState.current ||
+        isTransitioning.current
+      ) {
         return
       }
 
@@ -29,11 +32,13 @@ export function MorphingHeaderDemo() {
         const transition = document.startViewTransition(() => {
           setIsCompact(shouldBeCompact)
         })
-        transition.finished.then(() => {
-          isTransitioning.current = false
-        }).catch(() => {
-          isTransitioning.current = false
-        })
+        transition.finished
+          .then(() => {
+            isTransitioning.current = false
+          })
+          .catch(() => {
+            isTransitioning.current = false
+          })
       } else {
         setIsCompact(shouldBeCompact)
       }
@@ -111,10 +116,7 @@ export function MorphingHeaderDemo() {
         </div>
 
         {Array.from({ length: 8 }).map((_, i) => (
-          <div
-            key={i}
-            className="rounded-lg border bg-background p-4"
-          >
+          <div key={i} className="rounded-lg border bg-background p-4">
             <div className="h-4 w-3/4 rounded bg-muted mb-2" />
             <div className="h-3 w-1/2 rounded bg-muted/60" />
           </div>

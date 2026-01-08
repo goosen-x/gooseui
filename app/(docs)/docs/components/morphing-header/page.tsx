@@ -50,7 +50,8 @@ export default function MorphingHeaderPage() {
         </h2>
         <MorphingHeaderDemo />
         <p className="text-sm text-muted-foreground">
-          Scroll inside the container to see the header morph. Uses View Transitions API for smooth animation.
+          Scroll inside the container to see the header morph. Uses View
+          Transitions API for smooth animation.
         </p>
       </div>
 

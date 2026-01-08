@@ -97,6 +97,100 @@ CSS-only анимация через `stroke-dasharray` + `stroke-dashoffset`. �
 
 ---
 
+## Outline Mode (Hover Draw Effect)
+
+Эффект из CodePen - иконки при hover:
+1. FadeOut fill (opacity 1 → 0)
+2. Draw stroke (stroke-dashoffset анимация)
+3. FadeIn fill (opacity 0 → 1)
+
+**Техника:**
+```css
+.icon {
+  fill: currentColor;
+  stroke: currentColor;
+  stroke-width: 0;
+  transition: fill 0.3s, stroke-width 0.3s;
+}
+
+.icon:hover {
+  fill: transparent;
+  stroke-width: 2;
+}
+
+.icon path {
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  transition: stroke-dashoffset 0.5s ease 0.2s;
+}
+
+.icon:hover path {
+  stroke-dashoffset: 0;
+}
+```
+
+**Реализация в SVGDrawable:**
+```tsx
+<SVGDrawable mode="outline" trigger="hover">
+  <svg>
+    <path d="..." fill="currentColor" />
+  </svg>
+</SVGDrawable>
+```
+
+**Props:**
+- `mode="outline"` — включает outline режим
+- `trigger="hover"` — анимация при hover (default для outline)
+- `fillDuration` — длительность fade fill (ms)
+- `drawDuration` — длительность draw stroke (ms)
+
+**Приоритет:** Medium
+
+---
+
+## TextDrawable Component
+
+Компонент для анимации текста как SVG path. Любой шрифт → анимированные буквы.
+
+**Зависимости:**
+- [text-to-svg](https://www.npmjs.com/package/text-to-svg) или [opentype.js](https://github.com/opentypejs/opentype.js)
+
+**API:**
+```tsx
+<TextDrawable
+  text="GOOSE"
+  font="/fonts/Inter-Bold.woff2"
+  fontSize={48}
+  draw="0 1"
+  duration={2000}
+  stagger={100}
+  trigger="mount" | "hover" | "view"
+/>
+```
+
+**Реализация:**
+1. Загрузка шрифта через opentype.js
+2. Конвертация текста в SVG paths (`font.getPath()`)
+3. Каждая буква = отдельный path для stagger
+4. Передача paths в SVGDrawable для анимации
+
+**Фичи:**
+- Любой .woff/.woff2/.ttf/.otf шрифт
+- Letter spacing, line height
+- Text align (left, center, right)
+- Per-letter stagger
+- Hover/mount/view triggers
+- Responsive sizing
+
+**Референсы:**
+- [text-to-svg npm](https://www.npmjs.com/package/text-to-svg)
+- [opentype.js](https://github.com/opentypejs/opentype.js)
+- [CodePen: text to path](https://codepen.io/herrstrietzel/pen/GRYxQNd)
+
+**Приоритет:** High
+
+---
+
 ## Animated Icons Library
 
 Создание библиотеки анимированных иконок с использованием SVGDrawable.

@@ -17,10 +17,7 @@ export function ScrollContainerDemo() {
         >
           <div className="p-4 space-y-3">
             {Array.from({ length: 12 }).map((_, i) => (
-              <div
-                key={i}
-                className="rounded-lg border bg-background p-3"
-              >
+              <div key={i} className="rounded-lg border bg-background p-3">
                 <div className="h-3 w-3/4 rounded bg-muted mb-2" />
                 <div className="h-2 w-1/2 rounded bg-muted/60" />
               </div>
@@ -41,10 +38,7 @@ export function ScrollContainerDemo() {
         >
           <div className="p-4 space-y-3">
             {Array.from({ length: 12 }).map((_, i) => (
-              <div
-                key={i}
-                className="rounded-lg border bg-background p-3"
-              >
+              <div key={i} className="rounded-lg border bg-background p-3">
                 <div className="h-3 w-3/4 rounded bg-muted mb-2" />
                 <div className="h-2 w-1/2 rounded bg-muted/60" />
               </div>

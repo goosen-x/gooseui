@@ -1,7 +1,16 @@
 "use client"
 
-import * as React from "react"
+import { useGlobalStyles } from "@/hooks/use-global-styles"
 import { cn } from "@/lib/utils"
+
+const CSS_THEME_SWITCHER_STYLES = `
+/* Example of light-dark() usage */
+.light-dark-demo {
+  background-color: light-dark(#ffffff, #1a1a1a);
+  color: light-dark(#1a1a1a, #ffffff);
+  border-color: light-dark(#e5e5e5, #333333);
+}
+`
 
 interface CSSThemeSwitcherProps {
   className?: string
@@ -137,14 +146,6 @@ function MonitorIcon({ className }: { className?: string }) {
  * CSS light-dark() demo styles
  */
 export function CSSThemeSwitcherStyles() {
-  return (
-    <style jsx global>{`
-      /* Example of light-dark() usage */
-      .light-dark-demo {
-        background-color: light-dark(#ffffff, #1a1a1a);
-        color: light-dark(#1a1a1a, #ffffff);
-        border-color: light-dark(#e5e5e5, #333333);
-      }
-    `}</style>
-  )
+  useGlobalStyles(CSS_THEME_SWITCHER_STYLES, "css-theme-switcher-styles")
+  return null
 }

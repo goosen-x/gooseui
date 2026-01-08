@@ -1,7 +1,22 @@
 "use client"
 
 import type * as React from "react"
+import { useGlobalStyles } from "@/hooks/use-global-styles"
 import { cn } from "@/lib/utils"
+
+const PARALLAX_CARDS_STYLES = `
+@keyframes parallax-card {
+  from {
+    opacity: 0;
+    transform: translateY(var(--parallax-translate, 50px))
+      scale(var(--parallax-scale, 0.95));
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+`
 
 interface ParallaxCardProps {
   children: React.ReactNode
@@ -21,9 +36,10 @@ interface ParallaxCardProps {
 export function ParallaxCard({
   children,
   className,
-  intensity = 0.3,
+  intensity = 0.5,
 }: ParallaxCardProps) {
-  const offset = Math.round(intensity * 100)
+  const translateY = Math.round(intensity * 100)
+  const scale = 1 - intensity * 0.1
 
   return (
     <div
@@ -31,22 +47,17 @@ export function ParallaxCard({
         "relative overflow-hidden rounded-xl border bg-card p-6 shadow-sm",
         className,
       )}
-      style={{
-        animation: "parallax-card linear",
-        animationTimeline: "view()",
-        animationRange: "entry 0% cover 50%",
-      }}
+      style={
+        {
+          "--parallax-translate": `${translateY}px`,
+          "--parallax-scale": scale,
+          animation: "parallax-card linear",
+          animationTimeline: "view()",
+          animationRange: "entry 0% cover 50%",
+        } as React.CSSProperties
+      }
     >
-      <div
-        className="parallax-content"
-        style={
-          {
-            "--parallax-offset": `${offset}px`,
-          } as React.CSSProperties
-        }
-      >
-        {children}
-      </div>
+      {children}
     </div>
   )
 }
@@ -66,18 +77,6 @@ export function ParallaxCards({ children, className }: ParallaxCardsProps) {
 }
 
 export function ParallaxCardsStyles() {
-  return (
-    <style jsx global>{`
-      @keyframes parallax-card {
-        from {
-          opacity: 0;
-          transform: translateY(50px) scale(0.95);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0) scale(1);
-        }
-      }
-    `}</style>
-  )
+  useGlobalStyles(PARALLAX_CARDS_STYLES, "parallax-cards-styles")
+  return null
 }

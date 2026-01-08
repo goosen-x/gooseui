@@ -169,8 +169,14 @@ function MyComponent() {
 
       <DocsSection id="css-technique" title="CSS Technique">
         <p className="text-muted-foreground mb-4">
-          Uses <code className="bg-muted px-1.5 py-0.5 rounded">stroke-dasharray</code>{" "}
-          and <code className="bg-muted px-1.5 py-0.5 rounded">stroke-dashoffset</code>{" "}
+          Uses{" "}
+          <code className="bg-muted px-1.5 py-0.5 rounded">
+            stroke-dasharray
+          </code>{" "}
+          and{" "}
+          <code className="bg-muted px-1.5 py-0.5 rounded">
+            stroke-dashoffset
+          </code>{" "}
           to animate the visible portion of SVG paths:
         </p>
         <CodeBlock>{`.path {

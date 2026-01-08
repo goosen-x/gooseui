@@ -37,7 +37,7 @@ export function SiteFooter() {
 
           {/* Product */}
           <div>
-            <h4 className="font-semibold mb-4">Product</h4>
+            <p className="font-semibold mb-4">Product</p>
             <ul className="space-y-3">
               {footerLinks.product.map((link) => (
                 <li key={link.href}>
@@ -54,7 +54,7 @@ export function SiteFooter() {
 
           {/* Resources */}
           <div>
-            <h4 className="font-semibold mb-4">Resources</h4>
+            <p className="font-semibold mb-4">Resources</p>
             <ul className="space-y-3">
               {footerLinks.resources.map((link) => (
                 <li key={link.href}>
@@ -71,7 +71,7 @@ export function SiteFooter() {
 
           {/* Community */}
           <div>
-            <h4 className="font-semibold mb-4">Community</h4>
+            <p className="font-semibold mb-4">Community</p>
             <ul className="space-y-3">
               {footerLinks.community.map((link) => (
                 <li key={link.href}>

@@ -6,13 +6,13 @@ import { DocsPropsTable } from "@/components/docs/docs-props-table"
 import { DocsSection } from "@/components/docs/docs-section"
 import { InstallCommand } from "@/components/docs/install-command"
 import {
-  ResizablePanelGroup,
-  ResizablePanel,
   ResizableHandle,
+  ResizablePanel,
+  ResizablePanelGroup,
 } from "@/components/ui/resizable"
 import {
-  AdaptiveGrid,
   AdaptiveCard,
+  AdaptiveGrid,
 } from "@/registry/new-york/ui/adaptive-grid"
 
 export const metadata = {
@@ -162,7 +162,8 @@ export default function AdaptiveGridPage() {
       <DocsSection id="css-feature" title="CSS Feature">
         <p className="text-muted-foreground mb-4">
           The component uses Tailwind&apos;s Container Queries plugin with the{" "}
-          <code className="bg-muted px-1.5 py-0.5 rounded">:has()</code> selector:
+          <code className="bg-muted px-1.5 py-0.5 rounded">:has()</code>{" "}
+          selector:
         </p>
         <CodeBlock>{`// AdaptiveCard uses :has() to detect if it contains an image
 className={cn(

@@ -56,6 +56,9 @@ export const REGISTRY_ITEMS: RegistryItem[] = [
   { slug: "scroll-container", name: "Scroll Container", type: "component" },
   { slug: "scroll-progress", name: "Scroll Progress", type: "component" },
   { slug: "adaptive-grid", name: "Adaptive Grid", type: "component" },
+  { slug: "slider", name: "Slider", type: "component" },
+  { slug: "svg-drawable", name: "SVG Drawable", type: "component" },
+  { slug: "parallax-cards", name: "Parallax Cards", type: "effect" },
 
   // Effects
   { slug: "border-beam", name: "Border Beam", type: "effect" },

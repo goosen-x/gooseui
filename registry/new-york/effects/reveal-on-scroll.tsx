@@ -1,7 +1,63 @@
 "use client"
 
 import type * as React from "react"
+import { useGlobalStyles } from "@/hooks/use-global-styles"
 import { cn } from "@/lib/utils"
+
+const REVEAL_ON_SCROLL_STYLES = `
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes reveal-down {
+  from {
+    opacity: 0;
+    transform: translateY(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes reveal-left {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes reveal-right {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes reveal-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+`
 
 interface RevealOnScrollProps {
   children: React.ReactNode
@@ -53,60 +109,6 @@ export function RevealOnScroll({
  * Include this component once in your app to enable reveal animations.
  */
 export function RevealOnScrollStyles() {
-  return (
-    <style jsx global>{`
-      @keyframes reveal-up {
-        from {
-          opacity: 0;
-          transform: translateY(40px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      @keyframes reveal-down {
-        from {
-          opacity: 0;
-          transform: translateY(-40px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      @keyframes reveal-left {
-        from {
-          opacity: 0;
-          transform: translateX(40px);
-        }
-        to {
-          opacity: 1;
-          transform: translateX(0);
-        }
-      }
-
-      @keyframes reveal-right {
-        from {
-          opacity: 0;
-          transform: translateX(-40px);
-        }
-        to {
-          opacity: 1;
-          transform: translateX(0);
-        }
-      }
-
-      @keyframes reveal-fade {
-        from {
-          opacity: 0;
-        }
-        to {
-          opacity: 1;
-        }
-      }
-    `}</style>
-  )
+  useGlobalStyles(REVEAL_ON_SCROLL_STYLES, "reveal-on-scroll-styles")
+  return null
 }

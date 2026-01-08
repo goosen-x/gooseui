@@ -205,7 +205,7 @@ const rawNavigation: NavSection[] = [
         description:
           "Page scroll progress bar using CSS scroll-driven animations",
         category: "Display",
-        isNew: true,
+        isDraft: true,
         keywords: ["scroll", "progress", "animation", "timeline"],
       },
       // T
@@ -305,7 +305,7 @@ const rawNavigation: NavSection[] = [
         href: "/docs/components/slider",
         description: "Range slider input component",
         category: "Inputs",
-        isComingSoon: true,
+        isDraft: true,
         keywords: ["range", "slider", "input", "form"],
       },
       {

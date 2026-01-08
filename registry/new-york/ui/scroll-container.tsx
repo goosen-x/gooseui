@@ -31,7 +31,7 @@ export const ScrollContainer = React.forwardRef<
       style,
       ...props
     },
-    ref
+    ref,
   ) => {
     const sizeClasses = {
       sm: "[&::-webkit-scrollbar]:w-1.5",
@@ -68,7 +68,7 @@ export const ScrollContainer = React.forwardRef<
           "scrollbar-track-transparent",
           "scrollbar-thumb-muted-foreground/20",
           "hover:scrollbar-thumb-muted-foreground/40",
-          className
+          className,
         )}
         style={{
           height: typeof height === "number" ? `${height}px` : height,
@@ -79,7 +79,7 @@ export const ScrollContainer = React.forwardRef<
         {children}
       </div>
     )
-  }
+  },
 )
 
 ScrollContainer.displayName = "ScrollContainer"

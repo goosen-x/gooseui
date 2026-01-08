@@ -3,6 +3,32 @@
 import * as React from "react"
 import { cn } from "@/lib/utils"
 
+/**
+ * Hook to inject styles into document.head
+ * Uses useInsertionEffect for proper CSS-in-JS timing
+ */
+function useHeadStyles(css: string, id: string) {
+  // useInsertionEffect is the proper hook for CSS injection (React 18+)
+  React.useInsertionEffect(() => {
+    if (!css || typeof document === "undefined") return
+
+    // Check if style already exists
+    let styleEl = document.getElementById(id) as HTMLStyleElement | null
+
+    if (!styleEl) {
+      styleEl = document.createElement("style")
+      styleEl.id = id
+      document.head.appendChild(styleEl)
+    }
+
+    styleEl.textContent = css
+
+    return () => {
+      styleEl?.remove()
+    }
+  }, [css, id])
+}
+
 interface SVGDrawableProps {
   children: React.ReactElement<SVGElement>
   /** Draw range or keyframe array: "0 1" or ["0 0", "0 1", "1 1"] */
@@ -15,9 +41,11 @@ interface SVGDrawableProps {
   stagger?: number
   /** Easing function */
   ease?: "linear" | "ease" | "ease-in" | "ease-out" | "ease-in-out"
-  /** Animate on mount */
+  /** Animation trigger: mount, view, or hover */
+  trigger?: "mount" | "view" | "hover"
+  /** @deprecated Use trigger="mount" instead */
   animateOnMount?: boolean
-  /** Animate when in view */
+  /** @deprecated Use trigger="view" instead */
   animateOnView?: boolean
   /** Loop animation */
   loop?: boolean
@@ -66,6 +94,7 @@ export function SVGDrawable({
   delay = 0,
   stagger = 0,
   ease = "ease-in-out",
+  trigger = "mount",
   animateOnMount = true,
   animateOnView = false,
   loop = false,
@@ -73,8 +102,15 @@ export function SVGDrawable({
   className,
 }: SVGDrawableProps) {
   const containerRef = React.useRef<HTMLDivElement>(null)
-  const [isVisible, setIsVisible] = React.useState(!animateOnView)
-  const [pathData, setPathData] = React.useState<{ length: number; index: number }[]>([])
+
+  // Handle deprecated props
+  const effectiveTrigger = animateOnView ? "view" : trigger
+  const shouldAnimateOnMount = trigger === "mount" && animateOnMount
+
+  const [isVisible, setIsVisible] = React.useState(effectiveTrigger !== "view")
+  const [pathData, setPathData] = React.useState<
+    { length: number; index: number }[]
+  >([])
 
   // Parse draw into keyframes array
   const keyframes = React.useMemo((): DrawKeyframe[] => {
@@ -100,7 +136,7 @@ export function SVGDrawable({
     if (!svg) return
 
     const paths = svg.querySelectorAll(
-      "path, line, polyline, polygon, rect, circle, ellipse"
+      "path, line, polyline, polygon, rect, circle, ellipse",
     )
     const data: { length: number; index: number }[] = []
 
@@ -113,9 +149,9 @@ export function SVGDrawable({
     setPathData(data)
   }, [children])
 
-  // Intersection Observer for animateOnView
+  // Intersection Observer for trigger="view"
   React.useEffect(() => {
-    if (!animateOnView) return
+    if (effectiveTrigger !== "view") return
 
     const container = containerRef.current
     if (!container) return
@@ -131,12 +167,12 @@ export function SVGDrawable({
           setIsVisible(false)
         }
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     )
 
     observer.observe(container)
     return () => observer.disconnect()
-  }, [animateOnView, loop])
+  }, [effectiveTrigger, loop])
 
   // Generate unique animation name
   const animationId = React.useId().replace(/:/g, "")
@@ -148,36 +184,42 @@ export function SVGDrawable({
     let pathIndex = 0
 
     const cloneSvgWithStyles = (
-      element: React.ReactElement<{ children?: React.ReactNode }>
+      element: React.ReactElement<{ children?: React.ReactNode }>,
     ): React.ReactElement => {
       if (element.type === "svg") {
-        const svgChildren = React.Children.map(element.props.children, (child) => {
-          if (!React.isValidElement(child)) return child
+        const svgChildren = React.Children.map(
+          element.props.children,
+          (child) => {
+            if (!React.isValidElement(child)) return child
 
-          const tagName = typeof child.type === "string" ? child.type : ""
-          const isDrawable = [
-            "path",
-            "line",
-            "polyline",
-            "polygon",
-            "rect",
-            "circle",
-            "ellipse",
-          ].includes(tagName)
+            const tagName = typeof child.type === "string" ? child.type : ""
+            const isDrawable = [
+              "path",
+              "line",
+              "polyline",
+              "polygon",
+              "rect",
+              "circle",
+              "ellipse",
+            ].includes(tagName)
 
-          if (isDrawable) {
-            const childProps = child.props as React.SVGAttributes<SVGElement>
-            const currentIndex = pathIndex++
-            return React.cloneElement(
-              child as React.ReactElement<React.SVGAttributes<SVGElement>>,
-              {
-                className: cn(childProps.className, `drawable-${animationId}-${currentIndex}`),
-              }
-            )
-          }
+            if (isDrawable) {
+              const childProps = child.props as React.SVGAttributes<SVGElement>
+              const currentIndex = pathIndex++
+              return React.cloneElement(
+                child as React.ReactElement<React.SVGAttributes<SVGElement>>,
+                {
+                  className: cn(
+                    childProps.className,
+                    `drawable-${animationId}-${currentIndex}`,
+                  ),
+                },
+              )
+            }
 
-          return child
-        })
+            return child
+          },
+        )
 
         return React.cloneElement(element, {}, svgChildren)
       }
@@ -185,7 +227,9 @@ export function SVGDrawable({
       return element
     }
 
-    return cloneSvgWithStyles(children as React.ReactElement<{ children?: React.ReactNode }>)
+    return cloneSvgWithStyles(
+      children as React.ReactElement<{ children?: React.ReactNode }>,
+    )
   }, [children, animationId])
 
   // Calculate stroke-dashoffset for a keyframe
@@ -200,13 +244,38 @@ export function SVGDrawable({
     if (pathData.length === 0) return ""
 
     let css = ""
+    const containerId = `svg-drawable-${animationId}`
 
+    // Hover mode uses CSS transitions
+    if (effectiveTrigger === "hover") {
+      pathData.forEach(({ length, index }) => {
+        const pathDelay = index * stagger
+        const finalKf = keyframes[keyframes.length - 1]
+        const finalOffset = calculateOffset(length, finalKf)
+
+        css += `
+      .drawable-${animationId}-${index} {
+        stroke-dasharray: ${length};
+        stroke-dashoffset: ${length};
+        transition: stroke-dashoffset ${duration}ms ${ease} ${pathDelay}ms;
+      }
+
+      .${containerId}:hover .drawable-${animationId}-${index} {
+        stroke-dashoffset: ${finalOffset};
+      }
+`
+      })
+      return css
+    }
+
+    // Mount/View mode uses keyframe animations
     pathData.forEach(({ length, index }) => {
       const pathDelay = delay + index * stagger
       const animationName = `draw-${animationId}-${index}`
 
       // Generate keyframe percentages
-      const stepPercent = keyframes.length > 1 ? 100 / (keyframes.length - 1) : 100
+      const stepPercent =
+        keyframes.length > 1 ? 100 / (keyframes.length - 1) : 100
       const keyframeCSS = keyframes
         .map((kf, i) => {
           const percent = keyframes.length > 1 ? i * stepPercent : 100
@@ -220,7 +289,7 @@ export function SVGDrawable({
         stroke-dasharray: ${length};
         stroke-dashoffset: ${length};
         animation: ${animationName} ${duration}ms ${ease} ${pathDelay}ms ${loop ? "infinite" : "forwards"};
-        animation-play-state: ${isVisible && animateOnMount ? "running" : "paused"};
+        animation-play-state: ${isVisible && shouldAnimateOnMount ? "running" : "paused"};
         animation-direction: ${direction};
       }
 
@@ -241,13 +310,26 @@ export function SVGDrawable({
     stagger,
     loop,
     isVisible,
-    animateOnMount,
+    shouldAnimateOnMount,
     direction,
+    effectiveTrigger,
   ])
 
+  const containerId = `svg-drawable-${animationId}`
+
+  // Inject styles into document.head
+  useHeadStyles(cssStyles, `svg-drawable-styles-${animationId}`)
+
   return (
-    <div ref={containerRef} className={cn("inline-block", className)}>
-      <style dangerouslySetInnerHTML={{ __html: cssStyles }} />
+    <div
+      ref={containerRef}
+      className={cn(
+        "inline-block",
+        effectiveTrigger === "hover" && containerId,
+        effectiveTrigger === "hover" && "cursor-pointer",
+        className,
+      )}
+    >
       {styledChildren}
     </div>
   )
@@ -264,7 +346,7 @@ export function useDrawable(
     delay?: number
     stagger?: number
     ease?: string
-  } = {}
+  } = {},
 ) {
   const {
     draw = "0 1",
@@ -292,7 +374,7 @@ export function useDrawable(
     if (!svg) return
 
     const paths = svg.querySelectorAll<SVGGeometryElement>(
-      "path, line, polyline, polygon, rect, circle, ellipse"
+      "path, line, polyline, polygon, rect, circle, ellipse",
     )
 
     const totalDuration = duration + (paths.length - 1) * stagger
@@ -322,7 +404,7 @@ export function useDrawable(
     if (!svg) return
 
     const paths = svg.querySelectorAll<SVGGeometryElement>(
-      "path, line, polyline, polygon, rect, circle, ellipse"
+      "path, line, polyline, polygon, rect, circle, ellipse",
     )
 
     paths.forEach((path) => {

@@ -42,7 +42,7 @@ export function CategoryCard({
       {/* Content */}
       <div className="space-y-1">
         <div className="flex items-center gap-2">
-          <h3 className="font-semibold tracking-tight">{category.name}</h3>
+          <p className="font-semibold tracking-tight">{category.name}</p>
           {category.count !== undefined && category.count > 0 && (
             <Badge variant="secondary" className="text-xs">
               {category.count}

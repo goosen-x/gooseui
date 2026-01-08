@@ -105,10 +105,12 @@ export function DocsSidebar({
 
 function ComponentsNav({ pathname }: { pathname: string }) {
   // Filter out coming soon items from navigation
-  const filteredNavigation = filterDraftItems(docsNavigation).map((section) => ({
-    ...section,
-    items: section.items.filter((item) => !item.isComingSoon),
-  }))
+  const filteredNavigation = filterDraftItems(docsNavigation).map(
+    (section) => ({
+      ...section,
+      items: section.items.filter((item) => !item.isComingSoon),
+    }),
+  )
 
   return (
     <SidebarGroup>

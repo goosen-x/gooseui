@@ -1,0 +1,14 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "slider",
+  "type": "registry:ui",
+  "title": "Slider",
+  "description": "Range slider input component with customizable styling.",
+  "dependencies": [],
+  "files": [
+    {
+      "path": "registry/new-york/ui/slider.tsx",
+      "type": "registry:ui"
+    }
+  ]
+}

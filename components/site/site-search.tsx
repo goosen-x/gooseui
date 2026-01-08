@@ -274,7 +274,9 @@ export function SiteSearch() {
                             `npx shadcn@latest add https://gooseui.pro/r/${itemName}.json`,
                           )
                         }}
-                        onSelect={() => runCommand(() => router.push(item.href))}
+                        onSelect={() =>
+                          runCommand(() => router.push(item.href))
+                        }
                       >
                         <FlaskConicalIcon className="mr-2 size-4 text-muted-foreground" />
                         {item.title}

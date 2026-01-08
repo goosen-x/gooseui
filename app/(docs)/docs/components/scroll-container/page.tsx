@@ -17,7 +17,8 @@ export default function ScrollContainerPage() {
       <DocsPageNav title="Scroll Container" />
 
       <p className="text-muted-foreground">
-        Container with custom styled scrollbar. Works in Chrome, Firefox, and Safari.
+        Container with custom styled scrollbar. Works in Chrome, Firefox, and
+        Safari.
       </p>
 
       <DocsPreview description="Left: auto-hide scrollbar (hover to show). Right: always visible scrollbar.">

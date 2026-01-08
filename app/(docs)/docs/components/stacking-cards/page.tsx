@@ -1,7 +1,9 @@
 import { CodeBlock } from "@/components/docs/code-block"
 import { DocsBrowserSupport } from "@/components/docs/docs-browser-support"
 import { DocsPageNav } from "@/components/docs/docs-page-nav"
+import { DocsPreview } from "@/components/docs/docs-preview"
 import { InstallCommand } from "@/components/docs/install-command"
+import { StackingCardsDemo } from "./demo"
 
 export const metadata = {
   title: "Stacking Cards",
@@ -35,19 +37,9 @@ export default function StackingCardsPage() {
       </DocsBrowserSupport>
 
       {/* 4. Preview */}
-      <div className="space-y-4">
-        <h2
-          id="preview"
-          className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight"
-        >
-          Preview
-        </h2>
-        <div className="flex justify-center py-12 bg-muted/30 rounded-lg">
-          <p className="text-muted-foreground">
-            Scroll through a list of cards to see them stack at the top.
-          </p>
-        </div>
-      </div>
+      <DocsPreview description="Scroll inside the container to see cards stack.">
+        <StackingCardsDemo />
+      </DocsPreview>
 
       {/* 5. Installation */}
       <div className="space-y-4">

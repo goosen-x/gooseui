@@ -1,7 +1,23 @@
 "use client"
 
 import * as React from "react"
+import { useGlobalStyles } from "@/hooks/use-global-styles"
 import { cn } from "@/lib/utils"
+
+const STACKING_CARDS_STYLES = `
+.stacking-card-wrapper {
+  animation: stack-scale linear;
+  animation-timeline: view();
+  animation-range: exit -100px exit 100px;
+}
+
+@keyframes stack-scale {
+  to {
+    transform: scale(0.95);
+    opacity: 0.8;
+  }
+}
+`
 
 interface StackingCardProps {
   children: React.ReactNode
@@ -118,20 +134,6 @@ export function StackingCardsAnimated({
 }
 
 export function StackingCardsStyles() {
-  return (
-    <style jsx global>{`
-      .stacking-card-wrapper {
-        animation: stack-scale linear;
-        animation-timeline: view();
-        animation-range: exit -100px exit 100px;
-      }
-
-      @keyframes stack-scale {
-        to {
-          transform: scale(0.95);
-          opacity: 0.8;
-        }
-      }
-    `}</style>
-  )
+  useGlobalStyles(STACKING_CARDS_STYLES, "stacking-cards-styles")
+  return null
 }

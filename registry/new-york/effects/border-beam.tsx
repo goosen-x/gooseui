@@ -1,6 +1,24 @@
 "use client"
 
+import { useGlobalStyles } from "@/hooks/use-global-styles"
 import { cn } from "@/lib/utils"
+
+const BORDER_BEAM_STYLES = `
+@keyframes border-beam-spin {
+  from {
+    --angle: 0deg;
+  }
+  to {
+    --angle: 360deg;
+  }
+}
+
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+`
 
 interface BorderBeamProps {
   className?: string
@@ -21,6 +39,8 @@ export function BorderBeam({
   colorTo = "#9c40ff",
   borderWidth = 1.5,
 }: BorderBeamProps) {
+  useGlobalStyles(BORDER_BEAM_STYLES, "border-beam-styles")
+
   return (
     <div
       className={cn(
@@ -61,22 +81,6 @@ export function BorderBeam({
           animation: `border-beam-spin var(--duration) linear infinite var(--delay)`,
         }}
       />
-      <style>{`
-        @keyframes border-beam-spin {
-          from {
-            --angle: 0deg;
-          }
-          to {
-            --angle: 360deg;
-          }
-        }
-
-        @property --angle {
-          syntax: "<angle>";
-          initial-value: 0deg;
-          inherits: false;
-        }
-      `}</style>
     </div>
   )
 }
