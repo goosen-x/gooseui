@@ -139,7 +139,12 @@ export function SVGDrawableDemo() {
           </div>
 
           <div className="space-y-2 text-center">
-            <SVGDrawable trigger="hover" draw="0 1" duration={300} stagger={100}>
+            <SVGDrawable
+              trigger="hover"
+              draw="0 1"
+              duration={300}
+              stagger={100}
+            >
               <svg viewBox="0 0 24 24" className="h-12 w-12 text-red-500">
                 <path
                   d="M6 6 L18 18"

@@ -1,10 +1,10 @@
 "use client"
 
-import {
-  StackingCardsContainer,
-  StackingCard,
-} from "@/registry/new-york/ui/stacking-cards"
 import { ScrollContainer } from "@/registry/new-york/ui/scroll-container"
+import {
+  StackingCard,
+  StackingCardsContainer,
+} from "@/registry/new-york/ui/stacking-cards"
 
 export function StackingCardsDemo() {
   const cards = [

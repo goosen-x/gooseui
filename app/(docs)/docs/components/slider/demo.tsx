@@ -37,13 +37,7 @@ export function SliderDemo() {
       {/* With step */}
       <div className="space-y-2">
         <span className="text-xs text-muted-foreground">Step: 25</span>
-        <Slider
-          defaultValue={50}
-          min={0}
-          max={100}
-          step={25}
-          showValue
-        />
+        <Slider defaultValue={50} min={0} max={100} step={25} showValue />
       </div>
     </div>
   )

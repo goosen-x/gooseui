@@ -2,8 +2,8 @@
 
 import * as React from "react"
 import {
-  ParallaxCards,
   ParallaxCard,
+  ParallaxCards,
 } from "@/registry/new-york/effects/parallax-cards"
 import { ScrollContainer } from "@/registry/new-york/ui/scroll-container"
 import { Slider } from "@/registry/new-york/ui/slider"
@@ -39,9 +39,7 @@ export function ParallaxCardsDemo() {
         <div className="h-[250px] flex items-center justify-center">
           <div className="text-center">
             <p className="text-2xl mb-2">↓</p>
-            <p className="text-sm text-muted-foreground">
-              Scroll down slowly
-            </p>
+            <p className="text-sm text-muted-foreground">Scroll down slowly</p>
             <p className="text-xs text-muted-foreground mt-1">
               Cards will animate as they enter
             </p>
