@@ -20,7 +20,7 @@ export function CodeBlock({
 
   return (
     <div className={cn("relative", className)}>
-      <pre className="overflow-x-auto rounded-lg border bg-muted/30 p-4 max-h-[25rem]">
+      <pre className="overflow-x-auto rounded-lg border bg-muted/30 p-4 pt-10 md:pt-4 max-h-[25rem]">
         {enableHighlight ? (
           <code
             className="text-sm font-mono leading-relaxed"
