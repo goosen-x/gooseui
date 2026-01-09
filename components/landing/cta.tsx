@@ -17,7 +17,7 @@ export function CTA() {
               Add your first component to your project right now
             </p>
             <div className="mt-6 rounded-lg border bg-muted/50 px-4 py-3 font-mono text-sm max-w-md mx-auto">
-              npx shadcn@latest add @gooseui/button
+              npx shadcn@latest add https://gooseui.pro/r/button.json
             </div>
             <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" asChild>

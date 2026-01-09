@@ -1,17 +1,10 @@
 "use client"
 
-import {
-  ArrowLeft,
-  Check,
-  Monitor,
-  Moon,
-  Paintbrush,
-  Sun,
-} from "lucide-react"
-import { BrushCleaning } from "@/components/animate-ui/icons/brush-cleaning"
+import { ArrowLeft, Check, Monitor, Moon, Paintbrush, Sun } from "lucide-react"
 import { MotionConfig, motion } from "motion/react"
 import { useTheme } from "next-themes"
 import * as React from "react"
+import { BrushCleaning } from "@/components/animate-ui/icons/brush-cleaning"
 import { useClickOutside } from "@/hooks/use-click-outside"
 import { cn } from "@/lib/utils"
 
@@ -45,7 +38,13 @@ function useThemeColor() {
 }
 
 // Variant 1: Floating Pill with Popup
-export function ThemeCustomizerPill({ className, inline }: { className?: string; inline?: boolean }) {
+export function ThemeCustomizerPill({
+  className,
+  inline,
+}: {
+  className?: string
+  inline?: boolean
+}) {
   const { setTheme, resolvedTheme } = useTheme()
   const { activeColor, setColor, mounted } = useThemeColor()
   const [showColors, setShowColors] = React.useState(false)
@@ -104,7 +103,7 @@ export function ThemeCustomizerPill({ className, inline }: { className?: string;
             "z-50 flex flex-wrap justify-center gap-1.5 rounded-xl border bg-background/70 p-2 shadow-lg backdrop-blur-xl animate-in fade-in slide-in-from-bottom-2",
             isInline
               ? "absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-[120px]"
-              : "fixed bottom-20 left-1/2 -translate-x-1/2 gap-2 rounded-full px-3 py-2"
+              : "fixed bottom-20 left-1/2 -translate-x-1/2 gap-2 rounded-full px-3 py-2",
           )}
         >
           {colors.map((c) => (
@@ -118,7 +117,12 @@ export function ThemeCustomizerPill({ className, inline }: { className?: string;
               )}
             >
               {activeColor === c.name && (
-                <Check className={cn("absolute inset-0 m-auto text-white dark:text-black", isInline ? "size-3" : "size-4")} />
+                <Check
+                  className={cn(
+                    "absolute inset-0 m-auto text-white dark:text-black",
+                    isInline ? "size-3" : "size-4",
+                  )}
+                />
               )}
             </button>
           ))}
