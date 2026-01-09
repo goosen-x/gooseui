@@ -35,7 +35,7 @@ export function FooterNewsletter() {
 
   return (
     <footer className="border-t bg-muted/30">
-      <div className="container py-12 md:py-16">
+      <div className="container px-4 sm:px-6 lg:px-8 py-12 md:py-16">
         <div className="grid gap-8 lg:grid-cols-2">
           {/* Newsletter Section */}
           <div className="space-y-4">

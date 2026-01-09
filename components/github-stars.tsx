@@ -1,25 +1,13 @@
+"use client"
+
 import { Star } from "lucide-react"
+import * as React from "react"
 import { cn } from "@/lib/utils"
 
 interface GitHubStarsProps {
   owner: string
   repo: string
   className?: string
-}
-
-async function getStars(owner: string, repo: string): Promise<number | null> {
-  try {
-    const res = await fetch(`https://api.github.com/repos/${owner}/${repo}`, {
-      next: { revalidate: 3600 }, // Revalidate every hour
-    })
-
-    if (!res.ok) return null
-
-    const data = await res.json()
-    return data.stargazers_count ?? null
-  } catch {
-    return null
-  }
 }
 
 function formatStars(count: number): string {
@@ -29,12 +17,24 @@ function formatStars(count: number): string {
   return count.toString()
 }
 
-export async function GitHubStars({
-  owner,
-  repo,
-  className,
-}: GitHubStarsProps) {
-  const stars = await getStars(owner, repo)
+export function GitHubStars({ owner, repo, className }: GitHubStarsProps) {
+  const [stars, setStars] = React.useState<number | null>(null)
+
+  React.useEffect(() => {
+    const fetchStars = async () => {
+      try {
+        const res = await fetch(
+          `https://api.github.com/repos/${owner}/${repo}`,
+        )
+        if (!res.ok) return
+        const data = await res.json()
+        setStars(data.stargazers_count ?? null)
+      } catch {
+        // Ignore errors
+      }
+    }
+    fetchStars()
+  }, [owner, repo])
 
   return (
     <a
@@ -42,7 +42,7 @@ export async function GitHubStars({
       target="_blank"
       rel="noopener noreferrer"
       className={cn(
-        "flex items-center gap-2 text-sm font-medium transition-colors hover:text-primary min-w-[160px]",
+        "flex items-center gap-2 text-sm font-medium transition-colors hover:text-primary min-w-[10rem]",
         className,
       )}
     >

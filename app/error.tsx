@@ -1,10 +1,13 @@
 "use client"
 
+import { Check, Copy } from "lucide-react"
 import Link from "next/link"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { SiteHeader } from "@/components/site/header"
 import { ThemeCustomizer } from "@/components/theme-customizer"
 import { Button } from "@/registry/new-york/ui/button"
+
+const isDev = process.env.NODE_ENV === "development"
 
 export default function Error({
   error,
@@ -13,9 +16,18 @@ export default function Error({
   error: Error & { digest?: string }
   reset: () => void
 }) {
+  const [copied, setCopied] = useState(false)
+
   useEffect(() => {
     console.error(error)
   }, [error])
+
+  const copyError = async () => {
+    const text = `${error.name}: ${error.message}\n\n${error.stack || ""}`
+    await navigator.clipboard.writeText(text)
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2000)
+  }
 
   return (
     <>
@@ -44,6 +56,33 @@ export default function Error({
             </p>
           )}
         </div>
+
+        {/* Dev mode error details */}
+        {isDev && (
+          <div className="relative w-full max-w-2xl rounded-lg border border-destructive/50 bg-destructive/5 p-4 text-left">
+            <Button
+              variant="ghost"
+              size="icon"
+              className="absolute right-2 top-2 h-8 w-8 cursor-pointer"
+              onClick={copyError}
+            >
+              {copied ? (
+                <Check className="h-4 w-4 text-green-500" />
+              ) : (
+                <Copy className="h-4 w-4" />
+              )}
+            </Button>
+            <p className="mb-2 pr-10 font-mono text-sm font-semibold text-destructive">
+              {error.name}: {error.message}
+            </p>
+            {error.stack && (
+              <pre className="max-h-64 overflow-auto whitespace-pre-wrap font-mono text-xs text-muted-foreground">
+                {error.stack}
+              </pre>
+            )}
+          </div>
+        )}
+
         <div className="flex gap-3">
           <Button asChild variant="outline">
             <Link href="/">Go home</Link>

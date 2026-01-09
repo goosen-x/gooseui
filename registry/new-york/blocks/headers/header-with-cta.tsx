@@ -18,7 +18,7 @@ export function HeaderWithCta() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-16 items-center justify-between">
+      <div className="container px-4 sm:px-6 lg:px-8 flex h-16 items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center space-x-2">
           <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-primary/80 text-primary-foreground font-bold">
@@ -69,7 +69,7 @@ export function HeaderWithCta() {
           isOpen ? "max-h-80" : "max-h-0",
         )}
       >
-        <div className="container py-4 space-y-4">
+        <div className="container px-4 sm:px-6 lg:px-8 py-4 space-y-4">
           <nav className="flex flex-col space-y-3">
             {navItems.map((item) => (
               <Link

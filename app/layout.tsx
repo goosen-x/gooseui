@@ -1,12 +1,19 @@
 import { GeistMono } from "geist/font/mono"
-import { GeistSans } from "geist/font/sans"
 import type { Metadata } from "next"
+import { Outfit } from "next/font/google"
 import { PostHogPageView } from "@/components/posthog-pageview"
 import { PostHogProvider } from "@/components/posthog-provider"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Toaster } from "@/components/ui/sonner"
 import { siteConfig } from "@/lib/config/navigation"
+
 import "./globals.css"
+
+const outfit = Outfit({
+  subsets: ["latin"],
+  variable: "--font-outfit",
+  display: "swap",
+})
 
 export const metadata: Metadata = {
   title: {
@@ -63,7 +70,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${GeistSans.variable} ${GeistMono.variable} min-h-screen overflow-x-clip bg-background font-sans antialiased`}
+        className={`${outfit.variable} ${GeistMono.variable} min-h-screen overflow-x-clip bg-background font-sans antialiased`}
         suppressHydrationWarning
       >
         <PostHogProvider>

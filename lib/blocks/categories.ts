@@ -8,6 +8,8 @@
 import {
   Bell,
   Bot,
+  Building2,
+  Briefcase,
   FormInput,
   KeyRound,
   LayoutDashboard,
@@ -49,6 +51,18 @@ export const blocksCategoriesMetadata: CategoryMetadata[] = [
     name: "Hero Sections",
     description: "Landing heroes, split layouts, with video/images",
     icon: Rocket,
+  },
+  {
+    id: "brands",
+    name: "Brands",
+    description: "Partner logos, client carousels, trust badges",
+    icon: Building2,
+  },
+  {
+    id: "services",
+    name: "Services",
+    description: "Feature cards, service grids, offerings showcase",
+    icon: Briefcase,
   },
   {
     id: "stats",

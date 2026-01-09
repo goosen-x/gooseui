@@ -93,6 +93,35 @@ export function MyInput() {
         <div className="flex items-center gap-4 rounded-lg border p-4 max-w-sm">
           <Input type="file" />
         </div>
+
+        <h3 className="scroll-m-20 text-xl font-semibold tracking-tight mt-6">
+          With Validation Error
+        </h3>
+        <div className="flex flex-col gap-2 rounded-lg border p-4 max-w-sm">
+          <Label htmlFor="email-error">Email</Label>
+          <Input
+            id="email-error"
+            type="email"
+            placeholder="email@example.com"
+            defaultValue="invalid-email"
+            aria-invalid="true"
+          />
+          <p className="text-sm text-destructive">
+            Please enter a valid email address
+          </p>
+        </div>
+        <CodeBlock>{`<div className="grid gap-2">
+  <Label htmlFor="email">Email</Label>
+  <Input
+    id="email"
+    type="email"
+    placeholder="email@example.com"
+    aria-invalid="true"
+  />
+  <p className="text-sm text-destructive">
+    Please enter a valid email address
+  </p>
+</div>`}</CodeBlock>
       </div>
 
       <div className="space-y-4">

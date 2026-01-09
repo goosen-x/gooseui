@@ -1,7 +1,5 @@
 import Link from "next/link"
-import { Suspense } from "react"
 import { GitHubStars } from "@/components/github-stars"
-import { GitHubStarsSkeleton } from "@/components/github-stars-skeleton"
 import { siteConfig } from "@/lib/config/navigation"
 import { HeaderNav } from "./header-nav"
 import { MobileNav } from "./mobile-nav"
@@ -24,15 +22,11 @@ export function SiteHeader() {
           <div className="hidden md:flex">
             <SiteSearch />
           </div>
-          <Suspense
-            fallback={<GitHubStarsSkeleton className="hidden sm:flex" />}
-          >
-            <GitHubStars
-              owner="goosen-x"
-              repo="gooseui"
-              className="hidden sm:flex"
-            />
-          </Suspense>
+          <GitHubStars
+            owner="goosen-x"
+            repo="gooseui"
+            className="hidden sm:flex"
+          />
           <MobileNav />
         </div>
       </div>

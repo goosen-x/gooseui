@@ -26,7 +26,7 @@ export function HeaderAuth({
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-16 items-center justify-between">
+      <div className="container px-4 sm:px-6 lg:px-8 flex h-16 items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center space-x-2">
           <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground font-bold">
@@ -92,7 +92,7 @@ export function HeaderAuth({
           isOpen ? "max-h-96" : "max-h-0",
         )}
       >
-        <div className="container py-4 space-y-4">
+        <div className="container px-4 sm:px-6 lg:px-8 py-4 space-y-4">
           {isLoggedIn && (
             <div className="flex items-center space-x-3 pb-4 border-b">
               <div className="flex h-10 w-10 items-center justify-center rounded-full bg-muted">

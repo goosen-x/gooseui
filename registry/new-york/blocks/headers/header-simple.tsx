@@ -18,7 +18,7 @@ export function HeaderSimple() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-14 items-center">
+      <div className="container px-4 sm:px-6 lg:px-8 flex h-14 items-center">
         {/* Logo */}
         <Link href="/" className="mr-6 flex items-center space-x-2">
           <div className="flex h-6 w-6 items-center justify-center rounded-md bg-primary text-primary-foreground font-bold text-sm">
@@ -58,7 +58,7 @@ export function HeaderSimple() {
           isOpen ? "max-h-64" : "max-h-0",
         )}
       >
-        <nav className="container flex flex-col space-y-3 py-4">
+        <nav className="container px-4 sm:px-6 lg:px-8 flex flex-col space-y-3 py-4">
           {navItems.map((item) => (
             <Link
               key={item.href}
