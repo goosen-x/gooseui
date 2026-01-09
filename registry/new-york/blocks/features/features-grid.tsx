@@ -42,8 +42,7 @@ const demoFeatures = [
   {
     icon: Terminal,
     title: "shadcn CLI",
-    description:
-      "Full compatibility with shadcn CLI. Use familiar commands",
+    description: "Full compatibility with shadcn CLI. Use familiar commands",
   },
 ]
 

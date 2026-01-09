@@ -35,6 +35,7 @@ export interface RegistryItem {
  */
 export const REGISTRY_ITEMS: RegistryItem[] = [
   // Components
+  { slug: "badge", name: "Badge", type: "component" },
   { slug: "button", name: "Button", type: "component" },
   { slug: "card", name: "Card", type: "component" },
   { slug: "input", name: "Input", type: "component" },
@@ -55,6 +56,7 @@ export const REGISTRY_ITEMS: RegistryItem[] = [
   { slug: "morphing-dialog", name: "Morphing Dialog", type: "component" },
   { slug: "scroll-container", name: "Scroll Container", type: "component" },
   { slug: "scroll-progress", name: "Scroll Progress", type: "component" },
+  { slug: "scroll-to-top", name: "Scroll To Top", type: "component" },
   { slug: "adaptive-grid", name: "Adaptive Grid", type: "component" },
   { slug: "slider", name: "Slider", type: "component" },
   { slug: "svg-drawable", name: "SVG Drawable", type: "component" },

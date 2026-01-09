@@ -198,7 +198,6 @@ export const BLOCK_ITEMS: BlockItem[] = [
     name: "Header with CTA",
     description: "Navigation with prominent call-to-action button",
     category: "headers",
-    isNew: true,
   },
   {
     slug: "header-dropdown",
@@ -278,7 +277,6 @@ export const BLOCK_ITEMS: BlockItem[] = [
     name: "Footer with Newsletter",
     description: "Footer with email subscription form",
     category: "footers",
-    isNew: true,
   },
   {
     slug: "footer-social",

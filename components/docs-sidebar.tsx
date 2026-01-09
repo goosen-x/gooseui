@@ -142,9 +142,9 @@ function ComponentsNav({ pathname }: { pathname: string }) {
                           </span>
                         )}
                         {item.isNew && !item.isDraft && (
-                          <span className="ml-auto text-[10px] bg-primary text-white px-1.5 py-0.5 rounded-full">
-                            NEW
-                          </span>
+                          <Badge variant="beta" className="ml-auto">
+                            New
+                          </Badge>
                         )}
                       </Link>
                     </SidebarMenuSubButton>

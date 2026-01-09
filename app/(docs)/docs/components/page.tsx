@@ -1,5 +1,6 @@
 import {
   ArrowRightIcon,
+  ArrowUp,
   CircleCheck,
   Expand,
   Moon,
@@ -32,6 +33,13 @@ const componentPreviews: Record<string, ReactNode> = {
       <AnimatedTimer showSeconds={false} />
     </div>
   ),
+  badge: (
+    <div className="flex flex-wrap items-center gap-2">
+      <Badge>Default</Badge>
+      <Badge variant="secondary">Secondary</Badge>
+      <Badge variant="beta">Beta</Badge>
+    </div>
+  ),
   "baseline-status": (
     <div className="flex flex-col gap-2">
       <BaselineStatus status="widely" year={2023} size="sm" />
@@ -47,9 +55,9 @@ const componentPreviews: Record<string, ReactNode> = {
     </div>
   ),
   card: (
-    <Card className="w-full max-w-[200px] p-3">
+    <Card className="w-full h-full max-w-[200px] p-4 flex flex-col justify-center">
       <div className="text-sm font-medium">Card Title</div>
-      <div className="text-xs text-muted-foreground">Card content</div>
+      <div className="text-xs text-muted-foreground mt-1">Card content here</div>
     </Card>
   ),
   carousel: (
@@ -112,6 +120,17 @@ const componentPreviews: Record<string, ReactNode> = {
       <Typography variant="gradient" as="span" className="text-sm">
         Gradient
       </Typography>
+    </div>
+  ),
+  "scroll-to-top": (
+    <div className="flex items-center gap-3">
+      <div className="flex size-10 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-lg">
+        <ArrowUp className="size-5" />
+      </div>
+      <div className="flex items-center gap-2 rounded-full bg-primary px-4 py-2 text-sm text-primary-foreground shadow-lg">
+        <ArrowUp className="size-4" />
+        <span>Top</span>
+      </div>
     </div>
   ),
 }
@@ -184,7 +203,7 @@ export default function ComponentsPage() {
                   >
                     {/* New Badge */}
                     {component.isNew && !component.isDraft && (
-                      <Badge className="absolute top-2 right-2 z-10 h-5 bg-primary px-1.5 text-[10px] text-white">
+                      <Badge variant="beta" className="absolute top-2 right-2 z-10">
                         New
                       </Badge>
                     )}
@@ -199,10 +218,10 @@ export default function ComponentsPage() {
                     </div>
 
                     {/* Info Area */}
-                    <div className="flex flex-col gap-1 p-4">
+                    <div className="flex flex-col gap-1 p-4 min-h-[88px]">
                       <div className="flex items-center justify-between">
                         <h3 className="font-semibold">{component.name}</h3>
-                        <ArrowRightIcon className="size-4 text-muted-foreground transition-transform group-hover:translate-x-1" />
+                        <ArrowRightIcon className="size-4 shrink-0 text-muted-foreground transition-transform group-hover:translate-x-1" />
                       </div>
                       <p className="text-sm text-muted-foreground line-clamp-2">
                         {component.description}
@@ -238,9 +257,9 @@ export default function ComponentsPage() {
                     Preview coming soon
                   </span>
                 </div>
-                <div className="flex flex-col gap-1 p-4">
+                <div className="flex flex-col gap-1 p-4 min-h-[88px]">
                   <h3 className="font-semibold">{component.title}</h3>
-                  <p className="text-sm text-muted-foreground">
+                  <p className="text-sm text-muted-foreground line-clamp-2">
                     {component.description || "Component in development"}
                   </p>
                 </div>

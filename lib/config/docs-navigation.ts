@@ -115,6 +115,15 @@ const rawNavigation: NavSection[] = [
       },
       // B
       {
+        slug: "badge",
+        title: "Badge",
+        href: "/docs/components/badge",
+        description: "Small status indicator with variants",
+        category: "Display",
+        isNew: true,
+        keywords: ["badge", "tag", "label", "status", "chip"],
+      },
+      {
         slug: "baseline-status",
         title: "Baseline Status",
         href: "/docs/components/baseline-status",
@@ -207,6 +216,16 @@ const rawNavigation: NavSection[] = [
         category: "Display",
         isDraft: true,
         keywords: ["scroll", "progress", "animation", "timeline"],
+      },
+      {
+        slug: "scroll-to-top",
+        title: "Scroll To Top",
+        href: "/docs/components/scroll-to-top",
+        description:
+          "Floating scroll-to-top button with multiple variants",
+        category: "Navigation",
+        isNew: true,
+        keywords: ["scroll", "top", "button", "navigation", "back"],
       },
       // T
       {

@@ -25,7 +25,12 @@ export function DigitalClock({
   const [mounted, setMounted] = React.useState(false)
   const [colonVisible, setColonVisible] = React.useState(true)
 
-  const offColor = resolvedTheme === "dark" ? "#333" : "#ddd"
+  // Use consistent default until mounted to prevent hydration mismatch
+  const offColor = mounted
+    ? resolvedTheme === "dark"
+      ? "#333"
+      : "#ddd"
+    : "#333"
 
   React.useEffect(() => {
     setMounted(true)

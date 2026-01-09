@@ -296,6 +296,33 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "badge",
+      "type": "registry:ui",
+      "title": "Badge",
+      "description": "Small status indicator with variants for labels, tags, and status.",
+      "devDependencies": ["class-variance-authority"],
+      "registryDependencies": ["slot"],
+      "files": [
+        {
+          "path": "components/ui/badge.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "scroll-to-top",
+      "type": "registry:ui",
+      "title": "Scroll To Top",
+      "description": "Floating scroll-to-top button with 4 variants: default, pill, minimal, and progress indicator.",
+      "dependencies": ["lucide-react"],
+      "files": [
+        {
+          "path": "registry/new-york/ui/scroll-to-top.tsx",
+          "type": "registry:ui"
+        }
+      ]
     }
   ]
 }
