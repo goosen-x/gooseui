@@ -221,8 +221,7 @@ const rawNavigation: NavSection[] = [
         slug: "scroll-to-top",
         title: "Scroll To Top",
         href: "/docs/components/scroll-to-top",
-        description:
-          "Floating scroll-to-top button with multiple variants",
+        description: "Floating scroll-to-top button with multiple variants",
         category: "Navigation",
         isNew: true,
         keywords: ["scroll", "top", "button", "navigation", "back"],

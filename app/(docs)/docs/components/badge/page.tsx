@@ -5,7 +5,8 @@ import { Badge } from "@/components/ui/badge"
 
 export const metadata = {
   title: "Badge",
-  description: "Small status indicator with variants for labels, tags, and status",
+  description:
+    "Small status indicator with variants for labels, tags, and status",
 }
 
 export default function BadgePage() {

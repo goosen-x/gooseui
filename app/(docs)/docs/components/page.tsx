@@ -57,7 +57,9 @@ const componentPreviews: Record<string, ReactNode> = {
   card: (
     <Card className="w-full h-full max-w-[200px] p-4 flex flex-col justify-center">
       <div className="text-sm font-medium">Card Title</div>
-      <div className="text-xs text-muted-foreground mt-1">Card content here</div>
+      <div className="text-xs text-muted-foreground mt-1">
+        Card content here
+      </div>
     </Card>
   ),
   carousel: (
@@ -203,7 +205,10 @@ export default function ComponentsPage() {
                   >
                     {/* New Badge */}
                     {component.isNew && !component.isDraft && (
-                      <Badge variant="beta" className="absolute top-2 right-2 z-10">
+                      <Badge
+                        variant="beta"
+                        className="absolute top-2 right-2 z-10"
+                      >
                         New
                       </Badge>
                     )}

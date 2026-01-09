@@ -1,7 +1,7 @@
 "use client"
 
-import * as React from "react"
 import { ArrowUp, ChevronUp } from "lucide-react"
+import * as React from "react"
 import { cn } from "@/lib/utils"
 
 interface ScrollToTopProps {
@@ -44,7 +44,8 @@ function useScrollToTop(threshold: number = 300) {
   React.useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.scrollY
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight
+      const docHeight =
+        document.documentElement.scrollHeight - window.innerHeight
 
       setIsVisible(scrollTop > threshold)
       setScrollProgress(docHeight > 0 ? (scrollTop / docHeight) * 100 : 0)
@@ -57,9 +58,12 @@ function useScrollToTop(threshold: number = 300) {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [threshold])
 
-  const scrollToTop = React.useCallback((behavior: ScrollBehavior = "smooth") => {
-    window.scrollTo({ top: 0, behavior })
-  }, [])
+  const scrollToTop = React.useCallback(
+    (behavior: ScrollBehavior = "smooth") => {
+      window.scrollTo({ top: 0, behavior })
+    },
+    [],
+  )
 
   return { isVisible, scrollProgress, scrollToTop }
 }
@@ -204,7 +208,8 @@ export function ScrollToTopProgress({
   const size = 48
   const radius = (size - strokeWidth) / 2
   const circumference = 2 * Math.PI * radius
-  const strokeDashoffset = circumference - (scrollProgress / 100) * circumference
+  const strokeDashoffset =
+    circumference - (scrollProgress / 100) * circumference
 
   return (
     <button

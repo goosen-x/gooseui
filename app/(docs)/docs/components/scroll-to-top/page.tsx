@@ -2,10 +2,10 @@ import { CodeBlock } from "@/components/docs/code-block"
 import { DocsPageNav } from "@/components/docs/docs-page-nav"
 import { InstallCommand } from "@/components/docs/install-command"
 import {
-  ScrollToTopPreview,
   ScrollToTopDefaultDemo,
-  ScrollToTopPillDemo,
   ScrollToTopMinimalDemo,
+  ScrollToTopPillDemo,
+  ScrollToTopPreview,
   ScrollToTopProgressDemo,
 } from "./scroll-to-top-demo"
 
@@ -131,8 +131,8 @@ export default function Page() {
           <div>
             <h3 className="text-lg font-medium mb-3">Progress</h3>
             <p className="text-sm text-muted-foreground mb-4">
-              Circular button with scroll progress indicator. Shows how far
-              user has scrolled on the page.
+              Circular button with scroll progress indicator. Shows how far user
+              has scrolled on the page.
             </p>
             <div className="flex justify-center py-8 bg-muted/30 rounded-lg">
               <ScrollToTopProgressDemo />
@@ -186,8 +186,11 @@ export default function Page() {
           <div>
             <h3 className="text-lg font-medium mb-3">Using the Hook</h3>
             <p className="text-sm text-muted-foreground mb-4">
-              Use the <code className="text-xs bg-muted px-1 py-0.5 rounded">useScrollToTop</code> hook
-              for custom implementations.
+              Use the{" "}
+              <code className="text-xs bg-muted px-1 py-0.5 rounded">
+                useScrollToTop
+              </code>{" "}
+              hook for custom implementations.
             </p>
             <CodeBlock>{`import { useScrollToTop } from "@/components/ui/scroll-to-top"
 
@@ -231,7 +234,9 @@ function CustomScrollButton() {
                 <td className="p-3 font-mono text-xs">threshold</td>
                 <td className="p-3 font-mono text-xs">number</td>
                 <td className="p-3 font-mono text-xs">300</td>
-                <td className="p-3">Scroll distance (px) before button appears</td>
+                <td className="p-3">
+                  Scroll distance (px) before button appears
+                </td>
               </tr>
               <tr className="border-t">
                 <td className="p-3 font-mono text-xs">behavior</td>
@@ -241,7 +246,9 @@ function CustomScrollButton() {
               </tr>
               <tr className="border-t">
                 <td className="p-3 font-mono text-xs">size</td>
-                <td className="p-3 font-mono text-xs">&quot;sm&quot; | &quot;md&quot; | &quot;lg&quot;</td>
+                <td className="p-3 font-mono text-xs">
+                  &quot;sm&quot; | &quot;md&quot; | &quot;lg&quot;
+                </td>
                 <td className="p-3 font-mono text-xs">&quot;md&quot;</td>
                 <td className="p-3">Button size</td>
               </tr>
@@ -270,14 +277,18 @@ function CustomScrollButton() {
               <tr className="border-t">
                 <td className="p-3 font-mono text-xs">label</td>
                 <td className="p-3 font-mono text-xs">string</td>
-                <td className="p-3 font-mono text-xs">&quot;Scroll to top&quot;</td>
+                <td className="p-3 font-mono text-xs">
+                  &quot;Scroll to top&quot;
+                </td>
                 <td className="p-3">Button text label</td>
               </tr>
               <tr className="border-t">
                 <td className="p-3 font-mono text-xs">threshold</td>
                 <td className="p-3 font-mono text-xs">number</td>
                 <td className="p-3 font-mono text-xs">300</td>
-                <td className="p-3">Scroll distance (px) before button appears</td>
+                <td className="p-3">
+                  Scroll distance (px) before button appears
+                </td>
               </tr>
               <tr className="border-t">
                 <td className="p-3 font-mono text-xs">className</td>
@@ -323,7 +334,9 @@ function CustomScrollButton() {
                 <td className="p-3 font-mono text-xs">threshold</td>
                 <td className="p-3 font-mono text-xs">number</td>
                 <td className="p-3 font-mono text-xs">300</td>
-                <td className="p-3">Scroll distance (px) before button appears</td>
+                <td className="p-3">
+                  Scroll distance (px) before button appears
+                </td>
               </tr>
             </tbody>
           </table>

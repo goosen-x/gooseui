@@ -3,8 +3,8 @@
 import * as React from "react"
 import {
   ScrollToTop,
-  ScrollToTopPill,
   ScrollToTopMinimal,
+  ScrollToTopPill,
   ScrollToTopProgress,
 } from "@/registry/new-york/ui/scroll-to-top"
 
@@ -63,9 +63,7 @@ function DemoContainer({
           ))}
         </div>
         {/* ScrollToTop button - positioned relative to container */}
-        <div className="sticky bottom-0 left-0 right-0 h-0">
-          {children}
-        </div>
+        <div className="sticky bottom-0 left-0 right-0 h-0">{children}</div>
       </div>
     </div>
   )

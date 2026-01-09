@@ -26,7 +26,12 @@ export function SiteFooter() {
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
           {/* Logo & Description */}
           <div className="lg:col-span-1">
-            <Link href="/" className="font-bold text-xl">
+            <Link href="/" className="flex items-center gap-2 font-bold text-xl">
+              <img
+                src="/favicon/favicon.svg"
+                alt=""
+                className="size-6 dark:invert"
+              />
               {siteConfig.name}
             </Link>
             <p className="mt-4 text-sm text-muted-foreground">
