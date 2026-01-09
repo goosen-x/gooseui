@@ -12,7 +12,10 @@ interface ConstructorPreviewProps {
   onViewportChange: (viewport: ViewportSize) => void
 }
 
-const viewportSizes: Record<ViewportSize, { width: string; icon: React.ReactNode }> = {
+const viewportSizes: Record<
+  ViewportSize,
+  { width: string; icon: React.ReactNode }
+> = {
   desktop: { width: "100%", icon: <Monitor className="h-4 w-4" /> },
   tablet: { width: "768px", icon: <Tablet className="h-4 w-4" /> },
   mobile: { width: "375px", icon: <Smartphone className="h-4 w-4" /> },
@@ -53,7 +56,8 @@ export function ConstructorPreview({
         <div
           className={cn(
             "mx-auto h-full transition-all duration-300",
-            viewport !== "desktop" && "rounded-lg border bg-background shadow-lg",
+            viewport !== "desktop" &&
+              "rounded-lg border bg-background shadow-lg",
           )}
           style={{
             width: viewportSizes[viewport].width,

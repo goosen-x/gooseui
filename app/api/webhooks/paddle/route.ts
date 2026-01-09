@@ -12,10 +12,10 @@
  * - subscription.resumed
  */
 
-import { NextResponse } from "next/server"
-import { headers } from "next/headers"
-import { getPaddle, getPlanFromPriceId } from "@/lib/payments/paddle"
 import type { EventEntity } from "@paddle/paddle-node-sdk"
+import { headers } from "next/headers"
+import { NextResponse } from "next/server"
+import { getPaddle, getPlanFromPriceId } from "@/lib/payments/paddle"
 
 export async function POST(request: Request) {
   try {
@@ -30,7 +30,10 @@ export async function POST(request: Request) {
     const webhookSecret = process.env.PADDLE_WEBHOOK_SECRET
     if (!webhookSecret) {
       console.error("PADDLE_WEBHOOK_SECRET not configured")
-      return NextResponse.json({ error: "Webhook not configured" }, { status: 500 })
+      return NextResponse.json(
+        { error: "Webhook not configured" },
+        { status: 500 },
+      )
     }
 
     const paddle = getPaddle()
@@ -73,7 +76,9 @@ export async function POST(request: Request) {
       case "subscription.created": {
         const customData = (eventData.customData as { userId?: string }) || {}
         const userId = customData.userId
-        const items = eventData.items as Array<{ price?: { id?: string } }> | undefined
+        const items = eventData.items as
+          | Array<{ price?: { id?: string } }>
+          | undefined
         const priceId = items?.[0]?.price?.id
         const plan = priceId ? getPlanFromPriceId(priceId) : "pro"
 
@@ -89,7 +94,9 @@ export async function POST(request: Request) {
       }
 
       case "subscription.updated": {
-        const items = eventData.items as Array<{ price?: { id?: string } }> | undefined
+        const items = eventData.items as
+          | Array<{ price?: { id?: string } }>
+          | undefined
         const priceId = items?.[0]?.price?.id
         const plan = priceId ? getPlanFromPriceId(priceId) : "pro"
 
@@ -132,7 +139,7 @@ export async function POST(request: Request) {
     console.error("Webhook error:", error)
     return NextResponse.json(
       { error: "Webhook handler failed" },
-      { status: 500 }
+      { status: 500 },
     )
   }
 }

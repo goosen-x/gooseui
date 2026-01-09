@@ -2,8 +2,8 @@
  * HTML Export - Generate standalone HTML from page schema
  */
 
-import type { PageSchema, SectionSchema } from "../types"
 import { getComponent } from "../registry"
+import type { PageSchema, SectionSchema } from "../types"
 
 /**
  * Generate inline styles for Tailwind (simplified)
@@ -57,7 +57,7 @@ export interface HTMLExportOptions {
  */
 export function exportToHTML(
   page: PageSchema,
-  options: HTMLExportOptions = {}
+  options: HTMLExportOptions = {},
 ): string {
   const {
     includeWatermark = true,
@@ -99,10 +99,7 @@ export function exportToHTML(
 </html>`
 
   if (minify) {
-    return html
-      .replace(/\n\s*/g, "")
-      .replace(/>\s+</g, "><")
-      .trim()
+    return html.replace(/\n\s*/g, "").replace(/>\s+</g, "><").trim()
   }
 
   return html
@@ -111,7 +108,10 @@ export function exportToHTML(
 /**
  * Export to HTML and trigger download
  */
-export function downloadHTML(page: PageSchema, options?: HTMLExportOptions): void {
+export function downloadHTML(
+  page: PageSchema,
+  options?: HTMLExportOptions,
+): void {
   const html = exportToHTML(page, options)
   const blob = new Blob([html], { type: "text/html" })
   const url = URL.createObjectURL(blob)

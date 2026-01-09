@@ -4,21 +4,29 @@
  * Editor Toolbar - Top toolbar with viewport controls, undo/redo, templates, export
  */
 
-import { useState } from "react"
 import {
-  Monitor,
-  Tablet,
-  Smartphone,
-  Undo2,
-  Redo2,
   Download,
-  PanelRight,
-  RotateCcw,
-  Layout,
-  Sparkles,
   Keyboard,
+  Layout,
+  Monitor,
+  PanelRight,
+  Redo2,
+  RotateCcw,
+  Smartphone,
+  Sparkles,
+  Tablet,
+  Undo2,
 } from "lucide-react"
+import { useState } from "react"
 import { Button } from "@/components/ui/button"
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -32,29 +40,29 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip"
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog"
-import { useEditorStore, useEditorHistory } from "@/lib/generate/store"
+import { formatShortcut, getShortcutsList } from "@/hooks/use-editor-shortcuts"
+import { useFeatureAccess } from "@/hooks/use-feature-access"
 import { downloadHTML } from "@/lib/generate/export/html"
 import { downloadReact } from "@/lib/generate/export/react"
 import { downloadRegistry } from "@/lib/generate/export/registry"
-import { useFeatureAccess } from "@/hooks/use-feature-access"
-import { getShortcutsList, formatShortcut } from "@/hooks/use-editor-shortcuts"
+import { useEditorHistory, useEditorStore } from "@/lib/generate/store"
 import type { ViewportSize } from "@/lib/generate/types"
+import { cn } from "@/lib/utils"
 import { TemplatesGallery } from "./templates-gallery"
 import { UpgradeModal } from "./upgrade-modal"
-import { cn } from "@/lib/utils"
 
-const viewportOptions: { value: ViewportSize; icon: React.ReactNode; label: string }[] = [
+const viewportOptions: {
+  value: ViewportSize
+  icon: React.ReactNode
+  label: string
+}[] = [
   { value: "desktop", icon: <Monitor className="h-4 w-4" />, label: "Desktop" },
   { value: "tablet", icon: <Tablet className="h-4 w-4" />, label: "Tablet" },
-  { value: "mobile", icon: <Smartphone className="h-4 w-4" />, label: "Mobile" },
+  {
+    value: "mobile",
+    icon: <Smartphone className="h-4 w-4" />,
+    label: "Mobile",
+  },
 ]
 
 function ShortcutsDialog() {
@@ -183,7 +191,7 @@ export function EditorToolbar() {
                   size="sm"
                   className={cn(
                     "h-8 w-8 p-0 cursor-pointer",
-                    viewport === option.value && "bg-background shadow-sm"
+                    viewport === option.value && "bg-background shadow-sm",
                   )}
                   onClick={() => setViewport(option.value)}
                 >
@@ -262,20 +270,32 @@ export function EditorToolbar() {
           {/* Export */}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="outline" size="sm" className="gap-2 cursor-pointer">
+              <Button
+                variant="outline"
+                size="sm"
+                className="gap-2 cursor-pointer"
+              >
                 <Download className="h-4 w-4" />
                 Export
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="w-48">
-              <DropdownMenuItem onClick={handleExportJSON} className="cursor-pointer">
+              <DropdownMenuItem
+                onClick={handleExportJSON}
+                className="cursor-pointer"
+              >
                 Export JSON
               </DropdownMenuItem>
               <DropdownMenuSeparator />
-              <DropdownMenuItem onClick={handleExportHTML} className="cursor-pointer">
+              <DropdownMenuItem
+                onClick={handleExportHTML}
+                className="cursor-pointer"
+              >
                 Export HTML
                 {!canRemoveWatermark && (
-                  <span className="ml-auto text-xs text-muted-foreground">+ watermark</span>
+                  <span className="ml-auto text-xs text-muted-foreground">
+                    + watermark
+                  </span>
                 )}
               </DropdownMenuItem>
               <DropdownMenuItem
@@ -326,13 +346,18 @@ export function EditorToolbar() {
               <Button
                 variant="ghost"
                 size="icon"
-                className={cn("h-8 w-8 cursor-pointer", isSidebarOpen && "bg-muted")}
+                className={cn(
+                  "h-8 w-8 cursor-pointer",
+                  isSidebarOpen && "bg-muted",
+                )}
                 onClick={toggleSidebar}
               >
                 <PanelRight className="h-4 w-4" />
               </Button>
             </TooltipTrigger>
-            <TooltipContent side="bottom">Toggle Sidebar (Ctrl+B)</TooltipContent>
+            <TooltipContent side="bottom">
+              Toggle Sidebar (Ctrl+B)
+            </TooltipContent>
           </Tooltip>
         </div>
       </div>

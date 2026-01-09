@@ -2,7 +2,7 @@
  * Paddle Configuration
  */
 
-import { Paddle, Environment } from "@paddle/paddle-node-sdk"
+import { type Environment, Paddle } from "@paddle/paddle-node-sdk"
 
 // Lazy-loaded Paddle client (initialized on first use)
 let paddleInstance: Paddle | null = null
@@ -13,7 +13,9 @@ export function getPaddle(): Paddle {
       throw new Error("PADDLE_API_KEY is not set")
     }
     paddleInstance = new Paddle(process.env.PADDLE_API_KEY, {
-      environment: (process.env.NEXT_PUBLIC_PADDLE_ENVIRONMENT as Environment) || "sandbox",
+      environment:
+        (process.env.NEXT_PUBLIC_PADDLE_ENVIRONMENT as Environment) ||
+        "sandbox",
     })
   }
   return paddleInstance
@@ -36,7 +38,7 @@ export const PADDLE_PRICES = {
  */
 export function getPaddlePriceId(
   plan: "pro" | "team",
-  interval: "monthly" | "yearly"
+  interval: "monthly" | "yearly",
 ): string | undefined {
   return PADDLE_PRICES[plan]?.[interval]
 }
@@ -65,7 +67,6 @@ export function getPlanFromPriceId(priceId: string): "pro" | "team" | null {
  */
 export function isPaddleConfigured(): boolean {
   return !!(
-    process.env.PADDLE_API_KEY &&
-    process.env.NEXT_PUBLIC_PADDLE_CLIENT_TOKEN
+    process.env.PADDLE_API_KEY && process.env.NEXT_PUBLIC_PADDLE_CLIENT_TOKEN
   )
 }

@@ -46,7 +46,8 @@ function constructorReducer(
 
       // Find the position to insert (before footer if exists)
       const footerIndex = state.sections.findIndex((s) => s.type === "footer")
-      const insertIndex = footerIndex !== -1 ? footerIndex : state.sections.length
+      const insertIndex =
+        footerIndex !== -1 ? footerIndex : state.sections.length
 
       const newSections = [...state.sections]
       newSections.splice(insertIndex, 0, newSection)
@@ -106,7 +107,10 @@ export function useConstructor() {
 
   const addSection = React.useCallback(
     (type: SectionType, variant?: string) => {
-      dispatch({ type: "ADD_SECTION", payload: { type, variant: variant || getDefaultVariant(type) } })
+      dispatch({
+        type: "ADD_SECTION",
+        payload: { type, variant: variant || getDefaultVariant(type) },
+      })
     },
     [],
   )

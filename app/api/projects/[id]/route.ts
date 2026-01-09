@@ -38,7 +38,10 @@ export async function GET(request: Request, { params }: RouteParams) {
     return NextResponse.json({ project })
   } catch (error) {
     console.error("Project GET error:", error)
-    return NextResponse.json({ error: "Internal server error" }, { status: 500 })
+    return NextResponse.json(
+      { error: "Internal server error" },
+      { status: 500 },
+    )
   }
 }
 
@@ -67,7 +70,8 @@ export async function PUT(request: Request, { params }: RouteParams) {
 
     // Update project
     const body = await request.json()
-    const { name, description, data, thumbnail, is_published, published_url } = body
+    const { name, description, data, thumbnail, is_published, published_url } =
+      body
 
     const updates: Record<string, unknown> = {}
     if (name !== undefined) updates.name = name
@@ -87,13 +91,19 @@ export async function PUT(request: Request, { params }: RouteParams) {
 
     if (error) {
       console.error("Error updating project:", error)
-      return NextResponse.json({ error: "Failed to update project" }, { status: 500 })
+      return NextResponse.json(
+        { error: "Failed to update project" },
+        { status: 500 },
+      )
     }
 
     return NextResponse.json({ project })
   } catch (error) {
     console.error("Project PUT error:", error)
-    return NextResponse.json({ error: "Internal server error" }, { status: 500 })
+    return NextResponse.json(
+      { error: "Internal server error" },
+      { status: 500 },
+    )
   }
 }
 
@@ -116,12 +126,18 @@ export async function DELETE(request: Request, { params }: RouteParams) {
 
     if (error) {
       console.error("Error deleting project:", error)
-      return NextResponse.json({ error: "Failed to delete project" }, { status: 500 })
+      return NextResponse.json(
+        { error: "Failed to delete project" },
+        { status: 500 },
+      )
     }
 
     return NextResponse.json({ success: true })
   } catch (error) {
     console.error("Project DELETE error:", error)
-    return NextResponse.json({ error: "Internal server error" }, { status: 500 })
+    return NextResponse.json(
+      { error: "Internal server error" },
+      { status: 500 },
+    )
   }
 }

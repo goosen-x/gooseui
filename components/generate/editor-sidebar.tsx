@@ -4,16 +4,14 @@
  * Editor Sidebar - Section list with drag & drop reordering
  */
 
-import { useState, useEffect, useId } from "react"
-import { GripVertical, Plus, Trash2, ChevronLeft, ChevronRight, Lock } from "lucide-react"
 import {
-  DndContext,
   closestCenter,
+  DndContext,
+  type DragEndEvent,
   KeyboardSensor,
   PointerSensor,
   useSensor,
   useSensors,
-  type DragEndEvent,
 } from "@dnd-kit/core"
 import {
   arrayMove,
@@ -23,6 +21,15 @@ import {
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable"
 import { CSS } from "@dnd-kit/utilities"
+import {
+  ChevronLeft,
+  ChevronRight,
+  GripVertical,
+  Lock,
+  Plus,
+  Trash2,
+} from "lucide-react"
+import { useEffect, useId, useState } from "react"
 import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
@@ -30,8 +37,13 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import {
+  componentRegistry,
+  getOptionalSectionTypes,
+  getVariantCount,
+  getVariantIndex,
+} from "@/lib/generate/registry"
 import { useEditorStore } from "@/lib/generate/store"
-import { componentRegistry, getOptionalSectionTypes, getVariantIndex, getVariantCount } from "@/lib/generate/registry"
 import type { SectionSchema, SectionType } from "@/lib/generate/types"
 import { cn } from "@/lib/utils"
 
@@ -72,7 +84,7 @@ function SortableSectionItem({ section }: SortableSectionItemProps) {
       className={cn(
         "group flex items-center gap-2 rounded-lg border bg-card p-3 transition-all",
         isDragging && "opacity-50 shadow-lg",
-        isSelected && "border-primary ring-1 ring-primary"
+        isSelected && "border-primary ring-1 ring-primary",
       )}
     >
       {/* Drag handle */}
@@ -90,7 +102,9 @@ function SortableSectionItem({ section }: SortableSectionItemProps) {
         onClick={() => selectSection(section.id)}
       >
         <div className="flex items-center gap-2">
-          <span className="font-medium capitalize">{definition?.name || section.type}</span>
+          <span className="font-medium capitalize">
+            {definition?.name || section.type}
+          </span>
           {section.isRequired && (
             <Lock className="h-3 w-3 text-muted-foreground" />
           )}
@@ -151,7 +165,7 @@ export function EditorSidebar() {
     useSensor(PointerSensor),
     useSensor(KeyboardSensor, {
       coordinateGetter: sortableKeyboardCoordinates,
-    })
+    }),
   )
 
   // Prevent hydration mismatch with dnd-kit
@@ -178,7 +192,11 @@ export function EditorSidebar() {
         <h2 className="font-semibold">Sections</h2>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="outline" size="sm" className="gap-1 cursor-pointer">
+            <Button
+              variant="outline"
+              size="sm"
+              className="gap-1 cursor-pointer"
+            >
               <Plus className="h-4 w-4" />
               Add
             </Button>

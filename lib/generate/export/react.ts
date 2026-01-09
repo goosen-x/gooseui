@@ -2,8 +2,8 @@
  * React Export - Generate React component code from page schema
  */
 
-import type { PageSchema, SectionSchema } from "../types"
 import { componentRegistry } from "../registry"
+import type { PageSchema, SectionSchema } from "../types"
 
 /**
  * Get component import path based on section type and variant
@@ -23,16 +23,20 @@ function getImportPath(section: SectionSchema): string {
       "brands-carousel": "@/registry/new-york/blocks/brands/brands-carousel",
     },
     services: {
-      "services-marquee": "@/registry/new-york/blocks/services/services-marquee",
+      "services-marquee":
+        "@/registry/new-york/blocks/services/services-marquee",
     },
     footer: {
       "footer-simple": "@/registry/new-york/blocks/footers/footer-simple",
       "footer-columns": "@/registry/new-york/blocks/footers/footer-columns",
-      "footer-newsletter": "@/registry/new-york/blocks/footers/footer-newsletter",
+      "footer-newsletter":
+        "@/registry/new-york/blocks/footers/footer-newsletter",
     },
   }
 
-  return paths[section.type]?.[section.variant] || `@/components/${section.type}`
+  return (
+    paths[section.type]?.[section.variant] || `@/components/${section.type}`
+  )
 }
 
 /**
@@ -92,7 +96,7 @@ export interface ReactExportOptions {
  */
 export function exportToReact(
   page: PageSchema,
-  options: ReactExportOptions = {}
+  options: ReactExportOptions = {},
 ): string {
   const {
     typescript = true,
@@ -138,7 +142,10 @@ ${page.settings.ogImage ? `  openGraph: { images: ["${page.settings.ogImage}"] }
 `
     : ""
 
-  const metadataImport = includeMetadata && typescript ? 'import type { Metadata } from "next"\n' : ""
+  const metadataImport =
+    includeMetadata && typescript
+      ? 'import type { Metadata } from "next"\n'
+      : ""
 
   const code = `${metadataImport}${importStatements}
 ${metadataExport}
@@ -159,7 +166,7 @@ ${sectionsJSX}
  */
 export function downloadReact(
   page: PageSchema,
-  options?: ReactExportOptions
+  options?: ReactExportOptions,
 ): void {
   const code = exportToReact(page, options)
   const ext = options?.typescript !== false ? "tsx" : "jsx"

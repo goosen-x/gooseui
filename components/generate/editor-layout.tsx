@@ -13,12 +13,12 @@
  * └────────────────────────────────────────────┴───────────────┘
  */
 
-import { useEditorStore } from "@/lib/generate/store"
 import { useEditorShortcuts } from "@/hooks/use-editor-shortcuts"
-import { EditorToolbar } from "./editor-toolbar"
+import { useEditorStore } from "@/lib/generate/store"
+import { cn } from "@/lib/utils"
 import { EditorCanvas } from "./editor-canvas"
 import { EditorSidebar } from "./editor-sidebar"
-import { cn } from "@/lib/utils"
+import { EditorToolbar } from "./editor-toolbar"
 
 export function EditorLayout() {
   const isSidebarOpen = useEditorStore((state) => state.isSidebarOpen)
@@ -42,7 +42,7 @@ export function EditorLayout() {
         <div
           className={cn(
             "border-l bg-background transition-all duration-300",
-            isSidebarOpen ? "w-80" : "w-0"
+            isSidebarOpen ? "w-80" : "w-0",
           )}
         >
           {isSidebarOpen && <EditorSidebar />}

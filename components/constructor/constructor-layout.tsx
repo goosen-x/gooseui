@@ -1,9 +1,9 @@
-"use client";
+"use client"
 
-import * as React from "react";
-import { ConstructorPreview } from "./constructor-preview";
-import { ConstructorSidebar } from "./constructor-sidebar";
-import { useConstructor } from "@/lib/constructor/use-constructor";
+import * as React from "react"
+import { useConstructor } from "@/lib/constructor/use-constructor"
+import { ConstructorPreview } from "./constructor-preview"
+import { ConstructorSidebar } from "./constructor-sidebar"
 
 export function ConstructorLayout() {
   const {
@@ -16,7 +16,7 @@ export function ConstructorLayout() {
     reorderSections,
     setViewport,
     selectSection,
-  } = useConstructor();
+  } = useConstructor()
 
   return (
     <div className="flex h-[calc(100vh-4rem)]">
@@ -42,5 +42,5 @@ export function ConstructorLayout() {
         />
       </div>
     </div>
-  );
+  )
 }

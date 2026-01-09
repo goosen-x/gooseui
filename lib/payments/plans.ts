@@ -171,7 +171,7 @@ export function formatPrice(cents: number, yearly = false): string {
  */
 export function hasFeature(
   tier: PlanTier,
-  feature: keyof PlanFeatures
+  feature: keyof PlanFeatures,
 ): boolean {
   return plans[tier]?.features[feature] ?? false
 }
@@ -181,7 +181,7 @@ export function hasFeature(
  */
 export function isProjectLimitReached(
   tier: PlanTier,
-  currentProjects: number
+  currentProjects: number,
 ): boolean {
   const limit = plans[tier]?.limits.projects ?? 0
   if (limit === -1) return false
@@ -193,7 +193,7 @@ export function isProjectLimitReached(
  */
 export function isExportLimitReached(
   tier: PlanTier,
-  currentExports: number
+  currentExports: number,
 ): boolean {
   const limit = plans[tier]?.limits.exportsPerMonth ?? 0
   if (limit === -1) return false

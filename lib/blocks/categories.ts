@@ -8,8 +8,8 @@
 import {
   Bell,
   Bot,
-  Building2,
   Briefcase,
+  Building2,
   FormInput,
   KeyRound,
   LayoutDashboard,

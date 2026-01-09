@@ -1,5 +1,6 @@
 "use client"
 
+import type { LucideIcon } from "lucide-react"
 import {
   Code2,
   Cpu,
@@ -10,7 +11,6 @@ import {
   Shield,
   Zap,
 } from "lucide-react"
-import type { LucideIcon } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 interface Service {
@@ -23,7 +23,8 @@ interface Service {
 const services: Service[] = [
   {
     title: "Web Development",
-    description: "Build modern, responsive websites with cutting-edge technologies",
+    description:
+      "Build modern, responsive websites with cutting-edge technologies",
     icon: Globe,
     gradient: "from-blue-500/20 to-cyan-500/20",
   },
@@ -95,8 +96,8 @@ export function ServicesMarquee({
             Everything you need to succeed
           </h2>
           <p className="mt-4 text-lg text-muted-foreground">
-            Comprehensive solutions designed to help your business grow and thrive
-            in the digital age.
+            Comprehensive solutions designed to help your business grow and
+            thrive in the digital age.
           </p>
         </div>
       </div>

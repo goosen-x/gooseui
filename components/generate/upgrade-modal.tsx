@@ -5,9 +5,11 @@
  * Uses Paddle for payment processing
  */
 
-import { useState, useEffect } from "react"
-import { Check, Sparkles, Loader2 } from "lucide-react"
-import { initializePaddle, Paddle } from "@paddle/paddle-js"
+import { initializePaddle, type Paddle } from "@paddle/paddle-js"
+import { Check, Loader2, Sparkles } from "lucide-react"
+import { useEffect, useState } from "react"
+import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
 import {
   Dialog,
   DialogContent,
@@ -16,9 +18,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { plans, formatPrice } from "@/lib/payments/plans"
+import { formatPrice, plans } from "@/lib/payments/plans"
 import { cn } from "@/lib/utils"
 
 interface UpgradeModalProps {
@@ -28,32 +28,36 @@ interface UpgradeModalProps {
   onOpenChange?: (open: boolean) => void
 }
 
-const featureMessages: Record<string, { title: string; description: string }> = {
-  react: {
-    title: "Export to React",
-    description: "Export your landing page as a clean React component with TypeScript support.",
-  },
-  registry: {
-    title: "shadcn Registry Export",
-    description: "Export as a shadcn CLI compatible package for easy installation.",
-  },
-  watermark: {
-    title: "Remove Watermark",
-    description: "Remove the GooseUI watermark from your exported pages.",
-  },
-  projects: {
-    title: "More Projects",
-    description: "Create unlimited projects with a Pro subscription.",
-  },
-  exports: {
-    title: "More Exports",
-    description: "Get unlimited exports with a Pro subscription.",
-  },
-  default: {
-    title: "Upgrade to Pro",
-    description: "Unlock all premium features and take your landing pages to the next level.",
-  },
-}
+const featureMessages: Record<string, { title: string; description: string }> =
+  {
+    react: {
+      title: "Export to React",
+      description:
+        "Export your landing page as a clean React component with TypeScript support.",
+    },
+    registry: {
+      title: "shadcn Registry Export",
+      description:
+        "Export as a shadcn CLI compatible package for easy installation.",
+    },
+    watermark: {
+      title: "Remove Watermark",
+      description: "Remove the GooseUI watermark from your exported pages.",
+    },
+    projects: {
+      title: "More Projects",
+      description: "Create unlimited projects with a Pro subscription.",
+    },
+    exports: {
+      title: "More Exports",
+      description: "Get unlimited exports with a Pro subscription.",
+    },
+    default: {
+      title: "Upgrade to Pro",
+      description:
+        "Unlock all premium features and take your landing pages to the next level.",
+    },
+  }
 
 export function UpgradeModal({
   trigger,
@@ -73,7 +77,10 @@ export function UpgradeModal({
     if (!clientToken) return
 
     initializePaddle({
-      environment: (process.env.NEXT_PUBLIC_PADDLE_ENVIRONMENT as "sandbox" | "production") || "sandbox",
+      environment:
+        (process.env.NEXT_PUBLIC_PADDLE_ENVIRONMENT as
+          | "sandbox"
+          | "production") || "sandbox",
       token: clientToken,
       eventCallback: (event) => {
         if (event.name === "checkout.completed") {
@@ -148,7 +155,9 @@ export function UpgradeModal({
           <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary/10">
             <Sparkles className="h-6 w-6 text-primary" />
           </div>
-          <DialogTitle className="text-center text-xl">{message.title}</DialogTitle>
+          <DialogTitle className="text-center text-xl">
+            {message.title}
+          </DialogTitle>
           <DialogDescription className="text-center">
             {message.description}
           </DialogDescription>
@@ -158,13 +167,17 @@ export function UpgradeModal({
           <div className="mb-3 flex items-center justify-between">
             <div>
               <h3 className="font-semibold">{proPlan.name}</h3>
-              <p className="text-sm text-muted-foreground">{proPlan.description}</p>
+              <p className="text-sm text-muted-foreground">
+                {proPlan.description}
+              </p>
             </div>
             <Badge variant="secondary">Popular</Badge>
           </div>
 
           <div className="mb-4">
-            <span className="text-3xl font-bold">{formatPrice(proPlan.price)}</span>
+            <span className="text-3xl font-bold">
+              {formatPrice(proPlan.price)}
+            </span>
             {proPlan.priceYearly && (
               <span className="ml-2 text-sm text-muted-foreground">
                 or {formatPrice(proPlan.priceYearly, true)}
@@ -252,7 +265,11 @@ export function UpgradeButton({
     <UpgradeModal
       feature={feature}
       trigger={
-        <Button variant="outline" size="sm" className={cn("gap-2 cursor-pointer", className)}>
+        <Button
+          variant="outline"
+          size="sm"
+          className={cn("gap-2 cursor-pointer", className)}
+        >
           <Sparkles className="h-3 w-3" />
           {children || "Upgrade"}
         </Button>

@@ -4,23 +4,22 @@
  * Centralized registry of all available components and their variants
  */
 
-import type { ComponentDefinition, SectionType, VariantDefinition } from "./types"
-
+import { BrandsCarousel } from "@/registry/new-york/blocks/brands/brands-carousel"
+import { FooterColumns } from "@/registry/new-york/blocks/footers/footer-columns"
+import { FooterNewsletter } from "@/registry/new-york/blocks/footers/footer-newsletter"
+import { FooterSimple } from "@/registry/new-york/blocks/footers/footer-simple"
+import { HeaderAuth } from "@/registry/new-york/blocks/headers/header-auth"
 // Import all block components
 import { HeaderSimple } from "@/registry/new-york/blocks/headers/header-simple"
 import { HeaderWithCta } from "@/registry/new-york/blocks/headers/header-with-cta"
-import { HeaderAuth } from "@/registry/new-york/blocks/headers/header-auth"
-
 import { HeroClassic } from "@/registry/new-york/blocks/hero/hero-classic"
 import { HeroSplit } from "@/registry/new-york/blocks/hero/hero-split"
-
-import { BrandsCarousel } from "@/registry/new-york/blocks/brands/brands-carousel"
-
 import { ServicesMarquee } from "@/registry/new-york/blocks/services/services-marquee"
-
-import { FooterSimple } from "@/registry/new-york/blocks/footers/footer-simple"
-import { FooterColumns } from "@/registry/new-york/blocks/footers/footer-columns"
-import { FooterNewsletter } from "@/registry/new-york/blocks/footers/footer-newsletter"
+import type {
+  ComponentDefinition,
+  SectionType,
+  VariantDefinition,
+} from "./types"
 
 /**
  * Component Registry
@@ -212,7 +211,7 @@ export function getVariants(type: SectionType): VariantDefinition[] {
  */
 export function getVariant(
   type: SectionType,
-  variantId: string
+  variantId: string,
 ): VariantDefinition | undefined {
   return componentRegistry[type]?.variants.find((v) => v.id === variantId)
 }
@@ -222,7 +221,7 @@ export function getVariant(
  */
 export function getComponent(
   type: SectionType,
-  variantId: string
+  variantId: string,
 ): React.ComponentType<Record<string, unknown>> | undefined {
   return getVariant(type, variantId)?.component
 }
@@ -246,7 +245,9 @@ export function getAllSectionTypes(): SectionType[] {
  * Get required section types
  */
 export function getRequiredSectionTypes(): SectionType[] {
-  return getAllSectionTypes().filter((type) => componentRegistry[type].isRequired)
+  return getAllSectionTypes().filter(
+    (type) => componentRegistry[type].isRequired,
+  )
 }
 
 /**
@@ -254,7 +255,9 @@ export function getRequiredSectionTypes(): SectionType[] {
  */
 export function getOptionalSectionTypes(): SectionType[] {
   return getAllSectionTypes().filter(
-    (type) => !componentRegistry[type].isRequired && componentRegistry[type].variants.length > 0
+    (type) =>
+      !componentRegistry[type].isRequired &&
+      componentRegistry[type].variants.length > 0,
   )
 }
 
@@ -262,10 +265,10 @@ export function getOptionalSectionTypes(): SectionType[] {
  * Get section types by category
  */
 export function getSectionsByCategory(
-  category: ComponentDefinition["category"]
+  category: ComponentDefinition["category"],
 ): SectionType[] {
   return getAllSectionTypes().filter(
-    (type) => componentRegistry[type].category === category
+    (type) => componentRegistry[type].category === category,
   )
 }
 
@@ -287,13 +290,18 @@ export function getVariantCount(type: SectionType): number {
  * Get variant index by ID
  */
 export function getVariantIndex(type: SectionType, variantId: string): number {
-  return componentRegistry[type]?.variants.findIndex((v) => v.id === variantId) ?? -1
+  return (
+    componentRegistry[type]?.variants.findIndex((v) => v.id === variantId) ?? -1
+  )
 }
 
 /**
  * Get next variant ID (circular)
  */
-export function getNextVariantId(type: SectionType, currentVariantId: string): string {
+export function getNextVariantId(
+  type: SectionType,
+  currentVariantId: string,
+): string {
   const variants = componentRegistry[type]?.variants || []
   if (variants.length === 0) return currentVariantId
 
@@ -305,7 +313,10 @@ export function getNextVariantId(type: SectionType, currentVariantId: string): s
 /**
  * Get previous variant ID (circular)
  */
-export function getPrevVariantId(type: SectionType, currentVariantId: string): string {
+export function getPrevVariantId(
+  type: SectionType,
+  currentVariantId: string,
+): string {
   const variants = componentRegistry[type]?.variants || []
   if (variants.length === 0) return currentVariantId
 

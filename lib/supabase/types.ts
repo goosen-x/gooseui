@@ -64,12 +64,16 @@ export interface Database {
       subscriptions: {
         Row: Subscription
         Insert: Omit<Subscription, "id" | "created_at" | "updated_at">
-        Update: Partial<Omit<Subscription, "id" | "user_id" | "created_at" | "updated_at">>
+        Update: Partial<
+          Omit<Subscription, "id" | "user_id" | "created_at" | "updated_at">
+        >
       }
       projects: {
         Row: Project
         Insert: Omit<Project, "id" | "created_at" | "updated_at">
-        Update: Partial<Omit<Project, "id" | "user_id" | "created_at" | "updated_at">>
+        Update: Partial<
+          Omit<Project, "id" | "user_id" | "created_at" | "updated_at">
+        >
       }
       exports: {
         Row: Export

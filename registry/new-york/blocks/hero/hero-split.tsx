@@ -125,9 +125,7 @@ export function HeroSplit() {
                 </div>
                 <div>
                   <p className="font-semibold">Deployed!</p>
-                  <p className="text-xs text-muted-foreground">
-                    2 seconds ago
-                  </p>
+                  <p className="text-xs text-muted-foreground">2 seconds ago</p>
                 </div>
               </div>
             </div>

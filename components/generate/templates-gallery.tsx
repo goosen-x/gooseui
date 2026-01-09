@@ -4,7 +4,10 @@
  * Templates Gallery - Display and select from pre-built templates
  */
 
-import { Layout, Briefcase, User, ShoppingBag, Rocket } from "lucide-react"
+import { Briefcase, Layout, Rocket, ShoppingBag, User } from "lucide-react"
+import { useState } from "react"
+import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
 import {
   Dialog,
   DialogContent,
@@ -13,19 +16,16 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { useEditorStore } from "@/lib/generate/store"
 import {
+  categoryNames,
+  getTemplateCategories,
+  type Template,
   templates,
   templateToPageSchema,
-  getTemplateCategories,
-  categoryNames,
-  type Template,
 } from "@/lib/generate/templates"
-import { useEditorStore } from "@/lib/generate/store"
 import { cn } from "@/lib/utils"
-import { useState } from "react"
 
 const categoryIcons: Record<Template["category"], React.ReactNode> = {
   saas: <Layout className="h-4 w-4" />,
@@ -45,7 +45,7 @@ function TemplateCard({ template, onSelect }: TemplateCardProps) {
     <div
       className={cn(
         "group cursor-pointer rounded-lg border bg-card p-4 transition-all",
-        "hover:border-primary hover:shadow-md"
+        "hover:border-primary hover:shadow-md",
       )}
       onClick={onSelect}
     >
@@ -141,7 +141,7 @@ export function TemplatesGallery({
               <div
                 className={cn(
                   "group cursor-pointer rounded-lg border-2 border-dashed p-4 transition-all",
-                  "hover:border-primary hover:bg-muted/30"
+                  "hover:border-primary hover:bg-muted/30",
                 )}
                 onClick={() => {
                   useEditorStore.getState().reset()
@@ -186,7 +186,11 @@ export function TemplatesButton({ className }: { className?: string }) {
       open={open}
       onOpenChange={setOpen}
       trigger={
-        <Button variant="outline" size="sm" className={cn("gap-2 cursor-pointer", className)}>
+        <Button
+          variant="outline"
+          size="sm"
+          className={cn("gap-2 cursor-pointer", className)}
+        >
           <Layout className="h-4 w-4" />
           Templates
         </Button>

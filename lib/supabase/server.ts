@@ -4,7 +4,7 @@
  * Server-side Supabase client for API routes and server components
  */
 
-import { createServerClient, type CookieOptions } from "@supabase/ssr"
+import { type CookieOptions, createServerClient } from "@supabase/ssr"
 import { cookies } from "next/headers"
 
 export async function createServerSupabase() {
@@ -35,7 +35,7 @@ export async function createServerSupabase() {
           }
         },
       },
-    }
+    },
   )
 }
 
@@ -44,7 +44,9 @@ export async function createServerSupabase() {
  */
 export async function getUser() {
   const supabase = await createServerSupabase()
-  const { data: { user } } = await supabase.auth.getUser()
+  const {
+    data: { user },
+  } = await supabase.auth.getUser()
   return user
 }
 

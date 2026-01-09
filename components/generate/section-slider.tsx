@@ -11,8 +11,12 @@
 
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import {
+  getComponent,
+  getVariantIndex,
+  getVariants,
+} from "@/lib/generate/registry"
 import { useEditorStore } from "@/lib/generate/store"
-import { getVariants, getVariantIndex, getComponent } from "@/lib/generate/registry"
 import type { SectionSchema } from "@/lib/generate/types"
 import { cn } from "@/lib/utils"
 
@@ -75,7 +79,7 @@ export function SectionSlider({ section, isSelected }: SectionSliderProps) {
               "absolute left-4 top-1/2 -translate-y-1/2 z-10",
               "h-10 w-10 rounded-full shadow-lg cursor-pointer",
               "opacity-0 group-hover:opacity-100 transition-opacity duration-200",
-              "bg-background/90 backdrop-blur-sm hover:bg-background"
+              "bg-background/90 backdrop-blur-sm hover:bg-background",
             )}
             onClick={handlePrev}
           >
@@ -89,7 +93,7 @@ export function SectionSlider({ section, isSelected }: SectionSliderProps) {
               "absolute right-4 top-1/2 -translate-y-1/2 z-10",
               "h-10 w-10 rounded-full shadow-lg cursor-pointer",
               "opacity-0 group-hover:opacity-100 transition-opacity duration-200",
-              "bg-background/90 backdrop-blur-sm hover:bg-background"
+              "bg-background/90 backdrop-blur-sm hover:bg-background",
             )}
             onClick={handleNext}
           >
@@ -104,7 +108,7 @@ export function SectionSlider({ section, isSelected }: SectionSliderProps) {
           className={cn(
             "absolute bottom-4 left-1/2 -translate-x-1/2 z-10",
             "flex items-center gap-2 rounded-full bg-background/90 px-3 py-2 backdrop-blur-sm shadow-lg",
-            "opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+            "opacity-0 group-hover:opacity-100 transition-opacity duration-200",
           )}
         >
           {variants.map((variant, index) => (
@@ -114,7 +118,7 @@ export function SectionSlider({ section, isSelected }: SectionSliderProps) {
                 "h-2 w-2 rounded-full transition-all cursor-pointer",
                 index === currentIndex
                   ? "bg-primary w-4"
-                  : "bg-muted-foreground/30 hover:bg-muted-foreground/50"
+                  : "bg-muted-foreground/30 hover:bg-muted-foreground/50",
               )}
               onClick={(e) => {
                 e.stopPropagation()
@@ -131,7 +135,7 @@ export function SectionSlider({ section, isSelected }: SectionSliderProps) {
           "absolute top-2 left-2 z-10",
           "rounded-md bg-background/90 px-2 py-1 text-xs font-medium backdrop-blur-sm shadow-sm",
           "opacity-0 group-hover:opacity-100 transition-opacity duration-200",
-          isSelected && "opacity-100"
+          isSelected && "opacity-100",
         )}
       >
         {section.type}

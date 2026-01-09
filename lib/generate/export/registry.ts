@@ -58,10 +58,13 @@ export interface RegistryExportOptions {
  */
 export function exportToRegistry(
   page: PageSchema,
-  options: RegistryExportOptions = {}
+  options: RegistryExportOptions = {},
 ): RegistryItem {
   const name = options.name || page.name.toLowerCase().replace(/\s+/g, "-")
-  const description = options.description || page.settings.description || `Landing page: ${page.name}`
+  const description =
+    options.description ||
+    page.settings.description ||
+    `Landing page: ${page.name}`
 
   // Collect all dependencies
   const allRegistryDeps = new Set<string>()
@@ -102,7 +105,7 @@ export function exportToRegistry(
  */
 export function downloadRegistry(
   page: PageSchema,
-  options?: RegistryExportOptions
+  options?: RegistryExportOptions,
 ): void {
   const registry = exportToRegistry(page, options)
   const json = JSON.stringify(registry, null, 2)

@@ -2,12 +2,12 @@
  * Export utilities for the landing page generator
  */
 
-export { exportToHTML, downloadHTML, type HTMLExportOptions } from "./html"
-export { exportToReact, downloadReact, type ReactExportOptions } from "./react"
+export { downloadHTML, exportToHTML, type HTMLExportOptions } from "./html"
+export { downloadReact, exportToReact, type ReactExportOptions } from "./react"
 export {
-  exportToRegistry,
   downloadRegistry,
+  exportToRegistry,
   getInstallCommand,
-  type RegistryItem,
   type RegistryExportOptions,
+  type RegistryItem,
 } from "./registry"

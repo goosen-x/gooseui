@@ -9,9 +9,12 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { SortableSection } from "./sortable-section"
-import { getOptionalSectionTypes, sectionsRegistry } from "@/lib/constructor/sections-registry"
+import {
+  getOptionalSectionTypes,
+  sectionsRegistry,
+} from "@/lib/constructor/sections-registry"
 import type { SectionConfig, SectionType } from "@/lib/constructor/types"
+import { SortableSection } from "./sortable-section"
 
 interface ConstructorSidebarProps {
   sections: SectionConfig[]
@@ -68,7 +71,11 @@ export function ConstructorSidebar({
         {availableTypes.length > 0 && (
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="outline" size="sm" className="h-8 cursor-pointer">
+              <Button
+                variant="outline"
+                size="sm"
+                className="h-8 cursor-pointer"
+              >
                 <Plus className="mr-1 h-3 w-3" />
                 Add
               </Button>
@@ -107,7 +114,9 @@ export function ConstructorSidebar({
                 )
               }
               onRemove={() => onRemoveSection(section.id)}
-              onVariantChange={(variant) => onUpdateVariant(section.id, variant)}
+              onVariantChange={(variant) =>
+                onUpdateVariant(section.id, variant)
+              }
               isDragging={draggedIndex === index}
             />
           </div>

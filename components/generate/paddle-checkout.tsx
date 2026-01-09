@@ -5,8 +5,8 @@
  * Opens Paddle overlay checkout for subscription purchases
  */
 
-import { useEffect, useState, useCallback } from "react"
-import { initializePaddle, Paddle } from "@paddle/paddle-js"
+import { initializePaddle, type Paddle } from "@paddle/paddle-js"
+import { useCallback, useEffect, useState } from "react"
 
 interface PaddleCheckoutProps {
   priceId: string
@@ -37,7 +37,10 @@ export function usePaddle() {
     }
 
     initializePaddle({
-      environment: (process.env.NEXT_PUBLIC_PADDLE_ENVIRONMENT as "sandbox" | "production") || "sandbox",
+      environment:
+        (process.env.NEXT_PUBLIC_PADDLE_ENVIRONMENT as
+          | "sandbox"
+          | "production") || "sandbox",
       token: clientToken,
     }).then((instance) => {
       if (instance) {
@@ -86,7 +89,7 @@ export function usePaddle() {
       // Note: Paddle event callback is set during initialization
       // For dynamic callbacks, we'd need to reinitialize or use a different approach
     },
-    [paddle]
+    [paddle],
   )
 
   return { paddle, isReady, openCheckout }
@@ -109,7 +112,10 @@ export async function initPaddleWithCallbacks({
   }
 
   const instance = await initializePaddle({
-    environment: (process.env.NEXT_PUBLIC_PADDLE_ENVIRONMENT as "sandbox" | "production") || "sandbox",
+    environment:
+      (process.env.NEXT_PUBLIC_PADDLE_ENVIRONMENT as
+        | "sandbox"
+        | "production") || "sandbox",
     token: clientToken,
     eventCallback: (event) => {
       if (event.name === "checkout.completed") {

@@ -37,11 +37,17 @@ export const templates: Template[] = [
       { type: "hero", variant: "hero-classic", props: {}, isRequired: true },
       { type: "brands", variant: "brands-carousel", props: {} },
       { type: "services", variant: "services-marquee", props: {} },
-      { type: "footer", variant: "footer-columns", props: {}, isRequired: true },
+      {
+        type: "footer",
+        variant: "footer-columns",
+        props: {},
+        isRequired: true,
+      },
     ],
     settings: {
       title: "SaaS Product - Build Better Software",
-      description: "The all-in-one platform for modern teams to build, ship, and scale software faster.",
+      description:
+        "The all-in-one platform for modern teams to build, ship, and scale software faster.",
     },
   },
 
@@ -57,7 +63,8 @@ export const templates: Template[] = [
     ],
     settings: {
       title: "Startup Name - Tagline Here",
-      description: "We're building the future of [industry]. Join us on this journey.",
+      description:
+        "We're building the future of [industry]. Join us on this journey.",
     },
   },
 
@@ -71,11 +78,17 @@ export const templates: Template[] = [
       { type: "hero", variant: "hero-classic", props: {}, isRequired: true },
       { type: "services", variant: "services-marquee", props: {} },
       { type: "brands", variant: "brands-carousel", props: {} },
-      { type: "footer", variant: "footer-newsletter", props: {}, isRequired: true },
+      {
+        type: "footer",
+        variant: "footer-newsletter",
+        props: {},
+        isRequired: true,
+      },
     ],
     settings: {
       title: "Creative Agency - We Build Digital Experiences",
-      description: "Award-winning digital agency specializing in web design, branding, and marketing.",
+      description:
+        "Award-winning digital agency specializing in web design, branding, and marketing.",
     },
   },
 
@@ -91,7 +104,8 @@ export const templates: Template[] = [
     ],
     settings: {
       title: "John Doe - Designer & Developer",
-      description: "I create beautiful digital experiences that help businesses grow.",
+      description:
+        "I create beautiful digital experiences that help businesses grow.",
     },
   },
 
@@ -104,11 +118,17 @@ export const templates: Template[] = [
       { type: "header", variant: "header-cta", props: {}, isRequired: true },
       { type: "hero", variant: "hero-classic", props: {}, isRequired: true },
       { type: "brands", variant: "brands-carousel", props: {} },
-      { type: "footer", variant: "footer-newsletter", props: {}, isRequired: true },
+      {
+        type: "footer",
+        variant: "footer-newsletter",
+        props: {},
+        isRequired: true,
+      },
     ],
     settings: {
       title: "Product Name - Coming Soon",
-      description: "Be the first to know when we launch. Sign up for early access.",
+      description:
+        "Be the first to know when we launch. Sign up for early access.",
     },
   },
 ]
@@ -123,7 +143,9 @@ export function getTemplate(id: string): Template | undefined {
 /**
  * Get templates by category
  */
-export function getTemplatesByCategory(category: Template["category"]): Template[] {
+export function getTemplatesByCategory(
+  category: Template["category"],
+): Template[] {
   return templates.filter((t) => t.category === category)
 }
 

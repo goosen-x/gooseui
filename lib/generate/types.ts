@@ -71,7 +71,13 @@ export interface ComponentDefinition {
   type: SectionType
   name: string
   description: string
-  category: "navigation" | "hero" | "content" | "social-proof" | "conversion" | "footer"
+  category:
+    | "navigation"
+    | "hero"
+    | "content"
+    | "social-proof"
+    | "conversion"
+    | "footer"
   isRequired: boolean
   variants: VariantDefinition[]
   defaultProps: Record<string, unknown>
@@ -84,7 +90,15 @@ export interface PropsSchema {
 }
 
 export interface PropDefinition {
-  type: "text" | "textarea" | "number" | "select" | "boolean" | "image" | "color" | "link"
+  type:
+    | "text"
+    | "textarea"
+    | "number"
+    | "select"
+    | "boolean"
+    | "image"
+    | "color"
+    | "link"
   label: string
   description?: string
   defaultValue?: unknown

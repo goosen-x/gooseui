@@ -136,7 +136,9 @@ export function getAllSectionTypes(): SectionType[] {
  * Get required section types
  */
 export function getRequiredSectionTypes(): SectionType[] {
-  return getAllSectionTypes().filter((type) => sectionsRegistry[type].isRequired)
+  return getAllSectionTypes().filter(
+    (type) => sectionsRegistry[type].isRequired,
+  )
 }
 
 /**

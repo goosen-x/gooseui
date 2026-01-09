@@ -36,13 +36,13 @@ export async function POST(request: Request) {
     // Get Paddle price ID
     const priceId = getPaddlePriceId(
       plan as "pro" | "team",
-      interval as "monthly" | "yearly"
+      interval as "monthly" | "yearly",
     )
 
     if (!priceId) {
       return NextResponse.json(
         { error: "Price not configured" },
-        { status: 500 }
+        { status: 500 },
       )
     }
 
@@ -55,7 +55,7 @@ export async function POST(request: Request) {
     console.error("Checkout error:", error)
     return NextResponse.json(
       { error: error instanceof Error ? error.message : "Checkout failed" },
-      { status: 500 }
+      { status: 500 },
     )
   }
 }

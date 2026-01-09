@@ -23,12 +23,13 @@ export function HeroClassic() {
             {/* Headline */}
             <div className="space-y-4">
               <h1 className="text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
-                Build beautiful{" "}
-                <span className="text-primary">products</span> faster
+                Build beautiful <span className="text-primary">products</span>{" "}
+                faster
               </h1>
               <p className="max-w-xl text-lg text-muted-foreground sm:text-xl">
-                The modern platform for building exceptional digital experiences.
-                Ship faster with pre-built components and powerful tools.
+                The modern platform for building exceptional digital
+                experiences. Ship faster with pre-built components and powerful
+                tools.
               </p>
             </div>
 
@@ -38,7 +39,11 @@ export function HeroClassic() {
                 Get Started Free
                 <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Button>
-              <Button size="lg" variant="outline" className="cursor-pointer group">
+              <Button
+                size="lg"
+                variant="outline"
+                className="cursor-pointer group"
+              >
                 <Play className="mr-2 h-4 w-4" />
                 Watch Demo
               </Button>
@@ -73,7 +78,9 @@ export function HeroClassic() {
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="text-center space-y-2">
                     <div className="h-16 w-16 mx-auto rounded-xl bg-primary/10 flex items-center justify-center">
-                      <span className="text-2xl font-bold text-primary">UI</span>
+                      <span className="text-2xl font-bold text-primary">
+                        UI
+                      </span>
                     </div>
                     <p className="text-sm text-muted-foreground">
                       Your hero image here
@@ -113,7 +120,9 @@ export function HeroClassic() {
                     </div>
                     <div className="text-sm">
                       <p className="font-medium">99.9% uptime</p>
-                      <p className="text-xs text-muted-foreground">Last 30 days</p>
+                      <p className="text-xs text-muted-foreground">
+                        Last 30 days
+                      </p>
                     </div>
                   </div>
                 </div>

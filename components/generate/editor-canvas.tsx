@@ -5,8 +5,8 @@
  */
 
 import { useEditorStore } from "@/lib/generate/store"
-import { SectionSlider } from "./section-slider"
 import { cn } from "@/lib/utils"
+import { SectionSlider } from "./section-slider"
 
 const viewportWidths = {
   desktop: "100%",
@@ -25,7 +25,7 @@ export function EditorCanvas() {
       <div
         className={cn(
           "mx-auto bg-background shadow-xl transition-all duration-300",
-          viewport !== "desktop" && "rounded-lg border"
+          viewport !== "desktop" && "rounded-lg border",
         )}
         style={{ width: viewportWidths[viewport] }}
       >
@@ -36,7 +36,8 @@ export function EditorCanvas() {
               key={section.id}
               className={cn(
                 "relative group cursor-pointer",
-                selectedId === section.id && "ring-2 ring-primary ring-offset-2"
+                selectedId === section.id &&
+                  "ring-2 ring-primary ring-offset-2",
               )}
               onClick={() => selectSection(section.id)}
             >

@@ -6,14 +6,19 @@
  * State management with Immer for immutable updates and zundo for undo/redo
  */
 
-import { create } from "zustand"
 import { temporal } from "zundo"
-import { immer } from "zustand/middleware/immer"
+import { create } from "zustand"
 import { devtools, persist } from "zustand/middleware"
-
+import { immer } from "zustand/middleware/immer"
+import {
+  getDefaultVariant,
+  getNextVariantId,
+  getPrevVariantId,
+  getVariantCount,
+} from "./registry"
 import type {
-  EditorState,
   EditorActions,
+  EditorState,
   EditorStore,
   PageSchema,
   PageSettings,
@@ -21,12 +26,6 @@ import type {
   SectionType,
   ViewportSize,
 } from "./types"
-import {
-  getDefaultVariant,
-  getNextVariantId,
-  getPrevVariantId,
-  getVariantCount,
-} from "./registry"
 
 /**
  * Generate unique ID
@@ -107,7 +106,7 @@ export const useEditorStore = create<EditorStore>()(
               } else {
                 // Insert before footer if exists, otherwise at end
                 const footerIndex = state.page.sections.findIndex(
-                  (s) => s.type === "footer"
+                  (s) => s.type === "footer",
                 )
                 if (footerIndex !== -1) {
                   state.page.sections.splice(footerIndex, 0, newSection)
@@ -125,7 +124,9 @@ export const useEditorStore = create<EditorStore>()(
               // Don't remove required sections
               if (section?.isRequired) return
 
-              state.page.sections = state.page.sections.filter((s) => s.id !== id)
+              state.page.sections = state.page.sections.filter(
+                (s) => s.id !== id,
+              )
 
               if (state.selectedId === id) {
                 state.selectedId = null
@@ -187,7 +188,10 @@ export const useEditorStore = create<EditorStore>()(
             set((state) => {
               const section = state.page.sections.find((s) => s.id === id)
               if (section && getVariantCount(section.type) > 1) {
-                section.variant = getNextVariantId(section.type, section.variant)
+                section.variant = getNextVariantId(
+                  section.type,
+                  section.variant,
+                )
               }
             }),
 
@@ -195,7 +199,10 @@ export const useEditorStore = create<EditorStore>()(
             set((state) => {
               const section = state.page.sections.find((s) => s.id === id)
               if (section && getVariantCount(section.type) > 1) {
-                section.variant = getPrevVariantId(section.type, section.variant)
+                section.variant = getPrevVariantId(
+                  section.type,
+                  section.variant,
+                )
               }
             }),
 
@@ -292,7 +299,7 @@ export const useEditorStore = create<EditorStore>()(
           partialize: (state) => ({
             page: state.page,
           }),
-        }
+        },
       ),
       {
         // persist options
@@ -301,19 +308,20 @@ export const useEditorStore = create<EditorStore>()(
           page: state.page,
           viewport: state.viewport,
         }),
-      }
+      },
     ),
     {
       name: "GooseUI Editor",
-    }
-  )
+    },
+  ),
 )
 
 /**
  * Hook to access undo/redo functionality
  */
 export function useEditorHistory() {
-  const { undo, redo, pastStates, futureStates } = useEditorStore.temporal.getState()
+  const { undo, redo, pastStates, futureStates } =
+    useEditorStore.temporal.getState()
 
   return {
     undo,

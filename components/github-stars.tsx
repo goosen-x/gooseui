@@ -23,9 +23,7 @@ export function GitHubStars({ owner, repo, className }: GitHubStarsProps) {
   React.useEffect(() => {
     const fetchStars = async () => {
       try {
-        const res = await fetch(
-          `https://api.github.com/repos/${owner}/${repo}`,
-        )
+        const res = await fetch(`https://api.github.com/repos/${owner}/${repo}`)
         if (!res.ok) return
         const data = await res.json()
         setStars(data.stargazers_count ?? null)

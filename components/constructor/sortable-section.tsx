@@ -1,12 +1,12 @@
 "use client"
 
 import { GripVertical, X } from "lucide-react"
-import * as React from "react"
+import type * as React from "react"
 import { Button } from "@/components/ui/button"
-import { SectionSlider } from "./section-slider"
 import { sectionsRegistry } from "@/lib/constructor/sections-registry"
 import type { SectionConfig } from "@/lib/constructor/types"
 import { cn } from "@/lib/utils"
+import { SectionSlider } from "./section-slider"
 
 interface SortableSectionProps {
   section: SectionConfig

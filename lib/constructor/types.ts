@@ -2,12 +2,7 @@
  * Landing Constructor Types
  */
 
-export type SectionType =
-  | "header"
-  | "hero"
-  | "brands"
-  | "services"
-  | "footer"
+export type SectionType = "header" | "hero" | "brands" | "services" | "footer"
 
 export interface SectionConfig {
   id: string
