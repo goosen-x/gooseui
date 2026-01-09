@@ -6,6 +6,8 @@ export const siteConfig = {
   email: "info@gooseui.pro",
   links: {
     github: "https://github.com/goosen-x/gooseui",
+    twitter: "https://x.com/AEWRspace",
+    telegram: "https://t.me/gooselabs",
   },
 }
 
