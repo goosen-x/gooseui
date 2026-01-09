@@ -23,10 +23,13 @@ export function SiteFooter() {
   return (
     <footer className="border-t bg-muted/30">
       <div className="mx-auto max-w-screen-2xl px-4 md:px-8 py-12 md:py-16">
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+        <div className="flex flex-col lg:flex-row lg:justify-between gap-8">
           {/* Logo & Description */}
-          <div className="lg:col-span-1">
-            <Link href="/" className="flex items-center gap-2 font-bold text-xl">
+          <div className="max-w-sm">
+            <Link
+              href="/"
+              className="flex items-center gap-2 font-bold text-xl"
+            >
               <img
                 src="/favicon/favicon.svg"
                 alt=""
@@ -40,57 +43,60 @@ export function SiteFooter() {
             </p>
           </div>
 
-          {/* Product */}
-          <div>
-            <p className="font-semibold mb-4">Product</p>
-            <ul className="space-y-3">
-              {footerLinks.product.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-                  >
-                    {link.title}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+          {/* Link columns - grouped together on the right */}
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-12 md:gap-16 lg:gap-20">
+            {/* Product */}
+            <div>
+              <p className="font-semibold mb-4">Product</p>
+              <ul className="space-y-3">
+                {footerLinks.product.map((link) => (
+                  <li key={link.href}>
+                    <Link
+                      href={link.href}
+                      className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                    >
+                      {link.title}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
 
-          {/* Resources */}
-          <div>
-            <p className="font-semibold mb-4">Resources</p>
-            <ul className="space-y-3">
-              {footerLinks.resources.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-                  >
-                    {link.title}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+            {/* Resources */}
+            <div>
+              <p className="font-semibold mb-4">Resources</p>
+              <ul className="space-y-3">
+                {footerLinks.resources.map((link) => (
+                  <li key={link.href}>
+                    <Link
+                      href={link.href}
+                      className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                    >
+                      {link.title}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
 
-          {/* Community */}
-          <div>
-            <p className="font-semibold mb-4">Community</p>
-            <ul className="space-y-3">
-              {footerLinks.community.map((link) => (
-                <li key={link.href}>
-                  <a
-                    href={link.href}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-                  >
-                    {link.title}
-                  </a>
-                </li>
-              ))}
-            </ul>
+            {/* Community */}
+            <div>
+              <p className="font-semibold mb-4">Community</p>
+              <ul className="space-y-3">
+                {footerLinks.community.map((link) => (
+                  <li key={link.href}>
+                    <a
+                      href={link.href}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                    >
+                      {link.title}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
 
