@@ -49,25 +49,28 @@ export const ScrollContainer = React.forwardRef<
           "[&::-webkit-scrollbar-track]:bg-transparent",
           "[&::-webkit-scrollbar-track]:rounded-full",
           // Scrollbar thumb
-          "[&::-webkit-scrollbar-thumb]:bg-muted-foreground/20",
           "[&::-webkit-scrollbar-thumb]:rounded-full",
           "[&::-webkit-scrollbar-thumb]:border-2",
           "[&::-webkit-scrollbar-thumb]:border-transparent",
           "[&::-webkit-scrollbar-thumb]:bg-clip-padding",
-          "hover:[&::-webkit-scrollbar-thumb]:bg-muted-foreground/40",
           // Size
           sizeClasses[scrollbarSize],
-          // Auto hide
-          autoHide && [
-            "[&::-webkit-scrollbar-thumb]:opacity-0",
-            "hover:[&::-webkit-scrollbar-thumb]:opacity-100",
-            "[&::-webkit-scrollbar-thumb]:transition-opacity",
-          ],
+          // Auto hide - use transparent bg and show on hover
+          autoHide
+            ? [
+                "[&::-webkit-scrollbar-thumb]:bg-transparent",
+                "hover:[&::-webkit-scrollbar-thumb]:bg-muted-foreground/40",
+              ]
+            : [
+                "[&::-webkit-scrollbar-thumb]:bg-muted-foreground/20",
+                "hover:[&::-webkit-scrollbar-thumb]:bg-muted-foreground/40",
+              ],
           // Firefox
           "scrollbar-thin",
           "scrollbar-track-transparent",
-          "scrollbar-thumb-muted-foreground/20",
-          "hover:scrollbar-thumb-muted-foreground/40",
+          autoHide
+            ? "scrollbar-thumb-transparent hover:scrollbar-thumb-muted-foreground/40"
+            : "scrollbar-thumb-muted-foreground/20 hover:scrollbar-thumb-muted-foreground/40",
           className,
         )}
         style={{
