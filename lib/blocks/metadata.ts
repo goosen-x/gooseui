@@ -475,6 +475,18 @@ export const blocksMetadata: BlockMetadata[] = [
     isFeatured: true,
     isComingSoon: true,
   },
+
+  // ===== FAQ =====
+  {
+    id: "faq-01",
+    category: "faq",
+    name: "Accordion FAQ",
+    description: "Expandable FAQ items with animated icons and numbering",
+    type: "file",
+    iframeHeight: 600,
+    isFeatured: true,
+    isNew: true,
+  },
 ]
 
 /**

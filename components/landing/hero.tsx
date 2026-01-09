@@ -1,12 +1,39 @@
 "use client"
 
 import Link from "next/link"
+import { useState } from "react"
+import { Check, Copy, Send } from "lucide-react"
 import { customToast } from "@/lib/toast"
 import { cn } from "@/lib/utils"
 import { BorderBeam } from "@/registry/new-york/effects/border-beam"
 import { Button } from "@/registry/new-york/ui/button"
+import { Input } from "@/registry/new-york/ui/input"
+import { Checkbox } from "@/registry/new-york/ui/checkbox"
+import { SlidingNumber } from "@/registry/new-york/ui/sliding-number"
+import { ThemeCustomizerPill } from "@/registry/new-york/ui/theme-customizer"
+
+const cliCommand = "npx shadcn@latest add @gooseui/button"
 
 export function Hero() {
+  const [copied, setCopied] = useState(false)
+  const [counter, setCounter] = useState(1337)
+  const [inputValue, setInputValue] = useState("")
+  const [inputError, setInputError] = useState(false)
+
+  const copyCommand = () => {
+    navigator.clipboard.writeText(cliCommand)
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2000)
+  }
+
+  const incrementCounter = () => {
+    const increment = Math.floor(Math.random() * 10) + 1
+    setCounter((prev) => prev + increment)
+    customToast.info(`+${increment}`, {
+      description: "Counter incremented",
+    })
+  }
+
   return (
     <div className="relative min-h-[calc(100svh-3.5rem)] flex items-center">
       {/* Dot background */}
@@ -74,7 +101,7 @@ export function Hero() {
               <Button
                 variant="outline"
                 size="default"
-                className="sm:h-11 sm:px-8 backdrop-blur-[1px] bg-background/20"
+                className="sm:h-11 sm:px-8 backdrop-blur-[2px] bg-background/20 hover:bg-background/20 hover:backdrop-blur-md transition-all"
                 asChild
               >
                 <Link href="/docs/components">Components</Link>
@@ -137,71 +164,168 @@ export function Hero() {
             </div>
           </div>
 
-          {/* Right side - Card preview */}
+          {/* Right side - Grid preview */}
           <div className="flex-1 w-full max-w-xl lg:max-w-none">
-            <div className="relative overflow-hidden rounded-xl border bg-muted/30 backdrop-blur-sm p-2">
-              <div className="rounded-lg border bg-background overflow-hidden">
-                <div className="flex items-center gap-2 border-b bg-muted/50 px-4 py-3">
-                  <div className="flex gap-1.5">
-                    <div className="h-3 w-3 rounded-full bg-red-500" />
-                    <div className="h-3 w-3 rounded-full bg-yellow-500" />
-                    <div className="h-3 w-3 rounded-full bg-green-500" />
+            <div className="grid grid-cols-2 gap-3">
+              {/* Buttons Card - Spans 2 columns */}
+              <div className="group relative col-span-2 overflow-hidden rounded-2xl border border-border/50 border-dashed p-2 transition-all hover:border-border">
+                <div className="rounded-lg border bg-background overflow-hidden">
+                    <div className="flex items-center justify-between border-b bg-muted/50 px-4 py-3">
+                      <div className="flex items-center gap-2">
+                        <code className="text-xs text-muted-foreground">
+                          {cliCommand}
+                        </code>
+                      </div>
+                      <button
+                        onClick={copyCommand}
+                        className="flex items-center gap-1 rounded-md px-2 py-1 text-xs text-muted-foreground transition-colors hover:bg-muted hover:text-foreground cursor-pointer"
+                      >
+                        {copied ? (
+                          <Check className="size-3.5 text-green-500" />
+                        ) : (
+                          <Copy className="size-3.5" />
+                        )}
+                      </button>
+                    </div>
+                    <div className="p-3 sm:p-6 md:p-8 grid grid-cols-2 sm:flex items-center justify-center gap-2 sm:gap-4">
+                      <Button
+                        size="sm"
+                        className="sm:h-9 sm:px-4 text-xs sm:text-sm"
+                        onClick={() =>
+                          customToast.success("Primary Button", {
+                            description: "Default button style",
+                          })
+                        }
+                      >
+                        Primary
+                      </Button>
+                      <Button
+                        variant="secondary"
+                        size="sm"
+                        className="sm:h-9 sm:px-4 text-xs sm:text-sm"
+                        onClick={() =>
+                          customToast.info("Secondary Button", {
+                            description: "Secondary button style",
+                          })
+                        }
+                      >
+                        Secondary
+                      </Button>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="sm:h-9 sm:px-4 text-xs sm:text-sm backdrop-blur-[2px] bg-background/20 hover:bg-background/40"
+                        onClick={() =>
+                          customToast.warning("Outline Button", {
+                            description: "Outline button style",
+                          })
+                        }
+                      >
+                        Outline
+                      </Button>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className="sm:h-9 sm:px-4 text-xs sm:text-sm"
+                        onClick={() =>
+                          customToast.error("Ghost Button", {
+                            description: "Ghost button style",
+                          })
+                        }
+                      >
+                        Ghost
+                      </Button>
+                    </div>
                   </div>
-                  <code className="text-xs text-muted-foreground ml-2">
-                    npx shadcn@latest add @gooseui/button
-                  </code>
-                </div>
-                <div className="p-3 sm:p-6 md:p-8 grid grid-cols-2 sm:flex items-center justify-center gap-2 sm:gap-4">
-                  <Button
-                    size="sm"
-                    className="sm:h-9 sm:px-4 text-xs sm:text-sm"
-                    onClick={() =>
-                      customToast.success("Primary Button", {
-                        description: "Default button style",
-                      })
-                    }
-                  >
-                    Primary
-                  </Button>
-                  <Button
-                    variant="secondary"
-                    size="sm"
-                    className="sm:h-9 sm:px-4 text-xs sm:text-sm"
-                    onClick={() =>
-                      customToast.info("Secondary Button", {
-                        description: "Secondary button style",
-                      })
-                    }
-                  >
-                    Secondary
-                  </Button>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    className="sm:h-9 sm:px-4 text-xs sm:text-sm"
-                    onClick={() =>
-                      customToast.warning("Outline Button", {
-                        description: "Outline button style",
-                      })
-                    }
-                  >
-                    Outline
-                  </Button>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    className="sm:h-9 sm:px-4 text-xs sm:text-sm"
-                    onClick={() =>
-                      customToast.error("Ghost Button", {
-                        description: "Ghost button style",
-                      })
-                    }
-                  >
-                    Ghost
-                  </Button>
+                <BorderBeam duration={8} colorFrom="#10b981" colorTo="#3b82f6" />
+              </div>
+
+              {/* Input Card */}
+              <div className="group rounded-2xl border border-border/50 border-dashed p-2 transition-all hover:border-border">
+                <div className="h-full rounded-lg border bg-background overflow-hidden flex flex-col">
+                  <div className="flex items-center gap-2 border-b bg-muted/50 px-4 py-3">
+                    <code className="text-xs text-muted-foreground">input.tsx</code>
+                  </div>
+                  <div className="p-4 flex-1 flex items-center justify-center">
+                    <div className="flex gap-2 w-full">
+                      <Input
+                        placeholder="Type here..."
+                        className={cn(
+                          "h-8 text-sm",
+                          inputError && "border-red-500 ring-2 ring-red-500/30"
+                        )}
+                        value={inputValue}
+                        onChange={(e) => setInputValue(e.target.value)}
+                      />
+                      <Button
+                        size="sm"
+                        className="h-8 px-3"
+                        onClick={() => {
+                          if (inputValue.trim()) {
+                            customToast.success("Message sent!", {
+                              description: inputValue,
+                            })
+                            setInputValue("")
+                          } else {
+                            setInputError(true)
+                            setTimeout(() => setInputError(false), 500)
+                          }
+                        }}
+                      >
+                        <Send className="size-3.5" />
+                      </Button>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <BorderBeam duration={8} />
+
+              {/* Theme Customizer Card */}
+              <div className="group rounded-2xl border border-border/50 border-dashed p-2 transition-all hover:border-border">
+                <div className="h-full rounded-lg border bg-background overflow-hidden flex flex-col">
+                  <div className="flex items-center gap-2 border-b bg-muted/50 px-4 py-3">
+                    <code className="text-xs text-muted-foreground">theme.tsx</code>
+                  </div>
+                  <div className="p-4 flex-1 flex items-center justify-center">
+                    <ThemeCustomizerPill className="static left-auto translate-x-0 shadow-none" />
+                  </div>
+                </div>
+              </div>
+
+              {/* Sliding Number Card */}
+              <div className="group rounded-2xl border border-border/50 border-dashed p-2 transition-all hover:border-border">
+                <div className="h-full rounded-lg border bg-background overflow-hidden flex flex-col">
+                  <div className="flex items-center gap-2 border-b bg-muted/50 px-4 py-3">
+                    <code className="text-xs text-muted-foreground">sliding-number.tsx</code>
+                  </div>
+                  <button
+                    onClick={incrementCounter}
+                    className="p-4 flex-1 w-full flex flex-col items-center justify-center gap-1 cursor-pointer hover:bg-muted/30 transition-colors"
+                  >
+                    <span className="text-xs text-muted-foreground">Click to increment</span>
+                    <SlidingNumber value={counter} className="text-2xl font-bold" />
+                  </button>
+                </div>
+              </div>
+
+              {/* Checkbox Card */}
+              <div className="group rounded-2xl border border-border/50 border-dashed p-2 transition-all hover:border-border">
+                <div className="h-full rounded-lg border bg-background overflow-hidden flex flex-col">
+                  <div className="flex items-center gap-2 border-b bg-muted/50 px-4 py-3">
+                    <code className="text-xs text-muted-foreground">checkbox.tsx</code>
+                  </div>
+                  <div className="p-4 flex-1 flex items-center justify-center">
+                    <Checkbox
+                      label="Animated checkbox"
+                      defaultChecked
+                      onChange={(e) =>
+                        customToast.success(e.target.checked ? "Checked!" : "Unchecked", {
+                          description: "Checkbox state changed",
+                        })
+                      }
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

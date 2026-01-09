@@ -27,6 +27,8 @@ import {
   ServicesGrid,
   ServicesMarquee,
 } from "@/registry/new-york/blocks/services/services-marquee"
+// ===== FAQ =====
+import { FAQAccordion } from "@/registry/new-york/blocks/faq/faq-accordion"
 
 /**
  * Component registry mapping block IDs to React components
@@ -53,6 +55,9 @@ export const blocksComponents: Record<string, ComponentType> = {
   // Services
   "services-01": ServicesMarquee,
   "services-02": ServicesGrid,
+
+  // FAQ
+  "faq-01": FAQAccordion,
 }
 
 /**

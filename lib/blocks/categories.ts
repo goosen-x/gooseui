@@ -10,6 +10,7 @@ import {
   Bot,
   Briefcase,
   Building2,
+  CircleHelp,
   FormInput,
   KeyRound,
   LayoutDashboard,
@@ -63,6 +64,12 @@ export const blocksCategoriesMetadata: CategoryMetadata[] = [
     name: "Services",
     description: "Feature cards, service grids, offerings showcase",
     icon: Briefcase,
+  },
+  {
+    id: "faq",
+    name: "FAQ",
+    description: "Accordion FAQ sections, Q&A blocks",
+    icon: CircleHelp,
   },
   {
     id: "stats",

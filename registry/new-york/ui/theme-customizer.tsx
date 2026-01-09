@@ -6,9 +6,9 @@ import {
   Monitor,
   Moon,
   Paintbrush,
-  Palette,
   Sun,
 } from "lucide-react"
+import { BrushCleaning } from "@/components/animate-ui/icons/brush-cleaning"
 import { MotionConfig, motion } from "motion/react"
 import { useTheme } from "next-themes"
 import * as React from "react"
@@ -26,7 +26,7 @@ const colors = [
 ]
 
 function useThemeColor() {
-  const [activeColor, setActiveColor] = React.useState("zinc")
+  const [activeColor, setActiveColor] = React.useState("green")
   const [mounted, setMounted] = React.useState(false)
 
   React.useEffect(() => {
@@ -45,10 +45,18 @@ function useThemeColor() {
 }
 
 // Variant 1: Floating Pill with Popup
-export function ThemeCustomizerPill({ className }: { className?: string }) {
+export function ThemeCustomizerPill({ className, inline }: { className?: string; inline?: boolean }) {
   const { setTheme, resolvedTheme } = useTheme()
   const { activeColor, setColor, mounted } = useThemeColor()
   const [showColors, setShowColors] = React.useState(false)
+  const containerRef = React.useRef<HTMLDivElement>(null)
+
+  useClickOutside(containerRef, () => {
+    setShowColors(false)
+  })
+
+  // Detect if using static positioning (inline mode)
+  const isInline = inline || className?.includes("static")
 
   if (!mounted) {
     return (
@@ -65,7 +73,7 @@ export function ThemeCustomizerPill({ className }: { className?: string }) {
   }
 
   return (
-    <>
+    <div ref={containerRef} className={isInline ? "relative" : undefined}>
       <nav
         className={cn(
           "fixed bottom-5 left-1/2 z-50 flex -translate-x-1/2 gap-1 rounded-full border bg-background/70 p-1 shadow-lg backdrop-blur-xl transition-all",
@@ -73,7 +81,7 @@ export function ThemeCustomizerPill({ className }: { className?: string }) {
         )}
       >
         <button
-          className="flex size-9 items-center justify-center rounded-full transition-colors hover:bg-accent"
+          className="flex size-9 items-center justify-center rounded-full transition-colors hover:bg-accent cursor-pointer"
           onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
         >
           {resolvedTheme === "dark" ? (
@@ -83,32 +91,40 @@ export function ThemeCustomizerPill({ className }: { className?: string }) {
           )}
         </button>
         <button
-          className="flex size-9 items-center justify-center rounded-full transition-colors hover:bg-accent"
+          className="flex size-9 items-center justify-center rounded-full transition-colors hover:bg-accent cursor-pointer"
           onClick={() => setShowColors(!showColors)}
         >
-          <Palette className="size-5" />
+          <BrushCleaning size={20} animateOnHover />
         </button>
       </nav>
 
       {showColors && (
-        <div className="fixed bottom-20 left-1/2 z-50 flex -translate-x-1/2 gap-2 rounded-full border bg-background/70 px-3 py-2 shadow-lg backdrop-blur-xl animate-in fade-in slide-in-from-bottom-2">
+        <div
+          className={cn(
+            "z-50 flex flex-wrap justify-center gap-1.5 rounded-xl border bg-background/70 p-2 shadow-lg backdrop-blur-xl animate-in fade-in slide-in-from-bottom-2",
+            isInline
+              ? "absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-[120px]"
+              : "fixed bottom-20 left-1/2 -translate-x-1/2 gap-2 rounded-full px-3 py-2"
+          )}
+        >
           {colors.map((c) => (
             <button
               key={c.name}
               onClick={() => setColor(c.name)}
               className={cn(
-                "relative size-7 rounded-full transition-transform hover:scale-110",
+                "relative rounded-full transition-transform hover:scale-110 cursor-pointer",
+                isInline ? "size-6" : "size-7",
                 c.class,
               )}
             >
               {activeColor === c.name && (
-                <Check className="absolute inset-0 m-auto size-4 text-white dark:text-black" />
+                <Check className={cn("absolute inset-0 m-auto text-white dark:text-black", isInline ? "size-3" : "size-4")} />
               )}
             </button>
           ))}
         </div>
       )}
-    </>
+    </div>
   )
 }
 
@@ -463,7 +479,7 @@ export function ThemeCustomizerToolbar({ className }: { className?: string }) {
                     onClick={() => setIsOpen(true)}
                     ariaLabel="Open color picker"
                   >
-                    <Palette className="size-5" />
+                    <BrushCleaning size={20} animateOnHover />
                   </ToolbarButton>
                 </div>
               ) : (

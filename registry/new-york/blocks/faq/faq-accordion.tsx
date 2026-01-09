@@ -1,10 +1,10 @@
 "use client"
 
-import { useState } from "react"
+import * as React from "react"
 import { Plus } from "lucide-react"
 import { cn } from "@/lib/utils"
 
-const faqs = [
+const demoFaqs = [
   {
     question: "What is GooseUI?",
     answer:
@@ -37,7 +37,17 @@ const faqs = [
   },
 ]
 
-function FAQItem({
+interface FAQItem {
+  question: string
+  answer: string
+}
+
+interface FAQAccordionProps {
+  items?: FAQItem[]
+  className?: string
+}
+
+function FAQItemComponent({
   index,
   question,
   answer,
@@ -107,36 +117,27 @@ function FAQItem({
   )
 }
 
-export function FAQ() {
-  const [openIndex, setOpenIndex] = useState<number | null>(0)
+export function FAQAccordion({ items = demoFaqs, className }: FAQAccordionProps) {
+  const [openIndex, setOpenIndex] = React.useState<number | null>(0)
 
   const handleToggle = (index: number) => {
     setOpenIndex(openIndex === index ? null : index)
   }
 
   return (
-    <section className="py-20 px-6">
-      <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight">FAQ</h2>
-          <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-            Answers to common questions about GooseUI
-          </p>
-        </div>
-
-        <div className="mx-auto max-w-4xl space-y-3">
-          {faqs.map((faq, index) => (
-            <FAQItem
-              key={faq.question}
-              index={index}
-              question={faq.question}
-              answer={faq.answer}
-              isOpen={openIndex === index}
-              onToggle={() => handleToggle(index)}
-            />
-          ))}
-        </div>
-      </div>
-    </section>
+    <div className={cn("mx-auto max-w-4xl space-y-3", className)}>
+      {items.map((item, index) => (
+        <FAQItemComponent
+          key={item.question}
+          index={index}
+          question={item.question}
+          answer={item.answer}
+          isOpen={openIndex === index}
+          onToggle={() => handleToggle(index)}
+        />
+      ))}
+    </div>
   )
 }
+
+export { type FAQItem, type FAQAccordionProps }
