@@ -1,7 +1,7 @@
 "use client"
 
-import { useState } from "react"
 import { Plus } from "lucide-react"
+import { useState } from "react"
 import { cn } from "@/lib/utils"
 
 const faqs = [
@@ -64,7 +64,7 @@ function FAQItem({
             <span
               className={cn(
                 "font-mono text-3xl sm:text-4xl font-bold transition-colors duration-300",
-                isOpen ? "text-primary/70" : "text-muted-foreground/30"
+                isOpen ? "text-primary/70" : "text-muted-foreground/30",
               )}
             >
               {String(index + 1).padStart(2, "0")}
@@ -78,13 +78,15 @@ function FAQItem({
               "flex h-7 w-7 shrink-0 items-center justify-center rounded-full transition-colors duration-300",
               isOpen
                 ? "bg-primary/70 text-primary-foreground"
-                : "bg-muted/50 group-hover:bg-muted"
+                : "bg-muted/50 group-hover:bg-muted",
             )}
           >
             <Plus
               className={cn(
                 "h-4 w-4 transition-transform duration-300",
-                isOpen ? "rotate-45 text-primary-foreground" : "text-muted-foreground"
+                isOpen
+                  ? "rotate-45 text-primary-foreground"
+                  : "text-muted-foreground",
               )}
               aria-hidden="true"
             />
@@ -93,7 +95,9 @@ function FAQItem({
         <div
           className={cn(
             "grid transition-all duration-300 ease-in-out",
-            isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+            isOpen
+              ? "grid-rows-[1fr] opacity-100"
+              : "grid-rows-[0fr] opacity-0",
           )}
         >
           <div className="overflow-hidden">

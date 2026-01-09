@@ -11,6 +11,8 @@ import {
   BrandsCarousel,
   BrandsCarouselDouble,
 } from "@/registry/new-york/blocks/brands/brands-carousel"
+// ===== FAQ =====
+import { FAQAccordion } from "@/registry/new-york/blocks/faq/faq-accordion"
 import { FooterColumns } from "@/registry/new-york/blocks/footers/footer-columns"
 import { FooterNewsletter } from "@/registry/new-york/blocks/footers/footer-newsletter"
 // ===== FOOTERS =====
@@ -27,8 +29,6 @@ import {
   ServicesGrid,
   ServicesMarquee,
 } from "@/registry/new-york/blocks/services/services-marquee"
-// ===== FAQ =====
-import { FAQAccordion } from "@/registry/new-york/blocks/faq/faq-accordion"
 
 /**
  * Component registry mapping block IDs to React components

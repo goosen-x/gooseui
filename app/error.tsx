@@ -3,7 +3,6 @@
 import { Check, Copy } from "lucide-react"
 import Link from "next/link"
 import { useEffect, useState } from "react"
-import { SiteHeader } from "@/components/site/header"
 import { ThemeCustomizer } from "@/components/theme-customizer"
 import { Button } from "@/registry/new-york/ui/button"
 
@@ -31,8 +30,7 @@ export default function Error({
 
   return (
     <>
-      <SiteHeader />
-      <div className="flex min-h-[calc(100vh-4rem)] flex-col items-center justify-center gap-8 px-4">
+      <div className="flex min-h-screen flex-col items-center justify-center gap-8 px-4">
         <div className="flex flex-col items-center gap-4 text-center">
           <div className="relative">
             <h1 className="text-[10rem] font-bold leading-none tracking-tighter text-primary/10">

@@ -8,6 +8,7 @@ interface GitHubStarsProps {
   owner: string
   repo: string
   className?: string
+  initialStars?: number | null
 }
 
 function formatStars(count: number): string {
@@ -17,10 +18,18 @@ function formatStars(count: number): string {
   return count.toString()
 }
 
-export function GitHubStars({ owner, repo, className }: GitHubStarsProps) {
-  const [stars, setStars] = React.useState<number | null>(null)
+export function GitHubStars({
+  owner,
+  repo,
+  className,
+  initialStars,
+}: GitHubStarsProps) {
+  const [stars, setStars] = React.useState<number | null>(initialStars ?? null)
 
   React.useEffect(() => {
+    // Skip fetching if we have initial stars from server
+    if (initialStars !== undefined && initialStars !== null) return
+
     const fetchStars = async () => {
       try {
         const res = await fetch(`https://api.github.com/repos/${owner}/${repo}`)
@@ -32,7 +41,7 @@ export function GitHubStars({ owner, repo, className }: GitHubStarsProps) {
       }
     }
     fetchStars()
-  }, [owner, repo])
+  }, [owner, repo, initialStars])
 
   return (
     <a

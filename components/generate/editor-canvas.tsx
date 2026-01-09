@@ -4,6 +4,8 @@
  * Editor Canvas - Preview area with viewport sizing and section rendering
  */
 
+import { useEffect, useState } from "react"
+import { fonts, useDesignStore } from "@/lib/generate/design-store"
 import { useEditorStore } from "@/lib/generate/store"
 import { cn } from "@/lib/utils"
 import { SectionSlider } from "./section-slider"
@@ -20,6 +22,25 @@ export function EditorCanvas() {
   const selectedId = useEditorStore((state) => state.selectedId)
   const selectSection = useEditorStore((state) => state.selectSection)
 
+  const { font, radius } = useDesignStore()
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  // Get CSS values for design settings
+  const fontValue = fonts.find((f) => f.name === font)?.value || "Inter"
+
+  // Preview styles applied to the landing page preview
+  const previewStyles = mounted
+    ? {
+        "--font-sans": `"${fontValue}", ui-sans-serif, system-ui, sans-serif`,
+        "--radius": `${radius}px`,
+        fontFamily: `"${fontValue}", ui-sans-serif, system-ui, sans-serif`,
+      }
+    : {}
+
   return (
     <div className="flex h-full items-start justify-center bg-muted/30 p-6">
       <div
@@ -27,7 +48,12 @@ export function EditorCanvas() {
           "mx-auto bg-background shadow-xl transition-all duration-300",
           viewport !== "desktop" && "rounded-lg border",
         )}
-        style={{ width: viewportWidths[viewport] }}
+        style={
+          {
+            width: viewportWidths[viewport],
+            ...previewStyles,
+          } as React.CSSProperties
+        }
       >
         {/* Render sections */}
         <div className="flex flex-col">
@@ -37,7 +63,7 @@ export function EditorCanvas() {
               className={cn(
                 "relative group cursor-pointer",
                 selectedId === section.id &&
-                  "ring-2 ring-primary ring-offset-2",
+                  "z-10 outline outline-[3px] outline-primary outline-offset-4 rounded",
               )}
               onClick={() => selectSection(section.id)}
             >

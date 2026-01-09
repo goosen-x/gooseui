@@ -1,25 +1,29 @@
 /**
  * Checkout API
  *
- * POST /api/checkout - Get Paddle price ID for checkout
+ * POST /api/checkout - Create Paddle transaction and return checkout URL
  *
- * Note: Paddle checkout happens client-side via Paddle.js overlay.
- * This endpoint returns the price ID to open the checkout.
+ * Uses Paddle API to create a transaction server-side,
+ * then returns the checkout URL for redirect.
  */
 
 import { NextResponse } from "next/server"
-import { getPaddlePriceId, isPaddleConfigured } from "@/lib/payments/paddle"
+import {
+  getPaddle,
+  getPaddlePriceId,
+  isPaddleConfigured,
+} from "@/lib/payments/paddle"
 
 export async function POST(request: Request) {
   try {
     const body = await request.json()
-    const { plan, interval = "monthly" } = body
+    const { plan, interval = "monthly", email } = body
 
     if (!plan || !["pro", "team"].includes(plan)) {
       return NextResponse.json({ error: "Invalid plan" }, { status: 400 })
     }
 
-    if (!["monthly", "yearly"].includes(interval)) {
+    if (!["monthly", "yearly", "lifetime"].includes(interval)) {
       return NextResponse.json({ error: "Invalid interval" }, { status: 400 })
     }
 
@@ -36,7 +40,7 @@ export async function POST(request: Request) {
     // Get Paddle price ID
     const priceId = getPaddlePriceId(
       plan as "pro" | "team",
-      interval as "monthly" | "yearly",
+      interval as "monthly" | "yearly" | "lifetime",
     )
 
     if (!priceId) {
@@ -46,11 +50,41 @@ export async function POST(request: Request) {
       )
     }
 
-    return NextResponse.json({
-      priceId,
-      plan,
-      interval,
-    })
+    try {
+      // Create transaction via Paddle API
+      const paddle = getPaddle()
+      const transaction = await paddle.transactions.create({
+        items: [{ priceId, quantity: 1 }],
+        ...(email && { customer: { email } }),
+        checkout: {
+          url: origin, // Required: base URL for Paddle checkout
+        },
+      })
+
+      // Return checkout URL for redirect
+      if (transaction.checkout?.url) {
+        return NextResponse.json({
+          checkoutUrl: transaction.checkout.url,
+          transactionId: transaction.id,
+        })
+      }
+
+      // Fallback to priceId for overlay (shouldn't happen)
+      return NextResponse.json({
+        priceId,
+        plan,
+        interval,
+      })
+    } catch (paddleError) {
+      console.error("Paddle API error:", paddleError)
+      // Fallback to returning priceId for client-side checkout
+      return NextResponse.json({
+        priceId,
+        plan,
+        interval,
+        warning: "Server-side transaction failed, using client checkout",
+      })
+    }
   } catch (error) {
     console.error("Checkout error:", error)
     return NextResponse.json(

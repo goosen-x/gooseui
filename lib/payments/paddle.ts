@@ -26,6 +26,7 @@ export const PADDLE_PRICES = {
   pro: {
     monthly: process.env.NEXT_PUBLIC_PADDLE_PRO_MONTHLY_PRICE_ID,
     yearly: process.env.NEXT_PUBLIC_PADDLE_PRO_YEARLY_PRICE_ID,
+    lifetime: process.env.NEXT_PUBLIC_PADDLE_PRO_LIFETIME_PRICE_ID,
   },
   team: {
     monthly: process.env.NEXT_PUBLIC_PADDLE_TEAM_MONTHLY_PRICE_ID,
@@ -38,9 +39,15 @@ export const PADDLE_PRICES = {
  */
 export function getPaddlePriceId(
   plan: "pro" | "team",
-  interval: "monthly" | "yearly",
+  interval: "monthly" | "yearly" | "lifetime",
 ): string | undefined {
-  return PADDLE_PRICES[plan]?.[interval]
+  if (plan === "pro" && interval === "lifetime") {
+    return PADDLE_PRICES.pro.lifetime
+  }
+  if (interval === "lifetime") {
+    return undefined // Team doesn't have lifetime
+  }
+  return PADDLE_PRICES[plan]?.[interval as "monthly" | "yearly"]
 }
 
 /**
@@ -49,7 +56,8 @@ export function getPaddlePriceId(
 export function getPlanFromPriceId(priceId: string): "pro" | "team" | null {
   if (
     priceId === PADDLE_PRICES.pro.monthly ||
-    priceId === PADDLE_PRICES.pro.yearly
+    priceId === PADDLE_PRICES.pro.yearly ||
+    priceId === PADDLE_PRICES.pro.lifetime
   ) {
     return "pro"
   }

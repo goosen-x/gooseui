@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "github-stars",
+  "type": "registry:ui",
+  "title": "GitHub Stars",
+  "description": "Display GitHub repository star count with animated number transitions.",
+  "dependencies": ["lucide-react", "motion"],
+  "registryDependencies": ["sliding-number"],
+  "files": [
+    {
+      "path": "registry/new-york/ui/github-stars.tsx",
+      "type": "registry:ui",
+      "target": "components/ui/github-stars.tsx"
+    }
+  ]
+}

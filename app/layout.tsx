@@ -59,11 +59,11 @@ export default function RootLayout({
             __html: `
               (function() {
                 try {
-                  var color = localStorage.getItem('theme-color');
-                  if (color) {
-                    document.documentElement.setAttribute('data-theme-color', color);
-                  }
-                } catch (e) {}
+                  var color = localStorage.getItem('theme-color') || 'green';
+                  document.documentElement.setAttribute('data-theme-color', color);
+                } catch (e) {
+                  document.documentElement.setAttribute('data-theme-color', 'green');
+                }
               })();
             `,
           }}

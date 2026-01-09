@@ -22,11 +22,19 @@ export function TableOfContents() {
     const detectHeadings = () => {
       const elements = document.querySelectorAll("h2[id], h3[id]")
       if (elements.length > 0) {
-        const items: TocItem[] = Array.from(elements).map((element) => ({
-          id: element.id,
-          title: element.textContent || "",
-          level: element.tagName === "H2" ? 2 : 3,
-        }))
+        const seen = new Set<string>()
+        const items: TocItem[] = Array.from(elements)
+          .map((element) => ({
+            id: element.id,
+            title: element.textContent || "",
+            level: element.tagName === "H2" ? 2 : 3,
+          }))
+          .filter((item) => {
+            // Deduplicate by id
+            if (seen.has(item.id)) return false
+            seen.add(item.id)
+            return true
+          })
         setHeadings(items)
         setActiveId(items[0].id)
         setIsLoading(false)

@@ -317,6 +317,16 @@ export const BLOCK_ITEMS: BlockItem[] = [
     isComingSoon: true,
   },
 
+  // Features blocks
+  {
+    slug: "features-grid",
+    name: "Features Grid",
+    description: "Six-column grid showcasing product features with icons",
+    category: "features",
+    isFeatured: true,
+    isNew: true,
+  },
+
   // Hero sections blocks (10)
   {
     slug: "hero-simple",

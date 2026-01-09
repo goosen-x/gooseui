@@ -10,6 +10,7 @@ import {
   Bell,
   Bot,
   FormInput,
+  Grid3X3,
   KeyRound,
   LayoutDashboard,
   Megaphone,
@@ -111,6 +112,13 @@ export const BLOCK_CATEGORIES: BlockCategory[] = [
     name: "Hero Sections",
     description: "Landing heroes, split layouts, with video/images",
     icon: Rocket,
+    count: 0,
+  },
+  {
+    slug: "features",
+    name: "Features",
+    description: "Feature grids, benefit sections, highlights",
+    icon: Grid3X3,
     count: 0,
   },
   {

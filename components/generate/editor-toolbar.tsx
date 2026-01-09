@@ -17,7 +17,8 @@ import {
   Tablet,
   Undo2,
 } from "lucide-react"
-import { useState } from "react"
+import Link from "next/link"
+import { useEffect, useState } from "react"
 import { Button } from "@/components/ui/button"
 import {
   Dialog,
@@ -104,6 +105,19 @@ export function EditorToolbar() {
   const [templatesOpen, setTemplatesOpen] = useState(false)
   const [upgradeOpen, setUpgradeOpen] = useState(false)
   const [upgradeFeature, setUpgradeFeature] = useState("default")
+  const [isScrolled, setIsScrolled] = useState(false)
+
+  // Track scroll position for shrinking effect
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20)
+    }
+
+    window.addEventListener("scroll", handleScroll, { passive: true })
+    handleScroll() // Check initial position
+
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
 
   const viewport = useEditorStore((state) => state.viewport)
   const setViewport = useEditorStore((state) => state.setViewport)
@@ -162,10 +176,32 @@ export function EditorToolbar() {
 
   return (
     <TooltipProvider delayDuration={300}>
-      <div className="flex h-14 items-center justify-between border-b px-4">
+      <header
+        className={cn(
+          "sticky top-0 z-50 flex items-center justify-between border-b bg-background/80 px-4 backdrop-blur-xl transition-all duration-300",
+          isScrolled ? "h-11" : "h-14",
+        )}
+      >
         {/* Left: Logo + Templates */}
         <div className="flex items-center gap-3">
-          <span className="font-semibold">GooseUI Generator</span>
+          <Link href="/" className="flex items-center gap-2">
+            <img
+              src="/favicon/favicon.svg"
+              alt=""
+              className={cn(
+                "w-auto dark:invert transition-all duration-300",
+                isScrolled ? "h-4" : "h-5",
+              )}
+            />
+            <span
+              className={cn(
+                "font-bold transition-all duration-300",
+                isScrolled ? "text-sm" : "text-base",
+              )}
+            >
+              GooseUI Generate
+            </span>
+          </Link>
 
           <div className="h-6 w-px bg-border" />
 
@@ -182,7 +218,12 @@ export function EditorToolbar() {
         </div>
 
         {/* Center: Viewport Switcher */}
-        <div className="flex items-center gap-1 rounded-lg border bg-muted/50 p-1">
+        <div
+          className={cn(
+            "flex items-center gap-1 rounded-lg border bg-muted/50 transition-all duration-300",
+            isScrolled ? "p-0.5" : "p-1",
+          )}
+        >
           {viewportOptions.map((option) => (
             <Tooltip key={option.value}>
               <TooltipTrigger asChild>
@@ -190,7 +231,8 @@ export function EditorToolbar() {
                   variant="ghost"
                   size="sm"
                   className={cn(
-                    "h-8 w-8 p-0 cursor-pointer",
+                    "p-0 cursor-pointer transition-all duration-300",
+                    isScrolled ? "h-7 w-7" : "h-8 w-8",
                     viewport === option.value && "bg-background shadow-sm",
                   )}
                   onClick={() => setViewport(option.value)}
@@ -360,7 +402,7 @@ export function EditorToolbar() {
             </TooltipContent>
           </Tooltip>
         </div>
-      </div>
+      </header>
 
       {/* Templates Gallery Modal */}
       <TemplatesGallery open={templatesOpen} onOpenChange={setTemplatesOpen} />

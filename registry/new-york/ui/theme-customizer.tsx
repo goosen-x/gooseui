@@ -100,9 +100,9 @@ export function ThemeCustomizerPill({
       {showColors && (
         <div
           className={cn(
-            "z-50 flex flex-wrap justify-center gap-1.5 rounded-xl border bg-background/70 p-2 shadow-lg backdrop-blur-xl animate-in fade-in slide-in-from-bottom-2",
+            "z-50 flex justify-center gap-1.5 rounded-xl border bg-background/70 p-2 shadow-lg backdrop-blur-xl animate-in fade-in slide-in-from-bottom-2",
             isInline
-              ? "absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-[120px]"
+              ? "absolute bottom-full left-1/2 -translate-x-1/2 mb-2"
               : "fixed bottom-20 left-1/2 -translate-x-1/2 gap-2 rounded-full px-3 py-2",
           )}
         >

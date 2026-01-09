@@ -283,6 +283,19 @@
           "type": "registry:lib"
         }
       ]
+    },
+    {
+      "name": "features-grid",
+      "type": "registry:component",
+      "title": "Features Grid",
+      "description": "Six-column grid showcasing product features with icons. Perfect for landing pages.",
+      "dependencies": ["lucide-react"],
+      "files": [
+        {
+          "path": "registry/new-york/blocks/features/features-grid.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }

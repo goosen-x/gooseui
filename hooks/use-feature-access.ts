@@ -4,35 +4,18 @@
  * Feature Access Hook
  *
  * Provides feature gating based on user subscription plan.
- * For now uses a mock implementation - replace with actual user data from Supabase/Auth.
+ * Uses real subscription data from Supabase.
  */
 
 import { useMemo } from "react"
 import { type PlanTier, plans, hasFeature } from "@/lib/payments/plans"
-
-// Mock user state - replace with actual auth state
-// This would typically come from a context provider with Supabase auth
-interface UserSubscription {
-  plan: PlanTier
-  exportsThisMonth: number
-  projectCount: number
-}
-
-// Mock hook for user subscription - replace with actual implementation
-function useUserSubscription(): UserSubscription | null {
-  // TODO: Replace with actual Supabase auth/subscription data
-  // For now, return a mock free user
-  return {
-    plan: "free",
-    exportsThisMonth: 0,
-    projectCount: 1,
-  }
-}
+import { useSubscription } from "@/hooks/use-subscription"
 
 export interface FeatureAccess {
   // Current plan
   plan: PlanTier
   planName: string
+  isLoading: boolean
 
   // Export features
   canExportHTML: boolean
@@ -67,13 +50,14 @@ export interface FeatureAccess {
  * Hook to access feature gating based on user subscription
  */
 export function useFeatureAccess(): FeatureAccess {
-  const subscription = useUserSubscription()
+  const { subscription, plan: subscriptionPlan, isLoading } = useSubscription()
 
   return useMemo(() => {
-    const plan = subscription?.plan ?? "free"
+    const plan = subscriptionPlan
     const currentPlan = plans[plan]
-    const exportsThisMonth = subscription?.exportsThisMonth ?? 0
-    const projectCount = subscription?.projectCount ?? 0
+    // TODO: Track exports and projects in database
+    const exportsThisMonth = 0
+    const projectCount = 0
 
     const projectLimit = currentPlan.limits.projects
     const exportLimit = currentPlan.limits.exportsPerMonth
@@ -87,6 +71,7 @@ export function useFeatureAccess(): FeatureAccess {
       // Current plan
       plan,
       planName: currentPlan.name,
+      isLoading,
 
       // Export features
       canExportHTML: hasFeature(plan, "htmlExport"),
@@ -133,7 +118,7 @@ export function useFeatureAccess(): FeatureAccess {
         }
       },
     }
-  }, [subscription])
+  }, [subscriptionPlan, isLoading])
 }
 
 /**

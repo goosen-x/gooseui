@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "sliding-number",
+  "type": "registry:ui",
+  "title": "Sliding Number",
+  "description": "Animated number display with smooth sliding transitions between digits.",
+  "dependencies": ["motion"],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/new-york/ui/sliding-number.tsx",
+      "type": "registry:ui",
+      "target": "components/ui/sliding-number.tsx"
+    }
+  ]
+}

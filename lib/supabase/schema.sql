@@ -22,8 +22,8 @@ CREATE TABLE IF NOT EXISTS public.profiles (
 CREATE TABLE IF NOT EXISTS public.subscriptions (
   id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
   user_id UUID NOT NULL REFERENCES auth.users(id) ON DELETE CASCADE,
-  stripe_customer_id TEXT UNIQUE,
-  stripe_subscription_id TEXT UNIQUE,
+  paddle_customer_id TEXT UNIQUE,
+  paddle_subscription_id TEXT UNIQUE,
   plan TEXT NOT NULL DEFAULT 'free' CHECK (plan IN ('free', 'pro', 'team', 'enterprise')),
   status TEXT NOT NULL DEFAULT 'active' CHECK (status IN ('active', 'canceled', 'past_due', 'trialing')),
   current_period_start TIMESTAMPTZ,
@@ -116,7 +116,7 @@ CREATE POLICY "Users can create own exports"
 CREATE INDEX IF NOT EXISTS idx_projects_user_id ON public.projects(user_id);
 CREATE INDEX IF NOT EXISTS idx_projects_created_at ON public.projects(created_at DESC);
 CREATE INDEX IF NOT EXISTS idx_subscriptions_user_id ON public.subscriptions(user_id);
-CREATE INDEX IF NOT EXISTS idx_subscriptions_stripe_customer ON public.subscriptions(stripe_customer_id);
+CREATE INDEX IF NOT EXISTS idx_subscriptions_paddle_customer ON public.subscriptions(paddle_customer_id);
 CREATE INDEX IF NOT EXISTS idx_exports_user_id ON public.exports(user_id);
 CREATE INDEX IF NOT EXISTS idx_exports_created_at ON public.exports(created_at DESC);
 
