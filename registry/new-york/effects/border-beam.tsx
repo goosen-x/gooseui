@@ -28,6 +28,8 @@ interface BorderBeamProps {
   colorFrom?: string
   colorTo?: string
   borderWidth?: number
+  /** Match iOS-style squircle corners (requires Chrome 139+) */
+  squircle?: boolean
 }
 
 export function BorderBeam({
@@ -38,8 +40,13 @@ export function BorderBeam({
   colorFrom = "#ffaa40",
   colorTo = "#9c40ff",
   borderWidth = 1.5,
+  squircle = false,
 }: BorderBeamProps) {
   useGlobalStyles(BORDER_BEAM_STYLES, "border-beam-styles")
+
+  const squircleStyle = squircle
+    ? ({ cornerShape: "squircle" } as React.CSSProperties)
+    : {}
 
   return (
     <div
@@ -55,14 +62,16 @@ export function BorderBeam({
           "--color-from": colorFrom,
           "--color-to": colorTo,
           "--border-width": `${borderWidth}px`,
+          ...squircleStyle,
         } as React.CSSProperties
       }
     >
       <div
         className="absolute inset-0 rounded-[inherit]"
-        style={{
-          padding: "var(--border-width)",
-          background: `
+        style={
+          {
+            padding: "var(--border-width)",
+            background: `
             linear-gradient(
               var(--angle, 0deg),
               transparent 0%,
@@ -73,13 +82,15 @@ export function BorderBeam({
               transparent 100%
             )
           `,
-          mask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
-          maskComposite: "exclude",
-          WebkitMask:
-            "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
-          WebkitMaskComposite: "xor",
-          animation: `border-beam-spin var(--duration) linear infinite var(--delay)`,
-        }}
+            mask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+            maskComposite: "exclude",
+            WebkitMask:
+              "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+            WebkitMaskComposite: "xor",
+            animation: `border-beam-spin var(--duration) linear infinite var(--delay)`,
+            ...squircleStyle,
+          } as React.CSSProperties
+        }
       />
     </div>
   )

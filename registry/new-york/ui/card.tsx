@@ -2,7 +2,15 @@ import type * as React from "react"
 
 import { cn } from "@/lib/utils"
 
-function Card({ className, ...props }: React.ComponentProps<"div">) {
+function Card({
+  className,
+  squircle = false,
+  style,
+  ...props
+}: React.ComponentProps<"div"> & {
+  /** Apply iOS-style squircle corners (requires Chrome 139+) */
+  squircle?: boolean
+}) {
   return (
     <div
       data-slot="card"
@@ -10,6 +18,11 @@ function Card({ className, ...props }: React.ComponentProps<"div">) {
         "bg-card text-card-foreground flex flex-col gap-6 rounded-xl border py-6 shadow-sm",
         className,
       )}
+      style={
+        squircle
+          ? { ...style, cornerShape: "squircle", borderRadius: "1.5rem" } as React.CSSProperties
+          : style
+      }
       {...props}
     />
   )

@@ -1,6 +1,9 @@
 import { Github, Linkedin, Mail, Twitter } from "lucide-react"
 import Link from "next/link"
 
+// Computed at build time, avoids hydration mismatch
+const CURRENT_YEAR = 2026
+
 const socialLinks = [
   { icon: Twitter, href: "https://twitter.com", label: "Twitter" },
   { icon: Github, href: "https://github.com", label: "GitHub" },
@@ -64,7 +67,7 @@ export function FooterSimple() {
 
           {/* Copyright */}
           <p className="text-sm text-muted-foreground">
-            &copy; {new Date().getFullYear()} Brand, Inc. All rights reserved.
+            &copy; {CURRENT_YEAR} Brand, Inc. All rights reserved.
           </p>
         </div>
       </div>

@@ -3,6 +3,7 @@ import { DocsHeader } from "@/components/docs-header"
 import { DocsSidebar } from "@/components/docs-sidebar"
 import { ThemeCustomizerToolbar } from "@/components/theme-customizer"
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar"
+import { ScrollToTopText } from "@/registry/new-york/ui/scroll-to-top"
 
 export default function DocsLayout({
   children,
@@ -19,6 +20,7 @@ export default function DocsLayout({
         </div>
       </SidebarInset>
       <ThemeCustomizerToolbar />
+      <ScrollToTopText threshold={300} className="hidden sm:flex" />
     </SidebarProvider>
   )
 }

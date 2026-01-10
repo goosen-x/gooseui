@@ -6,23 +6,8 @@
  */
 
 import { Check, Loader2, Sparkles } from "lucide-react"
-
-// Paddle.js global type declaration
-declare global {
-  interface Window {
-    Paddle?: {
-      Checkout: {
-        open: (options: {
-          items: Array<{ priceId: string; quantity: number }>
-          successUrl?: string
-          closeCallback?: () => void
-        }) => void
-      }
-    }
-  }
-}
-
 import { useState } from "react"
+import { usePaddle } from "./paddle-checkout"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import {
@@ -82,8 +67,17 @@ export function UpgradeModal({
 }: UpgradeModalProps) {
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const { paddle, isReady: isPaddleReady } = usePaddle()
   const message = featureMessages[feature] || featureMessages.default
   const proPlan = plans.pro
+
+  const handleOpenChange = (isOpen: boolean) => {
+    if (!isOpen) {
+      setIsLoading(false)
+      setError(null)
+    }
+    onOpenChange?.(isOpen)
+  }
 
   const handleUpgrade = async () => {
     setIsLoading(true)
@@ -120,18 +114,23 @@ export function UpgradeModal({
       }
 
       // Client-side checkout with priceId (fallback when server transaction fails)
-      if (data.priceId && typeof window !== "undefined" && window.Paddle) {
-        window.Paddle.Checkout.open({
+      if (data.priceId && paddle) {
+        paddle.Checkout.open({
           items: [{ priceId: data.priceId, quantity: 1 }],
-          successUrl: `${window.location.origin}/account?success=true`,
-          closeCallback: () => {
-            setIsLoading(false)
+          settings: {
+            displayMode: "overlay",
+            theme: "light",
+            successUrl: `${window.location.origin}/account?success=true`,
           },
         })
+        // Keep loading until checkout closes
         return
       }
 
       // Final fallback - no checkout method available
+      if (data.priceId && !isPaddleReady) {
+        throw new Error("Payment system is loading. Please try again.")
+      }
       throw new Error("Payment not configured. Please try again later.")
     } catch (err) {
       console.error("Checkout error:", err)
@@ -141,7 +140,7 @@ export function UpgradeModal({
   }
 
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
+    <Dialog open={open} onOpenChange={handleOpenChange}>
       {trigger && <DialogTrigger asChild>{trigger}</DialogTrigger>}
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
@@ -227,7 +226,7 @@ export function UpgradeModal({
           <Button
             variant="ghost"
             className="w-full cursor-pointer"
-            onClick={() => onOpenChange?.(false)}
+            onClick={() => handleOpenChange(false)}
             disabled={isLoading}
           >
             Maybe later

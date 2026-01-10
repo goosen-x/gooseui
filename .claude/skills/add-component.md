@@ -18,7 +18,82 @@ allowed-tools: Read, Write, Edit, Grep, Glob, Bash
 6. [ ] `app/(docs)/docs/{type}/page.tsx` — add to catalog (if applicable)
 7. [ ] `pnpm validate:nav` — validate navigation
 
-**Component types:** `ui`, `effects`, `blocks`
+**Component types:** `ui`, `effects`, `blocks`, `experimental`
+
+---
+
+## Experimental vs Regular Components
+
+### When to use `experimental/` folder
+
+Add component to `experimental/` folder if it uses **LIMITED AVAILABILITY** features:
+- CSS properties with limited browser support (e.g., `corner-shape`, `anchor-positioning`)
+- APIs available only in specific browsers (e.g., Chrome 139+ only)
+- Features behind browser flags
+- Features not yet in Baseline
+
+### Status progression
+
+```
+isDraft: true  →  isExperimental: true  →  isNew: true  →  (no flag)
+   ↓                    ↓                      ↓              ↓
+ Hidden in prod    Shows in Experimental   Shows as New   Regular item
+```
+
+### Folder structure by status
+
+| Status | Docs folder | Navigation section |
+|--------|-------------|-------------------|
+| `isDraft: true` | `components/` or `experimental/` | Hidden in production |
+| `isExperimental: true` | `experimental/` | Experimental section |
+| `isNew: true` | `components/` | Components with "New" badge |
+| (no flags) | `components/` | Regular component |
+
+### Navigation examples
+
+```typescript
+// Draft component (hidden in production)
+{
+  slug: "corner-shape",
+  title: "Corner Shape",
+  href: "/docs/experimental/corner-shape",
+  isDraft: true,  // Hidden until ready
+}
+
+// Experimental component (visible, marked as experimental)
+{
+  slug: "corner-shape",
+  title: "Corner Shape",
+  href: "/docs/experimental/corner-shape",
+  isExperimental: true,  // Shows in Experimental section
+  isNew: true,           // Optional: also shows "New" badge
+}
+
+// Regular component
+{
+  slug: "button",
+  title: "Button",
+  href: "/docs/components/button",
+  // No flags = regular production component
+}
+```
+
+### IMPORTANT RULES
+
+1. **Limited availability = Experimental folder**
+   - If browser support is <80%, use `experimental/` folder
+   - Check [caniuse.com](https://caniuse.com) or [Baseline](https://web.dev/baseline)
+
+2. **Draft first, then experimental**
+   - New experimental components start as `isDraft: true`
+   - When ready: remove `isDraft`, add `isExperimental: true`
+   - NEVER add directly to production
+
+3. **Moving from experimental to components**
+   - Only when feature reaches wide browser support
+   - Move files from `experimental/` to `components/`
+   - Update `href` in navigation
+   - Remove `isExperimental: true`, optionally add `isNew: true`
 
 ---
 
@@ -257,8 +332,9 @@ registry/new-york/
 └── lib/             # Utilities (toast.ts)
 
 app/(docs)/docs/
-├── components/      # UI component documentation
-└── effects/         # Effects documentation
+├── components/      # Production-ready components
+├── effects/         # Effects documentation
+└── experimental/    # Limited browser support components
 
 components/docs/     # Documentation components
 ├── code-block.tsx
@@ -300,15 +376,45 @@ Location: `public/r/{slug}.json`
 
 Edit `lib/config/docs-navigation.ts`:
 
+### Regular components (wide browser support)
+
 ```typescript
+// In "Components" section
 {
   slug: "component-name",
   title: "Component Name",
   href: "/docs/components/component-name",
-  isNew: true,  // Shows "NEW" badge
-  // isDraft: true,  // Hidden in production
+  isDraft: true,  // Start as draft, then remove when ready
+  // isNew: true,  // Add when launching to production
 }
 ```
+
+### Experimental components (limited browser support)
+
+```typescript
+// In "Experimental" section
+{
+  slug: "corner-shape",
+  title: "Corner Shape",
+  href: "/docs/experimental/corner-shape",  // Note: experimental folder!
+  isDraft: true,        // Start as draft
+  isExperimental: true, // Mark as experimental
+}
+
+// When ready for production (still limited support):
+{
+  slug: "corner-shape",
+  title: "Corner Shape",
+  href: "/docs/experimental/corner-shape",
+  isExperimental: true,  // Keep experimental
+  isNew: true,           // Add "New" badge
+}
+```
+
+> **IMPORTANT:**
+> - All new components MUST start as `isDraft: true`
+> - Limited browser support → use `experimental/` folder + `isExperimental: true`
+> - Remove `isDraft` when ready, keep `isExperimental` for limited support features
 
 ---
 

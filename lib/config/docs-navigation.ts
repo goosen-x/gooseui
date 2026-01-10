@@ -10,6 +10,42 @@
  * automatically appear in all navigation elements.
  */
 
+import type { LucideIcon } from "lucide-react"
+import {
+  ArrowUp,
+  Badge as BadgeIcon,
+  Book,
+  Box,
+  CheckSquare,
+  Circle,
+  Clock,
+  Code,
+  Columns,
+  FileText,
+  FormInput,
+  Gauge,
+  GalleryHorizontal,
+  Globe,
+  Image,
+  Info,
+  Layers,
+  LayoutGrid,
+  Megaphone,
+  MessageSquare,
+  MousePointer,
+  Palette,
+  PanelTop,
+  Scroll,
+  Settings,
+  Sparkles,
+  Square,
+  Terminal,
+  Text,
+  ToggleLeft,
+  Type,
+  Zap,
+} from "lucide-react"
+
 export interface NavItem {
   /** URL slug (e.g., "carousel", "animated-timer") */
   slug: string
@@ -21,10 +57,14 @@ export interface NavItem {
   description?: string
   /** Component category (Display, Inputs, Layout, etc.) */
   category?: string
+  /** Lucide icon for sidebar display */
+  icon?: LucideIcon
   /** Mark as new */
   isNew?: boolean
   /** Mark as draft (hidden in production) */
   isDraft?: boolean
+  /** Mark as experimental (limited browser support) */
+  isExperimental?: boolean
   /** Mark as coming soon (shown but disabled) */
   isComingSoon?: boolean
   /** Search keywords */
@@ -72,6 +112,7 @@ const rawNavigation: NavSection[] = [
         title: "Introduction",
         href: "/docs",
         description: "Get started with GooseUI components",
+        icon: Book,
         keywords: ["start", "getting started", "intro"],
       },
       {
@@ -79,6 +120,7 @@ const rawNavigation: NavSection[] = [
         title: "Installation",
         href: "/docs/installation",
         description: "How to install and configure GooseUI",
+        icon: Settings,
         keywords: ["install", "setup", "npm", "pnpm"],
       },
       {
@@ -86,6 +128,7 @@ const rawNavigation: NavSection[] = [
         title: "CLI",
         href: "/docs/cli",
         description: "Use CLI to add components",
+        icon: Terminal,
         keywords: ["command", "terminal", "shadcn"],
       },
     ],
@@ -102,7 +145,7 @@ const rawNavigation: NavSection[] = [
         href: "/docs/components/adaptive-grid",
         description: "Grid that adapts with Container Queries + :has()",
         category: "Layout",
-        isNew: true,
+        icon: LayoutGrid,
         keywords: ["grid", "container", "queries", "adaptive"],
       },
       {
@@ -111,6 +154,7 @@ const rawNavigation: NavSection[] = [
         href: "/docs/components/animated-timer",
         description: "Countdown timer with flip animation",
         category: "Display",
+        icon: Clock,
         keywords: ["countdown", "timer", "flip", "animation"],
       },
       // B
@@ -120,7 +164,7 @@ const rawNavigation: NavSection[] = [
         href: "/docs/components/badge",
         description: "Small status indicator with variants",
         category: "Display",
-        isNew: true,
+        icon: BadgeIcon,
         keywords: ["badge", "tag", "label", "status", "chip"],
       },
       {
@@ -129,7 +173,7 @@ const rawNavigation: NavSection[] = [
         href: "/docs/components/baseline-status",
         description: "Display browser support status",
         category: "Display",
-        isNew: true,
+        icon: Globe,
         keywords: ["browser", "support", "compatibility", "baseline"],
       },
       {
@@ -138,6 +182,7 @@ const rawNavigation: NavSection[] = [
         href: "/docs/components/button",
         description: "Button with various variants and sizes",
         category: "Inputs",
+        icon: MousePointer,
         keywords: ["click", "action", "submit"],
       },
       // C
@@ -147,6 +192,7 @@ const rawNavigation: NavSection[] = [
         href: "/docs/components/card",
         description: "Container for grouping content",
         category: "Layout",
+        icon: Square,
         keywords: ["container", "box", "wrapper"],
       },
       {
@@ -155,6 +201,7 @@ const rawNavigation: NavSection[] = [
         href: "/docs/components/carousel",
         description: "Image and content carousel slider",
         category: "Display",
+        icon: GalleryHorizontal,
         isNew: true,
         keywords: ["slider", "gallery", "images", "swipe"],
       },
@@ -164,7 +211,7 @@ const rawNavigation: NavSection[] = [
         href: "/docs/components/checkbox",
         description: "Checkbox input with label support",
         category: "Inputs",
-        isNew: true,
+        icon: CheckSquare,
         keywords: ["check", "toggle", "form", "input"],
       },
       // D
@@ -174,6 +221,7 @@ const rawNavigation: NavSection[] = [
         href: "/docs/components/digital-clock",
         description: "LED-style digital clock display",
         category: "Display",
+        icon: Clock,
         isNew: true,
         keywords: ["time", "clock", "led", "display"],
       },
@@ -184,6 +232,7 @@ const rawNavigation: NavSection[] = [
         href: "/docs/components/input",
         description: "Text input field component",
         category: "Inputs",
+        icon: FormInput,
         keywords: ["text", "field", "form", "input"],
       },
       // M
@@ -193,6 +242,7 @@ const rawNavigation: NavSection[] = [
         href: "/docs/components/morphing-dialog",
         description: "Dialog with View Transitions API animation",
         category: "Overlay",
+        icon: Layers,
         isNew: true,
         keywords: ["modal", "popup", "view transitions", "animation"],
       },
@@ -203,6 +253,7 @@ const rawNavigation: NavSection[] = [
         href: "/docs/components/promo-banner",
         description: "Floating promotional banner with marquee",
         category: "Marketing",
+        icon: Megaphone,
         isNew: true,
         keywords: ["marketing", "popup", "sale", "campaign", "promotion"],
       },
@@ -214,6 +265,7 @@ const rawNavigation: NavSection[] = [
         description:
           "Page scroll progress bar using CSS scroll-driven animations",
         category: "Display",
+        icon: Gauge,
         isDraft: true,
         keywords: ["scroll", "progress", "animation", "timeline"],
       },
@@ -223,8 +275,17 @@ const rawNavigation: NavSection[] = [
         href: "/docs/components/scroll-to-top",
         description: "Floating scroll-to-top button with multiple variants",
         category: "Navigation",
-        isNew: true,
+        icon: ArrowUp,
         keywords: ["scroll", "top", "button", "navigation", "back"],
+      },
+      {
+        slug: "sliding-number",
+        title: "Sliding Number",
+        href: "/docs/components/sliding-number",
+        description: "Animated number display with sliding transitions",
+        category: "Display",
+        isDraft: true,
+        keywords: ["number", "counter", "animation", "stats", "price"],
       },
       // T
       {
@@ -233,7 +294,7 @@ const rawNavigation: NavSection[] = [
         href: "/docs/components/theme-customizer",
         description: "Floating theme and color picker",
         category: "Utilities",
-        isNew: true,
+        icon: Palette,
         keywords: ["theme", "color", "dark mode", "customizer"],
       },
       {
@@ -242,6 +303,7 @@ const rawNavigation: NavSection[] = [
         href: "/docs/components/toast",
         description: "Notification toast messages",
         category: "Feedback",
+        icon: MessageSquare,
         keywords: ["notification", "alert", "message", "snackbar"],
       },
       {
@@ -250,6 +312,7 @@ const rawNavigation: NavSection[] = [
         href: "/docs/components/typography",
         description: "Text styles and formatting",
         category: "Display",
+        icon: Type,
         keywords: ["text", "heading", "paragraph", "font"],
       },
       // Draft components (alphabetically sorted)
@@ -259,6 +322,7 @@ const rawNavigation: NavSection[] = [
         href: "/docs/components/morphing-header",
         description: "Header that morphs on scroll with View Transitions",
         category: "Navigation",
+        icon: PanelTop,
         isDraft: true,
         keywords: ["header", "morph", "view transitions", "scroll"],
       },
@@ -268,6 +332,7 @@ const rawNavigation: NavSection[] = [
         href: "/docs/components/scroll-container",
         description: "Container with custom styled scrollbar",
         category: "Layout",
+        icon: Scroll,
         isDraft: true,
         keywords: ["scroll", "scrollbar", "container", "custom"],
       },
@@ -277,6 +342,7 @@ const rawNavigation: NavSection[] = [
         href: "/docs/components/smart-form",
         description: "CSS-only form validation with :has() selector",
         category: "Inputs",
+        icon: FileText,
         isDraft: true,
         keywords: ["form", "validation", "has", "css-only"],
       },
@@ -286,6 +352,7 @@ const rawNavigation: NavSection[] = [
         href: "/docs/components/stacking-cards",
         description: "Cards that stack on scroll",
         category: "Display",
+        icon: Layers,
         isDraft: true,
         keywords: ["cards", "stack", "sticky", "scroll"],
       },
@@ -295,6 +362,7 @@ const rawNavigation: NavSection[] = [
         href: "/docs/components/svg-drawable",
         description: "Animate SVG path drawing with CSS",
         category: "Effects",
+        icon: Image,
         isDraft: true,
         keywords: ["svg", "draw", "animation", "path", "stroke"],
       },
@@ -305,6 +373,7 @@ const rawNavigation: NavSection[] = [
         href: "/docs/components/radio",
         description: "Radio button group component",
         category: "Inputs",
+        icon: CheckSquare,
         isComingSoon: true,
         keywords: ["radio", "option", "select", "form"],
       },
@@ -314,6 +383,7 @@ const rawNavigation: NavSection[] = [
         href: "/docs/components/select",
         description: "Dropdown select component",
         category: "Inputs",
+        icon: Columns,
         isComingSoon: true,
         keywords: ["dropdown", "select", "option", "form"],
       },
@@ -323,6 +393,7 @@ const rawNavigation: NavSection[] = [
         href: "/docs/components/slider",
         description: "Range slider input component",
         category: "Inputs",
+        icon: Gauge,
         isDraft: true,
         keywords: ["range", "slider", "input", "form"],
       },
@@ -332,6 +403,7 @@ const rawNavigation: NavSection[] = [
         href: "/docs/components/switch",
         description: "Toggle switch component",
         category: "Inputs",
+        icon: ToggleLeft,
         isComingSoon: true,
         keywords: ["toggle", "switch", "on", "off", "form"],
       },
@@ -341,6 +413,7 @@ const rawNavigation: NavSection[] = [
         href: "/docs/components/tabs",
         description: "Tabbed content navigation",
         category: "Navigation",
+        icon: Columns,
         isComingSoon: true,
         keywords: ["tabs", "navigation", "panel", "content"],
       },
@@ -356,6 +429,7 @@ const rawNavigation: NavSection[] = [
         href: "/docs/effects/border-beam",
         description: "Animated border beam effect",
         category: "Effects",
+        icon: Zap,
         isNew: true,
         keywords: ["border", "beam", "glow", "animation"],
       },
@@ -365,6 +439,7 @@ const rawNavigation: NavSection[] = [
         href: "/docs/effects/parallax-cards",
         description: "Cards with parallax effect on scroll",
         category: "Effects",
+        icon: Layers,
         isDraft: true,
         keywords: ["parallax", "scroll", "cards", "animation"],
       },
@@ -374,8 +449,18 @@ const rawNavigation: NavSection[] = [
         href: "/docs/effects/reveal-on-scroll",
         description: "Elements reveal as they enter viewport",
         category: "Effects",
+        icon: Sparkles,
         isDraft: true,
         keywords: ["reveal", "scroll", "animation", "view"],
+      },
+      {
+        slug: "glitch-text",
+        title: "Glitch Text",
+        href: "/docs/effects/glitch-text",
+        description: "Animated glitch text with chromatic aberration",
+        category: "Effects",
+        isDraft: true,
+        keywords: ["glitch", "text", "animation", "cyberpunk", "distortion"],
       },
     ],
   },
@@ -390,13 +475,32 @@ const rawNavigation: NavSection[] = [
         href: "/docs/experimental/anchor-tooltip",
         description: "CSS-only tooltips with Anchor Positioning API",
         category: "Experimental",
-        isNew: true,
+        icon: Info,
+        isExperimental: true,
         keywords: [
           "tooltip",
           "anchor",
           "popover",
           "positioning",
           "experimental",
+        ],
+      },
+      {
+        slug: "corner-shape",
+        title: "Corner Shape",
+        href: "/docs/experimental/corner-shape",
+        description: "CSS squircle and superellipse corner shapes",
+        category: "Experimental",
+        icon: Circle,
+        isDraft: true,
+        isExperimental: true,
+        keywords: [
+          "squircle",
+          "corner",
+          "shape",
+          "superellipse",
+          "border-radius",
+          "apple",
         ],
       },
     ],

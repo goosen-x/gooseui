@@ -8,17 +8,27 @@ interface ScrollContainerProps extends React.HTMLAttributes<HTMLDivElement> {
   height?: string | number
   /** Show scrollbar only on hover */
   autoHide?: boolean
-  /** Scrollbar size */
-  scrollbarSize?: "sm" | "md" | "lg"
+  /** Scrollbar variant */
+  variant?: "default" | "minimal" | "primary"
+  /** Force scrollbar visibility (for macOS overlay scrollbars) */
+  forceVisible?: boolean
+  /** Children */
+  children?: React.ReactNode
 }
-
-// Generate unique ID for scoped styles
-let styleId = 0
 
 /**
  * Scroll Container
  *
- * Container with custom styled scrollbar.
+ * Custom scrollbar component using modern CSS properties:
+ * - scrollbar-color (Chrome 121+, Firefox 64+, Safari 26.2+)
+ * - scrollbar-width (thin/auto/none)
+ * - scrollbar-gutter (prevents layout shift)
+ * - ::-webkit-scrollbar (legacy fallback)
+ *
+ * Browser support: 85%+
+ *
+ * @see https://developer.chrome.com/docs/css-ui/scrollbar-styling
+ * @see https://developer.mozilla.org/en-US/docs/Web/CSS/scrollbar-color
  */
 export const ScrollContainer = React.forwardRef<
   HTMLDivElement,
@@ -28,73 +38,130 @@ export const ScrollContainer = React.forwardRef<
     {
       children,
       className,
-      height = "100%",
-      autoHide = true,
-      scrollbarSize = "md",
       style,
+      height = "100%",
+      autoHide = false,
+      variant = "default",
+      forceVisible = false,
       ...props
     },
-    ref,
+    ref
   ) => {
-    const [scopeId] = React.useState(() => `sc-${++styleId}`)
+    const reactId = React.useId()
+    const scopeId = `sc${reactId.replace(/:/g, "")}`
 
-    const sizeMap = {
-      sm: "6px",
-      md: "8px",
-      lg: "10px",
-    }
+    // CSS variable-based theming for scrollbars
+    const variantStyles = {
+      default: {
+        "--sc-thumb": "hsl(var(--muted-foreground) / 0.3)",
+        "--sc-thumb-hover": "hsl(var(--muted-foreground) / 0.5)",
+        "--sc-track": "hsl(var(--muted))",
+      },
+      minimal: {
+        "--sc-thumb": "hsl(var(--muted-foreground) / 0.2)",
+        "--sc-thumb-hover": "hsl(var(--muted-foreground) / 0.4)",
+        "--sc-track": "transparent",
+      },
+      primary: {
+        "--sc-thumb": "hsl(var(--primary) / 0.5)",
+        "--sc-thumb-hover": "hsl(var(--primary) / 0.7)",
+        "--sc-track": "hsl(var(--muted) / 0.5)",
+      },
+    } as const
 
-    const scrollbarStyles = `
+    const vars = variantStyles[variant]
+
+    // CSS for custom scrollbar styling
+    // Note: transitions work on ::-webkit-scrollbar when applied to base element
+    const customStyles = `
+      /* Modern CSS scrollbar (Chrome 121+, Firefox 64+, Safari 26.2+) */
       .${scopeId} {
+        scrollbar-color: var(--sc-thumb) var(--sc-track);
         scrollbar-width: thin;
-        scrollbar-color: ${autoHide ? "transparent" : "hsl(var(--muted-foreground) / 0.2)"} transparent;
+        ${forceVisible ? "scrollbar-gutter: stable;" : ""}
       }
+
+      /* Hover state for modern browsers */
       .${scopeId}:hover {
-        scrollbar-color: hsl(var(--muted-foreground) / 0.4) transparent;
+        scrollbar-color: var(--sc-thumb-hover) var(--sc-track);
       }
-      .${scopeId}::-webkit-scrollbar {
-        width: ${sizeMap[scrollbarSize]};
-        background: transparent;
+
+      /* WebKit fallback (older Chrome, Safari, Edge) */
+      @supports selector(::-webkit-scrollbar) {
+        .${scopeId}::-webkit-scrollbar {
+          width: 0.5rem;
+          height: 0.5rem;
+        }
+
+        .${scopeId}::-webkit-scrollbar-track {
+          background: var(--sc-track);
+          border-radius: 9999px;
+        }
+
+        .${scopeId}::-webkit-scrollbar-thumb {
+          background: var(--sc-thumb);
+          border-radius: 9999px;
+          /* Transition on base element, not hover */
+          transition: background 0.2s ease;
+        }
+
+        .${scopeId}::-webkit-scrollbar-thumb:hover {
+          background: var(--sc-thumb-hover);
+        }
+
+        .${scopeId}::-webkit-scrollbar-corner {
+          background: transparent;
+        }
       }
-      .${scopeId}::-webkit-scrollbar-track {
-        background: transparent;
-        border-radius: 9999px;
-      }
-      .${scopeId}::-webkit-scrollbar-thumb {
-        background: ${autoHide ? "transparent" : "hsl(var(--muted-foreground) / 0.2)"};
-        border-radius: 9999px;
-        border: 2px solid transparent;
-        background-clip: padding-box;
-      }
-      .${scopeId}:hover::-webkit-scrollbar-thumb {
-        background: hsl(var(--muted-foreground) / 0.4);
-        border: 2px solid transparent;
-        background-clip: padding-box;
-      }
-      .${scopeId}::-webkit-scrollbar-thumb:hover {
-        background: hsl(var(--muted-foreground) / 0.5);
-        border: 2px solid transparent;
-        background-clip: padding-box;
+
+      ${
+        autoHide
+          ? `
+        /* Auto-hide: transparent by default, visible on hover */
+        .${scopeId} {
+          scrollbar-color: transparent var(--sc-track);
+        }
+
+        .${scopeId}:hover {
+          scrollbar-color: var(--sc-thumb-hover) var(--sc-track);
+        }
+
+        @supports selector(::-webkit-scrollbar) {
+          .${scopeId}::-webkit-scrollbar-thumb {
+            background: transparent;
+          }
+
+          .${scopeId}:hover::-webkit-scrollbar-thumb {
+            background: var(--sc-thumb);
+          }
+
+          .${scopeId}:hover::-webkit-scrollbar-thumb:hover {
+            background: var(--sc-thumb-hover);
+          }
+        }
+      `
+          : ""
       }
     `
 
     return (
       <>
-        <style dangerouslySetInnerHTML={{ __html: scrollbarStyles }} />
+        <style dangerouslySetInnerHTML={{ __html: customStyles }} />
         <div
           ref={ref}
-          className={cn("overflow-auto", scopeId, className)}
+          className={cn(scopeId, "overflow-auto", className)}
           style={{
             height: typeof height === "number" ? `${height}px` : height,
+            ...vars,
             ...style,
-          }}
+          } as React.CSSProperties}
           {...props}
         >
           {children}
         </div>
       </>
     )
-  },
+  }
 )
 
 ScrollContainer.displayName = "ScrollContainer"

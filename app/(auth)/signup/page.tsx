@@ -87,6 +87,7 @@ function SignupForm() {
           </p>
         </div>
         <Button
+          squircle
           variant="outline"
           className="cursor-pointer"
           onClick={() => router.push("/login")}
@@ -108,6 +109,7 @@ function SignupForm() {
 
       <div className="space-y-4">
         <Button
+          squircle
           variant="outline"
           className="w-full cursor-pointer"
           onClick={handleGoogleSignup}
@@ -134,6 +136,7 @@ function SignupForm() {
         </Button>
 
         <Button
+          squircle
           variant="outline"
           className="w-full cursor-pointer"
           onClick={handleGithubSignup}
@@ -201,6 +204,7 @@ function SignupForm() {
         {error && <p className="text-sm text-destructive">{error}</p>}
 
         <Button
+          squircle
           type="submit"
           className="w-full cursor-pointer"
           disabled={isLoading}

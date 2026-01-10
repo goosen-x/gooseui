@@ -6,6 +6,7 @@ import {
   ScrollToTopMinimal,
   ScrollToTopPill,
   ScrollToTopProgress,
+  ScrollToTopText,
 } from "@/registry/new-york/ui/scroll-to-top"
 
 /**
@@ -108,6 +109,13 @@ export function ScrollToTopDemo() {
 }
 
 /**
+ * Helper function to scroll to top
+ */
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: "smooth" })
+}
+
+/**
  * Simple static preview showing all variants
  */
 export function ScrollToTopPreview() {
@@ -115,7 +123,11 @@ export function ScrollToTopPreview() {
     <div className="flex flex-wrap items-end justify-center gap-8">
       {/* Default */}
       <div className="flex flex-col items-center gap-2">
-        <div className="flex items-center justify-center size-12 rounded-full bg-primary text-primary-foreground shadow-lg cursor-pointer hover:scale-110 transition-transform">
+        <button
+          type="button"
+          onClick={scrollToTop}
+          className="flex items-center justify-center size-12 rounded-full bg-primary text-primary-foreground shadow-lg cursor-pointer hover:scale-110 transition-transform"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="20"
@@ -130,13 +142,17 @@ export function ScrollToTopPreview() {
             <path d="m5 12 7-7 7 7" />
             <path d="M12 19V5" />
           </svg>
-        </div>
+        </button>
         <span className="text-xs text-muted-foreground">Default</span>
       </div>
 
       {/* Pill */}
       <div className="flex flex-col items-center gap-2">
-        <div className="flex items-center gap-2 px-4 py-2.5 rounded-full bg-primary text-primary-foreground text-sm font-medium shadow-lg cursor-pointer hover:bg-primary/90 transition-colors">
+        <button
+          type="button"
+          onClick={scrollToTop}
+          className="flex items-center gap-2 px-4 py-2.5 rounded-full bg-primary text-primary-foreground text-sm font-medium shadow-lg cursor-pointer hover:bg-primary/90 transition-colors"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="16"
@@ -151,13 +167,17 @@ export function ScrollToTopPreview() {
             <path d="m18 15-6-6-6 6" />
           </svg>
           <span>Scroll to top</span>
-        </div>
+        </button>
         <span className="text-xs text-muted-foreground">Pill</span>
       </div>
 
       {/* Minimal */}
       <div className="flex flex-col items-center gap-2">
-        <div className="flex items-center justify-center size-10 text-muted-foreground hover:text-foreground cursor-pointer transition-colors">
+        <button
+          type="button"
+          onClick={scrollToTop}
+          className="flex items-center justify-center size-10 text-muted-foreground hover:text-foreground cursor-pointer transition-colors"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -172,13 +192,17 @@ export function ScrollToTopPreview() {
             <path d="m5 12 7-7 7 7" />
             <path d="M12 19V5" />
           </svg>
-        </div>
+        </button>
         <span className="text-xs text-muted-foreground">Minimal</span>
       </div>
 
       {/* Progress */}
       <div className="flex flex-col items-center gap-2">
-        <div className="relative flex items-center justify-center size-12 bg-background rounded-full shadow-lg cursor-pointer hover:scale-110 transition-transform">
+        <button
+          type="button"
+          onClick={scrollToTop}
+          className="relative flex items-center justify-center size-12 bg-background rounded-full shadow-lg cursor-pointer hover:scale-110 transition-transform"
+        >
           <svg
             className="absolute inset-0 -rotate-90"
             width="48"
@@ -222,8 +246,56 @@ export function ScrollToTopPreview() {
             <path d="m5 12 7-7 7 7" />
             <path d="M12 19V5" />
           </svg>
-        </div>
+        </button>
         <span className="text-xs text-muted-foreground">Progress (50%)</span>
+      </div>
+
+      {/* Text */}
+      <div className="flex flex-col items-center gap-2">
+        <button
+          type="button"
+          onClick={scrollToTop}
+          className="flex items-center gap-1.5 text-muted-foreground hover:text-foreground cursor-pointer transition-colors"
+        >
+          <span className="text-sm font-medium">Scroll to top</span>
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            className="overflow-visible"
+          >
+            <circle
+              cx="12"
+              cy="12"
+              r="10"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              className="opacity-20"
+            />
+            <circle
+              cx="12"
+              cy="12"
+              r="10"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeDasharray="63"
+              strokeDashoffset="31"
+              style={{ transform: "rotate(-90deg)", transformOrigin: "center" }}
+            />
+            <path
+              d="M12 16V8M8 12l4-4 4 4"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              stroke="currentColor"
+              strokeWidth="1.5"
+            />
+          </svg>
+        </button>
+        <span className="text-xs text-muted-foreground">Text (50%)</span>
       </div>
     </div>
   )
@@ -235,7 +307,11 @@ export function ScrollToTopPreview() {
 export function ScrollToTopDefaultDemo() {
   return (
     <div className="flex items-center justify-center">
-      <div className="flex items-center justify-center size-12 rounded-full bg-primary text-primary-foreground shadow-lg cursor-pointer hover:scale-110 transition-transform">
+      <button
+        type="button"
+        onClick={scrollToTop}
+        className="flex items-center justify-center size-12 rounded-full bg-primary text-primary-foreground shadow-lg cursor-pointer hover:scale-110 transition-transform"
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="20"
@@ -250,7 +326,7 @@ export function ScrollToTopDefaultDemo() {
           <path d="m5 12 7-7 7 7" />
           <path d="M12 19V5" />
         </svg>
-      </div>
+      </button>
     </div>
   )
 }
@@ -261,7 +337,11 @@ export function ScrollToTopDefaultDemo() {
 export function ScrollToTopPillDemo() {
   return (
     <div className="flex items-center justify-center">
-      <div className="flex items-center gap-2 px-4 py-2.5 rounded-full bg-primary text-primary-foreground text-sm font-medium shadow-lg cursor-pointer hover:bg-primary/90 transition-colors">
+      <button
+        type="button"
+        onClick={scrollToTop}
+        className="flex items-center gap-2 px-4 py-2.5 rounded-full bg-primary text-primary-foreground text-sm font-medium shadow-lg cursor-pointer hover:bg-primary/90 transition-colors"
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="16"
@@ -276,7 +356,7 @@ export function ScrollToTopPillDemo() {
           <path d="m18 15-6-6-6 6" />
         </svg>
         <span>Scroll to top</span>
-      </div>
+      </button>
     </div>
   )
 }
@@ -287,7 +367,11 @@ export function ScrollToTopPillDemo() {
 export function ScrollToTopMinimalDemo() {
   return (
     <div className="flex items-center justify-center">
-      <div className="flex items-center justify-center size-10 text-muted-foreground hover:text-foreground cursor-pointer transition-colors">
+      <button
+        type="button"
+        onClick={scrollToTop}
+        className="flex items-center justify-center size-10 text-muted-foreground hover:text-foreground cursor-pointer transition-colors"
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -302,7 +386,7 @@ export function ScrollToTopMinimalDemo() {
           <path d="m5 12 7-7 7 7" />
           <path d="M12 19V5" />
         </svg>
-      </div>
+      </button>
     </div>
   )
 }
@@ -313,7 +397,11 @@ export function ScrollToTopMinimalDemo() {
 export function ScrollToTopProgressDemo() {
   return (
     <div className="flex items-center justify-center">
-      <div className="relative flex items-center justify-center size-12 bg-background rounded-full shadow-lg border cursor-pointer hover:scale-110 transition-transform">
+      <button
+        type="button"
+        onClick={scrollToTop}
+        className="relative flex items-center justify-center size-12 bg-background rounded-full shadow-lg border cursor-pointer hover:scale-110 transition-transform"
+      >
         <svg
           className="absolute inset-0 -rotate-90"
           width="48"
@@ -357,7 +445,60 @@ export function ScrollToTopProgressDemo() {
           <path d="m5 12 7-7 7 7" />
           <path d="M12 19V5" />
         </svg>
-      </div>
+      </button>
+    </div>
+  )
+}
+
+/**
+ * Text variant demo
+ */
+export function ScrollToTopTextDemo() {
+  return (
+    <div className="flex items-center justify-center">
+      <button
+        type="button"
+        onClick={scrollToTop}
+        className="flex items-center gap-1.5 text-muted-foreground hover:text-foreground cursor-pointer transition-colors"
+      >
+        <span className="text-sm font-medium">Scroll to top</span>
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          className="overflow-visible"
+        >
+          <circle
+            cx="12"
+            cy="12"
+            r="10"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            className="opacity-20"
+          />
+          <circle
+            cx="12"
+            cy="12"
+            r="10"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeDasharray="63"
+            strokeDashoffset="16"
+            style={{ transform: "rotate(-90deg)", transformOrigin: "center" }}
+          />
+          <path
+            d="M12 16V8M8 12l4-4 4 4"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            stroke="currentColor"
+            strokeWidth="1.5"
+          />
+        </svg>
+      </button>
     </div>
   )
 }

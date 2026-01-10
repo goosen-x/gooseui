@@ -80,6 +80,7 @@ export function ScrollToTop({
   size = "md",
 }: ScrollToTopDefaultProps) {
   const { isVisible, scrollToTop } = useScrollToTop(threshold)
+  const [isAnimating, setIsAnimating] = React.useState(false)
 
   const sizeClasses = {
     sm: "size-10",
@@ -93,10 +94,16 @@ export function ScrollToTop({
     lg: "size-6",
   }
 
+  const handleClick = () => {
+    setIsAnimating(true)
+    scrollToTop(behavior)
+    setTimeout(() => setIsAnimating(false), 600)
+  }
+
   return (
     <button
       type="button"
-      onClick={() => scrollToTop(behavior)}
+      onClick={handleClick}
       aria-label="Scroll to top"
       className={cn(
         "fixed bottom-6 right-6 z-50 flex items-center justify-center rounded-full",
@@ -112,7 +119,21 @@ export function ScrollToTop({
         className,
       )}
     >
-      <ArrowUp className={iconSizes[size]} />
+      {/* Click ripple animation */}
+      {isAnimating && (
+        <span
+          className="absolute inset-0 rounded-full animate-ping bg-primary-foreground/30"
+          style={{ animationDuration: "600ms", animationIterationCount: 1 }}
+        />
+      )}
+      <ArrowUp
+        className={cn(
+          iconSizes[size],
+          "relative z-10 transition-transform",
+          isAnimating && "animate-bounce"
+        )}
+        style={isAnimating ? { animationDuration: "500ms" } : undefined}
+      />
     </button>
   )
 }
@@ -129,11 +150,18 @@ export function ScrollToTopPill({
   label = "Scroll to top",
 }: ScrollToTopPillProps) {
   const { isVisible, scrollToTop } = useScrollToTop(threshold)
+  const [isAnimating, setIsAnimating] = React.useState(false)
+
+  const handleClick = () => {
+    setIsAnimating(true)
+    scrollToTop(behavior)
+    setTimeout(() => setIsAnimating(false), 600)
+  }
 
   return (
     <button
       type="button"
-      onClick={() => scrollToTop(behavior)}
+      onClick={handleClick}
       aria-label={label}
       className={cn(
         "fixed bottom-6 right-6 z-50 flex items-center gap-2 px-4 py-2.5 rounded-full",
@@ -148,8 +176,21 @@ export function ScrollToTopPill({
         className,
       )}
     >
-      <ChevronUp className="size-4" />
-      <span>{label}</span>
+      {/* Click ripple animation */}
+      {isAnimating && (
+        <span
+          className="absolute inset-0 rounded-full animate-ping bg-primary-foreground/30"
+          style={{ animationDuration: "600ms", animationIterationCount: 1 }}
+        />
+      )}
+      <ChevronUp
+        className={cn(
+          "size-4 relative z-10 transition-transform",
+          isAnimating && "animate-bounce"
+        )}
+        style={isAnimating ? { animationDuration: "500ms" } : undefined}
+      />
+      <span className="relative z-10">{label}</span>
     </button>
   )
 }
@@ -203,6 +244,7 @@ export function ScrollToTopProgress({
   strokeWidth = 3,
 }: ScrollToTopProgressProps) {
   const { isVisible, scrollProgress, scrollToTop } = useScrollToTop(threshold)
+  const [isAnimating, setIsAnimating] = React.useState(false)
 
   // Circle dimensions
   const size = 48
@@ -211,14 +253,17 @@ export function ScrollToTopProgress({
   const strokeDashoffset =
     circumference - (scrollProgress / 100) * circumference
 
+  const handleClick = () => {
+    setIsAnimating(true)
+    scrollToTop(behavior)
+    setTimeout(() => setIsAnimating(false), 600)
+  }
+
   return (
     <button
       type="button"
-      onClick={() => scrollToTop(behavior)}
-      aria-label="Scroll to top"
-      aria-valuenow={Math.round(scrollProgress)}
-      aria-valuemin={0}
-      aria-valuemax={100}
+      onClick={handleClick}
+      aria-label={`Scroll to top (${Math.round(scrollProgress)}% scrolled)`}
       className={cn(
         "fixed bottom-6 right-6 z-50 flex items-center justify-center size-12",
         "bg-background rounded-full shadow-lg",
@@ -232,6 +277,13 @@ export function ScrollToTopProgress({
         className,
       )}
     >
+      {/* Click ripple animation */}
+      {isAnimating && (
+        <span
+          className="absolute inset-0 rounded-full animate-ping bg-primary/30"
+          style={{ animationDuration: "600ms", animationIterationCount: 1 }}
+        />
+      )}
       {/* Progress circle SVG */}
       <svg
         className="absolute inset-0 -rotate-90"
@@ -266,8 +318,108 @@ export function ScrollToTopProgress({
           )}
         />
       </svg>
-      {/* Arrow icon */}
-      <ArrowUp className="size-5 text-foreground relative z-10" />
+      {/* Arrow icon with bounce animation on click */}
+      <ArrowUp
+        className={cn(
+          "size-5 text-foreground relative z-10 transition-transform",
+          isAnimating && "animate-bounce"
+        )}
+        style={isAnimating ? { animationDuration: "500ms" } : undefined}
+      />
+    </button>
+  )
+}
+
+/**
+ * ScrollToTopText - Text variant with animated icon
+ *
+ * Minimal text button with animated circle progress
+ */
+export function ScrollToTopText({
+  threshold = 300,
+  behavior = "smooth",
+  className,
+  label = "Scroll to top",
+}: ScrollToTopPillProps) {
+  const { isVisible, scrollProgress, scrollToTop } = useScrollToTop(threshold)
+  const [isAnimating, setIsAnimating] = React.useState(false)
+
+  // Circle dimensions for viewBox 0 0 24 24
+  const radius = 10
+  const circumference = 2 * Math.PI * radius
+  const circleOffset = circumference - (scrollProgress / 100) * circumference
+  const arrowPathLength = 20
+
+  const handleClick = () => {
+    setIsAnimating(true)
+    scrollToTop(behavior)
+    setTimeout(() => setIsAnimating(false), 600)
+  }
+
+  return (
+    <button
+      type="button"
+      onClick={handleClick}
+      aria-label={label}
+      className={cn(
+        "group fixed bottom-6 right-6 z-50 flex items-center gap-1.5",
+        "text-muted-foreground hover:text-foreground",
+        "transition-all duration-300 ease-out",
+        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+        "cursor-pointer",
+        isVisible
+          ? "translate-y-0 opacity-100"
+          : "pointer-events-none translate-y-4 opacity-0",
+        className,
+      )}
+    >
+      <span className="text-sm font-medium">{label}</span>
+      <svg
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        className="overflow-visible"
+      >
+        {/* Background circle */}
+        <circle
+          cx="12"
+          cy="12"
+          r={radius}
+          fill="none"
+          stroke="currentColor"
+          strokeWidth={1.5}
+          className="opacity-20"
+        />
+        {/* Progress circle */}
+        <circle
+          cx="12"
+          cy="12"
+          r={radius}
+          fill="none"
+          stroke="currentColor"
+          strokeWidth={1.5}
+          strokeLinecap="round"
+          strokeDasharray={circumference}
+          strokeDashoffset={circleOffset}
+          className="transition-all duration-500 ease-out"
+          style={{ transform: "rotate(-90deg)", transformOrigin: "center" }}
+        />
+        {/* Arrow path */}
+        <path
+          d="M12 16V8M8 12l4-4 4 4"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          stroke="currentColor"
+          strokeWidth={1.5}
+          strokeDasharray={arrowPathLength}
+          strokeDashoffset={isVisible ? 0 : arrowPathLength}
+          className={cn(
+            "transition-all duration-500 ease-out",
+            isAnimating && "animate-pulse"
+          )}
+        />
+      </svg>
     </button>
   )
 }

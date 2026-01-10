@@ -116,3 +116,34 @@ export function ButtonSizesDemo() {
     </div>
   )
 }
+
+export function ButtonSquircleDemo() {
+  return (
+    <div className="flex flex-wrap items-center gap-6 rounded-lg border p-6">
+      <div className="flex flex-col items-center gap-2">
+        <Button onClick={() => customToast.info("Regular button")}>
+          Regular
+        </Button>
+        <span className="text-xs text-muted-foreground">border-radius</span>
+      </div>
+      <div className="flex flex-col items-center gap-2">
+        <Button squircle onClick={() => customToast.success("Squircle button")}>
+          Squircle
+        </Button>
+        <span className="text-xs text-muted-foreground">corner-shape</span>
+      </div>
+      <div className="flex flex-col items-center gap-2">
+        <Button squircle variant="secondary" onClick={() => customToast.info("Secondary squircle")}>
+          Secondary
+        </Button>
+        <span className="text-xs text-muted-foreground">squircle</span>
+      </div>
+      <div className="flex flex-col items-center gap-2">
+        <Button squircle variant="outline" onClick={() => customToast.info("Outline squircle")}>
+          Outline
+        </Button>
+        <span className="text-xs text-muted-foreground">squircle</span>
+      </div>
+    </div>
+  )
+}

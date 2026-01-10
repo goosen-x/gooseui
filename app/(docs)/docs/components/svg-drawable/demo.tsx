@@ -103,7 +103,7 @@ export function SVGDrawableDemo() {
       {/* Hover examples */}
       <div className="space-y-3">
         <p className="text-sm font-medium text-muted-foreground text-center">
-          Hover Animation (наведи на иконки)
+          Hover Animation (hover over icons)
         </p>
         <div className="flex items-center justify-center gap-8">
           <div className="space-y-2 text-center">

@@ -80,6 +80,7 @@ function LoginForm() {
 
       <div className="space-y-4">
         <Button
+          squircle
           variant="outline"
           className="w-full cursor-pointer"
           onClick={handleGoogleLogin}
@@ -106,6 +107,7 @@ function LoginForm() {
         </Button>
 
         <Button
+          squircle
           variant="outline"
           className="w-full cursor-pointer"
           onClick={handleGithubLogin}
@@ -159,6 +161,7 @@ function LoginForm() {
         {error && <p className="text-sm text-destructive">{error}</p>}
 
         <Button
+          squircle
           type="submit"
           className="w-full cursor-pointer"
           disabled={isLoading}

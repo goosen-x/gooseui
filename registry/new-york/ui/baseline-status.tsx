@@ -23,6 +23,7 @@ export type BrowserFeature =
   | "scroll-driven-animations"
   | "text-wrap-balance"
   | "text-wrap-pretty"
+  | "corner-shape"
 
 function checkBrowserFeature(feature: BrowserFeature): boolean {
   if (typeof document === "undefined" || typeof window === "undefined")
@@ -45,6 +46,8 @@ function checkBrowserFeature(feature: BrowserFeature): boolean {
       return CSS.supports("text-wrap", "balance")
     case "text-wrap-pretty":
       return CSS.supports("text-wrap", "pretty")
+    case "corner-shape":
+      return CSS.supports("corner-shape", "squircle")
     default:
       return false
   }
@@ -68,6 +71,8 @@ function getBrowserFeatureLabel(feature: BrowserFeature): string {
       return "text-wrap: balance"
     case "text-wrap-pretty":
       return "text-wrap: pretty"
+    case "corner-shape":
+      return "CSS corner-shape"
     default:
       return feature
   }

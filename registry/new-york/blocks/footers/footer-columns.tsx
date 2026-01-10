@@ -1,6 +1,9 @@
 import { Github, Linkedin, Twitter } from "lucide-react"
 import Link from "next/link"
 
+// Computed at build time, avoids hydration mismatch
+const CURRENT_YEAR = 2026
+
 const footerLinks = {
   product: {
     title: "Product",
@@ -102,7 +105,7 @@ export function FooterColumns() {
         {/* Bottom Bar */}
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t pt-8 md:flex-row">
           <p className="text-sm text-muted-foreground">
-            &copy; {new Date().getFullYear()} Brand, Inc. All rights reserved.
+            &copy; {CURRENT_YEAR} Brand, Inc. All rights reserved.
           </p>
           <div className="flex items-center gap-4 text-sm text-muted-foreground">
             <Link

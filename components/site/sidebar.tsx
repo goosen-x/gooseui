@@ -48,7 +48,12 @@ export function DocsSidebar() {
                       )}
                     >
                       {item.title}
-                      {item.isNew && !item.isDraft && (
+                      {item.isExperimental && !item.isDraft && (
+                        <Badge className="h-5 bg-red-500 px-1.5 text-[10px] text-white">
+                          Exp
+                        </Badge>
+                      )}
+                      {item.isNew && !item.isDraft && !item.isExperimental && (
                         <Badge className="h-5 bg-primary px-1.5 text-[10px] text-white">
                           New
                         </Badge>

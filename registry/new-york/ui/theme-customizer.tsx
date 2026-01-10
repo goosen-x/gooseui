@@ -5,6 +5,7 @@ import { MotionConfig, motion } from "motion/react"
 import { useTheme } from "next-themes"
 import * as React from "react"
 import { BrushCleaning } from "@/components/animate-ui/icons/brush-cleaning"
+import { ThemeToggle } from "@/components/ui/theme-toggle"
 import { useClickOutside } from "@/hooks/use-click-outside"
 import { cn } from "@/lib/utils"
 
@@ -102,7 +103,7 @@ export function ThemeCustomizerPill({
           className={cn(
             "z-50 flex justify-center gap-1.5 rounded-xl border bg-background/70 p-2 shadow-lg backdrop-blur-xl animate-in fade-in slide-in-from-bottom-2",
             isInline
-              ? "absolute bottom-full left-1/2 -translate-x-1/2 mb-2"
+              ? "absolute bottom-full left-0 sm:left-auto sm:right-0 mb-2"
               : "fixed bottom-20 left-1/2 -translate-x-1/2 gap-2 rounded-full px-3 py-2",
           )}
         >
@@ -119,7 +120,7 @@ export function ThemeCustomizerPill({
               {activeColor === c.name && (
                 <Check
                   className={cn(
-                    "absolute inset-0 m-auto text-white dark:text-black",
+                    "absolute inset-0 m-auto text-white",
                     isInline ? "size-3" : "size-4",
                   )}
                 />
@@ -259,7 +260,7 @@ export function ThemeCustomizerSidebar({ className }: { className?: string }) {
           )}
         >
           {activeColor === c.name && (
-            <Check className="absolute inset-0 m-auto size-4 text-white dark:text-black" />
+            <Check className="absolute inset-0 m-auto size-4 text-white" />
           )}
         </button>
       ))}
@@ -384,7 +385,7 @@ export function ThemeCustomizerCorner({ className }: { className?: string }) {
               )}
             >
               {activeColor === c.name && (
-                <Check className="absolute inset-0 m-auto size-5 text-white dark:text-black" />
+                <Check className="absolute inset-0 m-auto size-5 text-white" />
               )}
             </button>
           ))}
@@ -466,19 +467,8 @@ export function ThemeCustomizerToolbar({ className }: { className?: string }) {
           >
             <div className="overflow-hidden p-2">
               {!isOpen ? (
-                <div className="flex space-x-1">
-                  <ToolbarButton
-                    onClick={() =>
-                      setTheme(resolvedTheme === "dark" ? "light" : "dark")
-                    }
-                    ariaLabel="Toggle theme"
-                  >
-                    {resolvedTheme === "dark" ? (
-                      <Sun className="size-5" />
-                    ) : (
-                      <Moon className="size-5" />
-                    )}
-                  </ToolbarButton>
+                <div className="flex items-center space-x-1">
+                  <ThemeToggle size={24} className="size-9 rounded-lg p-1.5" />
                   <ToolbarButton
                     onClick={() => setIsOpen(true)}
                     ariaLabel="Open color picker"
@@ -507,7 +497,7 @@ export function ThemeCustomizerToolbar({ className }: { className?: string }) {
                         )}
                       >
                         {activeColor === c.name && (
-                          <Check className="absolute inset-0 m-auto size-4 text-white dark:text-black" />
+                          <Check className="absolute inset-0 m-auto size-4 text-white" />
                         )}
                       </button>
                     ))}

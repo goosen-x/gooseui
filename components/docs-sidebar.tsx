@@ -1,10 +1,16 @@
 "use client"
 
+import { ChevronRight } from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import type * as React from "react"
 
 import { Badge } from "@/components/ui/badge"
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/components/ui/collapsible"
 import {
   Sidebar,
   SidebarContent,
@@ -112,47 +118,67 @@ function ComponentsNav({ pathname }: { pathname: string }) {
     }),
   )
 
+  // Check if current path is in a section
+  const isSectionActive = (section: typeof filteredNavigation[0]) =>
+    section.items.some((item) => pathname === item.href)
+
   return (
     <SidebarGroup>
       <SidebarMenu className="gap-2">
         {filteredNavigation.map((section) => (
-          <SidebarMenuItem key={section.title}>
-            {section.href ? (
-              <SidebarMenuButton className="font-medium" asChild>
-                <Link href={section.href}>{section.title}</Link>
-              </SidebarMenuButton>
-            ) : (
-              <SidebarMenuButton className="font-medium">
-                {section.title}
-              </SidebarMenuButton>
-            )}
-            {section.items?.length ? (
-              <SidebarMenuSub className="ml-0 border-l-0 px-1.5">
-                {section.items.map((item) => (
-                  <SidebarMenuSubItem key={item.href}>
-                    <SidebarMenuSubButton
-                      asChild
-                      isActive={pathname === item.href}
-                    >
-                      <Link href={item.href}>
-                        {item.title}
-                        {item.isDraft && isDev && (
-                          <span className="ml-auto text-[10px] bg-orange-500 text-white px-1.5 py-0.5 rounded-full">
-                            DRAFT
-                          </span>
-                        )}
-                        {item.isNew && !item.isDraft && (
-                          <Badge variant="beta" className="ml-auto">
-                            New
-                          </Badge>
-                        )}
-                      </Link>
-                    </SidebarMenuSubButton>
-                  </SidebarMenuSubItem>
-                ))}
-              </SidebarMenuSub>
-            ) : null}
-          </SidebarMenuItem>
+          <Collapsible
+            key={section.title}
+            asChild
+            defaultOpen={isSectionActive(section) || section.slug === "getting-started"}
+            className="group/collapsible"
+          >
+            <SidebarMenuItem>
+              <CollapsibleTrigger asChild>
+                <SidebarMenuButton className="font-medium cursor-pointer">
+                  {section.href ? (
+                    <Link href={section.href} className="flex-1">
+                      {section.title}
+                    </Link>
+                  ) : (
+                    <span className="flex-1">{section.title}</span>
+                  )}
+                  <ChevronRight className="h-4 w-4 transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
+                </SidebarMenuButton>
+              </CollapsibleTrigger>
+              {section.items?.length ? (
+                <CollapsibleContent>
+                  <SidebarMenuSub className="ml-0 border-l-0 px-1.5">
+                    {section.items.map((item) => {
+                      const Icon = item.icon
+                      const showIcon = section.slug === "getting-started"
+                      return (
+                        <SidebarMenuSubItem key={item.href}>
+                          <SidebarMenuSubButton
+                            asChild
+                            isActive={pathname === item.href}
+                          >
+                            <Link href={item.href} className="flex items-center gap-2">
+                              {showIcon && Icon && <Icon className="h-4 w-4 text-muted-foreground" />}
+                              <span className="flex-1">{item.title}</span>
+                              {item.isDraft && isDev && (
+                                <Badge variant="draft">Draft</Badge>
+                              )}
+                              {item.isExperimental && !item.isDraft && (
+                                <Badge variant="experimental">Exp</Badge>
+                              )}
+                              {item.isNew && !item.isDraft && !item.isExperimental && (
+                                <Badge variant="beta">New</Badge>
+                              )}
+                            </Link>
+                          </SidebarMenuSubButton>
+                        </SidebarMenuSubItem>
+                      )
+                    })}
+                  </SidebarMenuSub>
+                </CollapsibleContent>
+              ) : null}
+            </SidebarMenuItem>
+          </Collapsible>
         ))}
       </SidebarMenu>
     </SidebarGroup>
@@ -160,6 +186,10 @@ function ComponentsNav({ pathname }: { pathname: string }) {
 }
 
 function BlocksNav({ pathname }: { pathname: string }) {
+  const isCategoryActive = BLOCK_CATEGORIES.some(
+    (cat) => pathname === `/docs/blocks/${cat.slug}`
+  )
+
   return (
     <SidebarGroup>
       <SidebarMenu className="gap-2">
@@ -175,44 +205,55 @@ function BlocksNav({ pathname }: { pathname: string }) {
         </SidebarMenuItem>
 
         {/* Categories */}
-        <SidebarMenuItem>
-          <SidebarMenuButton className="font-medium">
-            Categories
-          </SidebarMenuButton>
-          <SidebarMenuSub className="ml-0 border-l-0 px-1.5">
-            {BLOCK_CATEGORIES.map((category) => {
-              const Icon = category.icon
-              const blockCount = countBlocksInCategory(category.slug)
-              const isActive = pathname === `/docs/blocks/${category.slug}`
+        <Collapsible
+          asChild
+          defaultOpen={isCategoryActive}
+          className="group/collapsible"
+        >
+          <SidebarMenuItem>
+            <CollapsibleTrigger asChild>
+              <SidebarMenuButton className="font-medium cursor-pointer">
+                <span className="flex-1">Categories</span>
+                <ChevronRight className="h-4 w-4 transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
+              </SidebarMenuButton>
+            </CollapsibleTrigger>
+            <CollapsibleContent>
+              <SidebarMenuSub className="ml-0 border-l-0 px-1.5">
+                {BLOCK_CATEGORIES.map((category) => {
+                  const Icon = category.icon
+                  const blockCount = countBlocksInCategory(category.slug)
+                  const isActive = pathname === `/docs/blocks/${category.slug}`
 
-              return (
-                <SidebarMenuSubItem key={category.slug}>
-                  <SidebarMenuSubButton asChild isActive={isActive}>
-                    <Link
-                      href={`/docs/blocks/${category.slug}`}
-                      className="flex items-center gap-2"
-                    >
-                      <Icon className="h-4 w-4" />
-                      <span className="flex-1">{category.name}</span>
-                      {category.isComingSoon ? (
-                        <Badge
-                          variant="secondary"
-                          className="text-[10px] px-1.5 py-0"
+                  return (
+                    <SidebarMenuSubItem key={category.slug}>
+                      <SidebarMenuSubButton asChild isActive={isActive}>
+                        <Link
+                          href={`/docs/blocks/${category.slug}`}
+                          className="flex items-center gap-2"
                         >
-                          Soon
-                        </Badge>
-                      ) : (
-                        <span className="text-xs text-muted-foreground">
-                          {blockCount}
-                        </span>
-                      )}
-                    </Link>
-                  </SidebarMenuSubButton>
-                </SidebarMenuSubItem>
-              )
-            })}
-          </SidebarMenuSub>
-        </SidebarMenuItem>
+                          <Icon className="h-4 w-4" />
+                          <span className="flex-1">{category.name}</span>
+                          {category.isComingSoon ? (
+                            <Badge
+                              variant="secondary"
+                              className="text-[10px] px-1.5 py-0"
+                            >
+                              Soon
+                            </Badge>
+                          ) : (
+                            <span className="text-xs text-muted-foreground">
+                              {blockCount}
+                            </span>
+                          )}
+                        </Link>
+                      </SidebarMenuSubButton>
+                    </SidebarMenuSubItem>
+                  )
+                })}
+              </SidebarMenuSub>
+            </CollapsibleContent>
+          </SidebarMenuItem>
+        </Collapsible>
 
         {/* Pricing link */}
         <SidebarMenuItem>

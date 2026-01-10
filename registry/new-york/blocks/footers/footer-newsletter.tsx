@@ -6,6 +6,9 @@ import * as React from "react"
 import { Button } from "@/registry/new-york/ui/button"
 import { Input } from "@/registry/new-york/ui/input"
 
+// Computed at build time, avoids hydration mismatch
+const CURRENT_YEAR = 2026
+
 const navLinks = [
   { label: "About", href: "#about" },
   { label: "Features", href: "#features" },
@@ -111,7 +114,7 @@ export function FooterNewsletter() {
             <span className="font-semibold">Brand</span>
           </div>
           <p className="text-sm text-muted-foreground text-center">
-            &copy; {new Date().getFullYear()} Brand, Inc. All rights reserved.
+            &copy; {CURRENT_YEAR} Brand, Inc. All rights reserved.
           </p>
           <div className="flex items-center gap-4 text-sm text-muted-foreground">
             <Link

@@ -6,15 +6,15 @@ import {
   CheckIcon,
   ChevronDownIcon,
   CopyIcon,
-  MoonIcon,
   PaletteIcon,
-  SunIcon,
 } from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useTheme } from "next-themes"
 import { usePostHog } from "posthog-js/react"
 import * as React from "react"
+import { Badge } from "@/components/ui/badge"
+import { ThemeToggle } from "@/components/ui/theme-toggle"
 import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
@@ -23,9 +23,10 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { Separator } from "@/components/ui/separator"
-import { getPrevNextNavigation } from "@/lib/config/docs-navigation"
+import { getAllNavItems, getPrevNextNavigation } from "@/lib/config/docs-navigation"
 import { getRegistryUrl } from "@/lib/config/registry"
 import { cn } from "@/lib/utils"
+import { useScrollToTop } from "@/registry/new-york/ui/scroll-to-top"
 
 const themeColors = [
   { name: "zinc", class: "bg-zinc-500" },
@@ -181,6 +182,7 @@ export function DocsPageNav({
   const [copied, setCopied] = React.useState(false)
   const [copiedAction, setCopiedAction] = React.useState<string | null>(null)
   const [activeColor, setActiveColor] = React.useState("zinc")
+  const { scrollProgress, scrollToTop } = useScrollToTop(100)
 
   // Auto-derive prev/next from navigation config
   const { prev, next } = React.useMemo(
@@ -189,6 +191,14 @@ export function DocsPageNav({
   )
   const prevHref = prevHrefProp ?? prev?.href
   const nextHref = nextHrefProp ?? next?.href
+
+  // Auto-detect if current page is draft/new/experimental
+  const currentNavItem = React.useMemo(() => {
+    return getAllNavItems().find((item) => item.href === pathname)
+  }, [pathname])
+  const isDraft = currentNavItem?.isDraft ?? false
+  const isNew = currentNavItem?.isNew ?? false
+  const isExperimental = currentNavItem?.isExperimental ?? false
 
   React.useEffect(() => {
     setMounted(true)
@@ -416,9 +426,18 @@ ${registryUrl ? `Registry: ${registryUrl}` : ""}
   return (
     <div className={cn("flex items-start justify-between", className)}>
       {title && (
-        <h1 className="scroll-m-20 text-4xl font-semibold tracking-tight sm:text-3xl xl:text-4xl">
-          {title}
-        </h1>
+        <div className="flex items-center gap-3">
+          <h1 className="scroll-m-20 text-4xl font-semibold tracking-tight sm:text-3xl xl:text-4xl">
+            {title}
+          </h1>
+          {isDraft && <Badge variant="draft">Draft</Badge>}
+          {isExperimental && !isDraft && (
+            <Badge variant="experimental">Experimental</Badge>
+          )}
+          {isNew && !isDraft && !isExperimental && (
+            <Badge variant="beta">New</Badge>
+          )}
+        </div>
       )}
 
       <div
@@ -514,23 +533,10 @@ ${registryUrl ? `Registry: ${registryUrl}` : ""}
         </div>
 
         {/* Theme Toggle - Mobile only */}
-        {mounted && (
-          <Button
-            variant="secondary"
-            size="icon"
-            className="ml-auto size-8 rounded-md shadow-none sm:hidden"
-            onClick={() =>
-              setTheme(resolvedTheme === "dark" ? "light" : "dark")
-            }
-          >
-            {resolvedTheme === "dark" ? (
-              <SunIcon className="size-4" />
-            ) : (
-              <MoonIcon className="size-4" />
-            )}
-            <span className="sr-only">Toggle theme</span>
-          </Button>
-        )}
+        <ThemeToggle
+          size={16}
+          className="ml-auto size-8 rounded-md bg-secondary shadow-none hover:bg-secondary/80 sm:hidden text-foreground [&_path]:fill-transparent"
+        />
 
         {/* Color Picker - Mobile only */}
         {mounted && (
@@ -574,42 +580,117 @@ ${registryUrl ? `Registry: ${registryUrl}` : ""}
           </DropdownMenu>
         )}
 
-        {/* Navigation Buttons */}
-        {prevHref && (
-          <Button
-            variant="secondary"
-            size="icon"
+        {/* Navigation Buttons Group */}
+        {(prevHref || nextHref) && (
+          <div
             className={cn(
-              "size-8 rounded-md shadow-none md:size-7",
+              "bg-secondary relative flex rounded-lg",
               !mounted && "ml-auto",
               mounted && "sm:ml-auto",
             )}
-            asChild
           >
-            <Link href={prevHref}>
-              <ArrowLeftIcon className="size-4" />
-              <span className="sr-only">Previous</span>
-            </Link>
-          </Button>
+            <Button
+              variant="secondary"
+              size="icon"
+              className="size-8 rounded-md shadow-none md:size-7"
+              disabled={!prevHref}
+              asChild={!!prevHref}
+            >
+              {prevHref ? (
+                <Link href={prevHref}>
+                  <ArrowLeftIcon className="size-4" />
+                  <span className="sr-only">Previous</span>
+                </Link>
+              ) : (
+                <>
+                  <ArrowLeftIcon className="size-4" />
+                  <span className="sr-only">Previous</span>
+                </>
+              )}
+            </Button>
+            <Separator
+              orientation="vertical"
+              className="!bg-foreground/10 absolute left-1/2 top-0 z-0 !h-8 -translate-x-1/2 md:!h-7"
+            />
+            <Button
+              variant="secondary"
+              size="icon"
+              className="-ml-px size-8 rounded-md shadow-none md:size-7"
+              disabled={!nextHref}
+              asChild={!!nextHref}
+            >
+              {nextHref ? (
+                <Link href={nextHref}>
+                  <ArrowRightIcon className="size-4" />
+                  <span className="sr-only">Next</span>
+                </Link>
+              ) : (
+                <>
+                  <ArrowRightIcon className="size-4" />
+                  <span className="sr-only">Next</span>
+                </>
+              )}
+            </Button>
+          </div>
         )}
 
-        {nextHref && (
-          <Button
-            variant="secondary"
-            size="icon"
-            className={cn(
-              "size-8 rounded-md shadow-none md:size-7",
-              !prevHref && !mounted && "ml-auto",
-              !prevHref && mounted && "sm:ml-auto",
-            )}
-            asChild
-          >
-            <Link href={nextHref}>
-              <span className="sr-only">Next</span>
-              <ArrowRightIcon className="size-4" />
-            </Link>
-          </Button>
-        )}
+        {/* Scroll to Top - Mobile only */}
+        {(() => {
+          const radius = 10
+          const circumference = 2 * Math.PI * radius
+          const circleOffset = circumference - (scrollProgress / 100) * circumference
+
+          return (
+            <Button
+              variant="secondary"
+              size="icon"
+              className="size-8 rounded-md shadow-none sm:hidden"
+              onClick={() => scrollToTop("smooth")}
+            >
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                className="overflow-visible"
+              >
+                {/* Background circle */}
+                <circle
+                  cx="12"
+                  cy="12"
+                  r={radius}
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth={1.5}
+                  className="opacity-20"
+                />
+                {/* Progress circle */}
+                <circle
+                  cx="12"
+                  cy="12"
+                  r={radius}
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth={1.5}
+                  strokeLinecap="round"
+                  strokeDasharray={circumference}
+                  strokeDashoffset={circleOffset}
+                  className="transition-all duration-300 ease-out"
+                  style={{ transform: "rotate(-90deg)", transformOrigin: "center" }}
+                />
+                {/* Arrow path */}
+                <path
+                  d="M12 16V8M8 12l4-4 4 4"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  stroke="currentColor"
+                  strokeWidth={1.5}
+                />
+              </svg>
+              <span className="sr-only">Scroll to top</span>
+            </Button>
+          )
+        })()}
       </div>
     </div>
   )

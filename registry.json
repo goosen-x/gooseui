@@ -45,6 +45,7 @@
       "type": "registry:lib",
       "title": "Slot",
       "description": "Composition utility for asChild pattern. Renders child element with merged props.",
+      "dependencies": ["@radix-ui/react-slot"],
       "files": [
         {
           "path": "lib/slot.tsx",
@@ -57,8 +58,8 @@
       "type": "registry:ui",
       "title": "Button",
       "description": "Displays a button or a component that looks like a button.",
+      "dependencies": ["@radix-ui/react-slot"],
       "devDependencies": ["class-variance-authority"],
-      "registryDependencies": ["slot"],
       "files": [
         {
           "path": "registry/new-york/ui/button.tsx",
@@ -302,8 +303,8 @@
       "type": "registry:ui",
       "title": "Badge",
       "description": "Small status indicator with variants for labels, tags, and status.",
+      "dependencies": ["@radix-ui/react-slot"],
       "devDependencies": ["class-variance-authority"],
-      "registryDependencies": ["slot"],
       "files": [
         {
           "path": "components/ui/badge.tsx",

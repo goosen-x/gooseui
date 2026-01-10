@@ -1,8 +1,7 @@
 "use client"
 
-import { Check, Copy } from "lucide-react"
 import Link from "next/link"
-import { useState } from "react"
+import { AnimatedCopyButton } from "@/components/docs/animated-copy-button"
 import { cn } from "@/lib/utils"
 import { BorderBeam } from "@/registry/new-york/effects/border-beam"
 import { Button } from "@/registry/new-york/ui/button"
@@ -24,14 +23,6 @@ export function Demo() {
 }`
 
 export function HeroCode() {
-  const [copied, setCopied] = useState(false)
-
-  const copyCode = () => {
-    navigator.clipboard.writeText(codeExample)
-    setCopied(true)
-    setTimeout(() => setCopied(false), 2000)
-  }
-
   return (
     <div className="relative min-h-[calc(100svh-3.5rem)] flex items-center">
       {/* Dot background */}
@@ -93,10 +84,11 @@ export function HeroCode() {
             </p>
 
             <div className="mt-6 sm:mt-8 md:mt-10 flex flex-col sm:flex-row gap-3 sm:gap-4">
-              <Button size="default" className="sm:h-11 sm:px-8" asChild>
+              <Button squircle size="default" className="sm:h-11 sm:px-8" asChild>
                 <Link href="/docs">Get Started</Link>
               </Button>
               <Button
+                squircle
                 variant="outline"
                 size="default"
                 className="sm:h-11 sm:px-8 backdrop-blur-[2px] bg-background/20 hover:bg-background/20 hover:backdrop-blur-md transition-all"
@@ -164,7 +156,10 @@ export function HeroCode() {
 
           {/* Right side - Code + Preview */}
           <div className="flex-1 w-full max-w-xl lg:max-w-md xl:max-w-lg">
-            <div className="relative overflow-hidden rounded-xl border bg-background shadow-2xl">
+            <div
+              className="relative overflow-hidden border bg-background shadow-2xl"
+              style={{ cornerShape: "squircle", borderRadius: "1.5rem" } as React.CSSProperties}
+            >
               {/* Window Chrome */}
               <div className="flex items-center justify-between border-b bg-muted/50 px-4 py-2.5">
                 <div className="flex items-center gap-2">
@@ -177,22 +172,7 @@ export function HeroCode() {
                     button.tsx
                   </span>
                 </div>
-                <button
-                  onClick={copyCode}
-                  className="flex items-center gap-1.5 rounded-md px-2 py-1 text-xs text-muted-foreground transition-colors hover:bg-muted hover:text-foreground cursor-pointer"
-                >
-                  {copied ? (
-                    <>
-                      <Check className="size-3.5" />
-                      Copied
-                    </>
-                  ) : (
-                    <>
-                      <Copy className="size-3.5" />
-                      Copy
-                    </>
-                  )}
-                </button>
+                <AnimatedCopyButton text={codeExample} />
               </div>
 
               {/* Code */}
@@ -263,17 +243,17 @@ export function HeroCode() {
                   Preview
                 </div>
                 <div className="flex flex-wrap gap-2">
-                  <Button size="sm">Primary</Button>
-                  <Button size="sm" variant="secondary">
+                  <Button squircle size="sm">Primary</Button>
+                  <Button squircle size="sm" variant="secondary">
                     Secondary
                   </Button>
-                  <Button size="sm" variant="outline">
+                  <Button squircle size="sm" variant="outline">
                     Outline
                   </Button>
                 </div>
               </div>
 
-              <BorderBeam duration={10} size={200} />
+              <BorderBeam duration={10} size={200} squircle />
             </div>
           </div>
         </div>

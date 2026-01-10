@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { DocsPage } from "@/components/docs/docs-page"
 import { DocsPageNav } from "@/components/docs/docs-page-nav"
 import { InstallCommand } from "@/components/docs/install-command"
 import { Button } from "@/components/ui/button"
@@ -8,10 +9,17 @@ export const metadata = {
   description: "Guide to using GooseUI",
 }
 
-export default function DocsPage() {
+const toc = [
+  { id: "what-is-gooseui", title: "What is GooseUI?", level: 2 },
+  { id: "features", title: "Features", level: 2 },
+  { id: "quick-start", title: "Quick Start", level: 2 },
+]
+
+export default function IntroductionPage() {
   return (
-    <div className="space-y-6">
-      <DocsPageNav title="Introduction" />
+    <DocsPage toc={toc}>
+      <div className="space-y-6">
+        <DocsPageNav title="Introduction" />
       <p className="text-lg text-muted-foreground">Guide to using GooseUI</p>
 
       <div className="space-y-4">
@@ -67,6 +75,7 @@ export default function DocsPage() {
           <Link href="/docs/components">Components</Link>
         </Button>
       </div>
-    </div>
+      </div>
+    </DocsPage>
   )
 }

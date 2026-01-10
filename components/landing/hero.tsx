@@ -1,8 +1,9 @@
 "use client"
 
-import { Check, Copy, Send } from "lucide-react"
+import { Send } from "lucide-react"
 import Link from "next/link"
 import { useState } from "react"
+import { AnimatedCopyButton } from "@/components/docs/animated-copy-button"
 import { customToast } from "@/lib/toast"
 import { cn } from "@/lib/utils"
 import { BorderBeam } from "@/registry/new-york/effects/border-beam"
@@ -15,16 +16,9 @@ import { ThemeCustomizerPill } from "@/registry/new-york/ui/theme-customizer"
 const cliCommand = "npx shadcn@latest add https://gooseui.pro/r/button.json"
 
 export function Hero() {
-  const [copied, setCopied] = useState(false)
   const [counter, setCounter] = useState(1337)
   const [inputValue, setInputValue] = useState("")
   const [inputError, setInputError] = useState(false)
-
-  const copyCommand = () => {
-    navigator.clipboard.writeText(cliCommand)
-    setCopied(true)
-    setTimeout(() => setCopied(false), 2000)
-  }
 
   const incrementCounter = () => {
     const increment = Math.floor(Math.random() * 10) + 1
@@ -49,7 +43,7 @@ export function Hero() {
       <div className="pointer-events-none absolute inset-0 bg-background [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]" />
 
       <div className="relative z-10 py-8 sm:py-12 md:py-20 max-w-6xl mx-auto px-4 sm:px-6 w-full">
-        <div className="flex flex-col lg:flex-row gap-6 sm:gap-8 lg:gap-16 items-start w-full">
+        <div className="flex flex-col lg:flex-row gap-6 sm:gap-8 lg:gap-16 items-center lg:items-start w-full">
           {/* Left side - Text content */}
           <div className="flex-1">
             <div className="inline-flex items-center rounded-full border px-3 py-1 sm:px-4 sm:py-1.5 text-xs sm:text-sm font-medium mb-4 sm:mb-6 backdrop-blur-[1px] bg-background/20">
@@ -95,10 +89,11 @@ export function Hero() {
             </p>
 
             <div className="mt-6 sm:mt-8 md:mt-10 flex flex-col sm:flex-row gap-3 sm:gap-4">
-              <Button size="default" className="sm:h-11 sm:px-8" asChild>
+              <Button squircle size="default" className="sm:h-11 sm:px-8" asChild>
                 <Link href="/docs">Get Started</Link>
               </Button>
               <Button
+                squircle
                 variant="outline"
                 size="default"
                 className="sm:h-11 sm:px-8 backdrop-blur-[2px] bg-background/20 hover:bg-background/20 hover:backdrop-blur-md transition-all"
@@ -166,29 +161,25 @@ export function Hero() {
 
           {/* Right side - Grid preview */}
           <div className="flex-1 w-full max-w-xl lg:max-w-none">
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-2 gap-3 grid-flow-dense">
               {/* Buttons Card - Spans 2 columns */}
-              <div className="group relative col-span-2 overflow-hidden rounded-2xl border border-border/50 border-dashed p-2 transition-all hover:border-border">
-                <div className="rounded-lg border bg-background overflow-hidden">
+              <div
+                className="group relative col-span-2 overflow-hidden border border-border/50 border-dashed p-2 transition-all hover:border-border"
+                style={{ cornerShape: "squircle", borderRadius: "1.5rem" } as React.CSSProperties}
+              >
+                <div
+                  className="border bg-background overflow-hidden"
+                  style={{ cornerShape: "squircle", borderRadius: "1rem" } as React.CSSProperties}
+                >
                   <div className="flex items-center justify-between border-b bg-muted/50 px-4 py-3">
-                    <div className="flex items-center gap-2">
-                      <code className="text-xs text-muted-foreground">
-                        {cliCommand}
-                      </code>
-                    </div>
-                    <button
-                      onClick={copyCommand}
-                      className="flex items-center gap-1 rounded-md px-2 py-1 text-xs text-muted-foreground transition-colors hover:bg-muted hover:text-foreground cursor-pointer"
-                    >
-                      {copied ? (
-                        <Check className="size-3.5 text-green-500" />
-                      ) : (
-                        <Copy className="size-3.5" />
-                      )}
-                    </button>
+                    <code className="text-xs text-muted-foreground">
+                      {cliCommand}
+                    </code>
+                    <AnimatedCopyButton text={cliCommand} />
                   </div>
                   <div className="p-3 sm:p-6 md:p-8 grid grid-cols-2 sm:flex items-center justify-center gap-2 sm:gap-4">
                     <Button
+                      squircle
                       size="sm"
                       className="sm:h-9 sm:px-4 text-xs sm:text-sm"
                       onClick={() =>
@@ -200,6 +191,7 @@ export function Hero() {
                       Primary
                     </Button>
                     <Button
+                      squircle
                       variant="secondary"
                       size="sm"
                       className="sm:h-9 sm:px-4 text-xs sm:text-sm"
@@ -212,6 +204,7 @@ export function Hero() {
                       Secondary
                     </Button>
                     <Button
+                      squircle
                       variant="outline"
                       size="sm"
                       className="sm:h-9 sm:px-4 text-xs sm:text-sm backdrop-blur-[2px] bg-background/20 hover:bg-background/40"
@@ -224,6 +217,7 @@ export function Hero() {
                       Outline
                     </Button>
                     <Button
+                      squircle
                       variant="ghost"
                       size="sm"
                       className="sm:h-9 sm:px-4 text-xs sm:text-sm"
@@ -241,12 +235,19 @@ export function Hero() {
                   duration={8}
                   colorFrom="#10b981"
                   colorTo="#3b82f6"
+                  squircle
                 />
               </div>
 
-              {/* Input Card */}
-              <div className="group rounded-2xl border border-border/50 border-dashed p-2 transition-all hover:border-border">
-                <div className="h-full rounded-lg border bg-background overflow-hidden flex flex-col">
+              {/* Input Card - hidden on mobile */}
+              <div
+                className="hidden sm:block group border border-border/50 border-dashed p-2 transition-all hover:border-border"
+                style={{ cornerShape: "squircle", borderRadius: "1.5rem" } as React.CSSProperties}
+              >
+                <div
+                  className="h-full border bg-background overflow-hidden flex flex-col"
+                  style={{ cornerShape: "squircle", borderRadius: "1rem" } as React.CSSProperties}
+                >
                   <div className="flex items-center gap-2 border-b bg-muted/50 px-4 py-3">
                     <code className="text-xs text-muted-foreground">
                       input.tsx
@@ -264,6 +265,7 @@ export function Hero() {
                         onChange={(e) => setInputValue(e.target.value)}
                       />
                       <Button
+                        squircle
                         size="sm"
                         className="h-8 px-3"
                         onClick={() => {
@@ -286,8 +288,14 @@ export function Hero() {
               </div>
 
               {/* Theme Customizer Card */}
-              <div className="group rounded-2xl border border-border/50 border-dashed p-2 transition-all hover:border-border">
-                <div className="h-full rounded-lg border bg-background flex flex-col">
+              <div
+                className="group border border-border/50 border-dashed p-2 transition-all hover:border-border"
+                style={{ cornerShape: "squircle", borderRadius: "1.5rem" } as React.CSSProperties}
+              >
+                <div
+                  className="h-full border bg-background flex flex-col"
+                  style={{ cornerShape: "squircle", borderRadius: "1rem" } as React.CSSProperties}
+                >
                   <div className="flex items-center gap-2 border-b bg-muted/50 px-4 py-3">
                     <code className="text-xs text-muted-foreground">
                       theme.tsx
@@ -300,8 +308,14 @@ export function Hero() {
               </div>
 
               {/* Sliding Number Card */}
-              <div className="group rounded-2xl border border-border/50 border-dashed p-2 transition-all hover:border-border">
-                <div className="h-full rounded-lg border bg-background overflow-hidden flex flex-col">
+              <div
+                className="col-span-2 sm:col-span-1 group border border-border/50 border-dashed p-2 transition-all hover:border-border"
+                style={{ cornerShape: "squircle", borderRadius: "1.5rem" } as React.CSSProperties}
+              >
+                <div
+                  className="h-full border bg-background overflow-hidden flex flex-col"
+                  style={{ cornerShape: "squircle", borderRadius: "1rem" } as React.CSSProperties}
+                >
                   <div className="flex items-center gap-2 border-b bg-muted/50 px-4 py-3">
                     <code className="text-xs text-muted-foreground">
                       sliding-number.tsx
@@ -323,8 +337,14 @@ export function Hero() {
               </div>
 
               {/* Checkbox Card */}
-              <div className="group rounded-2xl border border-border/50 border-dashed p-2 transition-all hover:border-border">
-                <div className="h-full rounded-lg border bg-background overflow-hidden flex flex-col">
+              <div
+                className="group border border-border/50 border-dashed p-2 transition-all hover:border-border"
+                style={{ cornerShape: "squircle", borderRadius: "1.5rem" } as React.CSSProperties}
+              >
+                <div
+                  className="h-full border bg-background overflow-hidden flex flex-col"
+                  style={{ cornerShape: "squircle", borderRadius: "1rem" } as React.CSSProperties}
+                >
                   <div className="flex items-center gap-2 border-b bg-muted/50 px-4 py-3">
                     <code className="text-xs text-muted-foreground">
                       checkbox.tsx
@@ -335,12 +355,13 @@ export function Hero() {
                       label="Animated checkbox"
                       defaultChecked
                       onChange={(e) =>
-                        customToast.success(
-                          e.target.checked ? "Checked!" : "Unchecked",
-                          {
-                            description: "Checkbox state changed",
-                          },
-                        )
+                        e.target.checked
+                          ? customToast.success("Checked!", {
+                              description: "Checkbox state changed",
+                            })
+                          : customToast.error("Unchecked", {
+                              description: "Checkbox state changed",
+                            })
                       }
                     />
                   </div>

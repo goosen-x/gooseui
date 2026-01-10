@@ -3,12 +3,17 @@ import {
   ArrowUp,
   CircleCheck,
   Expand,
+  FileText,
+  Gauge,
+  Layers,
   Moon,
   Palette,
+  PanelTop,
   X,
 } from "lucide-react"
 import Link from "next/link"
 import type { ReactNode } from "react"
+import { DocsPage } from "@/components/docs/docs-page"
 import { DocsPageNav } from "@/components/docs/docs-page-nav"
 import { Badge } from "@/components/ui/badge"
 import {
@@ -28,6 +33,16 @@ import { Typography } from "@/registry/new-york/ui/typography"
 
 // Preview components mapping (slug -> preview element)
 const componentPreviews: Record<string, ReactNode> = {
+  "adaptive-grid": (
+    <div className="grid grid-cols-3 gap-1 w-full max-w-[180px]">
+      <div className="h-8 rounded bg-primary/80" />
+      <div className="h-8 rounded bg-primary/60" />
+      <div className="h-8 rounded bg-primary/40" />
+      <div className="h-8 rounded bg-primary/40" />
+      <div className="h-8 rounded bg-primary/60" />
+      <div className="h-8 rounded bg-primary/80" />
+    </div>
+  ),
   "animated-timer": (
     <div className="flex items-center justify-center scale-50 origin-center">
       <AnimatedTimer showSeconds={false} />
@@ -135,6 +150,101 @@ const componentPreviews: Record<string, ReactNode> = {
       </div>
     </div>
   ),
+  // Draft components
+  "scroll-progress": (
+    <div className="w-full max-w-[180px] space-y-2">
+      <div className="h-1 w-full rounded-full bg-muted">
+        <div className="h-full w-[65%] rounded-full bg-primary" />
+      </div>
+      <div className="flex items-center gap-2 text-xs text-muted-foreground">
+        <Gauge className="size-3" />
+        <span>65% scrolled</span>
+      </div>
+    </div>
+  ),
+  "morphing-header": (
+    <div className="w-full max-w-[200px] space-y-1">
+      <div className="flex h-8 items-center justify-between rounded-lg border bg-background px-3">
+        <div className="h-3 w-16 rounded bg-primary/60" />
+        <div className="flex gap-1">
+          <div className="h-2 w-8 rounded bg-muted" />
+          <div className="h-2 w-8 rounded bg-muted" />
+        </div>
+      </div>
+      <div className="flex h-6 items-center justify-between rounded border bg-muted/50 px-2">
+        <div className="h-2 w-12 rounded bg-primary/40" />
+        <PanelTop className="size-3 text-muted-foreground" />
+      </div>
+    </div>
+  ),
+  "scroll-container": (
+    <div className="h-20 w-full max-w-[180px] overflow-hidden rounded-lg border bg-muted/30">
+      <div className="flex h-full">
+        <div className="flex-1 space-y-1 overflow-y-auto p-2">
+          <div className="h-3 w-full rounded bg-primary/20" />
+          <div className="h-3 w-3/4 rounded bg-primary/20" />
+          <div className="h-3 w-full rounded bg-primary/20" />
+          <div className="h-3 w-2/3 rounded bg-primary/20" />
+          <div className="h-3 w-full rounded bg-primary/20" />
+        </div>
+        <div className="w-1.5 bg-muted">
+          <div className="h-8 w-full rounded-full bg-primary/40" />
+        </div>
+      </div>
+    </div>
+  ),
+  "smart-form": (
+    <div className="w-full max-w-[180px] space-y-2 rounded-lg border bg-background p-3">
+      <div className="space-y-1">
+        <div className="h-2 w-12 rounded bg-muted-foreground/40" />
+        <div className="h-7 w-full rounded border border-green-500 bg-green-500/10" />
+      </div>
+      <div className="space-y-1">
+        <div className="h-2 w-10 rounded bg-muted-foreground/40" />
+        <div className="h-7 w-full rounded border border-destructive bg-destructive/10" />
+      </div>
+      <FileText className="mx-auto size-4 text-muted-foreground" />
+    </div>
+  ),
+  "stacking-cards": (
+    <div className="relative h-20 w-full max-w-[160px]">
+      <div className="absolute top-0 left-1/2 h-14 w-28 -translate-x-1/2 rounded-lg border bg-card shadow-sm" />
+      <div className="absolute top-2 left-1/2 h-14 w-32 -translate-x-1/2 rounded-lg border bg-card shadow-md" />
+      <div className="absolute top-4 left-1/2 h-14 w-36 -translate-x-1/2 rounded-lg border bg-card shadow-lg">
+        <Layers className="absolute top-1/2 left-1/2 size-5 -translate-x-1/2 -translate-y-1/2 text-muted-foreground" />
+      </div>
+    </div>
+  ),
+  "svg-drawable": (
+    <div className="flex items-center justify-center">
+      <svg width="100" height="50" viewBox="0 0 100 50" className="text-primary">
+        <path
+          d="M5 40 Q 20 5, 40 25 T 75 15"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2.5"
+          strokeDasharray="100"
+          strokeDashoffset="25"
+          strokeLinecap="round"
+        />
+        <circle cx="75" cy="15" r="4" fill="currentColor" />
+        <circle cx="5" cy="40" r="3" fill="currentColor" opacity="0.4" />
+      </svg>
+    </div>
+  ),
+  slider: (
+    <div className="w-full max-w-[180px] space-y-3">
+      <div className="relative h-2 w-full rounded-full bg-muted">
+        <div className="absolute h-full w-[60%] rounded-full bg-primary" />
+        <div className="absolute top-1/2 left-[60%] size-4 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-primary bg-background shadow" />
+      </div>
+      <div className="flex justify-between text-[10px] text-muted-foreground">
+        <span>0</span>
+        <span>60</span>
+        <span>100</span>
+      </div>
+    </div>
+  ),
 }
 
 // Get components from single source of truth
@@ -167,17 +277,30 @@ export const metadata = {
     "Beautifully designed components built with Radix UI and Tailwind CSS. Copy and paste into your apps. Open source.",
 }
 
+// Generate TOC from categories
+const toc = [
+  ...Object.keys(groupedComponents).map((category) => ({
+    id: category.toLowerCase().replace(/\s+/g, "-"),
+    title: category,
+    level: 2,
+  })),
+  ...(comingSoonComponents.length > 0
+    ? [{ id: "coming-soon", title: "Coming Soon", level: 2 }]
+    : []),
+]
+
 export default function ComponentsPage() {
   return (
-    <div className="space-y-10 overflow-x-hidden">
-      {/* Header */}
-      <div className="space-y-4">
-        <DocsPageNav title="Components" />
-        <p className="text-lg text-muted-foreground max-w-3xl">
-          Beautifully designed components built with Radix UI and Tailwind CSS.
-          Copy and paste into your apps. Open source.
-        </p>
-      </div>
+    <DocsPage toc={toc}>
+      <div className="space-y-10 overflow-x-hidden">
+        {/* Header */}
+        <div className="space-y-4">
+          <DocsPageNav title="Components" />
+          <p className="text-lg text-muted-foreground max-w-3xl">
+            Beautifully designed components built with Radix UI and Tailwind CSS.
+            Copy and paste into your apps. Open source.
+          </p>
+        </div>
 
       {/* Components Grid by Category */}
       {Object.entries(groupedComponents).map(
@@ -198,18 +321,21 @@ export default function ComponentsPage() {
                 >
                   <div
                     className={cn(
-                      "relative flex flex-col overflow-hidden rounded-xl border bg-background",
+                      "relative flex flex-col overflow-hidden rounded-xl border bg-background h-full",
                       "transition-all duration-200",
                       "hover:border-foreground/20 hover:shadow-md",
                     )}
                   >
                     {/* New Badge */}
                     {component.isNew && !component.isDraft && (
-                      <Badge
-                        variant="beta"
-                        className="absolute top-2 right-2 z-10"
-                      >
+                      <Badge variant="beta" className="absolute top-2 right-2 z-10">
                         New
+                      </Badge>
+                    )}
+                    {/* Draft Badge */}
+                    {component.isDraft && (
+                      <Badge variant="draft" className="absolute top-2 right-2 z-10">
+                        Draft
                       </Badge>
                     )}
 
@@ -273,6 +399,7 @@ export default function ComponentsPage() {
           </div>
         </div>
       )}
-    </div>
+      </div>
+    </DocsPage>
   )
 }

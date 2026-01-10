@@ -61,6 +61,7 @@ export const REGISTRY_ITEMS: RegistryItem[] = [
   { slug: "slider", name: "Slider", type: "component" },
   { slug: "svg-drawable", name: "SVG Drawable", type: "component" },
   { slug: "parallax-cards", name: "Parallax Cards", type: "effect" },
+  { slug: "corner-shape", name: "Corner Shape", type: "component" },
 
   // Effects
   { slug: "border-beam", name: "Border Beam", type: "effect" },

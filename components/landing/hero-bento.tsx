@@ -142,7 +142,10 @@ export function HeroBento() {
           <div className="flex-1 w-full max-w-xl lg:max-w-md xl:max-w-lg">
             <div className="grid grid-cols-2 gap-3">
               {/* Buttons Card - Large */}
-              <div className="relative col-span-2 overflow-hidden rounded-xl border bg-background p-4">
+              <div
+                className="relative col-span-2 overflow-hidden border bg-background p-4"
+                style={{ cornerShape: "squircle", borderRadius: "1rem" } as React.CSSProperties}
+              >
                 <div className="mb-3 flex items-center gap-2">
                   <div className="rounded-md bg-primary/10 p-1.5">
                     <Star className="size-3.5 text-primary" />
@@ -163,11 +166,14 @@ export function HeroBento() {
                     Ghost
                   </Button>
                 </div>
-                <BorderBeam size={100} duration={8} />
+                <BorderBeam size={100} duration={8} squircle />
               </div>
 
               {/* Input Card */}
-              <div className="relative overflow-hidden rounded-xl border bg-background p-4">
+              <div
+                className="relative overflow-hidden border bg-background p-4"
+                style={{ cornerShape: "squircle", borderRadius: "1rem" } as React.CSSProperties}
+              >
                 <div className="mb-3 flex items-center gap-2">
                   <div className="rounded-md bg-blue-500/10 p-1.5">
                     <Send className="size-3.5 text-blue-500" />
@@ -180,7 +186,10 @@ export function HeroBento() {
               </div>
 
               {/* Notification Card */}
-              <div className="relative overflow-hidden rounded-xl border bg-background p-4">
+              <div
+                className="relative overflow-hidden border bg-background p-4"
+                style={{ cornerShape: "squircle", borderRadius: "1rem" } as React.CSSProperties}
+              >
                 <div className="mb-3 flex items-center gap-2">
                   <div className="rounded-md bg-orange-500/10 p-1.5">
                     <Bell className="size-3.5 text-orange-500" />
@@ -196,7 +205,10 @@ export function HeroBento() {
               </div>
 
               {/* CLI Card */}
-              <div className="col-span-2 overflow-hidden rounded-xl border bg-muted/30">
+              <div
+                className="col-span-2 overflow-hidden border bg-muted/30"
+                style={{ cornerShape: "squircle", borderRadius: "1rem" } as React.CSSProperties}
+              >
                 <div className="flex items-center gap-2 border-b bg-muted/50 px-3 py-2">
                   <div className="flex gap-1">
                     <div className="size-2 rounded-full bg-red-500" />

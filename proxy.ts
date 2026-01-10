@@ -1,13 +1,14 @@
 /**
- * Supabase Auth Middleware
+ * Supabase Auth Proxy
  *
  * Refreshes user sessions and protects routes
+ * @see https://nextjs.org/docs/app/api-reference/file-conventions/proxy
  */
 
 import { type NextRequest, NextResponse } from "next/server"
 import { createServerClient, type CookieOptions } from "@supabase/ssr"
 
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   let response = NextResponse.next({
     request: {
       headers: request.headers,

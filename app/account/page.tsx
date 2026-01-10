@@ -10,12 +10,13 @@ import {
   CreditCard,
   Loader2,
   LogOut,
+  RefreshCw,
   Settings,
   Sparkles,
   User,
 } from "lucide-react"
 import { useRouter } from "next/navigation"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import {
@@ -31,8 +32,14 @@ import { formatPrice, plans } from "@/lib/payments/plans"
 export default function AccountPage() {
   const router = useRouter()
   const { user, isLoading: userLoading, signOut } = useUser()
-  const { subscription, plan, isLoading: subLoading } = useSubscription()
+  const {
+    subscription,
+    plan,
+    isLoading: subLoading,
+    refresh,
+  } = useSubscription()
   const [portalLoading, setPortalLoading] = useState(false)
+  const [refreshing, setRefreshing] = useState(false)
 
   const currentPlan = plans[plan]
   const isFreePlan = plan === "free"
@@ -65,6 +72,12 @@ export default function AccountPage() {
     router.push("/")
   }
 
+  const handleRefresh = async () => {
+    setRefreshing(true)
+    await refresh()
+    setRefreshing(false)
+  }
+
   if (userLoading || subLoading) {
     return (
       <div className="flex min-h-screen items-center justify-center">
@@ -74,10 +87,10 @@ export default function AccountPage() {
   }
 
   return (
-    <div className="container max-w-4xl py-10">
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold">Account</h1>
-        <p className="text-muted-foreground">
+    <div className="container max-w-4xl px-4 py-8 sm:px-6 sm:py-10">
+      <div className="mb-6 sm:mb-8">
+        <h1 className="text-2xl font-bold sm:text-3xl">Account</h1>
+        <p className="text-sm text-muted-foreground sm:text-base">
           Manage your account settings and subscription
         </p>
       </div>
@@ -95,11 +108,11 @@ export default function AccountPage() {
           <CardContent className="space-y-4">
             <div>
               <p className="text-sm text-muted-foreground">Email</p>
-              <p className="font-medium">{user?.email}</p>
+              <p className="break-all font-medium">{user?.email}</p>
             </div>
             <div>
               <p className="text-sm text-muted-foreground">User ID</p>
-              <p className="font-mono text-sm">{user?.id}</p>
+              <p className="break-all font-mono text-xs sm:text-sm">{user?.id}</p>
             </div>
           </CardContent>
         </Card>
@@ -107,18 +120,33 @@ export default function AccountPage() {
         {/* Subscription Card */}
         <Card>
           <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <CreditCard className="h-5 w-5" />
-              Subscription
-            </CardTitle>
-            <CardDescription>
-              Your current plan and billing information
-            </CardDescription>
+            <div className="flex items-start justify-between">
+              <div className="space-y-1">
+                <CardTitle className="flex items-center gap-2">
+                  <CreditCard className="h-5 w-5" />
+                  Subscription
+                </CardTitle>
+                <CardDescription>
+                  Your current plan and billing information
+                </CardDescription>
+              </div>
+              <Button
+                variant="ghost"
+                size="icon"
+                className="h-8 w-8 cursor-pointer"
+                onClick={handleRefresh}
+                disabled={refreshing}
+              >
+                <RefreshCw
+                  className={`h-4 w-4 ${refreshing ? "animate-spin" : ""}`}
+                />
+              </Button>
+            </div>
           </CardHeader>
           <CardContent className="space-y-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <div className="flex items-center gap-2">
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+              <div className="space-y-1">
+                <div className="flex flex-wrap items-center gap-2">
                   <h3 className="text-lg font-semibold">{currentPlan.name}</h3>
                   <Badge variant={isFreePlan ? "secondary" : "default"}>
                     {subscription?.status || "active"}
@@ -128,30 +156,43 @@ export default function AccountPage() {
                   {currentPlan.description}
                 </p>
               </div>
-              <div className="text-right">
+              <div className="sm:text-right">
                 <p className="text-2xl font-bold">
                   {formatPrice(currentPlan.price)}
                 </p>
               </div>
             </div>
 
-            {subscription?.current_period_end && !isFreePlan && (
-              <div className="rounded-lg bg-muted/50 p-4">
-                <p className="text-sm text-muted-foreground">
-                  {subscription.cancel_at_period_end
-                    ? "Your subscription will end on"
-                    : "Next billing date"}
-                </p>
-                <p className="font-medium">
-                  {new Date(subscription.current_period_end).toLocaleDateString(
-                    "en-US",
-                    {
-                      year: "numeric",
-                      month: "long",
-                      day: "numeric",
-                    },
-                  )}
-                </p>
+            {!isFreePlan && (
+              <div className="space-y-3 rounded-lg bg-muted/50 p-4">
+                {subscription?.current_period_end && (
+                  <div>
+                    <p className="text-sm text-muted-foreground">
+                      {subscription.cancel_at_period_end
+                        ? "Your subscription will end on"
+                        : "Next billing date"}
+                    </p>
+                    <p className="font-medium">
+                      {new Date(
+                        subscription.current_period_end,
+                      ).toLocaleDateString("en-US", {
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
+                      })}
+                    </p>
+                  </div>
+                )}
+                {subscription?.paddle_subscription_id && (
+                  <div>
+                    <p className="text-sm text-muted-foreground">
+                      Subscription ID
+                    </p>
+                    <p className="break-all font-mono text-xs">
+                      {subscription.paddle_subscription_id}
+                    </p>
+                  </div>
+                )}
               </div>
             )}
 
@@ -197,7 +238,7 @@ export default function AccountPage() {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="grid gap-4 sm:grid-cols-2">
+            <div className="grid gap-3 sm:gap-4 sm:grid-cols-2">
               <FeatureItem
                 label="Projects"
                 value={
@@ -262,9 +303,9 @@ export default function AccountPage() {
 
 function FeatureItem({ label, value }: { label: string; value: string }) {
   return (
-    <div className="flex justify-between">
-      <span className="text-muted-foreground">{label}</span>
-      <span className="font-medium">{value}</span>
+    <div className="flex items-center justify-between gap-2 rounded-md bg-muted/30 px-3 py-2">
+      <span className="text-sm text-muted-foreground">{label}</span>
+      <span className="text-sm font-medium">{value}</span>
     </div>
   )
 }

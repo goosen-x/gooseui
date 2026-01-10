@@ -1,0 +1,14 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "glitch-text",
+  "type": "registry:ui",
+  "title": "Glitch Text",
+  "description": "Animated glitch text effect with chromatic aberration and scanlines.",
+  "dependencies": [],
+  "files": [
+    {
+      "path": "registry/new-york/effects/glitch-text.tsx",
+      "type": "registry:ui"
+    }
+  ]
+}

@@ -51,8 +51,14 @@ function FAQItem({
   onToggle: () => void
 }) {
   return (
-    <div className="group rounded-2xl border border-border/50 border-dashed p-2 transition-all hover:border-border">
-      <div className="overflow-hidden rounded-xl border border-border/50 bg-muted/30">
+    <div
+      className="group border border-border/50 border-dashed p-2 transition-all hover:border-border"
+      style={{ cornerShape: "squircle", borderRadius: "1.5rem" } as React.CSSProperties}
+    >
+      <div
+        className="overflow-hidden border border-border/50 bg-muted/30"
+        style={{ cornerShape: "squircle", borderRadius: "1rem" } as React.CSSProperties}
+      >
         <button
           type="button"
           aria-expanded={isOpen}

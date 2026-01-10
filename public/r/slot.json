@@ -4,6 +4,9 @@
   "type": "registry:lib",
   "title": "Slot",
   "description": "Composition utility for asChild pattern. Renders child element with merged props.",
+  "dependencies": [
+    "@radix-ui/react-slot"
+  ],
   "files": [
     {
       "path": "lib/slot.tsx",
