@@ -70,8 +70,13 @@ export async function POST(request: Request) {
     switch (event.eventType) {
       case "transaction.completed": {
         const customerId = eventData.customerId as string | undefined
+        // Try multiple locations for email
         const customer = eventData.customer as { email?: string } | undefined
-        const customerEmail = customer?.email
+        const billingDetails = eventData.billingDetails as
+          | { email?: string }
+          | undefined
+        const customerEmail =
+          customer?.email || billingDetails?.email || (eventData.email as string)
         const subscriptionId = eventData.subscriptionId as string | undefined
         const items = eventData.items as
           | Array<{ price?: { id?: string } }>
@@ -79,6 +84,7 @@ export async function POST(request: Request) {
         const priceId = items?.[0]?.price?.id
         const plan = priceId ? getPlanFromPriceId(priceId) : "pro"
 
+        console.log("Transaction completed - full data:", JSON.stringify(eventData, null, 2))
         console.log("Transaction completed:", {
           customerId,
           customerEmail,
@@ -87,12 +93,14 @@ export async function POST(request: Request) {
         })
 
         if (customerEmail) {
-          // Find user by email
-          const { data: profile } = await supabase
+          // Find user by email (case-insensitive)
+          const { data: profile, error: profileError } = await supabase
             .from("profiles")
-            .select("id")
-            .eq("email", customerEmail)
+            .select("id, email")
+            .ilike("email", customerEmail)
             .single()
+
+          console.log("Profile lookup result:", { profile, profileError })
 
           if (profile) {
             // Update or create subscription
@@ -119,6 +127,8 @@ export async function POST(request: Request) {
             // Store pending purchase for later (when user signs up)
             // Could save to a pending_purchases table
           }
+        } else {
+          console.log("No customer email found in webhook data")
         }
         break
       }
