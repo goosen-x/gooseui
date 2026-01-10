@@ -57,7 +57,7 @@ export async function POST(request: Request) {
         items: [{ priceId, quantity: 1 }],
         ...(email && { customer: { email } }),
         checkout: {
-          url: origin, // Required: base URL for Paddle checkout
+          url: `${origin}/account?success=true`, // Redirect here after successful payment
         },
       })
 
