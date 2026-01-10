@@ -139,9 +139,15 @@ export function MyComponent() {
           </h2>
           <p className="text-sm text-muted-foreground">
             iOS-style squircle corners using CSS{" "}
-            <code className="text-xs bg-muted px-1 py-0.5 rounded">corner-shape: squircle</code>.
+            <code className="text-xs bg-muted px-1 py-0.5 rounded">
+              corner-shape: squircle
+            </code>
+            .
           </p>
-          <BaselineStatus featureId="corner-shape" browserCheck="corner-shape" />
+          <BaselineStatus
+            featureId="corner-shape"
+            browserCheck="corner-shape"
+          />
           <ButtonSquircleDemo />
           <CodeBlock>{`<Button squircle>Squircle</Button>
 <Button squircle variant="secondary">Secondary</Button>
@@ -195,7 +201,9 @@ export function MyComponent() {
                   <td className="p-3 font-mono text-xs">squircle</td>
                   <td className="p-3 font-mono text-xs">boolean</td>
                   <td className="p-3 font-mono text-xs">false</td>
-                  <td className="p-3">Apply iOS-style squircle corners (Chrome 139+)</td>
+                  <td className="p-3">
+                    Apply iOS-style squircle corners (Chrome 139+)
+                  </td>
                 </tr>
               </tbody>
             </table>

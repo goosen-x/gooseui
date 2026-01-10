@@ -7,7 +7,6 @@
 
 import { Check, Loader2, Sparkles } from "lucide-react"
 import { useState } from "react"
-import { usePaddle } from "./paddle-checkout"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import {
@@ -20,6 +19,7 @@ import {
 } from "@/components/ui/dialog"
 import { formatPrice, plans } from "@/lib/payments/plans"
 import { cn } from "@/lib/utils"
+import { usePaddle } from "./paddle-checkout"
 
 interface UpgradeModalProps {
   trigger?: React.ReactNode
@@ -115,6 +115,10 @@ export function UpgradeModal({
 
       // Client-side checkout with priceId (fallback when server transaction fails)
       if (data.priceId && paddle) {
+        // Close our modal first so it doesn't block Paddle overlay
+        onOpenChange?.(false)
+        setIsLoading(false)
+
         paddle.Checkout.open({
           items: [{ priceId: data.priceId, quantity: 1 }],
           settings: {
@@ -123,7 +127,6 @@ export function UpgradeModal({
             successUrl: `${window.location.origin}/account?success=true`,
           },
         })
-        // Keep loading until checkout closes
         return
       }
 

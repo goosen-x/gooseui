@@ -33,7 +33,10 @@ export default function BadgePage() {
 
         {/* Preview */}
         <section>
-          <h2 id="preview" className="mb-4 text-2xl font-semibold tracking-tight">
+          <h2
+            id="preview"
+            className="mb-4 text-2xl font-semibold tracking-tight"
+          >
             Preview
           </h2>
           <div className="flex flex-wrap items-center gap-3 rounded-lg bg-muted/30 p-8">

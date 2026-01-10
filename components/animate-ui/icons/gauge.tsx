@@ -1,51 +1,51 @@
-'use client';
+"use client"
 
-import * as React from 'react';
-import { motion, type Variants } from 'motion/react';
+import { motion, type Variants } from "motion/react"
+import * as React from "react"
 
 import {
   getVariants,
-  useAnimateIconContext,
-  IconWrapper,
   type IconProps,
-} from '@/components/animate-ui/icons/icon';
+  IconWrapper,
+  useAnimateIconContext,
+} from "@/components/animate-ui/icons/icon"
 
-type GaugeProps = IconProps<keyof typeof animations>;
+type GaugeProps = IconProps<keyof typeof animations>
 
 const animations = {
   default: {
     path1: {
       initial: {
         rotate: 0,
-        transition: { ease: 'easeInOut', duration: 0.3 },
+        transition: { ease: "easeInOut", duration: 0.3 },
       },
       animate: {
-        transformOrigin: 'bottom left',
+        transformOrigin: "bottom left",
         rotate: 70,
-        transition: { ease: 'easeInOut', duration: 0.3 },
+        transition: { ease: "easeInOut", duration: 0.3 },
       },
     },
     path2: {},
   } satisfies Record<string, Variants>,
-  'default-loop': {
+  "default-loop": {
     path1: {
       initial: {
         rotate: 0,
-        transition: { ease: 'easeInOut', duration: 0.6 },
+        transition: { ease: "easeInOut", duration: 0.6 },
       },
       animate: {
-        transformOrigin: 'bottom left',
+        transformOrigin: "bottom left",
         rotate: [0, 70, 0],
-        transition: { ease: 'easeInOut', duration: 0.6 },
+        transition: { ease: "easeInOut", duration: 0.6 },
       },
     },
     path2: {},
   } satisfies Record<string, Variants>,
-} as const;
+} as const
 
 function IconComponent({ size, ...props }: GaugeProps) {
-  const { controls } = useAnimateIconContext();
-  const variants = getVariants(animations);
+  const { controls } = useAnimateIconContext()
+  const variants = getVariants(animations)
 
   return (
     <motion.svg
@@ -73,11 +73,11 @@ function IconComponent({ size, ...props }: GaugeProps) {
         animate={controls}
       />
     </motion.svg>
-  );
+  )
 }
 
 function Gauge(props: GaugeProps) {
-  return <IconWrapper icon={IconComponent} {...props} />;
+  return <IconWrapper icon={IconComponent} {...props} />
 }
 
 export {
@@ -86,4 +86,4 @@ export {
   Gauge as GaugeIcon,
   type GaugeProps,
   type GaugeProps as GaugeIconProps,
-};
+}

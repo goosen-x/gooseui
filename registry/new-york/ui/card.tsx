@@ -20,7 +20,11 @@ function Card({
       )}
       style={
         squircle
-          ? { ...style, cornerShape: "squircle", borderRadius: "1.5rem" } as React.CSSProperties
+          ? ({
+              ...style,
+              cornerShape: "squircle",
+              borderRadius: "1.5rem",
+            } as React.CSSProperties)
           : style
       }
       {...props}

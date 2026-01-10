@@ -84,7 +84,12 @@ export function HeroCode() {
             </p>
 
             <div className="mt-6 sm:mt-8 md:mt-10 flex flex-col sm:flex-row gap-3 sm:gap-4">
-              <Button squircle size="default" className="sm:h-11 sm:px-8" asChild>
+              <Button
+                squircle
+                size="default"
+                className="sm:h-11 sm:px-8"
+                asChild
+              >
                 <Link href="/docs">Get Started</Link>
               </Button>
               <Button
@@ -158,7 +163,12 @@ export function HeroCode() {
           <div className="flex-1 w-full max-w-xl lg:max-w-md xl:max-w-lg">
             <div
               className="relative overflow-hidden border bg-background shadow-2xl"
-              style={{ cornerShape: "squircle", borderRadius: "1.5rem" } as React.CSSProperties}
+              style={
+                {
+                  cornerShape: "squircle",
+                  borderRadius: "1.5rem",
+                } as React.CSSProperties
+              }
             >
               {/* Window Chrome */}
               <div className="flex items-center justify-between border-b bg-muted/50 px-4 py-2.5">
@@ -243,7 +253,9 @@ export function HeroCode() {
                   Preview
                 </div>
                 <div className="flex flex-wrap gap-2">
-                  <Button squircle size="sm">Primary</Button>
+                  <Button squircle size="sm">
+                    Primary
+                  </Button>
                   <Button squircle size="sm" variant="secondary">
                     Secondary
                   </Button>

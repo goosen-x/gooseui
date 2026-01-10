@@ -10,11 +10,13 @@ function Card({ className, style, ...props }: React.ComponentProps<"div">) {
         "bg-card text-card-foreground flex flex-col gap-6 border py-6 shadow-sm",
         className,
       )}
-      style={{
-        cornerShape: "squircle",
-        borderRadius: "1.5rem",
-        ...style,
-      } as React.CSSProperties}
+      style={
+        {
+          cornerShape: "squircle",
+          borderRadius: "1.5rem",
+          ...style,
+        } as React.CSSProperties
+      }
       {...props}
     />
   )

@@ -31,9 +31,9 @@ export default function SlidingNumberPage() {
         <DocsPageNav title="Sliding Number" />
 
         <p className="text-muted-foreground">
-          Animated number display with smooth sliding transitions for each digit.
-          Perfect for counters, stats, prices, and any numeric values that change
-          over time.
+          Animated number display with smooth sliding transitions for each
+          digit. Perfect for counters, stats, prices, and any numeric values
+          that change over time.
         </p>
 
         <div className="space-y-4">
@@ -228,8 +228,8 @@ const secs = seconds % 60
               each digit animates independently for natural effect
             </li>
             <li>
-              <strong className="text-foreground">Leading zeros</strong> — padStart
-              for consistent width display
+              <strong className="text-foreground">Leading zeros</strong> —
+              padStart for consistent width display
             </li>
             <li>
               <strong className="text-foreground">Separator support</strong> —

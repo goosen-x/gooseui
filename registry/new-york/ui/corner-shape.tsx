@@ -15,8 +15,8 @@ function generateNormalizedPath(n: number = 5, points: number = 360): string {
     const cosA = Math.cos(angle)
     const sinA = Math.sin(angle)
 
-    const x = 0.5 + 0.5 * Math.sign(cosA) * Math.pow(Math.abs(cosA), 2 / n)
-    const y = 0.5 + 0.5 * Math.sign(sinA) * Math.pow(Math.abs(sinA), 2 / n)
+    const x = 0.5 + 0.5 * Math.sign(cosA) * Math.abs(cosA) ** (2 / n)
+    const y = 0.5 + 0.5 * Math.sign(sinA) * Math.abs(sinA) ** (2 / n)
 
     if (i === 0) {
       pathPoints.push(`M${x.toFixed(4)},${y.toFixed(4)}`)
@@ -35,7 +35,7 @@ function generateNormalizedPath(n: number = 5, points: number = 360): string {
 function generateSuperellipsePath(
   n: number = 5,
   size: number = 100,
-  points: number = 360
+  points: number = 360,
 ): string {
   const a = size / 2
   const cx = size / 2
@@ -47,8 +47,8 @@ function generateSuperellipsePath(
     const cosA = Math.cos(angle)
     const sinA = Math.sin(angle)
 
-    const x = cx + a * Math.sign(cosA) * Math.pow(Math.abs(cosA), 2 / n)
-    const y = cy + a * Math.sign(sinA) * Math.pow(Math.abs(sinA), 2 / n)
+    const x = cx + a * Math.sign(cosA) * Math.abs(cosA) ** (2 / n)
+    const y = cy + a * Math.sign(sinA) * Math.abs(sinA) ** (2 / n)
 
     if (i === 0) {
       pathPoints.push(`M ${x.toFixed(2)} ${y.toFixed(2)}`)

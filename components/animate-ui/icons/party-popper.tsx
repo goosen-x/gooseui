@@ -1,16 +1,16 @@
-'use client';
+"use client"
 
-import * as React from 'react';
-import { motion, type Variants } from 'motion/react';
+import { motion, type Variants } from "motion/react"
+import * as React from "react"
 
 import {
   getVariants,
-  useAnimateIconContext,
-  IconWrapper,
   type IconProps,
-} from '@/components/animate-ui/icons/icon';
+  IconWrapper,
+  useAnimateIconContext,
+} from "@/components/animate-ui/icons/icon"
 
-type PartyPopperProps = IconProps<keyof typeof animations>;
+type PartyPopperProps = IconProps<keyof typeof animations>
 
 const popperAnimation: Variants = {
   initial: {
@@ -30,10 +30,10 @@ const popperAnimation: Variants = {
     y: [5, 0],
     transition: {
       duration: 0.6,
-      ease: 'easeInOut',
+      ease: "easeInOut",
     },
   },
-};
+}
 
 const animations = {
   default: {
@@ -46,10 +46,10 @@ const animations = {
         x: [-1, 1, 0],
         y: [1, -1, 0],
         scale: [1, 0.7, 1.1, 1],
-        transformOrigin: 'bottom left',
+        transformOrigin: "bottom left",
         transition: {
           duration: 0.6,
-          ease: 'easeInOut',
+          ease: "easeInOut",
         },
       },
     },
@@ -107,11 +107,11 @@ const animations = {
     path8: popperAnimation,
     path9: popperAnimation,
   } satisfies Record<string, Variants>,
-} as const;
+} as const
 
 function IconComponent({ size, ...props }: PartyPopperProps) {
-  const { controls } = useAnimateIconContext();
-  const variants = getVariants(animations);
+  const { controls } = useAnimateIconContext()
+  const variants = getVariants(animations)
 
   return (
     <motion.svg
@@ -183,11 +183,11 @@ function IconComponent({ size, ...props }: PartyPopperProps) {
         animate={controls}
       />
     </motion.svg>
-  );
+  )
 }
 
 function PartyPopper(props: PartyPopperProps) {
-  return <IconWrapper icon={IconComponent} {...props} />;
+  return <IconWrapper icon={IconComponent} {...props} />
 }
 
 export {
@@ -196,4 +196,4 @@ export {
   PartyPopper as PartyPopperIcon,
   type PartyPopperProps,
   type PartyPopperProps as PartyPopperIconProps,
-};
+}

@@ -1,16 +1,16 @@
-'use client';
+"use client"
 
-import * as React from 'react';
-import { motion, type Variants } from 'motion/react';
+import { motion, type Variants } from "motion/react"
+import * as React from "react"
 
 import {
   getVariants,
-  useAnimateIconContext,
-  IconWrapper,
   type IconProps,
-} from '@/components/animate-ui/icons/icon';
+  IconWrapper,
+  useAnimateIconContext,
+} from "@/components/animate-ui/icons/icon"
 
-type BlocksProps = IconProps<keyof typeof animations>;
+type BlocksProps = IconProps<keyof typeof animations>
 
 const animations = {
   default: {
@@ -18,21 +18,21 @@ const animations = {
       initial: {
         x: 0,
         y: 0,
-        d: 'M10 22V7c0-.6-.4-1-1-1H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-5c0-.6-.4-1-1-1H2',
-        strokeLinejoin: 'round',
+        d: "M10 22V7c0-.6-.4-1-1-1H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-5c0-.6-.4-1-1-1H2",
+        strokeLinejoin: "round",
         transition: {
           duration: 0.4,
-          ease: 'easeInOut',
+          ease: "easeInOut",
         },
       },
       animate: {
         x: 2,
         y: -2,
-        d: 'M10 22V6H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-6H2',
-        strokeLinejoin: 'miter',
+        d: "M10 22V6H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-6H2",
+        strokeLinejoin: "miter",
         transition: {
           duration: 0.4,
-          ease: 'easeInOut',
+          ease: "easeInOut",
           d: { duration: 0, delay: 0.3 },
           strokeLinejoin: { duration: 0, delay: 0.3 },
         },
@@ -42,47 +42,47 @@ const animations = {
       initial: {
         x: 0,
         y: 0,
-        d: 'M15 2 H21 A1 1 0 0 1 22 3 V9 A1 1 0 0 1 21 10 H15 A1 1 0 0 1 14 9 V3 A1 1 0 0 1 15 2 Z',
+        d: "M15 2 H21 A1 1 0 0 1 22 3 V9 A1 1 0 0 1 21 10 H15 A1 1 0 0 1 14 9 V3 A1 1 0 0 1 15 2 Z",
         transition: {
           duration: 0.4,
-          ease: 'easeInOut',
+          ease: "easeInOut",
         },
       },
       animate: {
         x: -2,
         y: 2,
-        d: 'M15 2 H20 A2 2 0 0 1 22 4 V9 A1 1 0 0 1 21 10 H15 A1 1 0 0 1 14 9 V3 A1 1 0 0 1 15 2 Z',
+        d: "M15 2 H20 A2 2 0 0 1 22 4 V9 A1 1 0 0 1 21 10 H15 A1 1 0 0 1 14 9 V3 A1 1 0 0 1 15 2 Z",
         transition: {
           duration: 0.4,
-          ease: 'easeInOut',
+          ease: "easeInOut",
         },
       },
     },
   } satisfies Record<string, Variants>,
-  'default-loop': {
+  "default-loop": {
     path1: {
       initial: {
         x: 0,
         y: 0,
-        d: 'M10 22V7c0-.6-.4-1-1-1H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-5c0-.6-.4-1-1-1H2',
-        strokeLinejoin: 'round',
+        d: "M10 22V7c0-.6-.4-1-1-1H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-5c0-.6-.4-1-1-1H2",
+        strokeLinejoin: "round",
         transition: {
           duration: 0.4,
-          ease: 'easeInOut',
+          ease: "easeInOut",
         },
       },
       animate: {
         x: [0, 2, 0],
         y: [0, -2, 0],
         d: [
-          'M10 22V7c0-.6-.4-1-1-1H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-5c0-.6-.4-1-1-1H2',
-          'M10 22V6H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-6H2',
-          'M10 22V7c0-.6-.4-1-1-1H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-5c0-.6-.4-1-1-1H2',
+          "M10 22V7c0-.6-.4-1-1-1H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-5c0-.6-.4-1-1-1H2",
+          "M10 22V6H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-6H2",
+          "M10 22V7c0-.6-.4-1-1-1H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-5c0-.6-.4-1-1-1H2",
         ],
-        strokeLinejoin: ['round', 'miter', 'round'],
+        strokeLinejoin: ["round", "miter", "round"],
         transition: {
           duration: 0.8,
-          ease: 'easeInOut',
+          ease: "easeInOut",
           d: { duration: 0, delay: 0.3 },
           strokeLinejoin: { duration: 0, delay: 0.3 },
         },
@@ -92,32 +92,32 @@ const animations = {
       initial: {
         x: 0,
         y: 0,
-        d: 'M15 2 H21 A1 1 0 0 1 22 3 V9 A1 1 0 0 1 21 10 H15 A1 1 0 0 1 14 9 V3 A1 1 0 0 1 15 2 Z',
+        d: "M15 2 H21 A1 1 0 0 1 22 3 V9 A1 1 0 0 1 21 10 H15 A1 1 0 0 1 14 9 V3 A1 1 0 0 1 15 2 Z",
         transition: {
           duration: 0.4,
-          ease: 'easeInOut',
+          ease: "easeInOut",
         },
       },
       animate: {
         x: [0, -2, 0],
         y: [0, 2, 0],
         d: [
-          'M15 2 H21 A1 1 0 0 1 22 3 V9 A1 1 0 0 1 21 10 H15 A1 1 0 0 1 14 9 V3 A1 1 0 0 1 15 2 Z',
-          'M15 2 H20 A2 2 0 0 1 22 4 V9 A1 1 0 0 1 21 10 H15 A1 1 0 0 1 14 9 V3 A1 1 0 0 1 15 2 Z',
-          'M15 2 H21 A1 1 0 0 1 22 3 V9 A1 1 0 0 1 21 10 H15 A1 1 0 0 1 14 9 V3 A1 1 0 0 1 15 2 Z',
+          "M15 2 H21 A1 1 0 0 1 22 3 V9 A1 1 0 0 1 21 10 H15 A1 1 0 0 1 14 9 V3 A1 1 0 0 1 15 2 Z",
+          "M15 2 H20 A2 2 0 0 1 22 4 V9 A1 1 0 0 1 21 10 H15 A1 1 0 0 1 14 9 V3 A1 1 0 0 1 15 2 Z",
+          "M15 2 H21 A1 1 0 0 1 22 3 V9 A1 1 0 0 1 21 10 H15 A1 1 0 0 1 14 9 V3 A1 1 0 0 1 15 2 Z",
         ],
         transition: {
           duration: 0.8,
-          ease: 'easeInOut',
+          ease: "easeInOut",
         },
       },
     },
   } satisfies Record<string, Variants>,
-} as const;
+} as const
 
 function IconComponent({ size, ...props }: BlocksProps) {
-  const { controls } = useAnimateIconContext();
-  const variants = getVariants(animations);
+  const { controls } = useAnimateIconContext()
+  const variants = getVariants(animations)
 
   return (
     <motion.svg
@@ -145,11 +145,11 @@ function IconComponent({ size, ...props }: BlocksProps) {
         animate={controls}
       />
     </motion.svg>
-  );
+  )
 }
 
 function Blocks(props: BlocksProps) {
-  return <IconWrapper icon={IconComponent} {...props} />;
+  return <IconWrapper icon={IconComponent} {...props} />
 }
 
 export {
@@ -158,4 +158,4 @@ export {
   Blocks as BlocksIcon,
   type BlocksProps,
   type BlocksProps as BlocksIconProps,
-};
+}

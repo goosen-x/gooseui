@@ -112,7 +112,9 @@ export default function AccountPage() {
             </div>
             <div>
               <p className="text-sm text-muted-foreground">User ID</p>
-              <p className="break-all font-mono text-xs sm:text-sm">{user?.id}</p>
+              <p className="break-all font-mono text-xs sm:text-sm">
+                {user?.id}
+              </p>
             </div>
           </CardContent>
         </Card>

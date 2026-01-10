@@ -1,10 +1,10 @@
 "use client"
 
-import { AnimateIcon } from "@/components/animate-ui/icons/icon"
 import { Binary as BinaryAnimated } from "@/components/animate-ui/icons/binary"
 import { Blocks as BlocksAnimated } from "@/components/animate-ui/icons/blocks"
 import { BrushCleaning as BrushAnimated } from "@/components/animate-ui/icons/brush-cleaning"
 import { Gauge as GaugeAnimated } from "@/components/animate-ui/icons/gauge"
+import { AnimateIcon } from "@/components/animate-ui/icons/icon"
 import { PartyPopper as PartyPopperAnimated } from "@/components/animate-ui/icons/party-popper"
 import { Terminal as TerminalAnimated } from "@/components/animate-ui/icons/terminal"
 
@@ -80,18 +80,32 @@ export function Features() {
                   )}
                 </div>
                 <div className="min-w-0">
-                  <h3 className="text-base sm:text-xl font-semibold mb-1 sm:mb-2">{feature.title}</h3>
-                  <p className="text-sm sm:text-base text-muted-foreground">{feature.description}</p>
+                  <h3 className="text-base sm:text-xl font-semibold mb-1 sm:mb-2">
+                    {feature.title}
+                  </h3>
+                  <p className="text-sm sm:text-base text-muted-foreground">
+                    {feature.description}
+                  </p>
                 </div>
               </div>
             )
 
             if (isAnimated) {
               return (
-                <AnimateIcon key={feature.title} animateOnHover animateOnTap asChild>
+                <AnimateIcon
+                  key={feature.title}
+                  animateOnHover
+                  animateOnTap
+                  asChild
+                >
                   <div
                     className="relative group border bg-card p-6 hover:shadow-lg transition-shadow cursor-pointer"
-                    style={{ cornerShape: "squircle", borderRadius: "1.5rem" } as React.CSSProperties}
+                    style={
+                      {
+                        cornerShape: "squircle",
+                        borderRadius: "1.5rem",
+                      } as React.CSSProperties
+                    }
                   >
                     {cardContent}
                   </div>
@@ -103,7 +117,12 @@ export function Features() {
               <div
                 key={feature.title}
                 className="relative group border bg-card p-6 hover:shadow-lg transition-shadow"
-                style={{ cornerShape: "squircle", borderRadius: "1.5rem" } as React.CSSProperties}
+                style={
+                  {
+                    cornerShape: "squircle",
+                    borderRadius: "1.5rem",
+                  } as React.CSSProperties
+                }
               >
                 {cardContent}
               </div>

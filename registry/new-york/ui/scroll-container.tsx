@@ -45,7 +45,7 @@ export const ScrollContainer = React.forwardRef<
       forceVisible = false,
       ...props
     },
-    ref
+    ref,
   ) => {
     const reactId = React.useId()
     const scopeId = `sc${reactId.replace(/:/g, "")}`
@@ -150,18 +150,20 @@ export const ScrollContainer = React.forwardRef<
         <div
           ref={ref}
           className={cn(scopeId, "overflow-auto", className)}
-          style={{
-            height: typeof height === "number" ? `${height}px` : height,
-            ...vars,
-            ...style,
-          } as React.CSSProperties}
+          style={
+            {
+              height: typeof height === "number" ? `${height}px` : height,
+              ...vars,
+              ...style,
+            } as React.CSSProperties
+          }
           {...props}
         >
           {children}
         </div>
       </>
     )
-  }
+  },
 )
 
 ScrollContainer.displayName = "ScrollContainer"

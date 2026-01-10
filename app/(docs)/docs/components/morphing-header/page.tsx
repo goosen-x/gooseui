@@ -28,8 +28,8 @@ export default function MorphingHeaderPage() {
 
         {/* 2. Description */}
         <p className="text-muted-foreground">
-          Header that morphs between full and compact states on scroll using View
-          Transitions API.
+          Header that morphs between full and compact states on scroll using
+          View Transitions API.
         </p>
 
         {/* 3. Browser Support */}
@@ -144,7 +144,9 @@ export default function MorphingHeaderPage() {
                   <td className="p-3 font-mono text-xs">compactThreshold</td>
                   <td className="p-3 font-mono text-xs">number</td>
                   <td className="p-3 font-mono text-xs">100</td>
-                  <td className="p-3">Scroll position to trigger compact mode</td>
+                  <td className="p-3">
+                    Scroll position to trigger compact mode
+                  </td>
                 </tr>
                 <tr className="border-t">
                   <td className="p-3 font-mono text-xs">children</td>

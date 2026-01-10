@@ -35,9 +35,14 @@ interface CurvedTextProps {
  * We need chordWidth > viewportWidth, solving for R:
  * R > (W²/4 + h²) / (2*h)  =>  R > W²/(8h) + h/2
  */
-function calculateRadius(viewportWidth: number, visibleHeight: number, flatness: number): number {
+function calculateRadius(
+  viewportWidth: number,
+  visibleHeight: number,
+  flatness: number,
+): number {
   // Minimum radius for arc to span viewport width
-  const minRadius = (viewportWidth * viewportWidth) / (8 * visibleHeight) + visibleHeight / 2
+  const minRadius =
+    (viewportWidth * viewportWidth) / (8 * visibleHeight) + visibleHeight / 2
   // Add flatness multiplier for extra margin and flatter curve
   return minRadius * flatness
 }
@@ -55,7 +60,10 @@ export function CurvedText({
   separatorClassName,
 }: CurvedTextProps) {
   const [isVisible, setIsVisible] = useState(false)
-  const [dimensions, setDimensions] = useState({ radius: 2000, visibleHeight: 120 })
+  const [dimensions, setDimensions] = useState({
+    radius: 2000,
+    visibleHeight: 120,
+  })
   const pathId = useId()
 
   // Calculate responsive dimensions
@@ -95,16 +103,17 @@ export function CurvedText({
   // Create circular path
   // For "down" curve: path starts at top, goes clockwise
   // For "up" curve: path starts at bottom, goes counter-clockwise (text right-side up)
-  const circlePath = curve === "down"
-    ? `M ${center},${center - radius} a ${radius},${radius} 0 1,1 -0.01,0`
-    : `M ${center},${center + radius} a ${radius},${radius} 0 1,0 -0.01,0`
+  const circlePath =
+    curve === "down"
+      ? `M ${center},${center - radius} a ${radius},${radius} 0 1,1 -0.01,0`
+      : `M ${center},${center + radius} a ${radius},${radius} 0 1,0 -0.01,0`
 
   return (
     <div
       className={cn(
         "relative w-full overflow-hidden transition-opacity duration-700 ease-out",
         isVisible ? "opacity-100" : "opacity-0",
-        className
+        className,
       )}
       style={{ height: visibleHeight }}
     >
@@ -115,9 +124,10 @@ export function CurvedText({
           transform: "translateX(-50%)",
           // For "down" curve: show top arc, position SVG at top
           // For "up" curve: show bottom arc, position SVG so bottom is visible
-          top: curve === "down"
-            ? fontSize * 0.5
-            : -(svgSize - visibleHeight - fontSize * 0.5),
+          top:
+            curve === "down"
+              ? fontSize * 0.5
+              : -(svgSize - visibleHeight - fontSize * 0.5),
         }}
       >
         <svg
@@ -143,7 +153,9 @@ export function CurvedText({
                     <tspan key={i}>
                       {part}
                       {i < arr.length - 1 && (
-                        <tspan className={separatorClassName}>{separator}</tspan>
+                        <tspan className={separatorClassName}>
+                          {separator}
+                        </tspan>
                       )}
                     </tspan>
                   ))

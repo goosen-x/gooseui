@@ -22,7 +22,7 @@ export function GlitchText({
     <span
       className={cn(
         "glitch-wrapper relative inline-block select-none",
-        className
+        className,
       )}
       data-text={children}
       style={

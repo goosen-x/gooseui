@@ -28,9 +28,9 @@ export default function PromoBannerPage() {
       <div className="space-y-8">
         <DocsPageNav title="Promo Banner" />
         <p className="text-muted-foreground">
-          Floating promotional banner with marquee animation, discount badges, and
-          localStorage persistence. Perfect for campaigns, sales, and special
-          offers.
+          Floating promotional banner with marquee animation, discount badges,
+          and localStorage persistence. Perfect for campaigns, sales, and
+          special offers.
         </p>
 
         <div className="space-y-4">

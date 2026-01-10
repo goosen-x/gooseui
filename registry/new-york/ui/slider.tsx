@@ -114,7 +114,10 @@ export const Slider = React.forwardRef<HTMLInputElement, SliderProps>(
     // Update CSS custom property for gradient
     React.useEffect(() => {
       if (inputRef.current) {
-        inputRef.current.style.setProperty("--slider-progress", `${percentage}%`)
+        inputRef.current.style.setProperty(
+          "--slider-progress",
+          `${percentage}%`,
+        )
       }
     }, [percentage])
 

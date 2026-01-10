@@ -33,7 +33,9 @@ export default function SVGDrawablePage() {
 
         <p className="text-muted-foreground">
           Animate SVG path/line/circle drawing using CSS. Similar to anime.js{" "}
-          <code className="bg-muted px-1.5 py-0.5 rounded">createDrawable()</code>{" "}
+          <code className="bg-muted px-1.5 py-0.5 rounded">
+            createDrawable()
+          </code>{" "}
           but without dependencies. Supports keyframe arrays and stagger delays.
         </p>
 
@@ -62,8 +64,8 @@ export default function SVGDrawablePage() {
 
         <DocsSection id="draw-property" title="Draw Property">
           <p className="text-muted-foreground mb-4">
-            The <code className="bg-muted px-1.5 py-0.5 rounded">draw</code> prop
-            accepts a string with start and end values (0-1):
+            The <code className="bg-muted px-1.5 py-0.5 rounded">draw</code>{" "}
+            prop accepts a string with start and end values (0-1):
           </p>
           <CodeBlock>{`// Full line (0% to 100%)
 draw="0 1"      |[-------------------]|

@@ -89,7 +89,12 @@ export function Hero() {
             </p>
 
             <div className="mt-6 sm:mt-8 md:mt-10 flex flex-col sm:flex-row gap-3 sm:gap-4">
-              <Button squircle size="default" className="sm:h-11 sm:px-8" asChild>
+              <Button
+                squircle
+                size="default"
+                className="sm:h-11 sm:px-8"
+                asChild
+              >
                 <Link href="/docs">Get Started</Link>
               </Button>
               <Button
@@ -165,11 +170,21 @@ export function Hero() {
               {/* Buttons Card - Spans 2 columns */}
               <div
                 className="group relative col-span-2 overflow-hidden border border-border/50 border-dashed p-2 transition-all hover:border-border"
-                style={{ cornerShape: "squircle", borderRadius: "1.5rem" } as React.CSSProperties}
+                style={
+                  {
+                    cornerShape: "squircle",
+                    borderRadius: "1.5rem",
+                  } as React.CSSProperties
+                }
               >
                 <div
                   className="border bg-background overflow-hidden"
-                  style={{ cornerShape: "squircle", borderRadius: "1rem" } as React.CSSProperties}
+                  style={
+                    {
+                      cornerShape: "squircle",
+                      borderRadius: "1rem",
+                    } as React.CSSProperties
+                  }
                 >
                   <div className="flex items-center justify-between border-b bg-muted/50 px-4 py-3">
                     <code className="text-xs text-muted-foreground">
@@ -242,11 +257,21 @@ export function Hero() {
               {/* Input Card - hidden on mobile */}
               <div
                 className="hidden sm:block group border border-border/50 border-dashed p-2 transition-all hover:border-border"
-                style={{ cornerShape: "squircle", borderRadius: "1.5rem" } as React.CSSProperties}
+                style={
+                  {
+                    cornerShape: "squircle",
+                    borderRadius: "1.5rem",
+                  } as React.CSSProperties
+                }
               >
                 <div
                   className="h-full border bg-background overflow-hidden flex flex-col"
-                  style={{ cornerShape: "squircle", borderRadius: "1rem" } as React.CSSProperties}
+                  style={
+                    {
+                      cornerShape: "squircle",
+                      borderRadius: "1rem",
+                    } as React.CSSProperties
+                  }
                 >
                   <div className="flex items-center gap-2 border-b bg-muted/50 px-4 py-3">
                     <code className="text-xs text-muted-foreground">
@@ -290,11 +315,21 @@ export function Hero() {
               {/* Theme Customizer Card */}
               <div
                 className="group border border-border/50 border-dashed p-2 transition-all hover:border-border"
-                style={{ cornerShape: "squircle", borderRadius: "1.5rem" } as React.CSSProperties}
+                style={
+                  {
+                    cornerShape: "squircle",
+                    borderRadius: "1.5rem",
+                  } as React.CSSProperties
+                }
               >
                 <div
                   className="h-full border bg-background flex flex-col"
-                  style={{ cornerShape: "squircle", borderRadius: "1rem" } as React.CSSProperties}
+                  style={
+                    {
+                      cornerShape: "squircle",
+                      borderRadius: "1rem",
+                    } as React.CSSProperties
+                  }
                 >
                   <div className="flex items-center gap-2 border-b bg-muted/50 px-4 py-3">
                     <code className="text-xs text-muted-foreground">
@@ -310,11 +345,21 @@ export function Hero() {
               {/* Sliding Number Card */}
               <div
                 className="col-span-2 sm:col-span-1 group border border-border/50 border-dashed p-2 transition-all hover:border-border"
-                style={{ cornerShape: "squircle", borderRadius: "1.5rem" } as React.CSSProperties}
+                style={
+                  {
+                    cornerShape: "squircle",
+                    borderRadius: "1.5rem",
+                  } as React.CSSProperties
+                }
               >
                 <div
                   className="h-full border bg-background overflow-hidden flex flex-col"
-                  style={{ cornerShape: "squircle", borderRadius: "1rem" } as React.CSSProperties}
+                  style={
+                    {
+                      cornerShape: "squircle",
+                      borderRadius: "1rem",
+                    } as React.CSSProperties
+                  }
                 >
                   <div className="flex items-center gap-2 border-b bg-muted/50 px-4 py-3">
                     <code className="text-xs text-muted-foreground">
@@ -339,11 +384,21 @@ export function Hero() {
               {/* Checkbox Card */}
               <div
                 className="group border border-border/50 border-dashed p-2 transition-all hover:border-border"
-                style={{ cornerShape: "squircle", borderRadius: "1.5rem" } as React.CSSProperties}
+                style={
+                  {
+                    cornerShape: "squircle",
+                    borderRadius: "1.5rem",
+                  } as React.CSSProperties
+                }
               >
                 <div
                   className="h-full border bg-background overflow-hidden flex flex-col"
-                  style={{ cornerShape: "squircle", borderRadius: "1rem" } as React.CSSProperties}
+                  style={
+                    {
+                      cornerShape: "squircle",
+                      borderRadius: "1rem",
+                    } as React.CSSProperties
+                  }
                 >
                   <div className="flex items-center gap-2 border-b bg-muted/50 px-4 py-3">
                     <code className="text-xs text-muted-foreground">

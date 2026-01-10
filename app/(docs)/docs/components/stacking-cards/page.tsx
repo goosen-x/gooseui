@@ -41,7 +41,9 @@ export default function StackingCardsPage() {
           }}
         >
           Combines{" "}
-          <code className="bg-muted px-1.5 py-0.5 rounded">position: sticky</code>{" "}
+          <code className="bg-muted px-1.5 py-0.5 rounded">
+            position: sticky
+          </code>{" "}
           with scroll-driven animations to create stacking effect. Cards scale
           down slightly as they stack.
         </DocsBrowserSupport>
@@ -160,7 +162,9 @@ import { StackingCardsAnimated, StackingCardsStyles } from "@/components/effects
                   <td className="p-3 font-mono text-xs">stackOffset</td>
                   <td className="p-3 font-mono text-xs">number</td>
                   <td className="p-3 font-mono text-xs">20</td>
-                  <td className="p-3">Offset between stacked cards in pixels</td>
+                  <td className="p-3">
+                    Offset between stacked cards in pixels
+                  </td>
                 </tr>
                 <tr className="border-t">
                   <td className="p-3 font-mono text-xs">className</td>

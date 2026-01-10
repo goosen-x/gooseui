@@ -217,7 +217,12 @@ const componentPreviews: Record<string, ReactNode> = {
   ),
   "svg-drawable": (
     <div className="flex items-center justify-center">
-      <svg width="100" height="50" viewBox="0 0 100 50" className="text-primary">
+      <svg
+        width="100"
+        height="50"
+        viewBox="0 0 100 50"
+        className="text-primary"
+      >
         <path
           d="M5 40 Q 20 5, 40 25 T 75 15"
           fill="none"
@@ -297,108 +302,114 @@ export default function ComponentsPage() {
         <div className="space-y-4">
           <DocsPageNav title="Components" />
           <p className="text-lg text-muted-foreground max-w-3xl">
-            Beautifully designed components built with Radix UI and Tailwind CSS.
-            Copy and paste into your apps. Open source.
+            Beautifully designed components built with Radix UI and Tailwind
+            CSS. Copy and paste into your apps. Open source.
           </p>
         </div>
 
-      {/* Components Grid by Category */}
-      {Object.entries(groupedComponents).map(
-        ([category, categoryComponents]) => (
-          <div key={category} className="space-y-6">
+        {/* Components Grid by Category */}
+        {Object.entries(groupedComponents).map(
+          ([category, categoryComponents]) => (
+            <div key={category} className="space-y-6">
+              <h2
+                id={category.toLowerCase().replace(/\s+/g, "-")}
+                className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight"
+              >
+                {category}
+              </h2>
+              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                {categoryComponents.map((component) => (
+                  <Link
+                    key={component.slug}
+                    href={`/docs/components/${component.slug}`}
+                    className="group min-w-0"
+                  >
+                    <div
+                      className={cn(
+                        "relative flex flex-col overflow-hidden rounded-xl border bg-background h-full",
+                        "transition-all duration-200",
+                        "hover:border-foreground/20 hover:shadow-md",
+                      )}
+                    >
+                      {/* New Badge */}
+                      {component.isNew && !component.isDraft && (
+                        <Badge
+                          variant="beta"
+                          className="absolute top-2 right-2 z-10"
+                        >
+                          New
+                        </Badge>
+                      )}
+                      {/* Draft Badge */}
+                      {component.isDraft && (
+                        <Badge
+                          variant="draft"
+                          className="absolute top-2 right-2 z-10"
+                        >
+                          Draft
+                        </Badge>
+                      )}
+
+                      {/* Preview Area */}
+                      <div className="@container flex h-[140px] items-center justify-center overflow-hidden border-b bg-muted/30 p-4 max-w-full">
+                        {component.preview || (
+                          <span className="text-sm text-muted-foreground">
+                            Preview
+                          </span>
+                        )}
+                      </div>
+
+                      {/* Info Area */}
+                      <div className="flex flex-col gap-1 p-4 min-h-[88px]">
+                        <div className="flex items-center justify-between">
+                          <h3 className="font-semibold">{component.name}</h3>
+                          <ArrowRightIcon className="size-4 shrink-0 text-muted-foreground transition-transform group-hover:translate-x-1" />
+                        </div>
+                        <p className="text-sm text-muted-foreground line-clamp-2">
+                          {component.description}
+                        </p>
+                      </div>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          ),
+        )}
+
+        {/* Coming Soon Section */}
+        {comingSoonComponents.length > 0 && (
+          <div className="space-y-6">
             <h2
-              id={category.toLowerCase().replace(/\s+/g, "-")}
+              id="coming-soon"
               className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight"
             >
-              {category}
+              Coming Soon
             </h2>
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {categoryComponents.map((component) => (
-                <Link
+              {comingSoonComponents.map((component) => (
+                <div
                   key={component.slug}
-                  href={`/docs/components/${component.slug}`}
-                  className="group min-w-0"
+                  className={cn(
+                    "relative flex flex-col overflow-hidden rounded-xl border bg-background opacity-60 min-w-0",
+                  )}
                 >
-                  <div
-                    className={cn(
-                      "relative flex flex-col overflow-hidden rounded-xl border bg-background h-full",
-                      "transition-all duration-200",
-                      "hover:border-foreground/20 hover:shadow-md",
-                    )}
-                  >
-                    {/* New Badge */}
-                    {component.isNew && !component.isDraft && (
-                      <Badge variant="beta" className="absolute top-2 right-2 z-10">
-                        New
-                      </Badge>
-                    )}
-                    {/* Draft Badge */}
-                    {component.isDraft && (
-                      <Badge variant="draft" className="absolute top-2 right-2 z-10">
-                        Draft
-                      </Badge>
-                    )}
-
-                    {/* Preview Area */}
-                    <div className="@container flex h-[140px] items-center justify-center overflow-hidden border-b bg-muted/30 p-4 max-w-full">
-                      {component.preview || (
-                        <span className="text-sm text-muted-foreground">
-                          Preview
-                        </span>
-                      )}
-                    </div>
-
-                    {/* Info Area */}
-                    <div className="flex flex-col gap-1 p-4 min-h-[88px]">
-                      <div className="flex items-center justify-between">
-                        <h3 className="font-semibold">{component.name}</h3>
-                        <ArrowRightIcon className="size-4 shrink-0 text-muted-foreground transition-transform group-hover:translate-x-1" />
-                      </div>
-                      <p className="text-sm text-muted-foreground line-clamp-2">
-                        {component.description}
-                      </p>
-                    </div>
+                  <div className="flex h-[140px] items-center justify-center border-b bg-muted/30 p-4">
+                    <span className="text-sm text-muted-foreground">
+                      Preview coming soon
+                    </span>
                   </div>
-                </Link>
+                  <div className="flex flex-col gap-1 p-4 min-h-[88px]">
+                    <h3 className="font-semibold">{component.title}</h3>
+                    <p className="text-sm text-muted-foreground line-clamp-2">
+                      {component.description || "Component in development"}
+                    </p>
+                  </div>
+                </div>
               ))}
             </div>
           </div>
-        ),
-      )}
-
-      {/* Coming Soon Section */}
-      {comingSoonComponents.length > 0 && (
-        <div className="space-y-6">
-          <h2
-            id="coming-soon"
-            className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight"
-          >
-            Coming Soon
-          </h2>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {comingSoonComponents.map((component) => (
-              <div
-                key={component.slug}
-                className={cn(
-                  "relative flex flex-col overflow-hidden rounded-xl border bg-background opacity-60 min-w-0",
-                )}
-              >
-                <div className="flex h-[140px] items-center justify-center border-b bg-muted/30 p-4">
-                  <span className="text-sm text-muted-foreground">
-                    Preview coming soon
-                  </span>
-                </div>
-                <div className="flex flex-col gap-1 p-4 min-h-[88px]">
-                  <h3 className="font-semibold">{component.title}</h3>
-                  <p className="text-sm text-muted-foreground line-clamp-2">
-                    {component.description || "Component in development"}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
+        )}
       </div>
     </DocsPage>
   )

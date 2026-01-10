@@ -1,28 +1,28 @@
-'use client';
+"use client"
 
-import * as React from 'react';
-import { motion, type Variants } from 'motion/react';
+import { motion, type Variants } from "motion/react"
+import * as React from "react"
 
 import {
   getVariants,
-  useAnimateIconContext,
-  IconWrapper,
   type IconProps,
-} from '@/components/animate-ui/icons/icon';
+  IconWrapper,
+  useAnimateIconContext,
+} from "@/components/animate-ui/icons/icon"
 
-type BrushCleaningProps = IconProps<keyof typeof animations>;
+type BrushCleaningProps = IconProps<keyof typeof animations>
 
 const animations = {
   default: {
     group: {
       initial: {
         rotate: 0,
-        transition: { duration: 0.6, ease: 'easeInOut' },
+        transition: { duration: 0.6, ease: "easeInOut" },
       },
       animate: {
         rotate: [0, -10, 10, 0],
-        transformOrigin: 'top center',
-        transition: { duration: 0.6, ease: 'easeInOut' },
+        transformOrigin: "top center",
+        transition: { duration: 0.6, ease: "easeInOut" },
       },
     },
     path1: {},
@@ -30,11 +30,11 @@ const animations = {
     path3: {},
     path4: {},
   } satisfies Record<string, Variants>,
-} as const;
+} as const
 
 function IconComponent({ size, ...props }: BrushCleaningProps) {
-  const { controls } = useAnimateIconContext();
-  const variants = getVariants(animations);
+  const { controls } = useAnimateIconContext()
+  const variants = getVariants(animations)
 
   return (
     <motion.svg
@@ -77,11 +77,11 @@ function IconComponent({ size, ...props }: BrushCleaningProps) {
         animate={controls}
       />
     </motion.svg>
-  );
+  )
 }
 
 function BrushCleaning(props: BrushCleaningProps) {
-  return <IconWrapper icon={IconComponent} {...props} />;
+  return <IconWrapper icon={IconComponent} {...props} />
 }
 
 export {
@@ -90,4 +90,4 @@ export {
   BrushCleaning as BrushCleaningIcon,
   type BrushCleaningProps,
   type BrushCleaningProps as BrushCleaningIconProps,
-};
+}

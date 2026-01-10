@@ -34,8 +34,8 @@ export default function GlitchTextPage() {
 
         <p className="text-muted-foreground">
           Animated glitch text effect with chromatic aberration, scanlines, and
-          distortion. Pure CSS implementation using clip-path and mix-blend-mode.
-          Respects reduced motion preferences.
+          distortion. Pure CSS implementation using clip-path and
+          mix-blend-mode. Respects reduced motion preferences.
         </p>
 
         <DocsPreview description="Hover to see the effect in action.">
@@ -66,7 +66,8 @@ export default function Page() {
             <div>
               <h3 className="text-lg font-medium mb-3">Intensity Variants</h3>
               <p className="text-sm text-muted-foreground mb-4">
-                Control the intensity of the glitch effect: low, medium, or high.
+                Control the intensity of the glitch effect: low, medium, or
+                high.
               </p>
               <GlitchTextIntensityDemo />
               <CodeBlock className="mt-4">{`<GlitchText text="SUBTLE" intensity="low" />
@@ -159,8 +160,8 @@ export default function Page() {
         <DocsSection id="features" title="Features">
           <ul className="list-disc list-inside space-y-2 text-muted-foreground">
             <li>
-              <strong className="text-foreground">Chromatic aberration</strong> —
-              cyan and magenta color separation with mix-blend-mode
+              <strong className="text-foreground">Chromatic aberration</strong>{" "}
+              — cyan and magenta color separation with mix-blend-mode
             </li>
             <li>
               <strong className="text-foreground">Clip-path animation</strong> —
@@ -171,20 +172,20 @@ export default function Page() {
               retro CRT monitor effect
             </li>
             <li>
-              <strong className="text-foreground">Glow effect</strong> — blur-based
-              glow behind text
+              <strong className="text-foreground">Glow effect</strong> —
+              blur-based glow behind text
             </li>
             <li>
-              <strong className="text-foreground">Reduced motion</strong> — respects
-              prefers-reduced-motion media query
+              <strong className="text-foreground">Reduced motion</strong> —
+              respects prefers-reduced-motion media query
             </li>
             <li>
-              <strong className="text-foreground">Pure CSS</strong> — no JavaScript
-              animations, uses CSS keyframes
+              <strong className="text-foreground">Pure CSS</strong> — no
+              JavaScript animations, uses CSS keyframes
             </li>
             <li>
-              <strong className="text-foreground">Customizable</strong> — intensity,
-              colors, and effects can be toggled
+              <strong className="text-foreground">Customizable</strong> —
+              intensity, colors, and effects can be toggled
             </li>
           </ul>
         </DocsSection>

@@ -16,7 +16,11 @@ const availableComponents = getAvailableComponents()
 
 const toc = [
   { id: "adding-a-component", title: "Adding a Component", level: 2 },
-  { id: "adding-multiple-components", title: "Adding Multiple Components", level: 2 },
+  {
+    id: "adding-multiple-components",
+    title: "Adding Multiple Components",
+    level: 2,
+  },
   { id: "available-components", title: "Available Components", level: 2 },
 ]
 
@@ -36,7 +40,9 @@ export default function CLIPage() {
           >
             Adding a Component
           </h2>
-          <p className="leading-7">Use the add command to install a component:</p>
+          <p className="leading-7">
+            Use the add command to install a component:
+          </p>
           <InstallCommand packageName={getInstallPackageName("button")} />
         </div>
 

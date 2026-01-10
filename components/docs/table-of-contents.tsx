@@ -1,7 +1,7 @@
 "use client"
 
-import * as React from "react"
 import { usePathname } from "next/navigation"
+import * as React from "react"
 import { cn } from "@/lib/utils"
 import { useToc } from "./toc-context"
 
@@ -20,7 +20,7 @@ function useActiveItem(itemIds: string[]) {
           }
         })
       },
-      { rootMargin: "0% 0% -80% 0%" }
+      { rootMargin: "0% 0% -80% 0%" },
     )
 
     itemIds.forEach((id) => {
@@ -48,10 +48,7 @@ export function TableOfContents() {
   const { items: headings } = useToc()
 
   // Memoize item IDs for IntersectionObserver
-  const itemIds = React.useMemo(
-    () => headings.map((h) => h.id),
-    [headings]
-  )
+  const itemIds = React.useMemo(() => headings.map((h) => h.id), [headings])
 
   const activeId = useActiveItem(itemIds)
 
@@ -103,7 +100,7 @@ export function TableOfContents() {
                   "block text-[0.8rem] no-underline transition-colors cursor-pointer",
                   "text-muted-foreground hover:text-foreground",
                   "data-[active=true]:text-foreground data-[active=true]:font-medium",
-                  "data-[depth=3]:pl-4 data-[depth=4]:pl-6"
+                  "data-[depth=3]:pl-4 data-[depth=4]:pl-6",
                 )}
               >
                 {heading.title}

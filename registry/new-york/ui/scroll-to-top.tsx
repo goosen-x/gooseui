@@ -130,7 +130,7 @@ export function ScrollToTop({
         className={cn(
           iconSizes[size],
           "relative z-10 transition-transform",
-          isAnimating && "animate-bounce"
+          isAnimating && "animate-bounce",
         )}
         style={isAnimating ? { animationDuration: "500ms" } : undefined}
       />
@@ -186,7 +186,7 @@ export function ScrollToTopPill({
       <ChevronUp
         className={cn(
           "size-4 relative z-10 transition-transform",
-          isAnimating && "animate-bounce"
+          isAnimating && "animate-bounce",
         )}
         style={isAnimating ? { animationDuration: "500ms" } : undefined}
       />
@@ -322,7 +322,7 @@ export function ScrollToTopProgress({
       <ArrowUp
         className={cn(
           "size-5 text-foreground relative z-10 transition-transform",
-          isAnimating && "animate-bounce"
+          isAnimating && "animate-bounce",
         )}
         style={isAnimating ? { animationDuration: "500ms" } : undefined}
       />
@@ -416,7 +416,7 @@ export function ScrollToTopText({
           strokeDashoffset={isVisible ? 0 : arrowPathLength}
           className={cn(
             "transition-all duration-500 ease-out",
-            isAnimating && "animate-pulse"
+            isAnimating && "animate-pulse",
           )}
         />
       </svg>

@@ -41,9 +41,12 @@ export default function AnchorTooltipPage() {
             { featureId: "popover", browserCheck: "popover" },
           ]}
         >
-          Uses <code className="bg-muted px-1.5 py-0.5 rounded">anchor-name</code>{" "}
+          Uses{" "}
+          <code className="bg-muted px-1.5 py-0.5 rounded">anchor-name</code>{" "}
           and{" "}
-          <code className="bg-muted px-1.5 py-0.5 rounded">position-anchor</code>{" "}
+          <code className="bg-muted px-1.5 py-0.5 rounded">
+            position-anchor
+          </code>{" "}
           for CSS-based positioning.
         </DocsBrowserSupport>
 

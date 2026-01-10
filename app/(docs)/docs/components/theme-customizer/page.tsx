@@ -89,8 +89,8 @@ export default function Page() {
             2. Bar
           </h3>
           <p className="text-muted-foreground">
-            Horizontal bar with all options visible: light/dark/system buttons and
-            color palette.
+            Horizontal bar with all options visible: light/dark/system buttons
+            and color palette.
           </p>
           <CodeBlock>{`import { ThemeCustomizerBar } from "@/components/ui/theme-customizer"
 

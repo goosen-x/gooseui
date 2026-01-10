@@ -28,7 +28,8 @@ export default function ParallaxCardsPage() {
 
         {/* 2. Description */}
         <p className="text-muted-foreground">
-          Cards with parallax effect on scroll using CSS scroll-driven animations.
+          Cards with parallax effect on scroll using CSS scroll-driven
+          animations.
         </p>
 
         {/* 3. Browser Support */}

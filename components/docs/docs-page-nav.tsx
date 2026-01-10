@@ -14,7 +14,6 @@ import { useTheme } from "next-themes"
 import { usePostHog } from "posthog-js/react"
 import * as React from "react"
 import { Badge } from "@/components/ui/badge"
-import { ThemeToggle } from "@/components/ui/theme-toggle"
 import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
@@ -23,7 +22,11 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { Separator } from "@/components/ui/separator"
-import { getAllNavItems, getPrevNextNavigation } from "@/lib/config/docs-navigation"
+import { ThemeToggle } from "@/components/ui/theme-toggle"
+import {
+  getAllNavItems,
+  getPrevNextNavigation,
+} from "@/lib/config/docs-navigation"
 import { getRegistryUrl } from "@/lib/config/registry"
 import { cn } from "@/lib/utils"
 import { useScrollToTop } from "@/registry/new-york/ui/scroll-to-top"
@@ -638,7 +641,8 @@ ${registryUrl ? `Registry: ${registryUrl}` : ""}
         {(() => {
           const radius = 10
           const circumference = 2 * Math.PI * radius
-          const circleOffset = circumference - (scrollProgress / 100) * circumference
+          const circleOffset =
+            circumference - (scrollProgress / 100) * circumference
 
           return (
             <Button
@@ -676,7 +680,10 @@ ${registryUrl ? `Registry: ${registryUrl}` : ""}
                   strokeDasharray={circumference}
                   strokeDashoffset={circleOffset}
                   className="transition-all duration-300 ease-out"
-                  style={{ transform: "rotate(-90deg)", transformOrigin: "center" }}
+                  style={{
+                    transform: "rotate(-90deg)",
+                    transformOrigin: "center",
+                  }}
                 />
                 {/* Arrow path */}
                 <path

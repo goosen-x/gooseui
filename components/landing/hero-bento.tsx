@@ -144,7 +144,12 @@ export function HeroBento() {
               {/* Buttons Card - Large */}
               <div
                 className="relative col-span-2 overflow-hidden border bg-background p-4"
-                style={{ cornerShape: "squircle", borderRadius: "1rem" } as React.CSSProperties}
+                style={
+                  {
+                    cornerShape: "squircle",
+                    borderRadius: "1rem",
+                  } as React.CSSProperties
+                }
               >
                 <div className="mb-3 flex items-center gap-2">
                   <div className="rounded-md bg-primary/10 p-1.5">
@@ -172,7 +177,12 @@ export function HeroBento() {
               {/* Input Card */}
               <div
                 className="relative overflow-hidden border bg-background p-4"
-                style={{ cornerShape: "squircle", borderRadius: "1rem" } as React.CSSProperties}
+                style={
+                  {
+                    cornerShape: "squircle",
+                    borderRadius: "1rem",
+                  } as React.CSSProperties
+                }
               >
                 <div className="mb-3 flex items-center gap-2">
                   <div className="rounded-md bg-blue-500/10 p-1.5">
@@ -188,7 +198,12 @@ export function HeroBento() {
               {/* Notification Card */}
               <div
                 className="relative overflow-hidden border bg-background p-4"
-                style={{ cornerShape: "squircle", borderRadius: "1rem" } as React.CSSProperties}
+                style={
+                  {
+                    cornerShape: "squircle",
+                    borderRadius: "1rem",
+                  } as React.CSSProperties
+                }
               >
                 <div className="mb-3 flex items-center gap-2">
                   <div className="rounded-md bg-orange-500/10 p-1.5">
@@ -207,7 +222,12 @@ export function HeroBento() {
               {/* CLI Card */}
               <div
                 className="col-span-2 overflow-hidden border bg-muted/30"
-                style={{ cornerShape: "squircle", borderRadius: "1rem" } as React.CSSProperties}
+                style={
+                  {
+                    cornerShape: "squircle",
+                    borderRadius: "1rem",
+                  } as React.CSSProperties
+                }
               >
                 <div className="flex items-center gap-2 border-b bg-muted/50 px-3 py-2">
                   <div className="flex gap-1">

@@ -30,7 +30,7 @@ export default function PricingPage() {
             className={cn(
               "text-sm font-medium",
               !isYearly && "text-foreground",
-              isYearly && "text-muted-foreground"
+              isYearly && "text-muted-foreground",
             )}
           >
             Monthly
@@ -39,13 +39,13 @@ export default function PricingPage() {
             onClick={() => setIsYearly(!isYearly)}
             className={cn(
               "relative h-6 w-11 rounded-full transition-colors cursor-pointer",
-              isYearly ? "bg-primary" : "bg-muted"
+              isYearly ? "bg-primary" : "bg-muted",
             )}
           >
             <span
               className={cn(
                 "absolute top-0.5 left-0.5 h-5 w-5 rounded-full bg-white transition-transform",
-                isYearly && "translate-x-5"
+                isYearly && "translate-x-5",
               )}
             />
           </button>
@@ -53,7 +53,7 @@ export default function PricingPage() {
             className={cn(
               "text-sm font-medium",
               isYearly && "text-foreground",
-              !isYearly && "text-muted-foreground"
+              !isYearly && "text-muted-foreground",
             )}
           >
             Yearly
@@ -126,7 +126,7 @@ function PricingCard({ plan, isYearly }: { plan: Plan; isYearly: boolean }) {
     <div
       className={cn(
         "relative flex flex-col rounded-xl border bg-card p-6",
-        isPopular && "border-primary shadow-lg"
+        isPopular && "border-primary shadow-lg",
       )}
     >
       {isPopular && (
@@ -141,7 +141,9 @@ function PricingCard({ plan, isYearly }: { plan: Plan; isYearly: boolean }) {
       </div>
 
       <div className="mb-6">
-        <span className="text-4xl font-bold">{formatPrice(price, isYearly)}</span>
+        <span className="text-4xl font-bold">
+          {formatPrice(price, isYearly)}
+        </span>
         {plan.priceYearly && !isYearly && plan.price > 0 && (
           <p className="text-xs text-muted-foreground mt-1">
             or {formatPrice(plan.priceYearly, true)} (save 20%)
@@ -181,15 +183,11 @@ function PricingCard({ plan, isYearly }: { plan: Plan; isYearly: boolean }) {
         <FeatureItem included={plan.features.customDomain}>
           Custom Domain
         </FeatureItem>
-        <FeatureItem included={plan.features.analytics}>
-          Analytics
-        </FeatureItem>
+        <FeatureItem included={plan.features.analytics}>Analytics</FeatureItem>
         <FeatureItem included={plan.features.prioritySupport}>
           Priority Support
         </FeatureItem>
-        <FeatureItem included={plan.features.apiAccess}>
-          API Access
-        </FeatureItem>
+        <FeatureItem included={plan.features.apiAccess}>API Access</FeatureItem>
         <FeatureItem included={plan.features.whiteLabel}>
           White Label
         </FeatureItem>

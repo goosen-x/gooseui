@@ -53,11 +53,21 @@ function FAQItem({
   return (
     <div
       className="group border border-border/50 border-dashed p-2 transition-all hover:border-border"
-      style={{ cornerShape: "squircle", borderRadius: "1.5rem" } as React.CSSProperties}
+      style={
+        {
+          cornerShape: "squircle",
+          borderRadius: "1.5rem",
+        } as React.CSSProperties
+      }
     >
       <div
         className="overflow-hidden border border-border/50 bg-muted/30"
-        style={{ cornerShape: "squircle", borderRadius: "1rem" } as React.CSSProperties}
+        style={
+          {
+            cornerShape: "squircle",
+            borderRadius: "1rem",
+          } as React.CSSProperties
+        }
       >
         <button
           type="button"

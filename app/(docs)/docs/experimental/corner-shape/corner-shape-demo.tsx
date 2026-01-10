@@ -30,7 +30,9 @@ export function CornerShapeDemo() {
           />
           <div className="text-center">
             <span className="text-sm text-muted-foreground block">Regular</span>
-            <code className="text-xs bg-muted px-1.5 py-0.5 rounded">border-radius</code>
+            <code className="text-xs bg-muted px-1.5 py-0.5 rounded">
+              border-radius
+            </code>
           </div>
         </div>
 
@@ -48,7 +50,9 @@ export function CornerShapeDemo() {
           />
           <div className="text-center">
             <span className="text-sm font-semibold block">Squircle</span>
-            <code className="text-xs bg-muted px-1.5 py-0.5 rounded">corner-shape: squircle</code>
+            <code className="text-xs bg-muted px-1.5 py-0.5 rounded">
+              corner-shape: squircle
+            </code>
           </div>
         </div>
       </div>
@@ -129,7 +133,11 @@ export function CornerShapeIconsDemo() {
         className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center"
         style={iconStyle}
       >
-        <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+        <svg
+          className="w-8 h-8 text-white"
+          fill="currentColor"
+          viewBox="0 0 24 24"
+        >
           <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
         </svg>
       </div>
@@ -137,7 +145,11 @@ export function CornerShapeIconsDemo() {
         className="w-16 h-16 bg-gradient-to-br from-pink-500 to-rose-600 flex items-center justify-center"
         style={iconStyle}
       >
-        <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+        <svg
+          className="w-8 h-8 text-white"
+          fill="currentColor"
+          viewBox="0 0 24 24"
+        >
           <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
         </svg>
       </div>
@@ -145,7 +157,11 @@ export function CornerShapeIconsDemo() {
         className="w-16 h-16 bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center"
         style={iconStyle}
       >
-        <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+        <svg
+          className="w-8 h-8 text-white"
+          fill="currentColor"
+          viewBox="0 0 24 24"
+        >
           <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
         </svg>
       </div>
@@ -153,7 +169,11 @@ export function CornerShapeIconsDemo() {
         className="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center"
         style={iconStyle}
       >
-        <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+        <svg
+          className="w-8 h-8 text-white"
+          fill="currentColor"
+          viewBox="0 0 24 24"
+        >
           <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
         </svg>
       </div>

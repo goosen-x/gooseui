@@ -48,8 +48,8 @@ export default function BorderBeamPage() {
               </CardHeader>
               <CardContent>
                 <p className="text-sm text-muted-foreground">
-                  A beam of light smoothly moves around the perimeter of the card,
-                  creating an impressive animation
+                  A beam of light smoothly moves around the perimeter of the
+                  card, creating an impressive animation
                 </p>
               </CardContent>
               <BorderBeam />
@@ -86,7 +86,9 @@ export function MyCard() {
 }`}</CodeBlock>
           <p className="text-sm text-muted-foreground">
             <strong>Important:</strong> Container must have{" "}
-            <code className="text-xs bg-muted px-1 py-0.5 rounded">relative</code>{" "}
+            <code className="text-xs bg-muted px-1 py-0.5 rounded">
+              relative
+            </code>{" "}
             and{" "}
             <code className="text-xs bg-muted px-1 py-0.5 rounded">
               overflow-hidden

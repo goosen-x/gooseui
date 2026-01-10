@@ -21,7 +21,9 @@ export function DocsContentWrapper({ children }: DocsContentWrapperProps) {
   return (
     <TocProvider>
       <div className="mx-auto flex w-full max-w-6xl gap-16 items-start min-h-[calc(100svh-10rem)]">
-        <div className="min-w-0 flex-1 max-w-3xl" data-docs-content>{children}</div>
+        <div className="min-w-0 flex-1 max-w-3xl" data-docs-content>
+          {children}
+        </div>
         <TableOfContents />
       </div>
     </TocProvider>

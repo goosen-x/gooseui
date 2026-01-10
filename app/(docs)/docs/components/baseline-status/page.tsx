@@ -157,7 +157,9 @@ export default function BaselineStatusPage() {
             </div>
 
             <div>
-              <h3 className="text-lg font-medium mb-3">With Feature ID (API)</h3>
+              <h3 className="text-lg font-medium mb-3">
+                With Feature ID (API)
+              </h3>
               <div className="flex gap-4 py-6 px-6 bg-muted/30 rounded-lg">
                 <BaselineStatus featureId="scroll-snap" />
               </div>
@@ -196,8 +198,8 @@ export default function BaselineStatusPage() {
                 <tr className="border-t">
                   <td className="p-3 font-mono text-xs">status</td>
                   <td className="p-3 font-mono text-xs">
-                    &quot;widely&quot; | &quot;newly&quot; | &quot;limited&quot; |
-                    &quot;no_data&quot;
+                    &quot;widely&quot; | &quot;newly&quot; | &quot;limited&quot;
+                    | &quot;no_data&quot;
                   </td>
                   <td className="p-3 font-mono text-xs">-</td>
                   <td className="p-3">Direct status override (static data)</td>
@@ -236,8 +238,8 @@ export default function BaselineStatusPage() {
                   </td>
                   <td className="p-3 font-mono text-xs">-</td>
                   <td className="p-3">
-                    Browser feature to detect support for. Shows real-time support
-                    status alongside Baseline.
+                    Browser feature to detect support for. Shows real-time
+                    support status alongside Baseline.
                   </td>
                 </tr>
               </tbody>

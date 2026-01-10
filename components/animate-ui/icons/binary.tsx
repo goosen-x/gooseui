@@ -1,16 +1,16 @@
-'use client';
+"use client"
 
-import * as React from 'react';
-import { motion, type Variants } from 'motion/react';
+import { motion, type Variants } from "motion/react"
+import * as React from "react"
 
 import {
   getVariants,
-  useAnimateIconContext,
-  IconWrapper,
   type IconProps,
-} from '@/components/animate-ui/icons/icon';
+  IconWrapper,
+  useAnimateIconContext,
+} from "@/components/animate-ui/icons/icon"
 
-type BinaryProps = IconProps<keyof typeof animations>;
+type BinaryProps = IconProps<keyof typeof animations>
 
 const animations = {
   default: {
@@ -22,7 +22,7 @@ const animations = {
         x: -8,
         transition: {
           duration: 0.4,
-          ease: 'easeInOut',
+          ease: "easeInOut",
         },
       },
     },
@@ -34,7 +34,7 @@ const animations = {
         x: 8,
         transition: {
           duration: 0.4,
-          ease: 'easeInOut',
+          ease: "easeInOut",
         },
       },
     },
@@ -46,7 +46,7 @@ const animations = {
         y: -10,
         transition: {
           duration: 0.4,
-          ease: 'easeInOut',
+          ease: "easeInOut",
         },
       },
     },
@@ -58,16 +58,16 @@ const animations = {
         y: 10,
         transition: {
           duration: 0.4,
-          ease: 'easeInOut',
+          ease: "easeInOut",
         },
       },
     },
   } satisfies Record<string, Variants>,
-} as const;
+} as const
 
 function IconComponent({ size, ...props }: BinaryProps) {
-  const { controls } = useAnimateIconContext();
-  const variants = getVariants(animations);
+  const { controls } = useAnimateIconContext()
+  const variants = getVariants(animations)
 
   return (
     <motion.svg
@@ -115,11 +115,11 @@ function IconComponent({ size, ...props }: BinaryProps) {
         animate={controls}
       />
     </motion.svg>
-  );
+  )
 }
 
 function Binary(props: BinaryProps) {
-  return <IconWrapper icon={IconComponent} {...props} />;
+  return <IconWrapper icon={IconComponent} {...props} />
 }
 
 export {
@@ -128,4 +128,4 @@ export {
   Binary as BinaryIcon,
   type BinaryProps,
   type BinaryProps as BinaryIconProps,
-};
+}

@@ -30,9 +30,9 @@ export default function MorphingDialogPage() {
       <div className="space-y-8">
         <DocsPageNav title="Morphing Dialog" />
         <p className="text-muted-foreground">
-          A dialog component with smooth morphing animations powered by the native{" "}
-          <strong>View Transitions API</strong>. Supports click-outside and Escape
-          key for closing.
+          A dialog component with smooth morphing animations powered by the
+          native <strong>View Transitions API</strong>. Supports click-outside
+          and Escape key for closing.
         </p>
 
         <div className="space-y-4">
@@ -164,7 +164,9 @@ export default function Example() {
                   <td className="p-3">Root component, manages state</td>
                 </tr>
                 <tr className="border-t">
-                  <td className="p-3 font-mono text-xs">MorphingDialogTrigger</td>
+                  <td className="p-3 font-mono text-xs">
+                    MorphingDialogTrigger
+                  </td>
                   <td className="p-3">Clickable area that opens the dialog</td>
                 </tr>
                 <tr className="border-t">
@@ -174,7 +176,9 @@ export default function Example() {
                   <td className="p-3">Portal container with backdrop</td>
                 </tr>
                 <tr className="border-t">
-                  <td className="p-3 font-mono text-xs">MorphingDialogContent</td>
+                  <td className="p-3 font-mono text-xs">
+                    MorphingDialogContent
+                  </td>
                   <td className="p-3">Dialog content wrapper</td>
                 </tr>
                 <tr className="border-t">
@@ -215,11 +219,12 @@ export default function Example() {
           </h2>
           <ul className="list-disc list-inside space-y-2 text-muted-foreground">
             <li>
-              <strong>Native View Transitions API</strong> — no external animation
-              libraries
+              <strong>Native View Transitions API</strong> — no external
+              animation libraries
             </li>
             <li>
-              <strong>Click-outside to close</strong> — click backdrop to dismiss
+              <strong>Click-outside to close</strong> — click backdrop to
+              dismiss
             </li>
             <li>
               <strong>Escape key support</strong> — keyboard accessible
@@ -231,8 +236,8 @@ export default function Example() {
               <strong>Body scroll lock</strong> — prevents background scrolling
             </li>
             <li>
-              <strong>Graceful degradation</strong> — works without animations in
-              older browsers
+              <strong>Graceful degradation</strong> — works without animations
+              in older browsers
             </li>
             <li>
               <strong>Reduced motion support</strong> — respects{" "}

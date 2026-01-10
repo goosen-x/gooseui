@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect } from "react"
-import { useToc, TocItem } from "./toc-context"
+import { type TocItem, useToc } from "./toc-context"
 
 interface DocsPageProps {
   toc: TocItem[]

@@ -87,9 +87,21 @@ export default function Example() {
             <div className="space-y-3">
               <h3 className="text-lg font-medium">Custom colors</h3>
               <div className="flex flex-wrap justify-center gap-4 py-8 bg-muted/30 rounded-lg overflow-hidden">
-                <DigitalClock showSeconds={false} color="#00BFFF" scale={0.35} />
-                <DigitalClock showSeconds={false} color="#FF6B6B" scale={0.35} />
-                <DigitalClock showSeconds={false} color="#FFD93D" scale={0.35} />
+                <DigitalClock
+                  showSeconds={false}
+                  color="#00BFFF"
+                  scale={0.35}
+                />
+                <DigitalClock
+                  showSeconds={false}
+                  color="#FF6B6B"
+                  scale={0.35}
+                />
+                <DigitalClock
+                  showSeconds={false}
+                  color="#FFD93D"
+                  scale={0.35}
+                />
               </div>
               <CodeBlock>{`<DigitalClock color="#00BFFF" />
 <DigitalClock color="#FF6B6B" />

@@ -56,7 +56,11 @@ function Button({
       className={cn(buttonVariants({ variant, size, className }))}
       style={
         squircle
-          ? { ...style, cornerShape: "squircle", borderRadius: "2rem" } as React.CSSProperties
+          ? ({
+              ...style,
+              cornerShape: "squircle",
+              borderRadius: "2rem",
+            } as React.CSSProperties)
           : style
       }
       {...props}

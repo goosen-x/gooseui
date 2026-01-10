@@ -122,13 +122,25 @@ export function ThemeToggle({ className, size = 24 }: ThemeToggleProps) {
         >
           {/* Clockwise from top: 12 → 1-2 → 3 → 4-5 → 6 → 7-8 → 9 → 10-11 */}
           <motion.path variants={rayVariant} d="M49 1.5V11" />
-          <motion.path variants={rayVariant} d="M82.5825 15.4175L75.885 22.115" />
+          <motion.path
+            variants={rayVariant}
+            d="M82.5825 15.4175L75.885 22.115"
+          />
           <motion.path variants={rayVariant} d="M87 49H96.5" />
-          <motion.path variants={rayVariant} d="M75.885 75.885L82.5825 82.5825" />
+          <motion.path
+            variants={rayVariant}
+            d="M75.885 75.885L82.5825 82.5825"
+          />
           <motion.path variants={rayVariant} d="M49 87V96.5" />
-          <motion.path variants={rayVariant} d="M22.115 75.885L15.4175 82.5825" />
+          <motion.path
+            variants={rayVariant}
+            d="M22.115 75.885L15.4175 82.5825"
+          />
           <motion.path variants={rayVariant} d="M1.5 49H11" />
-          <motion.path variants={rayVariant} d="M15.4175 15.4175L22.115 22.115" />
+          <motion.path
+            variants={rayVariant}
+            d="M15.4175 15.4175L22.115 22.115"
+          />
         </motion.g>
       </motion.svg>
     </button>

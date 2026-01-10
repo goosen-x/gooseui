@@ -36,9 +36,9 @@ export default function ScrollToTopPage() {
 
         {/* 2. Description */}
         <p className="text-muted-foreground">
-          A floating button that appears after scrolling and smoothly scrolls the
-          page back to the top. Available in 4 variants: default circle, pill with
-          text, minimal icon-only, and progress indicator.
+          A floating button that appears after scrolling and smoothly scrolls
+          the page back to the top. Available in 4 variants: default circle,
+          pill with text, minimal icon-only, and progress indicator.
         </p>
 
         {/* 3. Preview */}
@@ -144,8 +144,8 @@ export default function Page() {
             <div>
               <h3 className="text-lg font-medium mb-3">Progress</h3>
               <p className="text-sm text-muted-foreground mb-4">
-                Circular button with scroll progress indicator. Shows how far user
-                has scrolled on the page.
+                Circular button with scroll progress indicator. Shows how far
+                user has scrolled on the page.
               </p>
               <div className="flex justify-center py-8 bg-muted/30 rounded-lg">
                 <ScrollToTopProgressDemo />
@@ -231,7 +231,9 @@ function CustomScrollButton() {
             Props
           </h2>
 
-          <h3 className="text-lg font-medium mt-6 mb-3">ScrollToTop (Default)</h3>
+          <h3 className="text-lg font-medium mt-6 mb-3">
+            ScrollToTop (Default)
+          </h3>
           <div className="border rounded-lg overflow-x-auto">
             <table className="w-full text-sm min-w-[500px]">
               <thead className="bg-muted">
@@ -407,7 +409,9 @@ function MyComponent() {
               fade and slide transitions on show/hide
             </li>
             <li>
-              <strong className="text-foreground">Configurable threshold</strong>{" "}
+              <strong className="text-foreground">
+                Configurable threshold
+              </strong>{" "}
               — control when button appears
             </li>
             <li>
@@ -423,8 +427,8 @@ function MyComponent() {
               custom implementations
             </li>
             <li>
-              <strong className="text-foreground">Customizable</strong> — override
-              position, colors, and more via className
+              <strong className="text-foreground">Customizable</strong> —
+              override position, colors, and more via className
             </li>
           </ul>
         </div>

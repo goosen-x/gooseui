@@ -119,7 +119,7 @@ function ComponentsNav({ pathname }: { pathname: string }) {
   )
 
   // Check if current path is in a section
-  const isSectionActive = (section: typeof filteredNavigation[0]) =>
+  const isSectionActive = (section: (typeof filteredNavigation)[0]) =>
     section.items.some((item) => pathname === item.href)
 
   return (
@@ -129,7 +129,9 @@ function ComponentsNav({ pathname }: { pathname: string }) {
           <Collapsible
             key={section.title}
             asChild
-            defaultOpen={isSectionActive(section) || section.slug === "getting-started"}
+            defaultOpen={
+              isSectionActive(section) || section.slug === "getting-started"
+            }
             className="group/collapsible"
           >
             <SidebarMenuItem>
@@ -157,8 +159,13 @@ function ComponentsNav({ pathname }: { pathname: string }) {
                             asChild
                             isActive={pathname === item.href}
                           >
-                            <Link href={item.href} className="flex items-center gap-2">
-                              {showIcon && Icon && <Icon className="h-4 w-4 text-muted-foreground" />}
+                            <Link
+                              href={item.href}
+                              className="flex items-center gap-2"
+                            >
+                              {showIcon && Icon && (
+                                <Icon className="h-4 w-4 text-muted-foreground" />
+                              )}
                               <span className="flex-1">{item.title}</span>
                               {item.isDraft && isDev && (
                                 <Badge variant="draft">Draft</Badge>
@@ -166,9 +173,11 @@ function ComponentsNav({ pathname }: { pathname: string }) {
                               {item.isExperimental && !item.isDraft && (
                                 <Badge variant="experimental">Exp</Badge>
                               )}
-                              {item.isNew && !item.isDraft && !item.isExperimental && (
-                                <Badge variant="beta">New</Badge>
-                              )}
+                              {item.isNew &&
+                                !item.isDraft &&
+                                !item.isExperimental && (
+                                  <Badge variant="beta">New</Badge>
+                                )}
                             </Link>
                           </SidebarMenuSubButton>
                         </SidebarMenuSubItem>
@@ -187,7 +196,7 @@ function ComponentsNav({ pathname }: { pathname: string }) {
 
 function BlocksNav({ pathname }: { pathname: string }) {
   const isCategoryActive = BLOCK_CATEGORIES.some(
-    (cat) => pathname === `/docs/blocks/${cat.slug}`
+    (cat) => pathname === `/docs/blocks/${cat.slug}`,
   )
 
   return (

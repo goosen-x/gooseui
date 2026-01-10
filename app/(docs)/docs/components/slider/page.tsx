@@ -99,7 +99,8 @@ export default function Example() {
             <div>
               <h3 className="text-lg font-medium mb-3">With Value Display</h3>
               <p className="text-sm text-muted-foreground mb-4">
-                Show the current value next to the slider with custom formatting.
+                Show the current value next to the slider with custom
+                formatting.
               </p>
               <div className="flex justify-center py-8 bg-muted/30 rounded-lg">
                 <SliderValueDisplayDemo />
@@ -113,7 +114,9 @@ export default function Example() {
             </div>
 
             <div>
-              <h3 className="text-lg font-medium mb-3">Animated Sliding Value</h3>
+              <h3 className="text-lg font-medium mb-3">
+                Animated Sliding Value
+              </h3>
               <p className="text-sm text-muted-foreground mb-4">
                 Use animateValue for smooth digit transitions powered by{" "}
                 <a
@@ -190,7 +193,9 @@ export default function Example() {
             </div>
 
             <div>
-              <h3 className="text-lg font-medium mb-3">Custom Gradient Track</h3>
+              <h3 className="text-lg font-medium mb-3">
+                Custom Gradient Track
+              </h3>
               <p className="text-sm text-muted-foreground mb-4">
                 Override track styling with CSS for custom gradients.
               </p>
@@ -349,16 +354,16 @@ export default function Example() {
           </h2>
           <ul className="list-disc list-inside space-y-2 text-muted-foreground">
             <li>
-              <strong className="text-foreground">Pure CSS</strong> — no external
-              animation or UI libraries required
+              <strong className="text-foreground">Pure CSS</strong> — no
+              external animation or UI libraries required
             </li>
             <li>
               <strong className="text-foreground">Cross-browser</strong> — works
               in Chrome, Firefox, Safari, Edge via vendor prefixes
             </li>
             <li>
-              <strong className="text-foreground">Progress fill</strong> — native
-              Firefox support, gradient fallback for WebKit
+              <strong className="text-foreground">Progress fill</strong> —
+              native Firefox support, gradient fallback for WebKit
             </li>
             <li>
               <strong className="text-foreground">Keyboard accessible</strong> —
@@ -377,7 +382,9 @@ export default function Example() {
               optional SlidingNumber integration for smooth digit transitions
             </li>
             <li>
-              <strong className="text-foreground">Controlled & uncontrolled</strong>{" "}
+              <strong className="text-foreground">
+                Controlled & uncontrolled
+              </strong>{" "}
               — works with value/onValueChange or defaultValue
             </li>
           </ul>

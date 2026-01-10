@@ -24,7 +24,12 @@ export function ComponentPreview() {
           {/* Digital Clock - Hero component */}
           <div
             className="relative overflow-hidden border bg-card p-6 md:col-span-2"
-            style={{ cornerShape: "squircle", borderRadius: "1.5rem" } as React.CSSProperties}
+            style={
+              {
+                cornerShape: "squircle",
+                borderRadius: "1.5rem",
+              } as React.CSSProperties
+            }
           >
             <div className="flex items-center gap-2 mb-6">
               <h3 className="font-semibold">Digital Clock</h3>
@@ -40,7 +45,12 @@ export function ComponentPreview() {
           {/* Morphing Dialog Preview */}
           <div
             className="relative overflow-hidden border bg-card p-6"
-            style={{ cornerShape: "squircle", borderRadius: "1.5rem" } as React.CSSProperties}
+            style={
+              {
+                cornerShape: "squircle",
+                borderRadius: "1.5rem",
+              } as React.CSSProperties
+            }
           >
             <div className="flex items-center gap-2 mb-4">
               <h3 className="font-semibold">Morphing Dialog</h3>
@@ -59,7 +69,12 @@ export function ComponentPreview() {
           {/* Toast Preview */}
           <div
             className="relative overflow-hidden border bg-card p-6"
-            style={{ cornerShape: "squircle", borderRadius: "1.5rem" } as React.CSSProperties}
+            style={
+              {
+                cornerShape: "squircle",
+                borderRadius: "1.5rem",
+              } as React.CSSProperties
+            }
           >
             <div className="flex items-center gap-2 mb-4">
               <h3 className="font-semibold">Toast Notifications</h3>
@@ -69,7 +84,9 @@ export function ComponentPreview() {
                 <CircleCheck className="mt-0.5 size-4 shrink-0 text-green-500" />
                 <div className="flex-1 space-y-0.5">
                   <p className="text-sm font-medium">Success</p>
-                  <p className="text-xs text-muted-foreground">Changes saved successfully</p>
+                  <p className="text-xs text-muted-foreground">
+                    Changes saved successfully
+                  </p>
                 </div>
                 <X className="size-4 shrink-0 opacity-50 cursor-pointer" />
               </div>
@@ -79,7 +96,9 @@ export function ComponentPreview() {
                 </div>
                 <div className="flex-1 space-y-0.5">
                   <p className="text-sm font-medium">Info</p>
-                  <p className="text-xs text-muted-foreground">New update available</p>
+                  <p className="text-xs text-muted-foreground">
+                    New update available
+                  </p>
                 </div>
                 <X className="size-4 shrink-0 opacity-50 cursor-pointer" />
               </div>
@@ -89,7 +108,12 @@ export function ComponentPreview() {
           {/* Badge Preview */}
           <div
             className="relative overflow-hidden border bg-card p-6"
-            style={{ cornerShape: "squircle", borderRadius: "1.5rem" } as React.CSSProperties}
+            style={
+              {
+                cornerShape: "squircle",
+                borderRadius: "1.5rem",
+              } as React.CSSProperties
+            }
           >
             <h3 className="font-semibold mb-4">Badge</h3>
             <div className="flex flex-wrap gap-2">
@@ -104,7 +128,12 @@ export function ComponentPreview() {
           {/* Baseline Status Preview */}
           <div
             className="relative overflow-hidden border bg-card p-6"
-            style={{ cornerShape: "squircle", borderRadius: "1.5rem" } as React.CSSProperties}
+            style={
+              {
+                cornerShape: "squircle",
+                borderRadius: "1.5rem",
+              } as React.CSSProperties
+            }
           >
             <div className="flex items-center gap-2 mb-4">
               <h3 className="font-semibold">Baseline Status</h3>
@@ -120,7 +149,12 @@ export function ComponentPreview() {
           {/* Scroll To Top Preview */}
           <div
             className="relative overflow-hidden border bg-card p-6 md:col-span-2"
-            style={{ cornerShape: "squircle", borderRadius: "1.5rem" } as React.CSSProperties}
+            style={
+              {
+                cornerShape: "squircle",
+                borderRadius: "1.5rem",
+              } as React.CSSProperties
+            }
           >
             <div className="flex items-center gap-2 mb-4">
               <h3 className="font-semibold">Scroll To Top</h3>
@@ -145,9 +179,33 @@ export function ComponentPreview() {
               {/* Progress */}
               <div className="flex flex-col items-center gap-2">
                 <div className="relative flex size-12 items-center justify-center rounded-full bg-background shadow-lg cursor-pointer hover:scale-110 transition-transform">
-                  <svg className="absolute inset-0 -rotate-90" width="48" height="48" viewBox="0 0 48 48">
-                    <circle cx="24" cy="24" r="21" fill="none" stroke="currentColor" strokeWidth="3" className="text-muted" />
-                    <circle cx="24" cy="24" r="21" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeDasharray="132" strokeDashoffset="44" className="text-primary" />
+                  <svg
+                    className="absolute inset-0 -rotate-90"
+                    width="48"
+                    height="48"
+                    viewBox="0 0 48 48"
+                  >
+                    <circle
+                      cx="24"
+                      cy="24"
+                      r="21"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="3"
+                      className="text-muted"
+                    />
+                    <circle
+                      cx="24"
+                      cy="24"
+                      r="21"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="3"
+                      strokeLinecap="round"
+                      strokeDasharray="132"
+                      strokeDashoffset="44"
+                      className="text-primary"
+                    />
                   </svg>
                   <ArrowUp className="size-5 relative z-10" />
                 </div>
@@ -157,10 +215,44 @@ export function ComponentPreview() {
               <div className="flex flex-col items-center gap-2">
                 <div className="flex items-center gap-1.5 text-muted-foreground hover:text-foreground cursor-pointer transition-colors">
                   <span className="text-sm font-medium">Scroll to top</span>
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" className="overflow-visible">
-                    <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" strokeWidth="1.5" className="opacity-20" />
-                    <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeDasharray="63" strokeDashoffset="21" style={{ transform: "rotate(-90deg)", transformOrigin: "center" }} />
-                    <path d="M12 16V8M8 12l4-4 4 4" strokeLinecap="round" strokeLinejoin="round" stroke="currentColor" strokeWidth="1.5" />
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    className="overflow-visible"
+                  >
+                    <circle
+                      cx="12"
+                      cy="12"
+                      r="10"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                      className="opacity-20"
+                    />
+                    <circle
+                      cx="12"
+                      cy="12"
+                      r="10"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeDasharray="63"
+                      strokeDashoffset="21"
+                      style={{
+                        transform: "rotate(-90deg)",
+                        transformOrigin: "center",
+                      }}
+                    />
+                    <path
+                      d="M12 16V8M8 12l4-4 4 4"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                    />
                   </svg>
                 </div>
                 <span className="text-xs text-muted-foreground">Text</span>

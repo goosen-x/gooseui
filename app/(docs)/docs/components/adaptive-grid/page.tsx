@@ -43,7 +43,10 @@ export default function AdaptiveGridPage() {
 
         <DocsBrowserSupport
           features={[
-            { featureId: "container-queries", browserCheck: "container-queries" },
+            {
+              featureId: "container-queries",
+              browserCheck: "container-queries",
+            },
             { featureId: "has", browserCheck: "has" },
           ]}
         >

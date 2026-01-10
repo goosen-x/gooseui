@@ -156,10 +156,7 @@ export function GlitchText({
       {/* Main text with pseudo-element glitch layers */}
       <span
         data-text={text}
-        className={cn(
-          "relative inline-block font-bold",
-          `glitch-text-${id}`,
-        )}
+        className={cn("relative inline-block font-bold", `glitch-text-${id}`)}
         style={{
           color: "var(--glitch-color)",
           animation: `glitch-skew-${id} var(--glitch-duration) infinite linear alternate-reverse`,
@@ -214,4 +211,4 @@ export function GlitchText({
   )
 }
 
-export { type GlitchTextProps }
+export type { GlitchTextProps }

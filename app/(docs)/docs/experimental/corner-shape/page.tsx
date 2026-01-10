@@ -5,14 +5,13 @@ import { InstallCommand } from "@/components/docs/install-command"
 import { BaselineStatus } from "@/registry/new-york/ui/baseline-status"
 import {
   CornerShapeDemo,
-  CornerShapeImageDemo,
   CornerShapeIconsDemo,
+  CornerShapeImageDemo,
 } from "./corner-shape-demo"
 
 export const metadata = {
   title: "Squircle (Corner Shape)",
-  description:
-    "iOS-style squircle shapes using CSS corner-shape property",
+  description: "iOS-style squircle shapes using CSS corner-shape property",
 }
 
 const toc = [
@@ -32,9 +31,14 @@ export default function CornerShapePage() {
         <DocsPageNav title="Squircle" />
         <p className="text-muted-foreground">
           iOS-style rounded rectangles with smooth continuous curves using CSS{" "}
-          <code className="text-xs bg-muted px-1 py-0.5 rounded">corner-shape: squircle</code>.
-          Creates shapes that look more natural than regular{" "}
-          <code className="text-xs bg-muted px-1 py-0.5 rounded">border-radius</code>.
+          <code className="text-xs bg-muted px-1 py-0.5 rounded">
+            corner-shape: squircle
+          </code>
+          . Creates shapes that look more natural than regular{" "}
+          <code className="text-xs bg-muted px-1 py-0.5 rounded">
+            border-radius
+          </code>
+          .
         </p>
 
         <div className="space-y-4">
@@ -49,8 +53,11 @@ export default function CornerShapePage() {
             browserCheck="corner-shape"
           />
           <p className="text-sm text-muted-foreground">
-            CSS <code className="text-xs bg-muted px-1 py-0.5 rounded">corner-shape</code> is
-            experimental and currently only supported in Chrome 139+.
+            CSS{" "}
+            <code className="text-xs bg-muted px-1 py-0.5 rounded">
+              corner-shape
+            </code>{" "}
+            is experimental and currently only supported in Chrome 139+.
           </p>
         </div>
 
@@ -168,7 +175,9 @@ import { Squircle, SquircleImage } from "@/components/ui/corner-shape"
                   <td className="p-3 font-mono text-xs">radius</td>
                   <td className="p-3 font-mono text-xs">string</td>
                   <td className="p-3 font-mono text-xs">&quot;20%&quot;</td>
-                  <td className="p-3">Border radius value (e.g. &quot;22%&quot;, &quot;24px&quot;)</td>
+                  <td className="p-3">
+                    Border radius value (e.g. &quot;22%&quot;, &quot;24px&quot;)
+                  </td>
                 </tr>
                 <tr className="border-t">
                   <td className="p-3 font-mono text-xs">className</td>
@@ -208,7 +217,9 @@ import { Squircle, SquircleImage } from "@/components/ui/corner-shape"
                   <td className="p-3 font-mono text-xs">containerClassName</td>
                   <td className="p-3 font-mono text-xs">string</td>
                   <td className="p-3 font-mono text-xs">-</td>
-                  <td className="p-3">Classes for the container (set size here)</td>
+                  <td className="p-3">
+                    Classes for the container (set size here)
+                  </td>
                 </tr>
                 <tr className="border-t">
                   <td className="p-3 font-mono text-xs">src, alt, etc.</td>

@@ -166,8 +166,8 @@ export default function Example() {
               browser support)
             </li>
             <li>
-              <strong className="text-foreground">Drag to Scroll</strong> — Mouse
-              drag support with click prevention after dragging
+              <strong className="text-foreground">Drag to Scroll</strong> —
+              Mouse drag support with click prevention after dragging
             </li>
             <li>
               <strong className="text-foreground">Keyboard Navigation</strong> —
@@ -352,8 +352,8 @@ function CustomControls() {
             <p>
               This carousel uses{" "}
               <strong className="text-foreground">CSS Scroll Snap</strong> for
-              native scroll snapping with JavaScript for navigation controls. This
-              approach ensures{" "}
+              native scroll snapping with JavaScript for navigation controls.
+              This approach ensures{" "}
               <strong className="text-foreground">96.4% browser support</strong>{" "}
               while providing smooth, performant scrolling.
             </p>

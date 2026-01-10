@@ -133,13 +133,21 @@ export function ButtonSquircleDemo() {
         <span className="text-xs text-muted-foreground">corner-shape</span>
       </div>
       <div className="flex flex-col items-center gap-2">
-        <Button squircle variant="secondary" onClick={() => customToast.info("Secondary squircle")}>
+        <Button
+          squircle
+          variant="secondary"
+          onClick={() => customToast.info("Secondary squircle")}
+        >
           Secondary
         </Button>
         <span className="text-xs text-muted-foreground">squircle</span>
       </div>
       <div className="flex flex-col items-center gap-2">
-        <Button squircle variant="outline" onClick={() => customToast.info("Outline squircle")}>
+        <Button
+          squircle
+          variant="outline"
+          onClick={() => customToast.info("Outline squircle")}
+        >
           Outline
         </Button>
         <span className="text-xs text-muted-foreground">squircle</span>

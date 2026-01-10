@@ -56,7 +56,9 @@ export default function ExperimentalPage() {
         <div className="flex gap-3">
           <FlaskConical className="size-5 text-orange-600 shrink-0 mt-0.5 dark:text-orange-500" />
           <div className="space-y-1">
-            <p className="font-medium text-orange-600 dark:text-orange-500">Experimental Features</p>
+            <p className="font-medium text-orange-600 dark:text-orange-500">
+              Experimental Features
+            </p>
             <p className="text-sm text-muted-foreground">
               These components use modern CSS APIs like Anchor Positioning that
               are not yet supported in all browsers. Check browser compatibility
@@ -86,7 +88,10 @@ export default function ExperimentalPage() {
               browserCheck="anchor-positioning"
             />
             <p className="text-sm text-muted-foreground">
-              Used by: <code className="text-xs bg-muted px-1 py-0.5 rounded">Anchor Tooltip</code>
+              Used by:{" "}
+              <code className="text-xs bg-muted px-1 py-0.5 rounded">
+                Anchor Tooltip
+              </code>
             </p>
           </div>
         </div>
@@ -94,16 +99,28 @@ export default function ExperimentalPage() {
           <h4 className="font-medium mb-2">Unsupported Properties</h4>
           <ul className="text-sm text-muted-foreground space-y-1">
             <li>
-              <code className="text-xs bg-muted px-1 py-0.5 rounded">anchor-name</code> — defines an anchor element
+              <code className="text-xs bg-muted px-1 py-0.5 rounded">
+                anchor-name
+              </code>{" "}
+              — defines an anchor element
             </li>
             <li>
-              <code className="text-xs bg-muted px-1 py-0.5 rounded">position-anchor</code> — references an anchor
+              <code className="text-xs bg-muted px-1 py-0.5 rounded">
+                position-anchor
+              </code>{" "}
+              — references an anchor
             </li>
             <li>
-              <code className="text-xs bg-muted px-1 py-0.5 rounded">anchor()</code> — positions relative to anchor
+              <code className="text-xs bg-muted px-1 py-0.5 rounded">
+                anchor()
+              </code>{" "}
+              — positions relative to anchor
             </li>
             <li>
-              <code className="text-xs bg-muted px-1 py-0.5 rounded">@position-try</code> — fallback positioning
+              <code className="text-xs bg-muted px-1 py-0.5 rounded">
+                @position-try
+              </code>{" "}
+              — fallback positioning
             </li>
           </ul>
         </div>

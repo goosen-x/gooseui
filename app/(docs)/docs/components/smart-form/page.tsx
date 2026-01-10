@@ -27,12 +27,14 @@ export default function SmartFormPage() {
 
         {/* 2. Description */}
         <p className="text-muted-foreground">
-          CSS-only form validation with visual feedback using the :has() selector.
-          No JavaScript validation logic needed.
+          CSS-only form validation with visual feedback using the :has()
+          selector. No JavaScript validation logic needed.
         </p>
 
         {/* 3. Browser Support */}
-        <DocsBrowserSupport features={{ featureId: "has", browserCheck: "has" }}>
+        <DocsBrowserSupport
+          features={{ featureId: "has", browserCheck: "has" }}
+        >
           Uses <code className="bg-muted px-1.5 py-0.5 rounded">:has()</code> to
           style parent elements based on child input states like{" "}
           <code className="bg-muted px-1.5 py-0.5 rounded">:valid</code> and{" "}

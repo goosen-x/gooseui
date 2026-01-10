@@ -48,8 +48,8 @@ export default function ScrollProgressPage() {
             <code className="bg-muted px-1.5 py-0.5 rounded">
               animation-timeline: scroll()
             </code>{" "}
-            to drive animation based on scroll position. Falls back gracefully in
-            unsupported browsers.
+            to drive animation based on scroll position. Falls back gracefully
+            in unsupported browsers.
           </DocsBrowserSupport>
 
           {/* 4. Preview */}

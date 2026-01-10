@@ -6,10 +6,7 @@ import { GlitchText } from "@/registry/new-york/effects/glitch-text"
 export function GlitchTextDemo() {
   return (
     <div className="flex flex-col items-center gap-8 py-8 bg-black rounded-lg">
-      <GlitchText
-        text="GLITCH"
-        className="text-6xl text-white"
-      />
+      <GlitchText text="GLITCH" className="text-6xl text-white" />
     </div>
   )
 }
@@ -48,21 +45,9 @@ export function GlitchTextIntensityDemo() {
 export function GlitchTextColorDemo() {
   return (
     <div className="flex flex-col items-center gap-8 py-8 bg-black rounded-lg">
-      <GlitchText
-        text="NEON"
-        color="#00ff88"
-        className="text-5xl"
-      />
-      <GlitchText
-        text="CYBER"
-        color="#ff0080"
-        className="text-5xl"
-      />
-      <GlitchText
-        text="PUNK"
-        color="#ffcc00"
-        className="text-5xl"
-      />
+      <GlitchText text="NEON" color="#00ff88" className="text-5xl" />
+      <GlitchText text="CYBER" color="#ff0080" className="text-5xl" />
+      <GlitchText text="PUNK" color="#ffcc00" className="text-5xl" />
     </div>
   )
 }
