@@ -1,0 +1,14 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "search-panel",
+  "type": "registry:ui",
+  "title": "Search Panel",
+  "description": "Versatile search component with 5 variants: instant search, command palette, scoped search, contextual suggestions, and federated multi-source search.",
+  "dependencies": ["lucide-react", "class-variance-authority"],
+  "files": [
+    {
+      "path": "registry/new-york/ui/search-panel.tsx",
+      "type": "registry:ui"
+    }
+  ]
+}

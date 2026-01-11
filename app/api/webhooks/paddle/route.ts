@@ -76,7 +76,9 @@ export async function POST(request: Request) {
           | { email?: string }
           | undefined
         const customerEmail =
-          customer?.email || billingDetails?.email || (eventData.email as string)
+          customer?.email ||
+          billingDetails?.email ||
+          (eventData.email as string)
         const subscriptionId = eventData.subscriptionId as string | undefined
         const items = eventData.items as
           | Array<{ price?: { id?: string } }>
@@ -84,7 +86,10 @@ export async function POST(request: Request) {
         const priceId = items?.[0]?.price?.id
         const plan = priceId ? getPlanFromPriceId(priceId) : "pro"
 
-        console.log("Transaction completed - full data:", JSON.stringify(eventData, null, 2))
+        console.log(
+          "Transaction completed - full data:",
+          JSON.stringify(eventData, null, 2),
+        )
         console.log("Transaction completed:", {
           customerId,
           customerEmail,
