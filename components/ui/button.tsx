@@ -53,12 +53,11 @@ function Button({
   return (
     <Comp
       data-slot="button"
-      className={cn(buttonVariants({ variant, size, className }))}
-      style={
-        squircle
-          ? { ...style, cornerShape: "squircle", borderRadius: "2rem" } as React.CSSProperties
-          : style
-      }
+      className={cn(
+        buttonVariants({ variant, size, className }),
+        squircle && "squircle-btn",
+      )}
+      style={style}
       {...props}
     />
   )

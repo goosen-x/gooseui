@@ -26,12 +26,20 @@ export function CardDemo() {
       <CardFooter className="flex justify-between">
         <Button
           variant="outline"
-          onClick={() => customToast.info("Cancelled", { description: "Project creation cancelled" })}
+          onClick={() =>
+            customToast.info("Cancelled", {
+              description: "Project creation cancelled",
+            })
+          }
         >
           Cancel
         </Button>
         <Button
-          onClick={() => customToast.success("Created!", { description: "Your project has been created" })}
+          onClick={() =>
+            customToast.success("Created!", {
+              description: "Your project has been created",
+            })
+          }
         >
           Create
         </Button>
