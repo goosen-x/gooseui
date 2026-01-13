@@ -13,7 +13,7 @@ export const REGISTRY_BASE_URL = "https://gooseui.pro/r"
  * Registry namespace for shadcn CLI
  * When registered in shadcn, flip this to true and use "@gooseui" format
  */
-export const REGISTRY_IS_OFFICIAL = false
+export const REGISTRY_IS_OFFICIAL = true
 export const REGISTRY_NAMESPACE = "@gooseui"
 
 export type RegistryItemType = "component" | "effect" | "hook" | "lib"
