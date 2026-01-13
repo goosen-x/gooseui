@@ -212,7 +212,7 @@ export function SiteSearch() {
                     onHighlight={() => {
                       setSelectedType("component")
                       setCopyPayload(
-                        `npx shadcn@latest add https://gooseui.pro/r/${componentName}.json`,
+                        `npx shadcn@latest add @gooseui/${componentName}`,
                       )
                     }}
                     onSelect={() => runCommand(() => router.push(item.href))}
@@ -241,7 +241,7 @@ export function SiteSearch() {
                     onHighlight={() => {
                       setSelectedType("effect")
                       setCopyPayload(
-                        `npx shadcn@latest add https://gooseui.pro/r/${effectName}.json`,
+                        `npx shadcn@latest add @gooseui/${effectName}`,
                       )
                     }}
                     onSelect={() => runCommand(() => router.push(item.href))}
@@ -271,7 +271,7 @@ export function SiteSearch() {
                         onHighlight={() => {
                           setSelectedType("experimental")
                           setCopyPayload(
-                            `npx shadcn@latest add https://gooseui.pro/r/${itemName}.json`,
+                            `npx shadcn@latest add @gooseui/${itemName}`,
                           )
                         }}
                         onSelect={() =>

@@ -67,7 +67,7 @@ const searchPanelVariants = cva(
       variant: "instant",
       size: "md",
     },
-  }
+  },
 )
 
 /* -------------------------------------------------------------------------------------------------
@@ -85,7 +85,7 @@ interface SearchPanelContextValue {
 }
 
 const SearchPanelContext = React.createContext<SearchPanelContextValue | null>(
-  null
+  null,
 )
 
 function useSearchPanel() {
@@ -151,7 +151,7 @@ function SearchPanel({
         onQueryChange?.(newQuery)
       }
     },
-    [variant, debounce, onQueryChange]
+    [variant, debounce, onQueryChange],
   )
 
   // Keyboard shortcut for command variant
@@ -185,7 +185,7 @@ function SearchPanel({
       activeScope,
       setActiveScope,
     }),
-    [query, setQuery, isOpen, variant, activeScope]
+    [query, setQuery, isOpen, variant, activeScope],
   )
 
   // Command palette overlay
@@ -264,7 +264,7 @@ function SearchPanel({
                   "px-3 py-1 text-sm rounded-md transition-colors cursor-pointer",
                   activeScope === scope.id
                     ? "bg-primary text-primary-foreground"
-                    : "text-muted-foreground hover:bg-accent hover:text-accent-foreground"
+                    : "text-muted-foreground hover:bg-accent hover:text-accent-foreground",
                 )}
               >
                 {scope.label}
@@ -469,7 +469,9 @@ function SearchPanelSuggestions({
                   onClick={() => onSelect?.(item)}
                   className="w-full flex items-center gap-3 px-3 py-2 text-left hover:bg-accent cursor-pointer transition-colors"
                 >
-                  {item.icon || <Hash className="size-4 text-muted-foreground" />}
+                  {item.icon || (
+                    <Hash className="size-4 text-muted-foreground" />
+                  )}
                   <div className="flex-1 min-w-0">
                     <div className="text-sm truncate">{item.title}</div>
                     {item.description && (
@@ -610,7 +612,7 @@ function SearchPanelCommands({
     return commands.filter(
       (cmd) =>
         cmd.title.toLowerCase().includes(cmdQuery) ||
-        cmd.description?.toLowerCase().includes(cmdQuery)
+        cmd.description?.toLowerCase().includes(cmdQuery),
     )
   }, [query, commands])
 
@@ -651,7 +653,9 @@ function SearchPanelCommands({
                   }}
                   className="w-full flex items-center gap-3 px-3 py-2 text-left hover:bg-accent cursor-pointer transition-colors"
                 >
-                  {cmd.icon || <Command className="size-4 text-muted-foreground" />}
+                  {cmd.icon || (
+                    <Command className="size-4 text-muted-foreground" />
+                  )}
                   <div className="flex-1 min-w-0">
                     <div className="text-sm font-medium">{cmd.title}</div>
                     {cmd.description && (

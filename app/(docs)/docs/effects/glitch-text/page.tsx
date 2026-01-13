@@ -43,7 +43,7 @@ export default function GlitchTextPage() {
         </DocsPreview>
 
         <DocsSection id="installation" title="Installation">
-          <InstallCommand packageName="https://gooseui.pro/r/glitch-text.json" />
+          <InstallCommand packageName="@gooseui/glitch-text" />
         </DocsSection>
 
         <DocsSection id="usage" title="Usage">

@@ -3,15 +3,13 @@ import { DocsPage } from "@/components/docs/docs-page"
 import { DocsPageNav } from "@/components/docs/docs-page-nav"
 import { InstallCommand } from "@/components/docs/install-command"
 import { BaselineStatus } from "@/registry/new-york/ui/baseline-status"
-import { Button } from "@/registry/new-york/ui/button"
 import {
   Card,
-  CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/registry/new-york/ui/card"
+import { CardDemo } from "./card-demo"
 
 export const metadata = {
   title: "Card",
@@ -44,23 +42,7 @@ export default function CardPage() {
             Preview
           </h2>
           <div className="flex items-center justify-center rounded-lg border p-6">
-            <Card className="w-[350px]">
-              <CardHeader>
-                <CardTitle>Create Project</CardTitle>
-                <CardDescription>
-                  Deploy a new project in one click
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground">
-                  Your new project will be created with a configured environment
-                </p>
-              </CardContent>
-              <CardFooter className="flex justify-between">
-                <Button variant="outline">Cancel</Button>
-                <Button>Create</Button>
-              </CardFooter>
-            </Card>
+            <CardDemo />
           </div>
         </div>
 
@@ -71,7 +53,7 @@ export default function CardPage() {
           >
             Installation
           </h2>
-          <InstallCommand packageName="https://gooseui.pro/r/card.json" />
+          <InstallCommand packageName="@gooseui/card" />
         </div>
 
         <div className="space-y-4">

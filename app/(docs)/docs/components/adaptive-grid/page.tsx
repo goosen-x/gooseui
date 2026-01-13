@@ -156,7 +156,7 @@ export default function AdaptiveGridPage() {
         </div>
 
         <DocsSection id="installation" title="Installation">
-          <InstallCommand packageName="https://gooseui.pro/r/adaptive-grid.json" />
+          <InstallCommand packageName="@gooseui/adaptive-grid" />
         </DocsSection>
 
         <DocsSection id="usage" title="Usage">

@@ -83,7 +83,7 @@ export default function CornerShapePage() {
           >
             Installation
           </h2>
-          <InstallCommand packageName="https://gooseui.pro/r/corner-shape.json" />
+          <InstallCommand packageName="@gooseui/corner-shape" />
         </div>
 
         <div className="space-y-4">

@@ -51,7 +51,7 @@ export default function InstallationPage() {
             Method 1: Direct URL
           </h2>
           <p className="leading-7">Install a component directly via URL:</p>
-          <InstallCommand packageName="https://gooseui.pro/r/button.json" />
+          <InstallCommand packageName="@gooseui/button" />
         </div>
 
         <div className="space-y-4">

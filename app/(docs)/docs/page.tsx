@@ -64,7 +64,7 @@ export default function IntroductionPage() {
           <p className="leading-7">
             Start by installing components via shadcn CLI:
           </p>
-          <InstallCommand packageName="https://gooseui.pro/r/button.json" />
+          <InstallCommand packageName="@gooseui/button" />
         </div>
 
         <div className="flex gap-4 pt-4">

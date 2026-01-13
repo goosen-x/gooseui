@@ -13,7 +13,7 @@ const faqs = [
   {
     question: "How do I install components?",
     answer:
-      "Use shadcn CLI: npx shadcn@latest add https://gooseui.pro/r/button.json. The component will be added to the components/ui folder of your project.",
+      "Use shadcn CLI: npx shadcn@latest add @gooseui/button. The component will be added to the components/ui folder of your project.",
   },
   {
     question: "Can I customize styles?",

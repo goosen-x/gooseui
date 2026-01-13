@@ -94,10 +94,13 @@ See `morphing-dialog/page.tsx` as the reference implementation.
 ## Important Notes
 
 - All h2 elements in docs MUST have `id` attributes for Table of Contents
-- Use `<InstallCommand packageName="https://gooseui.pro/r/{name}.json" />`
+- Use `<InstallCommand packageName="@gooseui/{name}" />`
 - Use `<DocsPageNav title="..." prevHref="..." nextHref="..." />`
 - Interactive demos should use `customToast` from `@/lib/toast`
 
-## Registry URL
+## Registry
 
-Components are served from: `https://gooseui.pro/r/{name}.json`
+GooseUI is an official shadcn registry. Install components with:
+```bash
+npx shadcn@latest add @gooseui/{name}
+```

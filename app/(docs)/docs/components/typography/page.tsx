@@ -58,7 +58,7 @@ export default function TypographyPage() {
           >
             Installation
           </h2>
-          <InstallCommand packageName="https://gooseui.pro/r/typography.json" />
+          <InstallCommand packageName="@gooseui/typography" />
         </div>
 
         {/* Usage Section */}

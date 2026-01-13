@@ -47,7 +47,7 @@ export default function AnimatedTimerPage() {
           >
             Installation
           </h2>
-          <InstallCommand packageName="https://gooseui.pro/r/animated-timer.json" />
+          <InstallCommand packageName="@gooseui/animated-timer" />
         </div>
 
         <div className="space-y-4">

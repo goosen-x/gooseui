@@ -16,20 +16,20 @@ A modern, beautiful component library for React and Next.js. Built on top of sha
 Install components using the shadcn CLI:
 
 ```bash
-npx shadcn@latest add https://gooseui.pro/r/button.json
+npx shadcn@latest add @gooseui/button
 ```
 
 Or with other package managers:
 
 ```bash
 # pnpm
-pnpm dlx shadcn@latest add https://gooseui.pro/r/button.json
+pnpm dlx shadcn@latest add @gooseui/button
 
 # yarn
-npx shadcn@latest add https://gooseui.pro/r/button.json
+npx shadcn@latest add @gooseui/button
 
 # bun
-bunx --bun shadcn@latest add https://gooseui.pro/r/button.json
+bunx --bun shadcn@latest add @gooseui/button
 ```
 
 ## Available Components

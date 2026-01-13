@@ -79,7 +79,7 @@ export default function ScrollProgressPage() {
             >
               Installation
             </h2>
-            <InstallCommand packageName="https://gooseui.pro/r/scroll-progress.json" />
+            <InstallCommand packageName="@gooseui/scroll-progress" />
           </div>
 
           {/* 6. Usage */}

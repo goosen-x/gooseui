@@ -61,7 +61,7 @@ export default function StackingCardsPage() {
           >
             Installation
           </h2>
-          <InstallCommand packageName="https://gooseui.pro/r/stacking-cards.json" />
+          <InstallCommand packageName="@gooseui/stacking-cards" />
         </div>
 
         {/* 6. Usage */}

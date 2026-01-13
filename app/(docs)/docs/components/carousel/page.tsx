@@ -59,7 +59,7 @@ export default function CarouselPage() {
           >
             Installation
           </h2>
-          <InstallCommand packageName="https://gooseui.pro/r/carousel.json" />
+          <InstallCommand packageName="@gooseui/carousel" />
         </div>
 
         <div className="space-y-4">

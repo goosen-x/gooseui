@@ -51,7 +51,7 @@ export default function CheckboxPage() {
           >
             Installation
           </h2>
-          <InstallCommand packageName="https://gooseui.pro/r/checkbox.json" />
+          <InstallCommand packageName="@gooseui/checkbox" />
         </div>
 
         <div className="space-y-4">

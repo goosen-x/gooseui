@@ -242,7 +242,7 @@ export function HeroBento() {
                 <div className="p-3">
                   <code className="text-xs text-muted-foreground">
                     <span className="text-green-500">$</span> npx shadcn add
-                    https://gooseui.pro/r/button.json
+                    @gooseui/button
                   </code>
                 </div>
               </div>

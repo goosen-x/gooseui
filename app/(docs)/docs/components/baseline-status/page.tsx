@@ -91,7 +91,7 @@ export default function BaselineStatusPage() {
           >
             Installation
           </h2>
-          <InstallCommand packageName="https://gooseui.pro/r/baseline-status.json" />
+          <InstallCommand packageName="@gooseui/baseline-status" />
         </div>
 
         <div className="space-y-4">

@@ -34,7 +34,7 @@ export function CTA() {
               }
             >
               <span className="whitespace-nowrap">
-                npx shadcn@latest add https://gooseui.pro/r/button.json
+                npx shadcn@latest add @gooseui/button
               </span>
             </div>
             <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">

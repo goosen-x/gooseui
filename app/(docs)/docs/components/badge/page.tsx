@@ -57,7 +57,7 @@ export default function BadgePage() {
           >
             Installation
           </h2>
-          <InstallCommand packageName="https://gooseui.pro/r/badge.json" />
+          <InstallCommand packageName="@gooseui/badge" />
         </section>
 
         {/* Usage */}

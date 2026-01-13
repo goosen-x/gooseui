@@ -453,11 +453,11 @@ ${registryUrl ? `Registry: ${registryUrl}` : ""}
         )}
       >
         {/* Copy Page Button Group */}
-        <div className="bg-secondary group/buttons relative flex rounded-lg *:data-[slot=button]:focus-visible:relative *:data-[slot=button]:focus-visible:z-10">
+        <div className="bg-secondary group/buttons relative flex items-stretch rounded-lg *:data-[slot=button]:focus-visible:relative *:data-[slot=button]:focus-visible:z-10">
           <Button
             variant="secondary"
             size="sm"
-            className="rounded-md shadow-none h-8 md:h-7 md:text-[0.8rem]"
+            className="h-8 rounded-md shadow-none sm:h-7 sm:text-[0.8rem]"
             onClick={handleCopyPage}
           >
             <span className="relative overflow-hidden h-4 inline-flex items-center">
@@ -488,7 +488,7 @@ ${registryUrl ? `Registry: ${registryUrl}` : ""}
               <Button
                 variant="secondary"
                 size="sm"
-                className="peer -ml-0.5 hidden size-8 rounded-md shadow-none sm:flex md:size-7"
+                className="peer -ml-0.5 hidden size-7 rounded-md shadow-none sm:flex"
               >
                 <ChevronDownIcon className="size-4" />
               </Button>
@@ -507,7 +507,7 @@ ${registryUrl ? `Registry: ${registryUrl}` : ""}
           <Separator
             orientation="vertical"
             className={cn(
-              "!bg-foreground/10 absolute top-0 right-8 z-0 !h-8",
+              "!bg-foreground/10 absolute right-8 top-0 z-0 !h-8",
               "peer-focus-visible:opacity-0",
               "sm:right-7 sm:!h-7",
             )}

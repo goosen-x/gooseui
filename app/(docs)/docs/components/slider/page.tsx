@@ -61,7 +61,7 @@ export default function SliderPage() {
           >
             Installation
           </h2>
-          <InstallCommand packageName="https://gooseui.pro/r/slider.json" />
+          <InstallCommand packageName="@gooseui/slider" />
         </div>
 
         <div className="space-y-4">

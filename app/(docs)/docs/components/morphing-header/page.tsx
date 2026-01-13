@@ -73,7 +73,7 @@ export default function MorphingHeaderPage() {
           >
             Installation
           </h2>
-          <InstallCommand packageName="https://gooseui.pro/r/morphing-header.json" />
+          <InstallCommand packageName="@gooseui/morphing-header" />
         </div>
 
         {/* 6. Usage */}

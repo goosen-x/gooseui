@@ -83,7 +83,7 @@ export default function ComponentNamePage() {
         >
           Installation
         </h2>
-        <InstallCommand packageName="https://gooseui.pro/r/component-name.json" />
+        <InstallCommand packageName="@gooseui/component-name" />
       </div>
 
       {/* 6. Usage */}

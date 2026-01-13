@@ -65,7 +65,7 @@ export default function SmartFormPage() {
           >
             Installation
           </h2>
-          <InstallCommand packageName="https://gooseui.pro/r/smart-form.json" />
+          <InstallCommand packageName="@gooseui/smart-form" />
         </div>
 
         {/* 6. Usage */}

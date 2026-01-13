@@ -12,6 +12,8 @@ import {
 import { MotionConfig, motion } from "motion/react"
 import { useTheme } from "next-themes"
 import * as React from "react"
+import { BrushCleaning } from "@/components/animate-ui/icons/brush-cleaning"
+import { ThemeToggle } from "@/components/ui/theme-toggle"
 import { useClickOutside } from "@/hooks/use-click-outside"
 import { cn } from "@/lib/utils"
 
@@ -326,24 +328,13 @@ function DemoToolbar() {
           >
             <div className="overflow-hidden p-2">
               {!isOpen ? (
-                <div className="flex space-x-1">
-                  <ToolbarButton
-                    onClick={() =>
-                      setTheme(resolvedTheme === "dark" ? "light" : "dark")
-                    }
-                    ariaLabel="Toggle theme"
-                  >
-                    {resolvedTheme === "dark" ? (
-                      <Sun className="size-5" />
-                    ) : (
-                      <Moon className="size-5" />
-                    )}
-                  </ToolbarButton>
+                <div className="flex items-center space-x-1">
+                  <ThemeToggle size={24} className="size-9 rounded-lg p-1.5" />
                   <ToolbarButton
                     onClick={() => setIsOpen(true)}
                     ariaLabel="Open color picker"
                   >
-                    <Palette className="size-5" />
+                    <BrushCleaning size={20} animateOnHover />
                   </ToolbarButton>
                 </div>
               ) : (

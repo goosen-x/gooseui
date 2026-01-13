@@ -46,7 +46,7 @@ export default function InputPage() {
           >
             Installation
           </h2>
-          <InstallCommand packageName="https://gooseui.pro/r/input.json" />
+          <InstallCommand packageName="@gooseui/input" />
         </div>
 
         <div className="space-y-4">

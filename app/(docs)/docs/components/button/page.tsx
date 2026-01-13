@@ -51,7 +51,7 @@ export default function ButtonPage() {
           >
             Installation
           </h2>
-          <InstallCommand packageName="https://gooseui.pro/r/button.json" />
+          <InstallCommand packageName="@gooseui/button" />
         </div>
 
         <div className="space-y-4">

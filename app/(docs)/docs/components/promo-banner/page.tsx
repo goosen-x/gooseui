@@ -52,7 +52,7 @@ export default function PromoBannerPage() {
           >
             Installation
           </h2>
-          <InstallCommand packageName="https://gooseui.pro/r/promo-banner.json" />
+          <InstallCommand packageName="@gooseui/promo-banner" />
           <p className="text-sm text-muted-foreground">
             Add the marquee animation to your globals.css:
           </p>

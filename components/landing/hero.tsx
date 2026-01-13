@@ -13,7 +13,7 @@ import { Input } from "@/registry/new-york/ui/input"
 import { SlidingNumber } from "@/registry/new-york/ui/sliding-number"
 import { ThemeCustomizerPill } from "@/registry/new-york/ui/theme-customizer"
 
-const cliCommand = "npx shadcn@latest add https://gooseui.pro/r/button.json"
+const cliCommand = "npx shadcn@latest add @gooseui/button"
 
 export function Hero() {
   const [counter, setCounter] = useState(1337)

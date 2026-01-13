@@ -48,7 +48,7 @@ export default function DigitalClockPage() {
           >
             Installation
           </h2>
-          <InstallCommand packageName="https://gooseui.pro/r/digital-clock.json" />
+          <InstallCommand packageName="@gooseui/digital-clock" />
         </div>
 
         {/* Usage */}

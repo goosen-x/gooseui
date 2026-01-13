@@ -274,11 +274,19 @@ const rawNavigation: NavSection[] = [
         slug: "search-panel",
         title: "Search Panel",
         href: "/docs/components/search-panel",
-        description: "Versatile search with 5 variants: instant, command palette, scoped, contextual, federated",
+        description:
+          "Versatile search with 5 variants: instant, command palette, scoped, contextual, federated",
         category: "Inputs",
         icon: Search,
         isNew: true,
-        keywords: ["search", "command", "palette", "instant", "federated", "cmdk"],
+        keywords: [
+          "search",
+          "command",
+          "palette",
+          "instant",
+          "federated",
+          "cmdk",
+        ],
       },
       {
         slug: "scroll-to-top",

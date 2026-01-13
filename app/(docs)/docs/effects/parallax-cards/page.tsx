@@ -59,7 +59,7 @@ export default function ParallaxCardsPage() {
           >
             Installation
           </h2>
-          <InstallCommand packageName="https://gooseui.pro/r/parallax-cards.json" />
+          <InstallCommand packageName="@gooseui/parallax-cards" />
         </div>
 
         {/* 6. Usage */}

@@ -115,7 +115,11 @@ const federatedSources: SearchSource[] = [
     name: "GitHub Issues",
     icon: <Github className="size-3" />,
     results: [
-      { id: "f5", title: "#142: Button variant bug", description: "Fixed in..." },
+      {
+        id: "f5",
+        title: "#142: Button variant bug",
+        description: "Fixed in...",
+      },
     ],
   },
   {
@@ -176,10 +180,10 @@ export function SearchPanelDemo() {
 
       // Simulate API delay
       setTimeout(() => {
-        let filtered = sampleResults.filter(
+        const filtered = sampleResults.filter(
           (item) =>
             item.title.toLowerCase().includes(query.toLowerCase()) ||
-            item.description?.toLowerCase().includes(query.toLowerCase())
+            item.description?.toLowerCase().includes(query.toLowerCase()),
         )
 
         // Apply scope filter for scoped variant
@@ -191,7 +195,7 @@ export function SearchPanelDemo() {
         setLoading(false)
       }, 300)
     },
-    [variant, activeScope]
+    [variant, activeScope],
   )
 
   return (
@@ -199,13 +203,7 @@ export function SearchPanelDemo() {
       {/* Variant selector */}
       <div className="flex flex-wrap gap-2 justify-center">
         {(
-          [
-            "instant",
-            "command",
-            "scoped",
-            "contextual",
-            "federated",
-          ] as const
+          ["instant", "command", "scoped", "contextual", "federated"] as const
         ).map((v) => (
           <button
             key={v}
@@ -245,7 +243,8 @@ export function SearchPanelDemo() {
         {variant === "command" && (
           <div className="text-center">
             <p className="text-sm text-muted-foreground mb-4">
-              Click the button or press <kbd className="px-1.5 py-0.5 bg-muted rounded text-xs">⌘K</kbd>
+              Click the button or press{" "}
+              <kbd className="px-1.5 py-0.5 bg-muted rounded text-xs">⌘K</kbd>
             </p>
             <SearchPanel
               variant="command"

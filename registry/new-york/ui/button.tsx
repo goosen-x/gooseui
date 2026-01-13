@@ -45,7 +45,7 @@ function Button({
 }: React.ComponentProps<"button"> &
   VariantProps<typeof buttonVariants> & {
     asChild?: boolean
-    /** Apply iOS-style squircle corners (requires Chrome 139+) */
+    /** Apply iOS-style squircle corners (Chrome 139+, fallback to rounded) */
     squircle?: boolean
   }) {
   const Comp = asChild ? Slot : "button"
@@ -53,16 +53,11 @@ function Button({
   return (
     <Comp
       data-slot="button"
-      className={cn(buttonVariants({ variant, size, className }))}
-      style={
-        squircle
-          ? ({
-              ...style,
-              cornerShape: "squircle",
-              borderRadius: "2rem",
-            } as React.CSSProperties)
-          : style
-      }
+      className={cn(
+        buttonVariants({ variant, size, className }),
+        squircle && "squircle-btn",
+      )}
+      style={style}
       {...props}
     />
   )

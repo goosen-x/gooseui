@@ -75,7 +75,7 @@ export default function MorphingDialogPage() {
           >
             Installation
           </h2>
-          <InstallCommand packageName="https://gooseui.pro/r/morphing-dialog.json" />
+          <InstallCommand packageName="@gooseui/morphing-dialog" />
         </div>
 
         <div className="space-y-4">

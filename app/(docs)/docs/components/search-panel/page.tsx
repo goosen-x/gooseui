@@ -30,7 +30,7 @@ export default function SearchPanelPage() {
       </DocsPreview>
 
       <DocsSection id="installation" title="Installation">
-        <InstallCommand packageName="https://gooseui.pro/r/search-panel.json" />
+        <InstallCommand packageName="@gooseui/search-panel" />
       </DocsSection>
 
       <DocsSection id="usage" title="Usage">
@@ -112,7 +112,9 @@ export default function MySearch() {
           </div>
 
           <div>
-            <h3 className="text-lg font-medium mb-3">4. Contextual Suggestions</h3>
+            <h3 className="text-lg font-medium mb-3">
+              4. Contextual Suggestions
+            </h3>
             <p className="text-sm text-muted-foreground mb-4">
               Shows recent searches, trending items, and personalized
               suggestions before typing.
@@ -177,7 +179,7 @@ export default function MySearch() {
             },
             {
               name: "scopes",
-              type: '{ id: string; label: string }[]',
+              type: "{ id: string; label: string }[]",
               description: "Available scopes (scoped variant)",
             },
             {

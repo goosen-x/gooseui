@@ -58,7 +58,7 @@ export default function SlidingNumberPage() {
           >
             Installation
           </h2>
-          <InstallCommand packageName="https://gooseui.pro/r/sliding-number.json" />
+          <InstallCommand packageName="@gooseui/sliding-number" />
         </div>
 
         <div className="space-y-4">

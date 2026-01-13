@@ -90,7 +90,7 @@ export default function AnchorTooltipPage() {
           >
             Installation
           </h2>
-          <InstallCommand packageName="https://gooseui.pro/r/anchor-tooltip.json" />
+          <InstallCommand packageName="@gooseui/anchor-tooltip" />
         </div>
 
         {/* 6. Usage */}

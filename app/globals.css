@@ -239,6 +239,18 @@
       animation: none;
     }
   }
+
+  /* Squircle button style with fallback */
+  .squircle-btn {
+    border-radius: 1rem;
+  }
+
+  @supports (corner-shape: squircle) {
+    .squircle-btn {
+      border-radius: 2rem;
+      corner-shape: squircle;
+    }
+  }
 }
 
 @keyframes marquee {

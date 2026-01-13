@@ -64,7 +64,7 @@ export default function BorderBeamPage() {
           >
             Installation
           </h2>
-          <InstallCommand packageName="https://gooseui.pro/r/border-beam.json" />
+          <InstallCommand packageName="@gooseui/border-beam" />
         </div>
 
         <div className="space-y-4">

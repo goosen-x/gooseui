@@ -36,7 +36,7 @@ export default function ScrollContainerPage() {
         </DocsPreview>
 
         <DocsSection id="installation" title="Installation">
-          <InstallCommand packageName="https://gooseui.pro/r/scroll-container.json" />
+          <InstallCommand packageName="@gooseui/scroll-container" />
         </DocsSection>
 
         <DocsSection id="usage" title="Usage">

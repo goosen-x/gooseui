@@ -45,7 +45,7 @@ export default function ThemeCustomizerPage() {
           >
             Installation
           </h2>
-          <InstallCommand packageName="https://gooseui.pro/r/theme-customizer.json" />
+          <InstallCommand packageName="@gooseui/theme-customizer" />
         </div>
 
         <div className="space-y-4">

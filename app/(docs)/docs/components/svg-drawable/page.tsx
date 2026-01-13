@@ -44,7 +44,7 @@ export default function SVGDrawablePage() {
         </DocsPreview>
 
         <DocsSection id="installation" title="Installation">
-          <InstallCommand packageName="https://gooseui.pro/r/svg-drawable.json" />
+          <InstallCommand packageName="@gooseui/svg-drawable" />
         </DocsSection>
 
         <DocsSection id="usage" title="Usage">

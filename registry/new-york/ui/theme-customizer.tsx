@@ -46,7 +46,6 @@ export function ThemeCustomizerPill({
   className?: string
   inline?: boolean
 }) {
-  const { setTheme, resolvedTheme } = useTheme()
   const { activeColor, setColor, mounted } = useThemeColor()
   const [showColors, setShowColors] = React.useState(false)
   const containerRef = React.useRef<HTMLDivElement>(null)
@@ -76,20 +75,11 @@ export function ThemeCustomizerPill({
     <div ref={containerRef} className={isInline ? "relative" : undefined}>
       <nav
         className={cn(
-          "fixed bottom-5 left-1/2 z-50 flex -translate-x-1/2 gap-1 rounded-full border bg-background/70 p-1 shadow-lg backdrop-blur-xl transition-all",
+          "fixed bottom-5 left-1/2 z-50 flex -translate-x-1/2 items-center gap-1 rounded-full border bg-background/70 p-1 shadow-lg backdrop-blur-xl transition-all",
           className,
         )}
       >
-        <button
-          className="flex size-9 items-center justify-center rounded-full transition-colors hover:bg-accent cursor-pointer"
-          onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
-        >
-          {resolvedTheme === "dark" ? (
-            <Sun className="size-5" />
-          ) : (
-            <Moon className="size-5" />
-          )}
-        </button>
+        <ThemeToggle size={20} className="size-9 rounded-full p-2" />
         <button
           className="flex size-9 items-center justify-center rounded-full transition-colors hover:bg-accent cursor-pointer"
           onClick={() => setShowColors(!showColors)}
@@ -212,7 +202,6 @@ export function ThemeCustomizerBar({ className }: { className?: string }) {
 
 // Variant 3: Vertical Sidebar
 export function ThemeCustomizerSidebar({ className }: { className?: string }) {
-  const { setTheme, resolvedTheme } = useTheme()
   const { activeColor, setColor, mounted } = useThemeColor()
 
   if (!mounted) {
@@ -233,20 +222,11 @@ export function ThemeCustomizerSidebar({ className }: { className?: string }) {
   return (
     <div
       className={cn(
-        "fixed right-4 top-1/2 z-50 flex -translate-y-1/2 flex-col gap-2 rounded-2xl border bg-background/70 p-2 shadow-lg backdrop-blur-xl",
+        "fixed right-4 top-1/2 z-50 flex -translate-y-1/2 flex-col items-center gap-2 rounded-2xl border bg-background/70 p-2 shadow-lg backdrop-blur-xl",
         className,
       )}
     >
-      <button
-        onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
-        className="flex size-8 items-center justify-center rounded-full transition-colors hover:bg-accent"
-      >
-        {resolvedTheme === "dark" ? (
-          <Sun className="size-4" />
-        ) : (
-          <Moon className="size-4" />
-        )}
-      </button>
+      <ThemeToggle size={16} className="size-8 rounded-full p-2" />
 
       <div className="mx-auto h-px w-6 bg-border" />
 
@@ -255,7 +235,7 @@ export function ThemeCustomizerSidebar({ className }: { className?: string }) {
           key={c.name}
           onClick={() => setColor(c.name)}
           className={cn(
-            "relative size-8 rounded-full transition-transform hover:scale-110",
+            "relative size-8 rounded-full transition-transform hover:scale-110 cursor-pointer",
             c.class,
           )}
         >
@@ -270,7 +250,6 @@ export function ThemeCustomizerSidebar({ className }: { className?: string }) {
 
 // Variant 4: Bottom Dock (macOS style)
 export function ThemeCustomizerDock({ className }: { className?: string }) {
-  const { setTheme, resolvedTheme } = useTheme()
   const { activeColor, setColor, mounted } = useThemeColor()
 
   if (!mounted) {
@@ -291,20 +270,14 @@ export function ThemeCustomizerDock({ className }: { className?: string }) {
   return (
     <div
       className={cn(
-        "fixed bottom-4 left-1/2 z-50 flex -translate-x-1/2 gap-1 rounded-2xl border bg-background/80 p-1.5 shadow-2xl backdrop-blur-xl",
+        "fixed bottom-4 left-1/2 z-50 flex -translate-x-1/2 items-center gap-1 rounded-2xl border bg-background/80 p-1.5 shadow-2xl backdrop-blur-xl",
         className,
       )}
     >
-      <button
-        onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
-        className="group flex size-10 items-center justify-center rounded-xl bg-muted/50 transition-all hover:-translate-y-1 hover:bg-accent"
-      >
-        {resolvedTheme === "dark" ? (
-          <Sun className="size-5" />
-        ) : (
-          <Moon className="size-5" />
-        )}
-      </button>
+      <ThemeToggle
+        size={20}
+        className="size-10 rounded-xl bg-muted/50 p-2 transition-all hover:-translate-y-1"
+      />
 
       <div className="mx-1 w-px bg-border" />
 
@@ -313,7 +286,7 @@ export function ThemeCustomizerDock({ className }: { className?: string }) {
           key={c.name}
           onClick={() => setColor(c.name)}
           className={cn(
-            "relative size-10 rounded-xl transition-all hover:-translate-y-1",
+            "relative size-10 rounded-xl transition-all hover:-translate-y-1 cursor-pointer",
             c.class,
             activeColor === c.name &&
               "ring-2 ring-primary ring-offset-2 ring-offset-background",
@@ -330,7 +303,6 @@ export function ThemeCustomizerDock({ className }: { className?: string }) {
 
 // Variant 5: Minimal Corner
 export function ThemeCustomizerCorner({ className }: { className?: string }) {
-  const { setTheme, resolvedTheme } = useTheme()
   const { activeColor, setColor, mounted } = useThemeColor()
   const [expanded, setExpanded] = React.useState(false)
 
@@ -351,7 +323,7 @@ export function ThemeCustomizerCorner({ className }: { className?: string }) {
     >
       <button
         onClick={() => setExpanded(!expanded)}
-        className="flex size-12 items-center justify-center rounded-full border bg-background shadow-lg transition-transform hover:scale-105"
+        className="flex size-12 items-center justify-center rounded-full border bg-background shadow-lg transition-transform hover:scale-105 cursor-pointer"
       >
         <Paintbrush
           className={cn("size-5 transition-transform", expanded && "rotate-45")}
@@ -359,28 +331,17 @@ export function ThemeCustomizerCorner({ className }: { className?: string }) {
       </button>
 
       {expanded && (
-        <div className="flex flex-col gap-2 rounded-2xl border bg-background/90 p-2 shadow-lg backdrop-blur-xl animate-in fade-in slide-in-from-bottom-2">
-          <button
-            onClick={() =>
-              setTheme(resolvedTheme === "dark" ? "light" : "dark")
-            }
-            className="flex size-10 items-center justify-center rounded-xl transition-colors hover:bg-accent"
-          >
-            {resolvedTheme === "dark" ? (
-              <Sun className="size-5" />
-            ) : (
-              <Moon className="size-5" />
-            )}
-          </button>
+        <div className="flex flex-col items-center gap-2 rounded-2xl border bg-background/90 p-2 shadow-lg backdrop-blur-xl animate-in fade-in slide-in-from-bottom-2">
+          <ThemeToggle size={20} className="size-10 rounded-xl p-2" />
 
-          <div className="h-px bg-border" />
+          <div className="h-px w-full bg-border" />
 
           {colors.map((c) => (
             <button
               key={c.name}
               onClick={() => setColor(c.name)}
               className={cn(
-                "relative size-10 rounded-xl transition-transform hover:scale-105",
+                "relative size-10 rounded-xl transition-transform hover:scale-105 cursor-pointer",
                 c.class,
               )}
             >

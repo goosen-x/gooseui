@@ -72,7 +72,7 @@ export default function RevealOnScrollPage() {
           >
             Installation
           </h2>
-          <InstallCommand packageName="https://gooseui.pro/r/reveal-on-scroll.json" />
+          <InstallCommand packageName="@gooseui/reveal-on-scroll" />
         </div>
 
         {/* 6. Usage */}

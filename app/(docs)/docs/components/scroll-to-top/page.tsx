@@ -62,7 +62,7 @@ export default function ScrollToTopPage() {
           >
             Installation
           </h2>
-          <InstallCommand packageName="https://gooseui.pro/r/scroll-to-top.json" />
+          <InstallCommand packageName="@gooseui/scroll-to-top" />
         </div>
 
         {/* 5. Usage */}

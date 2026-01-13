@@ -65,7 +65,7 @@ export default function ToastPage() {
               <p className="text-sm text-muted-foreground mb-3">
                 Base Toaster component with theming support
               </p>
-              <InstallCommand packageName="https://gooseui.pro/r/sonner.json" />
+              <InstallCommand packageName="@gooseui/sonner" />
             </div>
 
             <div>
@@ -73,7 +73,7 @@ export default function ToastPage() {
               <p className="text-sm text-muted-foreground mb-3">
                 Toast with animated progress bar and colored border
               </p>
-              <InstallCommand packageName="https://gooseui.pro/r/custom-toast.json" />
+              <InstallCommand packageName="@gooseui/custom-toast" />
             </div>
 
             <div>
@@ -81,7 +81,7 @@ export default function ToastPage() {
               <p className="text-sm text-muted-foreground mb-3">
                 Helper functions for easy toast calls
               </p>
-              <InstallCommand packageName="https://gooseui.pro/r/toast.json" />
+              <InstallCommand packageName="@gooseui/toast" />
             </div>
           </div>
         </div>
