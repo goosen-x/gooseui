@@ -4,11 +4,13 @@
   "type": "registry:ui",
   "title": "Checkbox",
   "description": "A checkbox with smooth SVG path animation when checked.",
-  "dependencies": [],
-  "devDependencies": ["class-variance-authority"],
+  "devDependencies": [
+    "class-variance-authority"
+  ],
   "files": [
     {
       "path": "registry/new-york/ui/checkbox.tsx",
+      "content": "\"use client\"\n\nimport { cva, type VariantProps } from \"class-variance-authority\"\nimport * as React from \"react\"\nimport { cn } from \"@/lib/utils\"\n\nconst checkboxVariants = cva(\n  \"group inline-flex items-center gap-2 cursor-pointer select-none\",\n  {\n    variants: {\n      variant: {\n        default:\n          \"[--checkbox-checked:theme(colors.primary.DEFAULT)] [--checkbox-unchecked:theme(colors.border)]\",\n        destructive:\n          \"[--checkbox-checked:theme(colors.destructive.DEFAULT)] [--checkbox-unchecked:theme(colors.border)]\",\n        success:\n          \"[--checkbox-checked:#22c55e] [--checkbox-unchecked:theme(colors.border)]\",\n      },\n      size: {\n        sm: \"[--checkbox-size:1rem]\",\n        default: \"[--checkbox-size:1.5rem]\",\n        lg: \"[--checkbox-size:2rem]\",\n      },\n    },\n    defaultVariants: {\n      variant: \"default\",\n      size: \"default\",\n    },\n  },\n)\n\ninterface CheckboxProps\n  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, \"size\">,\n    VariantProps<typeof checkboxVariants> {\n  label?: string\n}\n\nexport function Checkbox({\n  className,\n  variant,\n  size,\n  label,\n  id,\n  ...props\n}: CheckboxProps) {\n  const generatedId = React.useId()\n  const inputId = id || generatedId\n\n  return (\n    <label\n      htmlFor={inputId}\n      className={cn(checkboxVariants({ variant, size, className }))}\n    >\n      <input id={inputId} type=\"checkbox\" className=\"peer sr-only\" {...props} />\n      <svg\n        className=\"overflow-visible\"\n        viewBox=\"0 0 64 64\"\n        style={{\n          height: \"var(--checkbox-size)\",\n          width: \"var(--checkbox-size)\",\n        }}\n      >\n        <path\n          d=\"M 0 16 V 56 A 8 8 90 0 0 8 64 H 56 A 8 8 90 0 0 64 56 V 8 A 8 8 90 0 0 56 0 H 8 A 8 8 90 0 0 0 8 V 16 L 32 48 L 64 16 V 8 A 8 8 90 0 0 56 0 H 8 A 8 8 90 0 0 0 8 V 56 A 8 8 90 0 0 8 64 H 56 A 8 8 90 0 0 64 56 V 16\"\n          className={cn(\n            \"fill-none stroke-[6] stroke-linecap-round stroke-linejoin-round\",\n            \"transition-all duration-500 ease-out\",\n            \"[stroke-dasharray:241_9999999] [stroke-dashoffset:0]\",\n            \"stroke-[var(--checkbox-unchecked)]\",\n            \"group-has-[:checked]:stroke-[var(--checkbox-checked)]\",\n            \"group-has-[:checked]:[stroke-dasharray:70.5096664428711_9999999]\",\n            \"group-has-[:checked]:[stroke-dashoffset:-262.2723388671875]\",\n          )}\n        />\n      </svg>\n      {label && <span className=\"text-sm text-foreground\">{label}</span>}\n    </label>\n  )\n}\n",
       "type": "registry:ui"
     }
   ]

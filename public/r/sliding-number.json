@@ -4,11 +4,13 @@
   "type": "registry:ui",
   "title": "Sliding Number",
   "description": "Animated number display with smooth sliding transitions between digits.",
-  "dependencies": ["motion"],
-  "registryDependencies": [],
+  "dependencies": [
+    "motion"
+  ],
   "files": [
     {
       "path": "registry/new-york/ui/sliding-number.tsx",
+      "content": "\"use client\"\n\nimport { AnimatePresence, motion, type Transition } from \"motion/react\"\nimport * as React from \"react\"\nimport { cn } from \"@/lib/utils\"\n\ninterface SlidingNumberProps {\n  value: number\n  className?: string\n  padStart?: number\n  decimalSeparator?: string\n  transition?: Transition\n}\n\nfunction SlidingDigit({\n  digit,\n  transition,\n}: {\n  digit: string\n  transition?: Transition\n}) {\n  return (\n    <div className=\"relative inline-flex h-[1em] w-[0.65em] items-center justify-center overflow-hidden\">\n      <AnimatePresence mode=\"popLayout\" initial={false}>\n        <motion.span\n          key={digit}\n          initial={{ y: \"100%\" }}\n          animate={{ y: \"0%\" }}\n          exit={{ y: \"-100%\" }}\n          transition={\n            transition ?? {\n              type: \"spring\",\n              stiffness: 500,\n              damping: 35,\n            }\n          }\n          className=\"absolute inset-0 flex items-center justify-center\"\n        >\n          {digit}\n        </motion.span>\n      </AnimatePresence>\n    </div>\n  )\n}\n\nfunction SlidingNumber({\n  value,\n  className,\n  padStart = 0,\n  decimalSeparator = \".\",\n  transition,\n}: SlidingNumberProps) {\n  const formattedValue = React.useMemo(() => {\n    const str = value.toString()\n    if (padStart > 0) {\n      return str.padStart(padStart, \"0\")\n    }\n    return str\n  }, [value, padStart])\n\n  const chars = formattedValue.split(\"\")\n\n  return (\n    <span\n      className={cn(\n        \"inline-flex items-center tabular-nums font-medium\",\n        className,\n      )}\n    >\n      {chars.map((char, index) => {\n        const isDigit = /\\d/.test(char)\n        const isSeparator = char === decimalSeparator || char === \",\"\n        const key = `${index}-${isDigit ? \"d\" : \"s\"}`\n\n        if (isSeparator) {\n          return (\n            <span key={key} className=\"w-[0.25em]\">\n              {char}\n            </span>\n          )\n        }\n\n        if (isDigit) {\n          return <SlidingDigit key={key} digit={char} transition={transition} />\n        }\n\n        return (\n          <span key={key} className=\"inline-flex\">\n            {char}\n          </span>\n        )\n      })}\n    </span>\n  )\n}\n\nexport { SlidingNumber, type SlidingNumberProps }\n",
       "type": "registry:ui",
       "target": "components/ui/sliding-number.tsx"
     }
