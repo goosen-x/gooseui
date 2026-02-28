@@ -1,0 +1,9 @@
+{
+  "$schema": "https://modelcontextprotocol.io/schema/mcp.json",
+  "mcpServers": {
+    "shoogle": {
+      "url": "https://mcp.shoogle.dev/mcp",
+      "description": "Search shadcn/ui blocks and components from Shoogle.dev"
+    }
+  }
+}
