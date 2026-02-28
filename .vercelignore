@@ -1,0 +1,32 @@
+# Don't upload these to Vercel (reduces build time)
+node_modules
+.git
+.next
+.vercel
+*.log
+.env*.local
+coverage
+.vscode
+.idea
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Don't need in production
+DEPLOYMENT_TROUBLESHOOTING.md
+SHOOGLE_ANALYSIS.md
+docs/COMPETITIVE_ANALYSIS.md
+*.md
+!README.md
+
+# Test files
+__tests__
+*.test.ts
+*.test.tsx
+*.spec.ts
+*.spec.tsx
+
+# Cache
+.turbo
+.cache

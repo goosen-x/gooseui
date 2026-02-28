@@ -1,0 +1,24 @@
+{
+  "buildCommand": "pnpm build",
+  "framework": "nextjs",
+  "installCommand": "pnpm install --frozen-lockfile",
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/next",
+      "config": {
+        "maxDuration": 60,
+        "memory": 3008
+      }
+    }
+  ],
+  "functions": {
+    "app/**/*.ts": {
+      "maxDuration": 10
+    },
+    "app/**/*.tsx": {
+      "maxDuration": 10
+    }
+  },
+  "crons": []
+}
