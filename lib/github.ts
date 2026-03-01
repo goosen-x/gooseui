@@ -1,7 +1,3 @@
-"use cache"
-
-import { cacheLife } from "next/cache"
-
 /**
  * Fetch GitHub repository stars with caching
  * Cache is revalidated every hour
@@ -10,13 +6,13 @@ export async function getGitHubStars(
   owner: string,
   repo: string,
 ): Promise<number | null> {
-  cacheLife("hours")
-
   try {
     const res = await fetch(`https://api.github.com/repos/${owner}/${repo}`, {
       headers: {
         Accept: "application/vnd.github.v3+json",
       },
+      // Cache for 1 hour (3600 seconds)
+      next: { revalidate: 3600 },
     })
 
     if (!res.ok) return null
