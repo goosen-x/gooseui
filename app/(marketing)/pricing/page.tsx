@@ -1,238 +1,311 @@
-"use client"
-
-import { Check, Sparkles, X } from "lucide-react"
-import Link from "next/link"
-import { useState } from "react"
-import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { formatPrice, getDisplayPlans, type Plan } from "@/lib/payments/plans"
+import { Check, X, Info } from "lucide-react"
 import { cn } from "@/lib/utils"
 
+const plans = [
+  {
+    name: "Starter",
+    price: 0,
+    originalPrice: 0,
+    description: "Free forever",
+    highlighted: false,
+    color: "default",
+    ctaText: "Get Started",
+    ctaHref: "/docs",
+  },
+  {
+    name: "Pro",
+    price: 79,
+    originalPrice: 129,
+    description: "Most popular",
+    highlighted: true,
+    color: "green",
+    ctaText: "Unlock now",
+    popular: true,
+  },
+  {
+    name: "Team",
+    price: 249,
+    originalPrice: 399,
+    description: "For teams",
+    highlighted: false,
+    color: "blue",
+    ctaText: "Unlock now",
+  },
+  {
+    name: "Enterprise",
+    price: 499,
+    originalPrice: 699,
+    description: "For organizations",
+    highlighted: false,
+    color: "orange",
+    ctaText: "Unlock now",
+  },
+]
+
+type FeatureValue = boolean | string | "coming-soon"
+
+const features: { name: string; info?: string; starter: FeatureValue; pro: FeatureValue; team: FeatureValue; enterprise: FeatureValue }[] = [
+  {
+    name: "Admin dashboards",
+    starter: false,
+    pro: "Limited",
+    team: "Unlimited",
+    enterprise: "Unlimited",
+  },
+  {
+    name: "Website templates",
+    starter: false,
+    pro: "5",
+    team: "10",
+    enterprise: "Unlimited",
+  },
+  {
+    name: "Shadcn components",
+    info: "Pre-built shadcn/ui components",
+    starter: "10",
+    pro: "30",
+    team: "30",
+    enterprise: "30",
+  },
+  {
+    name: "Blocks",
+    starter: false,
+    pro: "20",
+    team: "40",
+    enterprise: "Unlimited",
+  },
+  {
+    name: "Examples",
+    starter: "5",
+    pro: "15",
+    team: "30",
+    enterprise: "Unlimited",
+  },
+  {
+    name: "Effects library",
+    starter: "Basic",
+    pro: "Advanced",
+    team: "Advanced",
+    enterprise: "Advanced",
+  },
+  {
+    name: "Figma file",
+    starter: false,
+    pro: true,
+    team: true,
+    enterprise: true,
+  },
+  {
+    name: "Visual editor",
+    starter: false,
+    pro: "coming-soon",
+    team: "coming-soon",
+    enterprise: "coming-soon",
+  },
+  {
+    name: "Theme generator",
+    starter: false,
+    pro: true,
+    team: true,
+    enterprise: true,
+  },
+  {
+    name: "GitHub access",
+    starter: false,
+    pro: true,
+    team: true,
+    enterprise: true,
+  },
+  {
+    name: "Number of users",
+    starter: "1",
+    pro: "1",
+    team: "Unlimited",
+    enterprise: "Unlimited",
+  },
+  {
+    name: "Commercial license",
+    starter: false,
+    pro: true,
+    team: true,
+    enterprise: true,
+  },
+  {
+    name: "Priority support",
+    starter: false,
+    pro: true,
+    team: true,
+    enterprise: true,
+  },
+  {
+    name: "Dedicated account manager",
+    starter: false,
+    pro: false,
+    team: false,
+    enterprise: true,
+  },
+]
+
+function formatPrice(price: number) {
+  return new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+    minimumFractionDigits: 0,
+  }).format(price)
+}
+
+function FeatureCell({ value }: { value: FeatureValue }) {
+  if (value === true) {
+    return <Check className="h-5 w-5 text-green-600" />
+  }
+  if (value === false) {
+    return <X className="h-5 w-5 text-muted-foreground/30" />
+  }
+  if (value === "coming-soon") {
+    return (
+      <span className="rounded-full bg-orange-100 px-2 py-0.5 text-xs font-medium text-orange-700">
+        Coming soon
+      </span>
+    )
+  }
+  return <span className="text-sm font-medium">{value}</span>
+}
+
 export default function PricingPage() {
-  const [isYearly, setIsYearly] = useState(false)
-  const plans = getDisplayPlans()
-
   return (
-    <div className="container max-w-6xl py-20">
-      {/* Header */}
-      <div className="text-center mb-16">
-        <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">
-          Simple, transparent pricing
-        </h1>
-        <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-          Choose the plan that fits your needs. All plans include access to our
-          component library.
-        </p>
+    <div className="container mx-auto px-4 py-16">
+      <div className="mx-auto max-w-7xl">
+        <div className="mb-12 text-center">
+          <h1 className="mb-4 text-4xl font-bold tracking-tight sm:text-5xl">
+            Buy once, use forever
+          </h1>
+          <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
+            One-time payment. Lifetime access. No subscriptions or recurring fees.
+          </p>
+        </div>
 
-        {/* Billing Toggle */}
-        <div className="flex items-center justify-center gap-4 mt-8">
-          <span
-            className={cn(
-              "text-sm font-medium",
-              !isYearly && "text-foreground",
-              isYearly && "text-muted-foreground",
-            )}
-          >
-            Monthly
-          </span>
-          <button
-            onClick={() => setIsYearly(!isYearly)}
-            className={cn(
-              "relative h-6 w-11 rounded-full transition-colors cursor-pointer",
-              isYearly ? "bg-primary" : "bg-muted",
-            )}
-          >
-            <span
-              className={cn(
-                "absolute top-0.5 left-0.5 h-5 w-5 rounded-full bg-white transition-transform",
-                isYearly && "translate-x-5",
-              )}
-            />
-          </button>
-          <span
-            className={cn(
-              "text-sm font-medium",
-              isYearly && "text-foreground",
-              !isYearly && "text-muted-foreground",
-            )}
-          >
-            Yearly
-            <Badge variant="beta" className="ml-2">
-              Save 20%
-            </Badge>
-          </span>
+        <div className="overflow-x-auto">
+          <table className="w-full border-collapse">
+            <thead>
+              <tr>
+                <th className="w-1/5 border-b border-r bg-muted/30 p-6 text-left">
+                  <div className="text-sm font-medium text-muted-foreground">
+                    Choose your package
+                  </div>
+                </th>
+                {plans.map((plan) => (
+                  <th
+                    key={plan.name}
+                    className={cn(
+                      "relative w-1/5 border-b border-r p-6",
+                      plan.color === "green" && "bg-green-50",
+                      plan.color === "blue" && "bg-blue-50",
+                      plan.color === "orange" && "bg-orange-50",
+                      plan.color === "default" && "bg-muted/30"
+                    )}
+                  >
+                    {plan.popular && (
+                      <div className="absolute -top-3 left-1/2 -translate-x-1/2">
+                        <span className="rounded-full bg-primary px-3 py-1 text-xs font-semibold text-primary-foreground">
+                          Popular
+                        </span>
+                      </div>
+                    )}
+                    <div className="space-y-4">
+                      <div>
+                        <div className="text-xl font-bold">{plan.name}</div>
+                        <div className="text-sm text-muted-foreground">{plan.description}</div>
+                      </div>
+                      <div>
+                        <div className="flex items-baseline gap-2">
+                          <span className="text-3xl font-bold">{formatPrice(plan.price)}</span>
+                          {plan.originalPrice > 0 && plan.price !== plan.originalPrice && (
+                            <span className="text-lg text-muted-foreground line-through">
+                              {formatPrice(plan.originalPrice)}
+                            </span>
+                          )}
+                        </div>
+                        {plan.price > 0 && (
+                          <div className="mt-1 text-xs text-muted-foreground">One-time payment</div>
+                        )}
+                      </div>
+                      <Button
+                        className={cn(
+                          "w-full cursor-pointer",
+                          plan.color === "green" && "bg-green-600 hover:bg-green-700",
+                          plan.color === "blue" && "bg-blue-600 hover:bg-blue-700",
+                          plan.color === "orange" && "bg-orange-600 hover:bg-orange-700"
+                        )}
+                        variant={plan.price === 0 ? "outline" : "default"}
+                        asChild={plan.ctaHref !== undefined}
+                      >
+                        {plan.ctaHref ? (
+                          <a href={plan.ctaHref}>{plan.ctaText}</a>
+                        ) : (
+                          <span>{plan.ctaText}</span>
+                        )}
+                      </Button>
+                    </div>
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {features.map((feature) => (
+                <tr key={feature.name}>
+                  <td className="border-b border-r bg-muted/30 p-4">
+                    <div className="flex items-center gap-2">
+                      <span className="text-sm font-medium">{feature.name}</span>
+                      {feature.info && (
+                        <Info className="h-4 w-4 text-muted-foreground" />
+                      )}
+                    </div>
+                  </td>
+                  <td
+                    className={cn(
+                      "border-b border-r p-4 text-center",
+                      "bg-muted/30"
+                    )}
+                  >
+                    <FeatureCell value={feature.starter} />
+                  </td>
+                  <td
+                    className={cn(
+                      "border-b border-r p-4 text-center",
+                      "bg-green-50"
+                    )}
+                  >
+                    <FeatureCell value={feature.pro} />
+                  </td>
+                  <td
+                    className={cn(
+                      "border-b border-r p-4 text-center",
+                      "bg-blue-50"
+                    )}
+                  >
+                    <FeatureCell value={feature.team} />
+                  </td>
+                  <td
+                    className={cn(
+                      "border-b p-4 text-center",
+                      "bg-orange-50"
+                    )}
+                  >
+                    <FeatureCell value={feature.enterprise} />
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <div className="mt-16 text-center">
+          <p className="text-sm text-muted-foreground">
+            All plans include lifetime updates and access to new components as they're released.
+          </p>
         </div>
       </div>
-
-      {/* Pricing Cards */}
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-        {plans.map((plan) => (
-          <PricingCard key={plan.id} plan={plan} isYearly={isYearly} />
-        ))}
-      </div>
-
-      {/* FAQ or Additional Info */}
-      <div className="mt-20 text-center">
-        <h2 className="text-2xl font-bold mb-4">Questions?</h2>
-        <p className="text-muted-foreground mb-4">
-          Need help choosing a plan or have questions about features?
-        </p>
-        <Button squircle variant="outline" asChild>
-          <Link href="mailto:support@gooseui.pro">Contact Support</Link>
-        </Button>
-      </div>
-    </div>
-  )
-}
-
-function PricingCard({ plan, isYearly }: { plan: Plan; isYearly: boolean }) {
-  const price = isYearly && plan.priceYearly ? plan.priceYearly : plan.price
-  const isPopular = plan.popular
-
-  const handleCheckout = async () => {
-    if (plan.id === "free") {
-      window.location.href = "/generate"
-      return
-    }
-
-    if (plan.id === "enterprise") {
-      window.location.href = "mailto:enterprise@gooseui.pro"
-      return
-    }
-
-    try {
-      const response = await fetch("/api/checkout", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          plan: plan.id,
-          interval: isYearly ? "yearly" : "monthly",
-        }),
-      })
-
-      const data = await response.json()
-
-      if (data.checkoutUrl) {
-        window.location.href = data.checkoutUrl
-      } else if (data.demo) {
-        window.location.href = data.redirectUrl
-      }
-    } catch (error) {
-      console.error("Checkout error:", error)
-    }
-  }
-
-  return (
-    <div
-      className={cn(
-        "relative flex flex-col rounded-xl border bg-card p-6",
-        isPopular && "border-primary shadow-lg",
-      )}
-    >
-      {isPopular && (
-        <Badge className="absolute -top-3 left-1/2 -translate-x-1/2">
-          Most Popular
-        </Badge>
-      )}
-
-      <div className="mb-6">
-        <h3 className="text-xl font-bold">{plan.name}</h3>
-        <p className="text-sm text-muted-foreground mt-1">{plan.description}</p>
-      </div>
-
-      <div className="mb-6">
-        <span className="text-4xl font-bold">
-          {formatPrice(price, isYearly)}
-        </span>
-        {plan.priceYearly && !isYearly && plan.price > 0 && (
-          <p className="text-xs text-muted-foreground mt-1">
-            or {formatPrice(plan.priceYearly, true)} (save 20%)
-          </p>
-        )}
-      </div>
-
-      <Button
-        squircle
-        onClick={handleCheckout}
-        variant={isPopular ? "default" : "outline"}
-        className="w-full mb-6 cursor-pointer"
-      >
-        {plan.id === "free" && "Get Started"}
-        {plan.id === "enterprise" && "Contact Sales"}
-        {plan.id !== "free" && plan.id !== "enterprise" && (
-          <>
-            <Sparkles className="mr-2 h-4 w-4" />
-            Upgrade to {plan.name}
-          </>
-        )}
-      </Button>
-
-      <div className="space-y-3 text-sm">
-        <FeatureItem included={plan.features.htmlExport}>
-          HTML Export
-        </FeatureItem>
-        <FeatureItem included={plan.features.reactExport}>
-          React Export
-        </FeatureItem>
-        <FeatureItem included={plan.features.registryExport}>
-          shadcn Registry Export
-        </FeatureItem>
-        <FeatureItem included={plan.features.removeWatermark}>
-          No Watermark
-        </FeatureItem>
-        <FeatureItem included={plan.features.customDomain}>
-          Custom Domain
-        </FeatureItem>
-        <FeatureItem included={plan.features.analytics}>Analytics</FeatureItem>
-        <FeatureItem included={plan.features.prioritySupport}>
-          Priority Support
-        </FeatureItem>
-        <FeatureItem included={plan.features.apiAccess}>API Access</FeatureItem>
-        <FeatureItem included={plan.features.whiteLabel}>
-          White Label
-        </FeatureItem>
-      </div>
-
-      <div className="mt-6 pt-6 border-t text-sm text-muted-foreground">
-        <p>
-          {plan.limits.projects === -1
-            ? "Unlimited projects"
-            : `${plan.limits.projects} projects`}
-        </p>
-        <p>
-          {plan.limits.exportsPerMonth === -1
-            ? "Unlimited exports"
-            : `${plan.limits.exportsPerMonth} exports/month`}
-        </p>
-        {plan.limits.teamMembers > 1 && (
-          <p>
-            {plan.limits.teamMembers === -1
-              ? "Unlimited team members"
-              : `Up to ${plan.limits.teamMembers} team members`}
-          </p>
-        )}
-      </div>
-    </div>
-  )
-}
-
-function FeatureItem({
-  included,
-  children,
-}: {
-  included: boolean
-  children: React.ReactNode
-}) {
-  return (
-    <div className="flex items-center gap-2">
-      {included ? (
-        <Check className="h-4 w-4 text-primary shrink-0" />
-      ) : (
-        <X className="h-4 w-4 text-muted-foreground/50 shrink-0" />
-      )}
-      <span className={cn(!included && "text-muted-foreground/50")}>
-        {children}
-      </span>
     </div>
   )
 }
