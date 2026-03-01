@@ -34,30 +34,6 @@ const docsNavConfig: NavSection[] = [
 ]
 ```
 
-## Project Structure
-
-```
-registry/new-york/    # Components source
-  ui/                 # Base UI components
-  effects/            # Visual effects
-  blocks/             # Ready examples
-  lib/                # Utilities
-
-app/(docs)/docs/      # Documentation
-  components/         # Component docs
-  effects/            # Effects docs
-
-components/
-  docs-sidebar.tsx    # ← SIDEBAR NAVIGATION CONFIG HERE!
-```
-
-## Commands
-
-```bash
-pnpm dev              # Development server
-pnpm build            # Production build
-pnpm registry:build   # Build shadcn registry
-```
 
 ## Documentation Structure
 

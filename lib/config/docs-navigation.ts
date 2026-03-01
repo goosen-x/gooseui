@@ -342,7 +342,7 @@ const rawNavigation: NavSection[] = [
         description: "Header that morphs on scroll with View Transitions",
         category: "Navigation",
         icon: PanelTop,
-        isDraft: true,
+        isNew: true,
         keywords: ["header", "morph", "view transitions", "scroll"],
       },
       {
@@ -583,16 +583,18 @@ export function getSlugTitle(slug: string): string {
 }
 
 /**
- * Filter out draft items in production
+ * Filter out draft items in production and remove empty sections
  */
 export function filterDraftItems(sections: NavSection[]): NavSection[] {
   const isDev = process.env.NODE_ENV === "development"
   if (isDev) return sections
 
-  return sections.map((section) => ({
-    ...section,
-    items: section.items.filter((item) => !item.isDraft),
-  }))
+  return sections
+    .map((section) => ({
+      ...section,
+      items: section.items.filter((item) => !item.isDraft),
+    }))
+    .filter((section) => section.items.length > 0)
 }
 
 /**

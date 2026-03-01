@@ -62,7 +62,7 @@ export function MorphingHeaderDemo() {
           "transition-all duration-300",
           isCompact ? "py-2" : "py-4",
         )}
-        style={{ viewTransitionName: "demo-header" }}
+        style={{ viewTransitionName: "morphing-header" }}
       >
         <div className="px-4">
           <div className="flex items-center justify-between">
@@ -73,7 +73,7 @@ export function MorphingHeaderDemo() {
                   "transition-all duration-300",
                   isCompact ? "size-8 rounded-md text-sm" : "size-12",
                 )}
-                style={{ viewTransitionName: "demo-logo" }}
+                style={{ viewTransitionName: "morphing-logo" }}
               >
                 G
               </div>
@@ -91,7 +91,7 @@ export function MorphingHeaderDemo() {
                 "flex items-center transition-all duration-300",
                 isCompact ? "gap-2 text-xs" : "gap-4 text-sm",
               )}
-              style={{ viewTransitionName: "demo-nav" }}
+              style={{ viewTransitionName: "morphing-nav" }}
             >
               <span className="text-muted-foreground hover:text-foreground cursor-pointer">
                 Home

@@ -1,5 +1,5 @@
+import { Check, Info, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Check, X, Info } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 const plans = [
@@ -45,7 +45,14 @@ const plans = [
 
 type FeatureValue = boolean | string | "coming-soon"
 
-const features: { name: string; info?: string; starter: FeatureValue; pro: FeatureValue; team: FeatureValue; enterprise: FeatureValue }[] = [
+const features: {
+  name: string
+  info?: string
+  starter: FeatureValue
+  pro: FeatureValue
+  team: FeatureValue
+  enterprise: FeatureValue
+}[] = [
   {
     name: "Admin dashboards",
     starter: false,
@@ -181,7 +188,8 @@ export default function PricingPage() {
             Buy once, use forever
           </h1>
           <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
-            One-time payment. Lifetime access. No subscriptions or recurring fees.
+            One-time payment. Lifetime access. No subscriptions or recurring
+            fees.
           </p>
         </div>
 
@@ -202,7 +210,7 @@ export default function PricingPage() {
                       plan.color === "green" && "bg-green-50",
                       plan.color === "blue" && "bg-blue-50",
                       plan.color === "orange" && "bg-orange-50",
-                      plan.color === "default" && "bg-muted/30"
+                      plan.color === "default" && "bg-muted/30",
                     )}
                   >
                     {plan.popular && (
@@ -215,27 +223,37 @@ export default function PricingPage() {
                     <div className="space-y-4">
                       <div>
                         <div className="text-xl font-bold">{plan.name}</div>
-                        <div className="text-sm text-muted-foreground">{plan.description}</div>
+                        <div className="text-sm text-muted-foreground">
+                          {plan.description}
+                        </div>
                       </div>
                       <div>
                         <div className="flex items-baseline gap-2">
-                          <span className="text-3xl font-bold">{formatPrice(plan.price)}</span>
-                          {plan.originalPrice > 0 && plan.price !== plan.originalPrice && (
-                            <span className="text-lg text-muted-foreground line-through">
-                              {formatPrice(plan.originalPrice)}
-                            </span>
-                          )}
+                          <span className="text-3xl font-bold">
+                            {formatPrice(plan.price)}
+                          </span>
+                          {plan.originalPrice > 0 &&
+                            plan.price !== plan.originalPrice && (
+                              <span className="text-lg text-muted-foreground line-through">
+                                {formatPrice(plan.originalPrice)}
+                              </span>
+                            )}
                         </div>
                         {plan.price > 0 && (
-                          <div className="mt-1 text-xs text-muted-foreground">One-time payment</div>
+                          <div className="mt-1 text-xs text-muted-foreground">
+                            One-time payment
+                          </div>
                         )}
                       </div>
                       <Button
                         className={cn(
                           "w-full cursor-pointer",
-                          plan.color === "green" && "bg-green-600 hover:bg-green-700",
-                          plan.color === "blue" && "bg-blue-600 hover:bg-blue-700",
-                          plan.color === "orange" && "bg-orange-600 hover:bg-orange-700"
+                          plan.color === "green" &&
+                            "bg-green-600 hover:bg-green-700",
+                          plan.color === "blue" &&
+                            "bg-blue-600 hover:bg-blue-700",
+                          plan.color === "orange" &&
+                            "bg-orange-600 hover:bg-orange-700",
                         )}
                         variant={plan.price === 0 ? "outline" : "default"}
                         asChild={plan.ctaHref !== undefined}
@@ -256,7 +274,9 @@ export default function PricingPage() {
                 <tr key={feature.name}>
                   <td className="border-b border-r bg-muted/30 p-4">
                     <div className="flex items-center gap-2">
-                      <span className="text-sm font-medium">{feature.name}</span>
+                      <span className="text-sm font-medium">
+                        {feature.name}
+                      </span>
                       {feature.info && (
                         <Info className="h-4 w-4 text-muted-foreground" />
                       )}
@@ -265,7 +285,7 @@ export default function PricingPage() {
                   <td
                     className={cn(
                       "border-b border-r p-4 text-center",
-                      "bg-muted/30"
+                      "bg-muted/30",
                     )}
                   >
                     <FeatureCell value={feature.starter} />
@@ -273,7 +293,7 @@ export default function PricingPage() {
                   <td
                     className={cn(
                       "border-b border-r p-4 text-center",
-                      "bg-green-50"
+                      "bg-green-50",
                     )}
                   >
                     <FeatureCell value={feature.pro} />
@@ -281,16 +301,13 @@ export default function PricingPage() {
                   <td
                     className={cn(
                       "border-b border-r p-4 text-center",
-                      "bg-blue-50"
+                      "bg-blue-50",
                     )}
                   >
                     <FeatureCell value={feature.team} />
                   </td>
                   <td
-                    className={cn(
-                      "border-b p-4 text-center",
-                      "bg-orange-50"
-                    )}
+                    className={cn("border-b p-4 text-center", "bg-orange-50")}
                   >
                     <FeatureCell value={feature.enterprise} />
                   </td>
@@ -302,7 +319,8 @@ export default function PricingPage() {
 
         <div className="mt-16 text-center">
           <p className="text-sm text-muted-foreground">
-            All plans include lifetime updates and access to new components as they're released.
+            All plans include lifetime updates and access to new components as
+            they're released.
           </p>
         </div>
       </div>

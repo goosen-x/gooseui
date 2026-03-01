@@ -24,26 +24,44 @@ export function MorphingHeader({
   compactThreshold = 100,
 }: MorphingHeaderProps) {
   const [isCompact, setIsCompact] = React.useState(false)
+  const isTransitioning = React.useRef(false)
+  const lastCompactState = React.useRef(false)
 
   React.useEffect(() => {
     const handleScroll = () => {
       const shouldBeCompact = window.scrollY > compactThreshold
 
-      if (shouldBeCompact !== isCompact) {
-        // Use View Transitions API if available
-        if (document.startViewTransition) {
-          document.startViewTransition(() => {
-            setIsCompact(shouldBeCompact)
-          })
-        } else {
+      // Skip if state hasn't changed or transition in progress
+      if (
+        shouldBeCompact === lastCompactState.current ||
+        isTransitioning.current
+      ) {
+        return
+      }
+
+      lastCompactState.current = shouldBeCompact
+
+      // Use View Transitions API if available
+      if (document.startViewTransition) {
+        isTransitioning.current = true
+        const transition = document.startViewTransition(() => {
           setIsCompact(shouldBeCompact)
-        }
+        })
+        transition.finished
+          .then(() => {
+            isTransitioning.current = false
+          })
+          .catch(() => {
+            isTransitioning.current = false
+          })
+      } else {
+        setIsCompact(shouldBeCompact)
       }
     }
 
     window.addEventListener("scroll", handleScroll, { passive: true })
     return () => window.removeEventListener("scroll", handleScroll)
-  }, [isCompact, compactThreshold])
+  }, [compactThreshold])
 
   return (
     <header
@@ -56,6 +74,8 @@ export function MorphingHeader({
       style={{
         viewTransitionName: "morphing-header",
       }}
+      role="banner"
+      aria-label="Site header"
     >
       <div className="mx-auto max-w-screen-xl px-4">
         {typeof children === "function"

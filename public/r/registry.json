@@ -223,6 +223,18 @@
       ]
     },
     {
+      "name": "morphing-header",
+      "type": "registry:ui",
+      "title": "Morphing Header",
+      "description": "Header that morphs between full and compact states on scroll using View Transitions API.",
+      "files": [
+        {
+          "path": "registry/new-york/ui/morphing-header.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "baseline-status",
       "type": "registry:ui",
       "title": "Baseline Status",

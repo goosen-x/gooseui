@@ -54,6 +54,7 @@ export const REGISTRY_ITEMS: RegistryItem[] = [
   { slug: "baseline-status", name: "Baseline Status", type: "component" },
   { slug: "promo-banner", name: "Promo Banner", type: "component" },
   { slug: "morphing-dialog", name: "Morphing Dialog", type: "component" },
+  { slug: "morphing-header", name: "Morphing Header", type: "component" },
   { slug: "scroll-container", name: "Scroll Container", type: "component" },
   { slug: "scroll-progress", name: "Scroll Progress", type: "component" },
   { slug: "scroll-to-top", name: "Scroll To Top", type: "component" },
