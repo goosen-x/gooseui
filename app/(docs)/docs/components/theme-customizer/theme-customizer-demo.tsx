@@ -302,7 +302,6 @@ function ToolbarButton({
 }
 
 function DemoToolbar() {
-  const { setTheme, resolvedTheme } = useTheme()
   const { activeColor, setColor, mounted } = useThemeColor()
   const [isOpen, setIsOpen] = React.useState(false)
   const containerRef = React.useRef<HTMLDivElement>(null)

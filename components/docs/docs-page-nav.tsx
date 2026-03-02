@@ -10,7 +10,6 @@ import {
 } from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { useTheme } from "next-themes"
 import { usePostHog } from "posthog-js/react"
 import * as React from "react"
 import { Badge } from "@/components/ui/badge"
@@ -180,7 +179,6 @@ export function DocsPageNav({
 }: DocsPageNavProps) {
   const pathname = usePathname()
   const posthog = usePostHog()
-  const { setTheme, resolvedTheme } = useTheme()
   const [mounted, setMounted] = React.useState(false)
   const [copied, setCopied] = React.useState(false)
   const [copiedAction, setCopiedAction] = React.useState<string | null>(null)

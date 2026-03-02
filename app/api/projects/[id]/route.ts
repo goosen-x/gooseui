@@ -13,7 +13,7 @@ interface RouteParams {
   params: Promise<{ id: string }>
 }
 
-export async function GET(request: Request, { params }: RouteParams) {
+export async function GET(_request: Request, { params }: RouteParams) {
   try {
     const user = await getUser()
     const { id } = await params
@@ -107,7 +107,7 @@ export async function PUT(request: Request, { params }: RouteParams) {
   }
 }
 
-export async function DELETE(request: Request, { params }: RouteParams) {
+export async function DELETE(_request: Request, { params }: RouteParams) {
   try {
     const user = await getUser()
     const { id } = await params

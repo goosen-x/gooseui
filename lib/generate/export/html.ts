@@ -2,7 +2,6 @@
  * HTML Export - Generate standalone HTML from page schema
  */
 
-import { getComponent } from "../registry"
 import type { PageSchema, SectionSchema } from "../types"
 
 /**

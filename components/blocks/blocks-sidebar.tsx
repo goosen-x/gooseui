@@ -16,14 +16,8 @@ import {
   SidebarMenuSubButton,
   SidebarMenuSubItem,
 } from "@/components/ui/sidebar"
-import {
-  BLOCK_CATEGORIES,
-  getAvailableCategories,
-} from "@/lib/config/blocks-categories"
-import {
-  countBlocksInCategory,
-  getBlocksByCategory,
-} from "@/lib/config/blocks-registry"
+import { BLOCK_CATEGORIES } from "@/lib/config/blocks-categories"
+import { countBlocksInCategory } from "@/lib/config/blocks-registry"
 
 export function BlocksSidebar({
   ...props

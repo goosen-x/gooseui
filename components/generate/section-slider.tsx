@@ -11,11 +11,7 @@
 
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import {
-  getComponent,
-  getVariantIndex,
-  getVariants,
-} from "@/lib/generate/registry"
+import { getVariantIndex, getVariants } from "@/lib/generate/registry"
 import { useEditorStore } from "@/lib/generate/store"
 import type { SectionSchema } from "@/lib/generate/types"
 import { cn } from "@/lib/utils"

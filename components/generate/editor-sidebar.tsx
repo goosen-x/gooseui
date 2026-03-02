@@ -14,7 +14,6 @@ import {
   useSensors,
 } from "@dnd-kit/core"
 import {
-  arrayMove,
   SortableContext,
   sortableKeyboardCoordinates,
   useSortable,
@@ -44,7 +43,7 @@ import {
   getVariantIndex,
 } from "@/lib/generate/registry"
 import { useEditorStore } from "@/lib/generate/store"
-import type { SectionSchema, SectionType } from "@/lib/generate/types"
+import type { SectionSchema } from "@/lib/generate/types"
 import { cn } from "@/lib/utils"
 
 interface SortableSectionItemProps {

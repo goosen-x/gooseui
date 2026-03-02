@@ -1,6 +1,5 @@
 "use client"
 
-import * as React from "react"
 import { GlitchText } from "@/registry/new-york/effects/glitch-text"
 
 export function GlitchTextDemo() {

@@ -4,8 +4,8 @@
  */
 
 import "server-only"
-import fs from "fs"
-import path from "path"
+import fs from "node:fs"
+import path from "node:path"
 import type { BlockMetadata, BlockWithCode, FileTreeItem } from "./declarations"
 import { getBlockById } from "./metadata"
 import { getBlockFilePath } from "./utils"

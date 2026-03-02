@@ -2,7 +2,6 @@
  * React Export - Generate React component code from page schema
  */
 
-import { componentRegistry } from "../registry"
 import type { PageSchema, SectionSchema } from "../types"
 
 /**

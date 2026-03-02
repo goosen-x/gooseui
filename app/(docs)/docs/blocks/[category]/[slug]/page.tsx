@@ -1,13 +1,9 @@
-import { ChevronLeft } from "lucide-react"
 import Link from "next/link"
 import { notFound } from "next/navigation"
 import { BlockPreview } from "@/components/blocks/block-preview"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import {
-  BLOCK_CATEGORIES,
-  getBlockCategory,
-} from "@/lib/config/blocks-categories"
+import { getBlockCategory } from "@/lib/config/blocks-categories"
 import {
   BLOCK_ITEMS,
   getBlock,

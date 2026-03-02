@@ -1,5 +1,3 @@
-import * as React from "react"
-
 interface PropItem {
   name: string
   type: string

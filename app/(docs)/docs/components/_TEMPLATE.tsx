@@ -20,7 +20,6 @@
  */
 
 import { CodeBlock } from "@/components/docs/code-block"
-import { ComponentBaseline } from "@/components/docs/component-baseline"
 import { DocsPageNav } from "@/components/docs/docs-page-nav"
 import { InstallCommand } from "@/components/docs/install-command"
 import { BaselineStatus } from "@/registry/new-york/ui/baseline-status"

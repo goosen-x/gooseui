@@ -6,7 +6,6 @@ import {
   ScrollToTopMinimal,
   ScrollToTopPill,
   ScrollToTopProgress,
-  ScrollToTopText,
 } from "@/registry/new-york/ui/scroll-to-top"
 
 /**

@@ -19,7 +19,6 @@ import { Badge } from "@/components/ui/badge"
 import {
   getAvailableComponents,
   getComingSoonComponents,
-  type NavItem,
 } from "@/lib/config/docs-navigation"
 import { cn } from "@/lib/utils"
 import { AnimatedTimer } from "@/registry/new-york/ui/animated-timer"

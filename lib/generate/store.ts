@@ -17,14 +17,12 @@ import {
   getVariantCount,
 } from "./registry"
 import type {
-  EditorActions,
   EditorState,
   EditorStore,
   PageSchema,
   PageSettings,
   SectionSchema,
   SectionType,
-  ViewportSize,
 } from "./types"
 
 /**

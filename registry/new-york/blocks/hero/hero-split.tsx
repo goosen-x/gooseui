@@ -1,7 +1,6 @@
 "use client"
 
 import { ArrowRight, Check } from "lucide-react"
-import Link from "next/link"
 import { Button } from "@/registry/new-york/ui/button"
 
 const features = [

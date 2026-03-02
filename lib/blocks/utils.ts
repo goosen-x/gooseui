@@ -8,7 +8,7 @@ import { getBlockById } from "./metadata"
 /**
  * Registry base path
  */
-const REGISTRY_PATH = "registry/new-york/blocks"
+const _REGISTRY_PATH = "registry/new-york/blocks"
 
 /**
  * Get the file path for a block component

@@ -77,7 +77,7 @@ export function usePaddle() {
       })
 
       // Set up event listeners
-      const handleEvent = (event: { name: string }) => {
+      const _handleEvent = (event: { name: string }) => {
         if (event.name === "checkout.completed") {
           onSuccess?.()
         }

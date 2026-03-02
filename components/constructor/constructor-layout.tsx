@@ -1,6 +1,5 @@
 "use client"
 
-import * as React from "react"
 import { useConstructor } from "@/lib/constructor/use-constructor"
 import { ConstructorPreview } from "./constructor-preview"
 import { ConstructorSidebar } from "./constructor-sidebar"

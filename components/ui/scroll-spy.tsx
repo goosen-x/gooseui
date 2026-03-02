@@ -150,7 +150,7 @@ function ScrollSpy(props: ScrollSpyProps) {
       const sections = store.getState().sections
       if (sections.size === 0) return
 
-      const scrollTop =
+      const _scrollTop =
         container === window
           ? window.scrollY
           : (container as HTMLElement).scrollTop

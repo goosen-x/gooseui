@@ -167,7 +167,7 @@ export function SearchPanelDemo() {
   >("instant")
   const [results, setResults] = React.useState<SearchResult[]>([])
   const [loading, setLoading] = React.useState(false)
-  const [activeScope, setActiveScope] = React.useState("all")
+  const [activeScope, _setActiveScope] = React.useState("all")
 
   const handleSearch = React.useCallback(
     (query: string) => {
