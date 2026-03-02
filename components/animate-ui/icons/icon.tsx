@@ -122,7 +122,7 @@ function composeEventHandlers<E extends React.SyntheticEvent<unknown>>(
   }
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+// biome-ignore lint/suspicious/noExplicitAny: needed for dynamic prop extraction
 type AnyProps = Record<string, any>
 
 function AnimateIcon({
