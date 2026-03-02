@@ -227,9 +227,7 @@ export default function MorphingHeaderPage() {
                       <th className="text-left p-3 font-medium">Prop</th>
                       <th className="text-left p-3 font-medium">Type</th>
                       <th className="text-left p-3 font-medium">Default</th>
-                      <th className="text-left p-3 font-medium">
-                        Description
-                      </th>
+                      <th className="text-left p-3 font-medium">Description</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -274,9 +272,7 @@ export default function MorphingHeaderPage() {
                       <th className="text-left p-3 font-medium">Prop</th>
                       <th className="text-left p-3 font-medium">Type</th>
                       <th className="text-left p-3 font-medium">Default</th>
-                      <th className="text-left p-3 font-medium">
-                        Description
-                      </th>
+                      <th className="text-left p-3 font-medium">Description</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -308,9 +304,7 @@ export default function MorphingHeaderPage() {
                       <td className="p-3 font-mono text-xs">isCompact</td>
                       <td className="p-3 font-mono text-xs">boolean</td>
                       <td className="p-3 font-mono text-xs">false</td>
-                      <td className="p-3">
-                        Whether header is in compact mode
-                      </td>
+                      <td className="p-3">Whether header is in compact mode</td>
                     </tr>
                     <tr className="border-t">
                       <td className="p-3 font-mono text-xs">className</td>
@@ -333,9 +327,7 @@ export default function MorphingHeaderPage() {
                       <th className="text-left p-3 font-medium">Prop</th>
                       <th className="text-left p-3 font-medium">Type</th>
                       <th className="text-left p-3 font-medium">Default</th>
-                      <th className="text-left p-3 font-medium">
-                        Description
-                      </th>
+                      <th className="text-left p-3 font-medium">Description</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -343,9 +335,7 @@ export default function MorphingHeaderPage() {
                       <td className="p-3 font-mono text-xs">isCompact</td>
                       <td className="p-3 font-mono text-xs">boolean</td>
                       <td className="p-3 font-mono text-xs">false</td>
-                      <td className="p-3">
-                        Whether header is in compact mode
-                      </td>
+                      <td className="p-3">Whether header is in compact mode</td>
                     </tr>
                     <tr className="border-t">
                       <td className="p-3 font-mono text-xs">children</td>
