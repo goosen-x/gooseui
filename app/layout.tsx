@@ -1,8 +1,6 @@
 import { GeistMono } from "geist/font/mono"
 import type { Metadata } from "next"
 import { Outfit } from "next/font/google"
-import { PostHogPageView } from "@/components/posthog-pageview"
-import { PostHogProvider } from "@/components/posthog-provider"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Toaster } from "@/components/ui/sonner"
 import { siteConfig } from "@/lib/config/navigation"
@@ -73,18 +71,15 @@ export default function RootLayout({
         className={`${outfit.variable} ${GeistMono.variable} min-h-screen overflow-x-clip bg-background font-sans antialiased`}
         suppressHydrationWarning
       >
-        <PostHogProvider>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <PostHogPageView />
-            {children}
-            <Toaster position="top-right" />
-          </ThemeProvider>
-        </PostHogProvider>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+          <Toaster position="top-right" />
+        </ThemeProvider>
       </body>
     </html>
   )

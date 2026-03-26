@@ -1,7 +1,6 @@
 "use client"
 
 import { Terminal } from "lucide-react"
-import { usePostHog } from "posthog-js/react"
 import * as React from "react"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { cn } from "@/lib/utils"
@@ -34,7 +33,6 @@ export function InstallCommand({
 }: InstallCommandProps) {
   const [mounted, setMounted] = React.useState(false)
   const [activePm, setActivePm] = React.useState<PackageManager>(defaultPm)
-  const posthog = usePostHog()
 
   React.useEffect(() => {
     setMounted(true)
@@ -45,12 +43,7 @@ export function InstallCommand({
     return defaultCommands[pm](packageName)
   }
 
-  const handleCopy = () => {
-    posthog.capture("install_command_copied", {
-      package_manager: activePm,
-      package_name: packageName,
-    })
-  }
+  const handleCopy = () => {}
 
   const packageManagers: PackageManager[] = ["npm", "pnpm", "yarn", "bun"]
 

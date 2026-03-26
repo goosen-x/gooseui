@@ -10,7 +10,6 @@ import {
 } from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { usePostHog } from "posthog-js/react"
 import * as React from "react"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
@@ -178,7 +177,6 @@ export function DocsPageNav({
   className,
 }: DocsPageNavProps) {
   const pathname = usePathname()
-  const posthog = usePostHog()
   const [mounted, setMounted] = React.useState(false)
   const [copied, setCopied] = React.useState(false)
   const [copiedAction, setCopiedAction] = React.useState<string | null>(null)
@@ -272,21 +270,12 @@ ${registryUrl ? `Registry: ${registryUrl}` : ""}
     const success = await copyToClipboard(content)
     if (success) {
       setCopied(true)
-      posthog.capture("page_copied", {
-        page: pathname,
-        component: componentSlug || title,
-      })
       setTimeout(() => setCopied(false), 2000)
     }
-  }, [getPageContent, posthog, pathname, componentSlug, title])
+  }, [getPageContent, pathname, componentSlug, title])
 
   // View as Markdown - opens GitHub raw or generates markdown
   const handleViewMarkdown = React.useCallback(() => {
-    posthog.capture("open_in_tool", {
-      tool: "markdown",
-      page: pathname,
-      component: componentSlug || title,
-    })
     if (sourceUrl) {
       window.open(sourceUrl, "_blank")
     } else {
@@ -296,16 +285,11 @@ ${registryUrl ? `Registry: ${registryUrl}` : ""}
       const url = URL.createObjectURL(blob)
       window.open(url, "_blank")
     }
-  }, [sourceUrl, generateCodeForAI, posthog, pathname, componentSlug, title])
+  }, [sourceUrl, generateCodeForAI])
 
   // Open in v0 - uses official v0 API
   // Docs: https://ui.shadcn.com/docs/registry/open-in-v0
   const handleOpenInV0 = React.useCallback(() => {
-    posthog.capture("open_in_tool", {
-      tool: "v0",
-      page: pathname,
-      component: componentSlug || title,
-    })
     if (registryUrl) {
       const v0Url = `https://v0.dev/chat/api/open?url=${encodeURIComponent(registryUrl)}`
       window.open(v0Url, "_blank")
@@ -318,15 +302,10 @@ ${registryUrl ? `Registry: ${registryUrl}` : ""}
         window.open("https://v0.dev/chat", "_blank")
       })
     }
-  }, [registryUrl, generateCodeForAI, posthog, pathname, componentSlug, title])
+  }, [registryUrl, generateCodeForAI])
 
   // Open in ChatGPT - pass content via URL parameter
   const handleOpenInChatGPT = React.useCallback(async () => {
-    posthog.capture("open_in_tool", {
-      tool: "chatgpt",
-      page: pathname,
-      component: componentSlug || title,
-    })
     const content = generateCodeForAI()
     const encodedContent = encodeURIComponent(content)
 
@@ -340,15 +319,10 @@ ${registryUrl ? `Registry: ${registryUrl}` : ""}
       setTimeout(() => setCopiedAction(null), 3000)
       window.open("https://chat.openai.com/", "_blank")
     }
-  }, [generateCodeForAI, posthog, pathname, componentSlug, title])
+  }, [generateCodeForAI])
 
   // Open in Claude - pass content via URL parameter
   const handleOpenInClaude = React.useCallback(async () => {
-    posthog.capture("open_in_tool", {
-      tool: "claude",
-      page: pathname,
-      component: componentSlug || title,
-    })
     const content = generateCodeForAI()
     const encodedContent = encodeURIComponent(content)
 
@@ -362,15 +336,10 @@ ${registryUrl ? `Registry: ${registryUrl}` : ""}
       setTimeout(() => setCopiedAction(null), 3000)
       window.open("https://claude.ai/new", "_blank")
     }
-  }, [generateCodeForAI, posthog, pathname, componentSlug, title])
+  }, [generateCodeForAI])
 
   // Open in T3 Chat - pass content via URL parameter
   const handleOpenInT3Chat = React.useCallback(async () => {
-    posthog.capture("open_in_tool", {
-      tool: "t3chat",
-      page: pathname,
-      component: componentSlug || title,
-    })
     const content = generateCodeForAI()
     const encodedContent = encodeURIComponent(content)
 
@@ -384,7 +353,7 @@ ${registryUrl ? `Registry: ${registryUrl}` : ""}
       setTimeout(() => setCopiedAction(null), 3000)
       window.open("https://t3.chat/new", "_blank")
     }
-  }, [generateCodeForAI, posthog, pathname, componentSlug, title])
+  }, [generateCodeForAI])
 
   // Menu items configuration
   const menuItems = [

@@ -99,17 +99,6 @@ export function BlocksSidebar({
                 })}
               </SidebarMenuSub>
             </SidebarMenuItem>
-
-            {/* Pricing link */}
-            <SidebarMenuItem>
-              <SidebarMenuButton
-                className="font-medium"
-                asChild
-                isActive={pathname === "/pricing"}
-              >
-                <Link href="/pricing">Pricing</Link>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
           </SidebarMenu>
         </SidebarGroup>
       </SidebarContent>

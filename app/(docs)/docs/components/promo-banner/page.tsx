@@ -85,7 +85,7 @@ export default function Page() {
       price={229}
       originalPrice={1444}
       ctaText="Get Bundle"
-      ctaHref="/pricing"
+      ctaHref="/docs"
       marqueeText="3 DAYS LEFT • FIRST 100 ONLY"
       storageKey="promo-winter-2025"
     />

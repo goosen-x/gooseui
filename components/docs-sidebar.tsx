@@ -263,17 +263,6 @@ function BlocksNav({ pathname }: { pathname: string }) {
             </CollapsibleContent>
           </SidebarMenuItem>
         </Collapsible>
-
-        {/* Pricing link */}
-        <SidebarMenuItem>
-          <SidebarMenuButton
-            className="font-medium"
-            asChild
-            isActive={pathname === "/pricing"}
-          >
-            <Link href="/pricing">Pricing</Link>
-          </SidebarMenuButton>
-        </SidebarMenuItem>
       </SidebarMenu>
     </SidebarGroup>
   )
