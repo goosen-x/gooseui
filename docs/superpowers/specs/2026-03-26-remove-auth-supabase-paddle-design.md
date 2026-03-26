@@ -18,7 +18,7 @@
 | Path | Reason |
 |------|--------|
 | `app/(auth)/` | Login, signup pages |
-| `app/(app)/generate/` | Code generator (requires auth + projects) |
+| `app/(app)/` | Entire route group (layout imports from generate) |
 | `app/account/` | Account management |
 | `app/dashboard/` | User dashboard |
 | `app/auth/callback/` | OAuth callback handler |
@@ -32,10 +32,11 @@
 | `proxy.ts` | Auth middleware / route protection |
 | `lib/supabase/` | Supabase client, types, schema |
 | `lib/payments/` | Paddle SDK, plan definitions |
-| `lib/generate/` | Code generation logic |
+| `lib/generate/` | Code generation logic (including export/ subdirectory) |
 | `lib/constructor/` | Constructor logic |
 | `goosetap/` | Payment-related module |
 | `scripts/check-db.mjs` | DB inspection utility |
+| `instrumentation-client.ts` | PostHog initialization |
 
 ### Components
 
@@ -43,6 +44,9 @@
 |------|--------|
 | `components/generate/` | Generator UI |
 | `components/constructor/` | Constructor interface |
+| `components/app-sidebar.tsx` | Only used by dashboard (dead code) |
+| `components/posthog-provider.tsx` | PostHog provider |
+| `components/posthog-pageview.tsx` | PostHog pageview tracker |
 | Pricing section in landing | No plans to sell |
 
 ### Hooks
@@ -51,7 +55,8 @@
 |------|--------|
 | `use-subscription.ts` | Subscription/plan checking |
 | `use-user.ts` | Auth state management |
-| Any other auth-dependent hooks | No auth system |
+| `use-feature-access.ts` | Depends on payments/plans and subscription |
+| `use-editor-shortcuts.ts` | Depends on generate store |
 
 ### Dependencies (package.json)
 
@@ -59,13 +64,17 @@
 - `@supabase/supabase-js`
 - `@paddle/paddle-js`
 - `@paddle/paddle-node-sdk`
-- `posthog-js` (analytics — optional, confirm with user)
+- `posthog-js`
+- `@dnd-kit/core`, `@dnd-kit/sortable`, `@dnd-kit/utilities` (only used in generate)
+- `immer` (only used in generate store)
+- `zundo` (only used in generate store)
+- `zustand` (verify no other usage before removing)
 
 ### Environment Variables
 
 - All `SUPABASE_*` variables
 - All `PADDLE_*` variables
-- `POSTHOG_*` if removing analytics
+- All `POSTHOG_*` variables
 
 ## What Gets Modified (not deleted)
 
@@ -80,12 +89,33 @@
 ### Navigation (`lib/config/navigation.ts`, `components/site/`)
 - Remove links to: login, signup, pricing, account, generate, dashboard
 
-### Components importing auth
-- Find all imports from `lib/supabase/`, `hooks/use-user`, `hooks/use-subscription`
-- Remove or refactor those components
+### Sitemap (`app/sitemap.ts`)
+- Remove `/pricing` entry
 
-### Middleware (`next.config.ts` or `middleware.ts`)
-- Remove reference to `proxy.ts` if configured as middleware
+### Sidebars
+- `components/docs-sidebar.tsx` — remove Pricing link
+- `components/blocks/blocks-sidebar.tsx` — remove Pricing link
+
+### Docs components with PostHog
+- `components/docs/docs-page-nav.tsx` — remove `usePostHog` tracking
+- `components/docs/install-command.tsx` — remove `usePostHog` tracking
+
+### Docs pages with pricing references
+- `app/(docs)/docs/components/promo-banner/page.tsx` — update `ctaHref="/pricing"` to valid href
+
+### Environment files
+- `.env.local` — remove Supabase/Paddle/PostHog variables
+
+## Implementation Order
+
+1. Delete route directories (`app/(auth)`, `app/(app)`, `app/account`, `app/dashboard`, `app/auth`, `app/api`, `app/(marketing)/pricing`)
+2. Delete component directories (`components/generate`, `components/constructor`, `components/app-sidebar.tsx`, PostHog components)
+3. Delete lib directories (`lib/supabase`, `lib/payments`, `lib/generate`, `lib/constructor`)
+4. Delete hooks (`use-subscription`, `use-user`, `use-feature-access`, `use-editor-shortcuts`)
+5. Delete infrastructure (`proxy.ts`, `goosetap/`, `scripts/check-db.mjs`, `instrumentation-client.ts`)
+6. Modify remaining files (layout, sitemap, sidebars, navigation, docs components)
+7. Remove dependencies from `package.json` and run `pnpm install`
+8. Run `pnpm build` to verify no breakage
 
 ## Out of Scope
 
