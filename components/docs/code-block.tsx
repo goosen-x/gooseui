@@ -1,8 +1,9 @@
 "use client"
 
 import { highlight } from "sugar-high"
+import { useCopyToast } from "@/hooks/use-copy-toast"
 import { cn } from "@/lib/utils"
-import { AnimatedCopyButton } from "./animated-copy-button"
+import { CopyButton } from "@/registry/gooseui/ui/copy-button"
 
 interface CodeBlockProps {
   children: string
@@ -15,6 +16,7 @@ export function CodeBlock({
   className,
   enableHighlight = true,
 }: CodeBlockProps) {
+  const copyToast = useCopyToast()
   const html = enableHighlight ? highlight(children) : null
 
   return (
@@ -34,8 +36,10 @@ export function CodeBlock({
         </pre>
       </div>
 
-      <AnimatedCopyButton
-        text={children}
+      <CopyButton
+        size="sm"
+        value={children}
+        {...copyToast()}
         className="absolute right-2 top-2 z-10"
       />
     </div>

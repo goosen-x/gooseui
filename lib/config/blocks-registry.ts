@@ -5,6 +5,8 @@
  * that can be installed via the shadcn CLI.
  */
 
+import type { Localized } from "@/i18n/dict"
+
 export const BLOCKS_REGISTRY_BASE_URL = "https://gooseui.pro/r/blocks"
 
 export interface BlockItem {
@@ -13,7 +15,7 @@ export interface BlockItem {
   /** Display name */
   name: string
   /** Short description */
-  description: string
+  description: Localized
   /** Category slug */
   category: string
   /** Preview image path */
@@ -28,6 +30,8 @@ export interface BlockItem {
   isNew?: boolean
   /** Coming soon? */
   isComingSoon?: boolean
+  /** Id of the live block in `lib/blocks` (preview and code on the block page) */
+  blockId?: string
 }
 
 /**
@@ -41,8 +45,10 @@ export const BLOCK_ITEMS: BlockItem[] = [
   {
     slug: "wallet-connect",
     name: "Wallet Connect",
-    description:
-      "Button with dropdown to connect crypto wallets (MetaMask, Coinbase, Trust)",
+    description: {
+      en: "Button with dropdown to connect crypto wallets (MetaMask, Coinbase, Trust)",
+      ru: "Кнопка с выпадающим списком для подключения крипто-кошельков (MetaMask, Coinbase, Trust)",
+    },
     category: "web3",
     isFeatured: true,
     isComingSoon: true,
@@ -50,35 +56,61 @@ export const BLOCK_ITEMS: BlockItem[] = [
   {
     slug: "wallet-select-card",
     name: "Wallet Select Card",
-    description: "Card with wallet selection, search, and connect button",
+    description: {
+      en: "Card with wallet selection, search, and connect button",
+      ru: "Карточка с выбором кошелька, поиском и кнопкой подключения",
+    },
     category: "web3",
     isComingSoon: true,
   },
   {
     slug: "address-display",
     name: "Address Display",
-    description: "Truncated address display with copy to clipboard",
+    description: {
+      en: "Truncated address display with copy to clipboard",
+      ru: "Сокращённый адрес с копированием в буфер обмена",
+    },
     category: "web3",
     isComingSoon: true,
   },
   {
     slug: "nft-card",
     name: "NFT Card",
-    description: "Card displaying NFT with image, title, price, and buy button",
+    description: {
+      en: "Card displaying NFT with image, title, price, and buy button",
+      ru: "Карточка NFT с изображением, названием, ценой и кнопкой покупки",
+    },
     category: "web3",
     isComingSoon: true,
   },
   {
     slug: "token-balance",
     name: "Token Balance",
-    description: "Display token balance with icon and value",
+    description: {
+      en: "Display token balance with icon and value",
+      ru: "Баланс токена с иконкой и значением",
+    },
     category: "web3",
     isComingSoon: true,
   },
   {
+    slug: "tap-coin",
+    name: "Tap Coin",
+    description: {
+      en: "Tap-to-earn screen: 3D coin that tilts toward the tap, balance and energy",
+      ru: "Экран tap-to-earn: 3D-монета наклоняется к тапу, баланс и энергия",
+    },
+    category: "web3",
+    isNew: true,
+    blockId: "web3-04",
+  },
+  {
     slug: "network-switcher",
     name: "Network Switcher",
-    description: "Dropdown to switch between blockchain networks",
+    description: {
+      en: "Dropdown to switch between blockchain networks",
+      ru: "Выпадающий список для переключения между блокчейн-сетями",
+    },
     category: "web3",
     isComingSoon: true,
   },
@@ -87,8 +119,10 @@ export const BLOCK_ITEMS: BlockItem[] = [
   {
     slug: "stats-card",
     name: "Stats Card",
-    description:
-      "Card with metric value, change percentage, and sparkline chart",
+    description: {
+      en: "Card with metric value, change percentage, and sparkline chart",
+      ru: "Карточка со значением метрики, процентом изменения и спарклайном",
+    },
     category: "dashboard",
     isFeatured: true,
     isComingSoon: true,
@@ -96,21 +130,30 @@ export const BLOCK_ITEMS: BlockItem[] = [
   {
     slug: "price-card",
     name: "Price Card",
-    description: "Current price display with chart and period selector",
+    description: {
+      en: "Current price display with chart and period selector",
+      ru: "Текущая цена с графиком и выбором периода",
+    },
     category: "dashboard",
     isComingSoon: true,
   },
   {
     slug: "staking-card",
     name: "Staking Card",
-    description: "Staking metrics with APR and user count",
+    description: {
+      en: "Staking metrics with APR and user count",
+      ru: "Метрики стейкинга: APR и число пользователей",
+    },
     category: "dashboard",
     isComingSoon: true,
   },
   {
     slug: "wallet-stats-card",
     name: "Wallet Stats Card",
-    description: "Compact wallet card with balance and change",
+    description: {
+      en: "Compact wallet card with balance and change",
+      ru: "Компактная карточка кошелька с балансом и изменением",
+    },
     category: "dashboard",
     isComingSoon: true,
   },
@@ -119,7 +162,10 @@ export const BLOCK_ITEMS: BlockItem[] = [
   {
     slug: "promo-banner",
     name: "Promo Banner",
-    description: "Popup banner for promotions with countdown and marquee",
+    description: {
+      en: "Popup banner for promotions with countdown and marquee",
+      ru: "Всплывающий промо-баннер с обратным отсчётом и бегущей строкой",
+    },
     category: "marketing",
     isFeatured: true,
     isComingSoon: true,
@@ -127,28 +173,40 @@ export const BLOCK_ITEMS: BlockItem[] = [
   {
     slug: "announcement-bar",
     name: "Announcement Bar",
-    description: "Top bar for site-wide announcements",
+    description: {
+      en: "Top bar for site-wide announcements",
+      ru: "Верхняя панель для объявлений на всём сайте",
+    },
     category: "marketing",
     isComingSoon: true,
   },
   {
     slug: "price-tag",
     name: "Price Tag",
-    description: "Price display with original price strikethrough",
+    description: {
+      en: "Price display with original price strikethrough",
+      ru: "Цена с зачёркнутой старой ценой",
+    },
     category: "marketing",
     isComingSoon: true,
   },
   {
     slug: "countdown-timer",
     name: "Countdown Timer",
-    description: "Countdown to a specific date/time",
+    description: {
+      en: "Countdown to a specific date/time",
+      ru: "Обратный отсчёт до заданной даты и времени",
+    },
     category: "marketing",
     isComingSoon: true,
   },
   {
     slug: "marquee-banner",
     name: "Marquee Banner",
-    description: "Scrolling text banner for urgency messaging",
+    description: {
+      en: "Scrolling text banner for urgency messaging",
+      ru: "Баннер с бегущей строкой для сообщений о срочности",
+    },
     category: "marketing",
     isComingSoon: true,
   },
@@ -157,7 +215,10 @@ export const BLOCK_ITEMS: BlockItem[] = [
   {
     slug: "product-card",
     name: "Product Card",
-    description: "Product display with image, title, price, and actions",
+    description: {
+      en: "Product display with image, title, price, and actions",
+      ru: "Карточка товара с изображением, названием, ценой и действиями",
+    },
     category: "e-commerce",
     isFeatured: true,
     isComingSoon: true,
@@ -165,21 +226,30 @@ export const BLOCK_ITEMS: BlockItem[] = [
   {
     slug: "cart-item",
     name: "Cart Item",
-    description: "Shopping cart item with quantity controls",
+    description: {
+      en: "Shopping cart item with quantity controls",
+      ru: "Товар в корзине с управлением количеством",
+    },
     category: "e-commerce",
     isComingSoon: true,
   },
   {
     slug: "checkout-summary",
     name: "Checkout Summary",
-    description: "Order summary with totals and checkout button",
+    description: {
+      en: "Order summary with totals and checkout button",
+      ru: "Сводка заказа с итогами и кнопкой оформления",
+    },
     category: "e-commerce",
     isComingSoon: true,
   },
   {
     slug: "pricing-card",
     name: "Pricing Card",
-    description: "Pricing tier card with features list and CTA",
+    description: {
+      en: "Pricing tier card with features list and CTA",
+      ru: "Карточка тарифа со списком возможностей и CTA",
+    },
     category: "e-commerce",
     isComingSoon: true,
   },
@@ -188,7 +258,10 @@ export const BLOCK_ITEMS: BlockItem[] = [
   {
     slug: "header-simple",
     name: "Simple Header",
-    description: "Minimal header with logo and navigation links",
+    description: {
+      en: "Minimal header with logo and navigation links",
+      ru: "Минималистичный хедер с логотипом и навигацией",
+    },
     category: "headers",
     isFeatured: true,
     isNew: true,
@@ -196,62 +269,101 @@ export const BLOCK_ITEMS: BlockItem[] = [
   {
     slug: "header-with-cta",
     name: "Header with CTA",
-    description: "Navigation with prominent call-to-action button",
+    description: {
+      en: "Navigation with prominent call-to-action button",
+      ru: "Навигация с заметной кнопкой призыва к действию",
+    },
     category: "headers",
   },
   {
     slug: "header-dropdown",
     name: "Header with Dropdown",
-    description: "Navigation with dropdown menus for nested links",
+    description: {
+      en: "Navigation with dropdown menus for nested links",
+      ru: "Навигация с выпадающими меню для вложенных ссылок",
+    },
     category: "headers",
     isComingSoon: true,
   },
   {
     slug: "header-mega-menu",
     name: "Mega Menu Header",
-    description: "Header with full-width mega menu dropdowns",
+    description: {
+      en: "Header with full-width mega menu dropdowns",
+      ru: "Хедер с мега-меню на всю ширину",
+    },
     category: "headers",
-    isComingSoon: true,
+    isNew: true,
+    blockId: "header-05",
+  },
+  {
+    slug: "header-morphing",
+    name: "Morphing Header",
+    description: {
+      en: "Sticky header that shrinks on scroll with scroll-driven animations, no JavaScript",
+      ru: "Липкий хедер, который сжимается при прокрутке на scroll-driven анимациях, без JavaScript",
+    },
+    category: "headers",
+    isNew: true,
+    blockId: "header-11",
   },
   {
     slug: "header-search",
     name: "Header with Search",
-    description: "Navigation with integrated search input",
+    description: {
+      en: "Navigation with integrated search input",
+      ru: "Навигация со встроенным полем поиска",
+    },
     category: "headers",
     isComingSoon: true,
   },
   {
     slug: "header-transparent",
     name: "Transparent Header",
-    description: "Overlay header for hero sections and landing pages",
+    description: {
+      en: "Overlay header for hero sections and landing pages",
+      ru: "Прозрачный хедер поверх hero-секций и лендингов",
+    },
     category: "headers",
     isComingSoon: true,
   },
   {
     slug: "header-sticky",
     name: "Sticky Header",
-    description: "Fixed header that stays on scroll with shrink effect",
+    description: {
+      en: "Fixed header that stays on scroll with shrink effect",
+      ru: "Фиксированный хедер, который остаётся при скролле и уменьшается",
+    },
     category: "headers",
     isComingSoon: true,
   },
   {
     slug: "header-auth",
     name: "Header with Auth",
-    description: "Navigation with login/signup buttons and user menu",
+    description: {
+      en: "Navigation with login/signup buttons and user menu",
+      ru: "Навигация с кнопками входа и регистрации и меню пользователя",
+    },
     category: "headers",
     isNew: true,
   },
   {
     slug: "header-mobile",
     name: "Mobile Header",
-    description: "Responsive header with hamburger menu and drawer",
+    description: {
+      en: "Responsive header with hamburger menu and drawer",
+      ru: "Адаптивный хедер с бургер-меню и боковой панелью",
+    },
     category: "headers",
     isComingSoon: true,
   },
   {
     slug: "header-notification",
     name: "Header with Notifications",
-    description: "Navigation with notification bell and dropdown",
+    description: {
+      en: "Navigation with notification bell and dropdown",
+      ru: "Навигация с иконкой уведомлений и выпадающим списком",
+    },
     category: "headers",
     isComingSoon: true,
   },
@@ -260,7 +372,10 @@ export const BLOCK_ITEMS: BlockItem[] = [
   {
     slug: "footer-simple",
     name: "Simple Footer",
-    description: "Minimal footer with logo, links, and copyright",
+    description: {
+      en: "Minimal footer with logo, links, and copyright",
+      ru: "Минималистичный футер с логотипом, ссылками и копирайтом",
+    },
     category: "footers",
     isFeatured: true,
     isNew: true,
@@ -268,49 +383,69 @@ export const BLOCK_ITEMS: BlockItem[] = [
   {
     slug: "footer-columns",
     name: "Multi-Column Footer",
-    description: "Footer with multiple link columns and sections",
+    description: {
+      en: "Footer with multiple link columns and sections",
+      ru: "Футер с несколькими колонками ссылок и разделами",
+    },
     category: "footers",
     isNew: true,
   },
   {
     slug: "footer-newsletter",
     name: "Footer with Newsletter",
-    description: "Footer with email subscription form",
+    description: {
+      en: "Footer with email subscription form",
+      ru: "Футер с формой подписки по email",
+    },
     category: "footers",
   },
   {
     slug: "footer-social",
     name: "Footer with Social",
-    description: "Footer focused on social media links and icons",
+    description: {
+      en: "Footer focused on social media links and icons",
+      ru: "Футер со ссылками и иконками соцсетей",
+    },
     category: "footers",
     isComingSoon: true,
   },
   {
     slug: "footer-centered",
     name: "Centered Footer",
-    description: "Compact centered footer with minimal links",
+    description: {
+      en: "Compact centered footer with minimal links",
+      ru: "Компактный футер по центру с минимумом ссылок",
+    },
     category: "footers",
     isComingSoon: true,
   },
   {
     slug: "footer-contact",
     name: "Footer with Contact",
-    description: "Footer with contact information and form",
+    description: {
+      en: "Footer with contact information and form",
+      ru: "Футер с контактами и формой связи",
+    },
     category: "footers",
     isComingSoon: true,
   },
   {
     slug: "footer-app-links",
     name: "Footer with App Links",
-    description: "Footer with app store download buttons",
+    description: {
+      en: "Footer with app store download buttons",
+      ru: "Футер с кнопками загрузки из магазинов приложений",
+    },
     category: "footers",
     isComingSoon: true,
   },
   {
     slug: "footer-full",
     name: "Full Footer",
-    description:
-      "Complete footer with all sections: links, newsletter, social, legal",
+    description: {
+      en: "Complete footer with all sections: links, newsletter, social, legal",
+      ru: "Полный футер со всеми разделами: ссылки, рассылка, соцсети, юридическая информация",
+    },
     category: "footers",
     isComingSoon: true,
   },
@@ -319,7 +454,10 @@ export const BLOCK_ITEMS: BlockItem[] = [
   {
     slug: "features-grid",
     name: "Features Grid",
-    description: "Six-column grid showcasing product features with icons",
+    description: {
+      en: "Six-column grid showcasing product features with icons",
+      ru: "Сетка из шести колонок с иконками для показа возможностей продукта",
+    },
     category: "features",
     isFeatured: true,
     isNew: true,
@@ -329,7 +467,10 @@ export const BLOCK_ITEMS: BlockItem[] = [
   {
     slug: "hero-simple",
     name: "Simple Hero",
-    description: "Centered hero with headline, description, and CTA buttons",
+    description: {
+      en: "Centered hero with headline, description, and CTA buttons",
+      ru: "Hero по центру с заголовком, описанием и CTA-кнопками",
+    },
     category: "hero",
     isFeatured: true,
     isComingSoon: true,
@@ -337,63 +478,90 @@ export const BLOCK_ITEMS: BlockItem[] = [
   {
     slug: "hero-with-image",
     name: "Hero with Image",
-    description: "Hero section with side image or illustration",
+    description: {
+      en: "Hero section with side image or illustration",
+      ru: "Hero-секция с изображением или иллюстрацией сбоку",
+    },
     category: "hero",
     isComingSoon: true,
   },
   {
     slug: "hero-split",
     name: "Split Hero",
-    description: "Two-column hero with content and visual",
+    description: {
+      en: "Two-column hero with content and visual",
+      ru: "Hero в две колонки: контент и визуал",
+    },
     category: "hero",
     isComingSoon: true,
   },
   {
     slug: "hero-video",
     name: "Hero with Video",
-    description: "Hero with background or embedded video",
+    description: {
+      en: "Hero with background or embedded video",
+      ru: "Hero с фоновым или встроенным видео",
+    },
     category: "hero",
     isComingSoon: true,
   },
   {
     slug: "hero-with-form",
     name: "Hero with Form",
-    description: "Hero with integrated signup or contact form",
+    description: {
+      en: "Hero with integrated signup or contact form",
+      ru: "Hero со встроенной формой регистрации или обратной связи",
+    },
     category: "hero",
     isComingSoon: true,
   },
   {
     slug: "hero-stats",
     name: "Hero with Stats",
-    description: "Hero showcasing key metrics and numbers",
+    description: {
+      en: "Hero showcasing key metrics and numbers",
+      ru: "Hero с ключевыми метриками и цифрами",
+    },
     category: "hero",
     isComingSoon: true,
   },
   {
     slug: "hero-features",
     name: "Hero with Features",
-    description: "Hero with feature highlights and icons",
+    description: {
+      en: "Hero with feature highlights and icons",
+      ru: "Hero с выделенными возможностями и иконками",
+    },
     category: "hero",
     isComingSoon: true,
   },
   {
     slug: "hero-gradient",
     name: "Gradient Hero",
-    description: "Hero with animated gradient background",
+    description: {
+      en: "Hero with animated gradient background",
+      ru: "Hero с анимированным градиентным фоном",
+    },
     category: "hero",
     isComingSoon: true,
   },
   {
     slug: "hero-animated",
     name: "Animated Hero",
-    description: "Hero with text animations and motion effects",
+    description: {
+      en: "Hero with text animations and motion effects",
+      ru: "Hero с анимацией текста и эффектами движения",
+    },
     category: "hero",
     isComingSoon: true,
   },
   {
     slug: "hero-logo-cloud",
     name: "Hero with Logo Cloud",
-    description: "Hero with partner/client logos below CTA",
+    description: {
+      en: "Hero with partner/client logos below CTA",
+      ru: "Hero с логотипами партнёров и клиентов под CTA",
+    },
     category: "hero",
     isComingSoon: true,
   },

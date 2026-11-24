@@ -1,0 +1,20 @@
+{
+  "slug": "add-to-calendar",
+  "verdict": "css-only",
+  "client": false,
+  "jsBefore": 30172,
+  "jsAfter": 0,
+  "dependencies": [],
+  "registryDependencies": ["@gooseui/ics"],
+  "files": [{ "path": "registry/gooseui/ui/add-to-calendar.tsx", "type": "registry:ui" }],
+  "features": ["popover", "anchor-positioning", "starting-style", "transition-behavior", "has"],
+  "breaking": [
+    "onSelect removed: the component is a server component, track clicks on the links yourself",
+    "Menu items are plain links in a popover: no arrow-key navigation, Tab moves between items",
+    "The .ics file is a data: URL built during render; render from a server component or pass event.uid, otherwise DTSTAMP/UID differ between server and client render"
+  ],
+  "how": {
+    "en": "Native popover menu, .ics as a data: link with download, no JS",
+    "ru": "Меню на нативном popover, .ics ссылкой data: с download, без JS"
+  }
+}

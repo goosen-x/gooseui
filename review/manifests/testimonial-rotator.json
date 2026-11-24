@@ -1,0 +1,28 @@
+{
+  "slug": "testimonial-rotator",
+  "verdict": "css-only",
+  "client": false,
+  "jsBefore": 41059,
+  "jsAfter": 0,
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/gooseui/ui/testimonial-rotator.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "features": [
+    "has"
+  ],
+  "breaking": [
+    "onIndexChange removed",
+    "avatars are radio inputs inside labels instead of buttons with aria-pressed",
+    "the quote area no longer has aria-live",
+    "new prop name for the radio group"
+  ],
+  "how": {
+    "en": "Radio inputs, :has() and one shared CSS animation cycle",
+    "ru": "Радиокнопки, :has() и один общий цикл CSS-анимации"
+  }
+}

@@ -1,10 +1,28 @@
 "use client"
 
-import Link from "next/link"
-import { BorderBeam } from "@/registry/new-york/effects/border-beam"
-import { Button } from "@/registry/new-york/ui/button"
+import { useLocale } from "next-intl"
+import type { Dict } from "@/i18n/dict"
+import { Link } from "@/i18n/navigation"
+import type { Locale } from "@/i18n/routing"
+import { BorderBeam } from "@/registry/gooseui/effects/border-beam"
+import { Button } from "@/registry/gooseui/ui/button"
+
+const en = {
+  title: "Ready to Get Started?",
+  description: "Add your first component to your project right now",
+  docs: "Documentation",
+}
+const content: Dict<typeof en> = {
+  en,
+  ru: {
+    title: "Готовы начать?",
+    description: "Добавьте первый компонент в проект прямо сейчас",
+    docs: "Документация",
+  },
+}
 
 export function CTA() {
+  const t = content[useLocale() as Locale]
   return (
     <section className="py-20 px-6">
       <div className="max-w-4xl mx-auto">
@@ -19,10 +37,10 @@ export function CTA() {
         >
           <div className="relative z-10">
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
-              Ready to Get Started?
+              {t.title}
             </h2>
             <p className="mt-4 text-lg text-muted-foreground max-w-xl mx-auto">
-              Add your first component to your project right now
+              {t.description}
             </p>
             <div
               className="mt-6 border bg-muted/50 px-4 py-3 font-mono text-xs sm:text-sm max-w-md mx-auto overflow-x-auto"
@@ -39,7 +57,7 @@ export function CTA() {
             </div>
             <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
               <Button squircle size="lg" asChild>
-                <Link href="/docs">Documentation</Link>
+                <Link href="/docs">{t.docs}</Link>
               </Button>
               <Button squircle size="lg" variant="outline" asChild>
                 <a

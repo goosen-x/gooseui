@@ -6,29 +6,33 @@
  */
 
 import type { ComponentType } from "react"
+import { HeaderMorphingDemo } from "@/components/blocks/block-demos"
 // ===== BRANDS =====
 import {
   BrandsCarousel,
   BrandsCarouselDouble,
-} from "@/registry/new-york/blocks/brands/brands-carousel"
+} from "@/registry/gooseui/blocks/brands/brands-carousel"
 // ===== FAQ =====
-import { FAQAccordion } from "@/registry/new-york/blocks/faq/faq-accordion"
-import { FooterColumns } from "@/registry/new-york/blocks/footers/footer-columns"
-import { FooterNewsletter } from "@/registry/new-york/blocks/footers/footer-newsletter"
+import { FAQAccordion } from "@/registry/gooseui/blocks/faq/faq-accordion"
+import { FooterColumns } from "@/registry/gooseui/blocks/footers/footer-columns"
+import { FooterNewsletter } from "@/registry/gooseui/blocks/footers/footer-newsletter"
 // ===== FOOTERS =====
-import { FooterSimple } from "@/registry/new-york/blocks/footers/footer-simple"
-import { HeaderAuth } from "@/registry/new-york/blocks/headers/header-auth"
+import { FooterSimple } from "@/registry/gooseui/blocks/footers/footer-simple"
+import { HeaderAuth } from "@/registry/gooseui/blocks/headers/header-auth"
 // ===== HEADERS =====
-import { HeaderSimple } from "@/registry/new-york/blocks/headers/header-simple"
-import { HeaderWithCta } from "@/registry/new-york/blocks/headers/header-with-cta"
+import { HeaderMegaMenu } from "@/registry/gooseui/blocks/headers/header-mega-menu"
+import { HeaderSimple } from "@/registry/gooseui/blocks/headers/header-simple"
+import { HeaderWithCta } from "@/registry/gooseui/blocks/headers/header-with-cta"
 // ===== HERO =====
-import { HeroClassic } from "@/registry/new-york/blocks/hero/hero-classic"
-import { HeroSplit } from "@/registry/new-york/blocks/hero/hero-split"
+import { HeroClassic } from "@/registry/gooseui/blocks/hero/hero-classic"
+import { HeroSplit } from "@/registry/gooseui/blocks/hero/hero-split"
 // ===== SERVICES =====
 import {
   ServicesGrid,
   ServicesMarquee,
-} from "@/registry/new-york/blocks/services/services-marquee"
+} from "@/registry/gooseui/blocks/services/services-marquee"
+// ===== WEB3 =====
+import { TapToEarn } from "@/registry/gooseui/blocks/web3/tap-coin"
 
 /**
  * Component registry mapping block IDs to React components
@@ -38,6 +42,11 @@ export const blocksComponents: Record<string, ComponentType> = {
   "header-01": HeaderSimple,
   "header-02": HeaderWithCta,
   "header-03": HeaderAuth,
+  "header-05": HeaderMegaMenu,
+  "header-11": HeaderMorphingDemo,
+
+  // Web3
+  "web3-04": TapToEarn,
 
   // Footers
   "footer-01": FooterSimple,

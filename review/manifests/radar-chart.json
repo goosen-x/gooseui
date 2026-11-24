@@ -1,0 +1,21 @@
+{
+  "slug": "radar-chart",
+  "verdict": "css-only",
+  "client": false,
+  "jsBefore": 2589,
+  "jsAfter": 0,
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [{ "path": "registry/gooseui/ui/radar-chart.tsx", "type": "registry:ui" }],
+  "features": ["has", "scroll-driven-animations", "individual-transforms"],
+  "breaking": [
+    "arrow-key navigation removed: every point is a Tab stop and shows its tooltip on :focus-visible",
+    "points are HTML spans over the SVG instead of <circle> elements; the plot SVG is aria-hidden",
+    "draw-in follows the scroll via animation-timeline: view(); without it series grow once on load, duration applies only then",
+    "legend hover highlighting covers the first 8 series"
+  ],
+  "how": {
+    "en": "Server SVG, tooltips and highlight via :hover, :focus and :has()",
+    "ru": "SVG с сервера, подсказки и подсветка на :hover, :focus и :has()"
+  }
+}

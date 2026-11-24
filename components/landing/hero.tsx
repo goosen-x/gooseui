@@ -1,21 +1,74 @@
 "use client"
 
 import { Send } from "lucide-react"
-import Link from "next/link"
+import { useLocale } from "next-intl"
 import { useState } from "react"
-import { AnimatedCopyButton } from "@/components/docs/animated-copy-button"
+import { useCopyToast } from "@/hooks/use-copy-toast"
+import type { Dict } from "@/i18n/dict"
+import { Link } from "@/i18n/navigation"
+import type { Locale } from "@/i18n/routing"
 import { customToast } from "@/lib/toast"
 import { cn } from "@/lib/utils"
-import { BorderBeam } from "@/registry/new-york/effects/border-beam"
-import { Button } from "@/registry/new-york/ui/button"
-import { Checkbox } from "@/registry/new-york/ui/checkbox"
-import { Input } from "@/registry/new-york/ui/input"
-import { SlidingNumber } from "@/registry/new-york/ui/sliding-number"
-import { ThemeCustomizerPill } from "@/registry/new-york/ui/theme-customizer"
+import { BorderBeam } from "@/registry/gooseui/effects/border-beam"
+import { Button } from "@/registry/gooseui/ui/button"
+import { Checkbox } from "@/registry/gooseui/ui/checkbox"
+import { CopyButton } from "@/registry/gooseui/ui/copy-button"
+import { Input } from "@/registry/gooseui/ui/input"
+import { SlidingNumber } from "@/registry/gooseui/ui/sliding-number"
+import { ThemeCustomizerPill } from "@/registry/gooseui/ui/theme-customizer"
 
 const cliCommand = "npx shadcn@latest add @gooseui/button"
+const shadcnDirectoryUrl = "https://ui.shadcn.com/docs/directory?q=gooseui"
+
+const en = {
+  badge: "Listed in the shadcn/ui registry directory",
+  title: "Build Modern Interfaces Faster",
+  description:
+    "A collection of beautiful components and effects for React. Copy the code, customize it, ship to production.",
+  getStarted: "Get Started",
+  components: "Components",
+  counterIncremented: "Counter incremented",
+  primaryDesc: "Default button style",
+  secondaryDesc: "Secondary button style",
+  outlineDesc: "Outline button style",
+  ghostDesc: "Ghost button style",
+  inputPlaceholder: "Type here...",
+  messageSent: "Message sent!",
+  clickToIncrement: "Click to increment",
+  checkboxLabel: "Animated checkbox",
+  checked: "Checked!",
+  unchecked: "Unchecked",
+  checkboxChanged: "Checkbox state changed",
+  commandCopied: "Command copied",
+}
+const content: Dict<typeof en> = {
+  en,
+  ru: {
+    badge: "В официальном каталоге реестров shadcn/ui",
+    title: "Собирайте интерфейсы быстрее",
+    description:
+      "Коллекция красивых компонентов и эффектов для React. Скопируйте код, настройте под себя и выкатывайте в продакшен.",
+    getStarted: "Начать",
+    components: "Компоненты",
+    counterIncremented: "Счётчик увеличен",
+    primaryDesc: "Стиль кнопки по умолчанию",
+    secondaryDesc: "Стиль вторичной кнопки",
+    outlineDesc: "Стиль кнопки с обводкой",
+    ghostDesc: "Стиль прозрачной кнопки",
+    inputPlaceholder: "Введите текст...",
+    messageSent: "Сообщение отправлено!",
+    clickToIncrement: "Нажмите, чтобы увеличить",
+    checkboxLabel: "Анимированный чекбокс",
+    checked: "Отмечено!",
+    unchecked: "Снято",
+    checkboxChanged: "Состояние чекбокса изменилось",
+    commandCopied: "Команда скопирована",
+  },
+}
 
 export function Hero() {
+  const t = content[useLocale() as Locale]
+  const copyToast = useCopyToast()
   const [counter, setCounter] = useState(1337)
   const [inputValue, setInputValue] = useState("")
   const [inputError, setInputError] = useState(false)
@@ -24,7 +77,7 @@ export function Hero() {
     const increment = Math.floor(Math.random() * 10) + 1
     setCounter((prev) => prev + increment)
     customToast.info(`+${increment}`, {
-      description: "Counter incremented",
+      description: t.counterIncremented,
     })
   }
 
@@ -46,7 +99,12 @@ export function Hero() {
         <div className="flex flex-col lg:flex-row gap-6 sm:gap-8 lg:gap-16 items-center lg:items-start w-full">
           {/* Left side - Text content */}
           <div className="flex-1">
-            <div className="inline-flex items-center rounded-full border px-3 py-1 sm:px-4 sm:py-1.5 text-xs sm:text-sm font-medium mb-4 sm:mb-6 backdrop-blur-[1px] bg-background/20">
+            <a
+              href={shadcnDirectoryUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group/badge inline-flex cursor-pointer items-center rounded-full border px-3 py-1 sm:px-4 sm:py-1.5 text-xs sm:text-sm font-medium mb-4 sm:mb-6 backdrop-blur-[1px] bg-background/20 transition-colors hover:border-primary/60 hover:bg-primary/10 focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 256 256"
@@ -76,16 +134,27 @@ export function Hero() {
                   strokeWidth="32"
                 />
               </svg>
-              <span>Custom shadcn/ui Registry</span>
-            </div>
+              <span>{t.badge}</span>
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+                className="ml-1.5 size-3.5 text-muted-foreground transition-transform group-hover/badge:translate-x-0.5 group-hover/badge:-translate-y-0.5"
+              >
+                <path d="M7 17 17 7M8 7h9v9" />
+              </svg>
+            </a>
 
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-[1.1] font-bold tracking-tight text-balance">
-              Build Modern Interfaces Faster
+              {t.title}
             </h1>
 
             <p className="mt-3 sm:mt-4 md:mt-6 text-base sm:text-lg md:text-xl text-muted-foreground text-balance max-w-xl">
-              A collection of beautiful components and effects for React. Copy
-              the code, customize it, ship to production.
+              {t.description}
             </p>
 
             <div className="mt-6 sm:mt-8 md:mt-10 flex flex-col sm:flex-row gap-3 sm:gap-4">
@@ -95,7 +164,7 @@ export function Hero() {
                 className="sm:h-11 sm:px-8"
                 asChild
               >
-                <Link href="/docs">Get Started</Link>
+                <Link href="/docs">{t.getStarted}</Link>
               </Button>
               <Button
                 squircle
@@ -104,7 +173,7 @@ export function Hero() {
                 className="sm:h-11 sm:px-8 backdrop-blur-[2px] bg-background/20 hover:bg-background/20 hover:backdrop-blur-md transition-all"
                 asChild
               >
-                <Link href="/docs/components">Components</Link>
+                <Link href="/docs/components">{t.components}</Link>
               </Button>
             </div>
 
@@ -190,7 +259,11 @@ export function Hero() {
                     <code className="text-xs text-muted-foreground">
                       {cliCommand}
                     </code>
-                    <AnimatedCopyButton text={cliCommand} />
+                    <CopyButton
+                      size="sm"
+                      value={cliCommand}
+                      {...copyToast(t.commandCopied)}
+                    />
                   </div>
                   <div className="p-3 sm:p-6 md:p-8 grid grid-cols-2 sm:flex items-center justify-center gap-2 sm:gap-4">
                     <Button
@@ -199,7 +272,7 @@ export function Hero() {
                       className="sm:h-9 sm:px-4 text-xs sm:text-sm"
                       onClick={() =>
                         customToast.success("Primary Button", {
-                          description: "Default button style",
+                          description: t.primaryDesc,
                         })
                       }
                     >
@@ -212,7 +285,7 @@ export function Hero() {
                       className="sm:h-9 sm:px-4 text-xs sm:text-sm"
                       onClick={() =>
                         customToast.info("Secondary Button", {
-                          description: "Secondary button style",
+                          description: t.secondaryDesc,
                         })
                       }
                     >
@@ -225,7 +298,7 @@ export function Hero() {
                       className="sm:h-9 sm:px-4 text-xs sm:text-sm backdrop-blur-[2px] bg-background/20 hover:bg-background/40"
                       onClick={() =>
                         customToast.warning("Outline Button", {
-                          description: "Outline button style",
+                          description: t.outlineDesc,
                         })
                       }
                     >
@@ -238,7 +311,7 @@ export function Hero() {
                       className="sm:h-9 sm:px-4 text-xs sm:text-sm"
                       onClick={() =>
                         customToast.error("Ghost Button", {
-                          description: "Ghost button style",
+                          description: t.ghostDesc,
                         })
                       }
                     >
@@ -281,7 +354,7 @@ export function Hero() {
                   <div className="p-4 flex-1 flex items-center justify-center">
                     <div className="flex gap-2 w-full">
                       <Input
-                        placeholder="Type here..."
+                        placeholder={t.inputPlaceholder}
                         className={cn(
                           "h-8 text-sm",
                           inputError && "border-red-500 ring-2 ring-red-500/30",
@@ -295,7 +368,7 @@ export function Hero() {
                         className="h-8 px-3"
                         onClick={() => {
                           if (inputValue.trim()) {
-                            customToast.success("Message sent!", {
+                            customToast.success(t.messageSent, {
                               description: inputValue,
                             })
                             setInputValue("")
@@ -371,7 +444,7 @@ export function Hero() {
                     className="p-4 flex-1 w-full flex flex-col items-center justify-center gap-1 cursor-pointer hover:bg-muted/30 transition-colors"
                   >
                     <span className="text-xs text-muted-foreground">
-                      Click to increment
+                      {t.clickToIncrement}
                     </span>
                     <SlidingNumber
                       value={counter}
@@ -407,15 +480,15 @@ export function Hero() {
                   </div>
                   <div className="p-4 flex-1 flex items-center justify-center">
                     <Checkbox
-                      label="Animated checkbox"
+                      label={t.checkboxLabel}
                       defaultChecked
                       onChange={(e) =>
                         e.target.checked
-                          ? customToast.success("Checked!", {
-                              description: "Checkbox state changed",
+                          ? customToast.success(t.checked, {
+                              description: t.checkboxChanged,
                             })
-                          : customToast.error("Unchecked", {
-                              description: "Checkbox state changed",
+                          : customToast.error(t.unchecked, {
+                              description: t.checkboxChanged,
                             })
                       }
                     />

@@ -1,0 +1,41 @@
+{
+  "slug": "step-wizard",
+  "verdict": "css-only",
+  "client": false,
+  "jsBefore": 42466,
+  "jsAfter": 0,
+  "optionalClient": {
+    "file": "registry/gooseui/ui/step-wizard-client.tsx",
+    "gzip": 3958,
+    "adds": "async validate, onComplete, onStepChange, useStepWizard"
+  },
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/gooseui/ui/step-wizard.tsx",
+      "type": "registry:ui"
+    },
+    {
+      "path": "registry/gooseui/ui/step-wizard-client.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "features": [
+    "details-name",
+    "has"
+  ],
+  "breaking": [
+    "validate, onComplete, onStepChange and useStepWizard moved to step-wizard-client (StepWizard and StepWizardStep with the same names)",
+    "steps are <details name>; StepWizardStep must be a direct child of StepWizard",
+    "without onComplete the Finish button is type=submit and submits the surrounding form",
+    "Next is locked by native validity (fieldset:has(:invalid)): required, pattern, minLength",
+    "only the entering step animates; there is no exit animation and slide no longer follows the direction",
+    "the progress bar is decorative (aria-hidden); the step number is read from a visually hidden text in the title",
+    "new props name, error, pending"
+  ],
+  "how": {
+    "en": "<details name> steps, neighbour summaries as Back and Next",
+    "ru": "Шаги на <details name>, summary соседей служат кнопками"
+  }
+}

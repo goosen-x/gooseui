@@ -1,0 +1,23 @@
+{
+  "slug": "phone-input",
+  "verdict": "js",
+  "client": true,
+  "jsBefore": 3558,
+  "jsAfter": 2897,
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/gooseui/ui/phone-input.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "features": [],
+  "breaking": [
+    "the country chevron is inline SVG, lucide-react is no longer a dependency"
+  ],
+  "how": {
+    "en": "Native <select> and tel input; JS applies the mask and keeps the caret",
+    "ru": "Нативные <select> и tel; JS накладывает маску и держит каретку"
+  }
+}

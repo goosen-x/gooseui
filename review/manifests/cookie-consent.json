@@ -1,0 +1,33 @@
+{
+  "slug": "cookie-consent",
+  "verdict": "css-first",
+  "client": true,
+  "jsBefore": 3640,
+  "jsAfter": 3177,
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/gooseui/ui/cookie-consent.tsx",
+      "type": "registry:ui"
+    },
+    {
+      "path": "registry/gooseui/ui/cookie-consent.client.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "features": [
+    "dialog",
+    "has",
+    "starting-style",
+    "transition-behavior"
+  ],
+  "breaking": [
+    "onAccept/onDecline work only when CookieConsent is rendered from a client component; server users listen to the bubbling \"cookieconsent\" event",
+    "The banner is now a non-modal <dialog> instead of <section>; it is rendered on the server and removed by an inline script when a choice is stored"
+  ],
+  "how": {
+    "en": "<dialog> + <form method=dialog>, @starting-style; JS saves choice",
+    "ru": "<dialog> и <form method=dialog>, @starting-style; JS хранит выбор"
+  }
+}

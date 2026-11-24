@@ -1,13 +1,20 @@
+import { useLocale } from "next-intl"
+import type { Dict } from "@/i18n/dict"
+import type { Locale } from "@/i18n/routing"
 import { cn } from "@/lib/utils"
-import { Button } from "@/registry/new-york/ui/button"
+import { Button } from "@/registry/gooseui/ui/button"
+
+const en = { openIn: "Open in" }
+const content: Dict<typeof en> = { en, ru: { openIn: "Открыть в" } }
 
 export function OpenInV0Button({
   name,
   className,
 }: { name: string } & React.ComponentProps<typeof Button>) {
+  const t = content[useLocale() as Locale]
   return (
     <Button
-      aria-label="Open in v0"
+      aria-label={`${t.openIn} v0`}
       size="sm"
       className={cn(
         "shadow-none bg-black text-white hover:bg-black hover:text-white dark:bg-white dark:text-black",
@@ -20,7 +27,7 @@ export function OpenInV0Button({
         target="_blank"
         rel="noreferrer"
       >
-        Open in{" "}
+        {t.openIn}{" "}
         <svg
           viewBox="0 0 40 20"
           fill="none"

@@ -1,0 +1,26 @@
+{
+  "slug": "scroll-word-reveal",
+  "verdict": "css-only",
+  "client": false,
+  "jsBefore": 41270,
+  "jsAfter": 0,
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/gooseui/effects/scroll-word-reveal.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "features": [
+    "scroll-driven-animations"
+  ],
+  "breaking": [
+    "root removed: view() follows the nearest scroll container on its own",
+    "offset is now [number, number] (shares of the scroll container height), not the motion useScroll offset format; the reveal ends when the bottom of the text crosses the second line"
+  ],
+  "how": {
+    "en": "view() timeline, per-word animation-range shifted by --i, no JS",
+    "ru": "Шкала view(), у каждого слова свой animation-range по --i, без JS"
+  }
+}

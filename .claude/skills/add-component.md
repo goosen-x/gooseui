@@ -10,7 +10,7 @@ allowed-tools: Read, Write, Edit, Grep, Glob, Bash
 
 ## Quick Checklist
 
-1. [ ] `registry/new-york/{type}/{slug}.tsx` — component
+1. [ ] `registry/gooseui/{type}/{slug}.tsx` — component
 2. [ ] `public/r/{slug}.json` — registry JSON
 3. [ ] `lib/config/registry.ts` — add to REGISTRY_ITEMS
 4. [ ] `lib/config/docs-navigation.ts` — add to navigation
@@ -144,7 +144,7 @@ export default function ComponentNamePage() {
 
       {/* 3. Browser Support (if uses modern APIs) */}
       <DocsBrowserSupport features={{ featureId: "feature-id", browserCheck: "feature-id" }}>
-        Description of browser support and graceful degradation.
+        Description of browser support and progressive enhancement.
       </DocsBrowserSupport>
 
       {/* For multiple features: */}
@@ -325,7 +325,7 @@ Navigation is auto-generated based on the order in `lib/config/docs-navigation.t
 ## Project Structure
 
 ```
-registry/new-york/
+registry/gooseui/
 ├── ui/              # UI components (button, input, card)
 ├── effects/         # Visual effects (border-beam, scroll-progress)
 ├── blocks/          # Ready-to-use examples
@@ -363,7 +363,7 @@ Location: `public/r/{slug}.json`
   "dependencies": ["lucide-react"],
   "files": [
     {
-      "path": "registry/new-york/ui/component-name.tsx",
+      "path": "registry/gooseui/ui/component-name.tsx",
       "type": "registry:ui"
     }
   ]

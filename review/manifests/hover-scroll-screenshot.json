@@ -1,0 +1,30 @@
+{
+  "slug": "hover-scroll-screenshot",
+  "verdict": "css-only",
+  "client": false,
+  "jsBefore": 1889,
+  "jsAfter": 0,
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/gooseui/ui/hover-scroll-screenshot.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "features": [
+    "container-queries",
+    "linear-easing",
+    "individual-transforms"
+  ],
+  "breaking": [
+    "pixelsPerSecond removed: CSS cannot read the image height, use duration (ms, default 6000)",
+    "duration now defaults to 6000 instead of being derived from the height",
+    "role is img (focusable), not a toggle button: Enter/Space/Escape no longer toggle, focus starts the scroll and blur returns it",
+    "the way back is a reversed CSS transition, not a resumable Web Animation"
+  ],
+  "how": {
+    "en": "Size container, translate to calc(100cqh - 100%) on hover/focus",
+    "ru": "Size-контейнер, translate до calc(100cqh - 100%) по hover и фокусу"
+  }
+}

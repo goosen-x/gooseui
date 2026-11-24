@@ -1,0 +1,21 @@
+{
+  "slug": "stat-counter",
+  "verdict": "css-only",
+  "client": false,
+  "jsBefore": 1023,
+  "jsAfter": 0,
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [{ "path": "registry/gooseui/ui/stat-counter.tsx", "type": "registry:ui" }],
+  "features": ["scroll-driven-animations", "registered-custom-properties"],
+  "breaking": [
+    "duration removed: the count follows the scroll position (view() timeline, entry 0% .. cover 25%)",
+    "once removed: a scroll-linked count runs back when the block scrolls out",
+    "threshold removed: the range is fixed to entry 0% .. cover 25%",
+    "negative numbers, exponent notation and non-3-digit grouping show the final value without counting"
+  ],
+  "how": {
+    "en": "@property number on a view() timeline, digits via CSS counters",
+    "ru": "Число на @property по шкале view(), цифры через CSS-счётчики"
+  }
+}

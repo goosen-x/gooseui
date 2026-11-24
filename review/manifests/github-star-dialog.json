@@ -1,0 +1,28 @@
+{
+  "slug": "github-star-dialog",
+  "verdict": "js",
+  "client": true,
+  "jsBefore": 53798,
+  "jsAfter": 4456,
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/gooseui/ui/github-star-dialog.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "features": [
+    "dialog",
+    "starting-style",
+    "transition-behavior"
+  ],
+  "breaking": [
+    "trigger must be a single React element (it receives onClick), not any ReactNode",
+    "Radix Dialog parts and portal are gone: native <dialog> in the top layer"
+  ],
+  "how": {
+    "en": "Native <dialog> with @starting-style; JS for fetch, timer, storage",
+    "ru": "Нативный <dialog> и @starting-style; JS: запрос, таймер, storage"
+  }
+}

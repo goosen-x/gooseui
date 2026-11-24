@@ -1,0 +1,21 @@
+{
+  "slug": "video-hover-preview",
+  "verdict": "js",
+  "client": true,
+  "jsBefore": 2189,
+  "jsAfter": 1470,
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/gooseui/ui/video-hover-preview.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "features": [],
+  "breaking": [],
+  "how": {
+    "en": "Native <video>; small JS plays muted on hover, sound on click",
+    "ru": "Нативный <video>; немного JS: без звука при наведении, звук по клику"
+  }
+}

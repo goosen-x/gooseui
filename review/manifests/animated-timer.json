@@ -1,0 +1,27 @@
+{
+  "slug": "animated-timer",
+  "verdict": "css-first",
+  "client": true,
+  "jsBefore": 946,
+  "jsAfter": 1223,
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/gooseui/ui/animated-timer.tsx",
+      "type": "registry:ui"
+    },
+    {
+      "path": "registry/gooseui/ui/animated-timer.client.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "features": [
+    "individual-transforms"
+  ],
+  "breaking": [],
+  "how": {
+    "en": "Server markup and CSS, 0.4 kB island writes data-v each second",
+    "ru": "Разметка и CSS с сервера, островок 0,4 кБ пишет data-v раз в секунду"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "slug": "image-viewer",
+  "verdict": "js",
+  "client": true,
+  "jsBefore": 15992,
+  "jsAfter": 4233,
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [{ "path": "registry/gooseui/ui/image-viewer.tsx", "type": "registry:ui" }],
+  "features": ["dialog", "starting-style"],
+  "breaking": [
+    "@radix-ui/react-dialog and lucide-react removed from dependencies",
+    "ImageViewerDialog children is no longer rendered with Radix asChild: pass a single element, it gets aria-haspopup and an onClick that opens the dialog (a non-element child is rendered but cannot open it)",
+    "The close animation is gone: the dialog fades in only"
+  ],
+  "how": {
+    "en": "Own pointer and wheel code for zoom and pan, fullscreen on <dialog>",
+    "ru": "Свой код для масштаба и перетаскивания, полный экран на <dialog>"
+  }
+}

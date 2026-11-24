@@ -13,7 +13,7 @@ import { getBlockFilePath } from "./utils"
 /**
  * Registry base path
  */
-const REGISTRY_PATH = "registry/new-york/blocks"
+const REGISTRY_PATH = "registry/gooseui/blocks"
 
 /**
  * Read block source code from file

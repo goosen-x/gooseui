@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "reveal-on-scroll",
+  "title": "Reveal on Scroll",
+  "description": "Reveals elements as they enter the viewport using CSS scroll-driven animations.",
+  "registryDependencies": [
+    "@gooseui/use-global-styles"
+  ],
+  "files": [
+    {
+      "path": "registry/gooseui/effects/reveal-on-scroll.tsx",
+      "content": "\"use client\"\n\nimport type * as React from \"react\"\nimport { useGlobalStyles } from \"@/hooks/use-global-styles\"\nimport { cn } from \"@/lib/utils\"\n\nconst REVEAL_ON_SCROLL_STYLES = `\n@keyframes reveal-up {\n  from {\n    opacity: 0;\n    transform: translateY(40px);\n  }\n  to {\n    opacity: 1;\n    transform: translateY(0);\n  }\n}\n\n@keyframes reveal-down {\n  from {\n    opacity: 0;\n    transform: translateY(-40px);\n  }\n  to {\n    opacity: 1;\n    transform: translateY(0);\n  }\n}\n\n@keyframes reveal-left {\n  from {\n    opacity: 0;\n    transform: translateX(40px);\n  }\n  to {\n    opacity: 1;\n    transform: translateX(0);\n  }\n}\n\n@keyframes reveal-right {\n  from {\n    opacity: 0;\n    transform: translateX(-40px);\n  }\n  to {\n    opacity: 1;\n    transform: translateX(0);\n  }\n}\n\n@keyframes reveal-fade {\n  from {\n    opacity: 0;\n  }\n  to {\n    opacity: 1;\n  }\n}\n`\n\ninterface RevealOnScrollProps {\n  children: React.ReactNode\n  className?: string\n  /** Animation direction */\n  direction?: \"up\" | \"down\" | \"left\" | \"right\" | \"fade\"\n  /** Animation delay in ms */\n  delay?: number\n  /** Animation duration in ms */\n  duration?: number\n}\n\n/**\n * Reveal on Scroll\n *\n * Uses CSS scroll-driven animations with view() timeline\n * to reveal elements as they enter the viewport.\n *\n * @see https://developer.mozilla.org/en-US/docs/Web/CSS/animation-timeline\n */\nexport function RevealOnScroll({\n  children,\n  className,\n  direction = \"up\",\n  delay = 0,\n  duration = 600,\n}: RevealOnScrollProps) {\n  const animationName = `reveal-${direction}`\n\n  return (\n    <div\n      className={cn(\"reveal-on-scroll\", className)}\n      style={{\n        animation: `${animationName} linear both`,\n        animationTimeline: \"view()\",\n        animationRange: \"entry 0% cover 40%\",\n        animationDelay: `${delay}ms`,\n        animationDuration: `${duration}ms`,\n      }}\n    >\n      {children}\n    </div>\n  )\n}\n\n/**\n * Reveal on Scroll Styles\n *\n * Include this component once in your app to enable reveal animations.\n */\nexport function RevealOnScrollStyles() {\n  useGlobalStyles(REVEAL_ON_SCROLL_STYLES, \"reveal-on-scroll-styles\")\n  return null\n}\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

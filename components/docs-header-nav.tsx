@@ -1,20 +1,21 @@
 "use client"
 
-import Link from "next/link"
-import { usePathname } from "next/navigation"
+import { useLocale } from "next-intl"
 import * as React from "react"
+import { pick } from "@/i18n/dict"
+import { Link, usePathname } from "@/i18n/navigation"
+import { getSlugTitle } from "@/lib/config/docs-navigation"
 import {
   Breadcrumb,
   BreadcrumbItem,
-  BreadcrumbLink,
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb"
-import { getSlugTitle } from "@/lib/config/docs-navigation"
+} from "@/registry/gooseui/ui/breadcrumb"
 
 export function DocsHeaderNav() {
   const pathname = usePathname()
+  const locale = useLocale()
   const segments = pathname.split("/").filter(Boolean)
 
   // Filter out locale segment (e.g., "en", "ru")
@@ -25,7 +26,7 @@ export function DocsHeaderNav() {
   const breadcrumbs = filteredSegments.map((segment, index) => {
     const href = "/" + filteredSegments.slice(0, index + 1).join("/")
     const isLast = index === filteredSegments.length - 1
-    const name = getSlugTitle(segment)
+    const name = pick(getSlugTitle(segment), locale)
 
     return { href, name, isLast }
   })
@@ -40,9 +41,12 @@ export function DocsHeaderNav() {
               {crumb.isLast ? (
                 <BreadcrumbPage>{crumb.name}</BreadcrumbPage>
               ) : (
-                <BreadcrumbLink asChild>
-                  <Link href={crumb.href}>{crumb.name}</Link>
-                </BreadcrumbLink>
+                <Link
+                  href={crumb.href}
+                  className="cursor-pointer transition-colors hover:text-foreground"
+                >
+                  {crumb.name}
+                </Link>
               )}
             </BreadcrumbItem>
           </React.Fragment>

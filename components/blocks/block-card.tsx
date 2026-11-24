@@ -2,10 +2,18 @@
 
 import { Clock, Sparkles } from "lucide-react"
 import Image from "next/image"
-import Link from "next/link"
-import { Badge } from "@/components/ui/badge"
+import { useLocale } from "next-intl"
+import { type Dict, pick } from "@/i18n/dict"
+import { Link } from "@/i18n/navigation"
+import type { Locale } from "@/i18n/routing"
 import type { BlockItem } from "@/lib/config/blocks-registry"
 import { cn } from "@/lib/utils"
+import { Badge } from "@/registry/gooseui/ui/badge"
+
+const content: Dict<{ new: string; soon: string; featured: string }> = {
+  en: { new: "New", soon: "Soon", featured: "Featured" },
+  ru: { new: "Новое", soon: "Скоро", featured: "Рекомендуем" },
+}
 
 interface BlockCardProps {
   block: BlockItem
@@ -13,6 +21,8 @@ interface BlockCardProps {
 }
 
 export function BlockCard({ block, className }: BlockCardProps) {
+  const locale = useLocale()
+  const t = content[locale as Locale]
   const href = `/docs/blocks/${block.category}/${block.slug}`
 
   return (
@@ -57,13 +67,13 @@ export function BlockCard({ block, className }: BlockCardProps) {
           {block.isNew && (
             <Badge variant="secondary" className="bg-blue-500/90 text-white">
               <Sparkles className="mr-1 h-3 w-3" />
-              New
+              {t.new}
             </Badge>
           )}
           {block.isComingSoon && (
             <Badge variant="secondary" className="bg-gray-500/90 text-white">
               <Clock className="mr-1 h-3 w-3" />
-              Soon
+              {t.soon}
             </Badge>
           )}
         </div>
@@ -75,14 +85,14 @@ export function BlockCard({ block, className }: BlockCardProps) {
           {block.name}
         </h3>
         <p className="line-clamp-2 text-sm text-muted-foreground">
-          {block.description}
+          {pick(block.description, locale)}
         </p>
       </div>
 
       {/* Featured indicator */}
       {block.isFeatured && (
         <div className="absolute -right-8 top-6 rotate-45 bg-amber-500 px-8 py-0.5 text-xs font-medium text-white">
-          Featured
+          {t.featured}
         </div>
       )}
     </Link>

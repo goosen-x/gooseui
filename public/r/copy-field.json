@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "copy-field",
+  "title": "Copy Field",
+  "description": "Label and value row with an inline copy button.",
+  "registryDependencies": [
+    "@gooseui/copy-button"
+  ],
+  "files": [
+    {
+      "path": "registry/gooseui/ui/copy-field.tsx",
+      "content": "\"use client\"\n\nimport type * as React from \"react\"\nimport { cn } from \"@/lib/utils\"\nimport {\n  CopyButton,\n  type CopyButtonLabels,\n} from \"@/registry/gooseui/ui/copy-button\"\n\nexport type CopyFieldLabels = CopyButtonLabels\n\nexport type CopyFieldProps = Omit<\n  React.ComponentProps<\"div\">,\n  \"onCopy\" | \"children\"\n> & {\n  label: string\n  value: string\n  /** Text shown instead of the raw value, e.g. a masked token. Copying still uses `value`. */\n  displayValue?: React.ReactNode\n  mono?: boolean\n  /** Cut long values to one line; the full text goes to the tooltip. */\n  truncate?: boolean\n  timeout?: number\n  labels?: Partial<CopyFieldLabels>\n  labelClassName?: string\n  valueClassName?: string\n  onCopy?: (value: string) => void\n  onCopyError?: (error: Error) => void\n}\n\nconst DEFAULT_LABELS: CopyFieldLabels = { copy: \"Copy\", copied: \"Copied\" }\n\n/**\n * A “label: value” row with a read-only field and an inline `CopyButton`.\n * All copying, the check mark and the announcements come from CopyButton.\n */\nexport function CopyField({\n  label,\n  value,\n  displayValue,\n  mono = false,\n  truncate = true,\n  timeout,\n  labels,\n  labelClassName,\n  valueClassName,\n  onCopy,\n  onCopyError,\n  className,\n  ...props\n}: CopyFieldProps) {\n  const text = { ...DEFAULT_LABELS, ...labels }\n\n  return (\n    <div\n      data-slot=\"copy-field\"\n      className={cn(\"flex min-w-0 items-center gap-3 text-sm\", className)}\n      {...props}\n    >\n      <span className={cn(\"shrink-0 text-muted-foreground\", labelClassName)}>\n        {label}\n      </span>\n      <div className=\"flex min-w-0 flex-1 items-center justify-between gap-1 rounded-md border bg-background py-1 pr-1 pl-2.5\">\n        <span\n          title={truncate ? value : undefined}\n          className={cn(\n            \"min-w-0 text-foreground\",\n            truncate ? \"truncate\" : \"[overflow-wrap:anywhere]\",\n            mono && \"font-mono text-[0.92em]\",\n            valueClassName,\n          )}\n        >\n          {displayValue ?? value}\n        </span>\n        <CopyButton\n          variant=\"inline\"\n          value={value}\n          timeout={timeout}\n          labels={{\n            copy: `${text.copy}: ${label}`,\n            copied: `${text.copied}: ${label}`,\n          }}\n          onCopy={onCopy}\n          onCopyError={onCopyError}\n        />\n      </div>\n    </div>\n  )\n}\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

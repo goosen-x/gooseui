@@ -1,0 +1,34 @@
+{
+  "slug": "compare-slider",
+  "verdict": "css-first",
+  "client": true,
+  "jsBefore": 40928,
+  "jsAfter": 1996,
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/gooseui/ui/compare-slider.tsx",
+      "type": "registry:ui"
+    },
+    {
+      "path": "registry/gooseui/ui/compare-slider-input.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "features": [
+    "registered-custom-properties",
+    "vertical-form-controls",
+    "has"
+  ],
+  "breaking": [
+    "the spring is replaced by a 160 ms CSS transition on @property; instant turns it off",
+    "the handle is a native <input type=range> over the frame instead of a div with role=slider",
+    "without JavaScript the frame is static at defaultPosition",
+    "new prop name sends the position with a form"
+  ],
+  "how": {
+    "en": "Native range writes a CSS variable, clip-path does the rest",
+    "ru": "Нативный range пишет CSS-переменную, остальное делает clip-path"
+  }
+}

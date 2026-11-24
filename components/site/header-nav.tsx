@@ -1,24 +1,36 @@
 "use client"
 
-import Link from "next/link"
-import { usePathname } from "next/navigation"
+import { useLocale } from "next-intl"
+import type { Localized } from "@/i18n/dict"
+import { pick } from "@/i18n/dict"
+import { Link, usePathname } from "@/i18n/navigation"
+import { BLOCKS_ENABLED } from "@/lib/config/features"
 import { cn } from "@/lib/utils"
 
-const mainNav = [
-  { href: "/docs", title: "Docs" },
-  { href: "/docs/components", title: "Components" },
+const mainNav: { href: string; title: Localized }[] = [
+  { href: "/docs", title: { en: "Docs", ru: "Документация" } },
+  {
+    href: "/docs/components",
+    title: { en: "Components", ru: "Компоненты" },
+  },
 ]
 
 // Add Blocks only in development
-if (process.env.NODE_ENV === "development") {
-  mainNav.push({ href: "/docs/blocks", title: "Blocks" })
+if (BLOCKS_ENABLED) {
+  mainNav.push({ href: "/docs/blocks", title: { en: "Blocks", ru: "Блоки" } })
 }
 
-export function HeaderNav() {
+export function HeaderNav({ className }: { className?: string }) {
   const pathname = usePathname()
+  const locale = useLocale()
 
   return (
-    <nav className="hidden lg:flex items-center space-x-6 text-sm font-medium">
+    <nav
+      className={cn(
+        "hidden lg:flex items-center space-x-6 text-sm font-medium",
+        className,
+      )}
+    >
       {mainNav.map((item) => (
         <Link
           key={item.href}
@@ -30,7 +42,7 @@ export function HeaderNav() {
               : "text-foreground/60",
           )}
         >
-          {item.title}
+          {pick(item.title, locale)}
         </Link>
       ))}
     </nav>

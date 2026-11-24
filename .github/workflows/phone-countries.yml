@@ -1,0 +1,58 @@
+name: Phone countries
+
+on:
+  schedule:
+    # 06:00 UTC on the 1st of every month
+    - cron: "0 6 1 * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Update libphonenumber-js
+        run: pnpm up -D libphonenumber-js@latest
+
+      - name: Regenerate the country list
+        run: node scripts/generate-phone-countries.mjs
+
+      - name: Rebuild the registry
+        run: pnpm registry:build
+
+      - name: Open a pull request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          branch: chore/phone-countries
+          commit-message: "chore: обновление телефонных кодов стран"
+          title: "Обновление телефонных кодов стран"
+          body: |
+            Автоматическое обновление списка стран для `phone-input`.
+
+            - обновлён `libphonenumber-js` до последней версии
+            - перегенерирован `registry/gooseui/lib/phone-countries.ts` (`node scripts/generate-phone-countries.mjs`)
+            - пересобран реестр (`pnpm registry:build`)
+
+            Перед слиянием посмотрите diff файла `phone-countries.ts`: изменения в кодах и масках должны совпадать с релиз-нотами libphonenumber.
+          add-paths: |
+            package.json
+            pnpm-lock.yaml
+            registry/gooseui/lib/phone-countries.ts
+            public/r
+          delete-branch: true

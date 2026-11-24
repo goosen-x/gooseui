@@ -1,0 +1,19 @@
+{
+  "slug": "timeline",
+  "verdict": "css-only",
+  "client": false,
+  "jsBefore": 2441,
+  "jsAfter": 0,
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [{ "path": "registry/gooseui/ui/timeline.tsx", "type": "registry:ui" }],
+  "features": [],
+  "breaking": [
+    "React context removed: TimelineMarker must be a direct child of TimelineItem for the status look and label",
+    "status names for screen readers are CSS generated content from labels, not a text node"
+  ],
+  "how": {
+    "en": "Ordered list, CSS grid areas and status data attributes, no JS",
+    "ru": "Список, CSS grid и data-атрибуты статуса, без JavaScript"
+  }
+}

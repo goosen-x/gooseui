@@ -1,0 +1,29 @@
+{
+  "slug": "rating",
+  "verdict": "css-only",
+  "client": false,
+  "jsBefore": 2131,
+  "jsAfter": 0,
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/gooseui/ui/rating.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "features": [
+    "has",
+    "user-pseudos"
+  ],
+  "breaking": [
+    "allowClear no longer clears on a second click through JS: a hidden \"no rating\" radio is checked instead (FormData gets name=\"\")",
+    "onValueChange and controlled value work only when Rating is rendered inside a client component",
+    "name is now the radio group name instead of a hidden input",
+    "new props: required, labels.clear"
+  ],
+  "how": {
+    "en": "Native radio inputs, :has() and sibling selectors, no JavaScript",
+    "ru": "Нативные радиокнопки, :has() и соседние селекторы, без JavaScript"
+  }
+}

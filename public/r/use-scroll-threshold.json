@@ -1,0 +1,14 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "use-scroll-threshold",
+  "title": "useScrollThreshold",
+  "description": "Scrolled-past-threshold flag with hysteresis for sticky headers.",
+  "files": [
+    {
+      "path": "registry/gooseui/hooks/use-scroll-threshold.ts",
+      "content": "\"use client\"\n\nimport { type RefObject, useEffect, useState } from \"react\"\n\nexport type UseScrollThresholdOptions = {\n  /**\n   * Offset at which the flag turns back off while scrolling up.\n   * Defaults to half of `threshold`. Clamped so it never exceeds `threshold`.\n   */\n  releaseAt?: number\n  /** Scroll container to watch instead of the window. */\n  container?: RefObject<HTMLElement | null>\n}\n\n/**\n * `true` once the page (or `container`) is scrolled past `threshold`.\n * It turns off only below `releaseAt`, so a sticky header does not flicker\n * when the scroll position hovers around a single boundary.\n */\nexport function useScrollThreshold(\n  threshold = 64,\n  { releaseAt, container }: UseScrollThresholdOptions = {},\n): boolean {\n  const [passed, setPassed] = useState(false)\n  const release = Math.min(releaseAt ?? threshold / 2, threshold)\n\n  useEffect(() => {\n    const element = container?.current ?? null\n    const target: HTMLElement | Window = element ?? window\n    let frame = 0\n\n    const read = () => {\n      frame = 0\n      const offset = element ? element.scrollTop : window.scrollY\n      setPassed((prev) => (prev ? offset > release : offset > threshold))\n    }\n\n    const onScroll = () => {\n      if (frame === 0) frame = requestAnimationFrame(read)\n    }\n\n    read()\n    target.addEventListener(\"scroll\", onScroll, { passive: true })\n    return () => {\n      target.removeEventListener(\"scroll\", onScroll)\n      if (frame !== 0) cancelAnimationFrame(frame)\n    }\n  }, [threshold, release, container])\n\n  return passed\n}\n",
+      "type": "registry:hook"
+    }
+  ],
+  "type": "registry:hook"
+}

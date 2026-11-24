@@ -1,0 +1,32 @@
+{
+  "slug": "morphing-dialog",
+  "verdict": "css-first",
+  "client": true,
+  "jsBefore": 2168,
+  "jsAfter": 1753,
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/gooseui/ui/morphing-dialog.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "features": [
+    "dialog",
+    "invoker-commands",
+    "view-transitions",
+    "starting-style",
+    "has",
+    "dialog-closedby"
+  ],
+  "breaking": [
+    "lucide-react removed",
+    "MorphingDialogTrigger renders a <button> (commandfor + command=\"show-modal\") instead of <div role=\"button\">; it gets block and text-left by default",
+    "Dialog content is always rendered in the HTML (closed) instead of mounting on open, so it opens without JavaScript"
+  ],
+  "how": {
+    "en": "<dialog> with commandfor, JS only adds the View Transitions morph",
+    "ru": "<dialog> и commandfor, JS добавляет только морфинг (View Transitions)"
+  }
+}

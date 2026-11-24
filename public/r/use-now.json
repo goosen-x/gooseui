@@ -1,0 +1,14 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "use-now",
+  "title": "useNow",
+  "description": "Current time on a shared interval, safe for hydration.",
+  "files": [
+    {
+      "path": "registry/gooseui/hooks/use-now.ts",
+      "content": "\"use client\"\n\nimport { useCallback, useSyncExternalStore } from \"react\"\n\ntype Ticker = {\n  now: number\n  listeners: Set<() => void>\n  timer: ReturnType<typeof setInterval> | null\n}\n\n// One ticker per interval, shared by every component that asks for it.\nconst tickers = new Map<number, Ticker>()\n\nfunction getTicker(interval: number): Ticker {\n  let ticker = tickers.get(interval)\n  if (!ticker) {\n    ticker = { now: Date.now(), listeners: new Set(), timer: null }\n    tickers.set(interval, ticker)\n  }\n  return ticker\n}\n\nfunction tick(ticker: Ticker) {\n  ticker.now = Date.now()\n  for (const listener of ticker.listeners) listener()\n}\n\n// Background tabs throttle timers, so refresh as soon as the tab is visible again.\nfunction onVisibilityChange() {\n  if (document.visibilityState !== \"visible\") return\n  for (const ticker of tickers.values()) {\n    if (ticker.listeners.size > 0) tick(ticker)\n  }\n}\n\nlet activeTickers = 0\n\nfunction subscribeTo(interval: number, listener: () => void) {\n  const ticker = getTicker(interval)\n  ticker.listeners.add(listener)\n  if (ticker.timer === null) {\n    ticker.now = Date.now()\n    ticker.timer = setInterval(() => tick(ticker), interval)\n    activeTickers += 1\n    if (activeTickers === 1) {\n      document.addEventListener(\"visibilitychange\", onVisibilityChange)\n    }\n  }\n  return () => {\n    ticker.listeners.delete(listener)\n    if (ticker.listeners.size > 0 || ticker.timer === null) return\n    clearInterval(ticker.timer)\n    ticker.timer = null\n    tickers.delete(interval)\n    activeTickers -= 1\n    if (activeTickers === 0) {\n      document.removeEventListener(\"visibilitychange\", onVisibilityChange)\n    }\n  }\n}\n\nconst getServerSnapshot = () => null\n\n/**\n * Current time in milliseconds, refreshed every `interval` ms.\n * Returns `null` on the server and during hydration, so the markup always matches.\n */\nexport function useNow(interval = 1000): number | null {\n  const safeInterval = Math.max(16, Math.round(interval))\n  // Stable subscribe: a new function every render would restart the timer on each render.\n  const subscribe = useCallback(\n    (listener: () => void) => subscribeTo(safeInterval, listener),\n    [safeInterval],\n  )\n  return useSyncExternalStore(\n    subscribe,\n    () => getTicker(safeInterval).now,\n    getServerSnapshot,\n  )\n}\n",
+      "type": "registry:hook"
+    }
+  ],
+  "type": "registry:hook"
+}

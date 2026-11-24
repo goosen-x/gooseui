@@ -1,0 +1,25 @@
+{
+  "slug": "sliding-number",
+  "verdict": "css-only",
+  "client": false,
+  "jsBefore": 39866,
+  "jsAfter": 0,
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/gooseui/ui/sliding-number.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "features": [
+    "linear-easing"
+  ],
+  "breaking": [
+    "transition is now a CSS transition string, not a motion Transition object"
+  ],
+  "how": {
+    "en": "Digit columns shifted by a CSS variable with a linear() transition",
+    "ru": "Колонки цифр сдвигает CSS-переменная, переход на linear()"
+  }
+}

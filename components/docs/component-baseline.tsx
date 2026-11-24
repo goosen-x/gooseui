@@ -1,6 +1,22 @@
+import { getLocale } from "next-intl/server"
+import type { Dict } from "@/i18n/dict"
+import type { Locale } from "@/i18n/routing"
 import { getBaselineStatus } from "@/lib/baseline"
 import { getComponentBaselineFeatures } from "@/lib/config/baseline-features"
-import { BaselineStatusStatic } from "@/registry/new-york/ui/baseline-status"
+import { BaselineStatusStatic } from "@/registry/gooseui/ui/baseline-status"
+
+const content: Dict<{ title: string; before: string; after: string }> = {
+  en: {
+    title: "Browser Support",
+    before: "Learn more about",
+    after: "browser support.",
+  },
+  ru: {
+    title: "Поддержка браузеров",
+    before: "Подробнее о",
+    after: "поддержке браузеров.",
+  },
+}
 
 interface ComponentBaselineProps {
   slug: string
@@ -11,6 +27,7 @@ interface ComponentBaselineProps {
  * Only renders if the component is listed in baseline-features.ts
  */
 export async function ComponentBaseline({ slug }: ComponentBaselineProps) {
+  const t = content[(await getLocale()) as Locale]
   const features = getComponentBaselineFeatures(slug)
 
   // Not in config → don't show section
@@ -24,7 +41,7 @@ export async function ComponentBaseline({ slug }: ComponentBaselineProps) {
         id="browser-support"
         className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight"
       >
-        Browser Support
+        {t.title}
       </h2>
       <div className="flex flex-wrap gap-4">
         {features.map((featureId, i) => (
@@ -44,7 +61,7 @@ export async function ComponentBaseline({ slug }: ComponentBaselineProps) {
         ))}
       </div>
       <p className="text-sm text-muted-foreground">
-        Learn more about{" "}
+        {t.before}{" "}
         <a
           href="https://web.dev/baseline"
           target="_blank"
@@ -53,7 +70,7 @@ export async function ComponentBaseline({ slug }: ComponentBaselineProps) {
         >
           Baseline
         </a>{" "}
-        browser support.
+        {t.after}
       </p>
     </div>
   )

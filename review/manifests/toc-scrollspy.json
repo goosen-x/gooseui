@@ -1,0 +1,33 @@
+{
+  "slug": "toc-scrollspy",
+  "verdict": "css-first",
+  "client": true,
+  "jsBefore": 2673,
+  "jsAfter": 2873,
+  "dependencies": [],
+  "registryDependencies": [
+    "@gooseui/use-scroll-spy"
+  ],
+  "files": [
+    {
+      "path": "registry/gooseui/ui/toc-scrollspy.tsx",
+      "type": "registry:ui"
+    },
+    {
+      "path": "registry/gooseui/ui/toc-scrollspy.client.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "features": [
+    "intersection-observer",
+    "scrollend"
+  ],
+  "breaking": [
+    "Active link styling moved to aria-[current=location] classes set by the island",
+    "Selector mode renders a flat list (indentation by level) instead of nested lists"
+  ],
+  "how": {
+    "en": "Server anchor list; client island highlights and scrolls smoothly",
+    "ru": "Серверный список якорей, островок подсвечивает и плавно листает"
+  }
+}

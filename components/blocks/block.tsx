@@ -1,26 +1,73 @@
 "use client"
 
 import {
-  Check,
   Code,
-  Copy,
   ExternalLink,
   Eye,
-  Link as LinkIcon,
   Monitor,
   Smartphone,
   Tablet,
 } from "lucide-react"
 import Link from "next/link"
+import { useLocale } from "next-intl"
 import * as React from "react"
 import { CodeBlock } from "@/components/docs/code-block"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group"
+import { useCopyToast } from "@/hooks/use-copy-toast"
+import { type Dict, pick } from "@/i18n/dict"
+import type { Locale } from "@/i18n/routing"
 import type { BlockMetadata } from "@/lib/blocks"
 import { getBlockComponent } from "@/lib/blocks"
 import { cn } from "@/lib/utils"
+import { Badge } from "@/registry/gooseui/ui/badge"
+import { Button } from "@/registry/gooseui/ui/button"
+import { CopyButton } from "@/registry/gooseui/ui/copy-button"
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "@/registry/gooseui/ui/tabs"
+import {
+  ToggleGroup,
+  ToggleGroupItem,
+} from "@/registry/gooseui/ui/toggle-group"
+
+const en = {
+  new: "New",
+  copyLink: "Copy link",
+  linkCopied: "Link copied",
+  codeCopied: "Code copied",
+  openNewTab: "Open in new tab",
+  preview: "Preview",
+  code: "Code",
+  desktop: "Desktop",
+  tablet: "Tablet",
+  mobile: "Mobile",
+  copied: "Copied",
+  copy: "Copy",
+  noPreview: "Preview not available",
+  noCode: "Code not available",
+}
+
+const content: Dict<typeof en> = {
+  en,
+  ru: {
+    new: "Новое",
+    copyLink: "Копировать ссылку",
+    linkCopied: "Ссылка скопирована",
+    codeCopied: "Код скопирован",
+    openNewTab: "Открыть в новой вкладке",
+    preview: "Превью",
+    code: "Код",
+    desktop: "Десктоп",
+    tablet: "Планшет",
+    mobile: "Мобильный",
+    copied: "Скопировано",
+    copy: "Копировать",
+    noPreview: "Превью недоступно",
+    noCode: "Код недоступен",
+  },
+}
 
 type ViewSize = "100%" | "60%" | "30%"
 
@@ -28,53 +75,63 @@ interface BlockProps {
   block: BlockMetadata
   code: string
   hasComponent?: boolean
+  /** Показывать заголовок, бейджи и описание (на странице одного блока скрыты: их даёт H1 страницы) */
+  showHeading?: boolean
   className?: string
 }
 
-export function Block({ block, code, hasComponent, className }: BlockProps) {
+export function Block({
+  block,
+  code,
+  hasComponent,
+  showHeading = true,
+  className,
+}: BlockProps) {
+  const locale = useLocale()
+  const t = content[locale as Locale]
   const [view, setView] = React.useState<"preview" | "code">("preview")
   const [size, setSize] = React.useState<ViewSize>("100%")
-  const [copied, setCopied] = React.useState(false)
+  const copyToast = useCopyToast()
   const BlockComponent = hasComponent ? getBlockComponent(block.id) : null
 
-  const copyCode = async () => {
-    await navigator.clipboard.writeText(code)
-    setCopied(true)
-    setTimeout(() => setCopied(false), 2000)
-  }
-
-  const copyLink = async () => {
-    const url = `${window.location.origin}${window.location.pathname}#${block.id}`
-    await navigator.clipboard.writeText(url)
-  }
+  const blockUrl = () =>
+    `${window.location.origin}${window.location.pathname}#${block.id}`
 
   return (
     <section id={block.id} className={cn("scroll-mt-20 space-y-4", className)}>
       {/* Header */}
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <h2 className="text-xl font-semibold tracking-tight">{block.name}</h2>
-          {block.isNew && (
-            <Badge variant="secondary" className="bg-blue-500/10 text-blue-600">
-              New
-            </Badge>
-          )}
-          {block.isComingSoon && (
-            <Badge variant="secondary" className="bg-muted">
-              Coming Soon
-            </Badge>
-          )}
-        </div>
+      <div
+        className={cn(
+          "flex items-center",
+          showHeading ? "justify-between" : "justify-end",
+        )}
+      >
+        {showHeading ? (
+          <div className="flex items-center gap-3">
+            <h2 className="text-xl font-semibold tracking-tight">
+              {block.name}
+            </h2>
+            {block.isNew && (
+              <Badge
+                variant="secondary"
+                className="bg-blue-500/10 text-blue-600"
+              >
+                {t.new}
+              </Badge>
+            )}
+            {block.isComingSoon && (
+              <Badge variant="secondary" className="bg-muted">
+                Coming Soon
+              </Badge>
+            )}
+          </div>
+        ) : null}
         <div className="flex items-center gap-2">
-          <Button
-            variant="ghost"
-            size="icon"
-            className="h-8 w-8 cursor-pointer"
-            onClick={copyLink}
-            title="Copy link"
-          >
-            <LinkIcon className="h-4 w-4" />
-          </Button>
+          <CopyButton
+            value={blockUrl}
+            {...copyToast(t.linkCopied)}
+            labels={{ copy: t.copyLink, copied: t.copied }}
+          />
           <Button
             variant="ghost"
             size="icon"
@@ -84,7 +141,7 @@ export function Block({ block, code, hasComponent, className }: BlockProps) {
             <Link
               href={`/blocks/preview/${block.id}`}
               target="_blank"
-              title="Open in new tab"
+              title={t.openNewTab}
             >
               <ExternalLink className="h-4 w-4" />
             </Link>
@@ -93,7 +150,11 @@ export function Block({ block, code, hasComponent, className }: BlockProps) {
       </div>
 
       {/* Description */}
-      <p className="text-sm text-muted-foreground">{block.description}</p>
+      {showHeading && (
+        <p className="text-sm text-muted-foreground">
+          {pick(block.description, locale)}
+        </p>
+      )}
 
       {/* Tabs */}
       <Tabs
@@ -104,11 +165,11 @@ export function Block({ block, code, hasComponent, className }: BlockProps) {
           <TabsList className="h-9">
             <TabsTrigger value="preview" className="gap-1.5 cursor-pointer">
               <Eye className="h-4 w-4" />
-              Preview
+              {t.preview}
             </TabsTrigger>
             <TabsTrigger value="code" className="gap-1.5 cursor-pointer">
               <Code className="h-4 w-4" />
-              Code
+              {t.code}
             </TabsTrigger>
           </TabsList>
 
@@ -123,7 +184,7 @@ export function Block({ block, code, hasComponent, className }: BlockProps) {
               <ToggleGroupItem
                 value="100%"
                 size="sm"
-                aria-label="Desktop"
+                aria-label={t.desktop}
                 className="cursor-pointer"
               >
                 <Monitor className="h-4 w-4" />
@@ -131,7 +192,7 @@ export function Block({ block, code, hasComponent, className }: BlockProps) {
               <ToggleGroupItem
                 value="60%"
                 size="sm"
-                aria-label="Tablet"
+                aria-label={t.tablet}
                 className="cursor-pointer"
               >
                 <Tablet className="h-4 w-4" />
@@ -139,7 +200,7 @@ export function Block({ block, code, hasComponent, className }: BlockProps) {
               <ToggleGroupItem
                 value="30%"
                 size="sm"
-                aria-label="Mobile"
+                aria-label={t.mobile}
                 className="cursor-pointer"
               >
                 <Smartphone className="h-4 w-4" />
@@ -148,25 +209,13 @@ export function Block({ block, code, hasComponent, className }: BlockProps) {
           )}
 
           {/* Copy button (only in code mode) */}
-          {view === "code" && (
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={copyCode}
-              className="gap-1.5 cursor-pointer"
-            >
-              {copied ? (
-                <>
-                  <Check className="h-4 w-4 text-green-500" />
-                  Copied
-                </>
-              ) : (
-                <>
-                  <Copy className="h-4 w-4" />
-                  Copy
-                </>
-              )}
-            </Button>
+          {view === "code" && code && (
+            <CopyButton
+              variant="label"
+              value={code}
+              {...copyToast(t.codeCopied)}
+              labels={{ copy: t.copy, copied: t.copied }}
+            />
           )}
         </div>
 
@@ -188,7 +237,7 @@ export function Block({ block, code, hasComponent, className }: BlockProps) {
                 className="flex items-center justify-center bg-muted/50"
                 style={{ minHeight: block.iframeHeight || 200 }}
               >
-                <p className="text-muted-foreground">Preview not available</p>
+                <p className="text-muted-foreground">{t.noPreview}</p>
               </div>
             )}
           </div>
@@ -200,7 +249,7 @@ export function Block({ block, code, hasComponent, className }: BlockProps) {
             <CodeBlock className="max-h-[500px]">{code}</CodeBlock>
           ) : (
             <div className="flex items-center justify-center rounded-lg border bg-muted/50 p-8">
-              <p className="text-muted-foreground">Code not available</p>
+              <p className="text-muted-foreground">{t.noCode}</p>
             </div>
           )}
         </TabsContent>

@@ -1,0 +1,31 @@
+{
+  "slug": "notification-prompt",
+  "verdict": "js",
+  "client": true,
+  "jsBefore": 42465,
+  "jsAfter": 2596,
+  "dependencies": [],
+  "registryDependencies": [
+    "@gooseui/button",
+    "@gooseui/use-notification-permission"
+  ],
+  "files": [
+    {
+      "path": "registry/gooseui/ui/notification-prompt.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "features": [
+    "starting-style",
+    "transition-behavior",
+    "notifications"
+  ],
+  "breaking": [
+    "props are ComponentProps<\"aside\"> instead of HTMLMotionProps: motion-only props are gone",
+    "icons are inline SVG, lucide-react is no longer needed"
+  ],
+  "how": {
+    "en": "Notification permission hook, enter and exit on @starting-style",
+    "ru": "Хук разрешения на уведомления, вход и выход на @starting-style"
+  }
+}

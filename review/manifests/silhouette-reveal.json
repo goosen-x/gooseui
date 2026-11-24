@@ -1,0 +1,29 @@
+{
+  "slug": "silhouette-reveal",
+  "verdict": "css-only",
+  "client": false,
+  "jsBefore": 974,
+  "jsAfter": 0,
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/gooseui/ui/silhouette-reveal.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "features": [
+    "has",
+    "masks"
+  ],
+  "breaking": [
+    "onRevealedChange and onReveal removed: listen to the change event bubbling from the checkbox",
+    "click trigger is a <label> with a hidden checkbox instead of a <button>; reveal is one-way",
+    "revealed is no longer a controlled prop for click mode: true forces the revealed state",
+    "new optional name prop puts the checkbox into FormData"
+  ],
+  "how": {
+    "en": "Hidden checkbox, :hover/:focus-visible and :has(), no JS",
+    "ru": "Скрытый чекбокс, :hover/:focus-visible и :has(), без JS"
+  }
+}

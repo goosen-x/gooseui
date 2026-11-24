@@ -51,7 +51,7 @@
 
 ```
 ├── registry/
-│   └── new-york/
+│   └── gooseui/
 │       └── ui/
 │           └── component.tsx
 ├── registry.json          # Конфиг компонентов
@@ -61,7 +61,7 @@
 
 #### Процесс добавления компонента
 
-1. **Создать компонент** в `registry/new-york/ui/`
+1. **Создать компонент** в `registry/gooseui/ui/`
 2. **Добавить в `registry.json`**:
 ```json
 {

@@ -4,14 +4,92 @@
   "homepage": "https://gooseui.pro",
   "items": [
     {
+      "name": "tooltip",
+      "type": "registry:ui",
+      "title": "Tooltip",
+      "description": "Accessible hints using the Popover API and CSS anchor positioning.",
+      "files": [
+        {
+          "path": "registry/gooseui/ui/tooltip.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "dropdown-menu",
+      "type": "registry:ui",
+      "title": "Dropdown Menu",
+      "description": "Keyboard-accessible actions using the Popover API and CSS anchor positioning.",
+      "files": [
+        {
+          "path": "registry/gooseui/ui/dropdown-menu.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "language-switcher",
+      "type": "registry:ui",
+      "title": "Language Switcher",
+      "description": "Dropdown language picker. Items are links that work without JavaScript.",
+      "registryDependencies": [
+        "@gooseui/dropdown-menu"
+      ],
+      "files": [
+        {
+          "path": "registry/gooseui/ui/language-switcher.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "dialog",
+      "type": "registry:ui",
+      "title": "Dialog",
+      "description": "An accessible native modal dialog.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@gooseui/button"
+      ],
+      "files": [
+        {
+          "path": "registry/gooseui/ui/dialog.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "sheet",
+      "type": "registry:ui",
+      "title": "Sheet",
+      "description": "An accessible native modal panel from any screen edge.",
+      "registryDependencies": [
+        "@gooseui/dialog",
+        "@gooseui/button"
+      ],
+      "files": [
+        {
+          "path": "registry/gooseui/ui/sheet.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "theme-customizer",
       "type": "registry:ui",
       "title": "Theme Customizer",
       "description": "Floating theme and color picker with 5 different variants.",
-      "dependencies": ["next-themes", "lucide-react"],
+      "dependencies": [
+        "next-themes"
+      ],
+      "registryDependencies": [
+        "@gooseui/theme-toggle"
+      ],
       "files": [
         {
-          "path": "registry/new-york/ui/theme-customizer.tsx",
+          "path": "registry/gooseui/ui/theme-customizer.tsx",
           "type": "registry:ui"
         }
       ]
@@ -23,7 +101,11 @@
       "description": "A beautiful animated clock with sliding digits and gradient border.",
       "files": [
         {
-          "path": "registry/new-york/ui/animated-timer.tsx",
+          "path": "registry/gooseui/ui/animated-timer.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/gooseui/ui/animated-timer.client.tsx",
           "type": "registry:ui"
         }
       ]
@@ -35,7 +117,7 @@
       "description": "Animated beam of light traveling along the border of a container.",
       "files": [
         {
-          "path": "registry/new-york/effects/border-beam.tsx",
+          "path": "registry/gooseui/effects/border-beam.tsx",
           "type": "registry:ui"
         }
       ]
@@ -45,7 +127,6 @@
       "type": "registry:lib",
       "title": "Slot",
       "description": "Composition utility for asChild pattern. Renders child element with merged props.",
-      "dependencies": ["@radix-ui/react-slot"],
       "files": [
         {
           "path": "lib/slot.tsx",
@@ -58,11 +139,15 @@
       "type": "registry:ui",
       "title": "Button",
       "description": "Displays a button or a component that looks like a button.",
-      "dependencies": ["@radix-ui/react-slot"],
-      "devDependencies": ["class-variance-authority"],
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "@gooseui/slot"
+      ],
       "files": [
         {
-          "path": "registry/new-york/ui/button.tsx",
+          "path": "registry/gooseui/ui/button.tsx",
           "type": "registry:ui"
         }
       ]
@@ -74,7 +159,7 @@
       "description": "Displays a card with header, content, and footer.",
       "files": [
         {
-          "path": "registry/new-york/ui/card.tsx",
+          "path": "registry/gooseui/ui/card.tsx",
           "type": "registry:ui"
         }
       ]
@@ -83,12 +168,17 @@
       "name": "carousel",
       "type": "registry:ui",
       "title": "Carousel",
-      "description": "A zero-dependency carousel with drag-to-scroll, auto-play, and accessible navigation built on CSS scroll-snap.",
-      "dependencies": ["lucide-react"],
-      "devDependencies": ["class-variance-authority"],
+      "description": "A zero-dependency carousel on CSS scroll-snap with dots, thumbnails, auto-play, and accessible navigation.",
+      "devDependencies": [
+        "class-variance-authority"
+      ],
       "files": [
         {
-          "path": "registry/new-york/ui/carousel.tsx",
+          "path": "registry/gooseui/ui/carousel.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/gooseui/ui/carousel.client.tsx",
           "type": "registry:ui"
         }
       ]
@@ -98,10 +188,36 @@
       "type": "registry:ui",
       "title": "Checkbox",
       "description": "A checkbox with smooth SVG path animation when checked.",
-      "devDependencies": ["class-variance-authority"],
+      "devDependencies": [
+        "class-variance-authority"
+      ],
       "files": [
         {
-          "path": "registry/new-york/ui/checkbox.tsx",
+          "path": "registry/gooseui/ui/checkbox.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "radio",
+      "type": "registry:ui",
+      "title": "Radio",
+      "description": "A native radio input for selecting one option in a group.",
+      "files": [
+        {
+          "path": "registry/gooseui/ui/radio.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "switch",
+      "type": "registry:ui",
+      "title": "Switch",
+      "description": "A native switch with an iOS-style spring animation that works without JavaScript.",
+      "files": [
+        {
+          "path": "registry/gooseui/ui/switch.tsx",
           "type": "registry:ui"
         }
       ]
@@ -113,7 +229,7 @@
       "description": "Displays an input field.",
       "files": [
         {
-          "path": "registry/new-york/ui/input.tsx",
+          "path": "registry/gooseui/ui/input.tsx",
           "type": "registry:ui"
         }
       ]
@@ -125,7 +241,7 @@
       "description": "Renders an accessible label associated with controls.",
       "files": [
         {
-          "path": "registry/new-york/ui/label.tsx",
+          "path": "registry/gooseui/ui/label.tsx",
           "type": "registry:ui"
         }
       ]
@@ -137,7 +253,7 @@
       "description": "Displays a textarea for multiline text input.",
       "files": [
         {
-          "path": "registry/new-york/ui/textarea.tsx",
+          "path": "registry/gooseui/ui/textarea.tsx",
           "type": "registry:ui"
         }
       ]
@@ -147,52 +263,25 @@
       "type": "registry:ui",
       "title": "Typography",
       "description": "Consistent text styling with semantic variants and gradient effects.",
-      "devDependencies": ["class-variance-authority"],
       "files": [
         {
-          "path": "registry/new-york/ui/typography.tsx",
+          "path": "registry/gooseui/ui/typography.tsx",
           "type": "registry:ui"
         }
-      ]
-    },
-    {
-      "name": "sonner",
-      "type": "registry:ui",
-      "title": "Sonner",
-      "description": "Toast notification component with theming support.",
-      "dependencies": ["sonner", "next-themes", "lucide-react"],
-      "files": [
-        {
-          "path": "registry/new-york/ui/sonner.tsx",
-          "type": "registry:ui"
-        }
-      ]
-    },
-    {
-      "name": "custom-toast",
-      "type": "registry:ui",
-      "title": "Custom Toast",
-      "description": "Beautiful toast with progress bar and colored variants.",
-      "dependencies": ["sonner", "lucide-react"],
-      "registryDependencies": ["button"],
-      "files": [
-        {
-          "path": "registry/new-york/ui/custom-toast.tsx",
-          "type": "registry:ui"
-        }
+      ],
+      "dependencies": [
+        "class-variance-authority"
       ]
     },
     {
       "name": "toast",
-      "type": "registry:lib",
-      "title": "Toast Utility",
-      "description": "Helper functions to show custom toast notifications.",
-      "dependencies": ["sonner"],
-      "registryDependencies": ["custom-toast"],
+      "type": "registry:ui",
+      "title": "Toast",
+      "description": "Toast notifications on native HTML and CSS: popover top layer, stacked cards, swipe to dismiss, no dependencies.",
       "files": [
         {
-          "path": "registry/new-york/lib/toast.ts",
-          "type": "registry:lib"
+          "path": "registry/gooseui/ui/toast.tsx",
+          "type": "registry:ui"
         }
       ]
     },
@@ -201,10 +290,25 @@
       "type": "registry:ui",
       "title": "Promo Banner",
       "description": "Floating promotional banner with marquee animation, discount badges, and localStorage persistence.",
-      "dependencies": ["lucide-react"],
       "files": [
         {
-          "path": "registry/new-york/ui/promo-banner.tsx",
+          "path": "registry/gooseui/ui/promo-banner.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/gooseui/ui/promo-banner.client.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "github-star-dialog",
+      "type": "registry:ui",
+      "title": "GitHub Star Dialog",
+      "description": "Modal asking users to star a GitHub repository, with a night sky header, live star count and progress bar towards a goal.",
+      "files": [
+        {
+          "path": "registry/gooseui/ui/github-star-dialog.tsx",
           "type": "registry:ui"
         }
       ]
@@ -214,10 +318,9 @@
       "type": "registry:ui",
       "title": "Morphing Dialog",
       "description": "Dialog with morphing animation using native View Transitions API. Supports click-outside and Escape key.",
-      "dependencies": ["lucide-react"],
       "files": [
         {
-          "path": "registry/new-york/ui/morphing-dialog.tsx",
+          "path": "registry/gooseui/ui/morphing-dialog.tsx",
           "type": "registry:ui"
         }
       ]
@@ -229,7 +332,7 @@
       "description": "Header that morphs between full and compact states on scroll using View Transitions API.",
       "files": [
         {
-          "path": "registry/new-york/ui/morphing-header.tsx",
+          "path": "registry/gooseui/ui/morphing-header.tsx",
           "type": "registry:ui"
         }
       ]
@@ -238,15 +341,18 @@
       "name": "baseline-status",
       "type": "registry:ui",
       "title": "Baseline Status",
-      "description": "Display browser support status for web features based on the W3C WebDX Baseline specification. Includes real-time browser feature detection.",
-      "dependencies": ["lucide-react"],
+      "description": "Display browser support status for web features based on the W3C WebDX Baseline specification. Includes real-time browser feature detection for 50+ web features.",
       "files": [
         {
-          "path": "registry/new-york/ui/baseline-status.tsx",
+          "path": "registry/gooseui/ui/baseline-status.tsx",
           "type": "registry:ui"
         },
         {
           "path": "lib/baseline.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "registry/gooseui/lib/baseline-checks.ts",
           "type": "registry:lib"
         }
       ]
@@ -256,10 +362,12 @@
       "type": "registry:component",
       "title": "Features Grid",
       "description": "Six-column grid showcasing product features with icons. Perfect for landing pages.",
-      "dependencies": ["lucide-react"],
+      "dependencies": [
+        "lucide-react"
+      ],
       "files": [
         {
-          "path": "registry/new-york/blocks/features/features-grid.tsx",
+          "path": "registry/gooseui/blocks/features/features-grid.tsx",
           "type": "registry:component"
         }
       ]
@@ -268,12 +376,42 @@
       "name": "badge",
       "type": "registry:ui",
       "title": "Badge",
-      "description": "Small status indicator with variants for labels, tags, and status.",
-      "dependencies": ["@radix-ui/react-slot"],
-      "devDependencies": ["class-variance-authority"],
+      "description": "Small label with state variants, icons, status dot, sizes, link and removable tag, and a round counter.",
+      "registryDependencies": [
+        "@gooseui/slot"
+      ],
+      "cssVars": {
+        "theme": {
+          "color-success": "var(--success)",
+          "color-warning": "var(--warning)",
+          "color-info": "var(--info)"
+        },
+        "light": {
+          "success": "oklch(0.45 0.13 150)",
+          "warning": "oklch(0.47 0.11 70)",
+          "info": "oklch(0.48 0.17 258)"
+        },
+        "dark": {
+          "success": "oklch(0.82 0.17 150)",
+          "warning": "oklch(0.86 0.15 85)",
+          "info": "oklch(0.8 0.11 245)"
+        }
+      },
       "files": [
         {
-          "path": "components/ui/badge.tsx",
+          "path": "registry/gooseui/ui/badge.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "scroll-progress",
+      "type": "registry:ui",
+      "title": "Scroll Progress",
+      "description": "Scroll progress bar for the page or any scrolling container, pure CSS scroll-driven animations.",
+      "files": [
+        {
+          "path": "registry/gooseui/ui/scroll-progress.tsx",
           "type": "registry:ui"
         }
       ]
@@ -283,10 +421,13 @@
       "type": "registry:ui",
       "title": "Scroll To Top",
       "description": "Floating scroll-to-top button with 4 variants: default, pill, minimal, and progress indicator.",
-      "dependencies": ["lucide-react"],
       "files": [
         {
-          "path": "registry/new-york/ui/scroll-to-top.tsx",
+          "path": "registry/gooseui/ui/scroll-to-top.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/gooseui/ui/scroll-to-top.client.tsx",
           "type": "registry:ui"
         }
       ]
@@ -298,9 +439,12 @@
       "description": "Range slider input component with customizable styling.",
       "files": [
         {
-          "path": "registry/new-york/ui/slider.tsx",
+          "path": "registry/gooseui/ui/slider.tsx",
           "type": "registry:ui"
         }
+      ],
+      "registryDependencies": [
+        "@gooseui/sliding-number"
       ]
     },
     {
@@ -308,10 +452,9 @@
       "type": "registry:ui",
       "title": "Digital Clock",
       "description": "A retro 7-segment LED digital clock with customizable colors and blinking colons.",
-      "dependencies": ["next-themes"],
       "files": [
         {
-          "path": "registry/new-york/ui/digital-clock.tsx",
+          "path": "registry/gooseui/ui/digital-clock.tsx",
           "type": "registry:ui"
         }
       ]
@@ -321,10 +464,13 @@
       "type": "registry:ui",
       "title": "Search Panel",
       "description": "Versatile search component with 5 variants: instant search, command palette, scoped search, contextual suggestions, and federated multi-source search.",
-      "dependencies": ["lucide-react", "class-variance-authority"],
+      "registryDependencies": [
+        "@gooseui/highlight-text",
+        "@gooseui/kbd"
+      ],
       "files": [
         {
-          "path": "registry/new-york/ui/search-panel.tsx",
+          "path": "registry/gooseui/ui/search-panel.tsx",
           "type": "registry:ui"
         }
       ]
@@ -336,19 +482,7 @@
       "description": "Container with custom styled scrollbar.",
       "files": [
         {
-          "path": "registry/new-york/ui/scroll-container.tsx",
-          "type": "registry:ui"
-        }
-      ]
-    },
-    {
-      "name": "corner-shape",
-      "type": "registry:ui",
-      "title": "Squircle (Corner Shape)",
-      "description": "iOS-style squircle shapes using mathematical superellipse formula with SVG clip-path for cross-browser support.",
-      "files": [
-        {
-          "path": "registry/new-york/ui/corner-shape.tsx",
+          "path": "registry/gooseui/ui/scroll-container.tsx",
           "type": "registry:ui"
         }
       ]
@@ -360,7 +494,7 @@
       "description": "Animated glitch text effect with chromatic aberration and scanlines.",
       "files": [
         {
-          "path": "registry/new-york/effects/glitch-text.tsx",
+          "path": "registry/gooseui/effects/glitch-text.tsx",
           "type": "registry:ui"
         }
       ]
@@ -370,13 +504,13 @@
       "type": "registry:ui",
       "title": "GitHub Stars",
       "description": "Display GitHub repository star count with animated number transitions.",
-      "dependencies": ["lucide-react", "motion"],
-      "registryDependencies": ["sliding-number"],
+      "registryDependencies": [
+        "@gooseui/sliding-number"
+      ],
       "files": [
         {
-          "path": "registry/new-york/ui/github-stars.tsx",
-          "type": "registry:ui",
-          "target": "components/ui/github-stars.tsx"
+          "path": "registry/gooseui/ui/github-stars.tsx",
+          "type": "registry:ui"
         }
       ]
     },
@@ -385,12 +519,1250 @@
       "type": "registry:ui",
       "title": "Sliding Number",
       "description": "Animated number display with smooth sliding transitions between digits.",
-      "dependencies": ["motion"],
       "files": [
         {
-          "path": "registry/new-york/ui/sliding-number.tsx",
-          "type": "registry:ui",
-          "target": "components/ui/sliding-number.tsx"
+          "path": "registry/gooseui/ui/sliding-number.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "header-magazine",
+      "type": "registry:block",
+      "title": "Header — Magazine",
+      "description": "Sticky magazine header with a categories mega-menu, format/more dropdowns, search dialog, theme toggle, brand CTA and mobile drawer. Texts, links and data come through props.",
+      "dependencies": [
+        "lucide-react",
+        "next-themes"
+      ],
+      "registryDependencies": [
+        "@gooseui/dialog",
+        "@gooseui/sheet",
+        "@gooseui/dropdown-menu",
+        "@gooseui/mega-menu"
+      ],
+      "files": [
+        {
+          "path": "registry/gooseui/blocks/headers/header-magazine.tsx",
+          "type": "registry:block",
+          "target": "components/blocks/headers/header-magazine.tsx"
+        }
+      ]
+    },
+    {
+      "name": "header-mega-menu",
+      "type": "registry:block",
+      "title": "Header — Mega Menu",
+      "description": "Header with a logo, plain links, two buttons and a two-level mega menu that opens across the full width. Built on native <details>, no JavaScript for opening; accordion on narrow screens. Texts, links and categories come through props.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@gooseui/button",
+        "@gooseui/mega-menu"
+      ],
+      "files": [
+        {
+          "path": "registry/gooseui/blocks/headers/header-mega-menu.tsx",
+          "type": "registry:block",
+          "target": "components/blocks/headers/header-mega-menu.tsx"
+        }
+      ]
+    },
+    {
+      "name": "header-morphing",
+      "type": "registry:block",
+      "title": "Header — Morphing",
+      "description": "Sticky header that shrinks while the page scrolls: padding, logo height and nav spacing follow the scroll position. Pure CSS scroll-driven animations, no JavaScript. Texts and links come through props.",
+      "registryDependencies": [
+        "@gooseui/button",
+        "@gooseui/morphing-header"
+      ],
+      "files": [
+        {
+          "path": "registry/gooseui/blocks/headers/header-morphing.tsx",
+          "type": "registry:block",
+          "target": "components/blocks/headers/header-morphing.tsx"
+        }
+      ]
+    },
+    {
+      "name": "booking-calendar",
+      "type": "registry:ui",
+      "title": "Booking Calendar",
+      "description": "Month grid with free time slots and an async book button.",
+      "files": [
+        {
+          "path": "registry/gooseui/ui/booking-calendar.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/gooseui/ui/booking-calendar.client.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "compare-slider",
+      "type": "registry:ui",
+      "title": "Compare Slider",
+      "description": "Before/after comparison with a draggable divider.",
+      "files": [
+        {
+          "path": "registry/gooseui/ui/compare-slider.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/gooseui/ui/compare-slider-input.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "corner-badge",
+      "type": "registry:ui",
+      "title": "Corner Badge",
+      "description": "Badge in a card corner with concave notches on both sides.",
+      "files": [
+        {
+          "path": "registry/gooseui/ui/corner-badge.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "hover-scroll-screenshot",
+      "type": "registry:ui",
+      "title": "Hover Scroll Screenshot",
+      "description": "Tall screenshot that scrolls inside a fixed frame on hover.",
+      "files": [
+        {
+          "path": "registry/gooseui/ui/hover-scroll-screenshot.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "marquee",
+      "type": "registry:ui",
+      "title": "Marquee",
+      "description": "Infinite CSS ticker with faded edges and a smooth stop on hover.",
+      "files": [
+        {
+          "path": "registry/gooseui/ui/marquee.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/gooseui/ui/marquee.client.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "option-picker",
+      "type": "registry:ui",
+      "title": "Option Picker",
+      "description": "Single choice as segments, rows, tiles, a slider or bars.",
+      "files": [
+        {
+          "path": "registry/gooseui/ui/option-picker.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "registryDependencies": [
+        "@gooseui/radio"
+      ]
+    },
+    {
+      "name": "phone-input",
+      "type": "registry:ui",
+      "title": "Phone Input",
+      "description": "Phone field with a searchable country list and live mask, returns E.164.",
+      "registryDependencies": [
+        "@gooseui/input",
+        "@gooseui/phone-countries"
+      ],
+      "files": [
+        {
+          "path": "registry/gooseui/ui/phone-input.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "quantity-slider",
+      "type": "registry:ui",
+      "title": "Quantity Slider",
+      "description": "Quantity input with stepper buttons, a slider and a live total.",
+      "registryDependencies": [
+        "@gooseui/sliding-number"
+      ],
+      "files": [
+        {
+          "path": "registry/gooseui/ui/quantity-slider.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "range-slider",
+      "type": "registry:ui",
+      "title": "Range Slider",
+      "description": "Two-thumb range slider built on native range inputs.",
+      "files": [
+        {
+          "path": "registry/gooseui/ui/range-slider.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "rating-breakdown",
+      "type": "registry:ui",
+      "title": "Rating Breakdown",
+      "description": "Average score with stars and a per-score vote distribution.",
+      "registryDependencies": [
+        "@gooseui/rating",
+        "@gooseui/sliding-number"
+      ],
+      "files": [
+        {
+          "path": "registry/gooseui/ui/rating-breakdown.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "rating",
+      "type": "registry:ui",
+      "title": "Rating",
+      "description": "Star rating input with keyboard support and a read-only mode.",
+      "files": [
+        {
+          "path": "registry/gooseui/ui/rating.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "signature-pad",
+      "type": "registry:ui",
+      "title": "Signature Pad",
+      "description": "Canvas signature field with smooth strokes, undo and PNG export.",
+      "files": [
+        {
+          "path": "registry/gooseui/ui/signature-pad.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "step-progress",
+      "type": "registry:ui",
+      "title": "Step Progress",
+      "description": "Step bar with running dashes, a marker dot and a 04 / 05 counter.",
+      "files": [
+        {
+          "path": "registry/gooseui/ui/step-progress.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "step-wizard",
+      "type": "registry:ui",
+      "title": "Step Wizard",
+      "description": "One question per screen with progress, validation and transitions.",
+      "files": [
+        {
+          "path": "registry/gooseui/ui/step-wizard.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/gooseui/ui/step-wizard-client.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "tap-coin",
+      "type": "registry:block",
+      "title": "Tap Coin",
+      "description": "Tap-to-earn screen: a 3D coin that tilts toward the tap and pops floating +N numbers, with a balance counter and an energy bar. Texts come through props.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@gooseui/button",
+        "@gooseui/sliding-number"
+      ],
+      "files": [
+        {
+          "path": "registry/gooseui/blocks/web3/tap-coin.tsx",
+          "type": "registry:block",
+          "target": "components/blocks/web3/tap-coin.tsx"
+        }
+      ]
+    },
+    {
+      "name": "testimonial-rotator",
+      "type": "registry:ui",
+      "title": "Testimonial Rotator",
+      "description": "Auto-rotating testimonials with a progress ring around the avatar.",
+      "files": [
+        {
+          "path": "registry/gooseui/ui/testimonial-rotator.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "video-dialog",
+      "type": "registry:ui",
+      "title": "Video Dialog",
+      "description": "Video preview that expands into a modal player.",
+      "files": [
+        {
+          "path": "registry/gooseui/ui/video-dialog.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/gooseui/ui/video-dialog.client.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "video-hover-preview",
+      "type": "registry:ui",
+      "title": "Video Hover Preview",
+      "description": "Video card: muted preview with captions on hover, sound on click.",
+      "files": [
+        {
+          "path": "registry/gooseui/ui/video-hover-preview.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "video-synced-steps",
+      "type": "registry:ui",
+      "title": "Video Synced Steps",
+      "description": "Looping video with a step list that follows playback.",
+      "files": [
+        {
+          "path": "registry/gooseui/ui/video-synced-steps.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "searchbar",
+      "type": "registry:ui",
+      "title": "Searchbar",
+      "description": "Input with async suggestions, debounce, request cancelling and the ARIA combobox pattern.",
+      "files": [
+        {
+          "path": "registry/gooseui/ui/searchbar.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "burger-button",
+      "type": "registry:ui",
+      "title": "Burger Button",
+      "description": "Menu toggle with uneven lines, hover alignment and several open animations.",
+      "files": [
+        {
+          "path": "registry/gooseui/ui/burger-button.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "confetti",
+      "type": "registry:ui",
+      "title": "Confetti",
+      "description": "Dependency-free canvas confetti burst with a hook and presets.",
+      "files": [
+        {
+          "path": "registry/gooseui/effects/confetti.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "cookie-consent",
+      "type": "registry:ui",
+      "title": "Cookie Consent",
+      "description": "Cookie banner with categories, stored choice and a hook.",
+      "files": [
+        {
+          "path": "registry/gooseui/ui/cookie-consent.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/gooseui/ui/cookie-consent.client.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "copy-button",
+      "type": "registry:ui",
+      "title": "Copy Button",
+      "description": "Copy button in three variants: icon, label and inline.",
+      "registryDependencies": [
+        "@gooseui/use-copy-to-clipboard"
+      ],
+      "files": [
+        {
+          "path": "registry/gooseui/ui/copy-button.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "copy-field",
+      "type": "registry:ui",
+      "title": "Copy Field",
+      "description": "Label and value row with an inline copy button.",
+      "registryDependencies": [
+        "@gooseui/copy-button"
+      ],
+      "files": [
+        {
+          "path": "registry/gooseui/ui/copy-field.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "details-accordion",
+      "type": "registry:ui",
+      "title": "Details Accordion",
+      "description": "Accordion on native details elements: exclusive mode via a shared name, smooth height via ::details-content.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "registry/gooseui/ui/details-accordion.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "dropzone",
+      "type": "registry:ui",
+      "title": "Dropzone",
+      "description": "File upload area with image previews, type/size/count validation, paste support and a single-image slot.",
+      "registryDependencies": [
+        "@gooseui/use-file-drop",
+        "@gooseui/button"
+      ],
+      "files": [
+        {
+          "path": "registry/gooseui/ui/dropzone.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "floating-label-input",
+      "type": "registry:ui",
+      "title": "Floating Label Input",
+      "description": "Input and textarea with a CSS-only floating label, hint, error and prefix/suffix slots.",
+      "files": [
+        {
+          "path": "registry/gooseui/ui/floating-label-input.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "install-command",
+      "type": "registry:ui",
+      "title": "Install Command",
+      "description": "Install command with npm, pnpm, yarn and bun tabs, a gliding pill and a remembered choice.",
+      "registryDependencies": [
+        "@gooseui/copy-button",
+        "@gooseui/tabs"
+      ],
+      "files": [
+        {
+          "path": "registry/gooseui/ui/install-command.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "notification-prompt",
+      "type": "registry:ui",
+      "title": "Notification Prompt",
+      "description": "Banner that asks the user to turn on browser notifications.",
+      "registryDependencies": [
+        "@gooseui/button",
+        "@gooseui/use-notification-permission"
+      ],
+      "files": [
+        {
+          "path": "registry/gooseui/ui/notification-prompt.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "mega-menu",
+      "type": "registry:ui",
+      "title": "Mega Menu",
+      "description": "Two-level menu with categories, hover intent, keyboard support and an accordion on narrow screens.",
+      "files": [
+        {
+          "path": "registry/gooseui/ui/mega-menu.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/gooseui/ui/mega-menu.client.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "otp-input",
+      "type": "registry:ui",
+      "title": "OTP Input",
+      "description": "Accessible one-time code input with responsive slots and groups.",
+      "files": [
+        {
+          "path": "registry/gooseui/ui/otp-input.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "paint-roller-loader",
+      "type": "registry:ui",
+      "title": "Paint Roller Loader",
+      "description": "CSS loader where a paint roller covers a stripe.",
+      "files": [
+        {
+          "path": "registry/gooseui/ui/paint-roller-loader.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "progress-ring",
+      "type": "registry:ui",
+      "title": "Progress Ring",
+      "description": "SVG progress ring with thresholds and indeterminate mode.",
+      "files": [
+        {
+          "path": "registry/gooseui/ui/progress-ring.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "registryDependencies": [
+        "@gooseui/sliding-number"
+      ]
+    },
+    {
+      "name": "relative-time",
+      "type": "registry:ui",
+      "title": "Relative Time",
+      "description": "“5 minutes ago” that updates itself and flags stale data.",
+      "registryDependencies": [
+        "@gooseui/use-now"
+      ],
+      "files": [
+        {
+          "path": "registry/gooseui/ui/relative-time.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "responsive-hint",
+      "type": "registry:ui",
+      "title": "Responsive Hint",
+      "description": "Help icon that shows a tooltip on fine pointers and a bottom sheet on touch devices.",
+      "files": [
+        {
+          "path": "registry/gooseui/ui/responsive-hint.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "ripple-loader",
+      "type": "registry:ui",
+      "title": "Ripple Loader",
+      "description": "Grid of dots lit by a wave from the center or a corner.",
+      "files": [
+        {
+          "path": "registry/gooseui/ui/ripple-loader.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "scroll-spy",
+      "type": "registry:ui",
+      "title": "ScrollSpy",
+      "description": "Floating section navigation: an icon rail that appears on scroll and expands on hover.",
+      "registryDependencies": [
+        "@gooseui/use-scroll-spy"
+      ],
+      "files": [
+        {
+          "path": "registry/gooseui/ui/scroll-spy.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "share-buttons",
+      "type": "registry:ui",
+      "title": "Share Buttons",
+      "description": "Share buttons for social networks with copy link fallback and native share on touch devices.",
+      "registryDependencies": [
+        "@gooseui/use-copy-to-clipboard"
+      ],
+      "files": [
+        {
+          "path": "registry/gooseui/ui/share-buttons.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/gooseui/ui/share-buttons.client.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "timeline",
+      "type": "registry:ui",
+      "title": "Timeline",
+      "description": "Vertical or horizontal timeline with step statuses.",
+      "files": [
+        {
+          "path": "registry/gooseui/ui/timeline.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "toc-scrollspy",
+      "type": "registry:ui",
+      "title": "Table of Contents",
+      "description": "Sticky table of contents with a sliding active marker, smooth scroll and nested levels.",
+      "registryDependencies": [
+        "@gooseui/use-scroll-spy"
+      ],
+      "files": [
+        {
+          "path": "registry/gooseui/ui/toc-scrollspy.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/gooseui/ui/toc-scrollspy.client.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "use-copy-to-clipboard",
+      "type": "registry:hook",
+      "title": "useCopyToClipboard",
+      "description": "Copy text with a copied state and a fallback for http.",
+      "files": [
+        {
+          "path": "registry/gooseui/hooks/use-copy-to-clipboard.ts",
+          "type": "registry:hook"
+        }
+      ]
+    },
+    {
+      "name": "use-file-drop",
+      "type": "registry:hook",
+      "title": "useFileDrop",
+      "description": "Hook that turns any element into a file drop target with nested-safe dragging state and accept filtering.",
+      "files": [
+        {
+          "path": "registry/gooseui/hooks/use-file-drop.ts",
+          "type": "registry:hook"
+        }
+      ]
+    },
+    {
+      "name": "use-now",
+      "type": "registry:hook",
+      "title": "useNow",
+      "description": "Current time on a shared interval, safe for hydration.",
+      "files": [
+        {
+          "path": "registry/gooseui/hooks/use-now.ts",
+          "type": "registry:hook"
+        }
+      ]
+    },
+    {
+      "name": "use-notification-permission",
+      "type": "registry:hook",
+      "title": "useNotificationPermission",
+      "description": "Browser notification permission with quiet days after a dismissal.",
+      "files": [
+        {
+          "path": "registry/gooseui/hooks/use-notification-permission.ts",
+          "type": "registry:hook"
+        }
+      ]
+    },
+    {
+      "name": "use-scroll-spy",
+      "type": "registry:hook",
+      "title": "useScrollSpy",
+      "description": "Tracks which section is under the activation line using IntersectionObserver.",
+      "files": [
+        {
+          "path": "registry/gooseui/hooks/use-scroll-spy.ts",
+          "type": "registry:hook"
+        }
+      ]
+    },
+    {
+      "name": "activity-heatmap",
+      "type": "registry:ui",
+      "title": "Activity Heatmap",
+      "description": "Yearly activity grid with weeks as columns and five levels.",
+      "files": [
+        {
+          "path": "registry/gooseui/ui/activity-heatmap.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/gooseui/ui/activity-heatmap.client.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "click-sparks",
+      "type": "registry:ui",
+      "title": "Click Sparks",
+      "description": "Spark strokes burst from every click inside a wrapper.",
+      "files": [
+        {
+          "path": "registry/gooseui/effects/click-sparks.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "dashed-line",
+      "type": "registry:ui",
+      "title": "Dashed Line",
+      "description": "Dashed divider with faded ends and moving dashes.",
+      "files": [
+        {
+          "path": "registry/gooseui/effects/dashed-line.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "dither-background",
+      "type": "registry:ui",
+      "title": "Dither Background",
+      "description": "Animated two-color background with ordered Bayer dithering.",
+      "files": [
+        {
+          "path": "registry/gooseui/effects/dither-background.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "fade-scroller",
+      "type": "registry:ui",
+      "title": "Fade Scroller",
+      "description": "Scroll container that fades its edges when there is more to scroll.",
+      "registryDependencies": [
+        "@gooseui/use-horizontal-wheel"
+      ],
+      "files": [
+        {
+          "path": "registry/gooseui/ui/fade-scroller.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/gooseui/ui/fade-scroller.client.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "gantt-chart",
+      "type": "registry:ui",
+      "title": "Gantt Chart",
+      "description": "Gantt chart for a day or a span of hours with plan and fact.",
+      "files": [
+        {
+          "path": "registry/gooseui/ui/gantt-chart.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/gooseui/ui/gantt-chart.client.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "gauge",
+      "type": "registry:ui",
+      "title": "Gauge",
+      "description": "Value meter as a half-circle arc or a linear scale.",
+      "files": [
+        {
+          "path": "registry/gooseui/ui/gauge.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "highlight-text",
+      "type": "registry:ui",
+      "title": "Highlight Text",
+      "description": "Search match highlighting with an optional marker animation.",
+      "files": [
+        {
+          "path": "registry/gooseui/effects/highlight-text.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "image-viewer",
+      "type": "registry:ui",
+      "title": "Image Viewer",
+      "description": "Zoom, pan and rotate an image inline or in a fullscreen dialog.",
+      "files": [
+        {
+          "path": "registry/gooseui/ui/image-viewer.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "mesh-gradient",
+      "type": "registry:ui",
+      "title": "Mesh Gradient",
+      "description": "Blurred color blobs drifting under a film grain layer.",
+      "files": [
+        {
+          "path": "registry/gooseui/effects/mesh-gradient.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "radar-chart",
+      "type": "registry:ui",
+      "title": "Radar Chart",
+      "description": "SVG radar chart with several series, legend and tooltips.",
+      "files": [
+        {
+          "path": "registry/gooseui/ui/radar-chart.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "rotary-dial",
+      "type": "registry:ui",
+      "title": "Rotary Dial",
+      "description": "Circular selector that snaps to the nearest item, with an optional fixed outer ring.",
+      "files": [
+        {
+          "path": "registry/gooseui/ui/rotary-dial.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "rotating-text",
+      "type": "registry:ui",
+      "title": "Rotating Text",
+      "description": "Word that flips to the next one letter by letter.",
+      "files": [
+        {
+          "path": "registry/gooseui/effects/rotating-text.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "scroll-word-reveal",
+      "type": "registry:ui",
+      "title": "Scroll Word Reveal",
+      "description": "Paragraph whose words fade in out of a blur as you scroll.",
+      "files": [
+        {
+          "path": "registry/gooseui/effects/scroll-word-reveal.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "silhouette-reveal",
+      "type": "registry:ui",
+      "title": "Silhouette Reveal",
+      "description": "Image shown as a silhouette that smoothly reveals itself.",
+      "files": [
+        {
+          "path": "registry/gooseui/ui/silhouette-reveal.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "stat-counter",
+      "type": "registry:ui",
+      "title": "Stat Counter",
+      "description": "Number that counts up on first paint or with container scroll, in CSS.",
+      "files": [
+        {
+          "path": "registry/gooseui/ui/stat-counter.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "theme-transition",
+      "type": "registry:ui",
+      "title": "Theme Transition",
+      "description": "Animated theme switch with the View Transitions API.",
+      "dependencies": [
+        "next-themes"
+      ],
+      "files": [
+        {
+          "path": "registry/gooseui/effects/theme-transition.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "use-keyboard-layout",
+      "type": "registry:hook",
+      "title": "useKeyboardLayout",
+      "description": "Detect text typed on the wrong layout (Russian JCUKEN or English QWERTY) and convert it.",
+      "files": [
+        {
+          "path": "registry/gooseui/hooks/use-keyboard-layout.ts",
+          "type": "registry:hook"
+        }
+      ]
+    },
+    {
+      "name": "add-to-calendar",
+      "type": "registry:ui",
+      "title": "Add to Calendar",
+      "description": "Button with links to Google, Apple, Outlook and an .ics download.",
+      "registryDependencies": [
+        "@gooseui/ics"
+      ],
+      "files": [
+        {
+          "path": "registry/gooseui/ui/add-to-calendar.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "ics",
+      "type": "registry:lib",
+      "title": "ics",
+      "description": "iCalendar builder with escaping, line folding, reminders and cancels.",
+      "files": [
+        {
+          "path": "registry/gooseui/lib/ics.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "phone-countries",
+      "type": "registry:lib",
+      "title": "phone-countries",
+      "description": "Calling codes, masks and number lengths of all countries, generated from libphonenumber.",
+      "files": [
+        {
+          "path": "registry/gooseui/lib/phone-countries.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "use-deferred-interaction",
+      "type": "registry:hook",
+      "title": "useDeferredInteraction",
+      "description": "Flag that turns on after the first user interaction or a timeout.",
+      "files": [
+        {
+          "path": "registry/gooseui/hooks/use-deferred-interaction.ts",
+          "type": "registry:hook"
+        }
+      ]
+    },
+    {
+      "name": "use-horizontal-wheel",
+      "type": "registry:hook",
+      "title": "useHorizontalWheel",
+      "description": "Vertical mouse wheel scrolls a horizontal row.",
+      "files": [
+        {
+          "path": "registry/gooseui/hooks/use-horizontal-wheel.ts",
+          "type": "registry:hook"
+        }
+      ]
+    },
+    {
+      "name": "use-keyboard-fit",
+      "type": "registry:hook",
+      "title": "useKeyboardFit",
+      "description": "On-screen keyboard height from visualViewport as a value and CSS vars.",
+      "files": [
+        {
+          "path": "registry/gooseui/hooks/use-keyboard-fit.ts",
+          "type": "registry:hook"
+        }
+      ]
+    },
+    {
+      "name": "use-near-viewport",
+      "type": "registry:hook",
+      "title": "useNearViewport",
+      "description": "One-shot flag for elements that come close to the screen.",
+      "files": [
+        {
+          "path": "registry/gooseui/hooks/use-near-viewport.ts",
+          "type": "registry:hook"
+        }
+      ]
+    },
+    {
+      "name": "use-scroll-threshold",
+      "type": "registry:hook",
+      "title": "useScrollThreshold",
+      "description": "Scrolled-past-threshold flag with hysteresis for sticky headers.",
+      "files": [
+        {
+          "path": "registry/gooseui/hooks/use-scroll-threshold.ts",
+          "type": "registry:hook"
+        }
+      ]
+    },
+    {
+      "name": "use-sound-effects",
+      "type": "registry:hook",
+      "title": "useSoundEffects",
+      "description": "Interface sounds synthesized with Web Audio, no audio files.",
+      "files": [
+        {
+          "path": "registry/gooseui/hooks/use-sound-effects.ts",
+          "type": "registry:hook"
+        }
+      ]
+    },
+    {
+      "name": "separator",
+      "type": "registry:ui",
+      "title": "Separator",
+      "description": "A semantic or decorative divider.",
+      "files": [
+        {
+          "path": "registry/gooseui/ui/separator.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "kbd",
+      "type": "registry:ui",
+      "title": "Kbd",
+      "description": "Kbd displays a keyboard key or shortcut. It uses the native kbd element for semantic markup. Combine keys in a group to show shortcuts. It works without JavaScript.",
+      "files": [
+        {
+          "path": "registry/gooseui/ui/kbd.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "skeleton",
+      "type": "registry:ui",
+      "title": "Skeleton",
+      "description": "Skeleton placeholders for loading content in plain CSS, no JavaScript. Three animations (pulse, shimmer, wave), ready-made shapes, SkeletonGroup that runs one shimmer across all blocks, SkeletonText with natural line widths and SkeletonReveal that fades real content in. Reduced motion keeps the blocks still.",
+      "files": [
+        {
+          "path": "registry/gooseui/ui/skeleton.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "breadcrumb",
+      "type": "registry:ui",
+      "title": "Breadcrumb",
+      "description": "Breadcrumb trail with CSS-drawn separators (chevron, slash, dot, arrow), a pill variant, an animated underline and a horizontally scrollable list with faded edges. No JavaScript.",
+      "files": [
+        {
+          "path": "registry/gooseui/ui/breadcrumb.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "lucide-react"
+      ]
+    },
+    {
+      "name": "toggle",
+      "type": "registry:ui",
+      "title": "Toggle",
+      "description": "Toggle is a two-state button. It exposes its state through aria-pressed. Use it for settings that can be switched on and off. It supports controlled and uncontrolled state.",
+      "files": [
+        {
+          "path": "registry/gooseui/ui/toggle.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "class-variance-authority"
+      ]
+    },
+    {
+      "name": "toggle-group",
+      "type": "registry:ui",
+      "title": "Toggle Group",
+      "description": "Toggle Group lets users choose one option from a set. It uses native radio inputs for keyboard interaction. The selected option can be controlled by the parent. Each option can contain text or an icon.",
+      "files": [
+        {
+          "path": "registry/gooseui/ui/toggle-group.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "@gooseui/toggle"
+      ]
+    },
+    {
+      "name": "tabs",
+      "type": "registry:ui",
+      "title": "Tabs",
+      "description": "Tabs organize related content into selectable panels. Native radio inputs handle selection and keyboard navigation. Use a controlled value when other interface elements need the selected tab. Each panel displays content for its corresponding option.",
+      "files": [
+        {
+          "path": "registry/gooseui/ui/tabs.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "collapsible",
+      "type": "registry:ui",
+      "title": "Collapsible",
+      "description": "Collapsible shows and hides a block of content when its trigger is clicked. Keep the state inside with defaultOpen or control it from outside with open and onOpenChange. Height animates through interpolate-size, and the closed panel gets hidden=\"until-found\", so in-page search opens it on its own. The trigger accepts asChild and sets aria-expanded and aria-controls for you.",
+      "files": [
+        {
+          "path": "registry/gooseui/ui/collapsible.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "theme-toggle",
+      "type": "registry:ui",
+      "title": "Theme Toggle",
+      "description": "Theme Toggle is a button that switches between light and dark themes with a sun and moon animation. The component knows nothing about a theme provider: it takes the current theme in theme and reports a change through onThemeChange. That lets you wire it to next-themes or any store of your own. It is built on Button, the icon size comes from the size prop, and the animation turns off under prefers-reduced-motion.",
+      "registryDependencies": [
+        "@gooseui/button"
+      ],
+      "files": [
+        {
+          "path": "registry/gooseui/ui/theme-toggle.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "use-global-styles",
+      "type": "registry:hook",
+      "title": "useGlobalStyles",
+      "description": "Injects a global stylesheet once per id, safe for SSR.",
+      "files": [
+        {
+          "path": "registry/gooseui/hooks/use-global-styles.ts",
+          "type": "registry:hook"
+        }
+      ]
+    },
+    {
+      "name": "stacking-cards",
+      "type": "registry:ui",
+      "title": "Stacking Cards",
+      "description": "Cards that stick and stack on top of each other while scrolling, CSS only.",
+      "registryDependencies": [
+        "@gooseui/use-global-styles"
+      ],
+      "files": [
+        {
+          "path": "registry/gooseui/ui/stacking-cards.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "adaptive-grid",
+      "type": "registry:ui",
+      "title": "Adaptive Grid",
+      "description": "Grid and cards that adapt to container size with container queries and :has().",
+      "files": [
+        {
+          "path": "registry/gooseui/ui/adaptive-grid.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "reveal-on-scroll",
+      "type": "registry:ui",
+      "title": "Reveal on Scroll",
+      "description": "Reveals elements as they enter the viewport using CSS scroll-driven animations.",
+      "registryDependencies": [
+        "@gooseui/use-global-styles"
+      ],
+      "files": [
+        {
+          "path": "registry/gooseui/effects/reveal-on-scroll.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "hint",
+      "type": "registry:ui",
+      "title": "Hint",
+      "description": "Tiny text hint on hover and focus. Native interestfor and popover=\"hint\" with a pure CSS fallback.",
+      "files": [
+        {
+          "path": "registry/gooseui/ui/hint.tsx",
+          "type": "registry:ui"
         }
       ]
     }

@@ -12,7 +12,9 @@ export interface BaselineFeature {
   status: BaselineStatus
   lowDate?: string // "2020-01-15" - when feature became newly available
   highDate?: string // "2022-07-15" - when feature became widely available
-  year?: number // extracted year from highDate or lowDate
+  year?: number // year of lowDate (Baseline Newly available)
+  /** Official English feature name from webstatus.dev (not translated) */
+  name?: string
 }
 
 export interface BrowserImplementation {
@@ -32,40 +34,53 @@ export interface BaselineAPIResponse {
   name: string
 }
 
-/**
- * Fetches Baseline status for a web feature
- * Use this at build time or in server components for caching
- */
-export async function getBaselineStatus(
+const cache = new Map<string, Promise<BaselineFeature>>()
+
+/** Year from an ISO date ("2026-10-27"), without timezone shifts */
+function yearOf(date?: string): number | undefined {
+  const year = Number(date?.slice(0, 4))
+  return Number.isInteger(year) && year > 1990 ? year : undefined
+}
+
+async function fetchBaselineStatus(
   featureId: string,
 ): Promise<BaselineFeature> {
   try {
-    const response = await fetch(`${BASELINE_API}/${featureId}`, {
-      next: { revalidate: 86400 }, // Cache for 24 hours
-    })
+    const response = await fetch(
+      `${BASELINE_API}/${encodeURIComponent(featureId)}`,
+      {
+        next: { revalidate: 86400 }, // Cache for 24 hours (server only)
+        signal: AbortSignal.timeout(8000),
+      },
+    )
 
     if (!response.ok) {
-      console.warn(`Baseline API: Feature "${featureId}" not found`)
+      console.warn(
+        response.status === 404
+          ? `Baseline API: feature "${featureId}" not found`
+          : `Baseline API: HTTP ${response.status} for "${featureId}"`,
+      )
       return { status: "no_data" }
     }
 
     const data: BaselineAPIResponse = await response.json()
 
     if (!data.baseline) {
-      return { status: "no_data" }
+      return { status: "no_data", name: data.name }
     }
 
     const { status, low_date, high_date } = data.baseline
+    const name = data.name
 
-    // Extract year from the relevant date
-    const relevantDate = status === "widely" ? high_date : low_date
-    const year = relevantDate ? new Date(relevantDate).getFullYear() : undefined
-
+    // Like the official <baseline-status>: the year is always the year when
+    // the feature became Baseline Newly available (low_date). For widely
+    // available features this is "available across browsers since <low_date>".
     return {
       status,
       lowDate: low_date,
       highDate: high_date,
-      year,
+      year: yearOf(low_date),
+      name,
     }
   } catch (error) {
     console.error(`Baseline API error for "${featureId}":`, error)
@@ -74,7 +89,26 @@ export async function getBaselineStatus(
 }
 
 /**
+ * Fetches Baseline status for a web feature.
+ * Never throws: network errors, 404 and missing data resolve to "no_data".
+ * Successful results are deduplicated per featureId; failures are retried.
+ */
+export function getBaselineStatus(featureId: string): Promise<BaselineFeature> {
+  const cached = cache.get(featureId)
+  if (cached) return cached
+
+  const request = fetchBaselineStatus(featureId).then((feature) => {
+    if (feature.status === "no_data") cache.delete(featureId)
+    return feature
+  })
+  cache.set(featureId, request)
+  return request
+}
+
+/**
  * Get display text for Baseline status
+ * (official wording: "Baseline Widely available", "Baseline Newly available",
+ * "Limited availability")
  */
 export function getBaselineStatusText(
   status: BaselineStatus,
@@ -82,9 +116,13 @@ export function getBaselineStatusText(
 ): string {
   switch (status) {
     case "widely":
-      return year ? `Widely available since ${year}` : "Widely available"
+      return year
+        ? `Baseline Widely available since ${year}`
+        : "Baseline Widely available"
     case "newly":
-      return year ? `Newly available since ${year}` : "Newly available"
+      return year
+        ? `Baseline Newly available since ${year}`
+        : "Baseline Newly available"
     case "limited":
       return "Limited availability"
     default:

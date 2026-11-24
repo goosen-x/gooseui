@@ -1,13 +1,21 @@
 import type { LucideIcon } from "lucide-react"
-import Link from "next/link"
-import { Badge } from "@/components/ui/badge"
+import { useLocale } from "next-intl"
+import { type Dict, type Localized, pick } from "@/i18n/dict"
+import { Link } from "@/i18n/navigation"
+import type { Locale } from "@/i18n/routing"
 import { cn } from "@/lib/utils"
+import { Badge } from "@/registry/gooseui/ui/badge"
+
+const content: Dict<{ soon: string }> = {
+  en: { soon: "Soon" },
+  ru: { soon: "Скоро" },
+}
 
 interface CategoryCardProps {
   category: {
     id: string
-    name: string
-    description: string
+    name: Localized
+    description: Localized
     icon: LucideIcon
     count?: number
     isComingSoon?: boolean
@@ -21,6 +29,8 @@ export function CategoryCard({
   showDevBadge,
   className,
 }: CategoryCardProps) {
+  const locale = useLocale()
+  const t = content[locale as Locale]
   const Icon = category.icon
   const href = `/docs/blocks/${category.id}`
   const isDisabled = category.isComingSoon && !showDevBadge
@@ -42,7 +52,9 @@ export function CategoryCard({
       {/* Content */}
       <div className="space-y-1">
         <div className="flex items-center gap-2">
-          <p className="font-semibold tracking-tight">{category.name}</p>
+          <p className="font-semibold tracking-tight">
+            {pick(category.name, locale)}
+          </p>
           {category.count !== undefined && category.count > 0 && (
             <Badge variant="secondary" className="text-xs">
               {category.count}
@@ -50,7 +62,7 @@ export function CategoryCard({
           )}
         </div>
         <p className="text-sm text-muted-foreground line-clamp-2">
-          {category.description}
+          {pick(category.description, locale)}
         </p>
       </div>
 
@@ -70,7 +82,7 @@ export function CategoryCard({
           variant="secondary"
           className="absolute right-3 top-3 text-xs bg-muted text-muted-foreground"
         >
-          Soon
+          {t.soon}
         </Badge>
       )}
     </Link>

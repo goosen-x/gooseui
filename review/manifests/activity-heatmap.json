@@ -1,0 +1,25 @@
+{
+  "slug": "activity-heatmap",
+  "verdict": "css-first",
+  "client": true,
+  "jsBefore": 2419,
+  "jsAfter": 2335,
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    { "path": "registry/gooseui/ui/activity-heatmap.tsx", "type": "registry:ui" },
+    { "path": "registry/gooseui/ui/activity-heatmap.client.tsx", "type": "registry:ui" }
+  ],
+  "features": ["color-mix"],
+  "breaking": [
+    "the grid is computed on the server; the client island (623 B gzip) only handles arrow keys, roving tabindex and onCellClick",
+    "onCellClick works only when ActivityHeatmap is rendered from a client component",
+    "without to and data the range ends on the server render date instead of the browser date after mount",
+    "tooltips are CSS elements inside each cell; the two top rows show them below the cell",
+    "new file activity-heatmap.client.tsx must be added to registry.json"
+  ],
+  "how": {
+    "en": "Server-built grid, CSS tooltips; JS only moves focus with arrows",
+    "ru": "Сетка с сервера, подсказки на CSS; JS только водит фокус стрелками"
+  }
+}

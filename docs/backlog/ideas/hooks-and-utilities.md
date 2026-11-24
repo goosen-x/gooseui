@@ -121,7 +121,7 @@ formatRelativeTime(new Date(Date.now() - 24 * 60 * 60 * 1000)) // "yesterday"
 
 ```
 registry/
-├── new-york/
+├── gooseui/
 │   ├── hooks/
 │   │   ├── use-media-query.tsx
 │   │   ├── use-local-storage.tsx

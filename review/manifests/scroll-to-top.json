@@ -1,0 +1,32 @@
+{
+  "slug": "scroll-to-top",
+  "verdict": "css-only",
+  "client": false,
+  "jsBefore": 2415,
+  "jsAfter": 0,
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/gooseui/ui/scroll-to-top.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "features": [
+    "scroll-driven-animations",
+    "has"
+  ],
+  "breaking": [
+    "Rendered as <a href> instead of <button>; click no longer calls window.scrollTo, the browser follows href (default #top) and the URL gets the hash",
+    "Click ripple and bounce animations removed; hover/active scale stays",
+    "ScrollToTopProgress aria-label no longer includes the scrolled percentage",
+    "The button follows the nearest scroller (scroll(nearest)), not only the window",
+    "behavior=\"smooth\" sets html scroll-behavior: smooth via :has() while the link is hovered, pressed or focused",
+    "New optional props: label (all variants), href",
+    "useScrollToTop is kept only for client code (components/docs/docs-page-nav.tsx imports it); the components no longer use it"
+  ],
+  "how": {
+    "en": "Link to #top, scroll(nearest) timeline for showing and the ring",
+    "ru": "Ссылка на #top, шкала scroll() для появления и кольца"
+  }
+}

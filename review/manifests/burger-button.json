@@ -1,0 +1,29 @@
+{
+  "slug": "burger-button",
+  "verdict": "css-only",
+  "client": false,
+  "jsBefore": 1137,
+  "jsAfter": 0,
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/gooseui/ui/burger-button.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "features": [
+    "has",
+    "popover"
+  ],
+  "breaking": [
+    "uncontrolled mode renders a label with a hidden checkbox instead of a button; onClick is not forwarded there, use onOpenChange",
+    "onOpenChange works only inside client components",
+    "new props: popoverTarget, name, labels.menu",
+    "aria-label in checkbox and popover modes is labels.menu (state is announced by the checkbox / popover)"
+  ],
+  "how": {
+    "en": "Hidden checkbox or popovertarget, lines follow :checked/:popover-open",
+    "ru": "Скрытый чекбокс или popovertarget, линии по :checked и :popover-open"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "separator",
+  "title": "Separator",
+  "description": "A semantic or decorative divider.",
+  "files": [
+    {
+      "path": "registry/gooseui/ui/separator.tsx",
+      "content": "import type * as React from \"react\"\nimport { cn } from \"@/lib/utils\"\n\nexport function Separator({\n  className,\n  orientation = \"horizontal\",\n  decorative = true,\n  ...props\n}: React.ComponentProps<\"hr\"> & {\n  orientation?: \"horizontal\" | \"vertical\"\n  decorative?: boolean\n}) {\n  return (\n    <hr\n      data-slot=\"separator\"\n      data-orientation={orientation}\n      role={decorative ? \"none\" : \"separator\"}\n      aria-orientation={\n        !decorative && orientation === \"vertical\" ? \"vertical\" : undefined\n      }\n      className={cn(\n        \"shrink-0 border-0 bg-border\",\n        orientation === \"horizontal\" ? \"h-px w-full\" : \"h-full w-px\",\n        className,\n      )}\n      {...props}\n    />\n  )\n}\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

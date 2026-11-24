@@ -1,0 +1,25 @@
+{
+  "slug": "theme-customizer",
+  "verdict": "js",
+  "client": true,
+  "jsBefore": 45508,
+  "jsAfter": 3986,
+  "dependencies": [
+    "next-themes"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/gooseui/ui/theme-customizer.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "features": [
+    "starting-style"
+  ],
+  "breaking": [],
+  "how": {
+    "en": "Active color and icon via CSS on <html>, next-themes for switching",
+    "ru": "Активный цвет и иконку выбирает CSS по <html>, тема через next-themes"
+  }
+}

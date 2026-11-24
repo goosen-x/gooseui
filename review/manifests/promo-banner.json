@@ -1,0 +1,33 @@
+{
+  "slug": "promo-banner",
+  "verdict": "css-first",
+  "client": true,
+  "jsBefore": 2962,
+  "jsAfter": 2821,
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/gooseui/ui/promo-banner.tsx",
+      "type": "registry:ui"
+    },
+    {
+      "path": "registry/gooseui/ui/promo-banner.client.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "features": [
+    "dialog",
+    "starting-style",
+    "transition-behavior"
+  ],
+  "breaking": [
+    "onClose/onCtaClick work only from client components",
+    "Root element is now a non-modal <dialog> instead of div[role=dialog]",
+    "The globals.css .animate-marquee utility is no longer needed (keyframes are inside the component)"
+  ],
+  "how": {
+    "en": "<dialog> + <form method=dialog>, CSS marquee; JS only for storageKey",
+    "ru": "<dialog> и <form method=dialog>, CSS-строка; JS только для storageKey"
+  }
+}

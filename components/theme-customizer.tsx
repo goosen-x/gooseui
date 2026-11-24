@@ -7,4 +7,4 @@ export {
   ThemeCustomizerPill,
   ThemeCustomizerSidebar,
   ThemeCustomizerToolbar,
-} from "@/registry/new-york/ui/theme-customizer"
+} from "@/registry/gooseui/ui/theme-customizer"

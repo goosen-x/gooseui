@@ -1,0 +1,14 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "adaptive-grid",
+  "title": "Adaptive Grid",
+  "description": "Grid and cards that adapt to container size with container queries and :has().",
+  "files": [
+    {
+      "path": "registry/gooseui/ui/adaptive-grid.tsx",
+      "content": "\"use client\"\n\nimport type * as React from \"react\"\nimport { cn } from \"@/lib/utils\"\n\ninterface AdaptiveCardProps {\n  children: React.ReactNode\n  className?: string\n  /** Card image */\n  image?: string\n  /** Card title */\n  title?: string\n}\n\n/**\n * Adaptive Card\n *\n * Uses Container Queries + :has() selector to automatically\n * adjust layout based on content and container size.\n *\n * @see https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_containment/Container_queries\n */\nexport function AdaptiveCard({\n  children,\n  className,\n  image,\n  title,\n}: AdaptiveCardProps) {\n  return (\n    <div\n      className={cn(\n        \"@container group/card\",\n        \"rounded-xl border bg-card shadow-sm overflow-hidden\",\n        // Layout changes based on content with :has()\n        \"has-[img]:grid has-[img]:@sm:grid-cols-[140px_1fr] has-[img]:@md:grid-cols-[200px_1fr]\",\n        \"[&:not(:has(img))]:flex [&:not(:has(img))]:flex-col\",\n        className,\n      )}\n    >\n      {image && (\n        <div className=\"relative aspect-video @sm:aspect-auto @sm:h-full overflow-hidden bg-muted\">\n          <img\n            src={image}\n            alt={title || \"\"}\n            className=\"h-full w-full object-cover transition-transform duration-300 group-hover/card:scale-105\"\n          />\n        </div>\n      )}\n      <div className=\"flex flex-col gap-2 p-4 @sm:p-5\">\n        {title && (\n          <h3 className=\"font-semibold text-base @sm:text-lg line-clamp-2\">\n            {title}\n          </h3>\n        )}\n        <div className=\"text-sm text-muted-foreground\">{children}</div>\n      </div>\n    </div>\n  )\n}\n\ninterface AdaptiveGridProps {\n  children: React.ReactNode\n  className?: string\n  /** Minimum card width */\n  minCardWidth?: number\n}\n\n/**\n * Adaptive Grid\n *\n * Auto-adjusting grid that responds to container size\n * using Container Queries.\n */\nexport function AdaptiveGrid({\n  children,\n  className,\n  minCardWidth = 280,\n}: AdaptiveGridProps) {\n  return (\n    <div\n      className={cn(\n        \"@container\",\n        \"grid gap-4\",\n        // Responsive columns based on container width\n        \"grid-cols-1 @sm:grid-cols-2 @lg:grid-cols-3 @2xl:grid-cols-4\",\n        className,\n      )}\n      style={\n        {\n          \"--min-card-width\": `${minCardWidth}px`,\n        } as React.CSSProperties\n      }\n    >\n      {children}\n    </div>\n  )\n}\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

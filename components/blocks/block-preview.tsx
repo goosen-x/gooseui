@@ -42,12 +42,6 @@ export function BlockPreview({
     setKey((k) => k + 1)
   }, [])
 
-  const handleCopy = useCallback(async () => {
-    if (sourceCode) {
-      await navigator.clipboard.writeText(sourceCode)
-    }
-  }, [sourceCode])
-
   return (
     <div className={cn("rounded-lg border", className)}>
       <BlockPreviewToolbar
@@ -56,7 +50,7 @@ export function BlockPreview({
         activeTab={activeTab}
         onTabChange={setActiveTab}
         onRefresh={handleRefresh}
-        onCopy={handleCopy}
+        sourceCode={sourceCode}
         installCommand={installCommand}
       />
 

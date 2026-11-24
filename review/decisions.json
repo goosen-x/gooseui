@@ -1,0 +1,453 @@
+{
+  "items": {
+    "searchbar": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "booking-calendar": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "button": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "checkbox": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "dropzone": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "floating-label-input": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "input": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "option-picker": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "otp-input": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "phone-input": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "quantity-slider": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "radio": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "range-slider": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "rating": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "rotary-dial": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "signature-pad": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "step-wizard": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "switch": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "toggle": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "search-panel": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "toggle-group": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "slider": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "animated-timer": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "badge": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "baseline-status": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "copy-field": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "details-accordion": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "digital-clock": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "kbd": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "corner-badge": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "rating-breakdown": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "relative-time": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "typography": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "scroll-progress": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "activity-heatmap": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "timeline": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "stacking-cards": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "gantt-chart": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "gauge": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "radar-chart": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "stat-counter": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "sliding-number": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "carousel": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "compare-slider": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "hover-scroll-screenshot": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "image-viewer": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "silhouette-reveal": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "video-dialog": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "cookie-consent": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "video-synced-steps": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "paint-roller-loader": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "progress-ring": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "ripple-loader": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "step-progress": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "notification-prompt": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "burger-button": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "language-switcher": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "toast": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "skeleton": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "video-hover-preview": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "scroll-to-top": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "scroll-spy": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "toc-scrollspy": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "dialog": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "dropdown-menu": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "morphing-dialog": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "breadcrumb": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "responsive-hint": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "sheet": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "tooltip": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "tabs": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "card": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "adaptive-grid": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "collapsible": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "fade-scroller": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "separator": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "marquee": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "github-star-dialog": {
+      "status": "revise",
+      "comment": ""
+    },
+    "scroll-container": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "testimonial-rotator": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "add-to-calendar": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "copy-button": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "hint": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "promo-banner": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "install-command": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "share-buttons": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "theme-customizer": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "theme-toggle": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "rotating-text": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "highlight-text": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "scroll-word-reveal": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "border-beam": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "dashed-line": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "click-sparks": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "theme-transition": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "use-copy-to-clipboard": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "use-deferred-interaction": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "use-file-drop": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "use-horizontal-wheel": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "use-keyboard-fit": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "use-near-viewport": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "use-notification-permission": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "use-now": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "use-scroll-spy": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "use-sound-effects": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "use-keyboard-layout": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "use-scroll-threshold": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "glitch-text": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "reveal-on-scroll": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "dither-background": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "confetti": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "mesh-gradient": {
+      "status": "accepted",
+      "comment": ""
+    }
+  },
+  "comment": ""
+}

@@ -1,22 +1,59 @@
-import Link from "next/link"
+import { useLocale } from "next-intl"
+import type { Dict } from "@/i18n/dict"
+import { Link } from "@/i18n/navigation"
+import type { Locale } from "@/i18n/routing"
+import { BLOCKS_ENABLED } from "@/lib/config/features"
 import { siteConfig } from "@/lib/config/navigation"
 import { CurrentYear } from "./current-year"
 
+const en = {
+  product: "Product",
+  resources: "Resources",
+  community: "Community",
+  components: "Components",
+  effects: "Effects",
+  blocks: "Blocks",
+  documentation: "Documentation",
+  installation: "Installation",
+  contact: "Contact",
+  description:
+    "Open source component library for building modern web applications with React.",
+  license: "Open Source.",
+}
+const content: Dict<typeof en> = {
+  en,
+  ru: {
+    product: "Продукт",
+    resources: "Ресурсы",
+    community: "Сообщество",
+    components: "Компоненты",
+    effects: "Эффекты",
+    blocks: "Блоки",
+    documentation: "Документация",
+    installation: "Установка",
+    contact: "Контакты",
+    description:
+      "Библиотека компонентов с открытым кодом для современных веб-приложений на React.",
+    license: "Открытый код.",
+  },
+}
+
 export function SiteFooter() {
+  const t = content[useLocale() as Locale]
   const footerLinks = {
     product: [
-      { title: "Components", href: "/docs/components/button" },
-      { title: "Effects", href: "/docs/effects/border-beam" },
-      { title: "Blocks", href: "/docs/blocks" },
+      { title: t.components, href: "/docs/components/button" },
+      { title: t.effects, href: "/docs/effects/border-beam" },
+      ...(BLOCKS_ENABLED ? [{ title: t.blocks, href: "/docs/blocks" }] : []),
     ],
     resources: [
-      { title: "Documentation", href: "/docs" },
-      { title: "Installation", href: "/docs/installation" },
+      { title: t.documentation, href: "/docs" },
+      { title: t.installation, href: "/docs/installation" },
       { title: "CLI", href: "/docs/cli" },
     ],
     community: [
       { title: "GitHub", href: siteConfig.links.github },
-      { title: "Contact", href: `mailto:${siteConfig.email}` },
+      { title: t.contact, href: `mailto:${siteConfig.email}` },
     ],
   }
 
@@ -38,8 +75,7 @@ export function SiteFooter() {
               {siteConfig.name}
             </Link>
             <p className="mt-4 text-sm text-muted-foreground">
-              Open source component library for building modern web applications
-              with React.
+              {t.description}
             </p>
           </div>
 
@@ -47,7 +83,7 @@ export function SiteFooter() {
           <div className="grid grid-cols-2 md:grid-cols-3 gap-12 md:gap-16 lg:gap-20">
             {/* Product */}
             <div>
-              <p className="font-semibold mb-4">Product</p>
+              <p className="font-semibold mb-4">{t.product}</p>
               <ul className="space-y-3">
                 {footerLinks.product.map((link) => (
                   <li key={link.href}>
@@ -64,7 +100,7 @@ export function SiteFooter() {
 
             {/* Resources */}
             <div>
-              <p className="font-semibold mb-4">Resources</p>
+              <p className="font-semibold mb-4">{t.resources}</p>
               <ul className="space-y-3">
                 {footerLinks.resources.map((link) => (
                   <li key={link.href}>
@@ -81,7 +117,7 @@ export function SiteFooter() {
 
             {/* Community */}
             <div>
-              <p className="font-semibold mb-4">Community</p>
+              <p className="font-semibold mb-4">{t.community}</p>
               <ul className="space-y-3">
                 {footerLinks.community.map((link) => (
                   <li key={link.href}>
@@ -103,7 +139,7 @@ export function SiteFooter() {
         <div className="mt-12 pt-8 border-t flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex flex-col md:flex-row items-center gap-2 md:gap-4">
             <p className="text-sm text-muted-foreground">
-              &copy; <CurrentYear /> {siteConfig.name}. Open Source.
+              &copy; <CurrentYear /> {`${siteConfig.name}. ${t.license}`}
             </p>
             <a
               href={`mailto:${siteConfig.email}`}

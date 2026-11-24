@@ -1,10 +1,14 @@
 "use client"
 
-import Link from "next/link"
-import { AnimatedCopyButton } from "@/components/docs/animated-copy-button"
+import { useLocale } from "next-intl"
+import { useCopyToast } from "@/hooks/use-copy-toast"
+import type { Dict } from "@/i18n/dict"
+import { Link } from "@/i18n/navigation"
+import type { Locale } from "@/i18n/routing"
 import { cn } from "@/lib/utils"
-import { BorderBeam } from "@/registry/new-york/effects/border-beam"
-import { Button } from "@/registry/new-york/ui/button"
+import { BorderBeam } from "@/registry/gooseui/effects/border-beam"
+import { Button } from "@/registry/gooseui/ui/button"
+import { CopyButton } from "@/registry/gooseui/ui/copy-button"
 
 const codeExample = `import { Button } from "@/components/ui/button"
 
@@ -22,7 +26,33 @@ export function Demo() {
   )
 }`
 
+const en = {
+  badge: "Custom shadcn/ui Registry",
+  title: "Build Modern Interfaces Faster",
+  description:
+    "A collection of beautiful components and effects for React. Copy the code, customize it, ship to production.",
+  getStarted: "Get Started",
+  components: "Components",
+  preview: "Preview",
+  codeCopied: "Code copied",
+}
+const content: Dict<typeof en> = {
+  en,
+  ru: {
+    badge: "Кастомный реестр shadcn/ui",
+    title: "Собирайте интерфейсы быстрее",
+    description:
+      "Коллекция красивых компонентов и эффектов для React. Скопируйте код, настройте под себя и выкатывайте в продакшен.",
+    getStarted: "Начать",
+    components: "Компоненты",
+    preview: "Превью",
+    codeCopied: "Код скопирован",
+  },
+}
+
 export function HeroCode() {
+  const t = content[useLocale() as Locale]
+  const copyToast = useCopyToast()
   return (
     <div className="relative min-h-[calc(100svh-3.5rem)] flex items-center">
       {/* Dot background */}
@@ -71,16 +101,15 @@ export function HeroCode() {
                   strokeWidth="32"
                 />
               </svg>
-              <span>Custom shadcn/ui Registry</span>
+              <span>{t.badge}</span>
             </div>
 
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-[1.1] font-bold tracking-tight text-balance">
-              Build Modern Interfaces Faster
+              {t.title}
             </h1>
 
             <p className="mt-3 sm:mt-4 md:mt-6 text-base sm:text-lg md:text-xl text-muted-foreground text-balance max-w-xl">
-              A collection of beautiful components and effects for React. Copy
-              the code, customize it, ship to production.
+              {t.description}
             </p>
 
             <div className="mt-6 sm:mt-8 md:mt-10 flex flex-col sm:flex-row gap-3 sm:gap-4">
@@ -90,7 +119,7 @@ export function HeroCode() {
                 className="sm:h-11 sm:px-8"
                 asChild
               >
-                <Link href="/docs">Get Started</Link>
+                <Link href="/docs">{t.getStarted}</Link>
               </Button>
               <Button
                 squircle
@@ -99,7 +128,7 @@ export function HeroCode() {
                 className="sm:h-11 sm:px-8 backdrop-blur-[2px] bg-background/20 hover:bg-background/20 hover:backdrop-blur-md transition-all"
                 asChild
               >
-                <Link href="/docs/components">Components</Link>
+                <Link href="/docs/components">{t.components}</Link>
               </Button>
             </div>
 
@@ -182,7 +211,11 @@ export function HeroCode() {
                     button.tsx
                   </span>
                 </div>
-                <AnimatedCopyButton text={codeExample} />
+                <CopyButton
+                  size="sm"
+                  value={codeExample}
+                  {...copyToast(t.codeCopied)}
+                />
               </div>
 
               {/* Code */}
@@ -250,7 +283,7 @@ export function HeroCode() {
               {/* Preview */}
               <div className="border-t bg-muted/30 p-4">
                 <div className="mb-2 text-[10px] font-medium uppercase tracking-wider text-muted-foreground">
-                  Preview
+                  {t.preview}
                 </div>
                 <div className="flex flex-wrap gap-2">
                   <Button squircle size="sm">

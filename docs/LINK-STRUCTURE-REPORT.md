@@ -46,7 +46,6 @@ Generated: 2026-01-10
 | Sliding Number | `/docs/components/sliding-number` | Draft | Yes |
 | Smart Form | `/docs/components/smart-form` | Draft | Yes |
 | Stacking Cards | `/docs/components/stacking-cards` | Draft | Yes |
-| SVG Drawable | `/docs/components/svg-drawable` | Draft | Yes |
 | Theme Customizer | `/docs/components/theme-customizer` | New | Yes |
 | Toast | `/docs/components/toast` | Active | Yes |
 | Typography | `/docs/components/typography` | Active | Yes |

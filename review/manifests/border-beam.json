@@ -1,0 +1,27 @@
+{
+  "slug": "border-beam",
+  "verdict": "css-only",
+  "client": false,
+  "jsBefore": 806,
+  "jsAfter": 0,
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/gooseui/effects/border-beam.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "features": [
+    "registered-custom-properties",
+    "masks",
+    "corner-shape"
+  ],
+  "breaking": [
+    "@property --angle renamed to --gooseui-beam-angle, keyframes renamed to gooseui-border-beam-spin (only matters if you styled them yourself)"
+  ],
+  "how": {
+    "en": "@property angle spun by CSS keyframes, masked border",
+    "ru": "Угол через @property крутит CSS-анимация, рамка по маске"
+  }
+}
