@@ -80,9 +80,25 @@ export const BASELINE_CHECKS = {
   },
   backdrop: { label: "::backdrop", selector: "::backdrop" },
   "clip-path": { label: "clip-path", css: ["clip-path", "circle(50%)"] },
+  "color-gamut": {
+    label: "color-gamut media query",
+    // Every display covers sRGB, so the query matches only where the media
+    // feature is parsed (modern Chrome keeps unknown queries in `.media`)
+    test: () =>
+      typeof window !== "undefined" &&
+      window.matchMedia("(color-gamut: srgb)").matches,
+  },
   "color-mix": {
     label: "color-mix()",
     css: ["color", "color-mix(in srgb, red, blue)"],
+  },
+  "contrast-color": {
+    label: "contrast-color()",
+    css: ["color", "contrast-color(red)"],
+  },
+  "customizable-select": {
+    label: "customizable select",
+    css: ["appearance", "base-select"],
   },
   "container-queries": {
     label: "Container Queries",
@@ -96,6 +112,15 @@ export const BASELINE_CHECKS = {
     label: "CSS corner-shape",
     css: ["corner-shape", "squircle"],
   },
+  "field-sizing": {
+    label: "field-sizing",
+    css: ["field-sizing", "content"],
+  },
+  "gradient-interpolation": {
+    label: "gradient color interpolation",
+    css: ["background-image", "linear-gradient(in oklch, red, blue)"],
+  },
+  "grid-lanes": { label: "grid lanes", css: ["display", "grid-lanes"] },
   details: { label: "<details>", test: () => inWindow("HTMLDetailsElement") },
   "details-content": {
     label: "::details-content",
@@ -123,6 +148,17 @@ export const BASELINE_CHECKS = {
     label: 'hidden="until-found"',
     test: hiddenUntilFound,
   },
+  "multi-column": { label: "CSS multi-column layout", css: ["columns", "2"] },
+  oklab: { label: "oklab()", css: ["color", "oklab(0.5 0 0)"] },
+  "relative-color": {
+    label: "relative color syntax",
+    css: ["color", "rgb(from red r g b)"],
+  },
+  "sibling-count": {
+    label: "sibling-count()",
+    css: ["width", "calc(sibling-count() * 1px)"],
+  },
+  subgrid: { label: "subgrid", css: ["grid-template-columns", "subgrid"] },
   "individual-transforms": {
     label: "individual transform properties",
     css: ["translate", "10px"],
@@ -192,8 +228,9 @@ export const BASELINE_CHECKS = {
   },
   scripting: {
     label: "scripting media query",
-    // An unknown media feature makes the whole query "not all"
-    test: () => window.matchMedia("(scripting)").media !== "not all",
+    // Chrome echoes even an unknown query in `.media`, so test `.matches`:
+    // this code runs, so a browser that knows the feature reports "enabled"
+    test: () => window.matchMedia("(scripting: enabled)").matches,
   },
   "scroll-buttons": {
     label: "::scroll-button()",

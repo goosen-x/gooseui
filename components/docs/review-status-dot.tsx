@@ -1,17 +1,19 @@
 import type { ReviewStatus } from "@/lib/config/docs-navigation"
 
 export function ReviewStatusDot({ status }: { status?: ReviewStatus }) {
-  if (process.env.NODE_ENV !== "development" || status === undefined)
+  if (
+    process.env.NODE_ENV !== "development" ||
+    status === undefined ||
+    status === "accepted"
+  )
     return null
   const labels = {
     "": "Без решения",
-    accepted: "Опубликован",
     revise: "Доработать",
     delete: "Удалить",
   }
   const colors = {
     "": "bg-gray-400",
-    accepted: "bg-green-500",
     revise: "bg-yellow-400",
     delete: "bg-red-500",
   }

@@ -14,7 +14,8 @@
     "registry:build:drafts": "shadcn build registry.drafts.json -o public/r-drafts",
     "validate:nav": "tsx scripts/validate-navigation.ts",
     "prepare": "husky",
-    "test:components": "node scripts/check-components.mjs"
+    "test:components": "node scripts/check-components.mjs",
+    "check:browser": "node scripts/check-browser-checks.mjs"
   },
   "dependencies": {
     "clsx": "^2.1.1",

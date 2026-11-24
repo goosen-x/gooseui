@@ -34,6 +34,7 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - run: pnpm typecheck
       - run: pnpm lint
+      - run: pnpm check:browser
 
       # public/r is what the shadcn CLI downloads, rebuild it from the sources
       - run: pnpm registry:build
