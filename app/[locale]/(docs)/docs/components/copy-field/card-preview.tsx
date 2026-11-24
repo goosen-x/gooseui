@@ -25,7 +25,7 @@ export default function CardPreview() {
         />
         <CopyField
           label="Key"
-          value="sk_live_51HxT9a2Qe7mVb0R4kPz8"
+          value="demo_key_7f3k29qd4mvb0r8n"
           mono
           labelClassName="w-12"
           className="text-xs"
