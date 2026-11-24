@@ -1,104 +1,66 @@
 # GooseUI
 
-A modern, beautiful component library for React and Next.js. Built on top of shadcn/ui with custom components, effects, and theming.
+A shadcn/ui registry of components that ship as little JavaScript as possible. State lives in native HTML (`<details>`, `<dialog>`, `popover`, radio inputs with `:has()`), motion in CSS (scroll-driven animations, View Transitions, `@starting-style`). A component turns into a client component only when there is no way around it, so pages keep their PageSpeed score.
 
-## Features
+86 components, 12 effects and 12 hooks. Docs in English and Russian at [gooseui.pro](https://gooseui.pro).
 
-- **Custom Components** - Button, Card, Input, Typography, Toast, and more
-- **Visual Effects** - Border Beam, animated gradients
-- **Theme Customizer** - 5 variants of floating theme/color picker
-- **Tailwind CSS v4** - Modern styling with CSS variables
-- **Dark/Light Mode** - Full theme support with next-themes
-- **CLI Installation** - Install components directly via shadcn CLI
+## Install
 
-## Installation
-
-Install components using the shadcn CLI:
+GooseUI is an official shadcn registry, components install with the shadcn CLI:
 
 ```bash
 npx shadcn@latest add @gooseui/button
-```
-
-Or with other package managers:
-
-```bash
-# pnpm
 pnpm dlx shadcn@latest add @gooseui/button
-
-# yarn
-npx shadcn@latest add @gooseui/button
-
-# bun
+yarn dlx shadcn@latest add @gooseui/button
 bunx --bun shadcn@latest add @gooseui/button
 ```
 
-## Available Components
+The code is copied into your project, there is no package to keep up to date.
 
-### UI Components
+## Principles
 
-| Component | Description |
-|-----------|-------------|
-| `button` | Button with multiple variants and sizes |
-| `card` | Card with header, content, and footer |
-| `input` | Input field with validation states |
-| `label` | Accessible label for form controls |
-| `textarea` | Multiline text input |
-| `typography` | Text styling with semantic variants and gradients |
-| `theme-customizer` | Floating theme/color picker (5 variants) |
-| `animated-timer` | Animated clock with sliding digits |
+- **Server first.** About 40% of the registry sends no JavaScript to the browser at all. The rest loads only the script it needs: `measure-js` reports the weight of every item.
+- **No runtime dependencies.** Components use only `react` and `cn`. No Radix, no Motion, no icon packages, icons are inline SVG.
+- **Baseline.** The main behaviour relies on features that are Baseline widely or newly available. Newer CSS (anchor positioning, `interestfor`, `corner-shape`) is a progressive enhancement with a fallback. Every docs page shows a support table and checks the visitor's browser.
+- **Works without JavaScript.** The accordion, tabs, switch, hint, skeletons, marquee and the language switcher keep working with JavaScript disabled.
+- **Theme tokens.** Colors come from shadcn CSS variables, dark mode and the theme customizer apply to everything.
+- **Accessible.** Keyboard support, focus rings, ARIA states and `prefers-reduced-motion` in every animated item.
 
-### Effects
+## What is inside
 
-| Effect | Description |
-|--------|-------------|
-| `border-beam` | Animated beam traveling along container border |
+| Group | Examples |
+|-------|----------|
+| Inputs | Button, Input, Floating Label Input, Checkbox, Radio, Switch, Slider, Range Slider, OTP Input, Phone Input, Rating, Dropzone, Signature Pad, Searchbar |
+| Overlays | Dialog, Sheet, Dropdown Menu, Tooltip, Hint, Responsive Hint, Morphing Dialog, Image Viewer, Video Dialog |
+| Navigation | Tabs, Breadcrumb, Table of Contents, ScrollSpy, Scroll To Top, Language Switcher, Search Panel |
+| Feedback | Toast (native, sonner-style stack), Skeleton, Progress Ring, Step Progress, Cookie Consent, Notification Prompt |
+| Data | Activity Heatmap, Gantt Chart, Radar Chart, Gauge, Timeline, Rating Breakdown, Booking Calendar, Stat Counter |
+| Media | Carousel (scroll-snap), Compare Slider, Video Hover Preview, Video Synced Steps, Hover Scroll Screenshot |
+| Layout | Card, Adaptive Grid (container queries), Scroll Container, Fade Scroller, Stacking Cards, Marquee |
+| Utilities | Copy Button, Copy Field, Share Buttons, Add to Calendar, Install Command, Relative Time, Theme Toggle, Theme Customizer |
 
-### Toast System
+**Effects:** Border Beam, Confetti, Click Sparks, Dither Background, Mesh Gradient, Glitch Text, Highlight Text, Rotating Text, Scroll Word Reveal, Reveal on Scroll, Dashed Line, Theme Transition.
 
-| Component | Description |
-|-----------|-------------|
-| `sonner` | Base toast provider with theming |
-| `custom-toast` | Beautiful toast with progress bar |
-| `toast` | Helper functions for notifications |
+**Hooks:** useCopyToClipboard, useFileDrop, useNow, useNotificationPermission, useScrollSpy, useKeyboardLayout, useDeferredInteraction, useHorizontalWheel, useKeyboardFit, useNearViewport, useScrollThreshold, useSoundEffects.
 
-### Blocks
-
-| Block | Description |
-|-------|-------------|
-| `example-form` | Contact form with Zod validation |
-| `complex-component` | Multi-file component example |
-
-## Documentation
-
-Visit [gooseui.pro/docs](https://gooseui.pro/docs) for full documentation.
+The full list with live demos is at [gooseui.pro/docs](https://gooseui.pro/docs).
 
 ## Development
 
 ```bash
-# Install dependencies
 pnpm install
-
-# Start development server
-pnpm dev
-
-# Build registry
-pnpm registry:build
-
-# Type check
+pnpm dev               # docs site on localhost:3000
+pnpm registry:build    # build public/r/*.json for the shadcn CLI
 pnpm typecheck
-
-# Lint
-pnpm lint
+pnpm lint              # biome
+node scripts/measure-js.mjs   # client JS weight of every registry item
 ```
 
-## Tech Stack
+Registry sources live in `registry/gooseui/{ui,effects,hooks,lib,blocks}`, docs pages in `app/[locale]/(docs)/docs`.
 
-- **Framework**: Next.js 15 with App Router
-- **Styling**: Tailwind CSS v4
-- **Components**: Radix UI primitives
-- **Animations**: Motion (Framer Motion)
-- **Icons**: Lucide React
-- **Theming**: next-themes
+## Stack
+
+Next.js 16, React 19, Tailwind CSS v4, next-intl for the docs, Biome.
 
 ## License
 
