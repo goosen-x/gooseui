@@ -11,7 +11,12 @@
 
 import * as fs from "fs"
 import * as path from "path"
-import { docsNavigation, getAllNavItems } from "../lib/config/docs-navigation"
+import {
+  docsNavigation,
+  getAllNavItems,
+  type NavGroup,
+  navTitle,
+} from "../lib/config/docs-navigation"
 
 // Support both structures:
 // - app/(docs)/docs/... (current)
@@ -33,7 +38,12 @@ function getAppDir(): string {
 const APP_DIR = getAppDir()
 
 interface ValidationError {
-  type: "missing_page" | "duplicate_slug" | "duplicate_href" | "invalid_href"
+  type:
+    | "missing_page"
+    | "duplicate_slug"
+    | "duplicate_href"
+    | "invalid_href"
+    | "unknown_category"
   message: string
   item?: string
 }
@@ -49,11 +59,11 @@ function checkDuplicateSlugs() {
     if (slugs.has(item.slug)) {
       errors.push({
         type: "duplicate_slug",
-        message: `Duplicate slug "${item.slug}" found in "${item.title}" and "${slugs.get(item.slug)}"`,
+        message: `Duplicate slug "${item.slug}" found in "${navTitle(item, "en")}" and "${slugs.get(item.slug)}"`,
         item: item.slug,
       })
     } else {
-      slugs.set(item.slug, item.title)
+      slugs.set(item.slug, navTitle(item, "en"))
     }
   }
 }
@@ -67,11 +77,11 @@ function checkDuplicateHrefs() {
     if (hrefs.has(item.href)) {
       errors.push({
         type: "duplicate_href",
-        message: `Duplicate href "${item.href}" found in "${item.title}" and "${hrefs.get(item.href)}"`,
+        message: `Duplicate href "${item.href}" found in "${navTitle(item, "en")}" and "${hrefs.get(item.href)}"`,
         item: item.href,
       })
     } else {
-      hrefs.set(item.href, item.title)
+      hrefs.set(item.href, navTitle(item, "en"))
     }
   }
 }
@@ -81,6 +91,8 @@ function checkPagesExist() {
   const allItems = getAllNavItems()
 
   for (const item of allItems) {
+    // "Coming soon" items are shown disabled and have no page yet
+    if (item.isComingSoon) continue
     // Convert href to file path
     // /docs -> app/[locale]/(docs)/docs/page.tsx
     // /docs/components/button -> app/[locale]/(docs)/docs/components/button/page.tsx
@@ -91,7 +103,7 @@ function checkPagesExist() {
     if (!fs.existsSync(pagePath) && !fs.existsSync(mdxPath)) {
       errors.push({
         type: "missing_page",
-        message: `Missing page for "${item.title}" (${item.href})`,
+        message: `Missing page for "${navTitle(item, "en")}" (${item.href})`,
         item: item.href,
       })
     }
@@ -106,7 +118,7 @@ function checkValidHrefs() {
     if (!item.href.startsWith("/docs")) {
       errors.push({
         type: "invalid_href",
-        message: `Invalid href "${item.href}" for "${item.title}" - must start with /docs`,
+        message: `Invalid href "${item.href}" for "${navTitle(item, "en")}" - must start with /docs`,
         item: item.href,
       })
     }
@@ -116,7 +128,7 @@ function checkValidHrefs() {
 // 5. Validate section structure
 function validateSectionStructure() {
   for (const section of docsNavigation) {
-    if (!section.title || section.title.trim() === "") {
+    if (!section.title.en || section.title.en.trim() === "") {
       errors.push({
         type: "invalid_href",
         message: `Section has empty title`,
@@ -127,17 +139,48 @@ function validateSectionStructure() {
     if (!section.slug || section.slug.trim() === "") {
       errors.push({
         type: "invalid_href",
-        message: `Section "${section.title}" has empty slug`,
-        item: section.title,
+        message: `Section "${section.title.en}" has empty slug`,
+        item: section.title.en,
       })
     }
 
-    if (section.items.length === 0) {
+    // A section with its own catalog page may be empty (filled later)
+    if (section.items.length === 0 && !section.href) {
       errors.push({
         type: "invalid_href",
-        message: `Section "${section.title}" has no items`,
+        message: `Section "${section.title.en}" has no items`,
         item: section.slug,
       })
+    }
+
+    // Catalog page of the section must exist
+    if (section.href) {
+      const pagePath = path.join(
+        APP_DIR,
+        section.href.replace(/^\//, ""),
+        "page.tsx",
+      )
+      if (!fs.existsSync(pagePath)) {
+        errors.push({
+          type: "missing_page",
+          message: `Missing catalog page for section "${section.title.en}" (${section.href})`,
+          item: section.href,
+        })
+      }
+    }
+
+    // Items of grouped sections must use one of the section groups
+    if (section.groups) {
+      const ids = new Set(section.groups.map((g: NavGroup) => g.id))
+      for (const item of section.items) {
+        if (!item.category || !ids.has(item.category)) {
+          errors.push({
+            type: "unknown_category",
+            message: `"${navTitle(item, "en")}" in "${section.title.en}" has category "${item.category ?? "none"}", expected one of: ${[...ids].join(", ")}`,
+            item: item.slug,
+          })
+        }
+      }
     }
   }
 }

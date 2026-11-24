@@ -1,0 +1,21 @@
+{
+  "slug": "video-synced-steps",
+  "verdict": "js",
+  "client": true,
+  "jsBefore": 2695,
+  "jsAfter": 1912,
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/gooseui/ui/video-synced-steps.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "features": [],
+  "breaking": [],
+  "how": {
+    "en": "Native <video>; JS maps currentTime to a step and a CSS variable",
+    "ru": "Нативный <video>; JS переводит currentTime в шаг и CSS-переменную"
+  }
+}

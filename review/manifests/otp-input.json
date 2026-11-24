@@ -1,0 +1,41 @@
+{
+  "slug": "otp-input",
+  "verdict": "css-only",
+  "client": false,
+  "jsBefore": 44286,
+  "jsAfter": 0,
+  "optionalClient": {
+    "file": "registry/gooseui/ui/otp-input-client.tsx",
+    "gzip": 2517,
+    "adds": "character filter, controlled value, onChange, onComplete"
+  },
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/gooseui/ui/otp-input.tsx",
+      "type": "registry:ui"
+    },
+    {
+      "path": "registry/gooseui/ui/otp-input-client.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "features": [
+    "has",
+    "user-pseudos"
+  ],
+  "breaking": [
+    "value, onChange (value: string) and onComplete moved to OtpInput from otp-input-client; the base OtpInput is a Server Component and submits the code via name",
+    "pattern is now string | RegExp describing one character; RegExp flags are ignored (use [a-zA-Z0-9] instead of /i)",
+    "the base version does not drop disallowed characters while typing; the pattern attribute marks the field :user-invalid instead",
+    "cell size is the --otp-cell CSS variable; size-* in cellClassName no longer moves the characters",
+    "the code text is drawn by the input: text styles (font size, uppercase) go on className or [&_input], not cellClassName",
+    "the single active-cell ring is replaced by a focus color on all cells plus the native caret",
+    "new prop attempt replays the error shake while status stays error"
+  ],
+  "how": {
+    "en": "One input with letter-spacing over CSS cells, no JavaScript",
+    "ru": "Один input с межбуквенным интервалом над CSS-ячейками, без JavaScript"
+  }
+}

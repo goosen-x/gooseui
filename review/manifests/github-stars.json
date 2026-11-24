@@ -1,0 +1,23 @@
+{
+  "slug": "github-stars",
+  "verdict": "js",
+  "client": true,
+  "jsBefore": 41952,
+  "jsAfter": 2012,
+  "dependencies": [],
+  "registryDependencies": [
+    "@gooseui/sliding-number"
+  ],
+  "files": [
+    {
+      "path": "registry/gooseui/ui/github-stars.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "features": [],
+  "breaking": [],
+  "how": {
+    "en": "fetch to the GitHub API, CSS sliding digits",
+    "ru": "Запрос к GitHub API, цифры анимирует CSS"
+  }
+}

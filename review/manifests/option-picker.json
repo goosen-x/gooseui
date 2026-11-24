@@ -1,0 +1,29 @@
+{
+  "slug": "option-picker",
+  "verdict": "css-only",
+  "client": false,
+  "jsBefore": 3070,
+  "jsAfter": 0,
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/gooseui/ui/option-picker.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "features": [
+    "has"
+  ],
+  "breaking": [
+    "onValueChange and controlled value work only inside client components",
+    "name is the radio group name instead of a hidden input",
+    "slider variant: stops are radios, dragging the track removed (click a stop or use arrows)",
+    "Home/End no longer handled, native radio arrows only",
+    "data-state/data-disabled attributes on items removed"
+  ],
+  "how": {
+    "en": "Native radios, :has(:checked) highlight and slider fill",
+    "ru": "Нативные радиокнопки, подсветка и заливка через :has(:checked)"
+  }
+}

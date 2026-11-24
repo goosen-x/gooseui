@@ -1,0 +1,36 @@
+{
+  "slug": "video-dialog",
+  "verdict": "css-first",
+  "client": true,
+  "jsBefore": 13738,
+  "jsAfter": 1871,
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/gooseui/ui/video-dialog.tsx",
+      "type": "registry:ui"
+    },
+    {
+      "path": "registry/gooseui/ui/video-dialog.client.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "features": [
+    "dialog",
+    "invoker-commands",
+    "starting-style",
+    "transition-behavior",
+    "has",
+    "dialog-closedby"
+  ],
+  "breaking": [
+    "@radix-ui/react-dialog and lucide-react removed; new file video-dialog.client.tsx must be added to the registry item",
+    "VideoDialog is now a server component; onOpenChange still works but only when VideoDialog is rendered from a client component",
+    "The View Transitions morph from the poster to the player is replaced by a CSS fade and scale (@starting-style)"
+  ],
+  "how": {
+    "en": "<dialog> with commandfor, a 0.5 kB island starts play() with sound",
+    "ru": "<dialog> и commandfor, островок 0,5 кБ запускает видео со звуком"
+  }
+}

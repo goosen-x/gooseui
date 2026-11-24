@@ -1,8 +1,9 @@
-import Link from "next/link"
 import { GitHubStars } from "@/components/github-stars"
+import { Link } from "@/i18n/navigation"
 import { siteConfig } from "@/lib/config/navigation"
 import { getGitHubStars } from "@/lib/github"
 import { HeaderNav } from "./header-nav"
+import { LanguageSwitcher } from "./language-switcher"
 import { MobileNav } from "./mobile-nav"
 import { SiteSearch } from "./site-search"
 
@@ -10,7 +11,7 @@ export async function SiteHeader() {
   const stars = await getGitHubStars("goosen-x", "gooseui")
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="sticky top-0 z-50 w-full border-b bg-background [-webkit-backdrop-filter:blur(12px)_saturate(1.5)] [backdrop-filter:blur(12px)_saturate(1.5)] supports-[backdrop-filter]:bg-background/90 supports-[-webkit-backdrop-filter]:bg-background/90">
       <div className="mx-auto flex h-14 max-w-screen-2xl items-center px-4 md:px-8">
         <Link href="/" className="flex items-center gap-2">
           <img
@@ -31,6 +32,7 @@ export async function SiteHeader() {
             initialStars={stars}
             className="hidden sm:flex"
           />
+          <LanguageSwitcher className="hidden lg:inline-flex" />
           <MobileNav />
         </div>
       </div>

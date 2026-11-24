@@ -1,0 +1,23 @@
+{
+  "slug": "searchbar",
+  "verdict": "js",
+  "client": true,
+  "jsBefore": 2920,
+  "jsAfter": 2090,
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/gooseui/ui/searchbar.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "features": [],
+  "breaking": [
+    "the list now closes on input blur instead of a document pointerdown listener"
+  ],
+  "how": {
+    "en": "ARIA combobox; JS debounces and aborts requests",
+    "ru": "ARIA combobox; JS выдерживает паузу и отменяет запросы"
+  }
+}

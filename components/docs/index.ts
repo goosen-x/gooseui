@@ -1,5 +1,5 @@
+export { BrowserSupport } from "./browser-support"
 export { CodeBlock } from "./code-block"
-export { DocsBrowserSupport } from "./docs-browser-support"
 export { DocsPageNav } from "./docs-page-nav"
 export { DocsPreview } from "./docs-preview"
 export { DocsPropsTable } from "./docs-props-table"

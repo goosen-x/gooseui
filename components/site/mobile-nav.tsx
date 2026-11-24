@@ -1,37 +1,61 @@
 "use client"
 
 import { Menu } from "lucide-react"
-import Link from "next/link"
-import { usePathname } from "next/navigation"
+import { useLocale } from "next-intl"
 import * as React from "react"
-import { Badge } from "@/components/ui/badge"
+import { LanguageSwitcher } from "@/components/site/language-switcher"
+import type { Dict, Localized } from "@/i18n/dict"
+import { pick } from "@/i18n/dict"
+import { Link, usePathname } from "@/i18n/navigation"
+import type { Locale } from "@/i18n/routing"
+import {
+  docsNavigation,
+  filterDraftItems,
+  groupNavItems,
+  type NavItem,
+  navTitle,
+} from "@/lib/config/docs-navigation"
+import { BLOCKS_ENABLED } from "@/lib/config/features"
+import { siteConfig } from "@/lib/config/navigation"
+import { cn } from "@/lib/utils"
+import { Badge } from "@/registry/gooseui/ui/badge"
 import {
   Sheet,
   SheetContent,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "@/components/ui/sheet"
-import {
-  docsNavigation,
-  filterDraftItems,
-  type NavItem,
-} from "@/lib/config/docs-navigation"
-import { siteConfig } from "@/lib/config/navigation"
-import { cn } from "@/lib/utils"
+} from "@/registry/gooseui/ui/sheet"
 
-const mainNav = [
-  { href: "/docs", title: "Docs" },
-  { href: "/docs/components", title: "Components" },
+const en = {
+  openMenu: "Open menu",
+  draft: "Draft",
+}
+const content: Dict<typeof en> = {
+  en,
+  ru: {
+    openMenu: "Открыть меню",
+    draft: "Черновик",
+  },
+}
+
+const mainNav: { href: string; title: Localized }[] = [
+  { href: "/docs", title: { en: "Docs", ru: "Документация" } },
+  {
+    href: "/docs/components",
+    title: { en: "Components", ru: "Компоненты" },
+  },
 ]
 
 // Add Blocks only in development
-if (process.env.NODE_ENV === "development") {
-  mainNav.push({ href: "/docs/blocks", title: "Blocks" })
+if (BLOCKS_ENABLED) {
+  mainNav.push({ href: "/docs/blocks", title: { en: "Blocks", ru: "Блоки" } })
 }
 
 export function MobileNav() {
   const pathname = usePathname()
+  const locale = useLocale()
+  const t = content[locale as Locale]
   const [open, setOpen] = React.useState(false)
 
   // Filter out drafts in production, exclude Coming Soon, and remove empty sections
@@ -50,7 +74,7 @@ export function MobileNav() {
       <SheetTrigger asChild>
         <button
           type="button"
-          aria-label="Open menu"
+          aria-label={t.openMenu}
           className="flex size-9 cursor-pointer items-center justify-center rounded-md lg:hidden hover:bg-accent"
         >
           <Menu className="size-5" />
@@ -89,47 +113,53 @@ export function MobileNav() {
                     : "text-muted-foreground",
                 )}
               >
-                {item.title}
+                {pick(item.title, locale)}
               </Link>
             ))}
           </nav>
+
+          <LanguageSwitcher className="self-start" />
 
           <div className="h-px bg-border" />
 
           {/* Docs Navigation */}
           {sections.map((section) => (
-            <div key={section.title}>
-              <h4 className="mb-2 text-sm font-semibold">{section.title}</h4>
+            <div key={section.slug}>
+              <h4 className="mb-2 text-sm font-semibold">
+                {pick(section.title, locale)}
+              </h4>
               <nav className="flex flex-col gap-1">
-                {section.items.map((item: NavItem) => (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    onClick={() => setOpen(false)}
-                    className={cn(
-                      "flex items-center gap-2 text-sm transition-colors hover:text-foreground",
-                      pathname === item.href
-                        ? "font-medium text-foreground"
-                        : "text-muted-foreground",
+                {(section.groups
+                  ? groupNavItems(section.items, section.groups)
+                  : [{ group: null, items: section.items }]
+                ).map(({ group, items }) => (
+                  <React.Fragment key={group?.id ?? "all"}>
+                    {group && (
+                      <div className="pt-2 text-xs text-muted-foreground/70">
+                        {pick(group.title, locale)}
+                      </div>
                     )}
-                  >
-                    {item.title}
-                    {item.isDraft && (
-                      <Badge className="h-5 bg-orange-500 px-1.5 text-[10px] text-white">
-                        Draft
-                      </Badge>
-                    )}
-                    {item.isExperimental && !item.isDraft && (
-                      <Badge className="h-5 bg-red-500 px-1.5 text-[10px] text-white">
-                        Exp
-                      </Badge>
-                    )}
-                    {item.isNew && !item.isDraft && !item.isExperimental && (
-                      <Badge className="h-5 bg-primary px-1.5 text-[10px] text-white">
-                        New
-                      </Badge>
-                    )}
-                  </Link>
+                    {items.map((item: NavItem) => (
+                      <Link
+                        key={item.href}
+                        href={item.href}
+                        onClick={() => setOpen(false)}
+                        className={cn(
+                          "flex items-center gap-2 text-sm transition-colors hover:text-foreground",
+                          pathname === item.href
+                            ? "font-medium text-foreground"
+                            : "text-muted-foreground",
+                        )}
+                      >
+                        {navTitle(item, locale)}
+                        {item.isDraft && (
+                          <Badge className="h-5 bg-orange-500 px-1.5 text-[10px] text-white">
+                            {t.draft}
+                          </Badge>
+                        )}
+                      </Link>
+                    ))}
+                  </React.Fragment>
                 ))}
               </nav>
             </div>

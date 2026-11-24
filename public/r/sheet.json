@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "sheet",
+  "title": "Sheet",
+  "description": "An accessible native modal panel from any screen edge.",
+  "registryDependencies": [
+    "@gooseui/dialog",
+    "@gooseui/button"
+  ],
+  "files": [
+    {
+      "path": "registry/gooseui/ui/sheet.tsx",
+      "content": "\"use client\"\n\nimport type * as React from \"react\"\nimport {\n  Dialog,\n  DialogClose,\n  DialogContent,\n  DialogDescription,\n  DialogTitle,\n  DialogTrigger,\n} from \"@/components/ui/dialog\"\nimport { cn } from \"@/lib/utils\"\n\nconst Sheet = Dialog\nconst SheetTrigger = DialogTrigger\nconst SheetClose = DialogClose\nfunction SheetContent({\n  className,\n  side = \"right\",\n  children,\n  ...props\n}: React.ComponentProps<typeof DialogContent> & {\n  side?: \"top\" | \"right\" | \"bottom\" | \"left\"\n}) {\n  return (\n    <>\n      <style href=\"goose-sheet\" precedence=\"default\">{`\n      dialog[data-goose-dialog][data-goose-sheet] { scale: 1; translate: var(--sheet-offset); transition: translate 300ms ease-in-out, opacity 300ms, display 300ms allow-discrete, overlay 300ms allow-discrete; }\n      dialog[data-goose-dialog][data-goose-sheet][open] { display: flex; translate: 0 0; }\n      dialog[data-goose-sheet][data-side=\"right\"] { --sheet-offset: 100% 0; }\n      dialog[data-goose-sheet][data-side=\"left\"] { --sheet-offset: -100% 0; }\n      dialog[data-goose-sheet][data-side=\"top\"] { --sheet-offset: 0 -100%; }\n      dialog[data-goose-sheet][data-side=\"bottom\"] { --sheet-offset: 0 100%; }\n      @starting-style { dialog[data-goose-dialog][data-goose-sheet][open] { scale: 1; translate: var(--sheet-offset); } }\n      @media (prefers-reduced-motion: reduce) { dialog[data-goose-sheet] { transition: none; } }\n    `}</style>\n      <DialogContent\n        data-goose-sheet=\"\"\n        data-side={side}\n        className={cn(\n          \"m-0 flex max-h-none max-w-none flex-col gap-4 rounded-none p-0 sm:max-w-none\",\n          side === \"right\" &&\n            \"inset-y-0 right-0 left-auto h-full w-3/4 border-l sm:max-w-sm\",\n          side === \"left\" &&\n            \"inset-y-0 right-auto left-0 h-full w-3/4 border-r sm:max-w-sm\",\n          side === \"top\" &&\n            \"inset-x-0 top-0 bottom-auto h-auto w-full border-b\",\n          side === \"bottom\" &&\n            \"inset-x-0 top-auto bottom-0 h-auto w-full border-t\",\n          className,\n        )}\n        {...props}\n      >\n        {children}\n      </DialogContent>\n    </>\n  )\n}\nfunction SheetHeader({ className, ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"sheet-header\"\n      className={cn(\"flex flex-col gap-1.5 p-4\", className)}\n      {...props}\n    />\n  )\n}\nfunction SheetFooter({ className, ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"sheet-footer\"\n      className={cn(\"mt-auto flex flex-col gap-2 p-4\", className)}\n      {...props}\n    />\n  )\n}\nconst SheetTitle = DialogTitle\nconst SheetDescription = DialogDescription\nexport {\n  Sheet,\n  SheetTrigger,\n  SheetClose,\n  SheetContent,\n  SheetHeader,\n  SheetFooter,\n  SheetTitle,\n  SheetDescription,\n}\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

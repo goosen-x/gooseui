@@ -1,0 +1,35 @@
+{
+  "slug": "install-command",
+  "verdict": "css-first",
+  "client": true,
+  "jsBefore": 3735,
+  "jsAfter": 2758,
+  "dependencies": [],
+  "registryDependencies": [
+    "@gooseui/copy-button"
+  ],
+  "files": [
+    {
+      "path": "registry/gooseui/ui/install-command.tsx",
+      "type": "registry:ui"
+    },
+    {
+      "path": "registry/gooseui/ui/install-command.client.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "features": [
+    "has"
+  ],
+  "breaking": [
+    "tabs are now a radiogroup (role=tablist removed), all commands are rendered at once",
+    "Home/End no longer handled, native radio arrows only",
+    "new file install-command.client.tsx (memory island) must be added to registry.json",
+    "no longer depends on @gooseui/use-copy-to-clipboard and lucide-react",
+    "onCopy works only inside client components"
+  ],
+  "how": {
+    "en": "Radio switch and :has(:checked); JS copies and remembers the choice",
+    "ru": "Радиокнопки и :has(:checked); JS копирует и запоминает выбор"
+  }
+}

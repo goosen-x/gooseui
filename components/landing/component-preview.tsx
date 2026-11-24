@@ -1,22 +1,61 @@
 "use client"
 
 import { ArrowUp, CircleCheck, Expand, X } from "lucide-react"
-import Link from "next/link"
-import { Badge } from "@/components/ui/badge"
-import { BaselineStatus } from "@/registry/new-york/ui/baseline-status"
-import { Button } from "@/registry/new-york/ui/button"
-import { DigitalClock } from "@/registry/new-york/ui/digital-clock"
+import { useLocale } from "next-intl"
+import type { Dict } from "@/i18n/dict"
+import { Link } from "@/i18n/navigation"
+import type { Locale } from "@/i18n/routing"
+import { Badge } from "@/registry/gooseui/ui/badge"
+import { BaselineStatus } from "@/registry/gooseui/ui/baseline-status"
+import { Button } from "@/registry/gooseui/ui/button"
+import { DigitalClock } from "@/registry/gooseui/ui/digital-clock"
+
+const en = {
+  title: "Component Library",
+  description: "Premium UI components and effects for modern React apps",
+  new: "New",
+  swissAlps: "Swiss Alps",
+  clickToExpand: "Click to expand",
+  toastTitle: "Toast Notifications",
+  success: "Success",
+  changesSaved: "Changes saved successfully",
+  info: "Info",
+  updateAvailable: "New update available",
+  backToTop: "Back to top",
+  scrollToTop: "Scroll to top",
+  viewAll: "View All Components",
+}
+const content: Dict<typeof en> = {
+  en,
+  ru: {
+    title: "Библиотека компонентов",
+    description:
+      "Премиум UI-компоненты и эффекты для современных React-приложений",
+    new: "Новое",
+    swissAlps: "Швейцарские Альпы",
+    clickToExpand: "Нажмите, чтобы раскрыть",
+    toastTitle: "Toast-уведомления",
+    success: "Успех",
+    changesSaved: "Изменения сохранены",
+    info: "Инфо",
+    updateAvailable: "Доступно обновление",
+    backToTop: "Наверх",
+    scrollToTop: "Наверх",
+    viewAll: "Все компоненты",
+  },
+}
 
 export function ComponentPreview() {
+  const t = content[useLocale() as Locale]
   return (
     <section className="py-20 px-6 bg-muted/30">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
-            Component Library
+            {t.title}
           </h2>
           <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-            Premium UI components and effects for modern React apps
+            {t.description}
           </p>
         </div>
 
@@ -33,7 +72,7 @@ export function ComponentPreview() {
           >
             <div className="flex items-center gap-2 mb-6">
               <h3 className="font-semibold">Digital Clock</h3>
-              <Badge variant="beta">New</Badge>
+              <Badge variant="beta">{t.new}</Badge>
             </div>
             <div className="flex justify-center py-4 bg-muted/50 rounded-lg">
               <div className="scale-[0.6] sm:scale-75 md:scale-100 origin-center">
@@ -54,13 +93,15 @@ export function ComponentPreview() {
           >
             <div className="flex items-center gap-2 mb-4">
               <h3 className="font-semibold">Morphing Dialog</h3>
-              <Badge variant="beta">New</Badge>
+              <Badge variant="beta">{t.new}</Badge>
             </div>
             <div className="relative w-full max-w-[220px] mx-auto overflow-hidden rounded-xl border bg-card shadow-sm cursor-pointer hover:scale-105 transition-transform">
               <div className="h-24 w-full bg-gradient-to-br from-blue-400 to-purple-500" />
               <div className="p-3">
-                <p className="text-sm font-medium">Swiss Alps</p>
-                <p className="text-xs text-muted-foreground">Click to expand</p>
+                <p className="text-sm font-medium">{t.swissAlps}</p>
+                <p className="text-xs text-muted-foreground">
+                  {t.clickToExpand}
+                </p>
               </div>
               <Expand className="absolute top-2 right-2 size-4 text-white/70" />
             </div>
@@ -77,15 +118,15 @@ export function ComponentPreview() {
             }
           >
             <div className="flex items-center gap-2 mb-4">
-              <h3 className="font-semibold">Toast Notifications</h3>
+              <h3 className="font-semibold">{t.toastTitle}</h3>
             </div>
             <div className="space-y-3">
               <div className="relative flex items-start gap-3 overflow-hidden rounded-lg border border-l-4 border-l-green-500 bg-popover p-3 shadow-lg">
                 <CircleCheck className="mt-0.5 size-4 shrink-0 text-green-500" />
                 <div className="flex-1 space-y-0.5">
-                  <p className="text-sm font-medium">Success</p>
+                  <p className="text-sm font-medium">{t.success}</p>
                   <p className="text-xs text-muted-foreground">
-                    Changes saved successfully
+                    {t.changesSaved}
                   </p>
                 </div>
                 <X className="size-4 shrink-0 opacity-50 cursor-pointer" />
@@ -95,9 +136,9 @@ export function ComponentPreview() {
                   <span className="text-[10px] text-white font-bold">i</span>
                 </div>
                 <div className="flex-1 space-y-0.5">
-                  <p className="text-sm font-medium">Info</p>
+                  <p className="text-sm font-medium">{t.info}</p>
                   <p className="text-xs text-muted-foreground">
-                    New update available
+                    {t.updateAvailable}
                   </p>
                 </div>
                 <X className="size-4 shrink-0 opacity-50 cursor-pointer" />
@@ -137,7 +178,7 @@ export function ComponentPreview() {
           >
             <div className="flex items-center gap-2 mb-4">
               <h3 className="font-semibold">Baseline Status</h3>
-              <Badge variant="beta">New</Badge>
+              <Badge variant="beta">{t.new}</Badge>
             </div>
             <div className="space-y-3">
               <BaselineStatus status="widely" year={2023} />
@@ -158,21 +199,21 @@ export function ComponentPreview() {
           >
             <div className="flex items-center gap-2 mb-4">
               <h3 className="font-semibold">Scroll To Top</h3>
-              <Badge variant="beta">New</Badge>
+              <Badge variant="beta">{t.new}</Badge>
             </div>
             <div className="flex flex-wrap items-center justify-center gap-6 py-4">
               {/* Default */}
               <div className="flex flex-col items-center gap-2">
                 <div className="flex size-12 items-center justify-center rounded-full bg-primary shadow-lg cursor-pointer hover:scale-110 transition-transform">
-                  <ArrowUp className="size-5 text-white" />
+                  <ArrowUp className="size-5 text-primary-foreground" />
                 </div>
                 <span className="text-xs text-muted-foreground">Default</span>
               </div>
               {/* Pill */}
               <div className="flex flex-col items-center gap-2">
-                <div className="flex items-center gap-2 rounded-full bg-primary px-4 py-2.5 text-sm font-medium text-white shadow-lg cursor-pointer hover:bg-primary/90 transition-colors">
+                <div className="flex items-center gap-2 rounded-full bg-primary px-4 py-2.5 text-sm font-medium text-primary-foreground shadow-lg cursor-pointer hover:bg-primary/90 transition-colors">
                   <ArrowUp className="size-4" />
-                  <span>Back to top</span>
+                  <span>{t.backToTop}</span>
                 </div>
                 <span className="text-xs text-muted-foreground">Pill</span>
               </div>
@@ -214,7 +255,7 @@ export function ComponentPreview() {
               {/* Text */}
               <div className="flex flex-col items-center gap-2">
                 <div className="flex items-center gap-1.5 text-muted-foreground hover:text-foreground cursor-pointer transition-colors">
-                  <span className="text-sm font-medium">Scroll to top</span>
+                  <span className="text-sm font-medium">{t.scrollToTop}</span>
                   <svg
                     width="20"
                     height="20"
@@ -263,7 +304,7 @@ export function ComponentPreview() {
 
         <div className="mt-12 text-center">
           <Button size="lg" variant="outline" asChild>
-            <Link href="/docs/components">View All Components</Link>
+            <Link href="/docs/components">{t.viewAll}</Link>
           </Button>
         </div>
       </div>

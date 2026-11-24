@@ -1,0 +1,27 @@
+{
+  "slug": "highlight-text",
+  "verdict": "css-only",
+  "client": false,
+  "jsBefore": 1188,
+  "jsAfter": 0,
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/gooseui/effects/highlight-text.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "features": [
+    "scroll-driven-animations"
+  ],
+  "breaking": [
+    "duration and stagger removed: the paint follows the scroll position via view()",
+    "the animated marker is scroll-linked and erases when scrolling back",
+    "registry/gooseui/effects/highlight-text-reveal.tsx deleted, remove it from registry.json"
+  ],
+  "how": {
+    "en": "Server matching, marker painted on a view() timeline",
+    "ru": "Поиск на сервере, маркер закрашивает шкала view()"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "slug": "gantt-chart",
+  "verdict": "css-first",
+  "client": true,
+  "jsBefore": 3876,
+  "jsAfter": 3277,
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    { "path": "registry/gooseui/ui/gantt-chart.tsx", "type": "registry:ui" },
+    { "path": "registry/gooseui/ui/gantt-chart.client.tsx", "type": "registry:ui" }
+  ],
+  "features": ["details", "color-mix"],
+  "breaking": [
+    "groups are <details>/<summary> instead of a button with aria-expanded; defaultCollapsed renders them closed",
+    "each row is one grid line with a sticky name cell instead of two separate columns",
+    "tick labels are thinned for minTimelineWidth instead of the measured width (no ResizeObserver)",
+    "only now=\"auto\" uses the client island (799 B gzip); a pinned now is drawn on the server",
+    "lucide-react removed, chevron is an inline SVG",
+    "new file gantt-chart.client.tsx must be added to registry.json"
+  ],
+  "how": {
+    "en": "Server-computed bars, groups on <details>; JS only for the now line",
+    "ru": "Бары считает сервер, группы на <details>; JS только у линии «сейчас»"
+  }
+}

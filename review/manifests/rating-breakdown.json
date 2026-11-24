@@ -1,0 +1,27 @@
+{
+  "slug": "rating-breakdown",
+  "verdict": "css-only",
+  "client": false,
+  "jsBefore": 2939,
+  "jsAfter": 0,
+  "dependencies": [],
+  "registryDependencies": [
+    "@gooseui/rating"
+  ],
+  "files": [
+    {
+      "path": "registry/gooseui/ui/rating-breakdown.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "features": [
+    "scroll-driven-animations"
+  ],
+  "breaking": [
+    "bars grow on a scroll-driven animation (animation-timeline: view()) instead of IntersectionObserver; browsers without it show full bars"
+  ],
+  "how": {
+    "en": "Server markup, bars grow on animation-timeline: view()",
+    "ru": "Серверная разметка, полосы растут на animation-timeline: view()"
+  }
+}

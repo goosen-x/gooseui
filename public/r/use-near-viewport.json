@@ -1,0 +1,14 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "use-near-viewport",
+  "title": "useNearViewport",
+  "description": "One-shot flag for elements that come close to the screen.",
+  "files": [
+    {
+      "path": "registry/gooseui/hooks/use-near-viewport.ts",
+      "content": "\"use client\"\n\nimport { type RefCallback, useCallback, useState } from \"react\"\n\nexport type UseNearViewportOptions = {\n  /** Extra space around the viewport (or `root`), in CSS margin syntax. */\n  rootMargin?: string\n  /** Scroll container to watch instead of the viewport. */\n  root?: Element | null\n  /** Skip observing and stay `false`. */\n  disabled?: boolean\n}\n\nexport type UseNearViewportResult<T extends Element> = [\n  ref: RefCallback<T>,\n  isNear: boolean,\n]\n\n/**\n * Turns `true` once the element comes within `rootMargin` of the viewport\n * and never goes back. Use it to defer heavy widgets: maps, video, charts.\n * Without IntersectionObserver it reports `true` right away.\n */\nexport function useNearViewport<T extends Element = HTMLDivElement>({\n  rootMargin = \"200px\",\n  root = null,\n  disabled = false,\n}: UseNearViewportOptions = {}): UseNearViewportResult<T> {\n  const [isNear, setIsNear] = useState(false)\n\n  const ref = useCallback<RefCallback<T>>(\n    (node) => {\n      if (!node || isNear || disabled) return\n      if (typeof IntersectionObserver === \"undefined\") {\n        setIsNear(true)\n        return\n      }\n      const observer = new IntersectionObserver(\n        (entries) => {\n          if (entries.some((entry) => entry.isIntersecting)) {\n            observer.disconnect()\n            setIsNear(true)\n          }\n        },\n        { root, rootMargin },\n      )\n      observer.observe(node)\n      return () => observer.disconnect()\n    },\n    [isNear, disabled, root, rootMargin],\n  )\n\n  return [ref, isNear]\n}\n",
+      "type": "registry:hook"
+    }
+  ],
+  "type": "registry:hook"
+}

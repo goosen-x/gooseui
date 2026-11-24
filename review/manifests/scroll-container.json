@@ -1,0 +1,28 @@
+{
+  "slug": "scroll-container",
+  "verdict": "css-only",
+  "client": false,
+  "jsBefore": 950,
+  "jsAfter": 0,
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/gooseui/ui/scroll-container.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "features": [
+    "scrollbar-color",
+    "scrollbar-width",
+    "scrollbar-gutter"
+  ],
+  "breaking": [
+    "forwardRef replaced with a ref prop (React 19); displayName removed",
+    "Per-instance <style> with a generated class replaced by one shared stylesheet and data attributes"
+  ],
+  "how": {
+    "en": "scrollbar-color and scrollbar-width in one shared stylesheet",
+    "ru": "scrollbar-color и scrollbar-width в одной общей таблице стилей"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "slug": "copy-field",
+  "verdict": "js",
+  "client": true,
+  "jsBefore": 2421,
+  "jsAfter": 1386,
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/gooseui/ui/copy-field.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "features": [
+    "async-clipboard"
+  ],
+  "breaking": [
+    "no longer uses @gooseui/use-copy-to-clipboard and lucide-react"
+  ],
+  "how": {
+    "en": "Clipboard API call plus data-copied flag, confirmation in CSS",
+    "ru": "Вызов Clipboard API и флаг data-copied, подтверждение на CSS"
+  }
+}

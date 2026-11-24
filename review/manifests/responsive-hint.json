@@ -1,0 +1,21 @@
+{
+  "slug": "responsive-hint",
+  "verdict": "css-only",
+  "client": false,
+  "jsBefore": 26139,
+  "jsAfter": 0,
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [{ "path": "registry/gooseui/ui/responsive-hint.tsx", "type": "registry:ui" }],
+  "features": ["popover", "starting-style", "transition-behavior", "has", "anchor-positioning"],
+  "breaking": [
+    "Tooltip no longer has an arrow and is not portaled: overflow:hidden ancestors can clip it in browsers without anchor positioning",
+    "Escape does not hide a tooltip opened by keyboard focus",
+    "Sheet is a non-modal popover (light dismiss, Escape) instead of a focus-trapping Radix Dialog",
+    "children are rendered twice (tooltip and sheet)"
+  ],
+  "how": {
+    "en": "CSS tooltip on hover/focus, popover sheet on touch, no JS",
+    "ru": "Тултип на CSS по hover и фокусу, шторка на popover, без JS"
+  }
+}

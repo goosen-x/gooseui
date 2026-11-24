@@ -1,11 +1,50 @@
 "use client"
 
-import { Check, Clock, Code, Copy, Eye, Sparkles } from "lucide-react"
-import * as React from "react"
-import { Badge } from "@/components/ui/badge"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Clock, Code, Eye, Sparkles } from "lucide-react"
+import { useLocale } from "next-intl"
+import type * as React from "react"
+import { useCopyToast } from "@/hooks/use-copy-toast"
+import { type Dict, pick } from "@/i18n/dict"
+import type { Locale } from "@/i18n/routing"
 import type { BlockItem } from "@/lib/config/blocks-registry"
 import { cn } from "@/lib/utils"
+import { Badge } from "@/registry/gooseui/ui/badge"
+import { CopyButton } from "@/registry/gooseui/ui/copy-button"
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "@/registry/gooseui/ui/tabs"
+
+const en = {
+  new: "New",
+  soon: "Soon",
+  comingSoon: "Coming Soon",
+  featured: "Featured",
+  preview: "Preview",
+  code: "Code",
+  noSource: "// Source code not available",
+  copyCode: "Copy code",
+  codeCopied: "Code copied",
+  copied: "Copied",
+}
+
+const content: Dict<typeof en> = {
+  en,
+  ru: {
+    new: "Новое",
+    soon: "Скоро",
+    comingSoon: "Скоро",
+    featured: "Рекомендуем",
+    preview: "Превью",
+    code: "Код",
+    noSource: "// Исходный код недоступен",
+    copyCode: "Копировать код",
+    codeCopied: "Код скопирован",
+    copied: "Скопировано",
+  },
+}
 
 interface BlockCardPreviewProps {
   block: BlockItem
@@ -18,15 +57,9 @@ export function BlockCardPreview({
   preview,
   className,
 }: BlockCardPreviewProps) {
-  const [copied, setCopied] = React.useState(false)
-
-  const copyToClipboard = async () => {
-    if (block.sourceCode) {
-      await navigator.clipboard.writeText(block.sourceCode)
-      setCopied(true)
-      setTimeout(() => setCopied(false), 2000)
-    }
-  }
+  const locale = useLocale()
+  const t = content[locale as Locale]
+  const copyToast = useCopyToast()
 
   return (
     <div
@@ -45,19 +78,19 @@ export function BlockCardPreview({
           {block.isNew && (
             <Badge variant="secondary" className="bg-blue-500/90 text-white">
               <Sparkles className="mr-1 h-3 w-3" />
-              New
+              {t.new}
             </Badge>
           )}
           {block.isComingSoon && (
             <Badge variant="secondary" className="bg-gray-500/90 text-white">
               <Clock className="mr-1 h-3 w-3" />
-              Soon
+              {t.soon}
             </Badge>
           )}
         </div>
         {block.isFeatured && (
           <Badge className="bg-amber-500/10 text-amber-600 dark:text-amber-400">
-            Featured
+            {t.featured}
           </Badge>
         )}
       </div>
@@ -65,21 +98,18 @@ export function BlockCardPreview({
       {/* Tabs */}
       <Tabs defaultValue="preview" className="w-full">
         <div className="flex items-center justify-between border-b px-4">
-          <TabsList className="h-10 bg-transparent p-0">
-            <TabsTrigger
-              value="preview"
-              className="data-[state=active]:bg-transparent data-[state=active]:shadow-none gap-1.5 rounded-none border-b-2 border-transparent px-3 pb-3 pt-2 data-[state=active]:border-foreground cursor-pointer"
-            >
+          <TabsList variant="underline" className="border-b-0">
+            <TabsTrigger value="preview" className="gap-1.5">
               <Eye className="h-4 w-4" />
-              Preview
+              {t.preview}
             </TabsTrigger>
             <TabsTrigger
               value="code"
-              className="data-[state=active]:bg-transparent data-[state=active]:shadow-none gap-1.5 rounded-none border-b-2 border-transparent px-3 pb-3 pt-2 data-[state=active]:border-foreground cursor-pointer"
+              className="gap-1.5"
               disabled={!block.sourceCode}
             >
               <Code className="h-4 w-4" />
-              Code
+              {t.code}
             </TabsTrigger>
           </TabsList>
         </div>
@@ -91,7 +121,7 @@ export function BlockCardPreview({
             ) : block.isComingSoon ? (
               <div className="text-center text-muted-foreground">
                 <Clock className="mx-auto mb-2 h-8 w-8" />
-                <p>Coming Soon</p>
+                <p>{t.comingSoon}</p>
               </div>
             ) : (
               <div className="text-4xl text-muted-foreground/30">
@@ -115,22 +145,16 @@ export function BlockCardPreview({
         <TabsContent value="code" className="mt-0">
           <div className="relative">
             <pre className="max-h-[18.75rem] overflow-auto bg-muted p-4">
-              <code className="text-sm">
-                {block.sourceCode || "// Source code not available"}
-              </code>
+              <code className="text-sm">{block.sourceCode || t.noSource}</code>
             </pre>
             {block.sourceCode && (
-              <button
-                onClick={copyToClipboard}
-                className="absolute right-2 top-2 flex size-8 items-center justify-center rounded-md bg-background/80 backdrop-blur-sm transition-colors hover:bg-accent cursor-pointer"
-                aria-label="Copy code"
-              >
-                {copied ? (
-                  <Check className="size-4 text-green-500" />
-                ) : (
-                  <Copy className="size-4" />
-                )}
-              </button>
+              <CopyButton
+                size="sm"
+                value={block.sourceCode}
+                {...copyToast(t.codeCopied)}
+                labels={{ copy: t.copyCode, copied: t.copied }}
+                className="absolute right-2 top-2 bg-background/80 backdrop-blur-sm"
+              />
             )}
           </div>
         </TabsContent>
@@ -138,7 +162,9 @@ export function BlockCardPreview({
 
       {/* Description */}
       <div className="border-t px-4 py-3">
-        <p className="text-sm text-muted-foreground">{block.description}</p>
+        <p className="text-sm text-muted-foreground">
+          {pick(block.description, locale)}
+        </p>
       </div>
     </div>
   )

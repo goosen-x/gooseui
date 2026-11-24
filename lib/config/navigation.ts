@@ -1,7 +1,9 @@
 export const siteConfig = {
   name: "GooseUI",
-  description:
-    "Open source component library for building modern web applications",
+  description: {
+    en: "Open source component library for building modern web applications",
+    ru: "Библиотека компонентов с открытым кодом для современных веб-приложений",
+  },
   url: "https://gooseui.pro",
   email: "info@gooseui.pro",
   links: {
@@ -13,11 +15,11 @@ export const siteConfig = {
 
 export const mainNav = [
   {
-    title: "Docs",
+    title: { en: "Docs", ru: "Документация" },
     href: "/docs",
   },
   {
-    title: "Components",
+    title: { en: "Components", ru: "Компоненты" },
     href: "/docs/components/button",
   },
 ]

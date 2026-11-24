@@ -33,7 +33,7 @@ project/
 ├── hooks/                     # React hooks
 ├── app/                       # Next.js страницы
 ├── registry/                  # Для кастомных registry
-│   └── new-york/              # Стиль компонентов
+│   └── gooseui/               # Стиль компонентов
 │       └── component-name/
 │           └── component.tsx
 ├── public/
@@ -166,7 +166,7 @@ Registry — система дистрибуции исходного кода. 
       "registryDependencies": ["button", "card"],
       "files": [
         {
-          "path": "registry/new-york/hello-world/hello-world.tsx",
+          "path": "registry/gooseui/hello-world/hello-world.tsx",
           "type": "registry:component",
           "target": "components/hello-world.tsx"
         }
@@ -191,7 +191,7 @@ Registry — система дистрибуции исходного кода. 
   "registryDependencies": ["button"],
   "files": [
     {
-      "path": "registry/new-york/custom-button/custom-button.tsx",
+      "path": "registry/gooseui/custom-button/custom-button.tsx",
       "type": "registry:component"
     }
   ],
@@ -244,7 +244,7 @@ Registry — система дистрибуции исходного кода. 
 
 ```
 registry/
-└── new-york/
+└── gooseui/
     └── my-component/
         ├── my-component.tsx
         └── my-component.css
@@ -264,7 +264,7 @@ registry/
       "registryDependencies": ["button"],
       "files": [
         {
-          "path": "registry/new-york/my-component/my-component.tsx",
+          "path": "registry/gooseui/my-component/my-component.tsx",
           "type": "registry:component"
         }
       ]

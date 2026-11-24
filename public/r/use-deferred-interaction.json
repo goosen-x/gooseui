@@ -1,0 +1,14 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "use-deferred-interaction",
+  "title": "useDeferredInteraction",
+  "description": "Flag that turns on after the first user interaction or a timeout.",
+  "files": [
+    {
+      "path": "registry/gooseui/hooks/use-deferred-interaction.ts",
+      "content": "\"use client\"\n\nimport { useEffect, useState, useSyncExternalStore } from \"react\"\n\nconst EVENTS = [\"scroll\", \"pointerdown\", \"keydown\", \"touchstart\"] as const\n\n// Shared by every hook instance on the page.\nlet interacted = false\nconst listeners = new Set<() => void>()\nlet attached = false\n\nfunction attach() {\n  if (attached || interacted) return\n  attached = true\n  for (const type of EVENTS) {\n    // Capture phase also catches scrolls of nested containers.\n    window.addEventListener(type, markInteracted, {\n      capture: true,\n      passive: true,\n    })\n  }\n}\n\nfunction detach() {\n  if (!attached) return\n  attached = false\n  for (const type of EVENTS) {\n    window.removeEventListener(type, markInteracted, { capture: true })\n  }\n}\n\nfunction notify() {\n  for (const listener of listeners) listener()\n}\n\nfunction markInteracted() {\n  if (interacted) return\n  interacted = true\n  detach()\n  notify()\n}\n\n/** Forget the first interaction. Meant for tests and demos. */\nexport function resetDeferredInteraction() {\n  if (!interacted) return\n  interacted = false\n  if (listeners.size > 0) attach()\n  notify()\n}\n\nfunction subscribe(listener: () => void) {\n  listeners.add(listener)\n  attach()\n  return () => {\n    listeners.delete(listener)\n    if (listeners.size === 0) detach()\n  }\n}\n\nconst getSnapshot = () => interacted\nconst getServerSnapshot = () => false\n\n/**\n * `true` after the first user interaction on the page (scroll, pointerdown,\n * keydown, touchstart) or after `timeout` ms, whichever comes first.\n * The interaction is shared by all callers; the timeout is per call.\n * Pass `timeout: null` to wait for an interaction only.\n */\nexport function useDeferredInteraction(timeout: number | null = 5000): boolean {\n  const hasInteracted = useSyncExternalStore(\n    subscribe,\n    getSnapshot,\n    getServerSnapshot,\n  )\n  const [timedOut, setTimedOut] = useState(false)\n\n  useEffect(() => {\n    if (hasInteracted || timeout === null) return\n    setTimedOut(false)\n    const id = window.setTimeout(() => setTimedOut(true), Math.max(0, timeout))\n    return () => window.clearTimeout(id)\n  }, [hasInteracted, timeout])\n\n  return hasInteracted || timedOut\n}\n",
+      "type": "registry:hook"
+    }
+  ],
+  "type": "registry:hook"
+}

@@ -1,0 +1,25 @@
+{
+  "slug": "range-slider",
+  "verdict": "css-first",
+  "client": true,
+  "jsBefore": 1223,
+  "jsAfter": 1292,
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/gooseui/ui/range-slider.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "features": [
+    "nesting"
+  ],
+  "breaking": [
+    "when both thumbs sit at the max, the upper one stays on top (lower is no longer raised)"
+  ],
+  "how": {
+    "en": "Native range inputs, CSS fill via border-image, JS only clamps",
+    "ru": "Нативные range, заливка через border-image, JS лишь ограничивает"
+  }
+}

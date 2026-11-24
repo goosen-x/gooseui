@@ -222,6 +222,6 @@ CSS-only анимация через `stroke-dasharray` + `stroke-dashoffset`. �
 
 ## Референсы
 
-- Текущий Checkbox: `registry/new-york/ui/checkbox.tsx`
+- Текущий Checkbox: `registry/gooseui/ui/checkbox.tsx`
 - CSS offset-path: https://developer.mozilla.org/en-US/docs/Web/CSS/offset-path
 - Scroll-driven animations: https://scroll-driven-animations.style/

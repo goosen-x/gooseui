@@ -1,3 +1,26 @@
+import { useLocale } from "next-intl"
+import type { Dict } from "@/i18n/dict"
+import type { Locale } from "@/i18n/routing"
+
+const en = {
+  title: "Props",
+  prop: "Prop",
+  type: "Type",
+  default: "Default",
+  description: "Description",
+}
+
+const content: Dict<typeof en> = {
+  en,
+  ru: {
+    title: "Пропсы",
+    prop: "Проп",
+    type: "Тип",
+    default: "По умолчанию",
+    description: "Описание",
+  },
+}
+
 interface PropItem {
   name: string
   type: string
@@ -24,22 +47,24 @@ interface DocsPropsTableProps {
  * ```
  */
 export function DocsPropsTable({ props }: DocsPropsTableProps) {
+  const t = content[useLocale() as Locale]
+
   return (
     <div className="space-y-4">
       <h2
         id="props"
         className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight"
       >
-        Props
+        {t.title}
       </h2>
       <div className="border rounded-lg overflow-x-auto">
         <table className="w-full text-sm min-w-[500px]">
           <thead className="bg-muted">
             <tr>
-              <th className="text-left p-3 font-medium">Prop</th>
-              <th className="text-left p-3 font-medium">Type</th>
-              <th className="text-left p-3 font-medium">Default</th>
-              <th className="text-left p-3 font-medium">Description</th>
+              <th className="text-left p-3 font-medium">{t.prop}</th>
+              <th className="text-left p-3 font-medium">{t.type}</th>
+              <th className="text-left p-3 font-medium">{t.default}</th>
+              <th className="text-left p-3 font-medium">{t.description}</th>
             </tr>
           </thead>
           <tbody>

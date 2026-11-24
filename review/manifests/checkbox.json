@@ -1,0 +1,27 @@
+{
+  "slug": "checkbox",
+  "verdict": "css-only",
+  "client": false,
+  "jsBefore": 1258,
+  "jsAfter": 0,
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/gooseui/ui/checkbox.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "features": [
+    "has"
+  ],
+  "breaking": [
+    "class-variance-authority removed, checkboxVariants was never exported",
+    "variant colors use var(--primary)/var(--destructive)/var(--border) tokens; success keeps #22c55e",
+    "CheckboxProps is now exported"
+  ],
+  "how": {
+    "en": "Native checkbox, SVG stroke animation on :checked",
+    "ru": "Нативный чекбокс, анимация SVG-обводки по :checked"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "slug": "share-buttons",
+  "verdict": "css-first",
+  "client": true,
+  "jsBefore": 29786,
+  "jsAfter": 3720,
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    { "path": "registry/gooseui/ui/share-buttons.tsx", "type": "registry:ui" },
+    { "path": "registry/gooseui/ui/share-buttons.client.tsx", "type": "registry:ui" }
+  ],
+  "features": ["popover", "anchor-positioning", "starting-style", "transition-behavior", "has"],
+  "breaking": [
+    "ShareButtons is a server component; onShare works only when it is rendered from a client component",
+    "Without url/title props the page URL and document.title are filled into the links on click by the client island; without JS such links share an empty URL",
+    "Menu items are plain links and buttons in a popover: no arrow-key navigation",
+    "New file share-buttons.client.tsx must be added to the registry item"
+  ],
+  "how": {
+    "en": "Links and a popover menu in HTML, copy/share in a client island",
+    "ru": "Ссылки и меню на popover в HTML, копирование в клиентском островке"
+  }
+}

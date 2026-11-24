@@ -5,29 +5,66 @@ import {
   ArrowRightIcon,
   CheckIcon,
   ChevronDownIcon,
-  CopyIcon,
   PaletteIcon,
 } from "lucide-react"
-import Link from "next/link"
-import { usePathname } from "next/navigation"
+import { useLocale } from "next-intl"
 import * as React from "react"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { Separator } from "@/components/ui/separator"
-import { ThemeToggle } from "@/components/ui/theme-toggle"
+import { ThemeToggle } from "@/components/theme-toggle"
+import { useCopyToast } from "@/hooks/use-copy-toast"
+import type { Dict } from "@/i18n/dict"
+import { Link, usePathname } from "@/i18n/navigation"
+import type { Locale } from "@/i18n/routing"
 import {
   getAllNavItems,
   getPrevNextNavigation,
 } from "@/lib/config/docs-navigation"
 import { getRegistryUrl } from "@/lib/config/registry"
 import { cn } from "@/lib/utils"
-import { useScrollToTop } from "@/registry/new-york/ui/scroll-to-top"
+import { useCopyToClipboard } from "@/registry/gooseui/hooks/use-copy-to-clipboard"
+import { Badge } from "@/registry/gooseui/ui/badge"
+import { Button } from "@/registry/gooseui/ui/button"
+import { CopyButton } from "@/registry/gooseui/ui/copy-button"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/registry/gooseui/ui/dropdown-menu"
+import { useScrollToTop } from "@/registry/gooseui/ui/scroll-to-top"
+import { Separator } from "@/registry/gooseui/ui/separator"
+
+const en = {
+  viewMarkdown: "View as Markdown",
+  openIn: (name: string) => `Open in ${name}`,
+  copiedOpening: (name: string) => `Copied! Opening ${name}...`,
+  draft: "Draft",
+  isNew: "New",
+  copyPage: "Copy Page",
+  copied: "Copied!",
+  pageCopied: "Page copied",
+  changeColor: "Change color",
+  previous: "Previous",
+  next: "Next",
+  scrollTop: "Scroll to top",
+}
+
+const content: Dict<typeof en> = {
+  en,
+  ru: {
+    viewMarkdown: "Открыть как Markdown",
+    openIn: (name) => `Открыть в ${name}`,
+    copiedOpening: (name) => `Скопировано! Открываем ${name}...`,
+    draft: "Черновик",
+    isNew: "Новое",
+    copyPage: "Копировать",
+    copied: "Скопировано!",
+    pageCopied: "Страница скопирована",
+    changeColor: "Сменить цвет",
+    previous: "Назад",
+    next: "Вперёд",
+    scrollTop: "Наверх",
+  },
+}
 
 const themeColors = [
   { name: "zinc", class: "bg-zinc-500" },
@@ -98,62 +135,6 @@ function ClaudeIcon({ className }: { className?: string }) {
   )
 }
 
-function T3ChatIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      viewBox="0 0 258 199"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className={className}
-    >
-      <path
-        fillRule="evenodd"
-        clipRule="evenodd"
-        d="M165.735 25.0701L188.947 0.972412H0.465994V25.0701H165.735Z"
-        fill="currentColor"
-      />
-      <path
-        d="M163.981 96.3239L254.022 3.68314L221.206 3.68295L145.617 80.7609L163.981 96.3239Z"
-        fill="currentColor"
-      />
-      <path
-        d="M233.658 131.418C233.658 155.075 214.48 174.254 190.823 174.254C171.715 174.254 155.513 161.738 150 144.439L146.625 133.848L127.329 153.143L129.092 157.336C139.215 181.421 163.034 198.354 190.823 198.354C227.791 198.354 257.759 168.386 257.759 131.418C257.759 106.937 244.399 85.7396 224.956 74.0905L220.395 71.3582L202.727 89.2528L210.788 93.5083C224.403 100.696 233.658 114.981 233.658 131.418Z"
-        fill="currentColor"
-      />
-      <path
-        fillRule="evenodd"
-        clipRule="evenodd"
-        d="M88.2625 192.669L88.2626 45.6459H64.1648L64.1648 192.669H88.2625Z"
-        fill="currentColor"
-      />
-    </svg>
-  )
-}
-
-// Copy to clipboard utility
-async function copyToClipboard(text: string): Promise<boolean> {
-  try {
-    await navigator.clipboard.writeText(text)
-    return true
-  } catch {
-    // Fallback for older browsers
-    const textArea = document.createElement("textarea")
-    textArea.value = text
-    textArea.style.position = "fixed"
-    textArea.style.left = "-999999px"
-    document.body.appendChild(textArea)
-    textArea.select()
-    try {
-      document.execCommand("copy")
-      return true
-    } catch {
-      return false
-    } finally {
-      document.body.removeChild(textArea)
-    }
-  }
-}
-
 interface DocsPageNavProps {
   title?: string
   /** Manual override for previous link (auto-derived if not provided) */
@@ -176,10 +157,17 @@ export function DocsPageNav({
   sourceUrl,
   className,
 }: DocsPageNavProps) {
+  const t = content[useLocale() as Locale]
+  const copyToast = useCopyToast()
   const pathname = usePathname()
   const [mounted, setMounted] = React.useState(false)
-  const [copied, setCopied] = React.useState(false)
   const [copiedAction, setCopiedAction] = React.useState<string | null>(null)
+  // Menu items copy the prompt as a fallback before opening an AI chat.
+  const menuToast = copyToast()
+  const { copy } = useCopyToClipboard({
+    onCopy: menuToast.onCopy,
+    onError: menuToast.onCopyError,
+  })
   const [activeColor, setActiveColor] = React.useState("zinc")
   const { scrollProgress, scrollToTop } = useScrollToTop(100)
 
@@ -191,13 +179,12 @@ export function DocsPageNav({
   const prevHref = prevHrefProp ?? prev?.href
   const nextHref = nextHrefProp ?? next?.href
 
-  // Auto-detect if current page is draft/new/experimental
+  // Auto-detect if current page is draft/new
   const currentNavItem = React.useMemo(() => {
     return getAllNavItems().find((item) => item.href === pathname)
   }, [pathname])
   const isDraft = currentNavItem?.isDraft ?? false
   const isNew = currentNavItem?.isNew ?? false
-  const isExperimental = currentNavItem?.isExperimental ?? false
 
   React.useEffect(() => {
     setMounted(true)
@@ -224,7 +211,8 @@ export function DocsPageNav({
       slug &&
       slug !== "docs" &&
       slug !== "components" &&
-      slug !== "effects"
+      slug !== "effects" &&
+      slug !== "hooks"
     ) {
       return getRegistryUrl(slug)
     }
@@ -264,16 +252,6 @@ ${registryUrl ? `Registry: ${registryUrl}` : ""}
 `
   }, [getPageContent, title, componentSlug, pathname, registryUrl])
 
-  // Copy Page handler
-  const handleCopyPage = React.useCallback(async () => {
-    const content = getPageContent()
-    const success = await copyToClipboard(content)
-    if (success) {
-      setCopied(true)
-      setTimeout(() => setCopied(false), 2000)
-    }
-  }, [getPageContent, pathname, componentSlug, title])
-
   // View as Markdown - opens GitHub raw or generates markdown
   const handleViewMarkdown = React.useCallback(() => {
     if (sourceUrl) {
@@ -296,13 +274,14 @@ ${registryUrl ? `Registry: ${registryUrl}` : ""}
     } else {
       // Fallback: copy code and open v0
       const content = generateCodeForAI()
-      copyToClipboard(content).then(() => {
+      copy(content).then((ok) => {
+        if (!ok) return
         setCopiedAction("v0")
         setTimeout(() => setCopiedAction(null), 3000)
         window.open("https://v0.dev/chat", "_blank")
       })
     }
-  }, [registryUrl, generateCodeForAI])
+  }, [registryUrl, generateCodeForAI, copy])
 
   // Open in ChatGPT - pass content via URL parameter
   const handleOpenInChatGPT = React.useCallback(async () => {
@@ -314,12 +293,12 @@ ${registryUrl ? `Registry: ${registryUrl}` : ""}
       window.open(`https://chat.openai.com/?q=${encodedContent}`, "_blank")
     } else {
       // Fallback to clipboard for long content
-      await copyToClipboard(content)
+      if (!(await copy(content))) return
       setCopiedAction("chatgpt")
       setTimeout(() => setCopiedAction(null), 3000)
       window.open("https://chat.openai.com/", "_blank")
     }
-  }, [generateCodeForAI])
+  }, [generateCodeForAI, copy])
 
   // Open in Claude - pass content via URL parameter
   const handleOpenInClaude = React.useCallback(async () => {
@@ -331,65 +310,40 @@ ${registryUrl ? `Registry: ${registryUrl}` : ""}
       window.open(`https://claude.ai/new?q=${encodedContent}`, "_blank")
     } else {
       // Fallback to clipboard for long content
-      await copyToClipboard(content)
+      if (!(await copy(content))) return
       setCopiedAction("claude")
       setTimeout(() => setCopiedAction(null), 3000)
       window.open("https://claude.ai/new", "_blank")
     }
-  }, [generateCodeForAI])
-
-  // Open in T3 Chat - pass content via URL parameter
-  const handleOpenInT3Chat = React.useCallback(async () => {
-    const content = generateCodeForAI()
-    const encodedContent = encodeURIComponent(content)
-
-    // URL length limit is ~2000 chars, use URL param if content fits
-    if (encodedContent.length < 1800) {
-      window.open(`https://t3.chat/new?q=${encodedContent}`, "_blank")
-    } else {
-      // Fallback to clipboard for long content
-      await copyToClipboard(content)
-      setCopiedAction("t3chat")
-      setTimeout(() => setCopiedAction(null), 3000)
-      window.open("https://t3.chat/new", "_blank")
-    }
-  }, [generateCodeForAI])
+  }, [generateCodeForAI, copy])
 
   // Menu items configuration
   const menuItems = [
     {
       icon: MarkdownIcon,
-      label: "View as Markdown",
+      label: t.viewMarkdown,
       onClick: handleViewMarkdown,
     },
     {
       icon: V0Icon,
-      label: copiedAction === "v0" ? "Copied! Opening v0..." : "Open in v0",
+      label: copiedAction === "v0" ? t.copiedOpening("v0") : t.openIn("v0"),
       onClick: handleOpenInV0,
     },
     {
       icon: ChatGPTIcon,
       label:
         copiedAction === "chatgpt"
-          ? "Copied! Opening ChatGPT..."
-          : "Open in ChatGPT",
+          ? t.copiedOpening("ChatGPT")
+          : t.openIn("ChatGPT"),
       onClick: handleOpenInChatGPT,
     },
     {
       icon: ClaudeIcon,
       label:
         copiedAction === "claude"
-          ? "Copied! Opening Claude..."
-          : "Open in Claude",
+          ? t.copiedOpening("Claude")
+          : t.openIn("Claude"),
       onClick: handleOpenInClaude,
-    },
-    {
-      icon: T3ChatIcon,
-      label:
-        copiedAction === "t3chat"
-          ? "Copied! Opening T3 Chat..."
-          : "Open in T3 Chat",
-      onClick: handleOpenInT3Chat,
     },
   ]
 
@@ -400,13 +354,8 @@ ${registryUrl ? `Registry: ${registryUrl}` : ""}
           <h1 className="scroll-m-20 text-4xl font-semibold tracking-tight sm:text-3xl xl:text-4xl">
             {title}
           </h1>
-          {isDraft && <Badge variant="draft">Draft</Badge>}
-          {isExperimental && !isDraft && (
-            <Badge variant="experimental">Experimental</Badge>
-          )}
-          {isNew && !isDraft && !isExperimental && (
-            <Badge variant="beta">New</Badge>
-          )}
+          {isDraft && <Badge variant="draft">{t.draft}</Badge>}
+          {isNew && !isDraft && <Badge variant="beta">{t.isNew}</Badge>}
         </div>
       )}
 
@@ -421,33 +370,13 @@ ${registryUrl ? `Registry: ${registryUrl}` : ""}
       >
         {/* Copy Page Button Group */}
         <div className="bg-secondary group/buttons relative flex items-stretch rounded-lg *:data-[slot=button]:focus-visible:relative *:data-[slot=button]:focus-visible:z-10">
-          <Button
-            variant="secondary"
-            size="sm"
-            className="h-8 rounded-md shadow-none sm:h-7 sm:text-[0.8rem]"
-            onClick={handleCopyPage}
-          >
-            <span className="relative overflow-hidden h-4 inline-flex items-center">
-              <span
-                className={cn(
-                  "inline-flex items-center gap-1.5 transition-transform duration-300 ease-in-out",
-                  copied && "-translate-y-full",
-                )}
-              >
-                <CopyIcon className="size-4" />
-                <span>Copy Page</span>
-              </span>
-              <span
-                className={cn(
-                  "absolute top-full left-0 inline-flex items-center gap-1.5 transition-transform duration-300 ease-in-out",
-                  copied && "-translate-y-[calc(100%-2px)]",
-                )}
-              >
-                <CheckIcon className="size-4" />
-                <span>Copied!</span>
-              </span>
-            </span>
-          </Button>
+          <CopyButton
+            variant="label"
+            value={getPageContent}
+            {...copyToast(t.pageCopied)}
+            labels={{ copy: t.copyPage, copied: t.copied }}
+            className="h-8 border-0 bg-secondary px-3 text-secondary-foreground shadow-none hover:bg-secondary/80 sm:h-7 sm:text-[0.8rem]"
+          />
 
           {/* Desktop Dropdown */}
           <DropdownMenu>
@@ -518,7 +447,7 @@ ${registryUrl ? `Registry: ${registryUrl}` : ""}
                 className="size-8 rounded-md shadow-none sm:hidden"
               >
                 <PaletteIcon className="size-4" />
-                <span className="sr-only">Change color</span>
+                <span className="sr-only">{t.changeColor}</span>
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent
@@ -528,7 +457,9 @@ ${registryUrl ? `Registry: ${registryUrl}` : ""}
             >
               <div className="flex flex-col gap-2">
                 {themeColors.map((c) => (
-                  <button
+                  <Button
+                    variant="ghost"
+                    size="icon"
                     key={c.name}
                     type="button"
                     onClick={() => handleColorChange(c.name)}
@@ -543,7 +474,7 @@ ${registryUrl ? `Registry: ${registryUrl}` : ""}
                       <CheckIcon className="absolute inset-0 m-auto size-3 text-white dark:text-black" />
                     )}
                     <span className="sr-only">{c.name}</span>
-                  </button>
+                  </Button>
                 ))}
               </div>
             </DropdownMenuContent>
@@ -569,12 +500,12 @@ ${registryUrl ? `Registry: ${registryUrl}` : ""}
               {prevHref ? (
                 <Link href={prevHref}>
                   <ArrowLeftIcon className="size-4" />
-                  <span className="sr-only">Previous</span>
+                  <span className="sr-only">{t.previous}</span>
                 </Link>
               ) : (
                 <>
                   <ArrowLeftIcon className="size-4" />
-                  <span className="sr-only">Previous</span>
+                  <span className="sr-only">{t.previous}</span>
                 </>
               )}
             </Button>
@@ -592,12 +523,12 @@ ${registryUrl ? `Registry: ${registryUrl}` : ""}
               {nextHref ? (
                 <Link href={nextHref}>
                   <ArrowRightIcon className="size-4" />
-                  <span className="sr-only">Next</span>
+                  <span className="sr-only">{t.next}</span>
                 </Link>
               ) : (
                 <>
                   <ArrowRightIcon className="size-4" />
-                  <span className="sr-only">Next</span>
+                  <span className="sr-only">{t.next}</span>
                 </>
               )}
             </Button>
@@ -661,7 +592,7 @@ ${registryUrl ? `Registry: ${registryUrl}` : ""}
                   strokeWidth={1.5}
                 />
               </svg>
-              <span className="sr-only">Scroll to top</span>
+              <span className="sr-only">{t.scrollTop}</span>
             </Button>
           )
         })()}

@@ -1,7 +1,17 @@
 "use client"
 
-import { GeistMono } from "geist/font/mono"
-import { GeistSans } from "geist/font/sans"
+import { Geist, Geist_Mono } from "next/font/google"
+
+const geistSans = Geist({
+  subsets: ["latin"],
+  variable: "--font-geist-sans",
+  display: "swap",
+})
+const geistMono = Geist_Mono({
+  subsets: ["latin"],
+  variable: "--font-geist-mono",
+  display: "swap",
+})
 
 export default function GlobalError({
   error,
@@ -11,9 +21,9 @@ export default function GlobalError({
   reset: () => void
 }) {
   return (
-    <html>
+    <html lang="en">
       <body
-        className={`${GeistSans.variable} ${GeistMono.variable} min-h-screen bg-background font-sans antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} min-h-screen bg-background font-sans antialiased`}
       >
         <div className="flex min-h-screen flex-col items-center justify-center gap-8 px-4">
           <div className="flex flex-col items-center gap-4 text-center">

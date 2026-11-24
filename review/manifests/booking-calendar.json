@@ -1,0 +1,27 @@
+{
+  "slug": "booking-calendar",
+  "verdict": "css-first",
+  "client": true,
+  "jsBefore": 3851,
+  "jsAfter": 3447,
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    { "path": "registry/gooseui/ui/booking-calendar.tsx", "type": "registry:ui" },
+    { "path": "registry/gooseui/ui/booking-calendar.client.tsx", "type": "registry:ui" }
+  ],
+  "features": ["has", "container-queries"],
+  "breaking": [
+    "BookingCalendar is a server component; without onBook/onDateChange it ships no JS and the Book button is a native submit",
+    "onBook and onDateChange load the client island booking-calendar.client.tsx (817 B gzip) and work only when the calendar is rendered from a client component or receives a server action",
+    "days and times are native radio inputs; new props name (default \"date\") and timeName (default \"time\") send the choice with a form",
+    "all months between minDate (or the first free day) and maxDate (or the last free day) are rendered at once, max 24, and switched by hidden radios",
+    "keyboard: native radio groups (Tab per group, arrows between free days and times); Home/End/PageUp/PageDown and week jumps removed",
+    "the grid is no longer role=grid/table; days without free times are plain text",
+    "new file booking-calendar.client.tsx must be added to registry.json"
+  ],
+  "how": {
+    "en": "Server grid, radio inputs and :checked; JS island only for onBook",
+    "ru": "Сетка на сервере, радиокнопки и :checked; JS только для onBook"
+  }
+}

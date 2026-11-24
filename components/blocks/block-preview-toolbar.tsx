@@ -1,25 +1,60 @@
 "use client"
 
 import {
-  Check,
   ChevronDown,
-  Copy,
   Monitor,
   RotateCcw,
   Smartphone,
   Tablet,
 } from "lucide-react"
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
+import { useLocale } from "next-intl"
+import { useCopyToast } from "@/hooks/use-copy-toast"
+import type { Dict } from "@/i18n/dict"
+import type { Locale } from "@/i18n/routing"
+import { cn } from "@/lib/utils"
+import { useCopyToClipboard } from "@/registry/gooseui/hooks/use-copy-to-clipboard"
+import { Button } from "@/registry/gooseui/ui/button"
+import { CopyButton } from "@/registry/gooseui/ui/copy-button"
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group"
-import { cn } from "@/lib/utils"
+} from "@/registry/gooseui/ui/dropdown-menu"
+import { Tabs, TabsList, TabsTrigger } from "@/registry/gooseui/ui/tabs"
+import {
+  ToggleGroup,
+  ToggleGroupItem,
+} from "@/registry/gooseui/ui/toggle-group"
+
+const en = {
+  desktop: "Desktop",
+  tablet: "Tablet",
+  mobile: "Mobile",
+  preview: "Preview",
+  code: "Code",
+  select: "Select",
+  openV0: "Open in v0",
+  copyClaude: "Copy to Claude",
+  copyChatGPT: "Copy to ChatGPT",
+  copyCode: "Copy code",
+}
+
+const content: Dict<typeof en> = {
+  en,
+  ru: {
+    desktop: "Десктоп",
+    tablet: "Планшет",
+    mobile: "Мобильный",
+    preview: "Превью",
+    code: "Код",
+    select: "Выбрать",
+    openV0: "Открыть в v0",
+    copyClaude: "Копировать для Claude",
+    copyChatGPT: "Копировать для ChatGPT",
+    copyCode: "Копировать код",
+  },
+}
 
 export type ViewportSize = "desktop" | "tablet" | "mobile"
 export type PreviewTab = "preview" | "code"
@@ -30,7 +65,7 @@ interface BlockPreviewToolbarProps {
   activeTab: PreviewTab
   onTabChange: (tab: PreviewTab) => void
   onRefresh?: () => void
-  onCopy?: () => void
+  sourceCode?: string
   installCommand?: string
   className?: string
 }
@@ -41,20 +76,17 @@ export function BlockPreviewToolbar({
   activeTab,
   onTabChange,
   onRefresh,
-  onCopy,
+  sourceCode,
   installCommand,
   className,
 }: BlockPreviewToolbarProps) {
-  const [copied, setCopied] = useState(false)
-
-  const handleCopy = async () => {
-    if (installCommand) {
-      await navigator.clipboard.writeText(installCommand)
-      setCopied(true)
-      setTimeout(() => setCopied(false), 2000)
-    }
-    onCopy?.()
-  }
+  const t = content[useLocale() as Locale]
+  const copyToast = useCopyToast()
+  const toast = copyToast()
+  const { copy } = useCopyToClipboard({
+    onCopy: toast.onCopy,
+    onError: toast.onCopyError,
+  })
 
   return (
     <div
@@ -65,18 +97,15 @@ export function BlockPreviewToolbar({
     >
       {/* Left: Install command */}
       {installCommand && (
-        <button
-          onClick={handleCopy}
-          className="flex items-center gap-2 rounded-md bg-background px-3 py-1.5 font-mono text-sm hover:bg-accent"
-        >
+        <div className="flex items-center gap-2 rounded-md bg-background py-1 pr-1.5 pl-3 font-mono text-sm">
           <span className="text-muted-foreground">$</span>
           <span className="max-w-[200px] truncate">{installCommand}</span>
-          {copied ? (
-            <Check className="h-3.5 w-3.5 text-green-500" />
-          ) : (
-            <Copy className="h-3.5 w-3.5 text-muted-foreground" />
-          )}
-        </button>
+          <CopyButton
+            variant="inline"
+            value={installCommand}
+            {...copyToast()}
+          />
+        </div>
       )}
 
       {/* Center: Viewport + Tabs */}
@@ -88,13 +117,13 @@ export function BlockPreviewToolbar({
           onValueChange={(v) => v && onViewportChange(v as ViewportSize)}
           className="bg-background rounded-md border"
         >
-          <ToggleGroupItem value="desktop" size="sm" aria-label="Desktop">
+          <ToggleGroupItem value="desktop" size="sm" aria-label={t.desktop}>
             <Monitor className="h-4 w-4" />
           </ToggleGroupItem>
-          <ToggleGroupItem value="tablet" size="sm" aria-label="Tablet">
+          <ToggleGroupItem value="tablet" size="sm" aria-label={t.tablet}>
             <Tablet className="h-4 w-4" />
           </ToggleGroupItem>
-          <ToggleGroupItem value="mobile" size="sm" aria-label="Mobile">
+          <ToggleGroupItem value="mobile" size="sm" aria-label={t.mobile}>
             <Smartphone className="h-4 w-4" />
           </ToggleGroupItem>
         </ToggleGroup>
@@ -116,10 +145,10 @@ export function BlockPreviewToolbar({
         >
           <TabsList className="h-8">
             <TabsTrigger value="preview" className="text-xs">
-              Preview
+              {t.preview}
             </TabsTrigger>
             <TabsTrigger value="code" className="text-xs">
-              Code
+              {t.code}
             </TabsTrigger>
           </TabsList>
         </Tabs>
@@ -129,15 +158,20 @@ export function BlockPreviewToolbar({
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button variant="outline" size="sm">
-            Select
+            {t.select}
             <ChevronDown className="ml-1 h-3.5 w-3.5" />
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end">
-          <DropdownMenuItem>Open in v0</DropdownMenuItem>
-          <DropdownMenuItem>Copy to Claude</DropdownMenuItem>
-          <DropdownMenuItem>Copy to ChatGPT</DropdownMenuItem>
-          <DropdownMenuItem onClick={handleCopy}>Copy code</DropdownMenuItem>
+          <DropdownMenuItem>{t.openV0}</DropdownMenuItem>
+          <DropdownMenuItem>{t.copyClaude}</DropdownMenuItem>
+          <DropdownMenuItem>{t.copyChatGPT}</DropdownMenuItem>
+          <DropdownMenuItem
+            disabled={!sourceCode}
+            onClick={() => sourceCode && copy(sourceCode)}
+          >
+            {t.copyCode}
+          </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
     </div>

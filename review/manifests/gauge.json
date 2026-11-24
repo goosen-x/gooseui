@@ -1,0 +1,19 @@
+{
+  "slug": "gauge",
+  "verdict": "css-only",
+  "client": false,
+  "jsBefore": 1784,
+  "jsAfter": 0,
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [{ "path": "registry/gooseui/ui/gauge.tsx", "type": "registry:ui" }],
+  "features": ["starting-style"],
+  "breaking": [
+    "the number on screen no longer tweens: it switches to the new value, the arc and the marker still transition",
+    "the level color follows the target value right away instead of the tweened one"
+  ],
+  "how": {
+    "en": "Fill as a CSS variable, transitions and @starting-style, no JS",
+    "ru": "Заполнение в CSS-переменной, переходы и @starting-style, без JS"
+  }
+}

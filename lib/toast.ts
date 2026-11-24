@@ -1,66 +1,12 @@
-import { createElement } from "react"
-import { toast } from "sonner"
-import { CustomToast } from "@/components/ui/custom-toast"
+import { toast } from "@/registry/gooseui/ui/toast"
 
-interface ToastOptions {
-  description?: string
-  duration?: number
-}
-
+/**
+ * Short calls for the demos: customToast.success("Saved", { description }).
+ * Same toasts as `toast` from the registry, so one Toaster shows them all.
+ */
 export const customToast = {
-  success: (message: string, options?: ToastOptions) => {
-    toast.custom(
-      (id) =>
-        createElement(CustomToast, {
-          id,
-          type: "success",
-          message,
-          description: options?.description,
-          duration: options?.duration,
-        }),
-      { duration: Infinity },
-    )
-  },
-
-  error: (message: string, options?: ToastOptions) => {
-    toast.custom(
-      (id) =>
-        createElement(CustomToast, {
-          id,
-          type: "error",
-          message,
-          description: options?.description,
-          duration: options?.duration,
-        }),
-      { duration: Infinity },
-    )
-  },
-
-  warning: (message: string, options?: ToastOptions) => {
-    toast.custom(
-      (id) =>
-        createElement(CustomToast, {
-          id,
-          type: "warning",
-          message,
-          description: options?.description,
-          duration: options?.duration,
-        }),
-      { duration: Infinity },
-    )
-  },
-
-  info: (message: string, options?: ToastOptions) => {
-    toast.custom(
-      (id) =>
-        createElement(CustomToast, {
-          id,
-          type: "info",
-          message,
-          description: options?.description,
-          duration: options?.duration,
-        }),
-      { duration: Infinity },
-    )
-  },
+  success: toast.success,
+  error: toast.error,
+  warning: toast.warning,
+  info: toast.info,
 }

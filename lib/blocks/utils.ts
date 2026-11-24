@@ -8,7 +8,7 @@ import { getBlockById } from "./metadata"
 /**
  * Registry base path
  */
-const _REGISTRY_PATH = "registry/new-york/blocks"
+const _REGISTRY_PATH = "registry/gooseui/blocks"
 
 /**
  * Get the file path for a block component
@@ -22,6 +22,9 @@ export function getBlockFilePath(id: string): string {
     "header-01": "headers/header-simple.tsx",
     "header-02": "headers/header-with-cta.tsx",
     "header-03": "headers/header-auth.tsx",
+    "header-05": "headers/header-mega-menu.tsx",
+    "header-11": "headers/header-morphing.tsx",
+    "web3-04": "web3/tap-coin.tsx",
     "footer-01": "footers/footer-simple.tsx",
     "footer-02": "footers/footer-columns.tsx",
     "footer-03": "footers/footer-newsletter.tsx",

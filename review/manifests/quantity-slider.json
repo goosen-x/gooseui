@@ -1,0 +1,27 @@
+{
+  "slug": "quantity-slider",
+  "verdict": "css-first",
+  "client": true,
+  "jsBefore": 3413,
+  "jsAfter": 2589,
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/gooseui/ui/quantity-slider.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "features": [
+    "has"
+  ],
+  "breaking": [
+    "field is now input type=number: formatValue no longer applies to the field, only to ticks and aria-valuetext",
+    "without units the field itself carries name; with units a hidden input sends base units as before",
+    "lucide-react removed"
+  ],
+  "how": {
+    "en": "Native number, range and radios; JS syncs them and counts the total",
+    "ru": "Нативные number, range и радио; JS синхронизирует и считает сумму"
+  }
+}

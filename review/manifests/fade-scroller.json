@@ -1,0 +1,32 @@
+{
+  "slug": "fade-scroller",
+  "verdict": "css-first",
+  "client": true,
+  "jsBefore": 2587,
+  "jsAfter": 1726,
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/gooseui/ui/fade-scroller.tsx",
+      "type": "registry:ui"
+    },
+    {
+      "path": "registry/gooseui/ui/fade-scroller.client.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "features": [
+    "scroll-driven-animations",
+    "registered-custom-properties"
+  ],
+  "breaking": [
+    "data-can-scroll-start / data-can-scroll-end attributes removed, style by state is not available",
+    "The viewport always has role=region, tabIndex=0 and aria-label, even when nothing overflows",
+    "Without scroll-driven animations there are no fades and the arrows are always visible; with scripts off the arrows are hidden"
+  ],
+  "how": {
+    "en": "Mask on a scroll timeline; arrows are a small click-only island",
+    "ru": "Маска на шкале прокрутки, стрелки: островок только для клика"
+  }
+}

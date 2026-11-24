@@ -4,6 +4,7 @@
  */
 
 import type { LucideIcon } from "lucide-react"
+import type { Localized } from "@/i18n/dict"
 
 /**
  * Block type - determines how the block is displayed in code view
@@ -23,7 +24,7 @@ export interface BlockMetadata {
   /** Display name */
   name: string
   /** Short description */
-  description: string
+  description: Localized
   /** Block type: single file or directory with multiple files */
   type: BlockType
   /** Height for iframe preview (px) */
@@ -45,9 +46,9 @@ export interface CategoryMetadata {
   /** URL slug (e.g., "headers", "stats") */
   id: string
   /** Display name */
-  name: string
+  name: Localized
   /** Short description */
-  description: string
+  description: Localized
   /** Icon component */
   icon: LucideIcon
   /** Optional thumbnail SVG */

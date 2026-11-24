@@ -6,7 +6,9 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-outfit);
+  /* Стек выписан явно: в var(--font-outfit) стоит Arial-заглушка без unicode-range, и она перехватила бы кириллицу раньше Jost.
+     Классы outfit.variable и jost.variable на <body> всё равно нужны — они тянут @font-face */
+  --font-sans: "Outfit", "Jost", "Outfit Fallback", system-ui, sans-serif;
   --font-mono: var(--font-geist-mono);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
@@ -25,6 +27,9 @@
   --color-input: var(--input);
   --color-border: var(--border);
   --color-destructive: var(--destructive);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-info: var(--info);
   --color-accent-foreground: var(--accent-foreground);
   --color-accent: var(--accent);
   --color-muted-foreground: var(--muted-foreground);
@@ -60,6 +65,9 @@
   --accent: oklch(0.97 0 0);
   --accent-foreground: oklch(0.205 0 0);
   --destructive: oklch(0.577 0.245 27.325);
+  --success: oklch(0.45 0.13 150);
+  --warning: oklch(0.47 0.11 70);
+  --info: oklch(0.48 0.17 258);
   --border: oklch(0.922 0 0);
   --input: oklch(0.922 0 0);
   --ring: oklch(0.596 0.145 163.225);
@@ -94,6 +102,9 @@
   --accent: oklch(0.269 0 0);
   --accent-foreground: oklch(0.985 0 0);
   --destructive: oklch(0.704 0.191 22.216);
+  --success: oklch(0.82 0.17 150);
+  --warning: oklch(0.86 0.15 85);
+  --info: oklch(0.8 0.11 245);
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 15%);
   --ring: oklch(0.696 0.17 162.48);
@@ -140,15 +151,19 @@
 
 /* Color themes - Orange */
 [data-theme-color="orange"] {
-  --primary: oklch(0.705 0.213 47.604);
+  --primary: oklch(0.646 0.222 41.116);
   --primary-foreground: oklch(0.985 0 0);
   --ring: oklch(0.705 0.213 47.604);
 }
 [data-theme-color="orange"].dark,
 .dark[data-theme-color="orange"] {
-  --primary: oklch(0.792 0.184 70.08);
-  --primary-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.646 0.222 41.116);
+  --primary-foreground: oklch(0.985 0 0);
   --ring: oklch(0.792 0.184 70.08);
+}
+/* Оранжевая тема: при наведении основная кнопка темнее, а не прозрачнее */
+[data-theme-color="orange"] [data-slot="button"].bg-primary:hover {
+  background-color: oklch(0.58 0.2 41.116);
 }
 
 /* Color themes - Green */
@@ -213,6 +228,12 @@
     overscroll-behavior: none;
     scrollbar-gutter: stable;
   }
+  /* Accent scrollbars everywhere: scrollbar-color is inherited, so the page,
+     the sidebar, code blocks and any inner scroll area follow the theme */
+  html {
+    scrollbar-color: color-mix(in oklab, var(--primary) 45%, transparent)
+      transparent;
+  }
 
   /* Text selection styling */
   ::selection {
@@ -237,18 +258,6 @@
   @media (prefers-reduced-motion: reduce) {
     .animate-marquee {
       animation: none;
-    }
-  }
-
-  /* Squircle button style with fallback */
-  .squircle-btn {
-    border-radius: 1rem;
-  }
-
-  @supports (corner-shape: squircle) {
-    .squircle-btn {
-      border-radius: 2rem;
-      corner-shape: squircle;
     }
   }
 }
@@ -279,20 +288,6 @@
   to {
     transform: translateX(0);
   }
-}
-
-/* Scroll Progress - CSS scroll-driven animation */
-@keyframes scroll-progress {
-  to {
-    transform: scaleX(1);
-  }
-}
-
-.scroll-progress-bar {
-  animation: scroll-progress linear;
-  animation-timeline: scroll(root);
-  transform: scaleX(0);
-  transform-origin: left;
 }
 
 /* View Transitions for MorphingDialog */
@@ -355,3 +350,5 @@
   --sh-entity: #f59e0b;
 }
 
+
+/* badge tokens */

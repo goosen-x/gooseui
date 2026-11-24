@@ -1,0 +1,27 @@
+{
+  "slug": "slider",
+  "verdict": "css-first",
+  "client": true,
+  "jsBefore": 40900,
+  "jsAfter": 1788,
+  "dependencies": [],
+  "registryDependencies": [
+    "@gooseui/sliding-number"
+  ],
+  "files": [
+    {
+      "path": "registry/gooseui/ui/slider.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "features": [
+    "color-mix"
+  ],
+  "breaking": [
+    "--slider-progress removed: the fill is pure CSS; restyle with --slider-track, --slider-fill, --slider-thumb"
+  ],
+  "how": {
+    "en": "Native range input, fill painted by the thumb's border-image",
+    "ru": "Нативный range, заливку рисует border-image бегунка"
+  }
+}

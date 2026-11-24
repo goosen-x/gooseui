@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "relative-time",
+  "title": "Relative Time",
+  "description": "“5 minutes ago” that updates itself and flags stale data.",
+  "registryDependencies": [
+    "@gooseui/use-now"
+  ],
+  "files": [
+    {
+      "path": "registry/gooseui/ui/relative-time.tsx",
+      "content": "\"use client\"\n\nimport type * as React from \"react\"\nimport { cn } from \"@/lib/utils\"\nimport { useNow } from \"@/registry/gooseui/hooks/use-now\"\n\nconst UNITS: [Intl.RelativeTimeFormatUnit, number][] = [\n  [\"year\", 365 * 86_400_000],\n  [\"month\", 30 * 86_400_000],\n  [\"week\", 7 * 86_400_000],\n  [\"day\", 86_400_000],\n  [\"hour\", 3_600_000],\n  [\"minute\", 60_000],\n  [\"second\", 1000],\n]\n\n/** Picks the largest unit that fits and formats the difference. */\nexport function formatRelativeTime(\n  date: Date,\n  now: number,\n  formatter: Intl.RelativeTimeFormat,\n): string {\n  const diff = date.getTime() - now\n  const abs = Math.abs(diff)\n  if (abs < 45_000) return formatter.format(0, \"second\")\n  for (const [unit, ms] of UNITS) {\n    if (abs >= ms || unit === \"second\") {\n      return formatter.format(Math.round(diff / ms), unit)\n    }\n  }\n  return formatter.format(0, \"second\")\n}\n\nexport type RelativeTimeProps = Omit<\n  React.ComponentProps<\"time\">,\n  \"dateTime\" | \"children\"\n> & {\n  date: Date | string | number\n  /** BCP 47 locale for Intl, e.g. \"en\" or \"de\". */\n  locale?: string\n  /** After this many ms in the past the value is marked as stale. */\n  staleAfter?: number\n  /** How often to refresh, in ms. */\n  updateInterval?: number\n  numeric?: Intl.RelativeTimeFormatNumeric\n  formatStyle?: Intl.RelativeTimeFormatStyle\n  /** Format of the absolute time in the tooltip. */\n  titleFormat?: Intl.DateTimeFormatOptions\n  staleClassName?: string\n}\n\nconst DEFAULT_TITLE_FORMAT: Intl.DateTimeFormatOptions = {\n  dateStyle: \"medium\",\n  timeStyle: \"short\",\n}\n\nexport function RelativeTime({\n  date,\n  locale = \"en\",\n  staleAfter,\n  updateInterval = 15_000,\n  numeric = \"auto\",\n  formatStyle = \"long\",\n  titleFormat = DEFAULT_TITLE_FORMAT,\n  staleClassName = \"text-destructive\",\n  className,\n  title,\n  ...props\n}: RelativeTimeProps) {\n  const now = useNow(updateInterval)\n  const value = date instanceof Date ? date : new Date(date)\n  const valid = !Number.isNaN(value.getTime())\n\n  if (!valid) {\n    return <time className={className} {...props} />\n  }\n\n  const iso = value.toISOString()\n  // Before hydration there is no \"now\": show a UTC date so server and client agree.\n  if (now === null) {\n    return (\n      <time dateTime={iso} className={className} {...props}>\n        {new Intl.DateTimeFormat(locale, {\n          dateStyle: \"medium\",\n          timeZone: \"UTC\",\n        }).format(value)}\n      </time>\n    )\n  }\n\n  const formatter = new Intl.RelativeTimeFormat(locale, {\n    numeric,\n    style: formatStyle,\n  })\n  const stale = staleAfter !== undefined && now - value.getTime() > staleAfter\n\n  return (\n    <time\n      dateTime={iso}\n      title={\n        title ?? new Intl.DateTimeFormat(locale, titleFormat).format(value)\n      }\n      data-stale={stale ? \"\" : undefined}\n      className={cn(\"tabular-nums\", className, stale && staleClassName)}\n      {...props}\n    >\n      {formatRelativeTime(value, now, formatter)}\n    </time>\n  )\n}\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

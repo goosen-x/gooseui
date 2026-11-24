@@ -1,0 +1,28 @@
+{
+  "slug": "carousel",
+  "verdict": "css-first",
+  "client": true,
+  "jsBefore": 3941,
+  "jsAfter": 3481,
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    { "path": "registry/gooseui/ui/carousel.tsx", "type": "registry:ui" },
+    { "path": "registry/gooseui/ui/carousel.client.tsx", "type": "registry:ui" }
+  ],
+  "features": ["scroll-snap", "scripting", "scroll-target-group", "scroll-buttons"],
+  "breaking": [
+    "useCarousel removed: Carousel is a server component without React context",
+    "CarouselDots renders <a href=#slide> links with aria-current instead of role=tab buttons",
+    "CarouselDots/Progress/Counter get the slide count by cloning: they must be direct children of Carousel or nested in plain DOM elements; CarouselDots accepts count/baseId and new slideLabel",
+    "CarouselPrevious/Next are server-rendered disabled and enabled by the client island (carousel.client.tsx, must be added to registry.json)",
+    "keyboard: arrow keys scroll the focusable viewport natively instead of a keydown handler on the root",
+    "auto-play also pauses on focus and is off with prefers-reduced-motion",
+    "draggable is accepted but does nothing (it was a no-op before)",
+    "class-variance-authority and lucide-react removed"
+  ],
+  "how": {
+    "en": "scroll-snap and dot anchors; 1 kB island for arrows and autoplay",
+    "ru": "scroll-snap и точки-якоря; островок 1 кБ для стрелок и автопрокрутки"
+  }
+}

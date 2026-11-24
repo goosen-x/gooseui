@@ -12,34 +12,49 @@ Custom component library based on shadcn/ui with additional UI components and ef
 
 ### Mandatory Checklist (DO NOT SKIP!)
 
-1. Create component in `registry/new-york/{type}/`
-2. Add entry to `registry.json` or `public/r/{name}.json`
-3. Add to `lib/config/registry.ts`
-4. Create docs page with TOC IDs on all h2 elements
-5. **Add to sidebar: `components/docs-sidebar.tsx`** ← OFTEN FORGOTTEN!
-6. Update components index page
+1. Create the file in `registry/gooseui/{ui|effects|hooks|lib}/`
+2. Add the item to `registry.json`
+3. Add it to `lib/config/registry.ts` (`REGISTRY_ITEMS`)
+4. Create the docs page in `app/[locale]/(docs)/docs/{components|effects|hooks}/{slug}/page.tsx`, in two languages (en + ru), with TOC IDs on all h2 elements
+5. **Add it to navigation: `lib/config/docs-navigation.ts`** ← OFTEN FORGOTTEN! Set `category` to a group id
+6. Add `card-preview.tsx` next to the page (default export, no props) and run `node scripts/generate-card-previews.mjs`
 7. Run `pnpm registry:build`
 
-### Sidebar Location
+### Navigation and groups
+
+`lib/config/docs-navigation.ts` is the single source for the sidebar, catalogs, breadcrumbs and search.
+The catalogs and the sidebar group items by `category`:
+
+- components: `COMPONENT_GROUPS` — Inputs, Display, Data, Media, Feedback, Navigation, Overlay, Layout, Marketing, Utilities
+- effects: `EFFECT_GROUPS` — Text, Scroll, Decor, Interaction
+- hooks: `"Hooks"` (no groups, no card preview)
 
 ```typescript
-// components/docs-sidebar.tsx - NOT lib/config/navigation.ts!
-const docsNavConfig: NavSection[] = [
-  {
-    title: "Components",
-    items: [
-      { title: "New Component", href: "/docs/components/new", isNew: true },
-    ],
-  },
-]
+{
+  slug: "new-component",
+  title: "New Component",
+  href: "/docs/components/new-component",
+  description: { en: "…", ru: "…" },
+  category: "Inputs",
+  icon: Square,
+  isNew: true,
+  keywords: ["…"],
+}
 ```
+
+### Registry rules
+
+- No `next/*` or `next-intl` imports in `registry/**`, default texts in English and overridable via props
+- Colors only through shadcn tokens, keyframes inside the component (`<style href precedence>`), no new npm dependencies without a reason
+- Items that depend on other GooseUI items list them as `@gooseui/{slug}` in `registryDependencies`
 
 
 ## Documentation Structure
 
 **IMPORTANT:** All documentation MUST follow the structure defined in:
-- `app/(docs)/docs/STRUCTURE.md` — full documentation standards
-- `app/(docs)/docs/components/_TEMPLATE.tsx` — template for new components
+- `app/[locale]/(docs)/docs/STRUCTURE.md` — full documentation standards
+- `app/[locale]/(docs)/docs/components/_TEMPLATE.tsx` — template for new components
+- `app/[locale]/(docs)/docs/hooks/use-now/page.tsx` — reference page for a hook (Parameters / Returns instead of Props)
 
 ### Section Order (STRICT)
 

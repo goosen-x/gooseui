@@ -1,138 +1,91 @@
-"use client"
+import { useLocale } from "next-intl"
+import type { Dict, Localized } from "@/i18n/dict"
+import { pick } from "@/i18n/dict"
+import type { Locale } from "@/i18n/routing"
+import { DetailsAccordion } from "@/registry/gooseui/ui/details-accordion"
 
-import { Plus } from "lucide-react"
-import { useState } from "react"
-import { cn } from "@/lib/utils"
-
-const faqs = [
+const faqs: { question: Localized; answer: Localized }[] = [
   {
-    question: "What is GooseUI?",
-    answer:
-      "GooseUI is an open-source library of React components built on top of shadcn/ui. Components are copied into your project, giving you full control over the code.",
+    question: {
+      en: "What is GooseUI?",
+      ru: "Что такое GooseUI?",
+    },
+    answer: {
+      en: "GooseUI is an open-source library of React components built on top of shadcn/ui. Components are copied into your project, giving you full control over the code.",
+      ru: "GooseUI — библиотека React-компонентов с открытым кодом на базе shadcn/ui. Компоненты копируются в ваш проект, так что код полностью под вашим контролем.",
+    },
   },
   {
-    question: "How do I install components?",
-    answer:
-      "Use shadcn CLI: npx shadcn@latest add @gooseui/button. The component will be added to the components/ui folder of your project.",
+    question: {
+      en: "How do I install components?",
+      ru: "Как установить компоненты?",
+    },
+    answer: {
+      en: "Use shadcn CLI: npx shadcn@latest add @gooseui/button. The component will be added to the components/ui folder of your project.",
+      ru: "Через shadcn CLI: npx shadcn@latest add @gooseui/button. Компонент появится в папке components/ui вашего проекта.",
+    },
   },
   {
-    question: "Can I customize styles?",
-    answer:
-      "Yes, completely. Components use Tailwind CSS and CSS variables. You can change any styles since the code is in your project.",
+    question: {
+      en: "Can I customize styles?",
+      ru: "Можно ли менять стили?",
+    },
+    answer: {
+      en: "Yes, completely. Components use Tailwind CSS and CSS variables. You can change any styles since the code is in your project.",
+      ru: "Да, как угодно. Компоненты построены на Tailwind CSS и CSS-переменных, а код лежит в вашем проекте, так что менять можно любые стили.",
+    },
   },
   {
-    question: "What technologies are used?",
-    answer:
-      "React, TypeScript, Tailwind CSS, Radix UI for accessibility, and CSS variables for theming. All modern and well-maintained.",
+    question: {
+      en: "What technologies are used?",
+      ru: "Какие технологии используются?",
+    },
+    answer: {
+      en: "React, TypeScript, Tailwind CSS, Radix UI for accessibility, and CSS variables for theming. All modern and well-maintained.",
+      ru: "React, TypeScript, Tailwind CSS, Radix UI для доступности и CSS-переменные для тем. Всё современное и активно поддерживается.",
+    },
   },
   {
-    question: "Is it free?",
-    answer:
-      "Yes, GooseUI is completely free and open source. Use it in personal and commercial projects without restrictions.",
+    question: {
+      en: "Is it free?",
+      ru: "Это бесплатно?",
+    },
+    answer: {
+      en: "Yes, GooseUI is completely free and open source. Use it in personal and commercial projects without restrictions.",
+      ru: "Да, GooseUI полностью бесплатный и с открытым исходным кодом. Используйте в личных и коммерческих проектах без ограничений.",
+    },
   },
   {
-    question: "Is it compatible with shadcn/ui?",
-    answer:
-      "Yes, GooseUI is built on the same architecture as shadcn/ui. You can use components from both libraries in one project.",
+    question: {
+      en: "Is it compatible with shadcn/ui?",
+      ru: "Совместим ли он с shadcn/ui?",
+    },
+    answer: {
+      en: "Yes, GooseUI is built on the same architecture as shadcn/ui. You can use components from both libraries in one project.",
+      ru: "Да, GooseUI построен на той же архитектуре, что и shadcn/ui. Компоненты обеих библиотек можно использовать в одном проекте.",
+    },
   },
 ]
 
-function FAQItem({
-  index,
-  question,
-  answer,
-  isOpen,
-  onToggle,
-}: {
-  index: number
-  question: string
-  answer: string
-  isOpen: boolean
-  onToggle: () => void
-}) {
-  return (
-    <div
-      className="group border border-border/50 border-dashed p-2 transition-all hover:border-border"
-      style={
-        {
-          cornerShape: "squircle",
-          borderRadius: "1.5rem",
-        } as React.CSSProperties
-      }
-    >
-      <div
-        className="overflow-hidden border border-border/50 bg-muted/30"
-        style={
-          {
-            cornerShape: "squircle",
-            borderRadius: "1rem",
-          } as React.CSSProperties
-        }
-      >
-        <button
-          type="button"
-          aria-expanded={isOpen}
-          aria-label="Show more"
-          className="relative flex w-full items-center justify-between gap-4 p-5 text-left transition-colors cursor-pointer"
-          onClick={onToggle}
-        >
-          <div className="flex flex-1 items-center gap-4">
-            <span
-              className={cn(
-                "font-mono text-3xl sm:text-4xl font-bold transition-colors duration-300",
-                isOpen ? "text-primary/70" : "text-muted-foreground/30",
-              )}
-            >
-              {String(index + 1).padStart(2, "0")}
-            </span>
-            <h3 className="flex-1 font-medium text-foreground/80 text-base tracking-tight sm:text-lg">
-              {question}
-            </h3>
-          </div>
-          <div
-            className={cn(
-              "flex h-7 w-7 shrink-0 items-center justify-center rounded-full transition-colors duration-300",
-              isOpen
-                ? "bg-primary/70 text-primary-foreground"
-                : "bg-muted/50 group-hover:bg-muted",
-            )}
-          >
-            <Plus
-              className={cn(
-                "h-4 w-4 transition-transform duration-300",
-                isOpen
-                  ? "rotate-45 text-primary-foreground"
-                  : "text-muted-foreground",
-              )}
-              aria-hidden="true"
-            />
-          </div>
-        </button>
-        <div
-          className={cn(
-            "grid transition-all duration-300 ease-in-out",
-            isOpen
-              ? "grid-rows-[1fr] opacity-100"
-              : "grid-rows-[0fr] opacity-0",
-          )}
-        >
-          <div className="overflow-hidden">
-            <p className="px-5 pb-5 pl-[4.5rem] text-sm text-muted-foreground">
-              {answer}
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  )
+const en = {
+  description: "Answers to common questions about GooseUI",
+}
+const content: Dict<typeof en> = {
+  en,
+  ru: {
+    description: "Ответы на частые вопросы о GooseUI",
+  },
 }
 
 export function FAQ() {
-  const [openIndex, setOpenIndex] = useState<number | null>(0)
-
-  const handleToggle = (index: number) => {
-    setOpenIndex(openIndex === index ? null : index)
-  }
+  const locale = useLocale()
+  const t = content[locale as Locale]
+  const items = faqs.map((faq, index) => ({
+    id: `faq-${index}`,
+    title: pick(faq.question, locale),
+    content: <p>{pick(faq.answer, locale)}</p>,
+    defaultOpen: index === 0,
+  }))
 
   return (
     <section className="py-20 px-6">
@@ -140,22 +93,17 @@ export function FAQ() {
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight">FAQ</h2>
           <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-            Answers to common questions about GooseUI
+            {t.description}
           </p>
         </div>
 
-        <div className="mx-auto max-w-4xl space-y-3">
-          {faqs.map((faq, index) => (
-            <FAQItem
-              key={faq.question}
-              index={index}
-              question={faq.question}
-              answer={faq.answer}
-              isOpen={openIndex === index}
-              onToggle={() => handleToggle(index)}
-            />
-          ))}
-        </div>
+        <DetailsAccordion
+          variant="framed"
+          numbered
+          name="landing-faq"
+          items={items}
+          className="mx-auto max-w-4xl"
+        />
       </div>
     </section>
   )

@@ -1,0 +1,28 @@
+{
+  "slug": "section-dock",
+  "verdict": "css-first",
+  "client": true,
+  "jsBefore": 41250,
+  "jsAfter": 2460,
+  "dependencies": [],
+  "registryDependencies": [
+    "@gooseui/use-scroll-spy"
+  ],
+  "files": [
+    {
+      "path": "registry/gooseui/ui/section-dock.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "features": [
+    "scroll-driven-animations"
+  ],
+  "breaking": [
+    "items are <a href=\"#id\"> links instead of buttons; aria-current stays on the active one",
+    "the dock stays mounted and fades in on a scroll timeline instead of mounting after a scroll listener; without scroll-driven animations it is always visible"
+  ],
+  "how": {
+    "en": "Anchor links, scroll() timeline to appear, useScrollSpy for the active",
+    "ru": "Ссылки-якоря, появление по scroll(), активный пункт от useScrollSpy"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "slug": "rotating-text",
+  "verdict": "css-only",
+  "client": false,
+  "jsBefore": 40566,
+  "jsAfter": 0,
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/gooseui/effects/rotating-text.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "features": [
+    "registered-custom-properties"
+  ],
+  "breaking": [
+    "Rotation no longer pauses when the word is off screen (the tab-hidden pause comes from the browser)"
+  ],
+  "how": {
+    "en": "@property clock 0..1 and clamp() per letter, words in one grid cell",
+    "ru": "Часы на @property, clamp() для каждой буквы, слова в одной ячейке"
+  }
+}

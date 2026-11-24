@@ -1,0 +1,27 @@
+{
+  "slug": "copy-button",
+  "verdict": "js",
+  "client": true,
+  "jsBefore": 2405,
+  "jsAfter": 1457,
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/gooseui/ui/copy-button.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "features": [
+    "async-clipboard"
+  ],
+  "breaking": [
+    "no longer uses @gooseui/use-copy-to-clipboard and lucide-react",
+    "CopyIcon: copied prop optional, swaps by data-copied on a group/copy ancestor",
+    "new export copyText"
+  ],
+  "how": {
+    "en": "Clipboard API call plus data-copied flag, icon swap in CSS",
+    "ru": "Вызов Clipboard API и флаг data-copied, смена иконки на CSS"
+  }
+}

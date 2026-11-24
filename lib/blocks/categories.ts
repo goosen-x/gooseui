@@ -37,110 +37,161 @@ import {
 export const blocksCategoriesMetadata: CategoryMetadata[] = [
   {
     id: "headers",
-    name: "Headers",
-    description: "Navigation bars, mega menus, sticky headers",
+    name: { en: "Headers", ru: "Хедеры" },
+    description: {
+      en: "Navigation bars, mega menus, sticky headers",
+      ru: "Навигационные панели, мега-меню, залипающие хедеры",
+    },
     icon: PanelTop,
   },
   {
     id: "footers",
-    name: "Footers",
-    description: "Site footers, newsletter, social links",
+    name: { en: "Footers", ru: "Футеры" },
+    description: {
+      en: "Site footers, newsletter, social links",
+      ru: "Футеры сайта, рассылка, ссылки на соцсети",
+    },
     icon: PanelBottom,
   },
   {
     id: "hero",
-    name: "Hero Sections",
-    description: "Landing heroes, split layouts, with video/images",
+    name: { en: "Hero Sections", ru: "Hero-секции" },
+    description: {
+      en: "Landing heroes, split layouts, with video/images",
+      ru: "Hero для лендингов, раскладки в две колонки, с видео и изображениями",
+    },
     icon: Rocket,
   },
   {
     id: "brands",
-    name: "Brands",
-    description: "Partner logos, client carousels, trust badges",
+    name: { en: "Brands", ru: "Бренды" },
+    description: {
+      en: "Partner logos, client carousels, trust badges",
+      ru: "Логотипы партнёров, карусели клиентов, знаки доверия",
+    },
     icon: Building2,
   },
   {
     id: "services",
-    name: "Services",
-    description: "Feature cards, service grids, offerings showcase",
+    name: { en: "Services", ru: "Услуги" },
+    description: {
+      en: "Feature cards, service grids, offerings showcase",
+      ru: "Карточки возможностей, сетки услуг, витрина предложений",
+    },
     icon: Briefcase,
   },
   {
     id: "faq",
-    name: "FAQ",
-    description: "Accordion FAQ sections, Q&A blocks",
+    name: { en: "FAQ", ru: "FAQ" },
+    description: {
+      en: "Accordion FAQ sections, Q&A blocks",
+      ru: "FAQ-аккордеоны, блоки вопросов и ответов",
+    },
     icon: CircleHelp,
   },
   {
     id: "stats",
-    name: "Stats",
-    description: "Metrics, charts, progress indicators",
+    name: { en: "Stats", ru: "Статистика" },
+    description: {
+      en: "Metrics, charts, progress indicators",
+      ru: "Метрики, графики, индикаторы прогресса",
+    },
     icon: TrendingUp,
     hasCharts: true,
   },
   {
     id: "login",
-    name: "Login",
-    description: "Login forms, OAuth, two-factor auth",
+    name: { en: "Login", ru: "Вход" },
+    description: {
+      en: "Login forms, OAuth, two-factor auth",
+      ru: "Формы входа, OAuth, двухфакторная аутентификация",
+    },
     icon: LogIn,
   },
   {
     id: "dashboard",
-    name: "Dashboard",
-    description: "Analytics, charts, metrics, admin panels",
+    name: { en: "Dashboard", ru: "Дашборд" },
+    description: {
+      en: "Analytics, charts, metrics, admin panels",
+      ru: "Аналитика, графики, метрики, админ-панели",
+    },
     icon: LayoutDashboard,
     hasCharts: true,
   },
   {
     id: "web3",
-    name: "Web3",
-    description: "Wallet connections, NFT cards, token dashboards",
+    name: { en: "Web3", ru: "Web3" },
+    description: {
+      en: "Wallet connections, NFT cards, token dashboards",
+      ru: "Подключение кошельков, NFT-карточки, дашборды токенов",
+    },
     icon: Wallet,
   },
   {
     id: "marketing",
-    name: "Marketing",
-    description: "Promo banners, CTAs, pricing tables",
+    name: { en: "Marketing", ru: "Маркетинг" },
+    description: {
+      en: "Promo banners, CTAs, pricing tables",
+      ru: "Промо-баннеры, CTA, таблицы тарифов",
+    },
     icon: Megaphone,
   },
   {
     id: "e-commerce",
-    name: "E-commerce",
-    description: "Product cards, carts, checkout flows",
+    name: { en: "E-commerce", ru: "E-commerce" },
+    description: {
+      en: "Product cards, carts, checkout flows",
+      ru: "Карточки товаров, корзины, оформление заказа",
+    },
     icon: ShoppingCart,
   },
   {
     id: "forms",
-    name: "Forms",
-    description: "Contact, sign-up, multi-step forms",
+    name: { en: "Forms", ru: "Формы" },
+    description: {
+      en: "Contact, sign-up, multi-step forms",
+      ru: "Контактные, регистрационные и многошаговые формы",
+    },
     icon: FormInput,
     isComingSoon: true,
   },
   {
     id: "ai",
-    name: "AI",
-    description: "Chat interfaces, prompts, AI workflows",
+    name: { en: "AI", ru: "AI" },
+    description: {
+      en: "Chat interfaces, prompts, AI workflows",
+      ru: "Чат-интерфейсы, промпты, AI-воркфлоу",
+    },
     icon: Bot,
     isComingSoon: true,
   },
   {
     id: "authentication",
-    name: "Authentication",
-    description: "Login, sign-up, password reset forms",
+    name: { en: "Authentication", ru: "Аутентификация" },
+    description: {
+      en: "Login, sign-up, password reset forms",
+      ru: "Формы входа, регистрации и сброса пароля",
+    },
     icon: KeyRound,
     isComingSoon: true,
   },
   {
     id: "data-display",
-    name: "Data Display",
-    description: "Tables, lists, grids, cards",
+    name: { en: "Data Display", ru: "Отображение данных" },
+    description: {
+      en: "Tables, lists, grids, cards",
+      ru: "Таблицы, списки, сетки, карточки",
+    },
     icon: TableProperties,
     isComingSoon: true,
   },
   {
     id: "feedback",
-    name: "Feedback",
-    description: "Alerts, notifications, modals, toasts",
+    name: { en: "Feedback", ru: "Обратная связь" },
+    description: {
+      en: "Alerts, notifications, modals, toasts",
+      ru: "Алерты, уведомления, модалки, тосты",
+    },
     icon: Bell,
     isComingSoon: true,
   },
@@ -158,7 +209,7 @@ export function getCategoryById(id: string): CategoryMetadata | undefined {
  */
 export function getAllCategories(): CategoryMetadata[] {
   return [...blocksCategoriesMetadata].sort((a, b) =>
-    a.name.localeCompare(b.name),
+    a.name.en.localeCompare(b.name.en),
   )
 }
 

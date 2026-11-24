@@ -1,0 +1,14 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "use-global-styles",
+  "title": "useGlobalStyles",
+  "description": "Injects a global stylesheet once per id, safe for SSR.",
+  "files": [
+    {
+      "path": "registry/gooseui/hooks/use-global-styles.ts",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\n\n/**\n * Hook to inject global CSS into document.head\n * Uses useInsertionEffect for proper CSS-in-JS timing\n * Styles are only injected once per unique id (singleton)\n */\nexport function useGlobalStyles(css: string, id: string) {\n  React.useInsertionEffect(() => {\n    if (!css || typeof document === \"undefined\") return\n\n    // Check if style already exists (singleton)\n    if (document.getElementById(id)) return\n\n    const styleEl = document.createElement(\"style\")\n    styleEl.id = id\n    styleEl.textContent = css\n    document.head.appendChild(styleEl)\n\n    // Don't remove on unmount - styles are global and shared\n  }, [css, id])\n}\n",
+      "type": "registry:hook"
+    }
+  ],
+  "type": "registry:hook"
+}

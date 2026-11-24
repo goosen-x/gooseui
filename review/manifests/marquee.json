@@ -1,0 +1,30 @@
+{
+  "slug": "marquee",
+  "verdict": "css-first",
+  "client": true,
+  "jsBefore": 1205,
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/gooseui/ui/marquee.tsx",
+      "type": "registry:ui"
+    },
+    {
+      "path": "registry/gooseui/ui/marquee.client.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "features": [
+    "inert"
+  ],
+  "breaking": [
+    "speed (px per second) removed: CSS cannot measure the content; use duration (seconds per copy, default 20)",
+    "Copies are no longer added automatically: new prop repeat (default 2); one copy times (repeat - 1) must cover the container"
+  ],
+  "how": {
+    "en": "Copies of the content and a CSS translate by one copy; a small client part eases playbackRate to 0 on hover (Web Animations API)",
+    "ru": "Копии содержимого и CSS-сдвиг на одну копию; маленькая клиентская часть плавно гасит playbackRate при наведении (Web Animations API)"
+  },
+  "jsAfter": 1536
+}

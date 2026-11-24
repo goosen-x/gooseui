@@ -151,7 +151,7 @@ lib/
 │   ├── generate-landing.ts       # Генерация кода
 │   └── hash.ts                   # Хеширование конфига
 
-registry/new-york/blocks/
+registry/gooseui/blocks/
 ├── hero/
 │   ├── hero-classic.tsx
 │   ├── hero-split.tsx

@@ -1,0 +1,24 @@
+{
+  "slug": "glitch-text",
+  "verdict": "css-only",
+  "client": false,
+  "jsBefore": 1167,
+  "jsAfter": 0,
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/gooseui/effects/glitch-text.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "features": [
+    "clip-path",
+    "mix-blend-mode"
+  ],
+  "breaking": [],
+  "how": {
+    "en": "CSS keyframes on clip-path and mix-blend-mode, no JS",
+    "ru": "CSS-анимации на clip-path и mix-blend-mode, без JS"
+  }
+}

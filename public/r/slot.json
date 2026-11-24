@@ -1,17 +1,14 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "slot",
-  "type": "registry:lib",
   "title": "Slot",
   "description": "Composition utility for asChild pattern. Renders child element with merged props.",
-  "dependencies": [
-    "@radix-ui/react-slot"
-  ],
   "files": [
     {
       "path": "lib/slot.tsx",
-      "content": "// Re-export from @radix-ui/react-slot for consistency\nexport { Slot } from \"@radix-ui/react-slot\"\n",
+      "content": "import * as React from \"react\"\n\ntype AnyProps = Record<string, unknown>\n\nfunction setRef<T>(ref: React.Ref<T> | undefined, value: T | null) {\n  if (typeof ref === \"function\") ref(value)\n  else if (ref) (ref as React.RefObject<T | null>).current = value\n}\n\nfunction mergeProps(slotProps: AnyProps, childProps: AnyProps): AnyProps {\n  const merged: AnyProps = { ...slotProps, ...childProps }\n  for (const key of Object.keys(slotProps)) {\n    const slotValue = slotProps[key]\n    const childValue = childProps[key]\n    if (/^on[A-Z]/.test(key)) {\n      if (typeof slotValue === \"function\" && typeof childValue === \"function\") {\n        merged[key] = (...args: unknown[]) => {\n          childValue(...args)\n          slotValue(...args)\n        }\n      } else if (typeof slotValue === \"function\") {\n        merged[key] = slotValue\n      }\n    } else if (key === \"style\") {\n      merged[key] = { ...(slotValue as object), ...(childValue as object) }\n    } else if (key === \"className\") {\n      merged[key] = [slotValue, childValue].filter(Boolean).join(\" \")\n    }\n  }\n  return merged\n}\n\n/**\n * Renders its only child with the Slot's props merged in (the `asChild` pattern).\n * Handlers are chained (child first), `style` and `className` are combined.\n */\nexport function Slot({\n  children,\n  ref,\n  ...props\n}: React.HTMLAttributes<HTMLElement> & {\n  children?: React.ReactNode\n  ref?: React.Ref<HTMLElement>\n}) {\n  if (!React.isValidElement(children)) {\n    return React.Children.count(children) > 1 ? React.Children.only(null) : null\n  }\n  const child = children as React.ReactElement<AnyProps> & {\n    props: AnyProps & { ref?: React.Ref<HTMLElement> }\n  }\n  const childRef = child.props.ref\n  const merged = mergeProps(props as AnyProps, child.props)\n  // Attach a ref only when someone provided one, so Slot also works in Server Components\n  if (ref || childRef) {\n    merged.ref = (node: HTMLElement | null) => {\n      setRef(ref, node)\n      setRef(childRef, node)\n    }\n  }\n  return React.cloneElement(child, merged)\n}\n",
       "type": "registry:lib"
     }
-  ]
+  ],
+  "type": "registry:lib"
 }
