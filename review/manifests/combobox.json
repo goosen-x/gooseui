@@ -1,0 +1,31 @@
+{
+  "slug": "combobox",
+  "verdict": "js",
+  "client": true,
+  "jsBefore": null,
+  "jsAfter": null,
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/gooseui/ui/combobox.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "features": [
+    "anchor-positioning",
+    "popover",
+    "starting-style",
+    "transition-behavior"
+  ],
+  "breaking": [
+    "no @gooseui/badge and @gooseui/highlight-text: chips and match highlighting are inline",
+    "no lucide-react and use-global-styles: inline SVG icons, <style href precedence>",
+    "the JS positioning fallback is gone: without anchor positioning the list is an absolutely positioned block under the field, shown by data-open",
+    "new props addMessage, resultsMessage, removeLabel for the previously hard-coded English texts"
+  ],
+  "how": {
+    "en": "ARIA combobox state in React; list placed by CSS anchor positioning in a manual popover, CSS-only fallback",
+    "ru": "Состояние ARIA combobox в React; список в ручном поповере ставится CSS anchor positioning, запасной вариант только на CSS"
+  }
+}

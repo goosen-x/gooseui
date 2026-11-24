@@ -1,0 +1,18 @@
+{
+  "slug": "context-menu",
+  "verdict": "js",
+  "client": true,
+  "jsBefore": null,
+  "jsAfter": null,
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    { "path": "registry/gooseui/ui/context-menu.tsx", "type": "registry:ui" }
+  ],
+  "features": ["popover", "anchor-positioning", "starting-style", "transition-behavior"],
+  "breaking": [],
+  "how": {
+    "en": "contextmenu, long-press and Shift+F10 handlers open a popover=auto menu; anchor positioning places it at the pointer, JS clamps it as a fallback",
+    "ru": "Обработчики contextmenu, долгого нажатия и Shift+F10 открывают меню popover=auto; anchor positioning ставит его у курсора, без него позицию ограничивает JS"
+  }
+}

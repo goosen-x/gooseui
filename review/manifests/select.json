@@ -1,0 +1,36 @@
+{
+  "slug": "select",
+  "verdict": "css-first",
+  "client": false,
+  "jsBefore": null,
+  "jsAfter": null,
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/gooseui/ui/select.tsx",
+      "type": "registry:ui"
+    },
+    {
+      "path": "registry/gooseui/ui/select.client.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "features": [
+    "customizable-select",
+    "has",
+    "starting-style",
+    "transition-behavior"
+  ],
+  "breaking": [
+    "Select, SelectOption and SelectGroup are no longer client components (no hooks); onValueChange works only from a client parent",
+    "rich option markup and the <selectedcontent> trigger live in select.client.tsx (SelectTrigger, SelectOptionContent) and render after hydration only",
+    "placeholder color via :has(option:checked) instead of a data-placeholder attribute and a form reset listener",
+    "no lucide-react and use-global-styles: inline SVG chevron, <style href precedence>",
+    "ref on Select goes straight to the native <select> (no internal ref merging)"
+  ],
+  "how": {
+    "en": "Native select; base-select styling in CSS; a tiny client island adds icons and selectedcontent after hydration",
+    "ru": "Нативный select; оформление base-select на CSS; крошечный клиентский остров добавляет иконки и selectedcontent после гидратации"
+  }
+}

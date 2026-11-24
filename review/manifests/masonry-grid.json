@@ -1,0 +1,25 @@
+{
+  "slug": "masonry-grid",
+  "verdict": "css-only",
+  "client": false,
+  "jsBefore": null,
+  "jsAfter": null,
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/gooseui/ui/masonry-grid.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "features": ["grid-lanes", "multi-column"],
+  "breaking": [
+    "onLayoutChange removed: the mode is picked by @supports in CSS, the component never knows it",
+    "data-layout attribute removed; test @supports (display: grid-lanes) yourself if you need the active mode",
+    "no longer uses @gooseui/use-global-styles; styles are a React 19 <style href precedence> in @layer components"
+  ],
+  "how": {
+    "en": "display: grid-lanes inside @supports, CSS multi-column layout as the base, no JS",
+    "ru": "display: grid-lanes внутри @supports, многоколоночная вёрстка как основа, без JS"
+  }
+}

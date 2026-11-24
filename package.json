@@ -11,6 +11,7 @@
     "format": "biome format --write .",
     "typecheck": "tsc --noEmit",
     "registry:build": "shadcn build",
+    "registry:build:drafts": "shadcn build registry.drafts.json -o public/r-drafts",
     "validate:nav": "tsx scripts/validate-navigation.ts",
     "prepare": "husky",
     "test:components": "node scripts/check-components.mjs"

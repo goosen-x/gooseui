@@ -1,0 +1,37 @@
+{
+  "slug": "data-table",
+  "verdict": "css-first",
+  "client": true,
+  "jsBefore": null,
+  "jsAfter": null,
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/gooseui/ui/data-table.tsx",
+      "type": "registry:ui"
+    },
+    {
+      "path": "registry/gooseui/ui/data-table.client.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "features": [
+    "has",
+    "scroll-driven-animations",
+    "scripting",
+    "color-mix"
+  ],
+  "breaking": [
+    "no longer uses lucide-react, @gooseui/button, @gooseui/checkbox and @gooseui/skeleton",
+    "table is rendered by the server component; a client controller sorts, searches and pages the existing rows",
+    "removed controlled sorting / selectedIds / page / pageSize props, defaultPage, defaultPageSize, onPageSizeChange, sortFn, filter and filterFn",
+    "pageSize now enables pagination (was the controlled value); sortValue replaces sortFn; searchable adds a built-in search over row text",
+    "onSelectionChange gets ids only (no rows) and works only when rendered from a client component",
+    "new props selectName, toolbar, noMatchState, labels; toolbar hooks data-selection-only, data-selected-count, data-table-clear-selection"
+  ],
+  "how": {
+    "en": "Server-rendered table; a client controller moves rows to sort and flips data attributes to search and page. Selection is native checkboxes, highlighted by :has(:checked) and submitted with a form",
+    "ru": "Таблица рендерится на сервере; клиентский контроллер переставляет строки для сортировки и меняет data-атрибуты для поиска и страниц. Выбор — нативные чекбоксы, подсветка через :has(:checked), отправка с формой"
+  }
+}

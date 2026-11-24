@@ -1,0 +1,24 @@
+{
+  "slug": "prompt-input",
+  "verdict": "js",
+  "client": true,
+  "jsBefore": null,
+  "jsAfter": null,
+  "dependencies": [],
+  "registryDependencies": ["@gooseui/badge", "@gooseui/use-file-drop"],
+  "files": [
+    { "path": "registry/gooseui/ui/prompt-input.tsx", "type": "registry:ui" },
+    { "path": "registry/gooseui/ui/prompt-input.client.tsx", "type": "registry:ui" }
+  ],
+  "features": ["field-sizing", "has"],
+  "breaking": [
+    "no lucide-react and no @gooseui/button: icons are inline SVG, the attach/send buttons are plain <button> elements",
+    "PromptInputAttachButton and PromptInputSubmit take React.ComponentProps<\"button\"> (no variant/size/asChild)",
+    "PromptInput (default layout) and PromptInputToolbar are server components; state lives in prompt-input.client.tsx (PromptInputForm)",
+    "new prop labels for the built-in English texts (message, attachments, remove, attach, characters, send, sending, stop, drop)"
+  ],
+  "how": {
+    "en": "Form with a field-sizing textarea; text, files, Enter-to-send and drop handled in a client island",
+    "ru": "Форма с textarea на field-sizing; текст, файлы, отправка по Enter и перетаскивание в клиентском островке"
+  }
+}
