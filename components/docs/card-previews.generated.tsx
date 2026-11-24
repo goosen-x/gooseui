@@ -20,6 +20,11 @@ export const PREVIEW_COMPONENTS: Record<string, ComponentType> = {
       ),
     { ssr: false },
   ),
+  "avatar-group": dynamic(
+    () =>
+      import("@/app/[locale]/(docs)/docs/components/avatar-group/card-preview"),
+    { ssr: false },
+  ),
   badge: dynamic(
     () => import("@/app/[locale]/(docs)/docs/components/badge/card-preview"),
     { ssr: false },
@@ -52,11 +57,25 @@ export const PREVIEW_COMPONENTS: Record<string, ComponentType> = {
       import("@/app/[locale]/(docs)/docs/components/collapsible/card-preview"),
     { ssr: false },
   ),
+  "color-picker": dynamic(
+    () =>
+      import("@/app/[locale]/(docs)/docs/components/color-picker/card-preview"),
+    { ssr: false },
+  ),
+  combobox: dynamic(
+    () => import("@/app/[locale]/(docs)/docs/components/combobox/card-preview"),
+    { ssr: false },
+  ),
   "compare-slider": dynamic(
     () =>
       import(
         "@/app/[locale]/(docs)/docs/components/compare-slider/card-preview"
       ),
+    { ssr: false },
+  ),
+  "context-menu": dynamic(
+    () =>
+      import("@/app/[locale]/(docs)/docs/components/context-menu/card-preview"),
     { ssr: false },
   ),
   "cookie-consent": dynamic(
@@ -79,6 +98,11 @@ export const PREVIEW_COMPONENTS: Record<string, ComponentType> = {
   "corner-badge": dynamic(
     () =>
       import("@/app/[locale]/(docs)/docs/components/corner-badge/card-preview"),
+    { ssr: false },
+  ),
+  "data-table": dynamic(
+    () =>
+      import("@/app/[locale]/(docs)/docs/components/data-table/card-preview"),
     { ssr: false },
   ),
   "details-accordion": dynamic(
@@ -164,6 +188,11 @@ export const PREVIEW_COMPONENTS: Record<string, ComponentType> = {
     () => import("@/app/[locale]/(docs)/docs/components/marquee/card-preview"),
     { ssr: false },
   ),
+  "masonry-grid": dynamic(
+    () =>
+      import("@/app/[locale]/(docs)/docs/components/masonry-grid/card-preview"),
+    { ssr: false },
+  ),
   "notification-prompt": dynamic(
     () =>
       import(
@@ -195,11 +224,23 @@ export const PREVIEW_COMPONENTS: Record<string, ComponentType> = {
       import("@/app/[locale]/(docs)/docs/components/phone-input/card-preview"),
     { ssr: false },
   ),
+  "pricing-table": dynamic(
+    () =>
+      import(
+        "@/app/[locale]/(docs)/docs/components/pricing-table/card-preview"
+      ),
+    { ssr: false },
+  ),
   "progress-ring": dynamic(
     () =>
       import(
         "@/app/[locale]/(docs)/docs/components/progress-ring/card-preview"
       ),
+    { ssr: false },
+  ),
+  "prompt-input": dynamic(
+    () =>
+      import("@/app/[locale]/(docs)/docs/components/prompt-input/card-preview"),
     { ssr: false },
   ),
   "quantity-slider": dynamic(
@@ -277,6 +318,10 @@ export const PREVIEW_COMPONENTS: Record<string, ComponentType> = {
       import("@/app/[locale]/(docs)/docs/components/searchbar/card-preview"),
     { ssr: false },
   ),
+  select: dynamic(
+    () => import("@/app/[locale]/(docs)/docs/components/select/card-preview"),
+    { ssr: false },
+  ),
   separator: dynamic(
     () =>
       import("@/app/[locale]/(docs)/docs/components/separator/card-preview"),
@@ -341,6 +386,11 @@ export const PREVIEW_COMPONENTS: Record<string, ComponentType> = {
   ),
   tabs: dynamic(
     () => import("@/app/[locale]/(docs)/docs/components/tabs/card-preview"),
+    { ssr: false },
+  ),
+  "tag-input": dynamic(
+    () =>
+      import("@/app/[locale]/(docs)/docs/components/tag-input/card-preview"),
     { ssr: false },
   ),
   "testimonial-rotator": dynamic(

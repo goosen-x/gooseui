@@ -1,0 +1,22 @@
+{
+  "slug": "tag-input",
+  "verdict": "js",
+  "client": true,
+  "jsBefore": null,
+  "jsAfter": null,
+  "dependencies": [],
+  "registryDependencies": ["@gooseui/badge"],
+  "files": [
+    { "path": "registry/gooseui/ui/tag-input.tsx", "type": "registry:ui" }
+  ],
+  "features": ["field-sizing", "has"],
+  "breaking": [
+    "no longer uses @gooseui/use-global-styles: field-sizing and the 8ch fallback width are Tailwind classes, no injected CSS",
+    "the JS mirror span that measured the input width without field-sizing is removed; the input starts at 8ch and flex-1 fills the row",
+    "new prop labels (max, duplicate, added, removed, remove, suggestions) for the built-in English texts"
+  ],
+  "how": {
+    "en": "Client component: tags, keyboard, paste splitting and suggestions in React state, input width via field-sizing",
+    "ru": "Клиентский компонент: теги, клавиатура, разбор вставки и подсказки в состоянии React, ширина поля через field-sizing"
+  }
+}

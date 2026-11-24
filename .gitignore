@@ -42,3 +42,6 @@ next-env.d.ts
 
 /review/shots/
 /review/results.json
+
+# Draft registry, built locally only (pnpm registry:build:drafts), never deployed
+/public/r-drafts/

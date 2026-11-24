@@ -1,0 +1,168 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "gooseui-drafts",
+  "homepage": "https://gooseui.pro",
+  "items": [
+    {
+      "name": "avatar-group",
+      "type": "registry:ui",
+      "title": "Avatar Group",
+      "description": "Avatars with initials fallback and status dots, stacked into a group with a +N bubble that fans out on hover and focus. No JavaScript.",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/gooseui/ui/avatar-group.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "color-picker",
+      "type": "registry:ui",
+      "title": "Color Picker",
+      "description": "OKLCH color picker with a lightness × chroma area, hue and opacity sliders drawn with oklch gradients, sRGB/P3 gamut hints and server-safe conversion helpers.",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/gooseui/ui/color-picker.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/gooseui/ui/color-picker.client.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "combobox",
+      "type": "registry:ui",
+      "title": "Combobox",
+      "description": "Autocomplete input with a filtered listbox in a manual popover placed by CSS anchor positioning, with single, multiple (chips) and custom-value modes.",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/gooseui/ui/combobox.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "context-menu",
+      "type": "registry:ui",
+      "title": "Context Menu",
+      "description": "Right-click, long-press and Shift+F10 menu on the Popover API, placed at the pointer with anchor positioning, with checkbox, radio and submenu items.",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/gooseui/ui/context-menu.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "data-table",
+      "type": "registry:ui",
+      "title": "Data Table",
+      "description": "Server-rendered table with sorting, search, pagination, sticky header and first column, and checkbox selection highlighted by :has(:checked).",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/gooseui/ui/data-table.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/gooseui/ui/data-table.client.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "masonry-grid",
+      "type": "registry:ui",
+      "title": "Masonry Grid",
+      "description": "Pinterest-style layout on CSS Grid Lanes with a multi-column fallback, no JavaScript.",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/gooseui/ui/masonry-grid.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "pricing-table",
+      "type": "registry:ui",
+      "title": "Pricing Table",
+      "description": "Plan cards with a monthly/yearly switch on radio inputs and :has(), no JavaScript, rows aligned across cards with subgrid.",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/gooseui/ui/pricing-table.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "prompt-input",
+      "type": "registry:ui",
+      "title": "Prompt Input",
+      "description": "Chat prompt composer with an auto-growing textarea, file attachments, a toolbar slot and a send button that turns into stop while streaming.",
+      "dependencies": [],
+      "registryDependencies": [
+        "@gooseui/badge",
+        "@gooseui/use-file-drop"
+      ],
+      "files": [
+        {
+          "path": "registry/gooseui/ui/prompt-input.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/gooseui/ui/prompt-input.client.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "select",
+      "type": "registry:ui",
+      "title": "Select",
+      "description": "Native select rendered on the server, with a fully styled picker (icons, descriptions, check mark) through appearance: base-select and an Input-styled native select elsewhere.",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/gooseui/ui/select.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/gooseui/ui/select.client.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "tag-input",
+      "type": "registry:ui",
+      "title": "Tag Input",
+      "description": "Text input that turns typed or pasted text into removable tags, with validation, suggestions and form support.",
+      "dependencies": [],
+      "registryDependencies": [
+        "@gooseui/badge"
+      ],
+      "files": [
+        {
+          "path": "registry/gooseui/ui/tag-input.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    }
+  ]
+}

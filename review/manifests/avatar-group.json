@@ -1,0 +1,28 @@
+{
+  "slug": "avatar-group",
+  "verdict": "css-only",
+  "client": false,
+  "jsBefore": null,
+  "jsAfter": null,
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/gooseui/ui/avatar-group.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "features": ["color-mix", "focus-within", "sibling-count"],
+  "breaking": [
+    "Avatar image is a CSS background layer over the initials instead of an <img>: no onError, no hydration check; no lazy loading or srcset",
+    "size reaches Avatar through --avatar-size/--avatar-font CSS variables instead of React context",
+    "name colors are color-mix of an oklch tint with --background/--foreground instead of dark: variants",
+    "new props: overflowHref, overflowLabel (AvatarGroup), statusLabels (Avatar)",
+    "onAvatarClick/onOverflowClick kept but only usable from client components",
+    "no longer uses lucide-react and @gooseui/use-global-styles"
+  ],
+  "how": {
+    "en": "Overlap, fan-out and stacking in CSS (sibling-index() with inline --i/--n fallback), image as a background over initials, no JS",
+    "ru": "Наложение, веер и порядок слоёв на CSS (sibling-index() с запасными --i/--n), фото фоном поверх инициалов, без JS"
+  }
+}
