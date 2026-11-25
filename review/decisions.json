@@ -447,6 +447,34 @@
     "mesh-gradient": {
       "status": "accepted",
       "comment": ""
+    },
+    "context-menu": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "masonry-grid": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "combobox": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "prompt-input": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "select": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "tag-input": {
+      "status": "accepted",
+      "comment": ""
+    },
+    "avatar-group": {
+      "status": "accepted",
+      "comment": ""
     }
   },
   "comment": ""

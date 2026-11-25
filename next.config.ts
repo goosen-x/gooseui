@@ -247,6 +247,7 @@ const nextConfig: NextConfig = {
       ...movedToBlocks("mega-menu", "header-mega-menu"),
       ...movedToBlocks("morphing-header", "header-morphing"),
       ...movedToBlocks("tap-coin", "tap-coin", "web3", "effects"),
+      ...movedToBlocks("pricing-table", "pricing-table", "marketing"),
     ]
   },
 

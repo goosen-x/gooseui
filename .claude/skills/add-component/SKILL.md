@@ -27,6 +27,7 @@ Item kinds:
 - Every animation has an `@media (prefers-reduced-motion: reduce)` branch.
 - Keyboard and ARIA: real roles/labels, visible focus, full keyboard operation, no focus traps without Escape.
 - `cursor: pointer` on every clickable element (buttons, links, cards, interactive blocks).
+- Every horizontally scrollable area (tables, carousels, rows of cards, "narrow container" demos) must be easy to scroll with a mouse on desktop: round arrow buttons (`Button` from the registry) on the edges of the scroll area, vertically centred, shown only when there is more content in that direction; a gradient fade over the edge that hides content (`pointer-events: none`, the arrow sits on top); a visible thin scrollbar (`scrollbar-width: thin`, `scrollbar-color` from tokens, `::-webkit-scrollbar` with a height so macOS does not hide it). Do not hijack the vertical wheel for horizontal scrolling (no `useHorizontalWheel` there): Shift+wheel and trackpads already work natively. Check it with a mouse at desktop width.
 - No new npm dependencies without a clear reason; list real ones in `dependencies`.
 - Items that use other GooseUI items import them via `@/registry/gooseui/...` and list them in `registryDependencies` as `@gooseui/{slug}`.
 - No Cyrillic in registry source, no `alert/confirm/prompt` (use `customToast` from `@/lib/toast` in demos). `scripts/check-components.mjs` flags both.
@@ -148,6 +149,7 @@ Open `_TEMPLATE.tsx` for the full blocks; do not retype them from memory.
 ## Browser support
 
 - Add a `BrowserSupport` section (top of the page, before Preview) when the component uses a modern or not-yet-Baseline API. `featureId` is a web-features id (webstatus.dev). Do not translate or invent the feature name: it comes from webstatus.dev; `name` is only an English override, identical in both languages. `description` is component-specific and goes in both dictionaries; mention any fallback there.
+- The section renders collapsed: a one-line summary (worst Baseline status, feature count, "Your browser supports everything" / "does not support: X, Y") with a "Details" toggle that opens the full table. Props are unchanged; the summary is built automatically from `features`, so keep descriptions short enough for the table, not the summary.
 - The "Your browser" column shows the visitor's real support. It works only if `registry/gooseui/lib/baseline-checks.ts` (`BASELINE_CHECKS`) has an entry for the `featureId`; otherwise the cell shows a dash. For every `featureId` you list, add a check there: `css: [property, value]`, `selector: ":has(*)"`, or `test: () => boolean`, plus a `label`. It must be a real detection (`CSS.supports`, prototype/API probe, parsed rule), never a user-agent guess; verify against MDN.
 - If a feature genuinely cannot be detected honestly, set `browserCheck: false` on that feature entry (hides the line) and say why in the PR/report.
 - Put the same ids in `features` of the review manifest.
@@ -170,7 +172,7 @@ Then in `pnpm dev` open the page and check:
 
 - `/docs/{section}/{slug}` and `/ru/docs/{section}/{slug}`: no console errors, no hydration warnings, no Cyrillic on the English page, the Russian page fully translated.
 - Light and dark theme (all colors via tokens, nothing unreadable).
-- Mobile width (about 375 px): no horizontal scroll, tables scroll inside their container, the browser-support block renders as cards.
+- Mobile width (about 375 px): no horizontal scroll, tables scroll inside their container, the browser-support summary stays tidy (wraps to two lines) and its opened table renders as cards.
 - Keyboard only: Tab order, focus ring, Enter/Space/Escape/arrows as appropriate.
 - `prefers-reduced-motion: reduce` disables motion.
 - The component appears in the catalog (`/docs/components`, `/docs/effects`) with its card preview, in the sidebar group, in search, and prev/next links work.

@@ -67,7 +67,7 @@ ${P} .op-col:is(:has(:checked),:has(~ .op-col :checked)) .op-bar{background:var(
 
 const ring = "has-[:focus-visible]:ring-[3px] has-[:focus-visible]:ring-ring/50"
 const off =
-  "has-[:disabled]:cursor-not-allowed has-[:disabled]:opacity-50 cursor-pointer"
+  "has-[:disabled]:cursor-not-allowed has-[:disabled]:opacity-50 cursor-pointer select-none"
 
 function CheckIcon({ className }: { className?: string }) {
   return (
@@ -256,7 +256,7 @@ function OptionPicker({
               htmlFor={`${id}-${i}`}
               data-t={i}
               className={cn(
-                "cursor-pointer hover:text-foreground",
+                "cursor-pointer select-none hover:text-foreground",
                 i === 0
                   ? "text-left"
                   : i === last

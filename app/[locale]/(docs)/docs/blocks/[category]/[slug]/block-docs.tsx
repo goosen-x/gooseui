@@ -957,11 +957,443 @@ export default function Page() {
 }
 
 /* -------------------------------------------------------------------------- */
+/* pricing-table                                                              */
+/* -------------------------------------------------------------------------- */
+
+const pricingEn = {
+  intro:
+    "Plan cards for a pricing page. The monthly/yearly switch is a pair of radio inputs, and CSS reads the checked one through :has() to show the matching prices, totals and links, so the table is a Server Component and ships no JavaScript. In a wide container every card spans the rows of a shared subgrid, so names, prices, buttons and feature lists line up across cards; in a narrow one the cards stack.",
+  browserSupport: "Browser Support",
+  s0: "Reads the checked period and swaps prices. Without it the switch is hidden and the default period is shown.",
+  s1: "Lines up card rows across columns. Without it cards are flex columns of their own.",
+  s2: "Stacks cards in a narrow container. Without it a 48rem media query is used.",
+  s3: "Tints the highlighted card, the badge and the savings pill.",
+  s4: "Picks a readable text color on a custom accent. Without it accentForeground is used.",
+  hint: "Switch to Yearly: prices, totals and the savings change with no script on the page.",
+  compareTitle: "Feature comparison",
+  compareText:
+    "Pass features as objects to mark missing ones and add a hint under a line. locale formats the prices, here in euros for Germany.",
+  linksTitle: "Checkout link per period and a custom accent",
+  linksText:
+    "href accepts { monthly, yearly }: both links are rendered and CSS shows the one of the selected period. accentColor takes any CSS color; contrast-color() picks the text color where supported, accentForeground covers the rest.",
+  formTitle: "Inside a form",
+  formText:
+    'Without href the plan button is a submit button with name="plan". Give the switch a name and a surrounding form receives both the plan and the period.',
+  fixedTitle: "Fixed period",
+  fixedText:
+    "billing renders one period without a switch, for example when it comes from the URL.",
+  blockProps: "PricingTable",
+  planProps: "PricingPlan",
+  rows: rows([
+    ["plans", "PricingPlan[]", "-", "Plans in display order"],
+    [
+      "defaultBilling",
+      '"monthly" | "yearly"',
+      '"monthly"',
+      "Period checked on first render",
+    ],
+    [
+      "billing",
+      '"monthly" | "yearly"',
+      "-",
+      "Fixed period: no switch, only these prices",
+    ],
+    ["name", "string", "useId()", "Name of the radio group, for forms"],
+    [
+      "yearlyDiscountLabel",
+      "ReactNode",
+      "-",
+      "Pill next to Yearly, e.g. Save 20%",
+    ],
+    [
+      "accentColor",
+      "string",
+      "var(--primary)",
+      "Color of the highlighted plan, any CSS color",
+    ],
+    [
+      "accentForeground",
+      "string",
+      "-",
+      "Text on the accent where contrast-color() is missing",
+    ],
+    ["locale", "string", '"en-US"', "Locale for Intl.NumberFormat"],
+    [
+      "labels",
+      "Partial<PricingTableLabels>",
+      "English",
+      "Texts of the switch, price lines and screen reader hints",
+    ],
+    ["className", "string", "-", "Classes for the wrapper"],
+  ]),
+  planRows: rows([
+    ["id", "string", "-", "Unique id, also the value of the submit button"],
+    ["name", "ReactNode", "-", "Plan name, an h3 inside an article"],
+    [
+      "price",
+      "{ monthly: number; yearly: number }",
+      "-",
+      "Price of one month and the total for a year",
+    ],
+    ["currency", "string", "-", "ISO 4217 code"],
+    [
+      "features",
+      "(string | { label, included, hint })[]",
+      "-",
+      "Strings, or objects with included and hint",
+    ],
+    [
+      "cta",
+      "{ label; href?: string | { monthly; yearly } }",
+      "-",
+      "Button text and a link: one, one per period, or none for a submit button",
+    ],
+    [
+      "highlighted",
+      "boolean",
+      "false",
+      "Accent border, tint and filled button",
+    ],
+    ["badge", "ReactNode", "-", "Label above the card"],
+  ]),
+  features: pairs([
+    [
+      "No JavaScript",
+      "a Server Component; the switch is native radio inputs read by :has()",
+    ],
+    [
+      "Keyboard",
+      "Tab reaches the switch, the arrow keys change the period, focus ring on the pill",
+    ],
+    [
+      "Screen readers",
+      "a fieldset with a legend, only the visible price is announced, features read as included or not included",
+    ],
+    ["Forms", "the period and the plan arrive as regular form fields"],
+    [
+      "Stable layout",
+      "rows are shared through subgrid, so prices and buttons stay level when the periods differ",
+    ],
+  ]),
+}
+
+const pricingRu: typeof pricingEn = {
+  intro:
+    "Карточки тарифов для страницы с ценами. Переключатель «месяц/год» сделан из двух радиокнопок, а CSS через :has() видит, какая выбрана, и показывает нужные цены, суммы и ссылки. Поэтому таблица остаётся серверным компонентом и не отправляет в браузер ни строчки JavaScript. В широком контейнере каждая карточка занимает строки общей subgrid-сетки, и названия, цены, кнопки и списки возможностей выстраиваются в линию; в узком карточки встают друг под другом.",
+  browserSupport: "Поддержка браузеров",
+  s0: "Узнаёт выбранный период и меняет цены. Без него переключатель скрыт, показан период по умолчанию.",
+  s1: "Выравнивает строки карточек между колонками. Без него каждая карточка просто flex-колонка.",
+  s2: "Ставит карточки в столбик в узком контейнере. Без них работает медиазапрос на 48rem.",
+  s3: "Подкрашивает выделенную карточку, бейдж и плашку скидки.",
+  s4: "Подбирает читаемый цвет текста на своём акценте. Без него берётся accentForeground.",
+  hint: "Переключите на «Год»: цены, суммы и скидка меняются, а скриптов на странице нет.",
+  compareTitle: "Сравнение возможностей",
+  compareText:
+    "Передайте возможности объектами, чтобы отметить недоступные и добавить подсказку под строкой. locale задаёт формат цен, здесь евро для Германии.",
+  linksTitle: "Своя ссылка на оплату для каждого периода и свой акцент",
+  linksText:
+    "href принимает { monthly, yearly }: на странице обе ссылки, CSS показывает ту, что подходит к выбранному периоду. accentColor принимает любой CSS-цвет; цвет текста подбирает contrast-color(), а где его нет, берётся accentForeground.",
+  formTitle: "Внутри формы",
+  formText:
+    'Без href кнопка тарифа становится кнопкой отправки с name="plan". Дайте переключателю name, и форма вокруг получит и тариф, и период.',
+  fixedTitle: "Один период",
+  fixedText:
+    "billing показывает один период без переключателя, например когда он приходит из URL.",
+  blockProps: "PricingTable",
+  planProps: "PricingPlan",
+  rows: rows([
+    ["plans", "PricingPlan[]", "-", "Тарифы в порядке показа"],
+    [
+      "defaultBilling",
+      '"monthly" | "yearly"',
+      '"monthly"',
+      "Какой период выбран при первой отрисовке",
+    ],
+    [
+      "billing",
+      '"monthly" | "yearly"',
+      "-",
+      "Фиксированный период: без переключателя, только эти цены",
+    ],
+    ["name", "string", "useId()", "name группы радиокнопок, нужен для форм"],
+    [
+      "yearlyDiscountLabel",
+      "ReactNode",
+      "-",
+      "Плашка рядом с «Год», например «−20%»",
+    ],
+    [
+      "accentColor",
+      "string",
+      "var(--primary)",
+      "Цвет выделенного тарифа, любой CSS-цвет",
+    ],
+    [
+      "accentForeground",
+      "string",
+      "-",
+      "Цвет текста на акценте, если нет contrast-color()",
+    ],
+    ["locale", "string", '"en-US"', "Локаль для Intl.NumberFormat"],
+    [
+      "labels",
+      "Partial<PricingTableLabels>",
+      "English",
+      "Тексты переключателя, строк с ценой и подсказок для скринридера",
+    ],
+    ["className", "string", "-", "Классы обёртки"],
+  ]),
+  planRows: rows([
+    ["id", "string", "-", "Уникальный id, он же value кнопки отправки"],
+    ["name", "ReactNode", "-", "Название тарифа, h3 внутри article"],
+    [
+      "price",
+      "{ monthly: number; yearly: number }",
+      "-",
+      "Цена за месяц и сумма за год",
+    ],
+    ["currency", "string", "-", "Код валюты по ISO 4217"],
+    [
+      "features",
+      "(string | { label, included, hint })[]",
+      "-",
+      "Строки или объекты с included и hint",
+    ],
+    [
+      "cta",
+      "{ label; href?: string | { monthly; yearly } }",
+      "-",
+      "Текст кнопки и ссылка: одна, своя на каждый период или никакой, тогда это кнопка отправки",
+    ],
+    [
+      "highlighted",
+      "boolean",
+      "false",
+      "Акцентная рамка, подкраска и залитая кнопка",
+    ],
+    ["badge", "ReactNode", "-", "Ярлык над карточкой"],
+  ]),
+  features: pairs([
+    [
+      "Без JavaScript",
+      "серверный компонент; переключатель — нативные радиокнопки, которые читает :has()",
+    ],
+    [
+      "Клавиатура",
+      "Tab доводит до переключателя, стрелки меняют период, у выбранной плашки кольцо фокуса",
+    ],
+    [
+      "Скринридеры",
+      "fieldset с legend, зачитывается только видимая цена, у возможностей слышно «входит» или «не входит»",
+    ],
+    ["Формы", "период и тариф уходят обычными полями формы"],
+    [
+      "Ровные строки",
+      "строки общие через subgrid, поэтому цены и кнопки стоят на одной высоте",
+    ],
+  ]),
+}
+
+const pricing: Dict<typeof pricingEn> = { en: pricingEn, ru: pricingRu }
+
+function PricingTableDocs({ locale }: { locale: Locale }) {
+  const t = pricing[locale]
+  const l = labels[locale]
+  return (
+    <>
+      <p className="text-muted-foreground">{t.intro}</p>
+
+      <BrowserSupport
+        title={t.browserSupport}
+        features={[
+          { featureId: "has", description: t.s0 },
+          { featureId: "subgrid", description: t.s1 },
+          { featureId: "container-queries", description: t.s2 },
+          { featureId: "color-mix", description: t.s3 },
+          { featureId: "contrast-color", description: t.s4 },
+        ]}
+      />
+      <p className="text-sm text-muted-foreground">{t.hint}</p>
+
+      <div className="space-y-4">
+        <h2 id="installation" className={h2}>
+          {l.installation}
+        </h2>
+        <InstallCommand packageName="@gooseui/pricing-table" />
+      </div>
+
+      <div className="space-y-4">
+        <h2 id="usage" className={h2}>
+          {l.usage}
+        </h2>
+        <CodeBlock>{`import {
+  PricingTable,
+  type PricingPlan,
+} from "@/components/blocks/marketing/pricing-table"
+
+const plans: PricingPlan[] = [
+  {
+    id: "starter",
+    name: "Starter",
+    price: { monthly: 12, yearly: 115 },
+    currency: "USD",
+    features: ["1 user", "50 invoices a month"],
+    cta: { label: "Start free trial", href: "/signup?plan=starter" },
+  },
+  {
+    id: "growth",
+    name: "Growth",
+    price: { monthly: 30, yearly: 288 },
+    currency: "USD",
+    highlighted: true,
+    badge: "Most popular",
+    features: ["5 users", "Unlimited invoices"],
+    cta: { label: "Start free trial", href: "/signup?plan=growth" },
+  },
+]
+
+export default function Pricing() {
+  return <PricingTable plans={plans} yearlyDiscountLabel="Save 20%" />
+}`}</CodeBlock>
+      </div>
+
+      <div className="space-y-4">
+        <h2 id="examples" className={h2}>
+          {l.examples}
+        </h2>
+        <div className="space-y-8">
+          <div>
+            <h3 className="mb-3 text-lg font-medium">{t.compareTitle}</h3>
+            <p className="mb-4 text-sm text-muted-foreground">
+              {t.compareText}
+            </p>
+            <CodeBlock>{`<PricingTable
+  locale="de-DE"
+  yearlyDiscountLabel="2 months free"
+  plans={[
+    {
+      id: "hobby",
+      name: "Hobby",
+      price: { monthly: 0, yearly: 0 },
+      currency: "EUR",
+      features: [
+        { label: "3 projects", included: true },
+        { label: "Custom domains", included: false },
+      ],
+      cta: { label: "Sign up free", href: "/signup" },
+    },
+    {
+      id: "pro",
+      name: "Pro",
+      price: { monthly: 19, yearly: 182.4 },
+      currency: "EUR",
+      highlighted: true,
+      features: [
+        { label: "100 GB storage", included: true, hint: "€0.02 per extra GB" },
+      ],
+      cta: { label: "Upgrade to Pro", href: "/upgrade" },
+    },
+  ]}
+/>`}</CodeBlock>
+          </div>
+          <div>
+            <h3 className="mb-3 text-lg font-medium">{t.linksTitle}</h3>
+            <p className="mb-4 text-sm text-muted-foreground">{t.linksText}</p>
+            <CodeBlock>{`<PricingTable
+  defaultBilling="yearly"
+  accentColor="oklch(0.72 0.16 160)"
+  accentForeground="black"
+  plans={[
+    {
+      id: "studio",
+      name: "Studio",
+      price: { monthly: 45, yearly: 432 },
+      currency: "USD",
+      highlighted: true,
+      badge: "Best value",
+      features: ["Shared component libraries"],
+      cta: {
+        label: "Choose Studio",
+        href: {
+          monthly: "/checkout?plan=studio&period=monthly",
+          yearly: "/checkout?plan=studio&period=yearly",
+        },
+      },
+    },
+  ]}
+/>`}</CodeBlock>
+          </div>
+          <div>
+            <h3 className="mb-3 text-lg font-medium">{t.formTitle}</h3>
+            <p className="mb-4 text-sm text-muted-foreground">{t.formText}</p>
+            <CodeBlock>{`// app/pricing/page.tsx: a Server Component
+import { redirect } from "next/navigation"
+
+async function subscribe(formData: FormData) {
+  "use server"
+  const plan = formData.get("plan") // "starter" | "growth"
+  const billing = formData.get("billing") // "monthly" | "yearly"
+  redirect(\`/checkout?plan=\${plan}&billing=\${billing}\`)
+}
+
+export default function Pricing() {
+  return (
+    <form action={subscribe}>
+      {/* no href: every CTA is <button type="submit" name="plan" value={id}> */}
+      <PricingTable name="billing" plans={plans} />
+    </form>
+  )
+}`}</CodeBlock>
+          </div>
+          <div>
+            <h3 className="mb-3 text-lg font-medium">{t.fixedTitle}</h3>
+            <p className="mb-4 text-sm text-muted-foreground">{t.fixedText}</p>
+            <CodeBlock>{`export default async function Pricing({ searchParams }) {
+  const { period } = await searchParams
+  return (
+    <PricingTable
+      plans={plans}
+      billing={period === "yearly" ? "yearly" : "monthly"}
+    />
+  )
+}`}</CodeBlock>
+          </div>
+        </div>
+      </div>
+
+      <div className="space-y-4">
+        <h2 id="props" className={h2}>
+          {l.props}
+        </h2>
+        <div className="space-y-6">
+          <PropsTable title={t.blockProps} rows={t.rows} locale={locale} />
+          <PropsTable title={t.planProps} rows={t.planRows} locale={locale} />
+        </div>
+      </div>
+
+      <div className="space-y-4">
+        <h2 id="features" className={h2}>
+          {l.features}
+        </h2>
+        <ul className="list-inside list-disc space-y-2 text-muted-foreground">
+          {t.features.map(([name, text]) => (
+            <li key={name}>
+              <strong className="text-foreground">{name}</strong>: {text}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </>
+  )
+}
+
+/* -------------------------------------------------------------------------- */
 
 const DOCS: Record<string, (props: { locale: Locale }) => ReactNode> = {
   "header-mega-menu": MegaMenuDocs,
   "header-morphing": MorphingDocs,
   "tap-coin": TapCoinDocs,
+  "pricing-table": PricingTableDocs,
 }
 
 /** Описание блока: установка, использование, примеры и пропсы. Null, если для блока его нет. */

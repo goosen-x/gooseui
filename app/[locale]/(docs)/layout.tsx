@@ -39,7 +39,7 @@ export default async function DocsLayout({
         </div>
       </SidebarInset>
       {ReviewPanel && <ReviewPanel />}
-      <ThemeCustomizerToolbar className="bottom-[calc(1rem+var(--review-panel-h,0px))]" />
+      <ThemeCustomizerToolbar className="max-lg:bottom-[calc(1rem+var(--review-panel-h,0px))]" />
       <ScrollToTopText threshold={300} className="hidden sm:flex" />
     </SidebarProvider>
   )

@@ -151,6 +151,8 @@ Every component documentation page MUST follow this structure:
 />
 ```
 
+The section is collapsed by default into a one-line summary inside a frame: the worst Baseline status among the features, the feature count, and the visitor's browser result ("Your browser supports everything" or "does not support: X, Y"), plus a "Details" toggle. Opening it (native `<details>`, works without JS) shows the full table of features. The `BrowserSupport` props are unchanged; the h2 `id="browser-support"` stays outside the toggle.
+
 Do NOT add or translate the feature name: `BrowserSupport` shows the official English name from webstatus.dev (falls back to `featureId`). An optional `name` is allowed only as an English override, identical in both languages. Add a short component-specific description to both page dictionaries. Include any important fallback in the relevant description.
 
 The "Your browser supports …" line is added automatically for every `featureId` listed in `registry/gooseui/lib/baseline-checks.ts` (`BASELINE_CHECKS`: `CSS.supports`, selector, API or rule test plus a human name). A new `featureId` without an entry gets no line: add one to the table with a real detection (checked against MDN), or leave it out if the feature cannot be detected honestly.

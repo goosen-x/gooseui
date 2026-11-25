@@ -533,6 +533,18 @@ export const blocksMetadata: BlockMetadata[] = [
     isFeatured: true,
     isComingSoon: true,
   },
+  {
+    id: "marketing-02",
+    category: "marketing",
+    name: "Pricing Table",
+    description: {
+      en: "Plan cards with a monthly/yearly switch on radio inputs, no JavaScript",
+      ru: "Карточки тарифов с переключателем «месяц/год» на радиокнопках, без JavaScript",
+    },
+    type: "file",
+    iframeHeight: 640,
+    isNew: true,
+  },
 
   // ===== E-COMMERCE =====
   {

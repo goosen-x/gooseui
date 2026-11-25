@@ -22,6 +22,30 @@ const variants = {
     "border-muted-foreground bg-muted text-muted-foreground uppercase tracking-wider font-semibold",
   experimental:
     "border-destructive bg-destructive/10 text-destructive uppercase tracking-wider font-semibold",
+  // Quiet status: no fill, no border, only a coloured dot (set the colour with `tone`)
+  status:
+    "gap-1.5 rounded-none border-0 bg-transparent px-0 py-0 text-[13px] font-normal text-foreground",
+} as const
+
+const tones = {
+  success: {
+    dot: "bg-[color-mix(in_oklab,var(--success)_65%,white)] dark:bg-success",
+    text: "",
+  },
+  info: {
+    dot: "bg-[color-mix(in_oklab,var(--info)_65%,white)] dark:bg-info",
+    text: "",
+  },
+  warning: {
+    dot: "bg-[color-mix(in_oklab,var(--warning)_65%,white)] dark:bg-warning",
+    text: "",
+  },
+  muted: { dot: "bg-muted-foreground/40", text: "text-muted-foreground" },
+  // The one accent: the text is red too, darkened in light theme for contrast
+  danger: {
+    dot: "bg-destructive",
+    text: "font-medium text-[color-mix(in_oklab,var(--destructive)_85%,black)] dark:text-destructive",
+  },
 } as const
 
 const sizes = {
@@ -36,6 +60,8 @@ const linkStyles =
 export type BadgeProps = React.ComponentProps<"span"> & {
   variant?: keyof typeof variants
   size?: keyof typeof sizes
+  /** Colour of the dot. With `variant="status"` it also sets the text style. Needs `dot` */
+  tone?: keyof typeof tones
   /** Status dot before the text. `"pulse"` adds a pulsing ring (off under reduced motion) */
   dot?: boolean | "pulse"
   /** Render the only child (`<a>`, `<button>`) with badge styles. Dot is not added in this mode */
@@ -47,12 +73,14 @@ export function Badge({
   variant = "default",
   size = "default",
   dot = false,
+  tone,
   asChild = false,
   children,
   ...props
 }: BadgeProps) {
   const Comp = asChild ? Slot : "span"
   const interactive = asChild
+  const toneStyle = tone ? tones[tone] : undefined
   return (
     <Comp
       data-slot="badge"
@@ -60,6 +88,7 @@ export function Badge({
         "inline-flex w-fit shrink-0 items-center justify-center gap-1 whitespace-nowrap rounded-full border font-medium [&>svg]:shrink-0 [&>svg]:pointer-events-none",
         sizes[size],
         variants[variant],
+        variant === "status" && toneStyle?.text,
         interactive && linkStyles,
         className,
       )}
@@ -72,9 +101,19 @@ export function Badge({
             className="relative inline-flex size-1.5 shrink-0"
           >
             {dot === "pulse" && (
-              <span className="absolute inset-0 animate-ping rounded-full bg-current opacity-60 motion-reduce:animate-none" />
+              <span
+                className={cn(
+                  "absolute inset-0 animate-ping rounded-full opacity-60 motion-reduce:animate-none",
+                  toneStyle?.dot ?? "bg-current",
+                )}
+              />
             )}
-            <span className="relative size-1.5 rounded-full bg-current" />
+            <span
+              className={cn(
+                "relative size-1.5 rounded-full",
+                toneStyle?.dot ?? "bg-current",
+              )}
+            />
           </span>
           {children}
         </>

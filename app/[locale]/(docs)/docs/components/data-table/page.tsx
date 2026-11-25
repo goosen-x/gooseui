@@ -7,6 +7,7 @@ import { InstallCommand } from "@/components/docs/install-command"
 import type { Dict } from "@/i18n/dict"
 import type { Locale } from "@/i18n/routing"
 import { Badge } from "@/registry/gooseui/ui/badge"
+import { Button } from "@/registry/gooseui/ui/button"
 import {
   DataTable,
   type DataTableColumn,
@@ -32,6 +33,8 @@ const en = {
   supportScripting:
     "Hides the pager, search and select-all when JavaScript is off, and shows every row instead of the first page.",
   supportColorMix: "Mixes the zebra, hover and selection tints.",
+  supportSelect:
+    "Styles the open list of the rows-per-page select; other browsers keep the native list.",
   preview: "Preview",
   previewHint:
     "Sort by any header, search by client or status, select a few rows: the toolbar appears and counts them.",
@@ -44,9 +47,9 @@ const en = {
   callbackTitle: "Selection callback and loading",
   callbackText:
     "Rendered from a client component, the table accepts onSelectionChange, onSortingChange and onPageChange. Here the selection sums the amounts, and the button toggles the skeleton rows.",
-  narrowTitle: "Narrow container",
-  narrowText:
-    "Scroll sideways: the checkbox and invoice columns stay pinned, and a shadow appears on their edge.",
+  wideTitle: "Wide table",
+  wideText:
+    "Twelve columns, far wider than the container. The checkbox and invoice columns are pinned on the left, the actions column on the right (stickyLastColumn). A fade and a round arrow button appear on the side that still has hidden columns, and each disappears at its end. Scroll with the arrows, the scrollbar, Shift + wheel, a swipe, or ← and → when the table is focused.",
   emptyTitle: "Empty and loading states",
   emptyText:
     "emptyState is shown when data is empty, noMatchState when the search finds nothing, loading renders skeleton rows.",
@@ -76,6 +79,9 @@ const en = {
   pNoMatch: "Content when the search finds nothing",
   pSticky: "Pin the first column and the checkboxes",
   pStriped: "Zebra rows",
+  pStickyLast: "Pin the last column (row actions) to the right edge",
+  pScrollButtons:
+    "Round arrow buttons on the edges of a table wider than its container; touch screens swipe instead",
   pMaxHeight: "Height of the scroll area, so the header sticks inside",
   pLabels: "Texts for screen readers, the search and the pager",
   pCallbacks: "Client only: selection, sorting and page callbacks",
@@ -117,6 +123,14 @@ const en = {
       "Sticky header and first column",
       "cells keep an opaque background so nothing shows through",
     ],
+    [
+      "Scroll arrows and edge fades",
+      "a wide table gets round arrow buttons and a fade on the sides that still hide columns; each goes away at its end, on touch screens swipe instead, and a table that fits shows none of it",
+    ],
+    [
+      "Pinned actions column",
+      "stickyLastColumn keeps the last column on the right edge with a soft shadow while columns scroll under it",
+    ],
     ["Reduced motion", "no background transitions and no skeleton pulse"],
   ],
   table: {
@@ -124,9 +138,26 @@ const en = {
     number: "Invoice",
     client: "Client",
     status: "Status",
-    issued: "Issued",
-    due: "Due",
+    due: "Due date",
     amount: "Amount",
+    wide: {
+      issued: "Issued",
+      vat: "VAT",
+      currency: "Currency",
+      method: "Payment method",
+      manager: "Manager",
+      project: "Project",
+      actions: "Actions",
+      open: "Open",
+      methods: ["Bank transfer", "Card", "Invoice", "PayPal"],
+      managers: ["Alice Moore", "Ben Carter", "Chloe Reed", "Dan Wells"],
+      projects: [
+        "Website redesign",
+        "Mobile app",
+        "Brand identity",
+        "Analytics",
+      ],
+    },
     statuses: {
       paid: "Paid",
       pending: "Pending",
@@ -153,6 +184,8 @@ const en = {
       range: "{from}–{to} of {total}",
       previousPage: "Previous page",
       nextPage: "Next page",
+      scrollLeft: "Scroll left",
+      scrollRight: "Scroll right",
       loading: "Loading rows…",
     },
     clients: [
@@ -185,6 +218,8 @@ const content: Dict<typeof en> = {
     supportScripting:
       "Прячет пагинацию, поиск и «выбрать все», когда JavaScript выключен, и показывает все строки вместо первой страницы.",
     supportColorMix: "Смешивает оттенки зебры, наведения и выбора.",
+    supportSelect:
+      "Оформляет открытый список выбора строк на странице; остальные браузеры показывают системный.",
     preview: "Превью",
     previewHint:
       "Отсортируйте по любому заголовку, поищите по клиенту или статусу, отметьте пару строк: появится панель действий со счётчиком.",
@@ -197,9 +232,9 @@ const content: Dict<typeof en> = {
     callbackTitle: "Колбэк выбора и загрузка",
     callbackText:
       "Если таблицу рендерит клиентский компонент, ей можно передать onSelectionChange, onSortingChange и onPageChange. Здесь по выбранным строкам считается сумма, а кнопка включает строки-скелетоны.",
-    narrowTitle: "Узкий контейнер",
-    narrowText:
-      "Прокрутите вбок: колонки с чекбоксами и номерами счетов остаются на месте, а на их краю появляется тень.",
+    wideTitle: "Широкая таблица",
+    wideText:
+      "Двенадцать колонок, заметно шире контейнера. Чекбокс и номер счёта закреплены слева, колонка действий справа (stickyLastColumn). С той стороны, где ещё есть скрытые колонки, появляются затемнение и круглая стрелка, а в конце прокрутки они пропадают. Листайте стрелками, полосой прокрутки, Shift + колесо, свайпом или клавишами ← и → на сфокусированной таблице.",
     emptyTitle: "Пустое состояние и загрузка",
     emptyText:
       "emptyState показывается, когда data пустой, noMatchState — когда поиск ничего не нашёл, loading рисует строки-скелетоны.",
@@ -229,6 +264,9 @@ const content: Dict<typeof en> = {
     pNoMatch: "Что показать, если поиск ничего не нашёл",
     pSticky: "Закрепить первую колонку и чекбоксы",
     pStriped: "Строки через одну с фоном",
+    pStickyLast: "Закрепить последнюю колонку (действия) у правого края",
+    pScrollButtons:
+      "Круглые стрелки по краям таблицы, которая шире контейнера; на сенсорных экранах листают свайпом",
     pMaxHeight: "Высота области прокрутки, чтобы шапка липла внутри",
     pLabels: "Тексты для скринридеров, поиска и пагинации",
     pCallbacks: "Только на клиенте: колбэки выбора, сортировки и страницы",
@@ -270,6 +308,14 @@ const content: Dict<typeof en> = {
         "Липкая шапка и первая колонка",
         "у ячеек непрозрачный фон, под ними ничего не просвечивает",
       ],
+      [
+        "Стрелки и затемнение у краёв",
+        "у широкой таблицы с той стороны, где ещё есть скрытые колонки, появляются круглая стрелка и затемнение; в конце прокрутки они пропадают, на сенсорных экранах листают свайпом, а если всё помещается, их нет",
+      ],
+      [
+        "Закреплённая колонка действий",
+        "stickyLastColumn держит последнюю колонку у правого края с мягкой тенью, пока остальные колонки уходят под неё",
+      ],
       ["Меньше движения", "без переходов фона и без пульсации скелетонов"],
     ],
     table: {
@@ -277,9 +323,31 @@ const content: Dict<typeof en> = {
       number: "Счёт",
       client: "Клиент",
       status: "Статус",
-      issued: "Выставлен",
-      due: "Оплатить до",
+      due: "Срок оплаты",
       amount: "Сумма",
+      wide: {
+        issued: "Выставлен",
+        vat: "НДС",
+        currency: "Валюта",
+        method: "Способ оплаты",
+        manager: "Менеджер",
+        project: "Проект",
+        actions: "Действия",
+        open: "Открыть",
+        methods: ["Банковский перевод", "Карта", "По счёту", "СБП"],
+        managers: [
+          "Анна Морозова",
+          "Борис Карпов",
+          "Вера Рыжова",
+          "Денис Уваров",
+        ],
+        projects: [
+          "Редизайн сайта",
+          "Мобильное приложение",
+          "Фирменный стиль",
+          "Аналитика",
+        ],
+      },
       statuses: {
         paid: "Оплачен",
         pending: "Ждёт оплаты",
@@ -306,6 +374,8 @@ const content: Dict<typeof en> = {
         range: "{from}–{to} из {total}",
         previousPage: "Предыдущая страница",
         nextPage: "Следующая страница",
+        scrollLeft: "Прокрутить влево",
+        scrollRight: "Прокрутить вправо",
         loading: "Загружаем строки…",
       },
       clients: [
@@ -355,31 +425,47 @@ function makeInvoices(t: T): DemoInvoice[] {
   })
 }
 
-const statusBadge = {
+// Amber for "waiting": a pending payment is a pause, not information; red stays
+// reserved for the single overdue state
+const statusTone = {
   paid: "success",
-  pending: "info",
-  overdue: "destructive",
-  draft: "neutral",
+  pending: "warning",
+  overdue: "danger",
+  draft: "muted",
 } as const
 
-function makeColumns(t: T): DataTableColumn<DemoInvoice>[] {
+function makeColumns(t: T, wide = false): DataTableColumn<DemoInvoice>[] {
   const money = new Intl.NumberFormat(t.table.locale, {
     style: "currency",
     currency: t.table.currency,
+    maximumFractionDigits: 0,
   })
-  const day = new Intl.DateTimeFormat(t.table.locale, {
+  const thisYear = new Date().getUTCFullYear()
+  const dayOnly = new Intl.DateTimeFormat(t.table.locale, {
+    month: "short",
+    day: "numeric",
+    timeZone: "UTC",
+  })
+  const dayYear = new Intl.DateTimeFormat(t.table.locale, {
     month: "short",
     day: "numeric",
     year: "numeric",
     timeZone: "UTC",
   })
-  return [
+  // Current year without the year; other years with it ("16 нояб. 2025")
+  const day = (d: Date) =>
+    d.getUTCFullYear() === thisYear
+      ? dayOnly.format(d)
+      : dayYear.format(d).replace(/\s?г\.$/, "")
+  const base: DataTableColumn<DemoInvoice>[] = [
     {
       id: "number",
       header: t.table.number,
       accessor: (r) => r.number,
       sortable: true,
-      width: "8rem",
+      numeric: true,
+      align: "left",
+      width: "6rem",
     },
     {
       id: "client",
@@ -387,9 +473,13 @@ function makeColumns(t: T): DataTableColumn<DemoInvoice>[] {
       accessor: (r) => r.client,
       sortable: true,
       cell: (r) => (
-        <div className="leading-tight">
-          <div className="font-medium text-foreground">{r.client}</div>
-          <div className="text-xs text-muted-foreground">{r.email}</div>
+        <div className="max-w-36 leading-tight">
+          <div className="truncate text-sm font-medium text-foreground">
+            {r.client}
+          </div>
+          <div className="truncate text-xs text-muted-foreground">
+            {r.email}
+          </div>
         </div>
       ),
     },
@@ -399,19 +489,10 @@ function makeColumns(t: T): DataTableColumn<DemoInvoice>[] {
       accessor: (r) => t.table.statuses[r.status],
       sortable: true,
       cell: (r) => (
-        <Badge variant={statusBadge[r.status]}>
+        <Badge variant="status" dot tone={statusTone[r.status]}>
           {t.table.statuses[r.status]}
         </Badge>
       ),
-    },
-    {
-      id: "issued",
-      header: t.table.issued,
-      accessor: (r) => r.issued,
-      sortable: true,
-      numeric: true,
-      align: "left",
-      cell: (r) => day.format(r.issued),
     },
     {
       id: "due",
@@ -420,7 +501,7 @@ function makeColumns(t: T): DataTableColumn<DemoInvoice>[] {
       sortable: true,
       numeric: true,
       align: "left",
-      cell: (r) => day.format(r.due),
+      cell: (r) => day(r.due),
     },
     {
       id: "amount",
@@ -429,6 +510,73 @@ function makeColumns(t: T): DataTableColumn<DemoInvoice>[] {
       sortable: true,
       numeric: true,
       cell: (r) => money.format(r.amount),
+    },
+  ]
+  if (!wide) return base
+  const w = t.table.wide
+  const seed = (r: DemoInvoice) => Number(r.number.slice(-4))
+  const text = (
+    id: string,
+    header: string,
+    pick: (r: DemoInvoice) => string,
+  ): DataTableColumn<DemoInvoice> => ({
+    id,
+    header,
+    accessor: pick,
+    sortable: true,
+  })
+  const [number, client, status, due, amount] = [
+    base[0],
+    base[1],
+    base[2],
+    base[3],
+    base[4],
+  ]
+  return [
+    number,
+    client,
+    status,
+    {
+      id: "issued",
+      header: w.issued,
+      accessor: (r) => r.issued,
+      sortable: true,
+      numeric: true,
+      align: "left",
+      cell: (r) => day(r.issued),
+    },
+    due,
+    amount,
+    {
+      id: "vat",
+      header: w.vat,
+      accessor: (r) => r.amount * 0.2,
+      sortable: true,
+      numeric: true,
+      cell: (r) => money.format(r.amount * 0.2),
+    },
+    text("currency", w.currency, () => t.table.currency),
+    text("method", w.method, (r) => w.methods[seed(r) % w.methods.length]),
+    text("manager", w.manager, (r) => w.managers[seed(r) % w.managers.length]),
+    text(
+      "project",
+      w.project,
+      (r) => w.projects[(seed(r) * 3) % w.projects.length],
+    ),
+    {
+      id: "actions",
+      header: w.actions,
+      accessor: () => "",
+      align: "right",
+      cell: (r) => (
+        <Button
+          size="sm"
+          variant="outline"
+          aria-label={`${w.open} ${r.number}`}
+        >
+          {w.open}
+        </Button>
+      ),
     },
   ]
 }
@@ -448,6 +596,7 @@ export default async function DataTablePage({ params }: Props) {
   const t = content[locale as Locale]
   const invoices = makeInvoices(t)
   const columns = makeColumns(t)
+  const wideColumns = makeColumns(t, true)
 
   const toc = [
     { id: "browser-support", title: t.browserSupport, level: 2 },
@@ -484,6 +633,8 @@ export default async function DataTablePage({ params }: Props) {
     ["noMatchState", "ReactNode", '"No matching rows."', t.pNoMatch],
     ["stickyFirstColumn", "boolean", "true", t.pSticky],
     ["striped", "boolean", "false", t.pStriped],
+    ["stickyLastColumn", "boolean", "false", t.pStickyLast],
+    ["scrollButtons", "boolean", "true", t.pScrollButtons],
     ["maxHeight", "number | string", "-", t.pMaxHeight],
     ["labels", "Partial<DataTableLabels>", "English", t.pLabels],
     [
@@ -581,6 +732,10 @@ export default async function DataTablePage({ params }: Props) {
             },
             { featureId: "scripting", description: t.supportScripting },
             { featureId: "color-mix", description: t.supportColorMix },
+            {
+              featureId: "customizable-select",
+              description: t.supportSelect,
+            },
           ]}
         />
 
@@ -598,11 +753,10 @@ export default async function DataTablePage({ params }: Props) {
               selectable
               searchable
               toolbar={bulkToolbar}
-              defaultSorting={{ columnId: "issued", direction: "desc" }}
+              defaultSorting={{ columnId: "due", direction: "desc" }}
               pageSize={8}
               pageSizeOptions={[8, 16, 32]}
               maxHeight="26rem"
-              striped
               noMatchState={t.table.noMatch}
               labels={t.table.labels}
             />
@@ -622,15 +776,33 @@ export default async function DataTablePage({ params }: Props) {
           </h2>
           <CodeBlock>{`import { DataTable, type DataTableColumn } from "@/components/ui/data-table"
 
-type Invoice = { number: string; client: string; amount: number; issued: Date }
+type Invoice = {
+  number: string; client: string; amount: number; due: Date
+  status: "paid" | "pending" | "overdue" | "draft"
+}
 
 const money = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" })
 
+const year = new Date().getUTCFullYear()
+const formatDay = (d: Date) =>
+  new Intl.DateTimeFormat("en-US", {
+    month: "short", day: "numeric",
+    year: d.getUTCFullYear() === year ? undefined : "numeric",
+  }).format(d)
+
+const tones = { paid: "success", pending: "warning", overdue: "danger", draft: "muted" } as const
+
 const columns: DataTableColumn<Invoice>[] = [
-  { id: "number", header: "Invoice", accessor: (r) => r.number, sortable: true },
+  { id: "number", header: "Invoice", accessor: (r) => r.number, sortable: true,
+    numeric: true, align: "left" },
   { id: "client", header: "Client", accessor: (r) => r.client, sortable: true },
-  { id: "issued", header: "Issued", accessor: (r) => r.issued, sortable: true,
-    cell: (r) => r.issued.toLocaleDateString("en-US") },
+  { id: "status", header: "Status", accessor: (r) => r.status, sortable: true,
+    // Quiet status: a coloured dot plus plain text, red only for the one that needs action
+    cell: (r) => <Badge variant="status" dot tone={tones[r.status]}>{r.status}</Badge> },
+  { id: "due", header: "Due date", accessor: (r) => r.due, sortable: true,
+    numeric: true, align: "left",
+    // "Nov 16" this year, "Nov 16, 2025" otherwise
+    cell: (r) => formatDay(r.due) },
   { id: "amount", header: "Amount", accessor: (r) => r.amount, sortable: true,
     numeric: true, cell: (r) => money.format(r.amount) },
 ]
@@ -644,7 +816,7 @@ export default async function Invoices() {
       columns={columns}
       data={invoices}
       getRowId={(r) => r.number}
-      defaultSorting={{ columnId: "issued", direction: "desc" }}
+      defaultSorting={{ columnId: "due", direction: "desc" }}
       searchable
       pageSize={10}
     />
@@ -711,32 +883,29 @@ const total = invoices
             </div>
 
             <div>
-              <h3 className="mb-3 text-lg font-medium">{t.narrowTitle}</h3>
-              <p className="mb-4 text-sm text-muted-foreground">
-                {t.narrowText}
-              </p>
+              <h3 className="mb-3 text-lg font-medium">{t.wideTitle}</h3>
+              <p className="mb-4 text-sm text-muted-foreground">{t.wideText}</p>
               <div className="rounded-lg bg-muted/30 px-4 py-8">
-                <div className="max-w-md">
-                  <DataTable
-                    caption={t.table.caption}
-                    columns={columns}
-                    data={invoices.slice(0, 12)}
-                    getRowId={(r) => r.number}
-                    selectable
-                    selectName="narrow"
-                    maxHeight="20rem"
-                    tableClassName="min-w-[48rem]"
-                    labels={t.table.labels}
-                  />
-                </div>
+                <DataTable
+                  caption={t.table.caption}
+                  columns={wideColumns}
+                  data={invoices.slice(0, 12)}
+                  getRowId={(r) => r.number}
+                  selectable
+                  stickyLastColumn
+                  selectName="wide"
+                  maxHeight="20rem"
+                  labels={t.table.labels}
+                />
               </div>
-              <CodeBlock className="mt-4">{`<DataTable
+              <CodeBlock className="mt-4">{`// 12 columns; the last one is the "Actions" column
+<DataTable
   selectable
+  stickyLastColumn
   columns={columns}
   data={invoices}
   getRowId={(r) => r.number}
   maxHeight="20rem"
-  tableClassName="min-w-[48rem]"
 />`}</CodeBlock>
             </div>
 
@@ -756,7 +925,7 @@ const total = invoices
                 />
                 <DataTable
                   caption={t.table.caption}
-                  columns={columns.filter((c) => c.id !== "due")}
+                  columns={columns.filter((c) => c.id !== "status")}
                   data={invoices.slice(0, 3)}
                   getRowId={(r) => r.number}
                   loading

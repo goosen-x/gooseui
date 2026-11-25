@@ -7,6 +7,7 @@
 
 import type { ComponentType } from "react"
 import { HeaderMorphingDemo } from "@/components/blocks/block-demos"
+import { PricingTableDemo } from "@/components/blocks/pricing-table-demo"
 // ===== BRANDS =====
 import {
   BrandsCarousel,
@@ -47,6 +48,9 @@ export const blocksComponents: Record<string, ComponentType> = {
 
   // Web3
   "web3-04": TapToEarn,
+
+  // Marketing
+  "marketing-02": PricingTableDemo,
 
   // Footers
   "footer-01": FooterSimple,

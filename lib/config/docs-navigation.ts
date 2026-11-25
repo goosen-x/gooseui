@@ -109,7 +109,6 @@ import {
 } from "lucide-react"
 import { type Localized, pick } from "@/i18n/dict"
 import { BLOCK_CATEGORIES } from "@/lib/config/blocks-categories"
-import { BLOCKS_ENABLED } from "@/lib/config/features"
 
 /** Group of nav items inside a section (sidebar subheadings, catalog sections) */
 export interface NavGroup<Id extends string = string> {
@@ -826,28 +825,6 @@ const rawNavigation: NavSection[] = [
         ],
       },
       {
-        slug: "color-picker",
-        title: "Color Picker",
-        href: "/docs/components/color-picker",
-        description: {
-          en: "OKLCH color picker with gamut hints",
-          ru: "Выбор цвета в OKLCH с подсказками об охвате",
-        },
-        category: "Inputs",
-        icon: Palette,
-        isNew: true,
-        keywords: [
-          "color",
-          "picker",
-          "oklch",
-          "hex",
-          "p3",
-          "swatch",
-          "цвет",
-          "палитра",
-        ],
-      },
-      {
         slug: "combobox",
         title: "Combobox",
         href: "/docs/components/combobox",
@@ -930,28 +907,6 @@ const rawNavigation: NavSection[] = [
           "columns",
           "gallery",
           "layout",
-        ],
-      },
-      {
-        slug: "pricing-table",
-        title: "Pricing Table",
-        href: "/docs/components/pricing-table",
-        description: {
-          en: "Plan cards with a monthly/yearly switch on radio inputs, no JavaScript",
-          ru: "Карточки тарифов с переключателем «месяц/год» на радиокнопках, без JavaScript",
-        },
-        category: "Marketing",
-        icon: BadgePercent,
-        isNew: true,
-        keywords: [
-          "pricing",
-          "plans",
-          "tiers",
-          "subscription",
-          "billing",
-          "monthly",
-          "yearly",
-          "saas",
         ],
       },
       {
@@ -2204,42 +2159,21 @@ const rawNavigation: NavSection[] = [
       },
     ],
   },
-  {
-    title: { en: "Blocks", ru: "Блоки" },
-    slug: "blocks",
-    href: "/docs/blocks",
-    items: [
-      {
-        slug: "blocks",
-        title: "Blocks Overview",
-        href: "/docs/blocks",
-        description: {
-          en: "Ready-to-use component blocks",
-          ru: "Готовые блоки из компонентов",
-        },
-        isDraft: true,
-        keywords: ["blocks", "templates", "examples"],
-      },
-    ],
-  },
 ]
 
 /**
  * Main documentation navigation structure (sorted)
  */
-export const docsNavigation: NavSection[] = rawNavigation
-  .filter((section) => BLOCKS_ENABLED || section.slug !== "blocks")
-  .map((section) => ({
-    ...section,
-    items: sortNavItems(section.items).map((item) => {
-      if (!["components", "effects", "hooks"].includes(section.slug))
-        return item
-      const status =
-        (decisions.items as Record<string, { status: ReviewStatus }>)[item.slug]
-          ?.status || ""
-      return { ...item, reviewStatus: status, isDraft: status !== "accepted" }
-    }),
-  }))
+export const docsNavigation: NavSection[] = rawNavigation.map((section) => ({
+  ...section,
+  items: sortNavItems(section.items).map((item) => {
+    if (!["components", "effects", "hooks"].includes(section.slug)) return item
+    const status =
+      (decisions.items as Record<string, { status: ReviewStatus }>)[item.slug]
+        ?.status || ""
+    return { ...item, reviewStatus: status, isDraft: status !== "accepted" }
+  }),
+}))
 
 /**
  * Get all navigation items flattened

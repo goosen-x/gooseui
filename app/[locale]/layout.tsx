@@ -53,7 +53,7 @@ export async function generateMetadata({
     metadataBase: new URL(siteConfig.url),
     icons: {
       icon: [
-        { url: "/favicon/favicon.svg", type: "image/svg+xml" },
+        { url: "/favicon/favicon-color.svg", type: "image/svg+xml" },
         { url: "/favicon/favicon-32.png", sizes: "32x32", type: "image/png" },
         {
           url: "/favicon/favicon-96x96.png",

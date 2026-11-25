@@ -210,6 +210,17 @@ export const BLOCK_ITEMS: BlockItem[] = [
     category: "marketing",
     isComingSoon: true,
   },
+  {
+    slug: "pricing-table",
+    name: "Pricing Table",
+    description: {
+      en: "Plan cards with a monthly/yearly switch on radio inputs, no JavaScript",
+      ru: "Карточки тарифов с переключателем «месяц/год» на радиокнопках, без JavaScript",
+    },
+    category: "marketing",
+    isNew: true,
+    blockId: "marketing-02",
+  },
 
   // E-commerce blocks
   {

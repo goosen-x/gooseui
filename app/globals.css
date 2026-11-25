@@ -235,6 +235,19 @@
       transparent;
   }
 
+  /* Controls are not text: repeated clicks must not select their labels */
+  button,
+  [role="button"],
+  [role="tab"],
+  [role="radio"],
+  [role="switch"],
+  summary,
+  label:has(> input[type="radio"]),
+  label:has(> input[type="checkbox"]) {
+    -webkit-user-select: none;
+    user-select: none;
+  }
+
   /* Text selection styling */
   ::selection {
     background-color: oklch(from var(--primary) l c h / 35%);

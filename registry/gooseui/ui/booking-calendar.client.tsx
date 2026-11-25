@@ -23,6 +23,7 @@ export function BookingCalendarSubmit({
   const ref = React.useRef<HTMLButtonElement>(null)
   const [error, setError] = React.useState(false)
   const [pending, startTransition] = React.useTransition()
+  const busy = React.useRef(false)
   const onDateChangeRef = React.useRef(onDateChange)
   onDateChangeRef.current = onDateChange
 
@@ -52,7 +53,8 @@ export function BookingCalendarSubmit({
     event.preventDefault()
     const date = checked("data-day")?.value
     const time = checked("data-time")
-    if (!date || !time) return
+    if (!date || !time || busy.current) return
+    busy.current = true
     setError(false)
     startTransition(async () => {
       try {
@@ -60,6 +62,8 @@ export function BookingCalendarSubmit({
         time.checked = false
       } catch {
         setError(true)
+      } finally {
+        busy.current = false
       }
     })
   }

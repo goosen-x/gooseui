@@ -25,6 +25,7 @@ export function getBlockFilePath(id: string): string {
     "header-05": "headers/header-mega-menu.tsx",
     "header-11": "headers/header-morphing.tsx",
     "web3-04": "web3/tap-coin.tsx",
+    "marketing-02": "marketing/pricing-table.tsx",
     "footer-01": "footers/footer-simple.tsx",
     "footer-02": "footers/footer-columns.tsx",
     "footer-03": "footers/footer-newsletter.tsx",

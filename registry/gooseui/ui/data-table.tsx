@@ -1,9 +1,11 @@
 import * as React from "react"
 import { cn } from "@/lib/utils"
+import { Button } from "@/registry/gooseui/ui/button"
 import {
   DataTableController,
   type DataTableSorting,
 } from "@/registry/gooseui/ui/data-table.client"
+import { Select, SelectOption } from "@/registry/gooseui/ui/select"
 
 export type {
   DataTableSortDirection,
@@ -40,6 +42,8 @@ export type DataTableLabels = {
   range: string
   previousPage: string
   nextPage: string
+  scrollLeft: string
+  scrollRight: string
   loading: string
 }
 
@@ -92,6 +96,10 @@ export type DataTableProps<T> = Omit<
   stickyFirstColumn?: boolean
   /** Alternate row backgrounds */
   striped?: boolean
+  /** Pin the last column to the right edge (e.g. row actions) while scrolling sideways. Default false */
+  stickyLastColumn?: boolean
+  /** Round arrow buttons on the edges of a table wider than its container; each shows only when there is something to scroll to, and not on touch screens. Default true */
+  scrollButtons?: boolean
   /** Height limit of the scroll area; needed for the sticky header to stick inside the table */
   maxHeight?: number | string
   tableClassName?: string
@@ -115,6 +123,8 @@ const defaultLabels: DataTableLabels = {
   range: "{from}–{to} of {total}",
   previousPage: "Previous page",
   nextPage: "Next page",
+  scrollLeft: "Scroll left",
+  scrollRight: "Scroll right",
   loading: "Loading rows…",
 }
 
@@ -130,20 +140,45 @@ const defaultLabels: DataTableLabels = {
 const css = `
 [data-slot="data-table"] {
   --dt-bg: var(--card);
-  --dt-head-bg: color-mix(in oklch, var(--muted) 70%, var(--card));
+  --dt-head-bg: color-mix(in oklch, var(--muted) 40%, var(--card));
+  --dt-line: color-mix(in oklch, var(--border) 60%, transparent);
   --dt-select-w: 2.75rem;
 }
 [data-slot="data-table-table"] { border-collapse: separate; border-spacing: 0; }
 [data-slot="data-table-table"] th,
 [data-slot="data-table-table"] td {
-  border-bottom: 1px solid var(--border);
+  box-shadow: inset 0 -1px 0 var(--dt-line);
 }
-[data-slot="data-table-table"] tbody tr:last-child > * { border-bottom: 0; }
+[data-slot="data-table-table"] thead th { box-shadow: inset 0 -1px 0 var(--border); }
+[data-slot="data-table-table"] tbody tr:last-child > * { box-shadow: none; }
 [data-slot="data-table-table"] thead th {
   position: sticky;
   top: 0;
   z-index: 2;
   background: var(--dt-head-bg);
+}
+
+/* A thin scrollbar that stays visible (macOS hides overlay ones): WebKit and
+   Chrome get a fixed-size ::-webkit-scrollbar, Firefox the standard properties */
+/* A page-level scrollbar-color is inherited and makes Chrome ignore ::-webkit-scrollbar
+   (macOS then falls back to hidden overlay bars), so reset it on the scroll area */
+[data-slot="data-table-scroll"] { scrollbar-color: auto; scrollbar-width: auto; }
+[data-slot="data-table-scroll"]::-webkit-scrollbar { width: 10px; height: 10px; }
+[data-slot="data-table-scroll"]::-webkit-scrollbar-track,
+[data-slot="data-table-scroll"]::-webkit-scrollbar-corner { background: transparent; }
+[data-slot="data-table-scroll"]::-webkit-scrollbar-thumb {
+  border: 2px solid transparent;
+  border-radius: 9999px;
+  background: color-mix(in oklch, var(--muted-foreground) 45%, transparent) padding-box;
+}
+[data-slot="data-table-scroll"]::-webkit-scrollbar-thumb:hover {
+  background: color-mix(in oklch, var(--muted-foreground) 70%, transparent) padding-box;
+}
+@supports not selector(::-webkit-scrollbar) {
+  [data-slot="data-table-scroll"] {
+    scrollbar-width: thin;
+    scrollbar-color: color-mix(in oklch, var(--muted-foreground) 45%, transparent) transparent;
+  }
 }
 
 [data-filtered-out] { display: none; }
@@ -173,20 +208,69 @@ const css = `
     --dt-row-bg: color-mix(in oklch, var(--muted) 45%, var(--dt-bg));
   }
   [data-dt-ready] [data-slot="data-table-table"] tbody tr:nth-last-child(1 of :not([hidden], [data-filtered-out], [data-page-hidden])) > * {
-    border-bottom: 0;
+    box-shadow: none;
   }
 }
 [data-slot="data-table-row"]:hover {
-  --dt-row-bg: color-mix(in oklch, var(--muted) 80%, var(--dt-bg));
+  --dt-row-bg: color-mix(in oklch, var(--muted) 40%, var(--dt-bg));
 }
 [data-slot="data-table-row"]:has(input[data-row-select]:checked) {
-  --dt-row-bg: color-mix(in oklch, var(--primary) 9%, var(--dt-bg));
+  --dt-row-bg: var(--muted);
 }
 [data-slot="data-table-row"]:has(input[data-row-select]:checked):hover {
-  --dt-row-bg: color-mix(in oklch, var(--primary) 14%, var(--dt-bg));
+  --dt-row-bg: color-mix(in oklch, var(--foreground) 4%, var(--muted));
 }
 
 [data-slot="data-table"]:not(:has(input[data-row-select]:checked)) [data-selection-only] { display: none; }
+
+/* Edge fades and scroll arrows: invisible until the controller finds the table
+   wider than its box; each side shows only while there is more to scroll to.
+   The controller writes the pinned widths and scrollbar sizes as variables. */
+[data-slot="data-table-fade"],
+[data-slot="data-table-arrow"] {
+  position: absolute;
+  z-index: 10;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 200ms, visibility 0s 200ms;
+}
+[data-slot="data-table-fade"] {
+  top: 0;
+  bottom: var(--dt-hbar, 0px);
+  width: 3.5rem;
+}
+[data-slot="data-table-fade"][data-side="start"] {
+  left: var(--dt-pin-left, 0px);
+  background: linear-gradient(to right, var(--dt-bg), transparent);
+}
+[data-slot="data-table-fade"][data-side="end"] {
+  right: calc(var(--dt-pin-right, 0px) + var(--dt-vbar, 0px));
+  background: linear-gradient(to left, var(--dt-bg), transparent);
+}
+[data-slot="data-table-arrow"] {
+  top: calc((100% - var(--dt-hbar, 0px)) / 2);
+  translate: 0 -50%;
+}
+[data-slot="data-table-arrow"][data-side="start"] {
+  left: calc(var(--dt-pin-left, 0px) + 0.5rem);
+}
+[data-slot="data-table-arrow"][data-side="end"] {
+  right: calc(var(--dt-pin-right, 0px) + var(--dt-vbar, 0px) + 0.5rem);
+}
+[data-dt-overflow]:not([data-at-start]) :is([data-slot="data-table-fade"], [data-slot="data-table-arrow"])[data-side="start"],
+[data-dt-overflow]:not([data-at-end]) :is([data-slot="data-table-fade"], [data-slot="data-table-arrow"])[data-side="end"] {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 200ms, visibility 0s;
+}
+[data-dt-overflow]:not([data-at-start]) [data-slot="data-table-arrow"][data-side="start"],
+[data-dt-overflow]:not([data-at-end]) [data-slot="data-table-arrow"][data-side="end"] {
+  pointer-events: auto;
+}
+@media (pointer: coarse) {
+  [data-slot="data-table-arrow"] { display: none; }
+}
 
 [data-sort-icon] { display: none; }
 [aria-sort="none"] [data-sort-icon="none"],
@@ -198,7 +282,23 @@ const css = `
 [data-slot="data-table-table"] thead [data-pin] { z-index: 3; }
 [data-pin="select"] { left: 0; }
 [data-pin="first"] { left: var(--dt-pin-offset, 0px); }
+[data-pin="last"] { right: 0; border-left: 1px solid var(--border); }
 [data-pin-edge] { border-right: 1px solid var(--border); }
+
+/* Shadow on the pinned last column while columns hide under it */
+[data-pin="last"]::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -10px;
+  width: 10px;
+  pointer-events: none;
+  background: linear-gradient(to left, color-mix(in oklch, var(--foreground) 9%, transparent), transparent);
+  opacity: 0;
+  transition: opacity 200ms;
+}
+[data-dt-overflow]:not([data-at-end]) [data-pin="last"]::before { opacity: 1; }
 
 @keyframes gooseui-dt-pin-shadow { to { opacity: 1; } }
 @supports (animation-timeline: scroll()) {
@@ -207,11 +307,11 @@ const css = `
     content: "";
     position: absolute;
     top: 0;
-    bottom: -1px;
+    bottom: 0;
     right: -10px;
     width: 10px;
     pointer-events: none;
-    background: linear-gradient(to right, color-mix(in oklch, var(--foreground) 14%, transparent), transparent);
+    background: linear-gradient(to right, color-mix(in oklch, var(--foreground) 9%, transparent), transparent);
     opacity: 0;
     animation: gooseui-dt-pin-shadow linear both;
     animation-timeline: scroll(nearest inline);
@@ -220,6 +320,7 @@ const css = `
 }
 @media (prefers-reduced-motion: reduce) {
   [data-slot="data-table-row"] > :is(td, th) { transition: none; }
+  [data-slot="data-table-fade"], [data-slot="data-table-arrow"], [data-pin="last"]::before { transition: none; }
 }
 `
 
@@ -327,6 +428,8 @@ function DataTable<T>({
   noMatchState = "No matching rows.",
   stickyFirstColumn = true,
   striped = false,
+  stickyLastColumn = false,
+  scrollButtons = true,
   maxHeight,
   tableClassName,
   labels: labelsProp,
@@ -394,10 +497,13 @@ function DataTable<T>({
     column.width !== undefined
       ? { width: column.width, minWidth: column.width }
       : undefined
+  const pinLast = stickyLastColumn && columns.length > 1
   const pinProps = (index: number) =>
     pinFirst && index === 0
       ? { "data-pin": "first", "data-pin-edge": "" }
-      : undefined
+      : pinLast && index === columns.length - 1
+        ? { "data-pin": "last" }
+        : undefined
 
   const rangeText = fill(labels.range, {
     from: total === 0 ? 0 : 1,
@@ -457,7 +563,7 @@ function DataTable<T>({
                 placeholder={labels.searchPlaceholder}
                 autoComplete="off"
                 disabled={loading}
-                className="h-9 w-full rounded-md border border-input bg-transparent pr-3 pl-8 text-sm shadow-xs outline-none transition-[color,box-shadow] placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:opacity-50 dark:bg-input/30"
+                className="h-8 w-full rounded-md border border-input bg-transparent pr-3 pl-8 text-sm shadow-xs outline-none transition-[color,box-shadow] placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:opacity-50 dark:bg-input/30"
               />
             </div>
           ) : null}
@@ -465,222 +571,261 @@ function DataTable<T>({
         </div>
       ) : null}
       <div className="overflow-hidden rounded-xl border bg-card text-card-foreground">
-        <div
-          data-slot="data-table-scroll"
-          tabIndex={0}
-          role="region"
-          aria-label={typeof caption === "string" ? caption : labels.table}
-          className="relative overflow-auto outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50 focus-visible:ring-inset"
-          style={{ maxHeight }}
-        >
-          <table
-            data-slot="data-table-table"
-            data-striped={striped ? "" : undefined}
-            aria-busy={loading || undefined}
-            aria-rowcount={paginated && !loading ? total + 1 : undefined}
-            className={cn("w-full caption-bottom text-sm", tableClassName)}
+        <div data-slot="data-table-viewport" className="relative">
+          <div
+            data-slot="data-table-scroll"
+            tabIndex={0}
+            role="region"
+            aria-label={typeof caption === "string" ? caption : labels.table}
+            className="relative overflow-auto outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50 focus-visible:ring-inset"
+            style={{ maxHeight }}
           >
-            {caption ? (
-              <caption
-                className={cn(
-                  showCaption
-                    ? "px-4 py-3 text-left text-sm text-muted-foreground"
-                    : "sr-only",
-                )}
-              >
-                {caption}
-              </caption>
-            ) : null}
-            <thead>
-              <tr>
-                {selectable ? (
-                  <th
-                    scope="col"
-                    data-pin={pinFirst ? "select" : undefined}
-                    className="w-(--dt-select-w) min-w-(--dt-select-w) px-3 py-2 text-left"
-                  >
-                    <input
-                      type="checkbox"
-                      data-slot="data-table-select-all"
-                      aria-label={labels.selectAll}
-                      disabled={loading || total === 0}
-                      className={checkboxClass}
-                    />
-                  </th>
-                ) : null}
-                {columns.map((column, index) => {
-                  const direction =
-                    sortColumn?.id === column.id
-                      ? defaultSorting?.direction
-                      : undefined
-                  const align = alignOf(column)
-                  return (
+            <table
+              data-slot="data-table-table"
+              data-striped={striped ? "" : undefined}
+              aria-busy={loading || undefined}
+              aria-rowcount={paginated && !loading ? total + 1 : undefined}
+              className={cn("w-full caption-bottom text-sm", tableClassName)}
+            >
+              {caption ? (
+                <caption
+                  className={cn(
+                    showCaption
+                      ? "px-4 py-3 text-left text-sm text-muted-foreground"
+                      : "sr-only",
+                  )}
+                >
+                  {caption}
+                </caption>
+              ) : null}
+              <thead>
+                <tr>
+                  {selectable ? (
                     <th
-                      key={column.id}
                       scope="col"
-                      data-column={column.id}
-                      data-sort-type={
-                        column.sortable
-                          ? numericSort.has(column.id)
-                            ? "number"
-                            : "text"
-                          : undefined
-                      }
-                      aria-sort={
-                        column.sortable
-                          ? direction === "asc"
-                            ? "ascending"
-                            : direction === "desc"
-                              ? "descending"
-                              : "none"
-                          : undefined
-                      }
-                      className={cn(
-                        "h-10 whitespace-nowrap px-4 font-medium text-muted-foreground",
-                        ALIGN[align],
-                        column.sortable && "px-2",
-                      )}
-                      style={widthStyle(column)}
-                      {...pinProps(index)}
+                      data-pin={pinFirst ? "select" : undefined}
+                      className="w-(--dt-select-w) min-w-(--dt-select-w) px-3 py-2 text-left"
                     >
-                      {column.sortable ? (
-                        <button
-                          type="button"
-                          data-sort-column={column.id}
-                          className={cn(
-                            "inline-flex h-7 cursor-pointer items-center gap-1.5 rounded-md px-2 outline-none transition-colors hover:bg-foreground/5 hover:text-foreground focus-visible:ring-[3px] focus-visible:ring-ring/50",
-                            align === "right" && "flex-row-reverse",
-                          )}
-                        >
-                          {column.header}
-                          <SortIcons />
-                        </button>
-                      ) : (
-                        column.header
-                      )}
+                      <input
+                        type="checkbox"
+                        data-slot="data-table-select-all"
+                        aria-label={labels.selectAll}
+                        disabled={loading || total === 0}
+                        className={checkboxClass}
+                      />
                     </th>
-                  )
-                })}
-              </tr>
-            </thead>
-            <tbody>
-              {loading ? (
-                Array.from({ length: skeletonCount }, (_, rowIndex) => (
-                  <tr
-                    key={rowIndex}
-                    data-slot="data-table-row"
-                    aria-hidden="true"
-                  >
-                    {selectable ? (
-                      <td
-                        data-pin={pinFirst ? "select" : undefined}
-                        className="px-3 py-3"
-                      >
-                        <span className="block size-4 animate-pulse rounded-[22%] bg-muted motion-reduce:animate-none" />
-                      </td>
-                    ) : null}
-                    {columns.map((column, index) => (
-                      <td
+                  ) : null}
+                  {columns.map((column, index) => {
+                    const direction =
+                      sortColumn?.id === column.id
+                        ? defaultSorting?.direction
+                        : undefined
+                    const align = alignOf(column)
+                    return (
+                      <th
                         key={column.id}
-                        className="px-4 py-3"
+                        scope="col"
+                        data-column={column.id}
+                        data-sort-type={
+                          column.sortable
+                            ? numericSort.has(column.id)
+                              ? "number"
+                              : "text"
+                            : undefined
+                        }
+                        aria-sort={
+                          column.sortable
+                            ? direction === "asc"
+                              ? "ascending"
+                              : direction === "desc"
+                                ? "descending"
+                                : "none"
+                            : undefined
+                        }
+                        className={cn(
+                          "h-10 whitespace-nowrap px-3 text-xs font-medium text-muted-foreground",
+                          ALIGN[align],
+                          column.sortable && "px-2",
+                        )}
+                        style={widthStyle(column)}
                         {...pinProps(index)}
                       >
-                        <span
-                          className={cn(
-                            "block h-4 animate-pulse rounded bg-muted motion-reduce:animate-none",
-                            alignOf(column) === "right" && "ml-auto",
-                            alignOf(column) === "center" && "mx-auto",
-                          )}
-                          style={{
-                            width: `${SKELETON_WIDTHS[(rowIndex + index) % SKELETON_WIDTHS.length]}%`,
-                          }}
-                        />
-                      </td>
-                    ))}
-                  </tr>
-                ))
-              ) : rows.length === 0 ? (
-                <tr data-slot="data-table-empty">
-                  <td
-                    colSpan={columnCount}
-                    className="px-4 py-12 text-center text-sm text-muted-foreground"
-                  >
-                    {emptyState}
-                  </td>
+                        {column.sortable ? (
+                          <button
+                            type="button"
+                            data-sort-column={column.id}
+                            className={cn(
+                              "inline-flex h-7 cursor-pointer items-center gap-1.5 rounded-md px-2 outline-none transition-colors hover:bg-foreground/5 hover:text-foreground focus-visible:ring-[3px] focus-visible:ring-ring/50",
+                              align === "right" && "flex-row-reverse",
+                            )}
+                          >
+                            {column.header}
+                            <SortIcons />
+                          </button>
+                        ) : (
+                          column.header
+                        )}
+                      </th>
+                    )
+                  })}
                 </tr>
-              ) : (
-                <>
-                  {rows.map(({ row, id, index: dataIndex, keys }, rowIndex) => (
+              </thead>
+              <tbody>
+                {loading ? (
+                  Array.from({ length: skeletonCount }, (_, rowIndex) => (
                     <tr
-                      key={id}
+                      key={rowIndex}
                       data-slot="data-table-row"
-                      data-row-id={id}
-                      data-index={dataIndex}
-                      data-page-hidden={
-                        paginated && rowIndex >= perPage ? "" : undefined
-                      }
-                      aria-rowindex={paginated ? rowIndex + 2 : undefined}
+                      aria-hidden="true"
                     >
                       {selectable ? (
                         <td
                           data-pin={pinFirst ? "select" : undefined}
-                          className="px-3 py-2.5"
+                          className="px-3 py-3"
                         >
-                          <input
-                            type="checkbox"
-                            name={selectName}
-                            value={id}
-                            data-row-select=""
-                            defaultChecked={selected.has(id)}
-                            aria-label={labels.selectRow}
-                            className={checkboxClass}
-                          />
+                          <span className="block size-4 animate-pulse rounded-[22%] bg-muted motion-reduce:animate-none" />
                         </td>
                       ) : null}
-                      {columns.map((column, index) => {
-                        const value = column.accessor(row)
-                        const content = column.cell
-                          ? column.cell(row, value)
-                          : toText(value)
-                        const key = column.sortable
-                          ? keys[column.id]
-                          : undefined
-                        const cellProps = {
-                          "data-column": column.id,
-                          "data-sort-value":
-                            key === undefined ? undefined : (key ?? ""),
-                          className: cn(
-                            "px-4 py-2.5 whitespace-nowrap",
-                            ALIGN[alignOf(column)],
-                            column.numeric && "tabular-nums",
-                            index === 0 && "font-medium",
-                          ),
-                          ...pinProps(index),
-                        }
-                        return index === 0 ? (
-                          <th key={column.id} scope="row" {...cellProps}>
-                            {content}
-                          </th>
-                        ) : (
-                          <td key={column.id} {...cellProps}>
-                            {content}
-                          </td>
-                        )
-                      })}
+                      {columns.map((column, index) => (
+                        <td
+                          key={column.id}
+                          className="px-3 py-3"
+                          {...pinProps(index)}
+                        >
+                          <span
+                            className={cn(
+                              "block h-4 animate-pulse rounded bg-muted motion-reduce:animate-none",
+                              alignOf(column) === "right" && "ml-auto",
+                              alignOf(column) === "center" && "mx-auto",
+                            )}
+                            style={{
+                              width: `${SKELETON_WIDTHS[(rowIndex + index) % SKELETON_WIDTHS.length]}%`,
+                            }}
+                          />
+                        </td>
+                      ))}
                     </tr>
-                  ))}
-                  <tr data-slot="data-table-no-match" hidden>
+                  ))
+                ) : rows.length === 0 ? (
+                  <tr data-slot="data-table-empty">
                     <td
                       colSpan={columnCount}
                       className="px-4 py-12 text-center text-sm text-muted-foreground"
                     >
-                      {noMatchState}
+                      {emptyState}
                     </td>
                   </tr>
-                </>
-              )}
-            </tbody>
-          </table>
+                ) : (
+                  <>
+                    {rows.map(
+                      ({ row, id, index: dataIndex, keys }, rowIndex) => (
+                        <tr
+                          key={id}
+                          data-slot="data-table-row"
+                          data-row-id={id}
+                          data-index={dataIndex}
+                          data-page-hidden={
+                            paginated && rowIndex >= perPage ? "" : undefined
+                          }
+                          aria-rowindex={paginated ? rowIndex + 2 : undefined}
+                        >
+                          {selectable ? (
+                            <td
+                              data-pin={pinFirst ? "select" : undefined}
+                              className="px-3 py-3"
+                            >
+                              <input
+                                type="checkbox"
+                                name={selectName}
+                                value={id}
+                                data-row-select=""
+                                defaultChecked={selected.has(id)}
+                                aria-label={labels.selectRow}
+                                className={checkboxClass}
+                              />
+                            </td>
+                          ) : null}
+                          {columns.map((column, index) => {
+                            const value = column.accessor(row)
+                            const content = column.cell
+                              ? column.cell(row, value)
+                              : toText(value)
+                            const key = column.sortable
+                              ? keys[column.id]
+                              : undefined
+                            const cellProps = {
+                              "data-column": column.id,
+                              "data-sort-value":
+                                key === undefined ? undefined : (key ?? ""),
+                              className: cn(
+                                "px-3 py-3 whitespace-nowrap",
+                                ALIGN[alignOf(column)],
+                                column.numeric && "tabular-nums",
+                                index === 0 && "font-medium",
+                              ),
+                              ...pinProps(index),
+                            }
+                            return index === 0 ? (
+                              <th key={column.id} scope="row" {...cellProps}>
+                                {content}
+                              </th>
+                            ) : (
+                              <td key={column.id} {...cellProps}>
+                                {content}
+                              </td>
+                            )
+                          })}
+                        </tr>
+                      ),
+                    )}
+                    <tr data-slot="data-table-no-match" hidden>
+                      <td
+                        colSpan={columnCount}
+                        className="px-4 py-12 text-center text-sm text-muted-foreground"
+                      >
+                        {noMatchState}
+                      </td>
+                    </tr>
+                  </>
+                )}
+              </tbody>
+            </table>
+          </div>
+          <span
+            data-slot="data-table-fade"
+            data-side="start"
+            aria-hidden="true"
+          />
+          <span
+            data-slot="data-table-fade"
+            data-side="end"
+            aria-hidden="true"
+          />
+          {scrollButtons ? (
+            <>
+              {(["start", "end"] as const).map((side) => (
+                <Button
+                  key={side}
+                  type="button"
+                  variant="outline"
+                  size="icon"
+                  data-slot="data-table-arrow"
+                  data-side={side}
+                  data-scroll-step={side === "start" ? "-1" : "1"}
+                  aria-label={
+                    side === "start" ? labels.scrollLeft : labels.scrollRight
+                  }
+                  className="size-9 rounded-full bg-background/90 shadow-md backdrop-blur-sm"
+                >
+                  <svg {...svg}>
+                    <path
+                      d={side === "start" ? "m15 18-6-6 6-6" : "m9 18 6-6-6-6"}
+                    />
+                  </svg>
+                </Button>
+              ))}
+            </>
+          ) : null}
         </div>
         {loading ? (
           <span role="status" className="sr-only">
@@ -695,18 +840,20 @@ function DataTable<T>({
             {pageSizeOptions && pageSizeOptions.length > 0 ? (
               <label className="flex items-center gap-2">
                 {labels.rowsPerPage}
-                <select
+                <Select
                   data-table-page-size=""
-                  defaultValue={pageSize}
+                  size="sm"
+                  defaultValue={String(pageSize)}
                   disabled={loading}
-                  className="h-8 cursor-pointer rounded-md border border-input bg-background px-2 text-foreground outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50 dark:bg-input/30"
+                  wrapperClassName="w-auto"
+                  className="min-w-16 cursor-pointer text-foreground"
                 >
                   {pageSizeOptions.map((option) => (
-                    <option key={option} value={option}>
+                    <SelectOption key={option} value={String(option)}>
                       {option}
-                    </option>
+                    </SelectOption>
                   ))}
-                </select>
+                </Select>
               </label>
             ) : (
               <span />

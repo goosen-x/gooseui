@@ -283,6 +283,95 @@ export function DataTableController({
     }
   }, [rangeTemplate])
 
+  React.useEffect(() => {
+    const root = ref.current?.closest<HTMLElement>("[data-slot=data-table]")
+    const scroller = root?.querySelector<HTMLElement>(
+      "[data-slot=data-table-scroll]",
+    )
+    if (!root || !scroller) return
+    // Overflow and edge state live in root attributes; pinned widths and
+    // scrollbar sizes in CSS variables, all written only when they change
+    let overflow: boolean | null = null
+    let atStart: boolean | null = null
+    let atEnd: boolean | null = null
+    const vars = new Map<string, string>()
+    const setVar = (name: string, value: number) => {
+      const text = `${Math.round(value)}px`
+      if (vars.get(name) === text) return
+      vars.set(name, text)
+      root.style.setProperty(name, text)
+    }
+    const pinnedWidth = (selector: string) =>
+      [...scroller.querySelectorAll<HTMLElement>(selector)].reduce(
+        (sum, cell) => sum + cell.offsetWidth,
+        0,
+      )
+    const sync = () => {
+      const max = scroller.scrollWidth - scroller.clientWidth
+      const left = Math.abs(scroller.scrollLeft)
+      const nextOverflow = max > 1
+      const nextStart = left <= 1
+      const nextEnd = left >= max - 1
+      if (nextOverflow !== overflow) {
+        overflow = nextOverflow
+        root.toggleAttribute("data-dt-overflow", nextOverflow)
+      }
+      if (nextStart !== atStart) {
+        atStart = nextStart
+        root.toggleAttribute("data-at-start", nextStart)
+      }
+      if (nextEnd !== atEnd) {
+        atEnd = nextEnd
+        root.toggleAttribute("data-at-end", nextEnd)
+      }
+      if (!nextOverflow) return
+      setVar(
+        "--dt-pin-left",
+        pinnedWidth('thead [data-pin="select"], thead [data-pin="first"]'),
+      )
+      setVar("--dt-pin-right", pinnedWidth('thead [data-pin="last"]'))
+      setVar("--dt-vbar", scroller.offsetWidth - scroller.clientWidth)
+      setVar("--dt-hbar", scroller.offsetHeight - scroller.clientHeight)
+    }
+    sync()
+    const reduced = () =>
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    const scrollBySide = (direction: number, distance: number) =>
+      scroller.scrollBy({
+        left: direction * distance,
+        behavior: reduced() ? "auto" : "smooth",
+      })
+    const onStep = (event: MouseEvent) => {
+      const button = (
+        event.target as Element | null
+      )?.closest<HTMLButtonElement>("[data-scroll-step]")
+      if (!button || !root.contains(button)) return
+      // The pinned columns stay in view, so a step covers 80% of the rest
+      const pinned = pinnedWidth("thead [data-pin]")
+      const distance = Math.max(80, (scroller.clientWidth - pinned) * 0.8)
+      scrollBySide(Number(button.dataset.scrollStep), distance)
+    }
+    const onKey = (event: KeyboardEvent) => {
+      if (event.target !== scroller || event.altKey || event.metaKey) return
+      if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return
+      event.preventDefault()
+      scrollBySide(event.key === "ArrowLeft" ? -1 : 1, 96)
+    }
+    scroller.addEventListener("scroll", sync, { passive: true })
+    scroller.addEventListener("keydown", onKey)
+    root.addEventListener("click", onStep)
+    const observer = new ResizeObserver(sync)
+    observer.observe(scroller)
+    const table = scroller.querySelector("table")
+    if (table) observer.observe(table)
+    return () => {
+      scroller.removeEventListener("scroll", sync)
+      scroller.removeEventListener("keydown", onKey)
+      root.removeEventListener("click", onStep)
+      observer.disconnect()
+    }
+  }, [])
+
   // Re-apply after every render: a parent or the server may have rendered
   // other rows in their original order and page
   React.useEffect(() => {

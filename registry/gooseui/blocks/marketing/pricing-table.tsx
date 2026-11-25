@@ -1,5 +1,8 @@
 import * as React from "react"
 import { cn } from "@/lib/utils"
+import { Badge } from "@/registry/gooseui/ui/badge"
+import { Button } from "@/registry/gooseui/ui/button"
+import { Card } from "@/registry/gooseui/ui/card"
 
 export type PricingBilling = "monthly" | "yearly"
 
@@ -95,8 +98,8 @@ const defaultLabels: PricingTableLabels = {
 
 // Billing: two radio inputs. :has() on the root reads the checked one and
 // hides the elements of the other period, so the switch needs no JavaScript
-// and works in Server Components. The two amounts share one grid cell and
-// cross-fade with a transition (no animation on first paint, stable width).
+// and works in Server Components. Only the amount of the selected period is
+// in the layout, so "/ mo" always sits right after the price.
 // Without :has() the switch is hidden and the default period is shown.
 // Layout: one column by default; from 44rem of container width every card spans
 // four rows of the parent grid via subgrid, so titles, prices, CTAs and feature
@@ -115,18 +118,11 @@ const css = `
   display: none;
 }
 
-[data-slot="pricing-card-amount"] { display: inline-grid; }
-[data-slot="pricing-card-amount"] > [data-billing-price] {
-  grid-area: 1 / 1;
-  transition: opacity 220ms ease, translate 260ms cubic-bezier(0.2, 0.7, 0.2, 1), visibility 260ms;
-}
 [data-slot="pricing-table"]:has(> [data-slot="pricing-table-switch"] input[value="yearly"]:checked) [data-billing-price="monthly"],
 [data-slot="pricing-table"]:has(> [data-slot="pricing-table-switch"] input[value="monthly"]:checked) [data-billing-price="yearly"],
 [data-slot="pricing-table"][data-billing="yearly"] [data-billing-price="monthly"],
 [data-slot="pricing-table"][data-billing="monthly"] [data-billing-price="yearly"] {
-  visibility: hidden;
-  opacity: 0;
-  translate: 0 0.35em;
+  display: none;
 }
 
 @supports not selector(:has(*)) {
@@ -137,7 +133,7 @@ const css = `
   }
   [data-default-billing="yearly"] [data-billing-price="monthly"],
   [data-default-billing="monthly"] [data-billing-price="yearly"] {
-    visibility: hidden;
+    display: none;
   }
 }
 
@@ -207,9 +203,6 @@ const css = `
   color: color-mix(in oklch, var(--pricing-accent) 80%, var(--foreground));
   background: color-mix(in oklch, var(--pricing-accent) 12%, transparent);
 }
-@media (prefers-reduced-motion: reduce) {
-  [data-slot="pricing-card-amount"] > [data-billing-price] { transition: none; }
-}
 `
 
 const svg = {
@@ -261,7 +254,7 @@ function savingPercent(plan: PricingPlan) {
 }
 
 const ctaClass =
-  "inline-flex h-9 w-full items-center justify-center gap-2 whitespace-nowrap rounded-md border bg-background px-4 text-sm font-medium shadow-xs outline-none transition-[background-color,box-shadow] hover:bg-accent hover:text-accent-foreground focus-visible:ring-[3px] focus-visible:ring-ring/50 dark:border-input dark:bg-input/30 dark:hover:bg-input/50 cursor-pointer"
+  "h-auto min-h-9 w-full min-w-0 max-w-full whitespace-normal py-2 text-center leading-snug text-balance"
 
 function PricingFeatureItem({
   feature,
@@ -323,56 +316,67 @@ function PricingCard({
   const free = plan.price.monthly === 0 && plan.price.yearly === 0
   const href = plan.cta.href
 
+  const variant = plan.highlighted ? "default" : "outline"
+
   const cta =
     typeof href === "string" ? (
-      <a data-slot="pricing-card-cta" href={href} className={ctaClass}>
-        {plan.cta.label}
-      </a>
+      <Button
+        asChild
+        variant={variant}
+        data-slot="pricing-card-cta"
+        className={ctaClass}
+      >
+        <a href={href}>{plan.cta.label}</a>
+      </Button>
     ) : href ? (
       <>
-        <a
+        <Button
+          asChild
+          variant={variant}
           data-slot="pricing-card-cta"
           data-billing-only="monthly"
-          href={href.monthly}
           className={ctaClass}
         >
-          {plan.cta.label}
-        </a>
-        <a
+          <a href={href.monthly}>{plan.cta.label}</a>
+        </Button>
+        <Button
+          asChild
+          variant={variant}
           data-slot="pricing-card-cta"
           data-billing-only="yearly"
-          href={href.yearly}
           className={ctaClass}
         >
-          {plan.cta.label}
-        </a>
+          <a href={href.yearly}>{plan.cta.label}</a>
+        </Button>
       </>
     ) : (
-      <button
+      <Button
         type="submit"
         name="plan"
         value={plan.id}
+        variant={variant}
         data-slot="pricing-card-cta"
         className={ctaClass}
       >
         {plan.cta.label}
-      </button>
+      </Button>
     )
 
   return (
-    <article
+    <Card
+      role="article"
       data-slot="pricing-card"
       data-highlighted={plan.highlighted ? "" : undefined}
       aria-labelledby={headingId}
-      className="relative rounded-xl border bg-card p-6 text-card-foreground shadow-xs"
+      className="relative min-w-0 gap-5 p-6 shadow-xs"
     >
       {plan.badge ? (
-        <span
+        <Badge
           data-slot="pricing-card-badge"
-          className="absolute -top-3 left-6 rounded-full px-2.5 py-0.5 text-xs font-semibold shadow-sm"
+          className="absolute -top-3 left-6 px-2.5 font-semibold shadow-sm"
         >
           {plan.badge}
-        </span>
+        </Badge>
       ) : null}
 
       <header data-slot="pricing-card-header" className="space-y-1.5">
@@ -386,22 +390,24 @@ function PricingCard({
 
       <div data-slot="pricing-card-price" className="space-y-1">
         <div className="flex flex-wrap items-baseline gap-x-2 gap-y-1">
-          <span
-            data-slot="pricing-card-amount"
-            className="text-4xl font-semibold tracking-tight tabular-nums"
-          >
-            <span data-billing-price="monthly">
-              {formatMoney(monthly, plan.currency, locale)}
+          <span className="inline-flex items-baseline gap-1.5 whitespace-nowrap">
+            <span
+              data-slot="pricing-card-amount"
+              className="text-4xl font-semibold tracking-tight tabular-nums"
+            >
+              <span data-billing-price="monthly">
+                {formatMoney(monthly, plan.currency, locale)}
+              </span>
+              <span data-billing-price="yearly">
+                {formatMoney(yearly, plan.currency, locale)}
+              </span>
             </span>
-            <span data-billing-price="yearly">
-              {formatMoney(yearly, plan.currency, locale)}
-            </span>
+            {!free ? (
+              <span className="text-sm text-muted-foreground">
+                {labels.perMonth}
+              </span>
+            ) : null}
           </span>
-          {!free ? (
-            <span className="text-sm text-muted-foreground">
-              {labels.perMonth}
-            </span>
-          ) : null}
           {!free && saving > 0 ? (
             <s
               data-billing-only="yearly"
@@ -421,12 +427,13 @@ function PricingCard({
               <span data-billing-only="yearly">
                 {labels.billedYearly.replace("{total}", yearlyTotal)}
                 {saving > 0 ? (
-                  <span
+                  <Badge
                     data-slot="pricing-save"
-                    className="ml-1.5 rounded-full px-1.5 py-px font-medium"
+                    size="sm"
+                    className="ml-1.5 border-transparent"
                   >
                     −{saving}%
-                  </span>
+                  </Badge>
                 ) : null}
               </span>
             </>
@@ -434,14 +441,16 @@ function PricingCard({
         </p>
       </div>
 
-      <div data-slot="pricing-card-action">{cta}</div>
+      <div data-slot="pricing-card-action" className="min-w-0">
+        {cta}
+      </div>
 
       <ul data-slot="pricing-card-features" className="space-y-2.5">
         {plan.features.map((feature, index) => (
           <PricingFeatureItem key={index} feature={feature} labels={labels} />
         ))}
       </ul>
-    </article>
+    </Card>
   )
 }
 
@@ -520,9 +529,13 @@ function PricingTable({
             />
             {labels.yearly}
             {yearlyDiscountLabel ? (
-              <span className="rounded-full border border-current/30 px-1.5 text-[0.6875rem] font-semibold leading-4">
+              <Badge
+                variant="outline"
+                size="sm"
+                className="border-current/30 font-semibold leading-4 text-current"
+              >
                 {yearlyDiscountLabel}
-              </span>
+              </Badge>
             ) : null}
           </label>
         </fieldset>

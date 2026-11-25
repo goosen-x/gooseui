@@ -57,11 +57,6 @@ export const PREVIEW_COMPONENTS: Record<string, ComponentType> = {
       import("@/app/[locale]/(docs)/docs/components/collapsible/card-preview"),
     { ssr: false },
   ),
-  "color-picker": dynamic(
-    () =>
-      import("@/app/[locale]/(docs)/docs/components/color-picker/card-preview"),
-    { ssr: false },
-  ),
   combobox: dynamic(
     () => import("@/app/[locale]/(docs)/docs/components/combobox/card-preview"),
     { ssr: false },
@@ -222,13 +217,6 @@ export const PREVIEW_COMPONENTS: Record<string, ComponentType> = {
   "phone-input": dynamic(
     () =>
       import("@/app/[locale]/(docs)/docs/components/phone-input/card-preview"),
-    { ssr: false },
-  ),
-  "pricing-table": dynamic(
-    () =>
-      import(
-        "@/app/[locale]/(docs)/docs/components/pricing-table/card-preview"
-      ),
     { ssr: false },
   ),
   "progress-ring": dynamic(

@@ -36,6 +36,8 @@ const en = {
     table: "Table",
     selectAll: "Select all rows on this page",
     selectRow: "Select row",
+    scrollLeft: "Scroll left",
+    scrollRight: "Scroll right",
     loading: "Loading rows…",
   },
 }
@@ -58,6 +60,8 @@ const content: Dict<typeof en> = {
       table: "Таблица",
       selectAll: "Выбрать все строки на странице",
       selectRow: "Выбрать строку",
+      scrollLeft: "Прокрутить влево",
+      scrollRight: "Прокрутить вправо",
       loading: "Загружаем строки…",
     },
   },
@@ -77,17 +81,30 @@ export function DataTableSelectionDemo({
     style: "currency",
     currency: t.currency,
   })
-  const day = new Intl.DateTimeFormat(t.locale, {
+  const dayOnly = new Intl.DateTimeFormat(t.locale, {
     month: "short",
     day: "numeric",
     timeZone: "UTC",
   })
+  const dayYear = new Intl.DateTimeFormat(t.locale, {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+    timeZone: "UTC",
+  })
+  const thisYear = new Date().getUTCFullYear()
+  const day = (d: Date) =>
+    d.getUTCFullYear() === thisYear
+      ? dayOnly.format(d)
+      : dayYear.format(d).replace(/\s?г\.$/, "")
   const columns: DataTableColumn<DemoInvoice>[] = [
     {
       id: "number",
       header: t.number,
       accessor: (r) => r.number,
       sortable: true,
+      align: "left",
+      numeric: true,
     },
     {
       id: "client",
@@ -102,7 +119,7 @@ export function DataTableSelectionDemo({
       sortable: true,
       align: "left",
       numeric: true,
-      cell: (r) => day.format(r.issued),
+      cell: (r) => day(r.issued),
     },
     {
       id: "amount",
@@ -145,7 +162,6 @@ export function DataTableSelectionDemo({
         selectName="recent"
         defaultSelectedIds={selected}
         loading={loading}
-        striped
         maxHeight="22rem"
         labels={t.labels}
         onSelectionChange={setSelected}

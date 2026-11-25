@@ -1,5 +1,14 @@
 "use client"
 
+import {
+  Check,
+  ChevronDown,
+  ChevronLeft,
+  ChevronRight,
+  ChevronUp,
+  Pencil,
+  Trash2,
+} from "lucide-react"
 import { usePathname, useRouter } from "next/navigation"
 import { useCallback, useEffect, useRef, useState } from "react"
 import {
@@ -61,11 +70,10 @@ export default function ReviewPanel() {
       .then(setData)
       .catch(() => setMessage("Ошибка загрузки"))
   }, [])
-  const visible = Boolean(
-    items.some(
-      (entry) => entry.href === pathname.replace(/^\/(ru|en)(?=\/)/, ""),
-    ),
-  )
+  const isDraft =
+    Boolean(item) && data?.decisions.items[item.slug]?.status !== "accepted"
+  const visible = Boolean(data) && isDraft
+  const [open, setOpen] = useState(false)
   useEffect(() => {
     const node = panel.current
     const root = document.documentElement
@@ -83,6 +91,7 @@ export default function ReviewPanel() {
   useEffect(() => {
     setEditing(false)
     setComment("")
+    setOpen(false)
   }, [pathname])
   useEffect(() => {
     if (editing) input.current?.focus()
@@ -92,7 +101,7 @@ export default function ReviewPanel() {
       for (let step = 1; step < items.length; step++) {
         const next =
           items[(index + direction * step + items.length) % items.length]
-        if (!decisions.items[next.slug]?.status) {
+        if (decisions.items[next.slug]?.status !== "accepted") {
           router.push(`${locale === "ru" ? "/ru" : ""}${next.href}`)
           return
         }
@@ -138,7 +147,7 @@ export default function ReviewPanel() {
     [item, data, saving, navigate],
   )
   useEffect(() => {
-    if (!item || !data) return
+    if (!item || !data || !isDraft) return
     const onKey = (event: KeyboardEvent) => {
       const target = event.target as HTMLElement
       if (
@@ -166,11 +175,11 @@ export default function ReviewPanel() {
     }
     window.addEventListener("keydown", onKey)
     return () => window.removeEventListener("keydown", onKey)
-  }, [item, data, save, navigate])
-  if (!item) return null
-  const decision = data?.decisions.items[item.slug]
-  const result = data?.results[item.slug]
-  const manifest = data?.manifests[item.slug]
+  }, [item, data, isDraft, save, navigate])
+  if (!item || !data || !isDraft) return null
+  const decision = data.decisions.items[item.slug]
+  const result = data.results[item.slug]
+  const manifest = data.manifests[item.slug]
   const jsAfter = manifest?.jsAfter ?? result?.js
   // Own code is shown only when it explains a noticeably smaller part of the total
   const jsOwn =
@@ -189,176 +198,193 @@ export default function ReviewPanel() {
         : manifest?.verdict === "js"
           ? "Нужен JavaScript"
           : manifest?.verdict
-  const checked = items.filter(
-    (entry) => data?.decisions.items[entry.slug]?.status,
+  const left = items.filter(
+    (entry) => data.decisions.items[entry.slug]?.status !== "accepted",
   ).length
+  const statusLabel =
+    (
+      {
+        revise: "Доработать",
+        delete: "Удалить",
+      } as Record<string, string>
+    )[decision?.status || ""] || "Черновик"
+  const small = "h-7 gap-1 px-2 text-xs"
+  const kbd = "ml-0.5 text-[0.625rem] opacity-60"
   return (
     <aside
       data-dev-only
       ref={panel}
       aria-label="Панель приёмки"
-      className="fixed inset-x-0 bottom-0 z-[100] max-h-[60vh] overflow-y-auto border-t border-border bg-background/95 px-4 py-3 shadow-[0_-0.5rem_2rem_rgba(0,0,0,0.12)] backdrop-blur md:px-6"
+      className="fixed right-3 bottom-3 z-[100] max-h-[70vh] w-[min(22rem,calc(100vw-1.5rem))] space-y-2 overflow-y-auto rounded-lg border border-border bg-background/95 p-2.5 text-xs shadow-lg backdrop-blur"
     >
-      <div className="mx-auto flex max-w-[100rem] flex-wrap items-center gap-x-6 gap-y-3">
-        <div className="min-w-0 flex-1 basis-80">
-          <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm">
-            <strong className="text-base">{navTitle(item, locale)}</strong>
-            <span className="text-muted-foreground">
-              {(
-                {
-                  accepted: "Опубликован",
-                  revise: "Доработать",
-                  delete: "Удалить",
-                } as Record<string, string>
-              )[decision?.status || ""] || "Черновик"}
+      <div className="flex items-center gap-2">
+        <strong className="min-w-0 flex-1 truncate text-sm">
+          {navTitle(item, locale)}
+        </strong>
+        <span className="shrink-0 text-muted-foreground">{statusLabel}</span>
+        <Button
+          variant="ghost"
+          size="icon"
+          type="button"
+          className="size-6"
+          aria-expanded={open}
+          aria-label="Подробности автопроверок"
+          onClick={() => setOpen((value) => !value)}
+        >
+          {open ? <ChevronDown /> : <ChevronUp />}
+        </Button>
+      </div>
+      <div className="flex flex-wrap items-center gap-x-2 text-muted-foreground">
+        {result ? (
+          result.problems.length ? (
+            <span className="text-destructive">
+              Проблем: {result.problems.length}
             </span>
-            <span role="status" className="text-emerald-600">
-              {message}
-            </span>
-          </div>
-          <div className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-muted-foreground">
-            {result ? (
-              result.problems.length ? (
-                <details>
-                  <summary className="cursor-pointer text-red-600">
-                    Найдено проблем: {result.problems.length}
-                  </summary>
-                  <ul>
-                    {result.problems.map((problem) => (
-                      <li key={problem}>{problem}</li>
-                    ))}
-                  </ul>
-                </details>
-              ) : (
-                <span className="text-emerald-600">
-                  ✓ Автопроверка пройдена
-                </span>
-              )
-            ) : (
-              <span>Автопроверка не запускалась</span>
-            )}
-            <span>
-              {jsAfter == null
-                ? "JS в браузере: нет данных"
-                : jsAfter === 0
-                  ? "JS: 0 — работает без JavaScript"
-                  : `JS в браузере: ${size(jsAfter)}${jsOwn == null ? "" : ` (из них свой код: ${size(jsOwn)})`}`}
-            </span>
-            {manifest?.verdict ? (
-              <span>
-                {verdict}
-                {manifest.jsBefore != null &&
-                  jsAfter != null &&
-                  ` · было ${size(manifest.jsBefore)} → стало ${jsAfter === 0 ? "0" : size(jsAfter)}`}
-              </span>
-            ) : (
-              <span
-                className="text-muted-foreground/60"
-                title="Компонент ещё не проходил переделку на HTML и CSS"
-              >
-                Не переписывался под минимум JS
-              </span>
-            )}
-            {!!manifest?.breaking?.length && (
-              <details>
-                <summary className="cursor-pointer text-amber-600">
-                  Что изменилось в API: {manifest.breaking.length}
-                </summary>
-                <ul>
-                  {manifest.breaking.map((entry) => (
-                    <li key={entry}>{entry}</li>
-                  ))}
-                </ul>
-              </details>
-            )}
-          </div>
-          <div className="mt-2 flex items-center gap-3 text-xs">
-            <Button
-              variant="ghost"
-              type="button"
-              className="cursor-pointer underline"
-              onClick={() => data && navigate(-1, data.decisions)}
-            >
-              ← предыдущая
-            </Button>
-            <span className="text-muted-foreground">
-              принято решений: {checked} из {items.length}
-            </span>
-            <Button
-              variant="ghost"
-              type="button"
-              className="cursor-pointer underline"
-              onClick={() => data && navigate(1, data.decisions)}
-            >
-              следующая →
-            </Button>
-          </div>
-        </div>
-        <div className="flex flex-wrap gap-2">
-          <Button
-            variant="ghost"
-            type="button"
-            disabled={!data || saving}
-            onClick={() => void save("accepted")}
-            className="cursor-pointer rounded-md bg-emerald-700 px-4 py-3 text-sm font-semibold text-white disabled:opacity-50"
-          >
-            Опубликовать <span className="opacity-60">1</span>
-          </Button>
-          <Button
-            variant="ghost"
-            type="button"
-            disabled={!data || saving}
-            onClick={() => {
-              setComment(decision?.comment || "")
-              setEditing(true)
-            }}
-            className="cursor-pointer rounded-md bg-amber-400 px-4 py-3 text-sm font-semibold text-black disabled:opacity-50"
-          >
-            Доработать <span className="opacity-60">2</span>
-          </Button>
-          <Button
-            variant="ghost"
-            type="button"
-            disabled={!data || saving}
-            onClick={() => void save("delete")}
-            className="cursor-pointer rounded-md bg-red-700 px-4 py-3 text-sm font-semibold text-white disabled:opacity-50"
-          >
-            Удалить <span className="opacity-60">3</span>
-          </Button>
-        </div>
-        {editing && (
-          <form
-            className="flex w-full items-end gap-2"
-            onSubmit={(event) => {
-              event.preventDefault()
-              void save("revise", comment)
-            }}
-          >
-            <Textarea
-              ref={input}
-              aria-label="Комментарий к доработке"
-              value={comment}
-              onChange={(event) => setComment(event.target.value)}
-              onKeyDown={(event) => {
-                if (event.key === "Enter" && !event.shiftKey) {
-                  event.preventDefault()
-                  void save("revise", comment)
-                }
-              }}
-              placeholder="Что нужно доработать?"
-              rows={2}
-              className="min-w-0 flex-1 rounded-md border bg-background p-2 text-sm"
-            />
-            <Button
-              variant="ghost"
-              disabled={saving}
-              className="cursor-pointer rounded-md bg-foreground px-4 py-2 text-sm text-background"
-              type="submit"
-            >
-              Сохранить
-            </Button>
-          </form>
+          ) : (
+            <span className="text-emerald-600">✓ Автопроверка</span>
+          )
+        ) : (
+          <span>Автопроверка не запускалась</span>
         )}
+        <span>
+          ·{" "}
+          {jsAfter == null
+            ? "JS: нет данных"
+            : jsAfter === 0
+              ? "JS: 0"
+              : `JS: ${size(jsAfter)}`}
+        </span>
+        <span role="status" className="text-emerald-600">
+          {message}
+        </span>
+      </div>
+      {open && (
+        <div className="space-y-1.5 border-t border-border pt-2 text-muted-foreground">
+          {result?.problems.length ? (
+            <ul className="list-disc pl-4 text-destructive">
+              {result.problems.map((problem) => (
+                <li key={problem}>{problem}</li>
+              ))}
+            </ul>
+          ) : null}
+          <p>
+            {jsAfter == null
+              ? "JS в браузере: нет данных"
+              : jsAfter === 0
+                ? "JS: 0, работает без JavaScript"
+                : `JS в браузере: ${size(jsAfter)}${jsOwn == null ? "" : ` (из них свой код: ${size(jsOwn)})`}`}
+          </p>
+          <p>
+            {manifest?.verdict
+              ? `${verdict}${
+                  manifest.jsBefore != null && jsAfter != null
+                    ? ` · было ${size(manifest.jsBefore)} → стало ${jsAfter === 0 ? "0" : size(jsAfter)}`
+                    : ""
+                }`
+              : "Не переписывался под минимум JS"}
+          </p>
+          {!!manifest?.breaking?.length && (
+            <div>
+              <p className="text-amber-600">
+                Что изменилось в API: {manifest.breaking.length}
+              </p>
+              <ul className="list-disc pl-4">
+                {manifest.breaking.map((entry) => (
+                  <li key={entry}>{entry}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+          {decision?.comment && (
+            <p className="text-foreground">Комментарий: {decision.comment}</p>
+          )}
+        </div>
+      )}
+      <div className="flex items-center gap-1.5">
+        <Button
+          type="button"
+          className={small}
+          disabled={saving}
+          title="Опубликовать (1)"
+          onClick={() => void save("accepted")}
+        >
+          <Check /> Опубликовать<span className={kbd}>1</span>
+        </Button>
+        <Button
+          type="button"
+          variant="secondary"
+          className={small}
+          disabled={saving}
+          title="Доработать (2)"
+          onClick={() => {
+            setComment(decision?.comment || "")
+            setEditing(true)
+          }}
+        >
+          <Pencil /> Доработать<span className={kbd}>2</span>
+        </Button>
+        <Button
+          type="button"
+          variant="destructive"
+          className={small}
+          disabled={saving}
+          title="Удалить (3)"
+          onClick={() => void save("delete")}
+        >
+          <Trash2 />
+          <span className={kbd}>3</span>
+        </Button>
+      </div>
+      {editing && (
+        <form
+          className="space-y-1.5"
+          onSubmit={(event) => {
+            event.preventDefault()
+            void save("revise", comment)
+          }}
+        >
+          <Textarea
+            ref={input}
+            aria-label="Комментарий к доработке"
+            value={comment}
+            onChange={(event) => setComment(event.target.value)}
+            onKeyDown={(event) => {
+              if (event.key === "Enter" && !event.shiftKey) {
+                event.preventDefault()
+                void save("revise", comment)
+              }
+            }}
+            placeholder="Что нужно доработать?"
+            rows={2}
+            className="min-h-0 w-full rounded-md border bg-background p-2 text-xs"
+          />
+          <Button type="submit" className={small} disabled={saving}>
+            Сохранить
+          </Button>
+        </form>
+      )}
+      <div className="flex items-center justify-between text-muted-foreground">
+        <Button
+          variant="ghost"
+          size="icon"
+          type="button"
+          className="size-6"
+          aria-label="Предыдущая"
+          onClick={() => navigate(-1, data.decisions)}
+        >
+          <ChevronLeft />
+        </Button>
+        <span>черновиков: {left}</span>
+        <Button
+          variant="ghost"
+          size="icon"
+          type="button"
+          className="size-6"
+          aria-label="Следующая"
+          onClick={() => navigate(1, data.decisions)}
+        >
+          <ChevronRight />
+        </Button>
       </div>
     </aside>
   )

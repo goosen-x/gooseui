@@ -1,4 +1,5 @@
 import { setRequestLocale } from "next-intl/server"
+import { Fragment } from "react"
 import { BrowserSupport } from "@/components/docs/browser-support"
 import { CodeBlock } from "@/components/docs/code-block"
 import { DocsPage } from "@/components/docs/docs-page"
@@ -208,47 +209,22 @@ const content: Dict<typeof en> = {
   },
 }
 
-// Small illustrated portraits as data URIs, so the demo works offline
-function portrait(skin: string, hair: string, shirt: string, bg: string) {
-  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" fill="${bg}"/><path d="M10 64c2-14 11-20 22-20s20 6 22 20z" fill="${shirt}"/><circle cx="32" cy="28" r="12" fill="${skin}"/><path d="M19 27c0-9 6-14 13-14s13 5 13 14c-3-5-8-7-13-7s-10 2-13 7z" fill="${hair}"/></svg>`
-  return `data:image/svg+xml,${encodeURIComponent(svg)}`
-}
-
 const BROKEN = "/avatars/diego-missing.jpg"
+const photo = (slug: string) => `/demo/avatar-group/${slug}.webp`
 
 const team: DemoPerson[] = [
-  {
-    name: "Amara Okafor",
-    status: "online",
-    src: portrait("#8d5524", "#1b1b1b", "#2563eb", "#dbeafe"),
-  },
-  {
-    name: "Lukas Brenner",
-    status: "away",
-    src: portrait("#f1c27d", "#a0522d", "#16a34a", "#dcfce7"),
-  },
-  {
-    name: "Mei Tanaka",
-    status: "busy",
-    src: portrait("#ffdbac", "#111827", "#db2777", "#fce7f3"),
-  },
+  { name: "Amara Okafor", status: "online", src: photo("amara-okafor") },
+  { name: "Lukas Brenner", status: "away", src: photo("lukas-brenner") },
+  { name: "Mei Tanaka", status: "busy", src: photo("mei-tanaka") },
   { name: "Diego Ramírez", src: BROKEN },
-  {
-    name: "Sofia Lindqvist",
-    status: "online",
-    src: portrait("#ffe0bd", "#e8c07d", "#7c3aed", "#ede9fe"),
-  },
-  { name: "Noah Fischer" },
-  {
-    name: "Aisha Rahman",
-    status: "online",
-    src: portrait("#c68642", "#2d1b0e", "#ea580c", "#ffedd5"),
-  },
-  { name: "Jonas Weber" },
-  { name: "Chloé Martin" },
-  { name: "Ravi Iyer", status: "away" },
-  { name: "Hana Novak" },
-  { name: "Ethan Cole" },
+  { name: "Sofia Lindqvist", status: "online", src: photo("sofia-lindqvist") },
+  { name: "Noah Fischer", src: photo("noah-fischer") },
+  { name: "Aisha Rahman", status: "online", src: photo("aisha-rahman") },
+  { name: "Jonas Weber", src: photo("jonas-weber") },
+  { name: "Chloé Martin", src: photo("chloe-martin") },
+  { name: "Ravi Iyer", status: "away", src: photo("ravi-iyer") },
+  { name: "Hana Novak", src: photo("hana-novak") },
+  { name: "Ethan Cole", src: photo("ethan-cole") },
 ]
 
 export async function generateMetadata({ params }: Props) {
@@ -467,33 +443,43 @@ const [showAll, setShowAll] = useState(false)
               <p className="mb-4 text-sm text-muted-foreground">
                 {t.sizesText}
               </p>
-              <div className="space-y-5 rounded-lg bg-muted/30 p-6">
-                {(["sm", "md", "lg"] as AvatarSize[]).map((size) => (
-                  <div
-                    key={size}
-                    className="flex flex-wrap items-center gap-x-8 gap-y-3"
-                  >
-                    <span className="w-8 font-mono text-xs text-muted-foreground">
-                      {size}
+              <div className="overflow-x-auto rounded-lg bg-muted/30 p-6">
+                <div className="grid w-max min-w-full grid-cols-[2rem_repeat(3,max-content)] items-center justify-between gap-x-8 gap-y-5">
+                  <span />
+                  {(["tight", "normal", "loose"] as const).map((spacing) => (
+                    <span
+                      key={spacing}
+                      className="font-mono text-xs text-muted-foreground"
+                    >
+                      {spacing}
                     </span>
-                    {(["tight", "normal", "loose"] as const).map((spacing) => (
-                      <AvatarGroup
-                        key={spacing}
-                        size={size}
-                        spacing={spacing}
-                        max={4}
-                        aria-label={`${spacing}, ${size}`}
-                        overflowLabel={t.more}
-                      >
-                        {avatars(team.slice(0, 7), false)}
-                      </AvatarGroup>
-                    ))}
-                  </div>
-                ))}
+                  ))}
+                  {(["sm", "md", "lg"] as AvatarSize[]).map((size) => (
+                    <Fragment key={size}>
+                      <span className="font-mono text-xs text-muted-foreground">
+                        {size}
+                      </span>
+                      {(["tight", "normal", "loose"] as const).map(
+                        (spacing) => (
+                          <AvatarGroup
+                            key={spacing}
+                            size={size}
+                            spacing={spacing}
+                            max={3}
+                            aria-label={`${spacing}, ${size}`}
+                            overflowLabel={t.more}
+                          >
+                            {avatars(team.slice(0, 6), false)}
+                          </AvatarGroup>
+                        ),
+                      )}
+                    </Fragment>
+                  ))}
+                </div>
               </div>
-              <CodeBlock className="mt-4">{`<AvatarGroup size="sm" spacing="tight" max={4}>…</AvatarGroup>
-<AvatarGroup size="md" spacing="normal" max={4}>…</AvatarGroup>
-<AvatarGroup size="lg" spacing="loose" max={4}>…</AvatarGroup>`}</CodeBlock>
+              <CodeBlock className="mt-4">{`<AvatarGroup size="sm" spacing="tight" max={3}>…</AvatarGroup>
+<AvatarGroup size="md" spacing="normal" max={3}>…</AvatarGroup>
+<AvatarGroup size="lg" spacing="loose" max={3}>…</AvatarGroup>`}</CodeBlock>
             </div>
 
             <div>
@@ -539,7 +525,7 @@ const [showAll, setShowAll] = useState(false)
                 />
                 <Avatar size="lg" />
               </div>
-              <CodeBlock className="mt-4">{`<Avatar size="lg" name="Amara Okafor" src="/amara.jpg" status="online" />
+              <CodeBlock className="mt-4">{`<Avatar size="lg" name="Amara Okafor" src="/team/amara.webp" status="online" />
 <Avatar size="lg" name="Noah Fischer" />
 <Avatar size="lg" name="Diego Ramírez" src="/missing.jpg" status="online" />
 <Avatar size="lg" />`}</CodeBlock>

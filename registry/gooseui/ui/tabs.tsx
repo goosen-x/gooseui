@@ -185,7 +185,7 @@ function TabsTrigger({
       data-state={active ? "active" : "inactive"}
       data-slot="tabs-trigger"
       className={cn(
-        "relative cursor-pointer inline-flex h-full flex-1 items-center justify-center gap-1.5 rounded-md border border-transparent px-2 py-1 text-sm font-medium whitespace-nowrap transition-[color,background-color,box-shadow] duration-200 motion-reduce:transition-none",
+        "relative cursor-pointer select-none inline-flex h-full flex-1 items-center justify-center gap-1.5 rounded-md border border-transparent px-2 py-1 text-sm font-medium whitespace-nowrap transition-[color,background-color,box-shadow] duration-200 motion-reduce:transition-none",
         "data-[state=active]:text-foreground data-[state=inactive]:hover:bg-foreground/10 data-[state=inactive]:hover:text-foreground",
         "has-[:focus-visible]:ring-[3px] has-[:focus-visible]:ring-ring/50 has-[:disabled]:pointer-events-none has-[:disabled]:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
         triggerStyles[kind],

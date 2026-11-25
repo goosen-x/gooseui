@@ -258,7 +258,7 @@ function BookingCalendar({
                       htmlFor={monthId(index - 1)}
                       className={cn(
                         navClass,
-                        "cursor-pointer transition-colors hover:bg-accent hover:text-accent-foreground",
+                        "cursor-pointer select-none transition-colors hover:bg-accent hover:text-accent-foreground",
                       )}
                     >
                       <Chevron left />
@@ -280,7 +280,7 @@ function BookingCalendar({
                       htmlFor={monthId(index + 1)}
                       className={cn(
                         navClass,
-                        "cursor-pointer transition-colors hover:bg-accent hover:text-accent-foreground",
+                        "cursor-pointer select-none transition-colors hover:bg-accent hover:text-accent-foreground",
                       )}
                     >
                       <Chevron />
@@ -346,7 +346,7 @@ function BookingCalendar({
                         htmlFor={id}
                         style={{ gridColumn: column }}
                         className={cn(
-                          "gbc-day mx-auto flex size-9 cursor-pointer items-center justify-center rounded-full text-sm font-medium tabular-nums hover:bg-accent hover:text-accent-foreground",
+                          "gbc-day mx-auto flex size-9 cursor-pointer select-none items-center justify-center rounded-full text-sm font-medium tabular-nums hover:bg-accent hover:text-accent-foreground",
                           today && "underline underline-offset-4",
                         )}
                       >
@@ -366,7 +366,7 @@ function BookingCalendar({
                               } as React.CSSProperties
                             }
                           >
-                            <label className="gbc-time block cursor-pointer rounded-md border px-3 py-1.5 text-sm tabular-nums not-has-checked:hover:bg-accent not-has-checked:hover:text-accent-foreground has-[:checked]:border-primary has-[:checked]:bg-primary has-[:checked]:text-primary-foreground has-[:disabled]:cursor-not-allowed has-[:disabled]:opacity-60 has-[:focus-visible]:ring-[3px] has-[:focus-visible]:ring-ring/50">
+                            <label className="gbc-time block cursor-pointer select-none rounded-md border px-3 py-1.5 text-sm tabular-nums not-has-checked:hover:bg-accent not-has-checked:hover:text-accent-foreground has-[:checked]:border-primary has-[:checked]:bg-primary has-[:checked]:text-primary-foreground has-[:disabled]:cursor-not-allowed has-[:disabled]:opacity-60 has-[:focus-visible]:ring-[3px] has-[:focus-visible]:ring-ring/50">
                               <input
                                 type="radio"
                                 name={timeName}
@@ -421,6 +421,6 @@ function BookingCalendar({
 }
 
 const buttonClass =
-  "gbc-book relative inline-flex h-9 w-full cursor-pointer items-center justify-center gap-2 rounded-md bg-primary px-4 text-sm font-medium text-primary-foreground shadow-xs outline-none hover:bg-primary/90 focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:cursor-not-allowed disabled:opacity-50 @xl:w-auto"
+  "gbc-book relative inline-flex h-9 w-full cursor-pointer select-none items-center justify-center gap-2 rounded-md bg-primary px-4 text-sm font-medium text-primary-foreground shadow-xs outline-none hover:bg-primary/90 focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:cursor-not-allowed disabled:opacity-50 @xl:w-auto"
 
 export { BookingCalendar }

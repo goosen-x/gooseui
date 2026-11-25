@@ -116,7 +116,7 @@ function ToggleGroupItem({
     <label
       className={cn(
         toggleVariants({ variant: "default", size: size ?? context.size }),
-        "relative cursor-pointer min-w-0 shrink-0 has-[:checked]:bg-primary has-[:checked]:text-primary-foreground has-[:checked]:hover:bg-[color-mix(in_oklab,var(--primary)_94%,black)] dark:has-[:checked]:hover:bg-[color-mix(in_oklab,var(--primary)_84%,var(--foreground))] has-[:checked]:hover:text-primary-foreground has-[:focus-visible]:ring-[3px] has-[:focus-visible]:ring-ring/50 has-[:disabled]:pointer-events-none has-[:disabled]:opacity-50",
+        "relative cursor-pointer select-none min-w-0 shrink-0 has-[:checked]:bg-primary has-[:checked]:text-primary-foreground has-[:checked]:hover:bg-[color-mix(in_oklab,var(--primary)_94%,black)] dark:has-[:checked]:hover:bg-[color-mix(in_oklab,var(--primary)_84%,var(--foreground))] has-[:checked]:hover:text-primary-foreground has-[:focus-visible]:ring-[3px] has-[:focus-visible]:ring-ring/50 has-[:disabled]:pointer-events-none has-[:disabled]:opacity-50",
         (size ?? context.size) === "icon" ? "w-9 px-0" : "w-auto px-3",
         (variant ?? context.variant ?? "default") === "default" &&
           "rounded-md hover:bg-foreground/10 hover:text-foreground has-[:checked]:shadow-sm",

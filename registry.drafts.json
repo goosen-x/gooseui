@@ -18,24 +18,6 @@
       ]
     },
     {
-      "name": "color-picker",
-      "type": "registry:ui",
-      "title": "Color Picker",
-      "description": "OKLCH color picker with a lightness × chroma area, hue and opacity sliders drawn with oklch gradients, sRGB/P3 gamut hints and server-safe conversion helpers.",
-      "dependencies": [],
-      "registryDependencies": [],
-      "files": [
-        {
-          "path": "registry/gooseui/ui/color-picker.tsx",
-          "type": "registry:ui"
-        },
-        {
-          "path": "registry/gooseui/ui/color-picker.client.tsx",
-          "type": "registry:ui"
-        }
-      ]
-    },
-    {
       "name": "combobox",
       "type": "registry:ui",
       "title": "Combobox",
@@ -69,7 +51,10 @@
       "title": "Data Table",
       "description": "Server-rendered table with sorting, search, pagination, sticky header and first column, and checkbox selection highlighted by :has(:checked).",
       "dependencies": [],
-      "registryDependencies": [],
+      "registryDependencies": [
+        "@gooseui/button",
+        "@gooseui/select"
+      ],
       "files": [
         {
           "path": "registry/gooseui/ui/data-table.tsx",
@@ -97,15 +82,20 @@
     },
     {
       "name": "pricing-table",
-      "type": "registry:ui",
+      "type": "registry:block",
       "title": "Pricing Table",
       "description": "Plan cards with a monthly/yearly switch on radio inputs and :has(), no JavaScript, rows aligned across cards with subgrid.",
       "dependencies": [],
-      "registryDependencies": [],
+      "registryDependencies": [
+        "@gooseui/button",
+        "@gooseui/badge",
+        "@gooseui/card"
+      ],
       "files": [
         {
-          "path": "registry/gooseui/ui/pricing-table.tsx",
-          "type": "registry:ui"
+          "path": "registry/gooseui/blocks/marketing/pricing-table.tsx",
+          "type": "registry:block",
+          "target": "components/blocks/marketing/pricing-table.tsx"
         }
       ]
     },
