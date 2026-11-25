@@ -245,9 +245,9 @@ function NightSky({ badge }: { badge?: React.ReactNode }) {
         ))}
       </svg>
 
-      <div className="gooseui-gsd-hero absolute top-7 left-[calc(50%-2rem)]">
+      <div className="gooseui-gsd-hero absolute top-5 left-[calc(50%-2.25rem)]">
         <div className="gooseui-gsd-float">
-          <HeroStar />
+          <HeroLogo />
         </div>
       </div>
 
@@ -260,33 +260,14 @@ function NightSky({ badge }: { badge?: React.ReactNode }) {
   )
 }
 
-function HeroStar() {
-  const id = React.useId()
+function HeroLogo() {
   return (
-    <svg
-      viewBox="0 0 24 24"
-      className="size-16"
-      style={{
-        filter:
-          "drop-shadow(0 0 0.75rem rgba(250,204,21,.65)) drop-shadow(0 0 1.75rem rgba(250,204,21,.35))",
-      }}
-      aria-hidden="true"
-    >
-      <defs>
-        <linearGradient id={`${id}-fill`} x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#fff3a3" />
-          <stop offset="45%" stopColor="#facc15" />
-          <stop offset="100%" stopColor="#f59e0b" />
-        </linearGradient>
-      </defs>
-      <path
-        d="M11.48 2.5a.6.6 0 0 1 1.04 0l2.6 5.27 5.82.85a.6.6 0 0 1 .33 1.02l-4.21 4.1.99 5.8a.6.6 0 0 1-.87.63L12 17.43l-5.2 2.74a.6.6 0 0 1-.87-.63l.99-5.8-4.2-4.1a.6.6 0 0 1 .33-1.02l5.82-.85z"
-        fill={`url(#${id}-fill)`}
-        stroke="#fde68a"
-        strokeWidth={0.6}
-        strokeLinejoin="round"
-      />
-    </svg>
+    <div className="relative flex size-[4.5rem] items-center justify-center rounded-full border border-white/25 bg-white/10 text-white shadow-[0_0_2rem_rgba(255,255,255,.25)] backdrop-blur-sm">
+      <GitHubIcon className="size-10 drop-shadow-[0_0_0.5rem_rgba(255,255,255,.5)]" />
+      <span className="absolute -right-1 -bottom-1 flex size-7 items-center justify-center rounded-full bg-amber-400 text-amber-950 shadow-[0_0_0.75rem_rgba(250,204,21,.7)] ring-2 ring-[#12152b]">
+        <StarIcon className="size-4 fill-current" strokeWidth={1.5} />
+      </span>
+    </div>
   )
 }
 
@@ -559,11 +540,11 @@ function GitHubStarDialog({
 
           <form
             method="dialog"
-            className="flex items-center justify-end gap-2 border-t bg-muted/40 px-6 py-4"
+            className="flex flex-col-reverse gap-2 border-t bg-muted/40 px-6 py-4 sm:flex-row sm:items-center"
           >
             <button
               type="submit"
-              className="cursor-pointer rounded-lg px-3 py-2 text-sm font-medium transition-colors hover:bg-accent"
+              className="h-10 cursor-pointer whitespace-nowrap rounded-lg px-4 text-sm font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
             >
               {dismissText}
             </button>
@@ -572,13 +553,13 @@ function GitHubStarDialog({
               target="_blank"
               rel="noopener noreferrer"
               onClick={handleStar}
-              className="group inline-flex cursor-pointer items-center gap-2 rounded-lg bg-foreground px-3 py-2 text-sm font-medium text-background transition-transform hover:scale-[1.02] active:scale-[0.98]"
+              className="group inline-flex h-10 min-w-0 flex-1 cursor-pointer items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-foreground pr-1 pl-4 text-sm font-medium text-background transition-[opacity,scale] hover:opacity-90 active:scale-[0.98]"
             >
-              <GitHubIcon className="size-4" />
-              <StarIcon className="size-4 transition-colors group-hover:fill-amber-400 group-hover:text-amber-400" />
-              {ctaText}
+              <GitHubIcon className="size-4 shrink-0" />
+              <span className="truncate">{ctaText}</span>
               {stars !== null && (
-                <span className="rounded bg-background/15 px-1.5 py-0.5 text-xs tabular-nums">
+                <span className="ml-auto flex h-8 shrink-0 items-center gap-1 rounded-md bg-background/15 px-2 text-xs tabular-nums">
+                  <StarIcon className="size-3.5 transition-colors group-hover:fill-amber-400 group-hover:text-amber-400" />
                   {format(stars)}
                 </span>
               )}
